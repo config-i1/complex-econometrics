@@ -1,0 +1,19 @@
+# Introduction to random complex variables {#intro}
+## Theory of complex variables
+
+This section sets out the basic concepts of the Theory of Complex Variables Functions (TCVF) with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
+
+The theory of complex numbers started in 1572 in the small Italian town of Kura. It was in this place and precisely in this year that the manuscript of an Italian mathematician Rafael Bombelli was published. The book was called Algebra. Rafael Bombelli showed in it how to solve the following cubic equation:
+\begin{equation}
+    x^3 = 15x + 4 .
+    (\#eq:BombelliEquation)
+\end{equation}
+The root of cubic equations at that time was calculated using the formula of Scipione del Ferro. With regards to the task at hand, finding the root should have been carried out as follows:
+\begin{equation}
+    \begin{aligned}
+    x = & \sqrt[3]{\frac{4}{2}+\sqrt{\left(\frac{4}{2}\right)^2 - \left(\frac{15}{3}\right)^3}} + \sqrt[3]{\frac{4}{2}-\sqrt{\left(\frac{4}{2}\right)^2 - \left(\frac{15}{3}\right)^3}} = \\
+        & \sqrt[3]{2+\sqrt{-121}} + \sqrt[3]{2-\sqrt{-121}}
+    \end{aligned}
+    (\#eq:BombelliSolution)
+\end{equation}
+As can be seen from equation \@ref(eq:BombelliSolution), there are several square roots, and it follows directly from the right hand side of this equation that to calculate the roots of equation \@ref(eq:BombelliEquation), we need to extract the square root from the negative number, -121. This means that it will not be possible to find a solution to this equation in the domain of real numbers.

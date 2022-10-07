@@ -1,0 +1,6 @@
+Package: placeholder
+Type: Book
+Title: Time Series Analysis and Forecasting with Complex Dynamic Models
+Version: 1.0.0
+Imports: bookdown
+Remotes: rstudio/bookdown
