@@ -12,8 +12,37 @@ The root of cubic equations at that time was calculated using the formula of Sci
 \begin{equation}
     \begin{aligned}
     x = & \sqrt[3]{\frac{4}{2}+\sqrt{\left(\frac{4}{2}\right)^2 - \left(\frac{15}{3}\right)^3}} + \sqrt[3]{\frac{4}{2}-\sqrt{\left(\frac{4}{2}\right)^2 - \left(\frac{15}{3}\right)^3}} = \\
-        & \sqrt[3]{2+\sqrt{-121}} + \sqrt[3]{2-\sqrt{-121}}
+        & \sqrt[3]{2+\sqrt{-121}} + \sqrt[3]{2-\sqrt{-121}} .
     \end{aligned}
     (\#eq:BombelliSolution)
 \end{equation}
 As can be seen from equation \@ref(eq:BombelliSolution), there are several square roots, and it follows directly from the right hand side of this equation that to calculate the roots of equation \@ref(eq:BombelliEquation), we need to extract the square root from the negative number, -121. This means that it will not be possible to find a solution to this equation in the domain of real numbers.
+
+This does not mean that equation \@ref(eq:BombelliEquation) does not have a solution. If you represent the problem graphically on a plane then it is easy to see that there is one. But it is impossible to find it arithmetically using the Scipione del Ferro formula, because there is a negative number in the expression on the right-hand side of \@ref(eq:BombelliSolution), and back then, mathematicians were sure that the square root of a negative number does not exist.
+
+The mathematicians of that time struggled to solve this problem, and Rafael Bombelli suggested to ignore the negative sign in the expression (Bombelli, 12). After all, the number -121 can be represented as a product of two numbers: -1 and 121. Then the square root of this number can be written as $\sqrt{-1} \times 11$. So, formula \@ref(eq:BombelliSolution) becomes:
+\begin{equation}
+    x = \sqrt[3]{2+11\sqrt{-1}} + \sqrt[3]{2-11\sqrt{-1}} .
+    (\#eq:BombelliSolutionSqrt)
+\end{equation}
+Now it is possible to get a solution of the problem, and the root of the cubic equation is $x = 4$.
+
+For a long time, Bombelli's approach was considered by scientists as a convenient mathematical trick. And the square root of minus one was called "magic unit", "vanishing unit", etc. Finally, the term "imaginary unit" was established by René Descartes in 1637 and any number multiplied by the imaginary unit would be called "imaginary number". Merging a real number with an imaginary number gives another number, which can be considered as a more general to the two, which is called "complex". It can be written as:
+\begin{equation}
+    z = x+iy ,
+    (\#eq:complexNumber)
+\end{equation}
+where $x$ is the real part, $iy$ is the imaginary part of a complex number, $x$ and $y$ are real numbers and $i$ is the imaginary unit that satisfies the equality:
+\begin{equation}
+    i^2 = -1 .
+    (\#eq:imaginaryUnit)
+\end{equation}
+
+With complex numbers, one can perform almost all the same operations as with the real ones. However, taking into account the properties of the imaginary unit, these operations can lead to results that are not common in the domain of real numbers.
+
+The main problem that analysts face when trying to understand a complex number is the complexity of the interpretation of the imaginary part. The main question in this case can be formulated as: Where do imaginary numbers appear in practice? And what is the practical meaning of an imaginary unit? We have heard questions like that many times, and while they are valid, we think that they do not have appropriate answers and divert the analysts from what the modelling with complex variables brings.
+
+We argue that the imaginary unit does not have any practical meaning: neither in economics, nor in sociology, nor in engineering, nor in physics. The imaginary unit is a mathematical rule, and that is all. It is a mathematical abstract that has useful properties. A number $\sqrt{2}$ or $\ln 3$ do not have practical meaning either, but they are useful for modelling purposes and solving applied problems in a variety of disciplines. Similarly, an imaginary unit is convenient for solving a whole class of problems in different areas of application. With the help of the rules specified by conditions \@ref(eq:complexNumber) and \@ref(eq:imaginaryUnit), it is possible to use new mathematical operations, obtain new mathematical results, and form new mathematical models.
+
+
+
