@@ -51,5 +51,10 @@ In order to better understand how the modelling with complex variables can be do
 A complex number consists of two parts, which can be visualised on the plane with two perpendicular axes, where the real numbers are marked on the horizontal line, and the imaginary ones are on the vertical one. This is shown visually in Figure \@ref(fig:???).
 
 ```{r}
-plot(c(0,10),c(0,10),type="l", xlab="Real number", ylab="Imaginary number")
+plot(c(0,8),c(0,8), type="l",
+     xlab="Real number", ylab="Imaginary number",
+     xlim=c(0,10), ylim=c(0,10))
+lines(c(0,8), c(8,8), lwd=2, lty=2, col="grey")
+lines(c(8,8), c(0,8), lwd=2, lty=2, col="grey")
+
 ```
