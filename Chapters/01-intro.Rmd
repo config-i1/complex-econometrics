@@ -50,7 +50,7 @@ In order to better understand how the modelling with complex variables can be do
 
 A complex number consists of two parts, which can be visualised on the plane with two perpendicular axes, where the real numbers are marked on the horizontal line, and the imaginary ones are on the vertical one. This is shown visually in Figure \@ref(fig:complexPlane) with a complex number $z=x+iy$.
 
-```{r complexPlane, fig.width=5, fig.height=4, fig.cap="Visual presentation of a complex number on the complex plane."}
+```{r complexPlane, fig.width=5, fig.height=4, fig.cap="Visual presentation of a complex number on the complex plane.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
 plot(c(0,9),c(0,6), type="l",
      xlab="", ylab="",
@@ -88,7 +88,7 @@ where $l$ is an integer number. While depending on a task, $l$ can be set to a p
 
 Furthermore, any complex number can be represented on a so called polar coordinates, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. The same number 
 
-```{r complexPlanePolar, fig.width=5, fig.height=4, fig.cap="Visual presentation of a complex number in the polar coordinates."}
+```{r complexPlanePolar, fig.width=5, fig.height=4, fig.cap="Visual presentation of a complex number in the polar coordinates.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
 plot(0,0, type="p",
      xlab="", ylab="",

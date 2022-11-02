@@ -234,25 +234,6 @@ In order to better understand how the modelling with complex variables can be do
 
 A complex number consists of two parts, which can be visualised on the plane with two perpendicular axes, where the real numbers are marked on the horizontal line, and the imaginary ones are on the vertical one. This is shown visually in Figure \ref{fig:complexPlane} with a complex number \(z=x+iy\).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{cex=}\FloatTok{1.25}\NormalTok{, }\AttributeTok{cex.lab=}\DecValTok{1}\SpecialCharTok{/}\FloatTok{1.25}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{9}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}
-     \AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
-     \AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{8}\NormalTok{), }\AttributeTok{axes=}\NormalTok{F,}
-     \AttributeTok{yaxt=}\StringTok{"n"}\NormalTok{, }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{, }\AttributeTok{col=}\StringTok{"white"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{9}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{9}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
-\FunctionTok{arrows}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{6}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{angle=}\DecValTok{15}\NormalTok{)}
-\FunctionTok{text}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{6}\NormalTok{,}\StringTok{"z"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{3}\NormalTok{)}
-\FunctionTok{text}\NormalTok{(}\FloatTok{9.3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\StringTok{"x"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{3}\NormalTok{)}
-\FunctionTok{text}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{6.4}\NormalTok{,}\StringTok{"y"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{4}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{,}\AttributeTok{v=}\DecValTok{0}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\AttributeTok{ylab=}\StringTok{"Imaginary number"}\NormalTok{, }\AttributeTok{line=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\AttributeTok{xlab=}\StringTok{"Real number"}\NormalTok{, }\AttributeTok{line=}\DecValTok{0}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexPlane-1.pdf}
@@ -279,25 +260,6 @@ and \(\phi\) is the angle, which equals to:
 where \(l\) is an integer number. While depending on a task, \(l\) can be set to a positive, a negative number, or a zero, for convenience, we will restrict it to \(l=0\), because all the other values will not be useful for the inference in following chapters. The polar angle is sometimes referred to as the argument of a complex number.
 
 Furthermore, any complex number can be represented on a so called polar coordinates, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. The same number
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{cex=}\FloatTok{1.25}\NormalTok{, }\AttributeTok{cex.lab=}\DecValTok{1}\SpecialCharTok{/}\FloatTok{1.25}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{, }\AttributeTok{type=}\StringTok{"p"}\NormalTok{,}
-     \AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
-     \AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{12}\NormalTok{), }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{axes=}\NormalTok{F,}
-     \AttributeTok{yaxt=}\StringTok{"n"}\NormalTok{, }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{, }\AttributeTok{col=}\StringTok{"white"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)), }\FunctionTok{c}\NormalTok{(}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
-\FunctionTok{points}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{pch=}\DecValTok{20}\NormalTok{)}
-\FunctionTok{text}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\StringTok{"z"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{3}\NormalTok{)}
-\FunctionTok{text}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\FloatTok{+0.05}\NormalTok{),}\DecValTok{0}\NormalTok{,}\FunctionTok{TeX}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{phi"}\NormalTok{),}\AttributeTok{pos=}\DecValTok{3}\NormalTok{)}
-\FunctionTok{text}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\FloatTok{+0.15}\NormalTok{),}\StringTok{"r"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{4}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{,}\AttributeTok{v=}\DecValTok{0}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\AttributeTok{ylab=}\StringTok{"Polar angle"}\NormalTok{, }\AttributeTok{line=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\AttributeTok{xlab=}\StringTok{"Magnitude"}\NormalTok{, }\AttributeTok{line=}\DecValTok{0}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{figure}
 \centering
