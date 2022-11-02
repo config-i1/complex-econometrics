@@ -144,7 +144,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-10-19}
+\date{2022-11-02}
 
 \begin{document}
 \maketitle
@@ -226,7 +226,134 @@ With complex numbers, one can perform almost all the same operations as with the
 
 The main problem that analysts face when trying to understand a complex number is the complexity of the interpretation of the imaginary part. The main question in this case can be formulated as: Where do imaginary numbers appear in practice? And what is the practical meaning of an imaginary unit? We have heard questions like that many times, and while they are valid, we think that they do not have appropriate answers and divert the analysts from what the modelling with complex variables brings.
 
-We argue that the imaginary unit does not have any practical meaning: neither in economics, nor in sociology, nor in engineering, nor in physics. The imaginary unit is a mathematical rule, and that is all. It is a mathematical abstract that has useful properties. A number \(\sqrt{2}\) or \(\ln 3\) do not have practical meaning either, but they are useful for modelling purposes and solving applied problems in a variety of disciplines. Similarly, an imaginary unit is convenient for solving a whole class of problems in different areas of application. With the help of the rules specified by conditions \eqref{eq:complexNumber} and \eqref{eq:imaginaryUnit}, it is possible to use new mathematical operations, obtain new mathematical results, and form new mathematical models.
+We argue that the imaginary unit does not have any practical meaning: neither in economics, nor in sociology, nor in engineering, nor in physics. The imaginary unit is a mathematical rule, and that is all. It is a mathematical abstract that has useful properties. A number \(\sqrt{2}\) or \(\ln 3\) do not have practical meaning either, but they are useful for modelling purposes and solving applied problems in a variety of disciplines. Similarly, an imaginary unit is convenient for solving a whole class of problems in different areas of application. With the help of the rules specified by conditions \eqref{eq:complexNumber} and \eqref{eq:imaginaryUnit}, it is possible to use new mathematical operations, obtain new mathematical results, and create new mathematical models.
+
+Imaginary and complex numbers are mathematical instruments that can help in describing a real-life phenomenon. If a researcher decides to use complex variables for real processes modelling, they will need to predefine the rules according to which one component of a complex process is attributed to the real part, and another one is attributed to the imaginary part of the complex variable. These rules might seem arbitrary, because there is no ``true'' recipe, according to which the assignment to complex variable parts should be done. The main motivation for them is the efficiency of modelling (such as goodness of fit or forecasting accuracy) and nothing else.
+
+In order to better understand how the modelling with complex variables can be done, we need to better understand how complex variables can be represented and interpreted. A real number represents visually a certain segment on the numerical axis, which has a zero point and a multitude of values from minus infinity to infinity. Any real number is characterized by the distance from zero to the value of that number. Negative numbers are located to the left of zero, while the positive ones are located to the right of it.
+
+A complex number consists of two parts, which can be visualised on the plane with two perpendicular axes, where the real numbers are marked on the horizontal line, and the imaginary ones are on the vertical one. This is shown visually in Figure \ref{fig:complexPlane} with a complex number \(z=x+iy\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{cex=}\FloatTok{1.25}\NormalTok{, }\AttributeTok{cex.lab=}\DecValTok{1}\SpecialCharTok{/}\FloatTok{1.25}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{9}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
+     \AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{8}\NormalTok{), }\AttributeTok{axes=}\NormalTok{F,}
+     \AttributeTok{yaxt=}\StringTok{"n"}\NormalTok{, }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{, }\AttributeTok{col=}\StringTok{"white"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{9}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{9}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
+\FunctionTok{arrows}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{6}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{angle=}\DecValTok{15}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{6}\NormalTok{,}\StringTok{"z"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{3}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\FloatTok{9.3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\StringTok{"x"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{3}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{6.4}\NormalTok{,}\StringTok{"y"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{4}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{,}\AttributeTok{v=}\DecValTok{0}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\AttributeTok{ylab=}\StringTok{"Imaginary number"}\NormalTok{, }\AttributeTok{line=}\DecValTok{0}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\AttributeTok{xlab=}\StringTok{"Real number"}\NormalTok{, }\AttributeTok{line=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexPlane-1.pdf}
+\caption{\label{fig:complexPlane}Visual presentation of a complex number on the complex plane.}
+\end{figure}
+
+Any point lying on the complex plane in Figure \ref{fig:complexPlane} characterises a complex number, even if that point lies on the axis of real numbers. In that specific case, we would be talking about a complex number with a zero imaginary part, i.e.~\(z=x+i0\).
+
+Given that complex numbers can be represented on a plane (in so called Cartesian coordinates), the number \eqref{eq:complexNumber} can be represented in a form of a vector that starts in the origin of coordinates and ends at the point (x, y). Then any complex number can be represented in form of polar coordinates using the magnitude of the vector and its polar angle:
+\begin{equation}
+    z = x+iy = r (\cos \phi + i \sin \phi),
+    \label{eq:complexNumberTrigonometric}
+\end{equation}
+where r is the magnitude, which is calculated as a Euclidean distance from the origin to the point (x, y) on the plane:
+\begin{equation}
+    r = \sqrt{x^2 + y^2},
+    \label{eq:complexNumberMagnitude}
+\end{equation}
+and \(\phi\) is the angle, which equals to:
+\begin{equation}
+    \phi = \arctan \frac{y}{x} + 2 \pi l,
+    \label{eq:complexNumberAngle}
+\end{equation}
+where \(l\) is an integer number. While depending on a task, \(l\) can be set to a positive, a negative number, or a zero, for convenience, we will restrict it to \(l=0\), because all the other values will not be useful for the inference in following chapters. The polar angle is sometimes referred to as the argument of a complex number.
+
+Furthermore, any complex number can be represented on a so called polar coordinates, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. The same number
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{cex=}\FloatTok{1.25}\NormalTok{, }\AttributeTok{cex.lab=}\DecValTok{1}\SpecialCharTok{/}\FloatTok{1.25}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{, }\AttributeTok{type=}\StringTok{"p"}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{ylab=}\StringTok{""}\NormalTok{,}
+     \AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{12}\NormalTok{), }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{axes=}\NormalTok{F,}
+     \AttributeTok{yaxt=}\StringTok{"n"}\NormalTok{, }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{, }\AttributeTok{col=}\StringTok{"white"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)), }\FunctionTok{c}\NormalTok{(}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{pch=}\DecValTok{20}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i),}\StringTok{"z"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{3}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\FloatTok{+0.05}\NormalTok{),}\DecValTok{0}\NormalTok{,}\FunctionTok{TeX}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{phi"}\NormalTok{),}\AttributeTok{pos=}\DecValTok{3}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{Arg}\NormalTok{(}\DecValTok{9}\SpecialCharTok{+}\NormalTok{6i)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\FloatTok{+0.15}\NormalTok{),}\StringTok{"r"}\NormalTok{,}\AttributeTok{pos=}\DecValTok{4}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{,}\AttributeTok{v=}\DecValTok{0}\NormalTok{,}\AttributeTok{lty=}\DecValTok{1}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\AttributeTok{ylab=}\StringTok{"Polar angle"}\NormalTok{, }\AttributeTok{line=}\DecValTok{0}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\AttributeTok{xlab=}\StringTok{"Magnitude"}\NormalTok{, }\AttributeTok{line=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexPlanePolar-1.pdf}
+\caption{\label{fig:complexPlanePolar}Visual presentation of a complex number in the polar coordinates.}
+\end{figure}
+
+\hypertarget{CLR}{%
+\chapter{Complex Linear Regression}\label{CLR}}
+
+\hypertarget{simple-clr}{%
+\section{Simple CLR}\label{simple-clr}}
+
+\hypertarget{model-formulation}{%
+\subsection{Model formulation}\label{model-formulation}}
+
+The simple Complex Linear Regression can be written as:
+\begin{equation}
+    y_r + i y_i = a_0 + i a_1 + (b_0 + i b_1) (x_r + i x_i) + \epsilon_r + i \epsilon_i
+    \label{eq:SimpleCLR}
+\end{equation}
+Given that any complex equation can be represented as a system of two equations, this model can be represented as a system of two linear regressions:
+\begin{equation}
+    \begin{aligned}
+        y_r = & a_0 + b_0 x_r - b_1 x_i + \epsilon_r \\
+        y_i = & a_1 + b_0 x_i + b_1 x_r + \epsilon_i
+    \end{aligned}
+    \label{eq:SimpleCLRSystem}
+\end{equation}
+This model captures a very specific dynamics between the real and imaginary parts, given that they share the same set of parameters for the slope.
+
+\hypertarget{estimation}{%
+\subsection{Estimation}\label{estimation}}
+
+Number of estimated parameters is k, number of degrees of freedom per series is k/2.
+
+\hypertarget{inference}{%
+\subsection{Inference}\label{inference}}
+
+\hypertarget{forecasting}{%
+\subsection{Forecasting}\label{forecasting}}
+
+\hypertarget{multiple-clr}{%
+\section{Multiple CLR}\label{multiple-clr}}
+
+\hypertarget{model-formulation-1}{%
+\subsection{Model formulation}\label{model-formulation-1}}
+
+\hypertarget{estimation-1}{%
+\subsection{Estimation}\label{estimation-1}}
+
+\hypertarget{inference-1}{%
+\subsection{Inference}\label{inference-1}}
+
+\hypertarget{forecasting-1}{%
+\subsection{Forecasting}\label{forecasting-1}}
 
   \bibliography{library.bib,packages.bib,websites.bib}
 

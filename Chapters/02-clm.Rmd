@@ -1,4 +1,4 @@
-# Complex Linear Regression {#intro}
+# Complex Linear Regression {#CLR}
 
 ## Simple CLR
 ### Model formulation
