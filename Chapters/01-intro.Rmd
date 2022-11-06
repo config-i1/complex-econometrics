@@ -113,7 +113,7 @@ draw.circle(0,0,sqrt(9^2+6^2))
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=2)
 text(Re(x),Im(x),TeX("$z_1$"),pos=3)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=1)
-text(1,1.5,TeX("$\\frac{π}{2}$"),pos=3, cex=0.8)
+text(1,1.5,TeX("$\\frac{\\pi}{2}$"),pos=3, cex=0.8)
 x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=3)
 text(Re(x),Im(x),TeX("$z_2$"),pos=3)
