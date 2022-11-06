@@ -50,7 +50,7 @@ In order to better understand how the modelling with complex variables can be do
 
 A complex number consists of two parts, which can be visualised on the plane with two perpendicular axes, where the real numbers are marked on the horizontal line, and the imaginary ones are on the vertical one. This is shown visually in Figure \@ref(fig:complexPlane) with a complex number $z=x+iy$.
 
-```{r complexPlane, fig.width=4, fig.height=3, fig.cap="Visual presentation of a complex number on the complex plane.", echo=FALSE}
+```{r complexPlane, fig.width=3, fig.height=2, fig.cap="Visual presentation of a complex number on the complex plane.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
 plot(c(0,9),c(0,6), type="l",
      xlab="", ylab="",
@@ -102,7 +102,7 @@ where $e$ is the Euler's constant. In this form, the positive real number has $\
 \end{equation*}
 The multiplication of any complex number by the imaginary unit in this case implies the rotation by $\frac{\pi}{2}$, as shown in Figure \@ref(fig:complexPlaneMultiplication), where a complex variable $z_1 = x_1 + i y_1$ becomes $z_2 = z_1 \times i = x_2 + i y_2$ etc.
 
-```{r complexPlaneMultiplication, fig.width=4, fig.height=4, fig.cap="Multiplication of a complex number by $i$ implies the rotation of it by $\\frac{\\pi}{2}$.", echo=FALSE}
+```{r complexPlaneMultiplication, fig.width=3, fig.height=3, fig.cap="Multiplication of a complex number by $i$ implies the rotation of it by $\\frac{\\pi}{2}$.", echo=FALSE}
 x <- complex(real=9, imaginary=6)
 par(mar=c(1,1,1,1), cex=1)
 plot(c(0,9),c(0,6), type="l",
@@ -135,7 +135,7 @@ In a way, any mathematical operation with a complex number implies a change in m
 
 Furthermore, given that any complex number can be represented in the exponential form, it can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \@ref(fig:complexPlanePolar).
 
-```{r complexPlanePolar, fig.width=4, fig.height=3, fig.cap="Visual presentation of a complex number in the polar coordinates.", echo=FALSE}
+```{r complexPlanePolar, fig.width=3, fig.height=2, fig.cap="Visual presentation of a complex number in the polar coordinates.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
 plot(0,0, type="p",
      xlab="", ylab="",
