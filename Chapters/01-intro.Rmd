@@ -110,12 +110,10 @@ plot(c(0,9),c(0,6), type="l",
      xlim=c(-12,15), ylim=c(-12,15), axes=F,
      yaxt="n", xaxt="n", col="white")
 draw.circle(0,0,sqrt(9^2+6^2))
-# text(4.5,3,TeX("$r$"),pos=3)
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=2)
 text(Re(x),Im(x),TeX("$z_1$"),pos=3)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=1)
-text(1,1.5,TeX("$\\pi/2$"),pos=3, cex=0.8)
-# text(4.5,1,TeX("$\\phi_2$"),pos=3)
+text(1,1.5,TeX("$\\frac{\\text{\\pi}}{2}$"),pos=3, cex=0.8)
 x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=3)
 text(Re(x),Im(x),TeX("$z_2$"),pos=3)
@@ -128,7 +126,6 @@ x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=1)
 text(Re(x),Im(x),TeX("$z_4$"),pos=1)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=4)
-
 abline(h=0,v=0,lty=1)
 text(15, -1, "x", cex=1.25)
 text(-1, 15, "y", cex=1.25)
