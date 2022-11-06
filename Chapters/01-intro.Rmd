@@ -86,7 +86,12 @@ and $\phi$ is the angle, which equals to:
 \end{equation}
 where $l$ is an integer number. While depending on a task, $l$ can be set to a positive, a negative number, or a zero, for convenience, we will restrict it to $l=0$, because all the other values will not be useful for the inference in following chapters. The polar angle is sometimes referred to as the argument of a complex number.
 
-Furthermore, any complex number can be represented on a so called polar coordinates, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. The same number 
+Using the magnitude and the polar angle, we can also represent any complex number in the exponential form (which was first proposed by Euler):
+\begin{equation}
+    z = r e^{i \phi} ,
+    (\#eq:complexNumberExponential)
+\end{equation}
+where $e$ is the Euler's constant. Based on that, any complex number can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \@ref(fig:complexPlanePolar).
 
 ```{r complexPlanePolar, fig.width=4, fig.height=3, fig.cap="Visual presentation of a complex number in the polar coordinates.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
@@ -105,6 +110,26 @@ title(ylab="Polar angle", line=0)
 title(xlab="Magnitude", line=0)
 ```
 
+The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that were not obvious on the Cartesian plane. Figure \@ref(fig:complexCartesianvsPolar) shows an example of a complex random variable, for which the real and imaginary parts do not seem to have any obvious linear relation, but the magnitude and the angle have a negative relation.
 
+```{r complexCartesianvsPolar, fig.width=10, fig.height=6, fig.cap="Comparison of complex variables on .", echo=FALSE}
+x <- rnorm(100,100,10)
+y <- 1/x*rlnorm(100,0,0.02)
+z <- x*exp(y*1i)
+par(mar=c(1,1,1,1), cex=1.25, mfcol=c(1,2))
+plot(Re(z), Im(z), type="p",
+     xlab="", ylab="",
+     yaxt="n", xaxt="n")
+title(ylab="Imaginary number", line=0)
+title(xlab="Real number", line=0)
 
+plot(abs(z),Arg(z), type="p",
+     xlab="", ylab="",
+     yaxt="n", xaxt="n")
+points(abs(9+6i),Arg(9+6i), lwd=2, pch=20)
+abline(h=0,v=0,lty=1)
+title(ylab="Polar angle", line=0)
+title(xlab="Magnitude", line=0)
+```
 
+In this case, modelling can be done in the exponential form of the complex variable, which might allow capturing complicated non-linear relations between variables.
