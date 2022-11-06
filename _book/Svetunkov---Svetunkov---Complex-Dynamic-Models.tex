@@ -248,12 +248,12 @@ Given that complex numbers can be represented on a plane (in so called Cartesian
     z = x+iy = r (\cos \phi + i \sin \phi),
     \label{eq:complexNumberTrigonometric}
 \end{equation}
-where r is the magnitude, which is calculated as a Euclidean distance from the origin to the point (x, y) on the plane:
+where \(r=|z|\) is the magnitude, which is calculated as a Euclidean distance from the origin to the point (x, y) on the plane:
 \begin{equation}
     r = \sqrt{x^2 + y^2},
     \label{eq:complexNumberMagnitude}
 \end{equation}
-and \(\phi\) is the angle, which equals to:
+and \(\phi=\Arg(z)\) is the angle, which equals to:
 \begin{equation}
     \phi = \arctan \frac{y}{x} + 2 \pi l,
     \label{eq:complexNumberAngle}
@@ -297,7 +297,7 @@ The usefulness of the polar coordinates presentation becomes apparent when a set
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexCartesianvsPolar-1.pdf}
-\caption{\label{fig:complexCartesianvsPolar}Comparison of complex variables on .}
+\caption{\label{fig:complexCartesianvsPolar}Visualisation of complex variables on Cartesian and on polar coordinates planes.}
 \end{figure}
 
 In this case, modelling can be done in the exponential form of complex variables, which might allow capturing complicated non-linear relations between variables.
@@ -309,15 +309,15 @@ When it comes to operations with complex numbers, mathematically we will say tha
         z_2 = & x_2 + i y_2 . \\
         z_1 = & z_2 \iff \left \lbrace
         \begin{aligned}
-            x_1 = x_2 \\
-            y_1 = y_2
+            & x_1 = x_2 \\
+            & y_1 = y_2
         \end{aligned}
         \right. \\
         & \text{ or equivalently } \\
         z_1 = & z_2 \iff \left \lbrace
         \begin{aligned}
-            |z_1| = |z_2| \\
-            \Arg(z_1) = \Arg(z_2)
+            & |z_1| = |z_2| \\
+            & \Arg(z_1) = \Arg(z_2)
         \end{aligned}
         \right.
     \end{aligned}

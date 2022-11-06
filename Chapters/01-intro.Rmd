@@ -74,12 +74,12 @@ Given that complex numbers can be represented on a plane (in so called Cartesian
     z = x+iy = r (\cos \phi + i \sin \phi),
     (\#eq:complexNumberTrigonometric)
 \end{equation}
-where r is the magnitude, which is calculated as a Euclidean distance from the origin to the point (x, y) on the plane:
+where $r=|z|$ is the magnitude, which is calculated as a Euclidean distance from the origin to the point (x, y) on the plane:
 \begin{equation}
     r = \sqrt{x^2 + y^2},
     (\#eq:complexNumberMagnitude)
 \end{equation}
-and $\phi$ is the angle, which equals to:
+and $\phi=\Arg(z)$ is the angle, which equals to:
 \begin{equation}
     \phi = \arctan \frac{y}{x} + 2 \pi l,
     (\#eq:complexNumberAngle)
@@ -154,7 +154,7 @@ title(xlab="Magnitude", line=0)
 
 The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that were not obvious on the Cartesian plane. Figure \@ref(fig:complexCartesianvsPolar) shows an example of a complex random variable, for which the real and imaginary parts do not seem to have any obvious linear relation, but the magnitude and the angle have a negative relation.
 
-```{r complexCartesianvsPolar, fig.cap="Comparison of complex variables on .", echo=FALSE}
+```{r complexCartesianvsPolar, fig.hight=6, fig.cap="Visualisation of complex variables on Cartesian and on polar coordinates planes.", echo=FALSE}
 x <- rnorm(100,100,10)
 y <- 1/x*rlnorm(100,0,0.02)
 z <- x*exp(y*1i)
@@ -183,15 +183,15 @@ When it comes to operations with complex numbers, mathematically we will say tha
         z_2 = & x_2 + i y_2 . \\
         z_1 = & z_2 \iff \left \lbrace
         \begin{aligned}
-            x_1 = x_2 \\
-            y_1 = y_2
+            & x_1 = x_2 \\
+            & y_1 = y_2
         \end{aligned}
         \right. \\
         & \text{ or equivalently } \\
         z_1 = & z_2 \iff \left \lbrace
         \begin{aligned}
-            |z_1| = |z_2| \\
-            \Arg(z_1) = \Arg(z_2)
+            & |z_1| = |z_2| \\
+            & \Arg(z_1) = \Arg(z_2)
         \end{aligned}
         \right.
     \end{aligned}
