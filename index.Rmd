@@ -36,7 +36,7 @@ install.packages("complex")
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'greybox', 'complex'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'greybox', 'complex', 'plotrix'
 ), 'packages.bib')
 # Load the necessary packages
 library("latex2exp")
@@ -44,6 +44,6 @@ library("kableExtra")
 library("statmod")
 library("pracma")
 library("greybox")
-library("vioplot")
-library("DescTools")
+library("plotrix")
+library("complex")
 ```

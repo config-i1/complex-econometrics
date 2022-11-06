@@ -132,4 +132,29 @@ title(ylab="Polar angle", line=0)
 title(xlab="Magnitude", line=0)
 ```
 
-In this case, modelling can be done in the exponential form of the complex variable, which might allow capturing complicated non-linear relations between variables.
+In this case, modelling can be done in the exponential form of complex variables, which might allow capturing complicated non-linear relations between variables.
+
+When it comes to operations with complex numbers, mathematically we will say that two complex numbers are equal to each other if and only if their real and imaginary parts are equal. Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one variable is greater or less than the other. However, we could use the magnitude to compare variables, to say which one lies further away from the origin than the other. In that case, the variable with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only tell us something about the rotation of a complex variable. So two variables in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one variable is greater than the other in this case -- we would need to devise additional criteria for comparison (e.g. positive numbers are "better" than the negative ones).
+
+```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Visual presentation of a complex number on the complex plane.", echo=FALSE}
+par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
+plot(c(0,9),c(0,6), type="l",
+     xlab="", ylab="",
+     xlim=c(0,12), ylim=c(0,12), axes=F,
+     yaxt="n", xaxt="n", col="white")
+draw.circle(0,0,sqrt(9^2+6^2))
+text(9,6,TeX("$z_1$"),pos=3)
+text(6,9,TeX("$z_2$"),pos=3)
+text(4.5,3,TeX("$r$"),pos=3)
+text(3,4.5,TeX("$r$"),pos=3)
+draw.arc(0,0,2,0,atan(6/9), col="grey", lwd=2)
+draw.arc(0,0,4,0,atan(9/6), col="grey", lwd=2)
+arrows(0,0,9,6, lwd=2, angle=15)
+arrows(0,0,6,9, lwd=2, angle=15)
+text(2.7,0.1,TeX("$\\phi_1$"),pos=3)
+text(4.5,1,TeX("$\\phi_1$"),pos=3)
+abline(h=0,v=0,lty=1)
+title(ylab="Imaginary number", line=0)
+title(xlab="Real number", line=0)
+```
+
