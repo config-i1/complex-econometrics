@@ -176,25 +176,23 @@ title(xlab="Magnitude", line=0)
 
 In this case, modelling can be done in the exponential form of complex variables, which might allow capturing complicated non-linear relations between variables.
 
-When it comes to operations with complex numbers, mathematically we will say that two complex numbers are equal to each other if and only if their real and imaginary parts are equal:
+When it comes to operations with complex numbers, mathematically we will say that two complex numbers $z_1 = x_1 + i y_1$ and $z_2 = x_2 + i y_2$ are equal to each other if and only if their real and imaginary parts are equal:
 \begin{equation*}
+    z_1 = z_2 \iff \left \lbrace
     \begin{aligned}
-        z_1 = & x_1 + i y_1 , \\
-        z_2 = & x_2 + i y_2 . \\
-        z_1 = & z_2 \iff \left \lbrace
-        \begin{aligned}
-            & x_1 = x_2 \\
-            & y_1 = y_2
-        \end{aligned}
-        \right. \\
-        & \text{ or equivalently } \\
-        z_1 = & z_2 \iff \left \lbrace
-        \begin{aligned}
-            & |z_1| = |z_2| \\
-            & \Arg(z_1) = \Arg(z_2)
-        \end{aligned}
-        \right.
+        & x_1 = x_2 \\
+        & y_1 = y_2
     \end{aligned}
+    \right. ,
+\end{equation*}
+which is equivalent to saying that their magnitudes and polar angles are the same:
+\begin{equation*}
+    z_1 = z_2 \iff \left \lbrace
+    \begin{aligned}
+        & |z_1| = |z_2| \\
+        & \Arg(z_1) = \Arg(z_2)
+    \end{aligned}
+    \right. .
 \end{equation*}
 
 Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one variable is greater or less than the other. However, we could use the magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the variable with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only tell us something about the rotation of a complex variable. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one variable is greater than the other in this case -- we would need to devise additional criteria for comparison (e.g. positive numbers are "better" than the negative and/or imaginary ones).
