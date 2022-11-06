@@ -264,7 +264,26 @@ Using the magnitude and the polar angle, we can also represent any complex numbe
     z = r e^{i \phi} ,
     \label{eq:complexNumberExponential}
 \end{equation}
-where \(e\) is the Euler's constant. Based on that, any complex number can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \ref{fig:complexPlanePolar}.
+where \(e\) is the Euler's constant. In this form, the positive real number has \(\phi=0\), while the negative one has \(\phi=\pi\), and all imaginary numbers have an angle dividable by \(\frac{\pi}{2}\). So, for example:
+\begin{equation*}
+    \begin{aligned}
+    41 = & 41 e^{i 0} \\
+    i41 = & 41 e^{i \frac{\pi}{2}} \\
+    -41 = & 41 e^{i \pi} \\
+    -i41 = & 41 e^{i \frac{3 \pi}{2}}
+    \end{aligned}
+\end{equation*}
+The multiplication of any complex number by the imaginary unit in this case implies the rotation by \(\frac{\pi}{2}\), as shown in Figure \ref{fig:complexPlaneMultiplication}, where a complex variable \(z_1 = x_1 + i y_1\) becomes \(z_2 = z_1 \times i = x_2 + i y_2\) etc.
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexPlaneMultiplication-1.pdf}
+\caption{\label{fig:complexPlaneMultiplication}Multiplication of a number by \(i\).}
+\end{figure}
+
+In a way, any mathematical operation with a complex number implies a change in magnitude and angle of the number, while the multiplication and division by a number with non-zero imaginary part will always lead to the rotation of the number.
+
+Furthermore, given that any complex number can be represented in the exponential form, it can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \ref{fig:complexPlanePolar}.
 
 \begin{figure}
 \centering
@@ -280,7 +299,15 @@ The usefulness of the polar coordinates presentation becomes apparent when a set
 \caption{\label{fig:complexCartesianvsPolar}Comparison of complex variables on .}
 \end{figure}
 
-In this case, modelling can be done in the exponential form of the complex variable, which might allow capturing complicated non-linear relations between variables.
+In this case, modelling can be done in the exponential form of complex variables, which might allow capturing complicated non-linear relations between variables.
+
+When it comes to operations with complex numbers, mathematically we will say that two complex numbers are equal to each other if and only if their real and imaginary parts are equal. Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one variable is greater or less than the other. However, we could use the magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the variable with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only tell us something about the rotation of a complex variable. So, two complex numbers in Figure \ref{fig:complexPlaneCircle} would have the same magnitude, but will have different angles, and it is not possible to say whether one variable is greater than the other in this case -- we would need to devise additional criteria for comparison (e.g.~positive numbers are ``better'' than the negative and/or imaginary ones).
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexPlaneCircle-1.pdf}
+\caption{\label{fig:complexPlaneCircle}Visual presentation of a complex number on the complex plane.}
+\end{figure}
 
 \hypertarget{CLR}{%
 \chapter{Complex Linear Regression}\label{CLR}}
