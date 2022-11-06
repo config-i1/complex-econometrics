@@ -144,7 +144,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-11-03}
+\date{2022-11-06}
 
 \begin{document}
 \maketitle
@@ -259,13 +259,28 @@ and \(\phi\) is the angle, which equals to:
 \end{equation}
 where \(l\) is an integer number. While depending on a task, \(l\) can be set to a positive, a negative number, or a zero, for convenience, we will restrict it to \(l=0\), because all the other values will not be useful for the inference in following chapters. The polar angle is sometimes referred to as the argument of a complex number.
 
-Furthermore, any complex number can be represented on a so called polar coordinates, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. The same number
+Using the magnitude and the polar angle, we can also represent any complex number in the exponential form (which was first proposed by Euler):
+\begin{equation}
+    z = r e^{i \phi} ,
+    \label{eq:complexNumberExponential}
+\end{equation}
+where \(e\) is the Euler's constant. Based on that, any complex number can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \ref{fig:complexPlanePolar}.
 
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexPlanePolar-1.pdf}
 \caption{\label{fig:complexPlanePolar}Visual presentation of a complex number in the polar coordinates.}
 \end{figure}
+
+The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that were not obvious on the Cartesian plane. Figure \ref{fig:complexCartesianvsPolar} shows an example of a complex random variable, for which the real and imaginary parts do not seem to have any obvious linear relation, but the magnitude and the angle have a negative relation.
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexCartesianvsPolar-1.pdf}
+\caption{\label{fig:complexCartesianvsPolar}Comparison of complex variables on .}
+\end{figure}
+
+In this case, modelling can be done in the exponential form of the complex variable, which might allow capturing complicated non-linear relations between variables.
 
 \hypertarget{CLR}{%
 \chapter{Complex Linear Regression}\label{CLR}}
