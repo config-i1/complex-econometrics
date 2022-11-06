@@ -102,7 +102,7 @@ where $e$ is the Euler's constant. In this form, the positive real number has $\
 \end{equation*}
 The multiplication of any complex number by the imaginary unit in this case implies the rotation by $\frac{\pi}{2}$, as shown in Figure \@ref(fig:complexPlaneMultiplication), where a complex variable $z_1 = x_1 + i y_1$ becomes $z_2 = z_1 \times i = x_2 + i y_2$ etc.
 
-```{r complexPlaneMultiplication, fig.width=4, fig.height=4, fig.cap="Multiplication of a complex number by $i$ implies the rotation of it by $\\frac{\\pi}{2}.$.", echo=FALSE}
+```{r complexPlaneMultiplication, fig.width=4, fig.height=4, fig.cap="Multiplication of a complex number by $i$ implies the rotation of it by $\\frac{\\pi}{2}$.", echo=FALSE}
 x <- complex(real=9, imaginary=6)
 par(mar=c(1,1,1,1), cex=1)
 plot(c(0,9),c(0,6), type="l",
@@ -178,7 +178,7 @@ In this case, modelling can be done in the exponential form of complex variables
 
 When it comes to operations with complex numbers, mathematically we will say that two complex numbers are equal to each other if and only if their real and imaginary parts are equal. Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one variable is greater or less than the other. However, we could use the magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the variable with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only tell us something about the rotation of a complex variable. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one variable is greater than the other in this case -- we would need to devise additional criteria for comparison (e.g. positive numbers are "better" than the negative and/or imaginary ones).
 
-```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Visual presentation of a complex number on the complex plane.", echo=FALSE}
+```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $z_1$ and $z_2$ that have the same magnitude $r$, but different angles.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
 plot(c(0,9),c(0,6), type="l",
      xlab="", ylab="",
