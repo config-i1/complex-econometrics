@@ -102,7 +102,7 @@ where $e$ is the Euler's constant. In this form, the positive real number has $\
 \end{equation*}
 The multiplication of any complex number by the imaginary unit in this case implies the rotation by $\frac{\pi}{2}$, as shown in Figure \@ref(fig:complexPlaneMultiplication), where a complex variable $z_1 = x_1 + i y_1$ becomes $z_2 = z_1 \times i = x_2 + i y_2$ etc.
 
-```{r complexPlaneMultiplication, fig.width=4, fig.height=4, fig.cap="Multiplication of a number by $i$.", echo=FALSE}
+```{r complexPlaneMultiplication, fig.width=4, fig.height=4, fig.cap="Multiplication of a complex number by $i$ implies the rotation of it by $\\frac{\\pi}{2}.$.", echo=FALSE}
 x <- complex(real=9, imaginary=6)
 par(mar=c(1,1,1,1), cex=1)
 plot(c(0,9),c(0,6), type="l",
