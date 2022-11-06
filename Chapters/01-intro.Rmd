@@ -154,7 +154,7 @@ title(xlab="Magnitude", line=0)
 
 The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that were not obvious on the Cartesian plane. Figure \@ref(fig:complexCartesianvsPolar) shows an example of a complex random variable, for which the real and imaginary parts do not seem to have any obvious linear relation, but the magnitude and the angle have a negative relation.
 
-```{r complexCartesianvsPolar, fig.hight=6, fig.cap="Visualisation of complex variables on Cartesian and on polar coordinates planes.", echo=FALSE}
+```{r complexCartesianvsPolar, fig.height=4, fig.cap="Visualisation of complex variables on Cartesian and on polar coordinates planes.", echo=FALSE}
 x <- rnorm(100,100,10)
 y <- 1/x*rlnorm(100,0,0.02)
 z <- x*exp(y*1i)
