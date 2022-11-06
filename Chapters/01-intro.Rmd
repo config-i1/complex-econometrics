@@ -86,12 +86,12 @@ and $\phi=\Arg(z)$ is the angle, which equals to:
 \end{equation}
 where $l$ is an integer number. While depending on a task, $l$ can be set to a positive, a negative number, or a zero, for convenience, we will restrict it to $l=0$, because all the other values will not be useful for the inference in following chapters. The polar angle is sometimes referred to as the argument of a complex number.
 
-Using the magnitude and the polar angle, we can also represent any complex number in the exponential form (which was first proposed by Euler):
+Using the magnitude and the polar angle, we can also represent any complex number in the exponential form, which was first proposed in 1748 by Euler, in his book "Introduction to the Infinitesimal Analysis" **(Euler, 1961, pp. 118-119)**, which:
 \begin{equation}
     z = r e^{i \phi} ,
     (\#eq:complexNumberExponential)
 \end{equation}
-where $e$ is the Euler's constant. In this form, the positive real number has $\phi=0$, while the negative one has $\phi=\pi$, and all imaginary numbers have an angle dividable by $\frac{\pi}{2}$. So, for example:
+where $e$ is the Euler's constant. The formula \@ref(eq:complexNumberExponential) is nowadays also called "Euler's formula". In this form, the positive real number has $\phi=0$, while the negative one has $\phi=\pi$, and all imaginary numbers have an angle dividable by $\frac{\pi}{2}$. So, for example:
 \begin{equation*}
     \begin{aligned}
     41 = & 41 e^{i 0} \\
@@ -131,7 +131,14 @@ text(15, -1, "x", cex=1.25)
 text(-1, 15, "y", cex=1.25)
 ```
 
-In a way, any mathematical operation with a complex number implies a change in magnitude and angle of the number, while the multiplication and division by a number with non-zero imaginary part will always lead to the rotation of the number.
+In a way, any mathematical operation with a complex number implies a change in magnitude and angle of the number, while the multiplication and division by a number with non-zero imaginary part will always lead to the rotation of the number. In fact, the operations of multiplication and division are easier to do in either exponential or trigonometric forms of complex variables:
+\begin{equation*}
+    z_3 = z_1 \times z_2 = r_1 r_2 e^{i \phi_1 + \phi_2} 
+\end{equation*}
+or equivalently:
+\begin{equation*}
+    z_3 = r_1 r_2 \left(\cos (\phi_1 + \phi_2) + i \sin (\phi_1 + \phi_2) \right) .
+\end{equation*}
 
 Furthermore, given that any complex number can be represented in the exponential form, it can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \@ref(fig:complexPlanePolar).
 
@@ -197,7 +204,7 @@ which is equivalent to saying that their magnitudes and polar angles are the sam
 
 Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one variable is greater or less than the other. However, we could use the magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the variable with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only tell us something about the rotation of a complex variable. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one variable is greater than the other in this case -- we would need to devise additional criteria for comparison (e.g. positive numbers are "better" than the negative and/or imaginary ones).
 
-```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $z_1$ and $z_2$ that have the same magnitude $r$, but different angles.", echo=FALSE}
+```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $z_1$ and $z_2$ that have the same magnitude $r$, but different angles $\\phi_1$ and $\\phi_2$.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
 plot(c(0,9),c(0,6), type="l",
      xlab="", ylab="",

@@ -4,6 +4,11 @@
 ### Model formulation
 The simple Complex Linear Regression can be written as:
 \begin{equation}
+    \mathbf{z} = \mathbf{a} + \mathbf{b} \mathbf{x} + \boldsymbol{\epsilon}
+    (\#eq:SimpleCLRComplex)
+\end{equation}
+or
+\begin{equation}
     y_r + i y_i = a_0 + i a_1 + (b_0 + i b_1) (x_r + i x_i) + \epsilon_r + i \epsilon_i
     (\#eq:SimpleCLR)
 \end{equation}
