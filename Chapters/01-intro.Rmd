@@ -91,7 +91,52 @@ Using the magnitude and the polar angle, we can also represent any complex numbe
     z = r e^{i \phi} ,
     (\#eq:complexNumberExponential)
 \end{equation}
-where $e$ is the Euler's constant. Based on that, any complex number can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \@ref(fig:complexPlanePolar).
+where $e$ is the Euler's constant. In this form, the positive real number has $\phi=0$, while the negative one has $\phi=\pi$, and all imaginary numbers have an angle dividable by $\frac{\pi}{2}$. So, for example:
+\begin{equation*}
+    \begin{aligned}
+    41 = & 41 e^{i 0} \\
+    i41 = & 41 e^{i \frac{\pi}{2}} \\
+    -41 = & 41 e^{i \pi} \\
+    -i41 = & 41 e^{i \frac{3 \pi}{2}}
+    \end{aligned}
+\end{equation*}
+The multiplication of any complex number by the imaginary unit in this case implies the rotation by $\frac{\pi}{2}$, as shown in Figure \@ref(fig:complexPlaneMultiplication), where a complex variable $z_1 = x_1 + i y_1$ becomes $z_2 = z_1 \times i = x_2 + i y_2$ etc.
+
+```{r complexPlaneMultiplication, fig.width=4, fig.height=4, fig.cap="Multiplication of a number by $i$.", echo=FALSE}
+x <- complex(real=9, imaginary=6)
+par(mar=c(1,1,1,1), cex=1)
+plot(c(0,9),c(0,6), type="l",
+     xlab="", ylab="",
+     xlim=c(-12,15), ylim=c(-12,15), axes=F,
+     yaxt="n", xaxt="n", col="white")
+draw.circle(0,0,sqrt(9^2+6^2))
+# text(4.5,3,TeX("$r$"),pos=3)
+draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=2)
+text(Re(x),Im(x),TeX("$z_1$"),pos=3)
+arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=1)
+text(1,1.5,TeX("$\\frac{\\pi}{2}$"),pos=3, cex=0.8)
+# text(4.5,1,TeX("$\\phi_2$"),pos=3)
+x <- x * 1i
+draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=3)
+text(Re(x),Im(x),TeX("$z_2$"),pos=3)
+arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=2)
+x <- x * 1i
+draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=4)
+text(Re(x),Im(x),TeX("$z_3$"),pos=1)
+arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=3)
+x <- x * 1i
+draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=1)
+text(Re(x),Im(x),TeX("$z_4$"),pos=1)
+arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=4)
+
+abline(h=0,v=0,lty=1)
+text(15, -1, "x", cex=1.25)
+text(-1, 15, "y", cex=1.25)
+```
+
+In a way, any mathematical operation with a complex number implies a change in magnitude and angle of the number, while the multiplication and division by a number with non-zero imaginary part will always lead to the rotation of the number.
+
+Furthermore, given that any complex number can be represented in the exponential form, it can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \@ref(fig:complexPlanePolar).
 
 ```{r complexPlanePolar, fig.width=4, fig.height=3, fig.cap="Visual presentation of a complex number in the polar coordinates.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
@@ -112,7 +157,7 @@ title(xlab="Magnitude", line=0)
 
 The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that were not obvious on the Cartesian plane. Figure \@ref(fig:complexCartesianvsPolar) shows an example of a complex random variable, for which the real and imaginary parts do not seem to have any obvious linear relation, but the magnitude and the angle have a negative relation.
 
-```{r complexCartesianvsPolar, fig.width=10, fig.height=6, fig.cap="Comparison of complex variables on .", echo=FALSE}
+```{r complexCartesianvsPolar, fig.cap="Comparison of complex variables on .", echo=FALSE}
 x <- rnorm(100,100,10)
 y <- 1/x*rlnorm(100,0,0.02)
 z <- x*exp(y*1i)
@@ -134,7 +179,7 @@ title(xlab="Magnitude", line=0)
 
 In this case, modelling can be done in the exponential form of complex variables, which might allow capturing complicated non-linear relations between variables.
 
-When it comes to operations with complex numbers, mathematically we will say that two complex numbers are equal to each other if and only if their real and imaginary parts are equal. Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one variable is greater or less than the other. However, we could use the magnitude to compare variables, to say which one lies further away from the origin than the other. In that case, the variable with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only tell us something about the rotation of a complex variable. So two variables in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one variable is greater than the other in this case -- we would need to devise additional criteria for comparison (e.g. positive numbers are "better" than the negative ones).
+When it comes to operations with complex numbers, mathematically we will say that two complex numbers are equal to each other if and only if their real and imaginary parts are equal. Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one variable is greater or less than the other. However, we could use the magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the variable with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only tell us something about the rotation of a complex variable. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one variable is greater than the other in this case -- we would need to devise additional criteria for comparison (e.g. positive numbers are "better" than the negative and/or imaginary ones).
 
 ```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Visual presentation of a complex number on the complex plane.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
@@ -152,9 +197,11 @@ draw.arc(0,0,4,0,atan(9/6), col="grey", lwd=2)
 arrows(0,0,9,6, lwd=2, angle=15)
 arrows(0,0,6,9, lwd=2, angle=15)
 text(2.7,0.1,TeX("$\\phi_1$"),pos=3)
-text(4.5,1,TeX("$\\phi_1$"),pos=3)
+text(4.5,1,TeX("$\\phi_2$"),pos=3)
 abline(h=0,v=0,lty=1)
 title(ylab="Imaginary number", line=0)
 title(xlab="Real number", line=0)
 ```
+
+
 
