@@ -1,6 +1,5 @@
 # Introduction to random complex variables {#intro}
-## Theory of complex variables
-
+## Theory of complex numbers
 This section sets out the basic concepts of the Theory of Complex Variables Functions (TCVF) with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
 The theory of complex numbers started in 1572 in the small Italian town of Kura. It was in this place and precisely in this year that the manuscript of an Italian mathematician Rafael Bombelli was published. The book was called Algebra. Rafael Bombelli showed in it how to solve the following cubic equation:
@@ -96,7 +95,7 @@ where $e$ is the Euler's constant. Equation \@ref(eq:complexNumberExponential) i
     e^{i \phi} = \cos \phi + i \sin \phi ,
     (\#eq:EulerFormula)
 \end{equation}
-which gives the connection between the linear, trigonometric and exponential forms of a complex variable. In the exponential form \@ref(eq:complexNumberExponential), a positive real number has $\phi=0$, while a negative one has $\phi=\pi$, and all imaginary numbers have an angle dividable by $\frac{\pi}{2}$. So, for example:
+which gives the connection between the linear, trigonometric and exponential forms of a complex number. In the exponential form \@ref(eq:complexNumberExponential), a positive real number has $\phi=0$, while a negative one has $\phi=\pi$, and all imaginary numbers have an angle dividable by $\frac{\pi}{2}$. So, for example:
 \begin{equation*}
     \begin{aligned}
     41 = & 41 e^{i 0} \\
@@ -105,7 +104,7 @@ which gives the connection between the linear, trigonometric and exponential for
     -i41 = & 41 e^{i \frac{3 \pi}{2}}
     \end{aligned}
 \end{equation*}
-In fact, multiplication of any complex number by the imaginary unit implies the rotation of complex vector by $\frac{\pi}{2}$, as shown in Figure \@ref(fig:complexPlaneMultiplication), where a complex variable $z_1 = x_1 + i y_1$ becomes $z_2 = z_1 \times i = x_2 + i y_2$ etc.
+In fact, multiplication of any complex number by the imaginary unit implies the rotation of complex vector by $\frac{\pi}{2}$, as shown in Figure \@ref(fig:complexPlaneMultiplication), where a complex number $z_1 = x_1 + i y_1$ becomes $z_2 = z_1 \times i = x_2 + i y_2$ etc.
 
 ```{r complexPlaneMultiplication, fig.width=3, fig.height=3, fig.cap="Multiplication of a complex number by $i$ implies the rotation of it by $\\frac{\\pi}{2}$.", echo=FALSE}
 x <- complex(real=9, imaginary=6)
@@ -140,7 +139,7 @@ In a way, any mathematical operation with a complex number implies a change in m
 \begin{equation*}
     z_3 = z_1 + z_2 = x_1 + x_2 + i (y_1 + y_2) ,
 \end{equation*}
-while operations of multiplication and division are easier to do in either exponential or trigonometric forms of complex variables:
+while operations of multiplication and division are easier to do in either exponential or trigonometric forms of complex numbers:
 \begin{equation*}
     z_3 = z_1 \times z_2 = r_1 r_2 e^{i \phi_1 + \phi_2} 
 \end{equation*}
@@ -168,9 +167,9 @@ title(ylab="Polar angle", line=0)
 title(xlab="Magnitude", line=0)
 ```
 
-The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that are not obvious on the Cartesian plane. Figure \@ref(fig:complexCartesianvsPolar) shows an example of a complex random variable, for which the real and imaginary parts do not seem to have any obvious linear relation, but the magnitude and the angle have a negative relation.
+The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that are not obvious on the Cartesian plane. Figure \@ref(fig:complexCartesianvsPolar) shows an example of a set of complex random numbers, for which the real and imaginary parts do not seem to have any obvious linear relation, but the magnitude and the angle have a negative relation.
 
-```{r complexCartesianvsPolar, fig.height=4, fig.cap="Visualisation of complex variables on Cartesian and on polar coordinates planes.", echo=FALSE}
+```{r complexCartesianvsPolar, fig.height=4, fig.cap="Visualisation of a set of complex numbers on Cartesian and on polar coordinates planes.", echo=FALSE}
 x <- rnorm(100,100,10)
 y <- 1/x*rlnorm(100,0,0.02)
 z <- x*exp(y*1i)
@@ -190,7 +189,7 @@ title(ylab="Polar angle", line=0)
 title(xlab="Magnitude", line=0)
 ```
 
-In this case, modelling can be done in the exponential form of complex variables, which might allow capturing complicated non-linear relations between variables.
+In this case, modelling can be done in the exponential form of complex numbers, which might allow capturing complicated non-linear relations between variables.
 
 When it comes to comparing complex numbers, mathematically we will say that two complex numbers $z_1 = x_1 + i y_1$ and $z_2 = x_2 + i y_2$ are equal to each other if and only if their real and imaginary parts are equal:
 \begin{equation*}
@@ -211,7 +210,7 @@ which is equivalent to saying that their magnitudes and polar angles are equal:
     \right. .
 \end{equation*}
 
-Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one variable is greater or less than the other. However, we could use magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the variable with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only give us information about rotation of a complex variable and thus do not give any meaningful information about the comparison of numbers. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one variable is greater than the other in this case. In order to conclude that, we would need to devise additional criteria for comparison of numbers (e.g. positive numbers are "better" than the negative ones, thus $\phi_1=\pi$ and $\phi_1=-\pi$ is "worse" than $\phi_2=0$).
+Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one number is greater or less than the other. However, we could use magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the number with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only give us information about rotation of a complex number and thus do not give any meaningful information about the comparison of numbers. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one number is greater than the other in this case. In order to conclude that, we would need to devise additional criteria for comparison of numbers (e.g. positive numbers are "better" than the negative ones, thus $\phi_1=\pi$ and $\phi_1=-\pi$ is "worse" than $\phi_2=0$).
 
 ```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $z_1$ and $z_2$ that have the same magnitude $r$, but different angles $\\phi_1$ and $\\phi_2$.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
@@ -234,6 +233,100 @@ abline(h=0,v=0,lty=1)
 title(ylab="Imaginary number", line=0)
 title(xlab="Real number", line=0)
 ```
+
+Continuing the discussion of different forms of a complex number, its magnitude can be represented in exponential form:
+\begin{equation*}
+    r = e^{\ln(r)},
+\end{equation*}
+where $\ln$ is the natural logarithm. This can then be used to rewrite the exponential form of a complex number as:
+\begin{equation}
+    z = e^{\ln r + i \phi} ,
+    (\#eq:complexNumberExponentialAll)
+\end{equation}
+And this form allows calculating logarithms of a complex number:
+\begin{equation*}
+    \ln z = \ln \left(e^{\ln r + i \phi} \right) = \ln r + i \phi .
+\end{equation*}
+This operation will become useful when we discuss transformations of complex-valued functions, but it also shows that a logarithm of a negative real number is a complex number, because in that case $\phi=\pi$. This demonstrates that the field of complex numbers is complete: any mathematical operation of a complex number will give another complex number.
+
+Finally, an important definition in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $z = x+ iy$ is $\tilde{z} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
+\begin{equation}
+    z \times \tilde{z} = (x+ iy) (x- iy) = x^2 + y^2 ,
+    (\#eq:complexNumberConjugateMulti)
+\end{equation}
+which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $z$ and $\tilde{z}$.
+
+
+### Complex variables
+Similarly to any other variable, complex variable is a placeholder for values, with the difference that it represents two parts of a number instead of one. Given the properties of complex numbers discussed in the previous section, any complex variable can be represented in linear, trigonometric and exponential forms.
+
+
+
+It is also important to understand a basic idea behind complex-valued functions. Any function of a complex variable can be represented as s system of two equations. For example, for a function
+\begin{equation}
+    y_{r} + i y_{i} = f(x_r+ix_i)
+    (\#eq:complexFunction)
+\end{equation}
+we have:
+\begin{equation}
+    \begin{aligned}
+        y_r = & \mathcal{R}(f(x_r+ix_i)) \\
+        y_i = & \mathcal{I}(f(x_r+ix_i))
+    \end{aligned} ,
+    (\#eq:complexFunctionSystem)
+\end{equation}
+where the subscript $r$ or $i$ refers to respectively the real or imaginary parts of the complex number, $\mathcal{R}()$ and $\mathcal{I}()$ are respectively the real and the imaginary parts of a resulting complex variable. For example, a simple linear function:
+\begin{equation*}
+    y_r + i y_i = a_{0,r} + i a_{0,i} + (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i}),
+\end{equation*}
+which can be written as after opening the brackets and regrouping elements:
+\begin{equation*}
+    y_r + i y_i = a_{0,r} + a_{1,r} x_{1,r} - a_{1,i} x_{1,i} + i \left( a_{0,i} + a_{1,i} x_{1,r} + a_{1,r} x_{1,i} \right)
+\end{equation*}
+and is equivalent to the system of the following two equations:
+\begin{equation*}
+    \begin{aligned}
+        y_r = & a_{0,r} + a_{1,r} x_{1,r} - a_{1,i} x_{1,i}
+        y_i = & a_{0,i} + a_{1,i} x_{1,r} + a_{1,r} x_{1,i}
+    \end{aligned} .
+\end{equation*}
+Presenting the system of equations \@ref(eq:complexFunctionSystem) in the linear form \@ref(eq:complexFunction) is often convenient. In fact, any function of complex variables can be represented as a system of two functions. Even if the real or the imaginary part of the output complex variable $y_r + i y_i$ is equal to zero, we can still use a system of two equations, where one of the equations becomes just a constraint for the function. For example, if we assume that $y_i=0$, then the system \@ref(eq:complexFunctionSystem) becomes:
+\begin{equation*}
+    \begin{aligned}
+        & y_r = \mathcal{R}(f(x_r+ix_i)) \\
+        & \mathcal{I}(f(x_r+ix_i)) = 0
+    \end{aligned} .
+\end{equation*}
+This property becomes especially useful if one needs to construct a model with linear relations between the input variables [this is discussed in Chapter ??? of @Svetunkov2014].
+
+In terms of definitions, the function \@ref(eq:complexFunction) is often referred to as a "complex-valued" function. It maps a certain values of the input variable $x_r + i x_i$ with a specific value of the output variable $y_r +i y_i$. If there is only a one-to-one relation between the input and output variables then such function is called "univalent". When several different values of the input variable leads to one and the same value of the output variable then the function is called "multivalent". An example of the former is the linear function:
+\begin{equation*}
+    y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i}),
+\end{equation*}
+while for the latter, an example is
+\begin{equation*}
+    y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i})^2, 
+\end{equation*}
+where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed above.
+
+
+
+## Random complex variable
+
+
+### Definition of a complex random variable
+
+
+### Moments of a c.r.v.
+Expectation
+
+Variance, pseudo-variance, covariance, pseudo-covariance, covariance matrix.
+
+
+### Normal c.r.v.
+
+
+### Spherical c.r.v.
 
 
 
