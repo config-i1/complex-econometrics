@@ -258,11 +258,15 @@ which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both co
 
 
 ### Complex variables
-Similarly to any other variable, complex variable is a placeholder for values, with the difference that it represents two parts of a number instead of one. Given the properties of complex numbers discussed in the previous section, any complex variable can be represented in linear, trigonometric and exponential forms.
-
-
-
-It is also important to understand a basic idea behind complex-valued functions. Any function of a complex variable can be represented as s system of two equations. For example, for a function
+Similarly to any other variable, complex variable is a placeholder for values, with the difference that it represents two parts of a number instead of one. Given the properties of complex numbers discussed in the previous section, any complex variable can also be represented in linear, trigonometric and exponential forms. It can also be represented in the form of a set of equations, i.e. if $y_r + i y_i = 3+2i$ then:
+\begin{equation}
+    \begin{aligned}
+        y_r = & 3 \\
+        y_i = & 2
+    \end{aligned} ,
+    (\#eq:complexVariablesSystem)
+\end{equation}
+where the subscript $r$ or $i$ refers to respectively the real or imaginary parts of the complex number. In fact, any function of a complex variable can be represented as system of two equations, so that for a function
 \begin{equation}
     y_{r} + i y_{i} = f(x_r+ix_i)
     (\#eq:complexFunction)
@@ -275,7 +279,7 @@ we have:
     \end{aligned} ,
     (\#eq:complexFunctionSystem)
 \end{equation}
-where the subscript $r$ or $i$ refers to respectively the real or imaginary parts of the complex number, $\mathcal{R}()$ and $\mathcal{I}()$ are respectively the real and the imaginary parts of a resulting complex variable. For example, a simple linear function:
+where $\mathcal{R}()$ and $\mathcal{I}()$ are respectively the real and the imaginary parts of a resulting complex variable. For example, a simple linear function:
 \begin{equation*}
     y_r + i y_i = a_{0,r} + i a_{0,i} + (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i}),
 \end{equation*}
@@ -310,8 +314,8 @@ while for the latter, an example is
 where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed above.
 
 
-
-## Random complex variable
+## Complex random variable
+In statistics, a random variable is a variable, the value of which depends on random events. For example, $x$ would be considered as a random variable if it is equal to 1 in case of coin landing on heads and equal to zero otherwise. In case of complex random variables (c.r.v.), the logic is similar, but we would typically deal with two-dimensional cases (e.g. tossing two coins simultaneously).
 
 
 ### Definition of a complex random variable
