@@ -325,25 +325,20 @@ Presenting the system of equations \@ref(eq:complexFunctionSystem) in the linear
 \end{equation*}
 This property becomes especially useful if one needs to construct a model with linear relations between the input variables [this is discussed in Chapter ??? of @Svetunkov2014].
 
-Given that any complex number can be represented as a vector, the system of equations \@ref(eq:complexFunctionSystem) can be written as:
+Given the discussion about the vector and matrix forms of complex numbers, the system of equations \@ref(eq:complexFunctionSystem) can be written as:
 \begin{equation}
     \begin{pmatrix} y_r \\ y_i \end{pmatrix} =
     \begin{pmatrix} \mathcal{R}(f(x_r+ix_i)) \\ \mathcal{I}(f(x_r+ix_i)) \end{pmatrix} .
     (\#eq:complexFunctionVectors)
 \end{equation}
-Furthermore, a complex random variable $y_r + i y_i$ can also be represented in a matrix form:
-\begin{equation}
-    \begin{pmatrix} y_r & - y_i \\ y_i & y_r \end{pmatrix},
-    (\#eq:complexVariableMatrix)
-\end{equation}
-implying that the same function \@ref(eq:complexFunction) can be written as:
+or:
 \begin{equation}
     \begin{pmatrix} \mathcal{R}(f(x_r+ix_i)) & - \mathcal{I}(f(x_r+ix_i)) \\ \mathcal{I}(f(x_r+ix_i)) & \mathcal{R}(f(x_r+ix_i)) \end{pmatrix} .
     (\#eq:complexFunctionMatrix)
 \end{equation}
 The representations \@ref(eq:complexFunction), \@ref(eq:complexFunctionSystem), \@ref(eq:complexFunctionVectors) and \@ref(eq:complexFunctionMatrix) are equivalent and can be used interchangeably depending on the task at hand.
 
-Finall, in terms of definitions, the function \@ref(eq:complexFunction) is often referred to as a "complex-valued" function. It maps a certain values of the input variable $x_r + i x_i$ with a specific value of the output variable $y_r +i y_i$. If there is only a one-to-one relation between the input and output variables then such function is called "univalent". When several different values of the input variable leads to one and the same value of the output variable then the function is called "multivalent". An example of the former is the linear function:
+Finally, in terms of definitions, the function \@ref(eq:complexFunction) is often referred to as a "complex-valued" function. It maps a certain values of the input variable $x_r + i x_i$ with a specific value of the output variable $y_r +i y_i$. If there is only a one-to-one relation between the input and output variables then such function is called "univalent". When several different values of the input variable leads to one and the same value of the output variable then the function is called "multivalent". An example of the former is the linear function:
 \begin{equation*}
     y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i}),
 \end{equation*}
