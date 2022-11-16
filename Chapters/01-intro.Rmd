@@ -1,5 +1,5 @@
 # Introduction to random complex variables {#intro}
-## Theory of complex numbers
+## Theory of complex numbers {#theoryOfComplexNumbers}
 This section sets out the basic concepts of the Theory of Complex Variables Functions (TCVF) with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
 The theory of complex numbers started in 1572 in the small Italian town of Kura. It was in this place and precisely in this year that the manuscript of an Italian mathematician Rafael Bombelli was published. The book was called Algebra. Rafael Bombelli showed in it how to solve the following cubic equation:
@@ -249,16 +249,38 @@ And this form allows calculating logarithms of a complex number:
 \end{equation*}
 This operation will become useful when we discuss transformations of complex-valued functions, but it also shows that a logarithm of a negative real number is a complex number, because in that case $\phi=\pi$. This demonstrates that the field of complex numbers is complete: any mathematical operation of a complex number will give another complex number.
 
-Finally, an important definition in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $z = x+ iy$ is $\tilde{z} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
+One of the important definitions in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $z = x+ iy$ is $\tilde{z} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
 \begin{equation}
     z \times \tilde{z} = (x+ iy) (x- iy) = x^2 + y^2 ,
     (\#eq:complexNumberConjugateMulti)
 \end{equation}
 which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $z$ and $\tilde{z}$.
 
+Finally, given that any complex number can be represented visually in a form of a vector, we can write it mathematically either like vector:
+\begin{equation}
+    \begin{pmatrix} x \\ y \end{pmatrix}
+    (\#eq:complexNumberVectors)
+\end{equation}
+or like a matrix:
+\begin{equation}
+    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} .
+    (\#eq:complexNumberMatrix)
+\end{equation}
+Furthermore, the multiplication of a vector by its transposed value in both of these cases is equivalent to the multiplication by the conjugate value. For the vector:
+\begin{equation}
+    \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
+    (\#eq:complexNumberVectorsMulti)
+\end{equation}
+and for the matrix:
+\begin{equation}
+    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & y \\ -y & x \end{pmatrix} = 
+    \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
+    (\#eq:complexNumberMatrixMulti)
+\end{equation}
 
-### Complex variables
-Similarly to any other variable, complex variable is a placeholder for values, with the difference that it represents two parts of a number instead of one. Given the properties of complex numbers discussed in the previous section, any complex variable can also be represented in linear, trigonometric and exponential forms. It can also be represented in the form of a set of equations, i.e. if $y_r + i y_i = 3+2i$ then:
+
+### Complex variables {#complexVariable}
+Similarly to any other variable, complex variable is a place holder for values, with the difference that it represents two parts of a number instead of one. Given the properties of complex numbers discussed in the previous section, any complex variable can be represented in linear, trigonometric and exponential forms. But in addition, it can also be represented in the form of a set of equations, i.e. if $y_r + i y_i = 3+2i$ then:
 \begin{equation}
     \begin{aligned}
         y_r = & 3 \\
@@ -303,7 +325,25 @@ Presenting the system of equations \@ref(eq:complexFunctionSystem) in the linear
 \end{equation*}
 This property becomes especially useful if one needs to construct a model with linear relations between the input variables [this is discussed in Chapter ??? of @Svetunkov2014].
 
-In terms of definitions, the function \@ref(eq:complexFunction) is often referred to as a "complex-valued" function. It maps a certain values of the input variable $x_r + i x_i$ with a specific value of the output variable $y_r +i y_i$. If there is only a one-to-one relation between the input and output variables then such function is called "univalent". When several different values of the input variable leads to one and the same value of the output variable then the function is called "multivalent". An example of the former is the linear function:
+Given that any complex number can be represented as a vector, the system of equations \@ref(eq:complexFunctionSystem) can be written as:
+\begin{equation}
+    \begin{pmatrix} y_r \\ y_i \end{pmatrix} =
+    \begin{pmatrix} \mathcal{R}(f(x_r+ix_i)) \\ \mathcal{I}(f(x_r+ix_i)) \end{pmatrix} .
+    (\#eq:complexFunctionVectors)
+\end{equation}
+Furthermore, a complex random variable $y_r + i y_i$ can also be represented in a matrix form:
+\begin{equation}
+    \begin{pmatrix} y_r & - y_i \\ y_i & y_r \end{pmatrix},
+    (\#eq:complexVariableMatrix)
+\end{equation}
+implying that the same function \@ref(eq:complexFunction) can be written as:
+\begin{equation}
+    \begin{pmatrix} \mathcal{R}(f(x_r+ix_i)) & - \mathcal{I}(f(x_r+ix_i)) \\ \mathcal{I}(f(x_r+ix_i)) & \mathcal{R}(f(x_r+ix_i)) \end{pmatrix} .
+    (\#eq:complexFunctionMatrix)
+\end{equation}
+The representations \@ref(eq:complexFunction), \@ref(eq:complexFunctionSystem), \@ref(eq:complexFunctionVectors) and \@ref(eq:complexFunctionMatrix) are equivalent and can be used interchangeably depending on the task at hand.
+
+Finall, in terms of definitions, the function \@ref(eq:complexFunction) is often referred to as a "complex-valued" function. It maps a certain values of the input variable $x_r + i x_i$ with a specific value of the output variable $y_r +i y_i$. If there is only a one-to-one relation between the input and output variables then such function is called "univalent". When several different values of the input variable leads to one and the same value of the output variable then the function is called "multivalent". An example of the former is the linear function:
 \begin{equation*}
     y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i}),
 \end{equation*}
@@ -311,14 +351,39 @@ while for the latter, an example is
 \begin{equation*}
     y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i})^2, 
 \end{equation*}
-where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed above.
+where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed in the previous Subsection.
 
 
-## Complex random variable
-In statistics, a random variable is a variable, the value of which depends on random events. For example, $x$ would be considered as a random variable if it is equal to 1 in case of coin landing on heads and equal to zero otherwise. In case of complex random variables (c.r.v.), the logic is similar, but we would typically deal with two-dimensional cases (e.g. tossing two coins simultaneously).
+## Complex random variable {#complexRandomVariable}
+In statistics, a random variable is a variable, the value of which depends on random events. For example, for the classical coin tossing experiment, $x$ would be considered as a random variable if it is equal to 1 in case of heads and is equal to zero otherwise. In case of complex random variables (c.r.v.), the logic is similar, but we would typically deal with two-dimensional cases (e.g. tossing two coins simultaneously). We accept that in some cases, some parts of the c.r.v. might become non-random (e.g. the real part becomes equal to some fixed number). As such, we would be saying that $x=x_r+ix_i$ is a complex random variable if at least one part of it follows some distribution. Furthermore, while random variables can be measured in a variety of scales (coin tossing represents the nominal scale), in this monograph we focus the discussion on continuous numerical variables.
+
+As any other random variable, c.r.v. can be characterised by its moments. However, some of its moments differ from the conventional ones for real variables and are based on the properties of complex numbers.
+
+The first moment of any c.r.v. is relatively straightforward. For the variable $x=x_r+ix_i$ it is:
+\begin{equation}
+    \mu_{1} = \mathrm{E}(x) = \mathrm{E}(x_r + i x_i) = \mathrm{E}(x_r) + i \mathrm{E}(x_i),
+    (\#eq:crvMomentFirst)
+\end{equation}
+due to the law of total expectation and because $i$ is a constant. In \@ref(eq:crvMomentFirst), $\mathrm{E}(.)$ is the expectation of a variable. In sample, this moment can be calculated as:
+\begin{equation}
+    \hat{\mu}_{1} = \frac{1}{n}\sum_{j=1}^n x_{r,j} + i \frac{1}{n}\sum_{j=1}^n x_{i,j},
+    (\#eq:crvMomentFirstSample)
+\end{equation}
+where $n$ is the sample size and $\hat{\mu}_1$ is the estimate of $\mu_1$. The properties of the first moment of c.r.v. are similar to the properties of any other random variable. The only thing to note is that the moment can also be represented in a vector or matrix form (see Subsection \@ref(complexVariable)):
+\begin{equation}
+    \begin{pmatrix} \mathrm{E}(x_r) \\ \mathrm{E}(x_i) \end{pmatrix} 
+    (\#eq:crvMomentsVector)
+\end{equation}
+or
+\begin{equation}
+    \begin{pmatrix} \mathrm{E}(x_r) & - \mathrm{E}(x_i) \\ \mathrm{E}(x_i) & \mathrm{E}(x_r) \end{pmatrix} .
+    (\#eq:crvMomentsMatrix)
+\end{equation}
 
 
-### Definition of a complex random variable
+
+Given that any complex variable can be represented in a vector form, in many cases, it can be treated as a bivariate random variable. 
+
 
 
 ### Moments of a c.r.v.
