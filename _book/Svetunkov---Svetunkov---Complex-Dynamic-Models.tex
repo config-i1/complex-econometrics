@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-11-16}
+\date{2022-11-17}
 
 \begin{document}
 \maketitle
@@ -181,7 +181,7 @@ this monograph relies heavily on the \texttt{complex} package for R. Many of the
 \end{Shaded}
 
 \hypertarget{intro}{%
-\chapter{Introduction to random complex variables}\label{intro}}
+\chapter{Introduction to complex random variables}\label{intro}}
 
 \hypertarget{theoryOfComplexNumbers}{%
 \section{Theory of complex numbers}\label{theoryOfComplexNumbers}}
@@ -377,7 +377,14 @@ or like a matrix:
     \begin{pmatrix} x & -y \\ y & x \end{pmatrix} .
     \label{eq:complexNumberMatrix}
 \end{equation}
-Furthermore, the multiplication of a vector by its transposed value in both of these cases is equivalent to the multiplication by the conjugate value. For the vector:
+In the latter case, the real number can be represented as a diagonal matrix, while the imaginary one is the matrix with zero diagonal:
+\begin{equation*}
+    \begin{aligned}
+        & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
+        & \begin{pmatrix} 0 & -y \\ y & 0 \end{pmatrix}
+    \end{aligned} .
+\end{equation*}
+All the mathematical operations done with the vector and matrix representations would correspond to the ones for the conventional complex numbers. Furthermore, the multiplication by the transpose of the original object in both of these cases is equivalent to the multiplication by the conjugate value \eqref{eq:complexNumberConjugateMulti}. For the vector:
 \begin{equation}
     \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
     \label{eq:complexNumberVectorsMulti}
@@ -388,6 +395,7 @@ and for the matrix:
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     \label{eq:complexNumberMatrixMulti}
 \end{equation}
+These representations become especially useful when we work with complex variables to construct complex models.
 
 \hypertarget{complexVariable}{%
 \subsection{Complex variables}\label{complexVariable}}
