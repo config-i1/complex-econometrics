@@ -313,7 +313,7 @@ where $\mathcal{R}()$ and $\mathcal{I}()$ are respectively the real and the imag
 \begin{equation*}
     y_r + i y_i = a_{0,r} + i a_{0,i} + (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i}),
 \end{equation*}
-which can be written as after opening the brackets and regrouping elements:
+which can be written after opening the brackets and regrouping elements as:
 \begin{equation*}
     y_r + i y_i = a_{0,r} + a_{1,r} x_{1,r} - a_{1,i} x_{1,i} + i \left( a_{0,i} + a_{1,i} x_{1,r} + a_{1,r} x_{1,i} \right)
 \end{equation*}
@@ -326,7 +326,7 @@ and is equivalent to the system of the following two equations:
 \end{equation*}
 Given the vector and matrix representation of complex variables, the same linear function can be written as:
 \begin{equation*}
-    \begin{pmatrix} y_r \\ y_i \end{pmatrix} = \begin{pmatrix} a_{0,r} \\ a_{0,i} \end{pmatrix} + \begin{pmatrix} a_{1,r} \\ a_{1,i} \end{pmatrix} \begin{pmatrix} x_{1,r} & -x_{1,i} \\ x_{1,i} & x_{1,r} \end{pmatrix} ,
+    \begin{pmatrix} y_r \\ y_i \end{pmatrix} = \begin{pmatrix} a_{0,r} \\ a_{0,i} \end{pmatrix} + \begin{pmatrix} a_{1,r} & -a_{1,i} \\ a_{1,i} & a_{1,r} \end{pmatrix} \begin{pmatrix} x_{1,r} \\ x_{1,i} \end{pmatrix} ,
 \end{equation*}
 which is convenient in some situations. Presenting the system of equations \@ref(eq:complexFunctionSystem) in the linear form \@ref(eq:complexFunction) is often convenient. In fact, any function of complex variables can be represented as a system of two functions. Even if the real or the imaginary part of the output complex variable $y_r + i y_i$ is equal to zero, we can still use a system of two equations, where one of the equations becomes just a constraint for the function. For example, if we assume that $y_i=0$, then the system \@ref(eq:complexFunctionSystem) becomes:
 \begin{equation*}
@@ -368,10 +368,10 @@ As any other random variable, c.r.v. can be characterised by its moments. Howeve
 
 The first moment of any c.r.v. is relatively straightforward. For the variable $x=x_r+ix_i$ it is:
 \begin{equation}
-    \mu_{1} = \mathrm{E}(x) = \mathrm{E}(x_r + i x_i) = \mathrm{E}(x_r) + i \mathrm{E}(x_i),
+    \mu_{1} = \mathrm{E}(x) = \mathrm{E}(x_r + i x_i) = \mathrm{E}(x_r) + i \mathrm{E}(x_i) = \mu_{1,r} + i \mu_{1,i},
     (\#eq:crvMomentFirst)
 \end{equation}
-due to the law of total expectation and because $i$ is a constant. In \@ref(eq:crvMomentFirst), $\mathrm{E}(.)$ is the expectation of a variable. In sample, this moment can be calculated as:
+due to the law of total expectation and because $i$ is a constant. In \@ref(eq:crvMomentFirst), $\mathrm{E}(.)$ is the expectation of a variable, $\mu_{1}$ is the first moment of a complex variable and $\mu_{1,r}$ and $\mu_{1,i}$ are the respective real and imaginary parts of the first moment. In sample, this moment can be calculated as:
 \begin{equation}
     \hat{\mu}_{1} = \frac{1}{n}\sum_{j=1}^n x_{r,j} + i \frac{1}{n}\sum_{j=1}^n x_{i,j},
     (\#eq:crvMomentFirstSample)
