@@ -1,4 +1,4 @@
-# Introduction to random complex variables {#intro}
+# Introduction to complex random variables {#intro}
 ## Theory of complex numbers {#theoryOfComplexNumbers}
 This section sets out the basic concepts of the Theory of Complex Variables Functions (TCVF) with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
@@ -266,7 +266,14 @@ or like a matrix:
     \begin{pmatrix} x & -y \\ y & x \end{pmatrix} .
     (\#eq:complexNumberMatrix)
 \end{equation}
-Furthermore, the multiplication of a vector by its transposed value in both of these cases is equivalent to the multiplication by the conjugate value. For the vector:
+In the latter case, the real number can be represented as a diagonal matrix, while the imaginary one is the matrix with zero diagonal:
+\begin{equation*}
+    \begin{aligned}
+        & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
+        & \begin{pmatrix} 0 & -y \\ y & 0 \end{pmatrix}
+    \end{aligned} .
+\end{equation*}
+All the mathematical operations done with the vector and matrix representations would correspond to the ones for the conventional complex numbers. Furthermore, the multiplication by the transpose of the original object in both of these cases is equivalent to the multiplication by the conjugate value \@ref(eq:complexNumberConjugateMulti). For the vector:
 \begin{equation}
     \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
     (\#eq:complexNumberVectorsMulti)
@@ -277,6 +284,7 @@ and for the matrix:
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     (\#eq:complexNumberMatrixMulti)
 \end{equation}
+These representations become especially useful when we work with complex variables to construct complex models.
 
 
 ### Complex variables {#complexVariable}
