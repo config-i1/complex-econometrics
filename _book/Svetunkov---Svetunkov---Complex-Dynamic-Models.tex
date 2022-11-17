@@ -436,7 +436,11 @@ and is equivalent to the system of the following two equations:
         y_i = & a_{0,i} + a_{1,i} x_{1,r} + a_{1,r} x_{1,i}
     \end{aligned} .
 \end{equation*}
-Presenting the system of equations \eqref{eq:complexFunctionSystem} in the linear form \eqref{eq:complexFunction} is often convenient. In fact, any function of complex variables can be represented as a system of two functions. Even if the real or the imaginary part of the output complex variable \(y_r + i y_i\) is equal to zero, we can still use a system of two equations, where one of the equations becomes just a constraint for the function. For example, if we assume that \(y_i=0\), then the system \eqref{eq:complexFunctionSystem} becomes:
+Given the vector and matrix representation of complex variables, the same linear function can be written as:
+\begin{equation*}
+    \begin{pmatrix} y_r \\ y_i \end{pmatrix} = \begin{pmatrix} a_{0,r} \\ a_{0,i} \end{pmatrix} + \begin{pmatrix} a_{1,r} \\ a_{1,i} \end{pmatrix} \begin{pmatrix} x_{1,r} & -x_{1,i} \\ x_{1,i} & x_{1,r} \end{pmatrix} ,
+\end{equation*}
+which is convenient in some situations. Presenting the system of equations \eqref{eq:complexFunctionSystem} in the linear form \eqref{eq:complexFunction} is often convenient. In fact, any function of complex variables can be represented as a system of two functions. Even if the real or the imaginary part of the output complex variable \(y_r + i y_i\) is equal to zero, we can still use a system of two equations, where one of the equations becomes just a constraint for the function. For example, if we assume that \(y_i=0\), then the system \eqref{eq:complexFunctionSystem} becomes:
 \begin{equation*}
     \begin{aligned}
         & y_r = \mathcal{R}(f(x_r+ix_i)) \\

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  17 NOV 2022 09:40
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  17 NOV 2022 09:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -992,28 +992,28 @@ laneCircle-1.pdf>
 [15] [16] [17]
 
 Package natbib Warning: Citation `Svetunkov2014' on page 18 undefined on input 
-line 446.
+line 450.
 
 [18] [19] [20]
 Chapter 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 525.
+(Font)              scaled to size 10.0pt on input line 529.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 525.
+(Font)              scaled to size 7.0pt on input line 529.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 525.
+(Font)              scaled to size 5.0pt on input line 529.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.00092pt on input line 525.
+(Font)              scaled to size 10.00092pt on input line 529.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.00064pt on input line 525.
+(Font)              scaled to size 7.00064pt on input line 529.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.00046pt on input line 525.
+(Font)              scaled to size 5.00046pt on input line 529.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 9.99893pt on input line 525.
+(Font)              scaled to size 9.99893pt on input line 529.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 6.99925pt on input line 525.
+(Font)              scaled to size 6.99925pt on input line 529.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 4.99947pt on input line 525.
+(Font)              scaled to size 4.99947pt on input line 529.
 (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl
 Underfull \vbox (badness 2828) has occurred while \output is active []
 
