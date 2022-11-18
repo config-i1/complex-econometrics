@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-11-17}
+\date{2022-11-18}
 
 \begin{document}
 \maketitle
@@ -479,6 +479,9 @@ In statistics, a random variable is a variable, the value of which depends on ra
 
 As any other random variable, c.r.v. can be characterised by its moments. However, some of its moments differ from the conventional ones for real variables and are based on the properties of complex numbers.
 
+\hypertarget{first-moment}{%
+\subsection{First moment}\label{first-moment}}
+
 The first moment of any c.r.v. is relatively straightforward. For the variable \(x=x_r+ix_i\) it is:
 \begin{equation}
     \mu_{1} = \mathrm{E}(x) = \mathrm{E}(x_r + i x_i) = \mathrm{E}(x_r) + i \mathrm{E}(x_i) = \mu_{1,r} + i \mu_{1,i},
@@ -498,6 +501,36 @@ or
 \begin{equation}
     \begin{pmatrix} \mathrm{E}(x_r) & - \mathrm{E}(x_i) \\ \mathrm{E}(x_i) & \mathrm{E}(x_r) \end{pmatrix} .
     \label{eq:crvMomentsMatrix}
+\end{equation}
+
+\hypertarget{second-moment}{%
+\subsection{Second moment}\label{second-moment}}
+
+While there are raw moments for c.r.v., here we will focus on the centred ones, i.e.~moments for \(x-\bar{x}\). There are several instruments related to the second moment that could characterise a complex random variable. The first one is called ``variance'' and is based on the multiplication by a conjugate number. So for the c.r.v. \(x_r + i x_i\) the variance is:
+\begin{equation}
+    \sigma_x^2 = \mathrm{E}(x \tilde{x}) = \mathrm{E}\left(((x_r-\bar{x}_r) + i (x_i-\bar{x}_i))((x_r-\bar{x}_r) - i (x_i-\bar{x}_i))\right) = \mathrm{E}((x_r-\bar{x}_r)^2) +  \mathrm{E}((x_i-\bar{x}_i)^2)
+    \label{eq:crvMomentSecondVariance}
+\end{equation}
+or taking that the variances of the real and the imaginary parts are \(\sigma_{x_r}^2\) and \(\sigma_{x_i}^2\) respectively:
+\begin{equation}
+    \sigma_x^2 = \sigma_{x_r}^2 + \sigma_{x_i}^2.
+    \label{eq:crvMomentSecondVarianceShort}
+\end{equation}
+Multiplication by conjugate in \eqref{eq:crvMomentSecondVariance} allows keeping the size of variability for both real and imaginary parts, but at the same time masks the individual contribution of each part in the overall variance and removes the covariance between the parts. The resulting values shows in a way the overall variability of a c.r.v. along a diagonal line as shown in Figure \ref{fig:crvMomentSecondVariance}.
+
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvMomentSecondVariance-1.pdf}
+
+Figure \ref{fig:crvMomentSecondVariance} demonstrates graphically the relation between standard deviations of real, imaginary and the overall variance of a complex variable according to the formula \eqref{eq:crvMomentSecondVarianceShort}.
+
+An alternative way to measure the variability of a complex random variable is by calculating the so called ``pseudo-variance'' \citep{reference}, which can be obtained by applying the conventional formula of variance directly to the c.r.v.:
+\begin{equation}
+    \varsigma_x^2 = \mathrm{E}(x^2) = \mathrm{E}\left(((x_r-\bar{x}_r) + i (x_i-\bar{x}_i))^2\right) = \mathrm{E}((x_r-\bar{x}_r)^2) - \mathrm{E}((x_i-\bar{x}_i)^2) + i2 \mathrm{E}((x_r-\bar{x}_r)(x_i-\bar{x}_i))
+    \label{eq:crvMomentSecondVariancePseudo}
+\end{equation}
+or using the notation \(\sigma_{x_r,x_i}\) for covariance between the real and imaginary parts:
+\begin{equation}
+    \varsigma_x^2 = \sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i}.
+    \label{eq:crvMomentSecondVariancePseudoShort}
 \end{equation}
 
 Given that any complex variable can be represented in a vector form, in many cases, it can be treated as a bivariate random variable.
