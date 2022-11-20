@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-11-18}
+\date{2022-11-20}
 
 \begin{document}
 \maketitle
@@ -506,7 +506,7 @@ or
 \hypertarget{second-moment}{%
 \subsection{Second moment}\label{second-moment}}
 
-While there are raw moments for c.r.v., here we will focus on the centred ones, i.e.~moments for \(x-\bar{x}\). There are several instruments related to the second moment that could characterise a complex random variable. The first one is called ``variance'' and is based on the multiplication by a conjugate number. So for the c.r.v. \(x_r + i x_i\) the variance is:
+While there are raw moments for c.r.v., here we will focus on the centred ones, i.e.~moments for \(x-\bar{x}\). There are several instruments related to the second moment that could characterise a complex random variable. The first one is called ``variance'' and is based on the multiplication by a conjugate number \citep{reference}. So for the c.r.v. \(x_r + i x_i\) the variance is:
 \begin{equation}
     \sigma_x^2 = \mathrm{E}(x \tilde{x}) = \mathrm{E}\left(((x_r-\bar{x}_r) + i (x_i-\bar{x}_i))((x_r-\bar{x}_r) - i (x_i-\bar{x}_i))\right) = \mathrm{E}((x_r-\bar{x}_r)^2) +  \mathrm{E}((x_i-\bar{x}_i)^2)
     \label{eq:crvMomentSecondVariance}
@@ -532,13 +532,19 @@ or using the notation \(\sigma_{x_r,x_i}\) for covariance between the real and i
     \varsigma_x^2 = \sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i}.
     \label{eq:crvMomentSecondVariancePseudoShort}
 \end{equation}
+The moment \eqref{eq:crvMomentSecondVariancePseudoShort} is called pseudo-variance, because it does not measure the variability of a variable, but rather gives a different information: it shows how similar the real and imaginary variances are and what the covariance between them is. If both real and imaginary parts of \eqref{eq:crvMomentSecondVariancePseudoShort} are equal to zero then it is said that the distribution of the complex variable \(x\) is spherical \citep{reference}, i.e.~the variances are similar and the parts are not linearly related. Furthermore, we should point out that while minimising the variance \eqref{eq:crvMomentSecondVarianceShort} implies minimising both variances of the real and imaginary parts of \(x\) (ignoring the covariance between them), minimising \eqref{eq:crvMomentSecondVariancePseudoShort} is not as straightforward. At very least, we could tell that it implies making the distribution of \(x\) closer to the spherical one, but we cannot provide any thorough insight about this.
 
-Given that any complex variable can be represented in a vector form, in many cases, it can be treated as a bivariate random variable.
-
-\hypertarget{moments-of-a-c.r.v.}{%
-\subsection{Moments of a c.r.v.}\label{moments-of-a-c.r.v.}}
-
-Expectation
+Moreover, given that any complex variable can be represented in a vector form, the c.r.v. \(x\) can be treated as a bivariate random variable, for which a covariance matrix can be calculated, which would be:
+\begin{equation}
+    \Sigma_x = \begin{pmatrix} \sigma_{x_r}^2 & \sigma_{x_r, x_i} \\ \sigma_{x_r, x_i} & \sigma_{x_i}^2 \end{pmatrix} .
+    \label{eq:crvMomentSecondVarianceMatrix}
+\end{equation}
+The minimisation of the matrix \eqref{eq:crvMomentSecondVarianceMatrix} does not make sense, but instead it is possible to minimise the determinant of that matrix, which is called ``Generalised Variance'' (GV):
+\begin{equation}
+    \mathrm{GV} = |\Sigma_x| = \sigma_{x_r}^2 \sigma_{x_i}^2 - \sigma_{x_r, x_i}^2 .
+    \label{eq:crvMomentSecondGV}
+\end{equation}
+The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v.
 
 Variance, pseudo-variance, covariance, pseudo-covariance, covariance matrix.
 

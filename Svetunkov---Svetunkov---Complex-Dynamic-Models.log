@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.8.28)  18 NOV 2022 22:23
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  20 NOV 2022 17:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -995,6 +995,11 @@ Package natbib Warning: Citation `Svetunkov2014' on page 18 undefined on input
 line 450.
 
 [18] [19]
+
+Package natbib Warning: Citation `reference' on page 20 undefined on input line
+ 509.
+
+
 Overfull \hbox (66.30392pt too wide) detected at line 513
 [][][][][] [] [][][][][] [] [] [] [] [][][][][] [] [][][][] [] [][][][][] [] []
 [][][]
@@ -1023,32 +1028,36 @@ Overfull \hbox (66.79247pt too wide) detected at line 529
 [][][] [] [][][][][][][] [] [][][][][] [] [][][]
  []
 
-[21] [22
 
-]
+Package natbib Warning: Citation `reference' on page 21 undefined on input line
+ 535.
+
+[21] [22]
 Chapter 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 562.
+(Font)              scaled to size 10.0pt on input line 568.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 562.
+(Font)              scaled to size 7.0pt on input line 568.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 562.
+(Font)              scaled to size 5.0pt on input line 568.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.00092pt on input line 562.
+(Font)              scaled to size 10.00092pt on input line 568.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.00064pt on input line 562.
+(Font)              scaled to size 7.00064pt on input line 568.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.00046pt on input line 562.
+(Font)              scaled to size 5.00046pt on input line 568.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 9.99893pt on input line 562.
+(Font)              scaled to size 9.99893pt on input line 568.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 6.99925pt on input line 562.
+(Font)              scaled to size 6.99925pt on input line 568.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 4.99947pt on input line 562.
+(Font)              scaled to size 4.99947pt on input line 568.
 (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl
 Underfull \vbox (badness 2828) has occurred while \output is active []
 
-[23] [24])
+[23
+
+] [24])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1060,10 +1069,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 21452 strings out of 477416
- 396031 string characters out of 5844818
- 875304 words of memory out of 5000000
- 41704 multiletter control sequences out of 15000+600000
+ 21453 strings out of 477444
+ 396066 string characters out of 5846098
+ 875175 words of memory out of 5000000
+ 41698 multiletter control sequences out of 15000+600000
  477301 words of font info for 95 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
  86i,14n,121p,1160b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
