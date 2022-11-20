@@ -508,7 +508,10 @@ or
 
 While there are raw moments for c.r.v., here we will focus on the centred ones, i.e.~moments for \(x-\bar{x}\). There are several instruments related to the second moment that could characterise a complex random variable. The first one is called ``variance'' and is based on the multiplication by a conjugate number \citep{reference}. So for the c.r.v. \(x_r + i x_i\) the variance is:
 \begin{equation}
-    \sigma_x^2 = \mathrm{E}(x \tilde{x}) = \mathrm{E}\left(((x_r-\bar{x}_r) + i (x_i-\bar{x}_i))((x_r-\bar{x}_r) - i (x_i-\bar{x}_i))\right) = \mathrm{E}((x_r-\bar{x}_r)^2) +  \mathrm{E}((x_i-\bar{x}_i)^2)
+    \begin{aligned}
+    \sigma_x^2 = & \mathrm{E}(x \tilde{x}) = \mathrm{E}\left(((x_r-\bar{x}_r) + i (x_i-\bar{x}_i))((x_r-\bar{x}_r) - i (x_i-\bar{x}_i))\right) = \\
+                & \mathrm{E}((x_r-\bar{x}_r)^2) +  \mathrm{E}((x_i-\bar{x}_i)^2)
+    \end{aligned}
     \label{eq:crvMomentSecondVariance}
 \end{equation}
 or taking that the variances of the real and the imaginary parts are \(\sigma_{x_r}^2\) and \(\sigma_{x_i}^2\) respectively:
@@ -524,7 +527,10 @@ Figure \ref{fig:crvMomentSecondVariance} demonstrates graphically the relation b
 
 An alternative way to measure the variability of a complex random variable is by calculating the so called ``pseudo-variance'' \citep{reference}, which can be obtained by applying the conventional formula of variance directly to the c.r.v.:
 \begin{equation}
-    \varsigma_x^2 = \mathrm{E}(x^2) = \mathrm{E}\left(((x_r-\bar{x}_r) + i (x_i-\bar{x}_i))^2\right) = \mathrm{E}((x_r-\bar{x}_r)^2) - \mathrm{E}((x_i-\bar{x}_i)^2) + i2 \mathrm{E}((x_r-\bar{x}_r)(x_i-\bar{x}_i))
+    \begin{aligned}
+    \varsigma_x^2 = & \mathrm{E}(x^2) = \mathrm{E}\left(((x_r-\bar{x}_r) + i (x_i-\bar{x}_i))^2\right) = \\
+                    & \mathrm{E}((x_r-\bar{x}_r)^2) - \mathrm{E}((x_i-\bar{x}_i)^2) + i2 \mathrm{E}((x_r-\bar{x}_r)(x_i-\bar{x}_i))
+    \end{aligned}
     \label{eq:crvMomentSecondVariancePseudo}
 \end{equation}
 or using the notation \(\sigma_{x_r,x_i}\) for covariance between the real and imaginary parts:
