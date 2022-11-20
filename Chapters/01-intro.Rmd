@@ -378,7 +378,7 @@ due to the law of total expectation and because $i$ is a constant. In \@ref(eq:c
     \hat{\mu} = \hat{\mu}_{r} + i \hat{\mu}_{i} = \frac{1}{n}\sum_{j=1}^n x_{r,j} + i \frac{1}{n}\sum_{j=1}^n x_{i,j},
     (\#eq:crvMomentFirstSample)
 \end{equation}
-where $n$ is the sample size and $\hat{\mu}_1$ is the estimate of $\mu_1$. The properties of the first moment of c.r.v. are similar to the properties of any other random variable. The only thing to note is that the moment can also be represented in a vector or matrix form (see Subsection \@ref(complexVariable)):
+where $n$ is the sample size and $\hat{\mu}$ is the estimate of $\mu$. The properties of the first moment of c.r.v. are similar to the properties of any other random variable. The only thing to note is that the moment can also be represented in a vector or matrix form (see Subsection \@ref(complexVariable)):
 \begin{equation}
     \begin{pmatrix} \mu_{r} \\ \mu_{i} \end{pmatrix} 
     (\#eq:crvMomentsVector)
@@ -394,7 +394,7 @@ or
 While there are raw moments for c.r.v., here we will focus on the centred ones, i.e. moments for $x-\bar{x}$. There are several instruments related to the second moment that could characterise a complex random variable. The first one is called "variance" and is based on the multiplication by a conjugate number [@reference]. So for the c.r.v. $x_r + i x_i$ the variance is:
 \begin{equation}
     \begin{aligned}
-    \sigma_x^2 = & \mathrm{E}(x \tilde{x}) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))((x_r-\mu_{r}) - i (x_i-\mu_{i}))\right) = \\
+    \sigma_x^2 = & \mathrm{E}((x-\mu) (\tilde{x}-\tilde{\mu})) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))((x_r-\mu_{r}) - i (x_i-\mu_{i}))\right) = \\
                 & \mathrm{E}((x_r-\mu_{r})^2) +  \mathrm{E}((x_i-\mu_{i})^2)
     \end{aligned}
     (\#eq:crvMomentSecondVariance)
@@ -420,12 +420,12 @@ text(108, 100, latex2exp::TeX("$\\sigma_{x_i}$"))
 text(100, 100, latex2exp::TeX("$\\sigma_{x}$"), pos=2)
 ```
 
-Figure \@ref(fig:crvMomentSecondVariance) demonstrates graphically the relation between standard deviations of real, imaginary and the overall variance of a complex variable according to the formula \@ref(eq:crvMomentSecondVarianceShort).
+Figure \@ref(fig:crvMomentSecondVariance) demonstrates graphically the relation between standard deviations of real, imaginary and the overall variance of a complex variable according to the formula \@ref(eq:crvMomentSecondVarianceShort). 
 
-An alternative way to measure the variability of a complex random variable is by calculating the so called "pseudo-variance" [@reference], which can be obtained by applying the conventional formula of variance directly to the c.r.v.:
+@Picinbono note that the moment \@ref(eq:crvMomentSecondVarianceShort) is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. Another measure of variability of a complex random variable is the so called "pseudo-variance" [@reference], which can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate:
 \begin{equation}
     \begin{aligned}
-    \varsigma_x^2 = & \mathrm{E}(x^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
+    \varsigma_x^2 = & \mathrm{E}(x-\mu^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
                     & \mathrm{E}((x_r-\mu_{r})^2) - \mathrm{E}((x_i-\mu_{i})^2) + i2 \mathrm{E}((x_r-\mu_{r})(x_i-\mu_{i}))
     \end{aligned}
     (\#eq:crvMomentSecondVariancePseudo)
@@ -435,16 +435,16 @@ or using the notation $\sigma_{x_r,x_i}$ for covariance between the real and ima
     \varsigma_x^2 = \sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i}.
     (\#eq:crvMomentSecondVariancePseudoShort)
 \end{equation}
-The moment \@ref(eq:crvMomentSecondVariancePseudoShort) is called pseudo-variance, because it does not measure the variability of a variable, but rather gives a different information: it shows how similar the real and imaginary variances are and what the covariance between them is. If both real and imaginary parts of \@ref(eq:crvMomentSecondVariancePseudoShort) are equal to zero then it is said that the distribution of the complex variable $x$ is spherical [@reference], i.e. the variances are similar and the parts are not linearly related. Furthermore, we should point out that while minimising the variance \@ref(eq:crvMomentSecondVarianceShort) implies minimising both variances of the real and imaginary parts of $x$ (ignoring the covariance between them), minimising \@ref(eq:crvMomentSecondVariancePseudoShort) is not as straightforward. At very least, we could tell that it implies making the distribution of $x$ closer to the spherical one, but we cannot provide any thorough insight about this.
+The moment \@ref(eq:crvMomentSecondVariancePseudoShort) is called pseudo-variance, because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. If both real and imaginary parts of \@ref(eq:crvMomentSecondVariancePseudoShort) are equal to zero then it is said that the distribution of the complex variable $x$ is spherical [@reference], i.e. the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising the variance \@ref(eq:crvMomentSecondVarianceShort) implies minimising both variances of the real and imaginary parts of $x$ (ignoring the covariance between them), minimising \@ref(eq:crvMomentSecondVariancePseudoShort) is not as straightforward. At very least, we could tell that it implies making the distribution of $x$ closer to the spherical one, but we cannot provide any thorough insight about this.
 
 Moreover, given that any complex variable can be represented in a vector form, the c.r.v. $x$ can be treated as a bivariate random variable, for which a covariance matrix can be calculated via:
 \begin{equation}
-    \Sigma_x = \begin{pmatrix} \sigma_{x_r}^2 & \sigma_{x_r, x_i} \\ \sigma_{x_r, x_i} & \sigma_{x_i}^2 \end{pmatrix} .
+    \boldsymbol{\Sigma}_x = \begin{pmatrix} \sigma_{x_r}^2 & \sigma_{x_r, x_i} \\ \sigma_{x_r, x_i} & \sigma_{x_i}^2 \end{pmatrix} .
     (\#eq:crvMomentSecondVarianceMatrix)
 \end{equation}
 The minimisation of the matrix \@ref(eq:crvMomentSecondVarianceMatrix) does not make sense, but instead it is possible to minimise the determinant of that matrix, which is called "Generalised Variance" (GV):
 \begin{equation}
-    \mathrm{GV} = |\Sigma_x| = \sigma_{x_r}^2 \sigma_{x_i}^2 - \sigma_{x_r, x_i}^2 .
+    \mathrm{GV} = |\boldsymbol{\Sigma}_x| = \sigma_{x_r}^2 \sigma_{x_i}^2 - \sigma_{x_r, x_i}^2 .
     (\#eq:crvMomentSecondGV)
 \end{equation}
 The minimisation of GV, as can be seen from the formula \@ref(eq:crvMomentSecondGV), implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v.
@@ -452,16 +452,45 @@ The minimisation of GV, as can be seen from the formula \@ref(eq:crvMomentSecond
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, taking the potential small sample bias into account [@referenceSBA]:
 \begin{equation}
     \begin{aligned}
-        \hat{\sigma}_{x_r}^2 = & \frac{1}{n} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})^2 \\
-        \hat{\sigma}_{x_i}^2 = & \frac{1}{n} \sum_{j=1}^n (x_{i,j}-\bar{x}_{i,j})^2 \\
-        \hat{\sigma}_{x_r, x_i} = & \frac{1}{n} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})(x_{i,j}-\bar{x}_{i,j})^2
+        \hat{\sigma}_{x_r}^2 = & \frac{1}{n-k} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})^2 \\
+        \hat{\sigma}_{x_i}^2 = & \frac{1}{n-k} \sum_{j=1}^n (x_{i,j}-\bar{x}_{i,j})^2 \\
+        \hat{\sigma}_{x_r, x_i} = & \frac{1}{n-k} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})(x_{i,j}-\bar{x}_{i,j})^2 ,
     \end{aligned}
     (\#eq:crvMomentSecondSample)
 \end{equation}
+where $k$ is the number of estimated parameters in a model.
 
-
-
-Variance, pseudo-variance, covariance, pseudo-covariance, covariance matrix.
+Finally, similar to the variance it is possible to calculate second moments between two complex random variables $x = x_r+i x_i$ and $y = y_r + i y_i$ [@Picinbono]. The conventional covariance is calculated similarly to \@ref(eq:crvMomentSecondVariance) via the multiplication by conjugate:
+\begin{equation}
+    \begin{aligned}
+    \sigma_{x,y} = & \mathrm{E}((x-\mu_x) (\tilde{y}-\tilde{\mu}_y)) = \\
+                   & \mathrm{E}\left(((x_r-\mu_{x,r}) + i (x_i-\mu_{x,i}))((y_r-\mu_{y,r}) - i (y_i-\mu_{y,i}))\right) = \\
+                   & \mathrm{E}((x_r-\mu_{x,r})(y_r-\mu_{y,r})) + \mathrm{E}((x_i-\mu_{x,i})(y_i-\mu_{y,i})) + \\
+                   & i \left(\mathrm{E}((x_i-\mu_{x,i})(y_r-\mu_{y,r})) - \mathrm{E}((x_r-\mu_{x,r})(y_i-\mu_{y,i}))\right)
+    \end{aligned}
+    (\#eq:crvMomentSecondCovariance)
+\end{equation}
+where $\mu_{x}$ and $\mu_y$ are the respective first moments of c.r.v. $x$ and $y$. Using the notations above, the same covariance can be rewritten as:
+\begin{equation}
+    \sigma_{x,y} = \sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} - \sigma_{x_r, y_i}),
+    (\#eq:crvMomentSecondCovarianceShort)
+\end{equation}
+which similarly to the variance \@ref(eq:crvMomentSecondVarianceShort) mixes the moments of the real and imaginary parts of the two random variables. In order to have more information about a c.r.v., we also need to consider the pseudo-covariance, which can be shown to be equal to:
+\begin{equation}
+    \sigma_{x,y} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
+    (\#eq:crvMomentSecondPseudoCovarianceShort)
+\end{equation}
+Note that none of these moments gives enough information about the relation between two complex variables, so they need to be used jointly. Alternatively, using vector representation, a covariance matrix between the two c.r.v. can be used to get a better understanding about the relations between them:
+\begin{equation}
+    \boldsymbol{\Sigma}_{x,y} =
+        \begin{pmatrix}
+            \sigma_{x_r}^2 & \sigma_{x_r, x_i} & \sigma_{x_r, y_r} & \sigma_{x_r, y_i} \\
+            \sigma_{x_r, x_i} & \sigma_{x_i}^2 & \sigma_{x_i, y_r} & \sigma_{x_i, y_i} \\
+            \sigma_{x_r, y_r} & \sigma_{x_i, y_r} & \sigma_{y_r}^2 & \sigma_{y_r, y_i} \\
+            \sigma_{x_r, y_i} & \sigma_{x_i, y_i} & \sigma_{y_r, y_i} & \sigma_{y_i}^2
+        \end{pmatrix} .
+    (\#eq:crvMomentSecondCoVarianceMatrix)
+\end{equation}
 
 
 ### Normal c.r.v.
