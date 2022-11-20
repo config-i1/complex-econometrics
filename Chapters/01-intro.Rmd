@@ -406,7 +406,7 @@ or taking that the variances of the real and the imaginary parts are $\sigma_{x_
 \end{equation}
 Multiplication by conjugate in \@ref(eq:crvMomentSecondVariance) allows keeping the size of variability for both real and imaginary parts, but at the same time masks the individual contribution of each part in the overall variance and removes the covariance between the parts. The resulting values shows in a way the overall variability of a c.r.v. along a diagonal line as shown in Figure \@ref(fig:crvMomentSecondVariance).
 
-```{r crvMomentSecondVariance, fig.height=4, fig.width=4, fig.cap="", echo=FALSE}
+```{r crvMomentSecondVariance, fig.height=4, fig.width=4, fig.cap="Visual representation of variance of a complex random variable.", echo=FALSE}
 xr <- rnorm(1000,100,10)
 xi <- xr + rnorm(1000,0,10)
 x <- complex(real=xr, imaginary=xi)
