@@ -493,10 +493,11 @@ Note that none of these moments on its own gives enough information about the re
 \end{equation}
 
 
-### Normal c.r.v.
+## Correlations between complex random variables
 
 
-### Spherical c.r.v.
+## Normal c.r.v.
+<!-- + Spherical c.r.v. -->
 
 
 

@@ -28,6 +28,7 @@ Number of estimated parameters is k, number of degrees of freedom per series is 
 
 ### Inference
 
+
 ### Forecasting
 
 
@@ -38,4 +39,8 @@ Number of estimated parameters is k, number of degrees of freedom per series is 
 
 ### Inference
 
+### Diagnostics
+
 ### Forecasting
+
+### Examples of application (Production functions)
