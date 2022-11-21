@@ -480,7 +480,7 @@ which similarly to the variance \@ref(eq:crvMomentSecondVarianceShort) mixes the
     \sigma_{x,y} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
     (\#eq:crvMomentSecondPseudoCovarianceShort)
 \end{equation}
-Note that none of these moments gives enough information about the relation between two complex variables, so they need to be used jointly. Alternatively, using vector representation, a covariance matrix between the two c.r.v. can be used to get a better understanding about the relations between them:
+Note that none of these moments on its own gives enough information about the relation between two complex variables, so they need to be used jointly. Alternatively, using vector representation, a covariance matrix between the two c.r.v. can be used to get a better understanding about the relations between them:
 \begin{equation}
     \boldsymbol{\Sigma}_{x,y} =
         \begin{pmatrix}
