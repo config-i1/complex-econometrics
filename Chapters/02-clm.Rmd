@@ -1,6 +1,35 @@
 # Complex Linear Regression {#CLR}
 
 ## Correlations between complex random variables
+When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
+
+The literature knows two correlation coefficients for complex variables [@ref]: the conventional correlation and the pseudo-correlation. In this monograph, we will call the latter "complex correlation". Their formula are based on the respective covariances and variances (conventional and pseudo discussed in Subsection \@ref(crvSecondMoment)):
+
+1. Conventional correlation
+\begin{equation}
+    \rho_{x,y} = \frac{\sigma_{x,y}}{\sigma_x \sigma_y},
+    (\#eq:correlationConventional)
+\end{equation}
+
+2. Complex correlation
+\begin{equation}
+    \varrho_{x,y} = \frac{\varsigma_{x,y}}{\varsigma_x \varsigma_y}.
+    (\#eq:correlationPseudo)
+\end{equation}
+
+Note that both correlations are actually complex numbers, but they show different things. The correlation $\rho_{x,y}$ can be written as:
+\begin{equation}
+    {\rho}_{x,y} = \frac{\sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}},
+    (\#eq:correlationConventionalExpanded)
+\end{equation}
+while the second one is:
+\begin{equation}
+    {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}},
+    (\#eq:correlationPseudoExpanded)
+\end{equation}
+
+
+
 
 
 ## Simple CLR
