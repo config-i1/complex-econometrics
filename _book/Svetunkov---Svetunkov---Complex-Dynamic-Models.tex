@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-11-20}
+\date{2022-11-22}
 
 \begin{document}
 \maketitle
@@ -503,8 +503,8 @@ or
     \label{eq:crvMomentsMatrix}
 \end{equation}
 
-\hypertarget{second-moment}{%
-\subsection{Second moment}\label{second-moment}}
+\hypertarget{crvSecondMoment}{%
+\subsection{Second moment}\label{crvSecondMoment}}
 
 While there are raw moments for c.r.v., here we will focus on the centred ones, i.e.~moments for \(x-\bar{x}\). There are several instruments related to the second moment that could characterise a complex random variable. The first one is called ``variance'' and is based on the multiplication by a conjugate number \citep{reference}. So for the c.r.v. \(x_r + i x_i\) the variance is:
 \begin{equation}
@@ -542,7 +542,7 @@ or using the notation \(\sigma_{x_r,x_i}\) for covariance between the real and i
     \varsigma_x^2 = \sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i}.
     \label{eq:crvMomentSecondVariancePseudoShort}
 \end{equation}
-The moment \eqref{eq:crvMomentSecondVariancePseudoShort} is called pseudo-variance, because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. If both real and imaginary parts of \eqref{eq:crvMomentSecondVariancePseudoShort} are equal to zero then it is said that the distribution of the complex variable \(x\) is spherical \citep{reference}, i.e.~the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising the variance \eqref{eq:crvMomentSecondVarianceShort} implies minimising both variances of the real and imaginary parts of \(x\) (ignoring the covariance between them), minimising \eqref{eq:crvMomentSecondVariancePseudoShort} is not as straightforward. At very least, we could tell that it implies making the distribution of \(x\) closer to the spherical one, but we cannot provide any thorough insight about this.
+In the literature, the moment \eqref{eq:crvMomentSecondVariancePseudoShort} is called pseudo-variance \citep{reference}, because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. We prefer a different term, ``complex variance'' because we think that the word ``pseudo'' does not reflect the nature of the moment correctly. If both real and imaginary parts of \eqref{eq:crvMomentSecondVariancePseudoShort} are equal to zero then it is said that the distribution of the complex variable \(x\) is spherical \citep{reference}, i.e.~the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising the variance \eqref{eq:crvMomentSecondVarianceShort} implies minimising both variances of the real and imaginary parts of \(x\) (ignoring the covariance between them), minimising \eqref{eq:crvMomentSecondVariancePseudoShort} is not as straightforward. At very least, we could tell that it implies making the distribution of \(x\) closer to the spherical one, but we cannot provide any thorough insight about this.
 
 Moreover, given that any complex variable can be represented in a vector form, the c.r.v. \(x\) can be treated as a bivariate random variable, for which a covariance matrix can be calculated via:
 \begin{equation}
@@ -582,12 +582,12 @@ where \(\mu_{x}\) and \(\mu_y\) are the respective first moments of c.r.v. \(x\)
     \sigma_{x,y} = \sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} - \sigma_{x_r, y_i}),
     \label{eq:crvMomentSecondCovarianceShort}
 \end{equation}
-which similarly to the variance \eqref{eq:crvMomentSecondVarianceShort} mixes the moments of the real and imaginary parts of the two random variables. In order to have more information about a c.r.v., we also need to consider the pseudo-covariance, which can be shown to be equal to:
+which similarly to the variance \eqref{eq:crvMomentSecondVarianceShort} mixes the moments of the real and imaginary parts of the two random variables. In order to have more information about a c.r.v., we also need to consider the complex covariance \citep[also known in the literature as pseudo-covariance,][]{reference}, which can be shown to be equal to:
 \begin{equation}
-    \sigma_{x,y} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
+    \varsigma_{x,y} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
     \label{eq:crvMomentSecondPseudoCovarianceShort}
 \end{equation}
-Note that none of these moments gives enough information about the relation between two complex variables, so they need to be used jointly. Alternatively, using vector representation, a covariance matrix between the two c.r.v. can be used to get a better understanding about the relations between them:
+Note that none of these moments on its own gives enough information about the relation between two complex variables, so they need to be used jointly. Alternatively, using vector representation, a covariance matrix between the two c.r.v. can be used to get a better understanding about the relations between them:
 \begin{equation}
     \boldsymbol{\Sigma}_{x,y} =
         \begin{pmatrix}
@@ -600,13 +600,44 @@ Note that none of these moments gives enough information about the relation betw
 \end{equation}
 
 \hypertarget{normal-c.r.v.}{%
-\subsection{Normal c.r.v.}\label{normal-c.r.v.}}
-
-\hypertarget{spherical-c.r.v.}{%
-\subsection{Spherical c.r.v.}\label{spherical-c.r.v.}}
+\section{Normal c.r.v.}\label{normal-c.r.v.}}
 
 \hypertarget{CLR}{%
 \chapter{Complex Linear Regression}\label{CLR}}
+
+\hypertarget{correlations-between-complex-random-variables}{%
+\section{Correlations between complex random variables}\label{correlations-between-complex-random-variables}}
+
+When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
+
+The literature knows two correlation coefficients for complex variables \citep{ref}: the conventional correlation and the pseudo-correlation. In this monograph, we will call the latter ``complex correlation''. Their formula are based on the respective covariances and variances (conventional and pseudo discussed in Subsection \ref{crvSecondMoment}):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Conventional correlation
+  \begin{equation}
+   \rho_{x,y} = \frac{\sigma_{x,y}}{\sigma_x \sigma_y},
+   \label{eq:correlationConventional}
+  \end{equation}
+\item
+  Complex correlation
+  \begin{equation}
+   \varrho_{x,y} = \frac{\varsigma_{x,y}}{\varsigma_x \varsigma_y}.
+   \label{eq:correlationPseudo}
+  \end{equation}
+\end{enumerate}
+
+Note that both correlations are actually complex numbers, but they show different things. The correlation \(\rho_{x,y}\) can be written as:
+\begin{equation}
+    {\rho}_{x,y} = \frac{\sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}},
+    \label{eq:correlationConventionalExpanded}
+\end{equation}
+while the second one is:
+\begin{equation}
+    {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}},
+    \label{eq:correlationPseudoExpanded}
+\end{equation}
 
 \hypertarget{simple-clr}{%
 \section{Simple CLR}\label{simple-clr}}
@@ -657,8 +688,14 @@ Number of estimated parameters is k, number of degrees of freedom per series is 
 \hypertarget{inference-1}{%
 \subsection{Inference}\label{inference-1}}
 
+\hypertarget{diagnostics}{%
+\subsection{Diagnostics}\label{diagnostics}}
+
 \hypertarget{forecasting-1}{%
 \subsection{Forecasting}\label{forecasting-1}}
+
+\hypertarget{examples-of-application-production-functions}{%
+\subsection{Examples of application (Production functions)}\label{examples-of-application-production-functions}}
 
   \bibliography{library.bib,packages.bib,websites.bib}
 
