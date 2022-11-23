@@ -38,7 +38,7 @@ To get other insights about the direct correlation coefficient, we express its d
     {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}},
     (\#eq:correlationPseudoExpandedExp01)
 \end{equation}
-where $R_1 = \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}$ and $\phi_1=\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)$, which are obtained by opening the brackets in the square root in the denominator. If we now insert \@ref(eq:correlationPseudoExpandedExp01) in \@ref(eq:correlationPseudoExpanded) and multiply both numerator and denominator by conjugate number to the \@ref(eq:correlationPseudoExpandedExp01) we will get:
+where $R_1 = \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}$ and $\phi_1=\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)$, which are obtained by opening the brackets inside the square root. If we now insert \@ref(eq:correlationPseudoExpandedExp01) in \@ref(eq:correlationPseudoExpanded) and multiply both numerator and denominator by conjugate number to the \@ref(eq:correlationPseudoExpandedExp01) we will get:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\left(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\right)e^{-i \frac{\phi_1}{2}}}{R_1^{\frac{1}{2}}}.
     (\#eq:correlationPseudoExpandedExp02)
@@ -48,16 +48,20 @@ Representing the $\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} +
     {\varrho}_{x,y} = \frac{R_2}{\sqrt{R_1}} e^{i \left(\phi_2 - \frac{\phi_1}{2} \right)}.
     (\#eq:correlationPseudoExpandedExp03)
 \end{equation}
-or in an even shorter exponential form ${\varrho}_{x,y} = R e ^{i \phi}$, where:
+or in an even shorter exponential form ${\varrho}_{x,y} = |{\varrho}_{x,y}| e ^{i \arg({\varrho}_{x,y})}$, where:
 \begin{equation}
-    R=\sqrt{\frac{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}{\sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}}}
+    |{\varrho}_{x,y}|=\sqrt{\frac{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}{\sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}}}
     (\#eq:correlationPseudoExpandedExpR)
 \end{equation}
 and 
 \begin{equation}
-    \phi = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)}{2}
+    \arg({\varrho}_{x,y}) = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) .
     (\#eq:correlationPseudoExpandedExpPhi)
 \end{equation}
+Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpandedExpPhi), we can identify several conditions that lead to specific values of the direct correlation coefficient:
+
+1. The magnitude of the coefficient will be equal to zero only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all covariances between the real and imaginary parts of $x$ and $y$ are equal to zero.
+
 
 
 ## Simple CLR
