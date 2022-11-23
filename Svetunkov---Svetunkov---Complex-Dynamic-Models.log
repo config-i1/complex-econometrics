@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.8.28)  22 NOV 2022 12:48
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.8.28)  23 NOV 2022 18:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1022,61 +1022,71 @@ Package natbib Warning: Citation `reference' on page 21 undefined on input line
 
 [21]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 549.
+(Font)              scaled to size 10.0pt on input line 551.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 549.
+(Font)              scaled to size 7.0pt on input line 551.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 549.
+(Font)              scaled to size 5.0pt on input line 551.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.00092pt on input line 549.
+(Font)              scaled to size 10.00092pt on input line 551.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.00064pt on input line 549.
+(Font)              scaled to size 7.00064pt on input line 551.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.00046pt on input line 549.
+(Font)              scaled to size 5.00046pt on input line 551.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 9.99893pt on input line 549.
+(Font)              scaled to size 9.99893pt on input line 551.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 6.99925pt on input line 549.
+(Font)              scaled to size 6.99925pt on input line 551.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 4.99947pt on input line 549.
+(Font)              scaled to size 4.99947pt on input line 551.
 
 Package natbib Warning: Citation `referenceSBA' on page 22 undefined on input l
-ine 559.
+ine 561.
 
 
 Package natbib Warning: Citation `Picinbono' on page 22 undefined on input line
- 570.
-
-
-Underfull \vbox (badness 1184) has occurred while \output is active []
+ 572.
 
 [22]
 
 Package natbib Warning: Citation `reference' on page 23 undefined on input line
- 585.
+ 587.
 
 [23] [24
 
 ]
 Chapter 2.
 
-Package natbib Warning: Citation `ref' on page 25 undefined on input line 613.
+Package natbib Warning: Citation `ref' on page 25 undefined on input line 620.
 
-[25] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [26])
+[25]
+Overfull \hbox (85.37952pt too wide) in paragraph at lines 658--660
+\TU/lmr/m/n/10 where $[][] [] []$
+ []
+
+
+Overfull \hbox (66.65651pt too wide) detected at line 673
+[][][][] [] []
+ []
+
+[26] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl
+Underfull \vbox (badness 6284) has occurred while \output is active []
+
+[27] [28])
 
 Package natbib Warning: There were undefined citations.
 
-[27
+[29
 
 ] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 21466 strings out of 477416
- 396450 string characters out of 5844818
- 876109 words of memory out of 5000000
- 41718 multiletter control sequences out of 15000+600000
+ 21472 strings out of 477416
+ 396640 string characters out of 5844818
+ 883543 words of memory out of 5000000
+ 41724 multiletter control sequences out of 15000+600000
  477301 words of font info for 95 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
- 86i,14n,121p,1320b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,14n,121p,1174b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (27 pages)
+Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (29 pages)
 .
