@@ -60,7 +60,7 @@ and
 \end{equation}
 Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpandedExpPhi), we can identify several conditions that lead to specific values of the direct correlation coefficient:
 
-1. The magnitude of the coefficient will be equal to zero only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all covariances between the real and imaginary parts of $x$ and $y$ are equal to zero.
+1. The magnitude of the coefficient will be equal to zero only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all cross-covariances between the real and imaginary parts of $x$ and $y$ are equal to zero.
 
 
 
