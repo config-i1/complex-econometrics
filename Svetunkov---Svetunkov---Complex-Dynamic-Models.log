@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.8.28)  23 NOV 2022 18:15
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  26 NOV 2022 18:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1065,14 +1065,36 @@ Overfull \hbox (85.37952pt too wide) in paragraph at lines 658--660
  []
 
 
-Overfull \hbox (66.65651pt too wide) detected at line 673
-[][][][] [] []
+Overfull \hbox (81.0815pt too wide) detected at line 673
+[][][][][][][] [] []
  []
 
-[26] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl
-Underfull \vbox (badness 6284) has occurred while \output is active []
+[26]
+Overfull \hbox (61.49026pt too wide) detected at line 678
+[][][][][][][][] [] [] [] [] [] [] [] []
+ []
 
-[27] [28])
+
+Overfull \hbox (190.70047pt too wide) in paragraph at lines 689--690
+[]$[][][] [] [][][][] [] [][][] [] [][][][] [] []$ 
+ []
+
+
+Overfull \hbox (26.04688pt too wide) in paragraph at lines 691--692
+[]$[][] [] [][] []
+ []
+
+
+Overfull \hbox (18.08566pt too wide) in paragraph at lines 693--694
+[][] [] [] [][]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 699--700
+[][] [] [][] [] [] [][] []
+ []
+
+[27] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [28])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1080,10 +1102,10 @@ Package natbib Warning: There were undefined citations.
 
 ] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 21472 strings out of 477416
- 396640 string characters out of 5844818
- 883543 words of memory out of 5000000
- 41724 multiletter control sequences out of 15000+600000
+ 21472 strings out of 477444
+ 396640 string characters out of 5846098
+ 904375 words of memory out of 5000000
+ 41717 multiletter control sequences out of 15000+600000
  477301 words of font info for 95 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
  86i,14n,121p,1174b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
