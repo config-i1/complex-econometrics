@@ -646,8 +646,8 @@ They both can be derives based on the same principles used for the derivation of
 where \(\alpha_0\) and \(\beta_0\) are the intercepts, \(\alpha_1\) and \(\beta_1\) are the slopes of the regression lines and \(e\) and \(u\) are the residuals of the models. As we show in Section \ref{simpleCLR}, the parameters of slope can be estimated using Ordinary Least Squares (OLS) or the Complex Least Squares (CLS) to get respectively \(a_1\) and \(b_1\). For the OLS, the formulae for the slopes are:
 \begin{equation}
     \begin{aligned}
-        &b_1 = \frac{\hat{\sigma_{x,y}}}{\hat{\sigma}_x} \\
-        &a_1 = \frac{\hat{\sigma_{x,y}}}{\hat{\sigma}_y} .
+        &b_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
+        &a_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_y} .
     \end{aligned}
     \label{eq:twoRegressionsOLS}
 \end{equation}
@@ -659,8 +659,8 @@ Taking their geometric means leads to:
 which then leads to the formula \eqref{eq:correlationConventional}. Similarly, for CLS estimated regressions, we have:
 \begin{equation}
     \begin{aligned}
-        &b_1 = \frac{\hat{\varsigma_{x,y}}}{\hat{\varsigma}_x} \\
-        &a_1 = \frac{\hat{\varsigma_{x,y}}}{\hat{\varsigma}_y} ,
+        &b_1 = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x} \\
+        &a_1 = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_y} ,
     \end{aligned}
     \label{eq:twoRegressionsCLS}
 \end{equation}
