@@ -17,7 +17,38 @@ The literature knows two correlation coefficients for complex variables [@ref]: 
     (\#eq:correlationPseudo)
 \end{equation}
 
-Note that both correlations are complex numbers, but they show different things. The conjugate correlation $\rho_{x,y}$ can be written as:
+They both can be derives based on the same principles used for the derivation of the original Pearson's correlation coefficient [@refPearson]. In that case, the correlation coefficient equals to the geometric mean of slopes of two regression lines:
+\begin{equation}
+    \begin{aligned}
+        &y = \beta_0 + \beta_1 x + \epsilon \\
+        &x = \alpha_0 + \alpha_1 y + \upsilon ,
+    \end{aligned}
+    (\#eq:twoRegressions)
+\end{equation}
+where $\alpha_0$ and $\beta_0$ are the intercepts, $\alpha_1$ and $\beta_1$ are the slopes of the regression lines and $e$ and $u$ are the residuals of the models. As we show in Section \@ref(simpleCLR), the parameters of slope can be estimated using Ordinary Least Squares (OLS) or the Complex Least Squares (CLS) to get respectively $a_1$ and $b_1$. For the OLS, the formulae for the slopes are:
+\begin{equation}
+    \begin{aligned}
+        &b_1 = \frac{\hat{\sigma_{x,y}}}{\hat{\sigma}_x} \\
+        &a_1 = \frac{\hat{\sigma_{x,y}}}{\hat{\sigma}_y} .
+    \end{aligned}
+    (\#eq:twoRegressionsOLS)
+\end{equation}
+Taking their geometric means leads to:
+\begin{equation}
+    \hat{\rho}_{x,y} = \mathrm{sign}(b_1) \sqrt{a_1 b_1},
+    (\#eq:correlationConventionalEstimate)
+\end{equation}
+which then leads to the formula \@ref(eq:correlationConventional). Similarly, for CLS estimated regressions, we have:
+\begin{equation}
+    \begin{aligned}
+        &b_1 = \frac{\hat{\varsigma_{x,y}}}{\hat{\varsigma}_x} \\
+        &a_1 = \frac{\hat{\varsigma_{x,y}}}{\hat{\varsigma}_y} ,
+    \end{aligned}
+    (\#eq:twoRegressionsCLS)
+\end{equation}
+which after taking the same geometric means leads to \@ref(eq:correlationPseudo). Note that the estimates of the slope parameters will differ between the OLS and the CLS. This is discussed further in Section \@ref(simpleCLR).
+
+When it comes to the interpretation of the coefficients, both of them are complex numbers, but they show different things. The conjugate correlation $\rho_{x,y}$ can be written as:
 \begin{equation}
     {\rho}_{x,y} = \frac{\sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
     (\#eq:correlationConventionalExpanded)
@@ -62,24 +93,34 @@ Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpa
 
 1. The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all cross-covariances between the real and imaginary parts of $x$ and $y$ are equal to zero.
 
-2. The magnitude of the coefficient will be equal to one, when its numerator and denominator are equal:
+2. The magnitude of the coefficient will be equal to one, when its numerator and denominator are equal, which can be obtained with a multitude of values of covariances and variances of real and imaginary parts of complex variables $x$ and $y$.
 
-$(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 = \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}$
-
-$\left((\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 \right)^2 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$
-
-$(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$
-
-$(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 - 8 (\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \sigma_{y_r,y_i} + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 +    4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$
-
-$(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 - 8 (\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \sigma_{y_r,y_i} + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 + 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} \right)^2  + 8(\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} + 4\left((\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$
-
-$(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 + 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} \right)^2 + 4\left((\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$
+3. One of the special cases for $\varrho_{x,y}=1$ comes to the definition of the conventional correlation coefficient [@refPearson]. $\sqrt{a_1 b_1}=1$
 
 
-$(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = (\sigma_{x_r}^2 - \sigma_{x_i}^2)^2\left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) + 4 \sigma_{x_r,x_i}^2 \left(\sigma_{y_r,y_i}^2 + (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 \right)$
 
-## Simple CLR
+<!-- Trying to derive |rho|=1 -->
+<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 = \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}$ -->
+
+<!-- $\left((\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 \right)^2 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
+
+<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
+
+<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 - 8 (\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \sigma_{y_r,y_i} + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 +    4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
+
+<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 - 8 (\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \sigma_{y_r,y_i} + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 + 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} \right)^2  + 8(\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} + 4\left((\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
+
+<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 + 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} \right)^2 + 4\left((\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
+
+
+<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = (\sigma_{x_r}^2 - \sigma_{x_i}^2)^2\left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) + 4 \sigma_{x_r,x_i}^2 \left((\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + \sigma_{y_r,y_i}^2 \right)$ -->
+
+<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = (\sigma_{x_r}^2 - \sigma_{x_i}^2)^2\left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) + 4 \sigma_{x_r,x_i}^2 \left((\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4 \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
+
+<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left(\left(\sigma_{x_r}^2 - \sigma_{x_i}^2\right)^2 + 4 \sigma_{x_r,x_i}^2 \right) \left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
+
+
+## Simple CLR {#simpleCLR}
 ### Model formulation
 The simple Complex Linear Regression can be written as:
 \begin{equation}
