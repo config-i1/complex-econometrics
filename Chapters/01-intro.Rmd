@@ -389,6 +389,16 @@ or
     (\#eq:crvMomentsMatrix)
 \end{equation}
 
+In R, the first moment can be obtained via the `mean()` function from `stats` package:
+
+```{r}
+# Create a random variable
+x <- complex(real=rnorm(100, mean=50, sd=10),
+             imaginary=rnorm(100, mean=100, sd=10))
+# Calculate the first moment
+mean(x)
+```
+
 
 ### Second moment {#crvSecondMoment}
 While there are raw moments for c.r.v., here we will focus on the centred ones, i.e. moments for $x-\bar{x}$. There are several instruments related to the second moment that could characterise a complex random variable. The first one is called "variance" and is based on the multiplication by a conjugate number [@reference]. So for the c.r.v. $x_r + i x_i$ the variance is:
@@ -439,7 +449,23 @@ In the literature, the moment \@ref(eq:crvMomentSecondVariancePseudoShort) is ca
 
 We should note that both measures can be considered as complex, and the main distinction between them is the multiplication by the same c.r.v or by its conjugate. As such we propose to call them respectively "conjugate variance" and "direct variance".
 
-Moreover, given that any complex variable can be represented in a vector form, the c.r.v. $x$ can be treated as a bivariate random variable, for which a covariance matrix can be calculated via:
+In R, the conjugate and direct variances are available in `cvar()` function of `complex` package.
+
+```{r}
+# Create a random variable
+x <- complex(real=rnorm(100, mean=50, sd=5),
+             imaginary=rnorm(100, mean=100, sd=10))
+# Calculate the conjugate variance
+cvar(x, kind="conjugate") |>
+    setNames("Conjugate variance")
+# Calculate the direct variance
+cvar(x, kind="direct") |>
+    setNames("Direct variance")
+```
+
+As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be $5^2 + 10^2 = 125$, but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
+
+Given that any complex variable can be represented in a vector form, the c.r.v. $x$ can be treated as a bivariate random variable, for which a covariance matrix can be calculated via:
 \begin{equation}
     \boldsymbol{\Sigma}_x = \begin{pmatrix} \sigma_{x_r}^2 & \sigma_{x_r, x_i} \\ \sigma_{x_r, x_i} & \sigma_{x_i}^2 \end{pmatrix} .
     (\#eq:crvMomentSecondVarianceMatrix)
@@ -449,9 +475,19 @@ The minimisation of the matrix \@ref(eq:crvMomentSecondVarianceMatrix) does not 
     \mathrm{GV} = |\boldsymbol{\Sigma}_x| = \sigma_{x_r}^2 \sigma_{x_i}^2 - \sigma_{x_r, x_i}^2 .
     (\#eq:crvMomentSecondGV)
 \end{equation}
-The minimisation of GV, as can be seen from the formula \@ref(eq:crvMomentSecondGV), implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v.
 
-All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, taking the potential small sample bias into account [@referenceSBA]:
+In R, this is implemented in `covar()` function from the `complex` package:
+```{r}
+covar(x)
+```
+
+The minimisation of GV, as can be seen from the formula \@ref(eq:crvMomentSecondGV), implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
+
+```{r}
+covar(x) |> det()
+```
+
+All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias [@referenceSBA]:
 \begin{equation}
     \begin{aligned}
         \hat{\sigma}_{x_r}^2 = & \frac{1}{n-k} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})^2 \\
@@ -494,9 +530,32 @@ Note that none of these moments on its own gives enough information about the re
     (\#eq:crvMomentSecondCoVarianceMatrix)
 \end{equation}
 
-While there are also higher order moments for c.r.v., we do not discuss them in this book.
+In R, the complex covariances are implemented in `ccov()` function from the `complex` package:
 
-### Examples in R
+```{r}
+# Create a random variable x
+x <- complex(real=rnorm(100, mean=50, sd=5),
+             imaginary=rnorm(100, mean=100, sd=10))
+# Create a random variable y
+y <- (1.5 + 3i) + (0.5 - 0.75i) * x +
+            complex(real=rnorm(100, mean=0, sd=10),
+                    imaginary=rnorm(100, mean=0, sd=10))
+# Calculate the conjugate variance
+ccov(x, y, kind="conjugate") |>
+    setNames("Conjugate covariance")
+# Calculate the direct variance
+ccov(x, y, kind="direct") |>
+    setNames("Direct covariance")
+```
+
+The functions `cvar()` and `ccov()` also accept a matrix instead of vector `x`, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
+
+```{r}
+ourData <- cbind(x,y)
+cvar(ourData, kind="direct")
+```
+
+While there exist higher order moments for complex random variables, we do not discuss them in this book.
 
 
 ## Normal c.r.v.
