@@ -37,7 +37,7 @@ The plots are positioned to satisfy two rules:
 1. When a scatterplot for a c.r.v. is produced, the real part should be in x-axis, while the imaginary should be in the y-axis.
 2. When parts of variables $x$ and $y$ are compared, the part for $x$ should be in x-axis, while the part for $y$ should be in y-axis, which should the reflect the idea that $x$ could be an explanatory variable for $y$.
 
-The plots in Figure \@ref(fig:crvScatterplots) indicate that:
+While a simple scatterplot matrix could have been constructed instead of Figure \@ref(fig:crvScatterplots), we argue that the latter has a logical grouping and should be preferred for analysis of complex variables. For example, based on the plots in Figure \@ref(fig:crvScatterplots) we can conclude that:
 
 - There is a positive relation between the real and imaginary parts of $x$,
 - There is a negative relation between the real and imaginary parts of $y$,
@@ -79,7 +79,7 @@ where $\alpha_0$ and $\beta_0$ are the intercepts, $\alpha_1$ and $\beta_1$ are 
 \end{equation}
 Taking their geometric means leads to:
 \begin{equation}
-    \hat{\rho}_{x,y} = \mathrm{sign}(b_1) \sqrt{a_1 b_1},
+    \hat{\rho}_{x,y} = \sqrt{a_1 b_1},
     (\#eq:correlationConventionalEstimate)
 \end{equation}
 which then leads to the formula \@ref(eq:correlationConventional). Similarly, for CLS estimated regressions, we have:
@@ -99,9 +99,30 @@ When it comes to the interpretation of the coefficients, both of them are comple
 \end{equation}
 As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient becomes a real number only when the cross-covariances between the real and imaginary parts of $x$ and $y$ are equal. In practice, this exotic condition can be met, when the parts for both variables are not correlated. In all the other cases, the resulting correlation coefficient will be a complex number. In general, the real part of the complex correlation $\rho_{x,y}$ shows the average strength of linear relation between respective real and imaginary parts of two complex variables, while the imaginary part of $\rho_{x,y}$ shows the difference between linear relations between the cross values of real and imaginary parts of $x$ and $y$.
 
-The coefficient will be equal to zero, when there are no linear relations between the parts of complex variables $x$ and $y$. On the other hand, its real part will be close to one by absolute value if the complex relation between variables $y$ and $x$ is close to linear, i.e. $a_1 = \frac{1}{b_1}$. The positive value of the real part indicates that keeping things fixed, the increase in value of $x$ leads to the increase in the value of $y$, while the negative sign indicates the opposite. Note however, that if the covariance $\sigma_{x_r, y_r}$ is positive and the covariance $\sigma_{x_i, y_i}$ is negative, the real part of the coefficient might obscure the real relation between variables and become equal to zero even if there is a strong linear relation between $x$ and $y$.
+The coefficient will be equal to zero, when there are no linear relations between the parts of complex variables $x$ and $y$. On the other hand, its real part will be close to one by absolute value if the complex relation between variables $y$ and $x$ is close to linear, i.e. $a_1 = \frac{1}{b_1}$.
 
-As for the imaginary part of the coefficient, it is not necessarily bounded with the (-1, 1) region and in theory can become any number, only showing the relation between the standardised covariances.
+In order to better understand what the real and imaginary parts of the conjugate correlation mean, we expand the formula \@ref(eq:correlationConventionalEstimate) by substituting $b_1 = b_{1,r} + i b_{1,i}$ and $a_1 = a_{1,r} + i a_{1,i}$:
+\begin{equation}
+    \begin{aligned}
+        \hat{\rho}_{x,y} = & \sqrt{(a_{1,r} + i a_{1,i}) (b_{1,r}+ib_{1,i})} = \\
+        & \sqrt{a_{1,r} b_{1,r} - a_{1,i} b_{1,i} + i(a_{1,r} b_{1,i} + a_{1,i} b_{1,r})},
+    \end{aligned}
+    (\#eq:correlationConjugateExpanded01)
+\end{equation}
+or in the exponential form:
+\begin{equation}
+    \hat{\rho}_{x,y} = R^{\frac{1}{2}} e^{i \frac{1}{2} \phi} ,
+    (\#eq:correlationConjugateExpanded02)
+\end{equation}
+where
+\begin{equation}
+    \begin{aligned}
+        & R = \sqrt{(a_{1,r} b_{1,r} - a_{1,i} b_{1,i})^2 + (a_{1,r} b_{1,i} + a_{1,i} b_{1,r})^2} \\
+        & \phi=\arctan\left(\frac{a_{1,r} b_{1,i} + a_{1,i} b_{1,r}}{a_{1,r} b_{1,r} - a_{1,i} b_{1,i}}\right),
+    \end{aligned}
+    (\#eq:correlationConjugateExpanded03)
+\end{equation}
+As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitude of combinations of parameters of the model that can give the unity magnitude $R$. For example, if $a_{1,r} = 0.5$, $b_{1,r} = 1$, $a_{1,i} = -0.5$ and $b_{1,i} = 1$, $R$ would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of $0$, $\frac{\pi}{2}$, $\pi$ and $\frac{3\pi}{2}$ leading to pure real or imaginary numbers. In fact, for the example above, $\phi=0$, implying that the correlation coefficient will be equal to one, no matter how strong the relation between variable $x$ and $y$ is. This means that it is difficult to make any solid conclusions based on the conjugate correlation coefficient, but it can still be used to get some preliminary understanding of the relation.
 
 So, the conjugate correlation coefficient has some similarities with the conventional one for the real numbers, but similarly to the conjugate variance, it might obscure the real situation by mixing different things in one number.
 
