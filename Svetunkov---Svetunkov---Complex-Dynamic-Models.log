@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  28 NOV 2022 17:43
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  28 NOV 2022 18:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -997,113 +997,114 @@ line 450.
 [18] [19]
 
 Package natbib Warning: Citation `reference' on page 20 undefined on input line
- 509.
+ 525.
 
+[20]
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvMome
 ntSecondVariance-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvMomen
 tSecondVariance-1.pdf>
 
-Package natbib Warning: Citation `Picinbono' on page 20 undefined on input line
- 532.
-
-
-Package natbib Warning: Citation `reference' on page 20 undefined on input line
- 532.
-
-[20]
-
-Package natbib Warning: Citation `reference' on page 21 undefined on input line
- 545.
+Package natbib Warning: Citation `Picinbono' on page 21 undefined on input line
+ 548.
 
 
 Package natbib Warning: Citation `reference' on page 21 undefined on input line
- 545.
+ 548.
+
+
+Package natbib Warning: Citation `reference' on page 21 undefined on input line
+ 561.
+
+
+Package natbib Warning: Citation `reference' on page 21 undefined on input line
+ 561.
 
 [21]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 551.
+(Font)              scaled to size 10.0pt on input line 600.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 551.
+(Font)              scaled to size 7.0pt on input line 600.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 551.
+(Font)              scaled to size 5.0pt on input line 600.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.00092pt on input line 551.
+(Font)              scaled to size 10.00092pt on input line 600.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.00064pt on input line 551.
+(Font)              scaled to size 7.00064pt on input line 600.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.00046pt on input line 551.
+(Font)              scaled to size 5.00046pt on input line 600.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 9.99893pt on input line 551.
+(Font)              scaled to size 9.99893pt on input line 600.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 6.99925pt on input line 551.
+(Font)              scaled to size 6.99925pt on input line 600.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 4.99947pt on input line 551.
-
-Package natbib Warning: Citation `referenceSBA' on page 22 undefined on input l
-ine 561.
-
-
-Package natbib Warning: Citation `Picinbono' on page 22 undefined on input line
- 572.
-
+(Font)              scaled to size 4.99947pt on input line 600.
 [22]
 
-Package natbib Warning: Citation `reference' on page 23 undefined on input line
- 587.
+Package natbib Warning: Citation `referenceSBA' on page 23 undefined on input l
+ine 635.
 
-[23] [24
+
+Package natbib Warning: Citation `Picinbono' on page 23 undefined on input line
+ 646.
+
+[23]
+
+Package natbib Warning: Citation `reference' on page 24 undefined on input line
+ 661.
+
+[24] [25] [26
 
 ]
 Chapter 2.
-[25]
+[27]
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplots-1.pdf>
-[26]
+[28]
 
-Package natbib Warning: Citation `ref' on page 27 undefined on input line 702.
+Package natbib Warning: Citation `ref' on page 29 undefined on input line 823.
 
 
-Package natbib Warning: Citation `refPearson' on page 27 undefined on input lin
-e 720.
+Package natbib Warning: Citation `refPearson' on page 29 undefined on input lin
+e 841.
 
-[27] [28]
-Overfull \hbox (85.37952pt too wide) in paragraph at lines 771--773
+[29] [30]
+Overfull \hbox (85.37952pt too wide) in paragraph at lines 892--894
 \TU/lmr/m/n/10 where $[][] [] []$
  []
 
 
-Overfull \hbox (81.0815pt too wide) detected at line 786
+Overfull \hbox (81.0815pt too wide) detected at line 907
 [][][][][][][] [] []
  []
 
 
-Overfull \hbox (61.49026pt too wide) detected at line 791
+Overfull \hbox (61.49026pt too wide) detected at line 912
 [][][][][][][][] [] [] [] [] [] [] [] []
  []
 
-[29]
+[31]
 
-Package natbib Warning: Citation `refPearson' on page 30 undefined on input lin
-e 801.
+Package natbib Warning: Citation `refPearson' on page 32 undefined on input lin
+e 922.
 
-(./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [30])
+(./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [32])
 
 Package natbib Warning: There were undefined citations.
 
-[31
+[33
 
 ] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 21489 strings out of 477444
- 397515 string characters out of 5846098
- 888770 words of memory out of 5000000
- 41731 multiletter control sequences out of 15000+600000
+ 21488 strings out of 477444
+ 397500 string characters out of 5846098
+ 888722 words of memory out of 5000000
+ 41730 multiletter control sequences out of 15000+600000
  477309 words of font info for 96 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
  86i,14n,121p,1174b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (31 pages)
+Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (33 pages)
 .

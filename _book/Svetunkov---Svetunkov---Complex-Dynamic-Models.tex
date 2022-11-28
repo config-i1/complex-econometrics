@@ -503,6 +503,22 @@ or
     \label{eq:crvMomentsMatrix}
 \end{equation}
 
+In R, the first moment can be obtained via the \texttt{mean()} function from \texttt{stats} package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a random variable}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{),}
+             \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
+\CommentTok{\# Calculate the first moment}
+\FunctionTok{mean}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 52.533+100.5994i
+\end{verbatim}
+
 \hypertarget{crvSecondMoment}{%
 \subsection{Second moment}\label{crvSecondMoment}}
 
@@ -546,7 +562,40 @@ In the literature, the moment \eqref{eq:crvMomentSecondVariancePseudoShort} is c
 
 We should note that both measures can be considered as complex, and the main distinction between them is the multiplication by the same c.r.v or by its conjugate. As such we propose to call them respectively ``conjugate variance'' and ``direct variance''.
 
-Moreover, given that any complex variable can be represented in a vector form, the c.r.v. \(x\) can be treated as a bivariate random variable, for which a covariance matrix can be calculated via:
+In R, the conjugate and direct variances are available in \texttt{cvar()} function of \texttt{complex} package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a random variable}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{5}\NormalTok{),}
+             \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
+\CommentTok{\# Calculate the conjugate variance}
+\FunctionTok{cvar}\NormalTok{(x, }\AttributeTok{kind=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{setNames}\NormalTok{(}\StringTok{"Conjugate variance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Conjugate variance 
+## 113.3297+0i
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate the direct variance}
+\FunctionTok{cvar}\NormalTok{(x, }\AttributeTok{kind=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{setNames}\NormalTok{(}\StringTok{"Direct variance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Direct variance 
+## -67.23053+5.86193i
+\end{verbatim}
+
+As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
+
+Given that any complex variable can be represented in a vector form, the c.r.v. \(x\) can be treated as a bivariate random variable, for which a covariance matrix can be calculated via:
 \begin{equation}
     \boldsymbol{\Sigma}_x = \begin{pmatrix} \sigma_{x_r}^2 & \sigma_{x_r, x_i} \\ \sigma_{x_r, x_i} & \sigma_{x_i}^2 \end{pmatrix} .
     \label{eq:crvMomentSecondVarianceMatrix}
@@ -556,9 +605,34 @@ The minimisation of the matrix \eqref{eq:crvMomentSecondVarianceMatrix} does not
     \mathrm{GV} = |\boldsymbol{\Sigma}_x| = \sigma_{x_r}^2 \sigma_{x_i}^2 - \sigma_{x_r, x_i}^2 .
     \label{eq:crvMomentSecondGV}
 \end{equation}
-The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v.
 
-All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, taking the potential small sample bias into account \citep{referenceSBA}:
+In R, this is implemented in \texttt{covar()} function from the \texttt{complex} package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{covar}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          x_r       x_i
+## x_r 2582.698  5074.606
+## x_i 5074.606 10139.274
+\end{verbatim}
+
+The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{covar}\NormalTok{(x) }\SpecialCharTok{|\textgreater{}} \FunctionTok{det}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 435053
+\end{verbatim}
+
+All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
 \begin{equation}
     \begin{aligned}
         \hat{\sigma}_{x_r}^2 = & \frac{1}{n-k} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})^2 \\
@@ -601,10 +675,57 @@ Note that none of these moments on its own gives enough information about the re
     \label{eq:crvMomentSecondCoVarianceMatrix}
 \end{equation}
 
-While there are also higher order moments for c.r.v., we do not discuss them in this book.
+In R, the complex covariances are implemented in \texttt{ccov()} function from the \texttt{complex} package:
 
-\hypertarget{examples-in-r}{%
-\subsection{Examples in R}\label{examples-in-r}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a random variable x}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{5}\NormalTok{),}
+             \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
+\CommentTok{\# Create a random variable y}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\FloatTok{1.5} \SpecialCharTok{+}\NormalTok{ 3i) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{0.5} \SpecialCharTok{{-}} \FloatTok{0.75}\NormalTok{i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
+            \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{),}
+                    \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
+\CommentTok{\# Calculate the conjugate variance}
+\FunctionTok{ccov}\NormalTok{(x, y, }\AttributeTok{kind=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{setNames}\NormalTok{(}\StringTok{"Conjugate covariance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Conjugate covariance 
+## 72.66831+88.43389i
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate the direct variance}
+\FunctionTok{ccov}\NormalTok{(x, y, }\AttributeTok{kind=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{setNames}\NormalTok{(}\StringTok{"Direct covariance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Direct covariance 
+## -38.33723+66.27316i
+\end{verbatim}
+
+The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ourData }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(x,y)}
+\FunctionTok{cvar}\NormalTok{(ourData, }\AttributeTok{kind=}\StringTok{"direct"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      x                    y
+## x -72097514+100335206i  37343698+109479248i
+## y  37343698+109479248i 103765965+ 30994990i
+\end{verbatim}
+
+While there exist higher order moments for complex random variables, we do not discuss them in this book.
 
 \hypertarget{normal-c.r.v.}{%
 \section{Normal c.r.v.}\label{normal-c.r.v.}}
