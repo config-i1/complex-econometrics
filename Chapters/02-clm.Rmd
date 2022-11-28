@@ -3,7 +3,51 @@
 ## Correlations between complex random variables
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
-The literature knows two correlation coefficients for complex variables [@ref]: the conjugate and the direct correlation (the latter is known in the literature as "pseudo-correlation"). Their formula are based on the respective covariances and variances (conventional and pseudo discussed in Subsection \@ref(crvSecondMoment)):
+For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances:
+
+1. $\sigma_{x_r,x_i}$,
+2. $\sigma_{y_r,y_i}$,
+3. $\sigma_{x_r,y_r}$,
+4. $\sigma_{x_i,y_i}$,
+5. $\sigma_{x_r,y_i}$,
+6. $\sigma_{y_r,x_i}$.
+
+In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \@ref(fig:crvScatterplots) for two generated complex random variables $x$ and $y$, created using `cplot()` function from `complex` package in R.
+
+```{r crvScatterplots, fig.width=8, fig.height=8, fig.cap="Visualisation of relations between two complex variables"}
+# Create real part of a c.r.v. x
+xr <- rnorm(1000,0,10)
+# Create a c.r.v. x
+x <- complex(real=xr, imaginary=1.5*xr+rnorm(1000,0,10))
+# Create a c.r.v. y
+y <- (10 + 15i) + (1.5 + 1.2i) * x +
+    complex(real=rnorm(1000,0,10), imaginary=rnorm(1000,0,10))
+# Produce the plot
+cplot(x, y)
+```
+
+This scatterplot has several important elements in it:
+
+- It shows relations between real and imaginary parts of each variable (e.g. the two scatterplots in the bold dark red frame),
+- It shows cross-relations between parts of one variable and parts of the other one (e.g. the rest four plots),
+- The colour shows ordering of the original variable $x$ with dark values corresponding to point with higher magnitude and light ones being closer to zero. This way, we can see what the original points in $x$ correspond to in $y$.
+
+The plots are positioned to satisfy two rules:
+
+1. When a scatterplot for a c.r.v. is produced, the real part should be in x-axis, while the imaginary should be in the y-axis.
+2. When parts of variables $x$ and $y$ are compared, the part for $x$ should be in x-axis, while the part for $y$ should be in y-axis, which should the reflect the idea that $x$ could be an explanatory variable for $y$.
+
+The plots in Figure \@ref(fig:crvScatterplots) indicate that:
+
+- There is a positive relation between the real and imaginary parts of $x$,
+- There is a negative relation between the real and imaginary parts of $y$,
+- Real parts of $x$ and $y$ do not exhibit a strong linear relation,
+- But the respective imaginary parts of $x$ and $y$ have the positive relation between them,
+- Finally, we see that with the increase of real and imaginary parts of $x$, the real part of $y$ decreases, while the imaginary one increases. This sort of behaviour implies positive complex slope in the potential linear regression (discussed in Section \@ref(simpleCLR)).
+
+We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
+
+The literature knows two correlation coefficients for complex variables [@ref]: the conjugate and the direct correlation (the latter is known in the literature as "pseudo-correlation"). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
 
 1. Conjugate correlation
 \begin{equation}
@@ -118,6 +162,10 @@ Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpa
 <!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = (\sigma_{x_r}^2 - \sigma_{x_i}^2)^2\left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) + 4 \sigma_{x_r,x_i}^2 \left((\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4 \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
 
 <!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left(\left(\sigma_{x_r}^2 - \sigma_{x_i}^2\right)^2 + 4 \sigma_{x_r,x_i}^2 \right) \left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
+
+
+
+
 
 
 ## Simple CLR {#simpleCLR}
