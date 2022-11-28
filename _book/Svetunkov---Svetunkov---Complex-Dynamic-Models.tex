@@ -516,7 +516,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.6714+100.558i
+## [1] 50.0636+100.2586i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -577,7 +577,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 96.39219+0i
+## 107.1167+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -589,8 +589,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct variance 
-## -56.60276-2.4326i
+##    Direct variance 
+## -61.10737+9.82475i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -615,9 +615,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##          x_r      x_i
-## x_r 2629.966 5040.706
-## x_i 5040.706 9816.071
+##          x_r       x_i
+## x_r 2654.688  5150.758
+## x_i 5150.758 10146.007
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -629,7 +629,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 407215.3
+## [1] 404180.9
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -694,7 +694,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 71.2283+109.1832i
+## 65.3978+105.1675i
 \end{verbatim}
 
 \begin{Shaded}
@@ -707,7 +707,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -48.80972+51.83629i
+## -37.62318+58.57564i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -721,8 +721,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                      x                   y
-## x -74114867+ 98153851i 33076360+109049301i
-## y  33076360+109049301i 99710729+ 34717518i
+## x -70989370+ 99409741i 37406009+106214568i
+## y  37406009+106214568i 99951977+ 28033450i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
