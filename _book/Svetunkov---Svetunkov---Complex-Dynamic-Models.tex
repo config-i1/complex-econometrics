@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-11-26}
+\date{2022-11-28}
 
 \begin{document}
 \maketitle
@@ -617,7 +617,89 @@ While there are also higher order moments for c.r.v., we do not discuss them in 
 
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
-The literature knows two correlation coefficients for complex variables \citep{ref}: the conjugate and the direct correlation (the latter is known in the literature as ``pseudo-correlation''). Their formula are based on the respective covariances and variances (conventional and pseudo discussed in Subsection \ref{crvSecondMoment}):
+For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\sigma_{x_r,x_i}\),
+\item
+  \(\sigma_{y_r,y_i}\),
+\item
+  \(\sigma_{x_r,y_r}\),
+\item
+  \(\sigma_{x_i,y_i}\),
+\item
+  \(\sigma_{x_r,y_i}\),
+\item
+  \(\sigma_{y_r,x_i}\).
+\end{enumerate}
+
+In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \ref{fig:crvScatterplots} for two generated complex random variables \(x\) and \(y\), created using \texttt{cplot()} function from \texttt{complex} package in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create real part of a c.r.v. x}
+\NormalTok{xr }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\CommentTok{\# Create a c.r.v. x}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{xr, }\AttributeTok{imaginary=}\FloatTok{1.5}\SpecialCharTok{*}\NormalTok{xr}\SpecialCharTok{+}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\CommentTok{\# Create a c.r.v. y}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{1.5} \SpecialCharTok{+} \FloatTok{1.2}\NormalTok{i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
+    \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\CommentTok{\# Produce the plot}
+\FunctionTok{cplot}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterplots-1.pdf}
+\caption{\label{fig:crvScatterplots}Visualisation of relations between two complex variables}
+\end{figure}
+
+This scatterplot has several important elements in it:
+
+\begin{itemize}
+\tightlist
+\item
+  It shows relations between real and imaginary parts of each variable (e.g.~the two scatterplots in the bold dark red frame),
+\item
+  It shows cross-relations between parts of one variable and parts of the other one (e.g.~the rest four plots),
+\item
+  The colour shows ordering of the original variable \(x\) with dark values corresponding to point with higher magnitude and light ones being closer to zero. This way, we can see what the original points in \(x\) correspond to in \(y\).
+\end{itemize}
+
+The plots are positioned to satisfy two rules:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  When a scatterplot for a c.r.v. is produced, the real part should be in x-axis, while the imaginary should be in the y-axis.
+\item
+  When parts of variables \(x\) and \(y\) are compared, the part for \(x\) should be in x-axis, while the part for \(y\) should be in y-axis, which should the reflect the idea that \(x\) could be an explanatory variable for \(y\).
+\end{enumerate}
+
+The plots in Figure \ref{fig:crvScatterplots} indicate that:
+
+\begin{itemize}
+\tightlist
+\item
+  There is a positive relation between the real and imaginary parts of \(x\),
+\item
+  There is a negative relation between the real and imaginary parts of \(y\),
+\item
+  Real parts of \(x\) and \(y\) do not exhibit a strong linear relation,
+\item
+  But the respective imaginary parts of \(x\) and \(y\) have the positive relation between them,
+\item
+  Finally, we see that with the increase of real and imaginary parts of \(x\), the real part of \(y\) decreases, while the imaginary one increases. This sort of behaviour implies positive complex slope in the potential linear regression (discussed in Section \ref{simpleCLR}).
+\end{itemize}
+
+We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
+
+The literature knows two correlation coefficients for complex variables \citep{ref}: the conjugate and the direct correlation (the latter is known in the literature as ``pseudo-correlation''). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \ref{crvSecondMoment}):
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
