@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  28 NOV 2022 22:26
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  29 NOV 2022 21:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1051,7 +1051,7 @@ Package natbib Warning: Citation `Picinbono' on page 23 undefined on input line
 [23]
 
 Package natbib Warning: Citation `reference' on page 24 undefined on input line
- 661.
+ 663.
 
 [24] [25] [26
 
@@ -1064,46 +1064,51 @@ terplots-1.pdf Graphic file (type pdf)
 erplots-1.pdf>
 [28]
 
-Package natbib Warning: Citation `ref' on page 29 undefined on input line 823.
+Package natbib Warning: Citation `ref' on page 29 undefined on input line 831.
 
 
 Package natbib Warning: Citation `refPearson' on page 29 undefined on input lin
-e 841.
+e 849.
 
 [29] [30]
-Overfull \hbox (85.37952pt too wide) in paragraph at lines 919--921
+File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
+onjugate-1.pdf Graphic file (type pdf)
+<use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
+njugate-1.pdf>
+[31] [32]
+Overfull \hbox (85.37952pt too wide) in paragraph at lines 964--966
 \TU/lmr/m/n/10 where $[][] [] []$
  []
 
-[31]
-Overfull \hbox (81.0815pt too wide) detected at line 934
+
+Overfull \hbox (81.0815pt too wide) detected at line 979
 [][][][][][][] [] []
  []
 
-
-Overfull \hbox (61.49026pt too wide) detected at line 939
+[33]
+Overfull \hbox (61.49026pt too wide) detected at line 984
 [][][][][][][][] [] [] [] [] [] [] [] []
  []
 
 
-Package natbib Warning: Citation `refPearson' on page 32 undefined on input lin
-e 949.
+Package natbib Warning: Citation `refPearson' on page 34 undefined on input lin
+e 994.
 
-[32] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [33] [34
+[34] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [35] [36
 
 ])
 
 Package natbib Warning: There were undefined citations.
 
-[35] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
+[37] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 21491 strings out of 477444
- 397605 string characters out of 5846098
- 885956 words of memory out of 5000000
- 41733 multiletter control sequences out of 15000+600000
+ 21504 strings out of 477444
+ 398414 string characters out of 5846098
+ 884954 words of memory out of 5000000
+ 41745 multiletter control sequences out of 15000+600000
  477309 words of font info for 96 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
  86i,14n,121p,1163b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (35 pages)
+Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (37 pages)
 .

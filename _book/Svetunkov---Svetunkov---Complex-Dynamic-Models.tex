@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-11-28}
+\date{2022-11-29}
 
 \begin{document}
 \maketitle
@@ -516,7 +516,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.71686+98.99163i
+## [1] 50.1773+100.657i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -577,7 +577,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 111.0908+0i
+## 118.6764+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -590,7 +590,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -60.92055-9.21829i
+## -76.07807+12.9734i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -615,9 +615,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##          x_r       x_i
-## x_r 2493.923  4966.522
-## x_i 4966.522 10095.632
+##           x_r       x_i
+## x_r 21.299181  6.486699
+## x_i  6.486699 97.377249
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -629,7 +629,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 511388.4
+## [1] 2031.978
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -646,19 +646,21 @@ where \(k\) is the number of estimated parameters in a model.
 Finally, similar to the variance it is possible to calculate second moments between two complex random variables \(x = x_r+i x_i\) and \(y = y_r + i y_i\) \citep{Picinbono}. The ``conjugate'' covariance is calculated similarly to \eqref{eq:crvMomentSecondVariance} via the multiplication by conjugate:
 \begin{equation}
     \begin{aligned}
-    \sigma_{x,y} = & \mathrm{E}((x-\mu_x) (\tilde{y}-\tilde{\mu}_y)) = \\
-                   & \mathrm{E}\left(((x_r-\mu_{x,r}) + i (x_i-\mu_{x,i}))((y_r-\mu_{y,r}) - i (y_i-\mu_{y,i}))\right) = \\
+    \sigma_{x,y} = & \mathrm{E}((\tilde{x}-\tilde{\mu}_x) (y-\mu_y)) = \\
+                   & \mathrm{E}\left(((x_r-\mu_{x,r}) - i (x_i-\mu_{x,i}))((y_r-\mu_{y,r}) + i (y_i-\mu_{y,i}))\right) = \\
                    & \mathrm{E}((x_r-\mu_{x,r})(y_r-\mu_{y,r})) + \mathrm{E}((x_i-\mu_{x,i})(y_i-\mu_{y,i})) + \\
-                   & i \left(\mathrm{E}((x_i-\mu_{x,i})(y_r-\mu_{y,r})) - \mathrm{E}((x_r-\mu_{x,r})(y_i-\mu_{y,i}))\right)
+                   & i \left(\mathrm{E}((x_r-\mu_{x,r})(y_i-\mu_{y,i})) - \mathrm{E}((x_i-\mu_{x,i})(y_r-\mu_{y,r}))\right)
     \end{aligned}
     \label{eq:crvMomentSecondCovariance}
 \end{equation}
 where \(\mu_{x}\) and \(\mu_y\) are the respective first moments of c.r.v. \(x\) and \(y\). Using the notations above, the same covariance can be rewritten as:
 \begin{equation}
-    \sigma_{x,y} = \sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} - \sigma_{x_r, y_i}),
+    \sigma_{x,y} = \sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_r, y_i} - \sigma_{x_i, y_r}),
     \label{eq:crvMomentSecondCovarianceShort}
 \end{equation}
-which similarly to the variance \eqref{eq:crvMomentSecondVarianceShort} mixes the moments of the real and imaginary parts of the two random variables. In order to have more information about a c.r.v., we also need to consider the ``direct'' covariance \citep[also known in the literature as pseudo-covariance,][]{reference}, which can be shown to be equal to:
+which similarly to the variance \eqref{eq:crvMomentSecondVarianceShort} mixes the moments of the real and imaginary parts of the two random variables. Note though that if the conjugate of \(y\) is used instead of the conjugate of \(x\), the imaginary part of the covariance \eqref{eq:crvMomentSecondCovarianceShort} will change to \(\sigma_{x_i, y_r} - \sigma_{x_r, y_i}\), giving potentially different information about the relation between the variables.
+
+In order to have more information about a c.r.v., we also need to consider the ``direct'' covariance \citep[also known in the literature as pseudo-covariance,][]{reference}, which can be shown to be equal to:
 \begin{equation}
     \varsigma_{x,y} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
     \label{eq:crvMomentSecondPseudoCovarianceShort}
@@ -694,7 +696,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 31.10331+72.59979i
+## 49.8929-91.52877i
 \end{verbatim}
 
 \begin{Shaded}
@@ -706,8 +708,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-## Direct covariance 
-## 2.28036+44.32639i
+##   Direct covariance 
+## -18.98807+48.50588i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -720,9 +722,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                      x                   y
-## x -70296765+ 97215199i 36598433+104721428i
-## y  36598433+104721428i 98797623+ 27588035i
+##                     x                   y
+## x -66.34032+11.22369i -18.98807+48.50588i
+## y -18.98807+48.50588i  25.43579+27.64046i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -756,6 +758,9 @@ For modelling purposes, it might be useful to have the information about all pos
 \item
   \(\sigma_{y_r,x_i}\).
 \end{enumerate}
+
+\hypertarget{visualisation-of-relations}{%
+\subsection{Visualisation of relations}\label{visualisation-of-relations}}
 
 In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \ref{fig:crvScatterplots} for two generated complex random variables \(x\) and \(y\), created using \texttt{cplot()} function from \texttt{complex} package in R.
 
@@ -820,6 +825,9 @@ While a simple scatterplot matrix could have been constructed instead of Figure 
 
 We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
 
+\hypertarget{conjugate-and-direct-correlations}{%
+\subsection{Conjugate and Direct correlations}\label{conjugate-and-direct-correlations}}
+
 The literature knows two correlation coefficients for complex variables \citep{ref}: the conjugate and the direct correlation (the latter is known in the literature as ``pseudo-correlation''). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \ref{crvSecondMoment}):
 
 \begin{enumerate}
@@ -827,7 +835,7 @@ The literature knows two correlation coefficients for complex variables \citep{r
 \item
   Conjugate correlation
   \begin{equation}
-   \rho_{x,y} = \frac{\sigma_{x,y}}{\sigma_x \sigma_y},
+   \rho_{x,y} = \frac{\sqrt{\sigma_{x,y} \sigma_{y,x}}}{\sigma_x \sigma_y},
    \label{eq:correlationConventional}
   \end{equation}
 \item
@@ -838,7 +846,7 @@ The literature knows two correlation coefficients for complex variables \citep{r
   \end{equation}
 \end{enumerate}
 
-They both can be derives based on the same principles used for the derivation of the original Pearson's correlation coefficient \citep{refPearson}. In that case, the correlation coefficient equals to the geometric mean of slopes of two regression lines:
+Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). The geometric mean appears from the definition of the original Pearson's correlation coefficient \citep{refPearson}. In that case, the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
         &y = \beta_0 + \beta_1 x + \epsilon \\
@@ -868,6 +876,9 @@ which then leads to the formula \eqref{eq:correlationConventional}. Similarly, f
     \label{eq:twoRegressionsCLS}
 \end{equation}
 which after taking the same geometric means leads to \eqref{eq:correlationPseudo}. Note that the estimates of the slope parameters will differ between the OLS and the CLS. This is discussed further in Section \ref{simpleCLR}.
+
+\hypertarget{conjugate-correlation}{%
+\subsection{Conjugate correlation}\label{conjugate-correlation}}
 
 When it comes to the interpretation of the coefficients, both of them are complex numbers, but they show different things. The conjugate correlation \(\rho_{x,y}\) can be written as:
 \begin{equation}
@@ -901,7 +912,41 @@ where
 \end{equation}
 As can be seen from \eqref{eq:correlationConjugateExpanded03}, there is a multitude of combinations of parameters of the model that can give the unity magnitude \(R\). For example, if \(a_{1,r} = 0.5\), \(b_{1,r} = 1\), \(a_{1,i} = -0.5\) and \(b_{1,i} = 1\), \(R\) would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of \(0\), \(\frac{\pi}{2}\), \(\pi\) and \(\frac{3\pi}{2}\) leading to pure real or imaginary numbers. In fact, for the example above, \(\phi=0\), implying that the correlation coefficient will be equal to one, no matter how strong the relation between variable \(x\) and \(y\) is. This means that it is difficult to make any solid conclusions based on the conjugate correlation coefficient, but it can still be used to get some preliminary understanding of the relation.
 
-So, the conjugate correlation coefficient has some similarities with the conventional one for the real numbers, but similarly to the conjugate variance, it might obscure the real situation by mixing different things in one number.
+An R example of a conjugate correlation (via \texttt{ccor()} function from \texttt{complex} package) with the aforementioned values of parameters is shown below and in Figure \ref{fig:crvCorConjugate}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a c.r.v. x}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\CommentTok{\# Create a c.r.v. y}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ 1i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
+    \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\CommentTok{\# Produce the plot}
+\FunctionTok{cplot}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjugate-1.pdf}
+\caption{\label{fig:crvCorConjugate}Visualisation of relations between two complex variables}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Conjugate correlation}
+\FunctionTok{ccor}\NormalTok{(x, y, }\AttributeTok{kind=}\StringTok{"conjugate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.99745+0i
+\end{verbatim}
+
+As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\), but it although the value of the latter is approximately 0.997+0i, we cannot conclude unambiguously that the relation is strong.
+
+\hypertarget{direct-correlations}{%
+\subsection{Direct correlations}\label{direct-correlations}}
 
 The direct correlation can be expanded to:
 \begin{equation}

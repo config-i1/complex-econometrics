@@ -57,7 +57,7 @@ The literature knows two correlation coefficients for complex variables [@ref]: 
 
 1. Conjugate correlation
 \begin{equation}
-    \rho_{x,y} = \frac{\sqrt{\sigma_{x,y} \sigma_{y,x}}{\sigma_x \sigma_y},
+    \rho_{x,y} = \frac{\sqrt{\sigma_{x,y} \sigma_{y,x}}}{\sigma_x \sigma_y},
     (\#eq:correlationConventional)
 \end{equation}
 
