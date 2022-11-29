@@ -17,7 +17,7 @@ For modelling purposes, it might be useful to have the information about all pos
 
 In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \@ref(fig:crvScatterplots) for two generated complex random variables $x$ and $y$, created using `cplot()` function from `complex` package in R.
 
-```{r crvScatterplots, fig.width=8, fig.height=8, fig.cap="Visualisation of relations between two complex variables"}
+```{r crvScatterplots, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
 # Create real part of a c.r.v. x
 xr <- rnorm(1000,0,10)
 # Create a c.r.v. x

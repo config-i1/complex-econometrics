@@ -1085,16 +1085,17 @@ Overfull \hbox (81.0815pt too wide) detected at line 979
 [][][][][][][] [] []
  []
 
-[33]
+
 Overfull \hbox (61.49026pt too wide) detected at line 984
 [][][][][][][][] [] [] [] [] [] [] [] []
  []
 
+[33]
 
 Package natbib Warning: Citation `refPearson' on page 34 undefined on input lin
 e 994.
 
-[34] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [35] [36
+(./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [34] [35] [36
 
 ])
 
@@ -1104,7 +1105,7 @@ Package natbib Warning: There were undefined citations.
 Here is how much of TeX's memory you used:
  21504 strings out of 477444
  398414 string characters out of 5846098
- 884954 words of memory out of 5000000
+ 887954 words of memory out of 5000000
  41745 multiletter control sequences out of 15000+600000
  477309 words of font info for 96 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
