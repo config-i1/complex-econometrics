@@ -12,6 +12,9 @@ For modelling purposes, it might be useful to have the information about all pos
 5. $\sigma_{x_r,y_i}$,
 6. $\sigma_{y_r,x_i}$.
 
+
+### Visualisation of relations
+
 In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \@ref(fig:crvScatterplots) for two generated complex random variables $x$ and $y$, created using `cplot()` function from `complex` package in R.
 
 ```{r crvScatterplots, fig.width=8, fig.height=8, fig.cap="Visualisation of relations between two complex variables"}
@@ -47,11 +50,14 @@ While a simple scatterplot matrix could have been constructed instead of Figure 
 
 We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
 
+
+### Conjugate and Direct correlations
+
 The literature knows two correlation coefficients for complex variables [@ref]: the conjugate and the direct correlation (the latter is known in the literature as "pseudo-correlation"). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
 
 1. Conjugate correlation
 \begin{equation}
-    \rho_{x,y} = \frac{\sigma_{x,y}}{\sigma_x \sigma_y},
+    \rho_{x,y} = \frac{\sqrt{\sigma_{x,y} \sigma_{y,x}}{\sigma_x \sigma_y},
     (\#eq:correlationConventional)
 \end{equation}
 
@@ -61,7 +67,7 @@ The literature knows two correlation coefficients for complex variables [@ref]: 
     (\#eq:correlationPseudo)
 \end{equation}
 
-They both can be derives based on the same principles used for the derivation of the original Pearson's correlation coefficient [@refPearson]. In that case, the correlation coefficient equals to the geometric mean of slopes of two regression lines:
+Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). The geometric mean appears from the definition of the original Pearson's correlation coefficient [@refPearson]. In that case, the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
         &y = \beta_0 + \beta_1 x + \epsilon \\
@@ -91,6 +97,9 @@ which then leads to the formula \@ref(eq:correlationConventional). Similarly, fo
     (\#eq:twoRegressionsCLS)
 \end{equation}
 which after taking the same geometric means leads to \@ref(eq:correlationPseudo). Note that the estimates of the slope parameters will differ between the OLS and the CLS. This is discussed further in Section \@ref(simpleCLR).
+
+
+### Conjugate correlation
 
 When it comes to the interpretation of the coefficients, both of them are complex numbers, but they show different things. The conjugate correlation $\rho_{x,y}$ can be written as:
 \begin{equation}
@@ -124,7 +133,7 @@ where
 \end{equation}
 As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitude of combinations of parameters of the model that can give the unity magnitude $R$. For example, if $a_{1,r} = 0.5$, $b_{1,r} = 1$, $a_{1,i} = -0.5$ and $b_{1,i} = 1$, $R$ would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of $0$, $\frac{\pi}{2}$, $\pi$ and $\frac{3\pi}{2}$ leading to pure real or imaginary numbers. In fact, for the example above, $\phi=0$, implying that the correlation coefficient will be equal to one, no matter how strong the relation between variable $x$ and $y$ is. This means that it is difficult to make any solid conclusions based on the conjugate correlation coefficient, but it can still be used to get some preliminary understanding of the relation.
 
-
+An R example of a conjugate correlation (via `ccor()` function from `complex` package) with the aforementioned values of parameters is shown below and in Figure \@ref(fig:crvCorConjugate).
 
 ```{r crvCorConjugate, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
 # Create a c.r.v. x
@@ -134,9 +143,14 @@ y <- (10 + 15i) + (1 + 1i) * x +
     complex(real=rnorm(1000,0,1), imaginary=rnorm(1000,0,1))
 # Produce the plot
 cplot(x, y)
-ccor(x, y, kind="conj")
+# Conjugate correlation
+ccor(x, y, kind="conjugate")
 ```
 
+As can be seen from the Figure \@ref(fig:crvCorConjugate) and the value of the conjugate correlation, there is a relation between the two complex variables $x$ and $y$, but it although the value of the latter is approximately `r round(ccor(x, y, kind="conjugate"),3)`, we cannot conclude unambiguously that the relation is strong.
+
+
+### Direct correlations
 
 The direct correlation can be expanded to:
 \begin{equation}
