@@ -66,6 +66,8 @@ cplot(x, y, which=2)
 
 The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the collection of scatterplots in Figure \@ref(fig:crvScatterplots), and in our example, we can conclude that the two complex variables exhibit strong linear relation.
 
+The only thing to note is that due to the nature of MDS, the direction of the relation and the strength of the relationship might be lost during scaling.
+
 
 ### Conjugate and Direct correlations
 
@@ -166,11 +168,12 @@ ccor(x, y, kind="conjugate")
 As can be seen from the Figure \@ref(fig:crvCorConjugate) and the value of the conjugate correlation, there is a relation between the two complex variables $x$ and $y$. The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
 
 ```{r crvCorConjugateMDS, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
+# Plot the data
+cplot(x, y, which=2)
+
 # Create projections of two complex variables onto axes
 xScaled <- cmdscale(dist(complex2vec(x)), k=1)
 yScaled <- cmdscale(dist(complex2vec(y)), k=1)
-# Plot the data
-plot(xScaled,yScaled)
 # Calculate the correlation coefficient
 cor(xScaled,yScaled)
 ```
