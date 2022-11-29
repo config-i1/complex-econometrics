@@ -516,7 +516,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.6568+101.3414i
+## [1] 50.3413+99.84266i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -577,7 +577,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 120.6258+0i
+## 134.3549+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -590,7 +590,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -72.52033-2.53114i
+## -68.52084-0.01211i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -615,9 +615,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 24.052746 -1.265571
-## x_i -1.265571 96.573072
+##              x_r           x_i
+## x_r 32.917031876  -0.006057487
+## x_i -0.006057487 101.437868911
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -629,7 +629,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2321.246
+## [1] 3339.034
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -696,7 +696,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 63.9757-93.72114i
+## 70.7662-110.4422i
 \end{verbatim}
 
 \begin{Shaded}
@@ -709,7 +709,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -45.30937+51.53174i
+## -33.98395+73.61563i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -723,8 +723,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -88.20794- 8.27936i -45.30937+51.53174i
-## y -45.30937+51.53174i  23.18123+64.33714i
+## x -98.19200+ 2.94360i -33.98395+73.61563i
+## y -33.98395+73.61563i  -5.38595+51.22333i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -774,7 +774,7 @@ In order to better understand what correlations between c.r.v. imply, we need to
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{1.5} \SpecialCharTok{+} \FloatTok{1.2}\NormalTok{i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
     \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Produce the plot}
-\FunctionTok{cplot}\NormalTok{(x, y)}
+\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -824,6 +824,34 @@ While a simple scatterplot matrix could have been constructed instead of Figure 
 \end{itemize}
 
 We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
+
+As an alternative to the plot above, it is also possible to use some dimensionality reduction techniques to plot complex variables on a two dimensional plot. For example, we can use Multidimensional Scaling for this \citep[MDS,][]{refMDS} to create a project of one complex variable on x-axis and another one on the y-axis. In R, we can use the \texttt{cmdscale()} function from \texttt{stats} package for this (in the example below, we use euclidean distance for the dissimilarities matrix via \texttt{dist()} function from \texttt{stats}, and we use the \texttt{complex2vec()} function from \texttt{complex} package to transform complex variable to a collection of vectors):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(x)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\NormalTok{yScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(y)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(xScaled,yScaled)}
+\end{Highlighting}
+\end{Shaded}
+
+The same code is implemented in \texttt{cplot()} function from \texttt{complex} package in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterplotMDS-1.pdf}
+\caption{\label{fig:crvScatterplotMDS}Scatterplot of MDS of two complex variables.}
+\end{figure}
+
+The plot in Figure \ref{fig:crvScatterplotMDS} is much easier to read than the collection of scatterplots in Figure \ref{fig:crvScatterplots}, and in our example, we can conclude that the two complex variables exhibit strong linear relation.
+
+The only thing to note is that due to the nature of MDS, the direction of the relation and the strength of the relationship might be lost during scaling.
 
 \hypertarget{conjugate-and-direct-correlations}{%
 \subsection{Conjugate and Direct correlations}\label{conjugate-and-direct-correlations}}
@@ -910,17 +938,17 @@ where
     \end{aligned}
     \label{eq:correlationConjugateExpanded03}
 \end{equation}
-As can be seen from \eqref{eq:correlationConjugateExpanded03}, there is a multitude of combinations of parameters of the model that can give the unity magnitude \(R\). For example, if \(a_{1,r} = 0.5\), \(b_{1,r} = 1\), \(a_{1,i} = -0.5\) and \(b_{1,i} = 1\), \(R\) would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of \(0\), \(\frac{\pi}{2}\), \(\pi\) and \(\frac{3\pi}{2}\) leading to pure real or imaginary numbers. In fact, for the example above, \(\phi=0\), implying that the correlation coefficient will be equal to one, no matter how strong the relation between variable \(x\) and \(y\) is. This means that it is difficult to make any solid conclusions based on the conjugate correlation coefficient, but it can still be used to get some preliminary understanding of the relation.
+As can be seen from \eqref{eq:correlationConjugateExpanded03}, there is a multitude of combinations of parameters of the model that can give the unity magnitude \(R\). For example, if \(a_{1,r} = 0.5\), \(b_{1,r} = 1\), \(a_{1,i} = -0.5\) and \(b_{1,i} = 1\), \(R\) would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of \(0\), \(\frac{\pi}{2}\), \(\pi\) and \(\frac{3\pi}{2}\) leading to pure real or imaginary numbers. In fact, for the example above, \(\phi=0\), implying that the correlation coefficient will be equal to one, implying that the variables \(x\) and \(y\) exhibit a strong linear relation.
 
 An R example of a conjugate correlation (via \texttt{ccor()} function from \texttt{complex} package) with the aforementioned values of parameters is shown below and in Figure \ref{fig:crvCorConjugate}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Create a c.r.v. x}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Create a c.r.v. y}
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ 1i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
-    \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+    \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \CommentTok{\# Produce the plot}
 \FunctionTok{cplot}\NormalTok{(x, y)}
 \end{Highlighting}
@@ -940,13 +968,43 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9975331+0i
+## [1] 0.9979707+0i
 \end{verbatim}
 
-As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\), but it although the value of the latter is approximately 0.998+0i, we cannot conclude unambiguously that the relation is strong.
+As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
 
-\hypertarget{direct-correlations}{%
-\subsection{Direct correlations}\label{direct-correlations}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the data}
+\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjugateMDS-1.pdf}
+\caption{\label{fig:crvCorConjugateMDS}Visualisation of relations between two complex variables}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create projections of two complex variables onto axes}
+\NormalTok{xScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(x)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\NormalTok{yScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(y)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\CommentTok{\# Calculate the correlation coefficient}
+\FunctionTok{cor}\NormalTok{(xScaled,yScaled)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 0.997737
+\end{verbatim}
+
+As can be seen from the plot in Figure \ref{fig:crvCorConjugateMDS} and the value of Pearson's correlation coefficient above, it seems that the variables indeed exhibit a strong linear relation. So, the conjugate correlation has provided an adequate information about it.
+
+\hypertarget{direct-correlation}{%
+\subsection{Direct correlation}\label{direct-correlation}}
 
 The direct correlation can be expanded to:
 \begin{equation}
