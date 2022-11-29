@@ -516,7 +516,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.1916+101.5467i
+## [1] 50.6568+101.3414i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -577,7 +577,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 122.6625+0i
+## 120.6258+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -589,8 +589,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -70.20176-12.75887i
+##    Direct variance 
+## -72.52033-2.53114i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -616,8 +616,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 26.230354 -6.379436
-## x_i -6.379436 96.432112
+## x_r 24.052746 -1.265571
+## x_i -1.265571 96.573072
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -629,7 +629,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2488.751
+## [1] 2321.246
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -696,7 +696,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 40.5566-111.8562i
+## 63.9757-93.72114i
 \end{verbatim}
 
 \begin{Shaded}
@@ -709,7 +709,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -23.33205+70.38321i
+## -45.30937+51.53174i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -723,8 +723,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -68.32811+ 8.90980i -23.33205+70.38321i
-## y -23.33205+70.38321i  65.27255+52.93900i
+## x -88.20794- 8.27936i -45.30937+51.53174i
+## y -45.30937+51.53174i  23.18123+64.33714i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -929,7 +929,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjugate-1.pdf}
-\caption{\label{fig:crvCorConjugate}Visualisation of relations between two complex variables}
+\caption{\label{fig:crvCorConjugate}Two complex variables with conjugate correlation being close to one.}
 \end{figure}
 
 \begin{Shaded}
@@ -940,7 +940,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9976822+0i
+## [1] 0.9975331+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\), but it although the value of the latter is approximately 0.998+0i, we cannot conclude unambiguously that the relation is strong.

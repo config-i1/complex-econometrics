@@ -135,7 +135,7 @@ As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitu
 
 An R example of a conjugate correlation (via `ccor()` function from `complex` package) with the aforementioned values of parameters is shown below and in Figure \@ref(fig:crvCorConjugate).
 
-```{r crvCorConjugate, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
+```{r crvCorConjugate, fig.width=4, fig.height=4, fig.cap="Two complex variables with conjugate correlation being close to one."}
 # Create a c.r.v. x
 x <- complex(real=rnorm(1000,0,10), imaginary=rnorm(1000,0,10))
 # Create a c.r.v. y
