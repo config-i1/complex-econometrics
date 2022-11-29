@@ -61,7 +61,7 @@ plot(xScaled,yScaled)
 The same code is implemented in `cplot()` function from `complex` package in R:
 
 ```{r crvScatterplotMDS, fig.width=4, fig.height=4, fig.cap="Scatterplot of MDS of two complex variables."}
-cplot(x, y, which=2)
+cplot(x, y, which=2, main="")
 ```
 
 The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the collection of scatterplots in Figure \@ref(fig:crvScatterplots), and in our example, we can conclude that the two complex variables exhibit strong linear relation.
