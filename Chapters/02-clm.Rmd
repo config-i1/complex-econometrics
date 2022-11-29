@@ -50,6 +50,16 @@ While a simple scatterplot matrix could have been constructed instead of Figure 
 
 We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
 
+As an alternative to the plot above, it is also possible to use some dimensionality reduction techniques to plot complex variables on a two dimensional plot. For example, we can use Multidimensional Scaling for this [MDS, @refMDS] to create a project of one complex variable on x-axis and another one on the y-axis. In R, we can use the `cmdscale()` function from `stats` package for this (in the example below, we use euclidean distance for the dissimilarities matrix via `dist()` function from `stats`, and we use the `complex2vec()` function from `complex` package to transform complex variable to a collection of vectors):
+
+```{r crvScatterplotMDS, fig.width=4, fig.height=4, fig.cap="Scatterplot of MDS of two complex variables."}
+xScaled <- cmdscale(dist(complex2vec(x)), k=1)
+yScaled <- cmdscale(dist(complex2vec(y)), k=1)
+plot(xScaled,yScaled)
+```
+
+The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the collection of scatterplots in Figure \@ref(fig:crvScatterplots), and in our example, we can conclude that the two complex variables exhibit strong linear relation.
+
 
 ### Conjugate and Direct correlations
 
@@ -131,7 +141,7 @@ where
     \end{aligned}
     (\#eq:correlationConjugateExpanded03)
 \end{equation}
-As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitude of combinations of parameters of the model that can give the unity magnitude $R$. For example, if $a_{1,r} = 0.5$, $b_{1,r} = 1$, $a_{1,i} = -0.5$ and $b_{1,i} = 1$, $R$ would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of $0$, $\frac{\pi}{2}$, $\pi$ and $\frac{3\pi}{2}$ leading to pure real or imaginary numbers. In fact, for the example above, $\phi=0$, implying that the correlation coefficient will be equal to one, no matter how strong the relation between variable $x$ and $y$ is. This means that it is difficult to make any solid conclusions based on the conjugate correlation coefficient, but it can still be used to get some preliminary understanding of the relation.
+As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitude of combinations of parameters of the model that can give the unity magnitude $R$. For example, if $a_{1,r} = 0.5$, $b_{1,r} = 1$, $a_{1,i} = -0.5$ and $b_{1,i} = 1$, $R$ would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of $0$, $\frac{\pi}{2}$, $\pi$ and $\frac{3\pi}{2}$ leading to pure real or imaginary numbers. In fact, for the example above, $\phi=0$, implying that the correlation coefficient will be equal to one, implying that the variables $x$ and $y$ exhibit a strong linear relation.
 
 An R example of a conjugate correlation (via `ccor()` function from `complex` package) with the aforementioned values of parameters is shown below and in Figure \@ref(fig:crvCorConjugate).
 
@@ -147,10 +157,23 @@ cplot(x, y)
 ccor(x, y, kind="conjugate")
 ```
 
-As can be seen from the Figure \@ref(fig:crvCorConjugate) and the value of the conjugate correlation, there is a relation between the two complex variables $x$ and $y$, but it although the value of the latter is approximately `r round(ccor(x, y, kind="conjugate"),3)`, we cannot conclude unambiguously that the relation is strong.
+As can be seen from the Figure \@ref(fig:crvCorConjugate) and the value of the conjugate correlation, there is a relation between the two complex variables $x$ and $y$. The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
+
+```{r crvCorConjugateMDS, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
+# Create projections of two complex variables onto axes
+xScaled <- cmdscale(dist(complex2vec(x)), k=1)
+yScaled <- cmdscale(dist(complex2vec(y)), k=1)
+# Plot the data
+plot(xScaled,yScaled)
+# Calculate the correlation coefficient
+cor(xScaled,yScaled)
+```
+
+As can be seen from the plot in Figure \@ref(fig:crvCorConjugateMDS) and the value of Pearson's correlation coefficient above, it seems that the variables indeed exhibit a strong linear relation. So, the conjugate correlation has provided an adequate information about it.
 
 
-### Direct correlations
+
+### Direct correlation
 
 The direct correlation can be expanded to:
 \begin{equation}
