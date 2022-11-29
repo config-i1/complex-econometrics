@@ -160,7 +160,7 @@ x <- complex(real=rnorm(100,0,10), imaginary=rnorm(100,0,10))
 y <- (10 + 15i) + (1 + 1i) * x +
     complex(real=rnorm(100,0,1), imaginary=rnorm(100,0,1))
 # Produce the plot
-cplot(x, y)
+cplot(x, y, main="")
 # Conjugate correlation
 ccor(x, y, kind="conjugate")
 ```
