@@ -26,7 +26,7 @@ x <- complex(real=xr, imaginary=1.5*xr+rnorm(1000,0,10))
 y <- (10 + 15i) + (1.5 + 1.2i) * x +
     complex(real=rnorm(1000,0,10), imaginary=rnorm(1000,0,10))
 # Produce the plot
-cplot(x, y)
+cplot(x, y, which=1)
 ```
 
 This scatterplot has several important elements in it:
@@ -52,10 +52,16 @@ We think that this visualisation is useful when analysing relations between two 
 
 As an alternative to the plot above, it is also possible to use some dimensionality reduction techniques to plot complex variables on a two dimensional plot. For example, we can use Multidimensional Scaling for this [MDS, @refMDS] to create a project of one complex variable on x-axis and another one on the y-axis. In R, we can use the `cmdscale()` function from `stats` package for this (in the example below, we use euclidean distance for the dissimilarities matrix via `dist()` function from `stats`, and we use the `complex2vec()` function from `complex` package to transform complex variable to a collection of vectors):
 
-```{r crvScatterplotMDS, fig.width=4, fig.height=4, fig.cap="Scatterplot of MDS of two complex variables."}
+```{r, eval=FALSE}
 xScaled <- cmdscale(dist(complex2vec(x)), k=1)
 yScaled <- cmdscale(dist(complex2vec(y)), k=1)
 plot(xScaled,yScaled)
+```
+
+The same code is implemented in `cplot()` function from `complex` package in R:
+
+```{r crvScatterplotMDS, fig.width=4, fig.height=4, fig.cap="Scatterplot of MDS of two complex variables."}
+cplot(x, y, which=2)
 ```
 
 The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the collection of scatterplots in Figure \@ref(fig:crvScatterplots), and in our example, we can conclude that the two complex variables exhibit strong linear relation.
@@ -147,10 +153,10 @@ An R example of a conjugate correlation (via `ccor()` function from `complex` pa
 
 ```{r crvCorConjugate, fig.width=4, fig.height=4, fig.cap="Two complex variables with conjugate correlation being close to one."}
 # Create a c.r.v. x
-x <- complex(real=rnorm(1000,0,10), imaginary=rnorm(1000,0,10))
+x <- complex(real=rnorm(100,0,10), imaginary=rnorm(100,0,10))
 # Create a c.r.v. y
 y <- (10 + 15i) + (1 + 1i) * x +
-    complex(real=rnorm(1000,0,1), imaginary=rnorm(1000,0,1))
+    complex(real=rnorm(100,0,1), imaginary=rnorm(100,0,1))
 # Produce the plot
 cplot(x, y)
 # Conjugate correlation
