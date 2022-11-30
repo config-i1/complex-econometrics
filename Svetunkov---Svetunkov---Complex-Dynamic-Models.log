@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  29 NOV 2022 23:04
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  30 NOV 2022 10:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1084,12 +1084,11 @@ File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugate-1.pdf>
-[32] [33]
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugateMDS-1.pdf>
-[34]
+[32] [33] [34]
 Overfull \hbox (85.37952pt too wide) in paragraph at lines 1022--1024
 \TU/lmr/m/n/10 where $[][] [] []$
  []

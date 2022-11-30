@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-11-29}
+\date{2022-11-30}
 
 \begin{document}
 \maketitle
@@ -516,7 +516,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.3413+99.84266i
+## [1] 51.372+100.4308i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -577,7 +577,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 134.3549+0i
+## 131.4798+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -589,8 +589,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -68.52084-0.01211i
+##     Direct variance 
+## -76.18257+10.42358i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -615,9 +615,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##              x_r           x_i
-## x_r 32.917031876  -0.006057487
-## x_i -0.006057487 101.437868911
+##          x_r       x_i
+## x_r 27.64864   5.21179
+## x_i  5.21179 103.83121
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -629,7 +629,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3339.034
+## [1] 2843.629
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -696,7 +696,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 70.7662-110.4422i
+## 41.18427-73.09518i
 \end{verbatim}
 
 \begin{Shaded}
@@ -708,8 +708,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -33.98395+73.61563i
+##  Direct covariance 
+## -18.7324+42.74257i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -723,8 +723,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -98.19200+ 2.94360i -33.98395+73.61563i
-## y -33.98395+73.61563i  -5.38595+51.22333i
+## x -57.24944- 1.91201i -18.73240+42.74257i
+## y -18.73240+42.74257i  30.97161+30.49080i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -839,7 +839,7 @@ The same code is implemented in \texttt{cplot()} function from \texttt{complex} 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{2}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -950,7 +950,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ 1i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
     \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \CommentTok{\# Produce the plot}
-\FunctionTok{cplot}\NormalTok{(x, y)}
+\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -968,7 +968,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9979707+0i
+## [1] 0.9975346+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -997,8 +997,8 @@ As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the co
 \end{Shaded}
 
 \begin{verbatim}
-##          [,1]
-## [1,] 0.997737
+##           [,1]
+## [1,] 0.9976884
 \end{verbatim}
 
 As can be seen from the plot in Figure \ref{fig:crvCorConjugateMDS} and the value of Pearson's correlation coefficient above, it seems that the variables indeed exhibit a strong linear relation. So, the conjugate correlation has provided an adequate information about it.
