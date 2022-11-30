@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  30 NOV 2022 10:49
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  30 NOV 2022 11:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1089,26 +1089,20 @@ onjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugateMDS-1.pdf>
 [32] [33] [34]
-Overfull \hbox (85.37952pt too wide) in paragraph at lines 1022--1024
-\TU/lmr/m/n/10 where $[][] [] []$
- []
-
-
-Overfull \hbox (81.0815pt too wide) detected at line 1037
+Overfull \hbox (81.0815pt too wide) detected at line 1046
 [][][][][][][] [] []
  []
 
 
-Overfull \hbox (61.49026pt too wide) detected at line 1042
+Overfull \hbox (61.49026pt too wide) detected at line 1051
 [][][][][][][][] [] [] [] [] [] [] [] []
  []
 
-[35]
 
-Package natbib Warning: Citation `refPearson' on page 36 undefined on input lin
-e 1052.
+Package natbib Warning: Citation `refPearson' on page 35 undefined on input lin
+e 1061.
 
-(./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [36])
+[35] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [36])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1116,10 +1110,10 @@ Package natbib Warning: There were undefined citations.
 
 ] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 21522 strings out of 477444
- 399862 string characters out of 5846098
- 890111 words of memory out of 5000000
- 41761 multiletter control sequences out of 15000+600000
+ 21523 strings out of 477444
+ 399899 string characters out of 5846098
+ 885162 words of memory out of 5000000
+ 41762 multiletter control sequences out of 15000+600000
  477309 words of font info for 96 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
  86i,14n,121p,1163b,486s stack positions out of 5000i,500n,10000p,200000b,80000s

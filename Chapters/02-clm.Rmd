@@ -169,7 +169,7 @@ As can be seen from the Figure \@ref(fig:crvCorConjugate) and the value of the c
 
 ```{r crvCorConjugateMDS, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
 # Plot the data
-cplot(x, y, which=2)
+cplot(x, y, which=2, main="")
 
 # Create projections of two complex variables onto axes
 xScaled <- cmdscale(dist(complex2vec(x)), k=1)
@@ -198,7 +198,16 @@ To get other insights about the direct correlation coefficient, we express its d
     {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}},
     (\#eq:correlationPseudoExpandedExp01)
 \end{equation}
-where $R_1 = \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}$ and $\phi_1=\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)$, which are obtained by opening the brackets inside the square root. If we now insert \@ref(eq:correlationPseudoExpandedExp01) in \@ref(eq:correlationPseudoExpanded) and multiply both numerator and denominator by conjugate number to the \@ref(eq:correlationPseudoExpandedExp01) we will get:
+where
+\begin{equation}
+    \resizebox{\textwidth}{!}{$
+    \begin{aligned}
+        R_1 = & \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2} \\
+        \phi_1 = &\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) ,
+    \end{aligned} $}
+    (\#eq:correlationPseudoExpandedExpRPhi)
+\end{equation}
+which are obtained by opening the brackets inside the square root of \@ref(eq:correlationPseudoExpandedExp01). If we now insert \@ref(eq:correlationPseudoExpandedExp01) in \@ref(eq:correlationPseudoExpanded) and multiply both numerator and denominator by conjugate number to the \@ref(eq:correlationPseudoExpandedExp01) we will get:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\left(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\right)e^{-i \frac{\phi_1}{2}}}{R_1^{\frac{1}{2}}}.
     (\#eq:correlationPseudoExpandedExp02)

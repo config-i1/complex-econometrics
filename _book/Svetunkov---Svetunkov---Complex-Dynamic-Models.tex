@@ -516,7 +516,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.372+100.4308i
+## [1] 49.243+100.2019i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -577,7 +577,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 131.4798+0i
+## 108.4702+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -590,7 +590,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##     Direct variance 
-## -76.18257+10.42358i
+## -48.85792+23.57653i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -615,9 +615,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##          x_r       x_i
-## x_r 27.64864   5.21179
-## x_i  5.21179 103.83121
+##          x_r      x_i
+## x_r 29.80613 11.78827
+## x_i 11.78827 78.66405
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -629,7 +629,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2843.629
+## [1] 2205.708
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -696,7 +696,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 41.18427-73.09518i
+## 47.66943-83.46822i
 \end{verbatim}
 
 \begin{Shaded}
@@ -708,8 +708,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -18.7324+42.74257i
+##   Direct covariance 
+## -29.84225+50.02261i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -723,8 +723,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -57.24944- 1.91201i -18.73240+42.74257i
-## y -18.73240+42.74257i  30.97161+30.49080i
+## x -63.54924- 1.98619i -29.84225+50.02261i
+## y -29.84225+50.02261i  20.00459+61.31780i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -968,7 +968,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9975346+0i
+## [1] 0.9970715+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -976,7 +976,7 @@ As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the co
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Plot the data}
-\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{2}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -998,7 +998,7 @@ As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the co
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9976884
+## [1,] 0.9968149
 \end{verbatim}
 
 As can be seen from the plot in Figure \ref{fig:crvCorConjugateMDS} and the value of Pearson's correlation coefficient above, it seems that the variables indeed exhibit a strong linear relation. So, the conjugate correlation has provided an adequate information about it.
@@ -1020,7 +1020,16 @@ To get other insights about the direct correlation coefficient, we express its d
     {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}},
     \label{eq:correlationPseudoExpandedExp01}
 \end{equation}
-where \(R_1 = \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}\) and \(\phi_1=\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)\), which are obtained by opening the brackets inside the square root. If we now insert \eqref{eq:correlationPseudoExpandedExp01} in \eqref{eq:correlationPseudoExpanded} and multiply both numerator and denominator by conjugate number to the \eqref{eq:correlationPseudoExpandedExp01} we will get:
+where
+\begin{equation}
+    \resizebox{\textwidth}{!}{$
+    \begin{aligned}
+        R_1 = & \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2} \\
+        \phi_1 = &\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) ,
+    \end{aligned} $}
+    \label{eq:correlationPseudoExpandedExpRPhi}
+\end{equation}
+which are obtained by opening the brackets inside the square root of \eqref{eq:correlationPseudoExpandedExp01}. If we now insert \eqref{eq:correlationPseudoExpandedExp01} in \eqref{eq:correlationPseudoExpanded} and multiply both numerator and denominator by conjugate number to the \eqref{eq:correlationPseudoExpandedExp01} we will get:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\left(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\right)e^{-i \frac{\phi_1}{2}}}{R_1^{\frac{1}{2}}}.
     \label{eq:correlationPseudoExpandedExp02}
