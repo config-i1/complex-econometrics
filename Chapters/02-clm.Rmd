@@ -1,6 +1,6 @@
 # Complex Linear Regression {#CLR}
 
-## Correlations between complex random variables
+## Correlations analysis of complex random variables
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
 For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances:
@@ -13,8 +13,7 @@ For modelling purposes, it might be useful to have the information about all pos
 6. $\sigma_{y_r,x_i}$.
 
 
-### Visualisation of relations
-
+### Visualisation of relations {#correlationVisual}
 In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \@ref(fig:crvScatterplots) for two generated complex random variables $x$ and $y$, created using `cplot()` function from `complex` package in R.
 
 ```{r crvScatterplots, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
@@ -66,11 +65,10 @@ cplot(x, y, which=2, main="")
 
 The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the collection of scatterplots in Figure \@ref(fig:crvScatterplots), and in our example, we can conclude that the two complex variables exhibit strong linear relation.
 
-The only thing to note is that due to the nature of MDS, the direction of the relation and the strength of the relationship might be lost during scaling.
+<!-- The only thing to note is that due to the nature of MDS, the direction of the relation and the strength of the relationship might be lost during scaling. -->
 
 
 ### Conjugate and Direct correlations
-
 The literature knows two correlation coefficients for complex variables [@ref]: the conjugate and the direct correlation (the latter is known in the literature as "pseudo-correlation"). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
 
 1. Conjugate correlation
@@ -118,7 +116,6 @@ which after taking the same geometric means leads to \@ref(eq:correlationPseudo)
 
 
 ### Conjugate correlation
-
 When it comes to the interpretation of the coefficients, both of them are complex numbers, but they show different things. The conjugate correlation $\rho_{x,y}$ can be written as:
 \begin{equation}
     {\rho}_{x,y} = \frac{\sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
@@ -168,22 +165,14 @@ ccor(x, y, kind="conjugate")
 As can be seen from the Figure \@ref(fig:crvCorConjugate) and the value of the conjugate correlation, there is a relation between the two complex variables $x$ and $y$. The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
 
 ```{r crvCorConjugateMDS, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
-# Plot the data
 cplot(x, y, which=2, main="")
-
-# Create projections of two complex variables onto axes
-xScaled <- cmdscale(dist(complex2vec(x)), k=1)
-yScaled <- cmdscale(dist(complex2vec(y)), k=1)
-# Calculate the correlation coefficient
-cor(xScaled,yScaled)
 ```
 
-As can be seen from the plot in Figure \@ref(fig:crvCorConjugateMDS) and the value of Pearson's correlation coefficient above, it seems that the variables indeed exhibit a strong linear relation. So, the conjugate correlation has provided an adequate information about it.
+As can be seen from the plot in Figure \@ref(fig:crvCorConjugateMDS), it seems that the variables indeed exhibit a strong linear relation. So, the conjugate correlation has provided an adequate information about it.
 
 
 
 ### Direct correlation
-
 The direct correlation can be expanded to:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}}.
@@ -200,7 +189,7 @@ To get other insights about the direct correlation coefficient, we express its d
 \end{equation}
 where
 \begin{equation}
-    \resizebox{\textwidth}{!}{$
+    \resizebox{0.8\textwidth}{!}{$
     \begin{aligned}
         R_1 = & \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2} \\
         \phi_1 = &\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) ,
@@ -258,8 +247,24 @@ Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpa
 <!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left(\left(\sigma_{x_r}^2 - \sigma_{x_i}^2\right)^2 + 4 \sigma_{x_r,x_i}^2 \right) \left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
 
 
+### Pearson's correlation
+We can also use MDS to analyse the projections of complex variables on x and y axes, similar to how we have done that in Subsection \@ref(correlationVisual). In that case, we can calculate Pearson's correlation coefficient:
+
+```{r}
+# Create projections of two complex variables onto axes
+xScaled <- cmdscale(dist(complex2vec(x)), k=1)
+yScaled <- cmdscale(dist(complex2vec(y)), k=1)
+# Calculate the correlation coefficient
+cor(xScaled,yScaled)
+```
+
+The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it can reach the local optimum and not being able to get to the global one. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the long series. This means that in some cases it might take plenty of time before we get the Pearson's correlation value. Nonetheless, this is an additional way of analysing relations between complex variables.
 
 
+### Correlation matrix
+```{r}
+cov2cor(covar(cbind(x,y)))
+```
 
 
 ## Simple CLR {#simpleCLR}
