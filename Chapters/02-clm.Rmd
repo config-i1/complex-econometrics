@@ -192,7 +192,7 @@ y <- (10 + 15i) + (1 + 1i) * x +
 # Produce the plot
 cplot(x, y, main="")
 # Conjugate correlation
-ccor(x, y, kind="conjugate")
+ccor(x, y, method="conjugate")
 ```
 
 As can be seen from the Figure \@ref(fig:crvCorConjugate) and the value of the conjugate correlation, there is a relation between the two complex variables $x$ and $y$. The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
