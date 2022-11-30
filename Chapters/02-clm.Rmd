@@ -8,16 +8,16 @@ The simple Complex Linear Regression can be written as:
     y = \beta_0 + \beta_1 x + \epsilon,
     (\#eq:SimpleCLRComplex)
 \end{equation}
-where every parameter and variable is a complex number, i.e. $y = y_{r}+i y_i$, $x = x_{r}+i x_i$, $b_{j} = b_{j,r} + i b_{j,i}$ and $\epsilon = \epsilon_{r} + i \epsilon_i$. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
+where every parameter and variable is a complex number, i.e. $y = y_{r}+i y_i$, $x = x_{r}+i x_i$, $\beta_{j} = \beta_{j,r} + i \beta_{j,i}$ and $\epsilon = \epsilon_{r} + i \epsilon_i$. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
 \begin{equation}
-    y_r + i y_i = (b_{0,r} + i b_{0,i}) + (b_{1,r} + i b_{1,i}) (x_{r}+i x_i) + (\epsilon_r + i \epsilon_i)
+    y_r + i y_i = (\beta_{0,r} + i \beta_{0,i}) + (\beta_{1,r} + i \beta_{1,i}) (x_{r}+i x_i) + (\epsilon_r + i \epsilon_i)
     (\#eq:SimpleCLR)
 \end{equation}
 Given that any complex equation can be represented as a system of two equations, this model can be represented as a system of two linear regressions:
 \begin{equation}
     \begin{aligned}
-        y_r = & b_{0,r} + b_{1,r} x_r - b_{1,i} x_i + \epsilon_r \\
-        y_i = & b_{0,i} + b_{1,r} x_i + b_{1,i} x_r + \epsilon_i
+        y_r = & \beta_{0,r} + \beta_{1,r} x_r - \beta_{1,i} x_i + \epsilon_r \\
+        y_i = & \beta_{0,i} + \beta_{1,r} x_i + \beta_{1,i} x_r + \epsilon_i
     \end{aligned}
     (\#eq:SimpleCLRSystem)
 \end{equation}
