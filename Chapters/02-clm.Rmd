@@ -127,7 +127,7 @@ where $\alpha_0$ and $\beta_0$ are the intercepts, $\alpha_1$ and $\beta_1$ are 
 \begin{equation}
     \begin{aligned}
         &b_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
-        &a_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_y} .
+        &a_1 = \frac{\hat{\sigma}_{y,x}}{\hat{\sigma}_y} .
     \end{aligned}
     (\#eq:twoRegressionsOLS)
 \end{equation}
@@ -179,7 +179,7 @@ where
     \end{aligned}
     (\#eq:correlationConjugateExpanded03)
 \end{equation}
-As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitude of combinations of parameters of the model that can give the unity magnitude $R$. For example, if $a_{1,r} = 0.5$, $b_{1,r} = 1$, $a_{1,i} = -0.5$ and $b_{1,i} = 1$, $R$ would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of $0$, $\frac{\pi}{2}$, $\pi$ and $\frac{3\pi}{2}$ leading to pure real or imaginary numbers. In fact, for the example above, $\phi=0$, implying that the correlation coefficient will be equal to one, implying that the variables $x$ and $y$ exhibit a strong linear relation.
+As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitude of combinations of parameters of the model that can give the unity magnitude $R$. For example, if $a_{1,r} = 0.5$, $b_{1,r} = 1$, $a_{1,i} = -0.5$ and $b_{1,i} = 1$, $R$ would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of $0$ and $\pi$, leading to positive or negative real numbers. In fact, for the example above, $\phi=0$, implying that the correlation coefficient will be equal to one, implying that the variables $x$ and $y$ exhibit a strong linear relation.
 
 An R example of a conjugate correlation (via `ccor()` function from `complex` package) with the aforementioned values of parameters is shown below and in Figure \@ref(fig:crvCorConjugate).
 
