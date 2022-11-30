@@ -5,23 +5,25 @@
 ### Model formulation
 The simple Complex Linear Regression can be written as:
 \begin{equation}
-    \mathbf{z} = \mathbf{a} + \mathbf{b} \mathbf{x} + \boldsymbol{\epsilon}
+    y = \beta_0 + \beta_1 x + \epsilon,
     (\#eq:SimpleCLRComplex)
 \end{equation}
-or
+where every parameter and variable is a complex number, i.e. $y = y_{r}+i y_i$, $x = x_{r}+i x_i$, $b_{j} = b_{j,r} + i b_{j,i}$ and $\epsilon = \epsilon_{r} + i \epsilon_i$. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
 \begin{equation}
-    y_r + i y_i = a_0 + i a_1 + (b_0 + i b_1) (x_r + i x_i) + \epsilon_r + i \epsilon_i
+    y_r + i y_i = (b_{0,r} + i b_{0,i}) + (b_{1,r} + i b_{1,i}) (x_{r}+i x_i) + (\epsilon_r + i \epsilon_i)
     (\#eq:SimpleCLR)
 \end{equation}
 Given that any complex equation can be represented as a system of two equations, this model can be represented as a system of two linear regressions:
 \begin{equation}
     \begin{aligned}
-        y_r = & a_0 + b_0 x_r - b_1 x_i + \epsilon_r \\
-        y_i = & a_1 + b_0 x_i + b_1 x_r + \epsilon_i
+        y_r = & b_{0,r} + b_{1,r} x_r - b_{1,i} x_i + \epsilon_r \\
+        y_i = & b_{0,i} + b_{1,r} x_i + b_{1,i} x_r + \epsilon_i
     \end{aligned}
     (\#eq:SimpleCLRSystem)
 \end{equation}
 This model captures a very specific dynamics between the real and imaginary parts, given that they share the same set of parameters for the slope.
+
+
 
 ### Estimation
 Number of estimated parameters is k, number of degrees of freedom per series is k/2.
@@ -115,7 +117,9 @@ The literature knows two correlation coefficients for complex variables [@ref]: 
     (\#eq:correlationPseudo)
 \end{equation}
 
-Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). The geometric mean appears from the definition of the original Pearson's correlation coefficient [@refPearson]. In that case, the correlation coefficient equals to the geometric mean of slopes of two regression lines:
+Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances [as done, for example, by @Panchev1971] then the value of correlation coefficient will be ambiguous, implying that the correlation between $x$ and $y$ differs from the correlation between $y$ and $x$.
+
+The formulae \@ref(eq:correlationConventional) and \@ref(eq:correlationPseudo) are derived based on the original definition of Pearson's correlation coefficient [@refPearson]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
         &y = \beta_0 + \beta_1 x + \epsilon \\
@@ -123,7 +127,7 @@ Note that the conjugate correlation has the geometric mean of standard deviation
     \end{aligned}
     (\#eq:twoRegressions)
 \end{equation}
-where $\alpha_0$ and $\beta_0$ are the intercepts, $\alpha_1$ and $\beta_1$ are the slopes of the regression lines and $e$ and $u$ are the residuals of the models. As discussed in Section \@ref(simpleCLR), the parameters of slope can be estimated using Ordinary Least Squares (OLS) or the Complex Least Squares (CLS) to get respectively $a_1$ and $b_1$. For the OLS, the formulae for the slopes are:
+where $\alpha_0$ and $\beta_0$ are the intercepts, $\alpha_1$ and $\beta_1$ are the slopes of the regression lines and $e$ and $u$ are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \@ref(simpleCLR), the parameters of slope can be estimated using either Ordinary Least Squares (OLS), or the Complex Least Squares (CLS). For the OLS, the formulae for the slopes are:
 \begin{equation}
     \begin{aligned}
         &b_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
@@ -144,7 +148,7 @@ which then leads to the formula \@ref(eq:correlationConventional). Similarly, fo
     \end{aligned}
     (\#eq:twoRegressionsCLS)
 \end{equation}
-which after taking the same geometric means leads to \@ref(eq:correlationPseudo). Note that the estimates of the slope parameters will differ between the OLS and the CLS.
+which after taking the same geometric means leads to \@ref(eq:correlationPseudo). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
 
 
 ### Conjugate correlation
@@ -211,54 +215,53 @@ The direct correlation can be expanded to:
     {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}}.
     (\#eq:correlationPseudoExpanded)
 \end{equation}
-Given that it contains a complex number in the denominator, it is more complicated than the conjugate one.
-
-Father's stuff here.
-
-To get other insights about the direct correlation coefficient, we express its denominator in the exponential form:
-\begin{equation}
-    {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}},
-    (\#eq:correlationPseudoExpandedExp01)
-\end{equation}
-where
-\begin{equation}
-    \resizebox{0.8\textwidth}{!}{$
-    \begin{aligned}
-        R_1 = & \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2} \\
-        \phi_1 = &\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) ,
-    \end{aligned} $}
-    (\#eq:correlationPseudoExpandedExpRPhi)
-\end{equation}
-which are obtained by opening the brackets inside the square root of \@ref(eq:correlationPseudoExpandedExp01). If we now insert \@ref(eq:correlationPseudoExpandedExp01) in \@ref(eq:correlationPseudoExpanded) and multiply both numerator and denominator by conjugate number to the \@ref(eq:correlationPseudoExpandedExp01) we will get:
-\begin{equation}
-    {\varrho}_{x,y} = \frac{\left(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\right)e^{-i \frac{\phi_1}{2}}}{R_1^{\frac{1}{2}}}.
-    (\#eq:correlationPseudoExpandedExp02)
-\end{equation}
-Representing the $\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})$ as $R_2 e^{i \phi_2}$, where $R_2= \sqrt{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}$ and $\phi_2= \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right)$, and inserting these values in \@ref(eq:correlationPseudoExpandedExp02) we get:
-\begin{equation}
-    {\varrho}_{x,y} = \frac{R_2}{\sqrt{R_1}} e^{i \left(\phi_2 - \frac{\phi_1}{2} \right)}.
-    (\#eq:correlationPseudoExpandedExp03)
-\end{equation}
-or in an even shorter exponential form ${\varrho}_{x,y} = |{\varrho}_{x,y}| e ^{i \arg({\varrho}_{x,y})}$, where:
-\begin{equation}
-    \resizebox{0.85\textwidth}{!}{$
-    |{\varrho}_{x,y}|= \frac{R_2}{\sqrt{R_1}} = \sqrt{\frac{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}{\sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}}}$}
-    (\#eq:correlationPseudoExpandedExpR)
-\end{equation}
-and 
-\begin{equation}
-    \resizebox{0.85\textwidth}{!}{$
-    \arg({\varrho}_{x,y}) = \left(\phi_2 - \frac{\phi_1}{2} \right) = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) $}.
-    (\#eq:correlationPseudoExpandedExpPhi)
-\end{equation}
-Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpandedExpPhi), we can identify several conditions that lead to specific values of the direct correlation coefficient:
+Given that it contains a complex number in the denominator, it is more complicated than the conjugate one. But it has several apparent properties:
 
 1. The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all cross-covariances between the real and imaginary parts of $x$ and $y$ are equal to zero.
 
-2. The magnitude of the coefficient will be equal to one, when its numerator and denominator are equal, which can be obtained with a multitude of values of covariances and variances of real and imaginary parts of complex variables $x$ and $y$.
+2. When the complex variables $x$ and $y$ have positive functional relation between them, so that $a_1 = \frac{1}{b_1}$, the coefficient will be equal to one.
 
-3. One of the special cases for $\varrho_{x,y}=1$ comes to the definition of the conventional correlation coefficient [@refPearson]. $\sqrt{a_1 b_1}=1$
+Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables $x$ and $y$.
 
+Father's stuff here.
+
+<!-- To get other insights about the direct correlation coefficient, we express its denominator in the exponential form: -->
+<!-- \begin{equation} -->
+<!--     {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}}, -->
+<!--     (\#eq:correlationPseudoExpandedExp01) -->
+<!-- \end{equation} -->
+<!-- where -->
+<!-- \begin{equation} -->
+<!--     \resizebox{0.8\textwidth}{!}{$ -->
+<!--     \begin{aligned} -->
+<!--         R_1 = & \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2} \\ -->
+<!--         \phi_1 = &\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) , -->
+<!--     \end{aligned} $} -->
+<!--     (\#eq:correlationPseudoExpandedExpRPhi) -->
+<!-- \end{equation} -->
+<!-- which are obtained by opening the brackets inside the square root of \@ref(eq:correlationPseudoExpandedExp01). If we now insert \@ref(eq:correlationPseudoExpandedExp01) in \@ref(eq:correlationPseudoExpanded) and multiply both numerator and denominator by conjugate number to the \@ref(eq:correlationPseudoExpandedExp01) we will get: -->
+<!-- \begin{equation} -->
+<!--     {\varrho}_{x,y} = \frac{\left(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\right)e^{-i \frac{\phi_1}{2}}}{R_1^{\frac{1}{2}}}. -->
+<!--     (\#eq:correlationPseudoExpandedExp02) -->
+<!-- \end{equation} -->
+<!-- Representing the $\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})$ as $R_2 e^{i \phi_2}$, where $R_2= \sqrt{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}$ and $\phi_2= \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right)$, and inserting these values in \@ref(eq:correlationPseudoExpandedExp02) we get: -->
+<!-- \begin{equation} -->
+<!--     {\varrho}_{x,y} = \frac{R_2}{\sqrt{R_1}} e^{i \left(\phi_2 - \frac{\phi_1}{2} \right)}. -->
+<!--     (\#eq:correlationPseudoExpandedExp03) -->
+<!-- \end{equation} -->
+<!-- or in an even shorter exponential form ${\varrho}_{x,y} = |{\varrho}_{x,y}| e ^{i \arg({\varrho}_{x,y})}$, where: -->
+<!-- \begin{equation} -->
+<!--     \resizebox{0.85\textwidth}{!}{$ -->
+<!--     |{\varrho}_{x,y}|= \frac{R_2}{\sqrt{R_1}} = \sqrt{\frac{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}{\sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}}}$} -->
+<!--     (\#eq:correlationPseudoExpandedExpR) -->
+<!-- \end{equation} -->
+<!-- and  -->
+<!-- \begin{equation} -->
+<!--     \resizebox{0.85\textwidth}{!}{$ -->
+<!--     \arg({\varrho}_{x,y}) = \left(\phi_2 - \frac{\phi_1}{2} \right) = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) $}. -->
+<!--     (\#eq:correlationPseudoExpandedExpPhi) -->
+<!-- \end{equation} -->
+<!-- Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpandedExpPhi), we can identify several conditions that lead to specific values of the direct correlation coefficient: -->
 
 
 <!-- Trying to derive |rho|=1 -->

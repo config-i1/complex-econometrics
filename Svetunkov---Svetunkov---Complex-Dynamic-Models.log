@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  30 NOV 2022 21:15
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  30 NOV 2022 22:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1071,13 +1071,17 @@ File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplotMDS-1.pdf>
-
-Package natbib Warning: Citation `ref' on page 30 undefined on input line 891.
-
 [30]
 
+Package natbib Warning: Citation `ref' on page 31 undefined on input line 891.
+
+
+Package natbib Warning: Citation `Panchev1971' on page 31 undefined on input li
+ne 909.
+
+
 Package natbib Warning: Citation `refPearson' on page 31 undefined on input lin
-e 909.
+e 911.
 
 [31] [32]
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
@@ -1088,26 +1092,21 @@ File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugateMDS-1.pdf>
-[33] [34]
-
-Package natbib Warning: Citation `refPearson' on page 35 undefined on input lin
-e 1078.
-
-[35] [36] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [37] [38
-
-])
+[33] [34] [35] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [36])
 
 Package natbib Warning: There were undefined citations.
 
-[39] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
-Here is how much of TeX's memory you used:
- 21524 strings out of 477444
- 399921 string characters out of 5846098
- 891229 words of memory out of 5000000
- 41763 multiletter control sequences out of 15000+600000
- 477309 words of font info for 96 fonts, out of 8000000 for 9000
- 682 hyphenation exceptions out of 8191
- 86i,14n,121p,1163b,495s stack positions out of 5000i,500n,10000p,200000b,80000s
+[37
 
-Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (39 pages)
+] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
+Here is how much of TeX's memory you used:
+ 21510 strings out of 477444
+ 399507 string characters out of 5846098
+ 879923 words of memory out of 5000000
+ 41753 multiletter control sequences out of 15000+600000
+ 477293 words of font info for 94 fonts, out of 8000000 for 9000
+ 682 hyphenation exceptions out of 8191
+ 86i,14n,121p,1163b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (37 pages)
 .
