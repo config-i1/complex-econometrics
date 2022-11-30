@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  30 NOV 2022 19:14
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2022.5.22)  30 NOV 2022 21:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1103,7 +1103,7 @@ Package natbib Warning: There were undefined citations.
 Here is how much of TeX's memory you used:
  21524 strings out of 477444
  399921 string characters out of 5846098
- 890229 words of memory out of 5000000
+ 891229 words of memory out of 5000000
  41763 multiletter control sequences out of 15000+600000
  477309 words of font info for 96 fonts, out of 8000000 for 9000
  682 hyphenation exceptions out of 8191
