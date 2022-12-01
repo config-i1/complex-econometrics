@@ -123,9 +123,11 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 x <- complex(real=rnorm(100,0,10), imaginary=rnorm(100,0,10))
 y <- (10 + 15i) + (1 + 1i) * x
 # Variant 1
-ccov(y,x,method="conj") / sqrt(cvar(x,method="conj")*cvar(y,method="conj"))
+ccov(y,x,method="conj") /
+    sqrt(cvar(x,method="conj")*cvar(y,method="conj"))
 # Variant 2
-ccov(x,y,method="conj") / sqrt(cvar(x,method="conj")*cvar(y,method="conj"))
+ccov(x,y,method="conj") /
+    sqrt(cvar(x,method="conj")*cvar(y,method="conj"))
 # Variant 3 (correct conjugate correlation)
 sqrt(ccov(y,x,method="conj")*ccov(x,y,method="conj")) /
     sqrt((cvar(x,method="conj")*cvar(y,method="conj")))
