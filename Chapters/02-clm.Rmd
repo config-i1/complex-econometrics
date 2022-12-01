@@ -117,7 +117,19 @@ The literature knows two correlation coefficients for complex variables [@ref]: 
     (\#eq:correlationPseudo)
 \end{equation}
 
-Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances [as done, for example, by @Panchev1971] then the value of correlation coefficient will be ambiguous, implying that the correlation between $x$ and $y$ differs from the correlation between $y$ and $x$.
+Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances [as done, for example, by @Panchev1971] then the value of correlation coefficient will be ambiguous, implying that the correlation between $x$ and $y$ differs from the correlation between $y$ and $x$. Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between $x$ and $y$, the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
+
+```{r}
+x <- complex(real=rnorm(100,0,10), imaginary=rnorm(100,0,10))
+y <- (10 + 15i) + (1 + 1i) * x
+# Variant 1
+ccov(y,x,method="conj") / sqrt(cvar(x,method="conj")*cvar(y,method="conj"))
+# Variant 2
+ccov(x,y,method="conj") / sqrt(cvar(x,method="conj")*cvar(y,method="conj"))
+# Variant 3 (correct conjugate correlation)
+sqrt(ccov(y,x,method="conj")*ccov(x,y,method="conj")) /
+    sqrt((cvar(x,method="conj")*cvar(y,method="conj")))
+```
 
 The formulae \@ref(eq:correlationConventional) and \@ref(eq:correlationPseudo) are derived based on the original definition of Pearson's correlation coefficient [@refPearson]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
