@@ -81,7 +81,7 @@ which after opening the brackets becomes:
     \sum_{j=1}^n \left(y_j \tilde{y}_j - y_j \tilde{b}_0 - y_j \tilde{b}_1 \tilde{x}_j - b_0\tilde{y}_j + b_0 \tilde{b}_0 + b_0 \tilde{b}_1 \tilde{x}_j - b_1 x_j \tilde{y}_j + b_1 x_j \tilde{b}_0 + b_1 x_j \tilde{b}_1 \tilde{x}_j \right) .
     (\#eq:SimpleCLROLSLoss02)
 \end{equation}
-In order to minimise the sum of squared errors \@ref(eq:SimpleCLROLSLoss), we need to take derivative of \@ref(eq:SimpleCLROLSLoss02) with respect to each of the parameters $b_{0,r}$, $b_{0,i}$, $b_{1,r}$ and $b_{1,i}$ and equate each of the resulting equations to zero:
+In order to minimise the sum of squared errors \@ref(eq:SimpleCLROLSLoss), we need to take derivative of \@ref(eq:SimpleCLROLSLoss02) with respect to each of the parameters $b_{0,r}$, $b_{0,i}$, $b_{1,r}$ and $b_{1,i}$ and equate each of the resulting equations to zero to find the extrema:
 \begin{equation}
     \begin{aligned}
         & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,r}} = 0 \\
@@ -117,7 +117,7 @@ which can also be written in terms of conjugate moments as:
     \end{aligned}
     (\#eq:SimpleCLROLSLossParametersMoments)
 \end{equation}
-As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is similar to the one that is typically used for the conventional simple linear regression with the only difference that the parameters in \@ref(eq:SimpleCLROLSLossParametersMoments) are complex and that each of the moment in \@ref(eq:SimpleCLROLSLossParametersMoments) is a moment for respective complex variables.
+As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is similar to the one that is typically used for the conventional simple linear regression with the only difference that the parameters in \@ref(eq:SimpleCLROLSLossParametersMoments) are complex and that each of the moments in \@ref(eq:SimpleCLROLSLossParametersMoments) is a moment for respective complex variable.
 
 
 #### Complex Least Squares
@@ -127,6 +127,28 @@ An alternative estimation technique involves the minimisation of a rather exotic
     (\#eq:SimpleCLRCLSLoss)
 \end{equation}
 It can be considered exotic, because the value of the loss is a complex number. It is difficult to explain how one can minimise a complex number, but from what follows, we show that the estimation technique works and gives adequate estimates of parameters.
+
+The logic for the derivation of CLS is similar to OLS. We expand \@ref(eq:SimpleCLRCLSLoss) to:
+\begin{equation}
+    \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n y_j^2 + n b_0^2 + b_1^2 \sum_{j=1}^n x_j^2 - 2 b_0 \sum_{j=1}^n y_j - 2 b_1 \sum_{j=1}^n x_j y_j + 2 b_0 b_1 \sum_{j=1}^n x_j 
+    (\#eq:SimpleCLRCLSLoss02)
+\end{equation}
+and then take derivatives of \@ref(eq:SimpleCLRCLSLoss02) with respect to parameter $b_0$ and $b_1$ and then equate the resulting equations to zero:
+\begin{equation}
+    \begin{aligned}
+        & \frac{d \sum_{j=1}^n (e_j^2)}{d b_{0}} = 0 \\
+        & \frac{d \sum_{j=1}^n (e_j^2)}{d b_{1}} = 0 .
+    \end{aligned}
+    (\#eq:SimpleCLRCLSLossSystem01)
+\end{equation}
+The derivatives \@ref(eq:SimpleCLRCLSLossSystem01) give the following system of complex equations:
+\begin{equation}
+    \begin{aligned}
+        & 2 n b_0 - 2 \sum_{j=1}^n y_j + 2 b_0 b_1 \sum_{j=1}^n x_j = 0 \\
+        & 2 b_1 \sum_{j=1}^n x_j^2 - 2 \sum_{j=1}^n x_j y_j + 2 b_0 \sum_{j=1}^n x_j
+    \end{aligned}
+    (\#eq:SimpleCLRCLSLossSystem02)
+\end{equation}
 
 
 #### Likelihood
