@@ -144,8 +144,8 @@ and then take derivatives of \@ref(eq:SimpleCLRCLSLoss02) with respect to parame
 The derivatives \@ref(eq:SimpleCLRCLSLossSystem01) give the following system of complex equations:
 \begin{equation}
     \begin{aligned}
-        & 2 n b_0 - 2 \sum_{j=1}^n y_j + 2 b_0 b_1 \sum_{j=1}^n x_j = 0 \\
-        & 2 b_1 \sum_{j=1}^n x_j^2 - 2 \sum_{j=1}^n x_j y_j + 2 b_0 \sum_{j=1}^n x_j
+        & 2 n b_0 - 2 \sum_{j=1}^n y_j + 2 b_1 \sum_{j=1}^n x_j = 0 \\
+        & 2 b_1 \sum_{j=1}^n x_j^2 - 2 \sum_{j=1}^n x_j y_j + 2 b_0 \sum_{j=1}^n x_j = 0
     \end{aligned}
     (\#eq:SimpleCLRCLSLossSystem02)
 \end{equation}
