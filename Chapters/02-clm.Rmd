@@ -3,29 +3,54 @@
 
 ## Simple CLR {#simpleCLR}
 ### Model formulation
-The simple Complex Linear Regression can be written as:
+The simple Complex Linear Regression (CLR) can be written as:
 \begin{equation}
-    y = \beta_0 + \beta_1 x + \epsilon,
+    y_j = \beta_0 + \beta_1 x_j + \epsilon_j,
     (\#eq:SimpleCLRComplex)
 \end{equation}
-where every parameter and variable is a complex number, i.e. $y = y_{r}+i y_i$, $x = x_{r}+i x_i$, $\beta_{j} = \beta_{j,r} + i \beta_{j,i}$ and $\epsilon = \epsilon_{r} + i \epsilon_i$. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
+where $j$ is the index for an observation and every parameter and variable is a complex number, i.e. $y_j = y_{r,j}+i y_{i,j}$ is the complex response variable, $x_j = x_{r,j}+i x_{i,j}$ is the complex explanatory variable, $\beta_{l} = \beta_{l,r} + i \beta_{l,i}$ is the $l$-th parameter and $\epsilon_j = \epsilon_{r,j} + i \epsilon_{i,j}$ is the error term. For now, we do not make any specific assumptions about the distribution of the complex error term, we will come back to this later in this chapter. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
 \begin{equation}
-    y_r + i y_i = (\beta_{0,r} + i \beta_{0,i}) + (\beta_{1,r} + i \beta_{1,i}) (x_{r}+i x_i) + (\epsilon_r + i \epsilon_i)
+    y_{r,j}+i y_{i,j} = (\beta_{0,r} + i \beta_{0,i}) + (\beta_{1,r} + i \beta_{1,i}) (x_{r,j}+i x_{i,j}) + (\epsilon_{r,j} + i \epsilon_{i,j}),
     (\#eq:SimpleCLR)
 \end{equation}
-Given that any complex equation can be represented as a system of two equations, this model can be represented as a system of two linear regressions:
+which is in fact a multivariate model, capturing how the change of values in pair of variables $x_r$, $x_i$ leads to the change in the pair of variables $y_r$ and $y_i$. Given that any complex equation can be represented as a system of two equations, the model \@ref(eq:SimpleCLR) can be represented as a system of two linear regressions:
 \begin{equation}
     \begin{aligned}
-        y_r = & \beta_{0,r} + \beta_{1,r} x_r - \beta_{1,i} x_i + \epsilon_r \\
-        y_i = & \beta_{0,i} + \beta_{1,r} x_i + \beta_{1,i} x_r + \epsilon_i
+        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{r,j} - \beta_{1,i} x_i + \epsilon_{r,j} \\
+        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{i,j} + \beta_{1,i} x_r + \epsilon_{i,j}
     \end{aligned}
     (\#eq:SimpleCLRSystem)
 \end{equation}
-This model captures a very specific dynamics between the real and imaginary parts, given that they share the same set of parameters for the slope.
+This model captures a very specific dynamics between the real and imaginary parts, given that they share the same set of parameters for the slope. But most importantly it shows how each complex variable $y$ relates to variable $x$ in a four dimensional space. Note that the real and imaginary parts of $y$ can be exchanged without a serious impact on the model: in that case the values of parameters would change, but the relation between $x$ and $y$ would stay the same. Similarly, changing $x_r$ with $x_i$ would only lead to different estimates of parameters, the general relation will hold.
 
+Going even further, using the vector and matrix representations of complex variables, the same system of equations \@ref(eq:SimpleCLRSystem) can be rewritten as:
+\begin{equation}
+    \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix} = \begin{pmatrix} \beta_{0,r} \\ \beta_{0,i} \end{pmatrix} + \begin{pmatrix} x_{r,j} & -x_{i,j} \\ x_{i,j} & x_{r,j} \end{pmatrix} \begin{pmatrix} \beta_{1,r} \\ \beta_{1,i} \end{pmatrix} + \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix} ,
+    (\#eq:SimpleCLRSystemVector01)
+\end{equation}
+or uniting all the parameters in one vector:
+\begin{equation}
+    \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix} = \begin{pmatrix} 1 & 0 & x_{r,j} & -x_{i,j} \\ 0 & 1 & x_{i,j} & x_{r,j} \end{pmatrix} \begin{pmatrix} \beta_{0,r} \\ \beta_{0,i} \\ \beta_{1,r} \\ \beta_{1,i} \end{pmatrix} + \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix} .
+    (\#eq:SimpleCLRSystemVector02)
+\end{equation}
+This form can then be represented in a classical matrix notations:
+\begin{equation}
+    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{\beta} + \boldsymbol{\epsilon}_j .
+    (\#eq:SimpleCLRSystemVector03)
+\end{equation}
+And if we stack each of the vectors and matrices for each $j=1 \dots n$ we get even more compact form:
+\begin{equation}
+    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{E} ,
+    (\#eq:SimpleCLRSystemVectorFinal)
+\end{equation}
+where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}$ and $\boldsymbol{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. The form \@ref(eq:SimpleCLRSystemVectorFinal) shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
 
 
 ### Estimation
+When it comes to estimating simple CLR, there are several approaches that can be used and would give estimates of parameters with different statistical properties. We start with the conventional OLS, which relies on the multiplication by conjugate number.
+
+
+
 Number of estimated parameters is k, number of degrees of freedom per series is k/2.
 
 
