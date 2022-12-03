@@ -1,7 +1,7 @@
 # Complex Linear Regression {#CLR}
 
 
-## Simple CLR {#simpleCLR}
+## Simple Complex Linear Regression {#simpleCLR}
 ### Model formulation
 The simple Complex Linear Regression (CLR) can be written as:
 \begin{equation}
@@ -104,7 +104,7 @@ to get:
 As shown by @Svetunkov2012, solving the system of equations \@ref(eq:SimpleCLROLSLossSystem02) gives the following formulae for the parameters of the model:
 \begin{equation}
     \begin{aligned}
-        & b_{1} = \frac{\sum_{j=1}^n (y_{j} \tilde{x}_j)}{\sum_{j=1}^n (x_{j} \tilde{x}_j)} \\
+        & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) (\tilde{x}_j-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x}) (\tilde{x}_j-\hat{\tilde{\mu}}_{x})} \\
         & b_0 = \frac{1}{n} \sum_{j=1}^n y_j - b_1 \sum_{j=1}^n x_j ,
     \end{aligned}
     (\#eq:SimpleCLROLSLossParameters)
