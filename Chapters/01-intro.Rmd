@@ -254,7 +254,16 @@ One of the important definitions in theory of complex numbers is the conjugate c
     z \times \tilde{z} = (x+ iy) (x- iy) = x^2 + y^2 ,
     (\#eq:complexNumberConjugateMulti)
 \end{equation}
-which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $z$ and $\tilde{z}$.
+which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $z$ and $\tilde{z}$. Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
+\begin{equation}
+    \begin{aligned}
+        & \tilde{x + y} = \tilde{x} + \tilde{y} \\
+        & \tilde{x - y} = \tilde{x} - \tilde{y} \\
+        & \tilde{x \times y} = \tilde{x} \times \tilde{y} \\
+        & \tilde{\frac{x}{y}} = \frac{\tilde{x}}{\tilde{y}} .
+    \end{aligned}
+    (\#eq:complexNumberConjugateDistributive)
+\end{equation}
 
 Finally, given that any complex number can be represented visually in a form of a vector, we can write it mathematically either like vector:
 \begin{equation}
