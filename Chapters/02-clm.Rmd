@@ -65,8 +65,8 @@ or equivalently in matrix notations:
 where $b_{l}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\beta_l$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $e_j$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
 
 
-#### OLS
-We start with the conventional OLS, which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
+#### Ordinary Least Squares
+We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
     \sum_{j=1}^n (e_j \tilde{e}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     (\#eq:SimpleCLROLSLoss)
@@ -117,9 +117,23 @@ which can also be written in terms of conjugate moments as:
     \end{aligned}
     (\#eq:SimpleCLROLSLossParametersMoments)
 \end{equation}
+As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is similar to the one that is typically used for the conventional simple linear regression with the only difference that the parameters in \@ref(eq:SimpleCLROLSLossParametersMoments) are complex and that each of the moment in \@ref(eq:SimpleCLROLSLossParametersMoments) is a moment for respective complex variables.
 
 
-#### CLS
+#### Complex Least Squares
+An alternative estimation technique involves the minimisation of a rather exotic loss function:
+\begin{equation}
+    \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n (e_{r,j}^2 - e_{i,j}^2 + i 2 e_{r,j} e_{i,j}).
+    (\#eq:SimpleCLRCLSLoss)
+\end{equation}
+It can be considered exotic, because the value of the loss is a complex number. It is difficult to explain how one can minimise a complex number, but from what follows, we show that the estimation technique works and gives adequate estimates of parameters.
+
+
+#### Likelihood
+
+
+#### Comparing different losses
+
 
 
 Number of estimated parameters is k, number of degrees of freedom per series is k/2.
