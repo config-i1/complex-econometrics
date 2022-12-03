@@ -40,10 +40,10 @@ This form can then be represented in a classical matrix notations:
 \end{equation}
 And if we stack each of the vectors and matrices for each $j=1 \dots n$ we get even more compact form:
 \begin{equation}
-    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{E} ,
+    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{E} ,
     (\#eq:SimpleCLRSystemVectorFinal)
 \end{equation}
-where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}$ and $\boldsymbol{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. The form \@ref(eq:SimpleCLRSystemVectorFinal) shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
+where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. The form \@ref(eq:SimpleCLRSystemVectorFinal) shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
 
 
 ### Estimation
