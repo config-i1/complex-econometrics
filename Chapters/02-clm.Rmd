@@ -145,10 +145,27 @@ The derivatives \@ref(eq:SimpleCLRCLSLossSystem01) give the following system of 
 \begin{equation}
     \begin{aligned}
         & 2 n b_0 - 2 \sum_{j=1}^n y_j + 2 b_1 \sum_{j=1}^n x_j = 0 \\
-        & 2 b_1 \sum_{j=1}^n x_j^2 - 2 \sum_{j=1}^n x_j y_j + 2 b_0 \sum_{j=1}^n x_j = 0
+        & 2 b_1 \sum_{j=1}^n x_j^2 - 2 \sum_{j=1}^n x_j y_j + 2 b_0 \sum_{j=1}^n x_j = 0 .
     \end{aligned}
     (\#eq:SimpleCLRCLSLossSystem02)
 \end{equation}
+The solution for this system of equations, as it was shown by @Svetunkov2012, is:
+\begin{equation}
+    \begin{aligned}
+        & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) ({x}_j-\hat{\mu}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x})^2} \\
+        & b_0 = \frac{1}{n} \sum_{j=1}^n y_j - b_1 \sum_{j=1}^n x_j ,
+    \end{aligned}
+    (\#eq:SimpleCLRCLSLossParameters)
+\end{equation}
+or in terms of direct moments for complex random variables:
+\begin{equation}
+    \begin{aligned}
+        & b_{1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x^2} \\
+        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+    \end{aligned}
+    (\#eq:SimpleCLRCLSLossParametersMoments)
+\end{equation}
+
 
 
 #### Likelihood
