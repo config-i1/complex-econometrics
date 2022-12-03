@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.3575+100.4306i
+## [1] 49.7038+101.492i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 133.0247+0i
+## 130.5181+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -599,7 +599,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##     Direct variance 
-## -66.38427-19.10132i
+## -79.14675-11.83974i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +624,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 33.320225 -9.550658
-## x_i -9.550658 99.704494
+##           x_r        x_i
+## x_r 25.685678  -5.919869
+## x_i -5.919869 104.832427
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3230.961
+## [1] 2657.647
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 51.59113-73.32383i
+## 72.38687-89.94187i
 \end{verbatim}
 
 \begin{Shaded}
@@ -718,7 +718,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -20.27283+55.11778i
+## -45.51524+58.14337i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -732,8 +732,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -68.88360+ 4.26601i -20.27283+55.11778i
-## y -20.27283+55.11778i  20.66706- 6.16871i
+## x -93.61365+ 1.42992i -45.51524+58.14337i
+## y -45.51524+58.14337i   5.99959+46.33407i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -810,9 +810,14 @@ or equivalently in matrix notations:
     \mathbf{y}_j = \mathbf{X}_j \boldsymbol{b} + \boldsymbol{e}_j ,
     \label{eq:SimpleCLRSystemVector03Estimated}
 \end{equation}
-where \(b_{l}\), \(b_{l,r}+ib_{l,i}\) and \(\boldsymbol{b}\) are the estimates of respective \(\beta_l\), \(\beta_{l,r} + i \beta_{l,i}\) and \(\boldsymbol{\beta}\) and \(e_j\), \(e_{r,j} + i e_{i,j}\) and \(\boldsymbol{e}_j\) are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches. We start with the conventional OLS, which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
+where \(b_{l}\), \(b_{l,r}+ib_{l,i}\) and \(\boldsymbol{b}\) are the estimates of respective \(\beta_l\), \(\beta_{l,r} + i \beta_{l,i}\) and \(\boldsymbol{\beta}\) and \(e_j\), \(e_{r,j} + i e_{i,j}\) and \(\boldsymbol{e}_j\) are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
+
+\hypertarget{ols}{%
+\subsubsection{OLS}\label{ols}}
+
+We start with the conventional OLS, which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
-    \sum_{j=1}^n (e_j) (\tilde{e}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
+    \sum_{j=1}^n (e_j \tilde{e}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     \label{eq:SimpleCLROLSLoss}
 \end{equation}
 The residuals can be substituted as: \(e_j = y_j - b_0 - b_1 x_j\) and \(\tilde{e}_j = \tilde{y}_j - \tilde{b}_0 - \tilde{b}_1 \tilde{x}_j\) to get:
@@ -828,10 +833,10 @@ which after opening the brackets becomes:
 In order to minimise the sum of squared errors \eqref{eq:SimpleCLROLSLoss}, we need to take derivative of \eqref{eq:SimpleCLROLSLoss02} with respect to each of the parameters \(b_{0,r}\), \(b_{0,i}\), \(b_{1,r}\) and \(b_{1,i}\) and equate each of the resulting equations to zero:
 \begin{equation}
     \begin{aligned}
-        & \frac{d \sum_{j=1}^n (e_j) (\tilde{e}_j)}{d b_{0,r}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j) (\tilde{e}_j)}{d b_{0,i}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j) (\tilde{e}_j)}{d b_{1,r}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j) (\tilde{e}_j)}{d b_{1,i}} = 0
+        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,r}} = 0 \\
+        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,i}} = 0 \\
+        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{1,r}} = 0 \\
+        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{1,i}} = 0
     \end{aligned}
     \label{eq:SimpleCLROLSLossSystem01}
 \end{equation}
@@ -840,11 +845,30 @@ to get:
     \begin{aligned}
         & - \sum_{j=1}^n y_j - \sum_{j=1}^n \tilde{y}_j + 2 n b_{0,r} + \tilde{b}_1 \sum_{j=1}^n \tilde{x}_j + {b}_1 \sum_{j=1}^n {x}_j = 0 \\
         & i \sum_{j=1}^n y_j - i \sum_{j=1}^n \tilde{y}_j + 2 n b_{0,i} + i \tilde{b}_1 \sum_{j=1}^n \tilde{x}_j - i {b}_1 \sum_{j=1}^n {x}_j = 0 \\
-        & - \sum_{j=1}^n y_j \tilde{x}_j + b_0 \sum_{j=1}^n \tilde{x}_j - \sum_{j=1}^n x_j \tilde{y}_j + \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,r} \sum_{j=1}^n x_j \tilde{x}_j \\
-        & i \sum_{j=1}^n y_j \tilde{x}_j - i b_0 \sum_{j=1}^n \tilde{x}_j - i \sum_{j=1}^n x_j \tilde{y}_j + i \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,i} \sum_{j=1}^n x_j \tilde{x}_j
+        & - \sum_{j=1}^n y_j \tilde{x}_j + b_0 \sum_{j=1}^n \tilde{x}_j - \sum_{j=1}^n x_j \tilde{y}_j + \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,r} \sum_{j=1}^n x_j \tilde{x}_j = 0 \\
+        & i \sum_{j=1}^n y_j \tilde{x}_j - i b_0 \sum_{j=1}^n \tilde{x}_j - i \sum_{j=1}^n x_j \tilde{y}_j + i \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,i} \sum_{j=1}^n x_j \tilde{x}_j = 0 .
     \end{aligned}
     \label{eq:SimpleCLROLSLossSystem02}
 \end{equation}
+As shown by \citet{Svetunkov2012}, solving the system of equations \eqref{eq:SimpleCLROLSLossSystem02} gives the following formulae for the parameters of the model:
+\begin{equation}
+    \begin{aligned}
+        & b_{1} = \frac{\sum_{j=1}^n (y_{j} \tilde{x}_j)}{\sum_{j=1}^n (x_{j} \tilde{x}_j)} \\
+        & b_0 = \frac{1}{n} \sum_{j=1}^n y_j - b_1 \sum_{j=1}^n x_j ,
+    \end{aligned}
+    \label{eq:SimpleCLROLSLossParameters}
+\end{equation}
+which can also be written in terms of conjugate moments as:
+\begin{equation}
+    \begin{aligned}
+        & b_{1} = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x^2} \\
+        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+    \end{aligned}
+    \label{eq:SimpleCLROLSLossParametersMoments}
+\end{equation}
+
+\hypertarget{cls}{%
+\subsubsection{CLS}\label{cls}}
 
 Number of estimated parameters is k, number of degrees of freedom per series is k/2.
 
@@ -1121,7 +1145,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.7108271-0.7001217i
+## [1] 0.7095287-0.7008674i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1179,7 +1203,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9982795
+## [1,] 0.9959731
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1202,11 +1226,11 @@ The interpretation of the coefficient is straightforward and follows the convent
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i        y_r        y_i
-## x_r  1.0000000 -0.1172960  0.6759983  0.5510163
-## x_i -0.1172960  1.0000000 -0.8085778  0.7608161
-## y_r  0.6759983 -0.8085778  1.0000000 -0.2376348
-## y_i  0.5510163  0.7608161 -0.2376348  1.0000000
+##            x_r         x_i         y_r         y_i
+## x_r 1.00000000  0.04916944  0.65444978  0.68606061
+## x_i 0.04916944  1.00000000 -0.71972390  0.75653173
+## y_r 0.65444978 -0.71972390  1.00000000 -0.09532307
+## y_i 0.68606061  0.75653173 -0.09532307  1.00000000
 \end{verbatim}
 
 \hypertarget{multiple-clr}{%

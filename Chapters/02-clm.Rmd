@@ -62,9 +62,13 @@ or equivalently in matrix notations:
     \mathbf{y}_j = \mathbf{X}_j \boldsymbol{b} + \boldsymbol{e}_j ,
     (\#eq:SimpleCLRSystemVector03Estimated)
 \end{equation}
-where $b_{l}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\beta_l$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $e_j$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches. We start with the conventional OLS, which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
+where $b_{l}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\beta_l$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $e_j$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
+
+
+#### OLS
+We start with the conventional OLS, which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
-    \sum_{j=1}^n (e_j) (\tilde{e}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
+    \sum_{j=1}^n (e_j \tilde{e}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     (\#eq:SimpleCLROLSLoss)
 \end{equation}
 The residuals can be substituted as: $e_j = y_j - b_0 - b_1 x_j$ and $\tilde{e}_j = \tilde{y}_j - \tilde{b}_0 - \tilde{b}_1 \tilde{x}_j$ to get:
@@ -80,10 +84,10 @@ which after opening the brackets becomes:
 In order to minimise the sum of squared errors \@ref(eq:SimpleCLROLSLoss), we need to take derivative of \@ref(eq:SimpleCLROLSLoss02) with respect to each of the parameters $b_{0,r}$, $b_{0,i}$, $b_{1,r}$ and $b_{1,i}$ and equate each of the resulting equations to zero:
 \begin{equation}
     \begin{aligned}
-        & \frac{d \sum_{j=1}^n (e_j) (\tilde{e}_j)}{d b_{0,r}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j) (\tilde{e}_j)}{d b_{0,i}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j) (\tilde{e}_j)}{d b_{1,r}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j) (\tilde{e}_j)}{d b_{1,i}} = 0
+        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,r}} = 0 \\
+        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,i}} = 0 \\
+        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{1,r}} = 0 \\
+        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{1,i}} = 0
     \end{aligned}
     (\#eq:SimpleCLROLSLossSystem01)
 \end{equation}
@@ -92,12 +96,30 @@ to get:
     \begin{aligned}
         & - \sum_{j=1}^n y_j - \sum_{j=1}^n \tilde{y}_j + 2 n b_{0,r} + \tilde{b}_1 \sum_{j=1}^n \tilde{x}_j + {b}_1 \sum_{j=1}^n {x}_j = 0 \\
         & i \sum_{j=1}^n y_j - i \sum_{j=1}^n \tilde{y}_j + 2 n b_{0,i} + i \tilde{b}_1 \sum_{j=1}^n \tilde{x}_j - i {b}_1 \sum_{j=1}^n {x}_j = 0 \\
-        & - \sum_{j=1}^n y_j \tilde{x}_j + b_0 \sum_{j=1}^n \tilde{x}_j - \sum_{j=1}^n x_j \tilde{y}_j + \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,r} \sum_{j=1}^n x_j \tilde{x}_j \\
-        & i \sum_{j=1}^n y_j \tilde{x}_j - i b_0 \sum_{j=1}^n \tilde{x}_j - i \sum_{j=1}^n x_j \tilde{y}_j + i \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,i} \sum_{j=1}^n x_j \tilde{x}_j
+        & - \sum_{j=1}^n y_j \tilde{x}_j + b_0 \sum_{j=1}^n \tilde{x}_j - \sum_{j=1}^n x_j \tilde{y}_j + \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,r} \sum_{j=1}^n x_j \tilde{x}_j = 0 \\
+        & i \sum_{j=1}^n y_j \tilde{x}_j - i b_0 \sum_{j=1}^n \tilde{x}_j - i \sum_{j=1}^n x_j \tilde{y}_j + i \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,i} \sum_{j=1}^n x_j \tilde{x}_j = 0 .
     \end{aligned}
     (\#eq:SimpleCLROLSLossSystem02)
 \end{equation}
+As shown by @Svetunkov2012, solving the system of equations \@ref(eq:SimpleCLROLSLossSystem02) gives the following formulae for the parameters of the model:
+\begin{equation}
+    \begin{aligned}
+        & b_{1} = \frac{\sum_{j=1}^n (y_{j} \tilde{x}_j)}{\sum_{j=1}^n (x_{j} \tilde{x}_j)} \\
+        & b_0 = \frac{1}{n} \sum_{j=1}^n y_j - b_1 \sum_{j=1}^n x_j ,
+    \end{aligned}
+    (\#eq:SimpleCLROLSLossParameters)
+\end{equation}
+which can also be written in terms of conjugate moments as:
+\begin{equation}
+    \begin{aligned}
+        & b_{1} = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x^2} \\
+        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+    \end{aligned}
+    (\#eq:SimpleCLROLSLossParametersMoments)
+\end{equation}
 
+
+#### CLS
 
 
 Number of estimated parameters is k, number of degrees of freedom per series is k/2.

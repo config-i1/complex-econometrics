@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  3 DEC 2022 19:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  3 DEC 2022 19:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -759,72 +759,76 @@ Package natbib Warning: Citation `reference' on page 24 undefined on input line
 ]
 Chapter 2.
 [27] [28]
-Overfull \hbox (2.10312pt too wide) detected at line 827
+Overfull \hbox (2.10312pt too wide) detected at line 832
 [][][] [] \OML/lmm/m/it/10 :
  []
 
-[29]
+
+Package natbib Warning: Citation `Svetunkov2012' on page 29 undefined on input 
+line 853.
+
+[29] [30]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-ots-1.pdf, id=346, 262.9825pt x 262.9825pt>
+ots-1.pdf, id=368, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
-igure-latex/crvScatterplots-1.pdf  used on input line 899.
+igure-latex/crvScatterplots-1.pdf  used on input line 923.
 (pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-08.
+32.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [30] [31 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex
-/crvScatterplots-1.pdf>]
+) [31 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvS
+catterplots-1.pdf>]
 
-Package natbib Warning: Citation `refMDS' on page 32 undefined on input line 94
-4.
+Package natbib Warning: Citation `refMDS' on page 32 undefined on input line 96
+8.
 
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-otMDS-1.pdf, id=378, 254.9525pt x 212.795pt>
+otMDS-1.pdf, id=385, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
-igure-latex/crvScatterplotMDS-1.pdf  used on input line 964.
-(pdftex.def)             Requested size: 254.96352pt x 212.8042pt.
+igure-latex/crvScatterplotMDS-1.pdf  used on input line 988.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
-Package natbib Warning: Citation `ref' on page 32 undefined on input line 973.
+Package natbib Warning: Citation `ref' on page 32 undefined on input line 997.
 
 [32]
 
 Package natbib Warning: Citation `Panchev1971' on page 33 undefined on input li
-ne 991.
+ne 1015.
 
 [33 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvSca
 tterplotMDS-1.pdf>]
 
 Package natbib Warning: Citation `refPearson' on page 34 undefined on input lin
-e 1031.
+e 1055.
 
 [34] [35]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ate-1.pdf, id=434, 262.9825pt x 262.9825pt>
+ate-1.pdf, id=441, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
-igure-latex/crvCorConjugate-1.pdf  used on input line 1112.
+igure-latex/crvCorConjugate-1.pdf  used on input line 1136.
 (pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ateMDS-1.pdf, id=436, 253.94875pt x 214.8025pt>
+ateMDS-1.pdf, id=443, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
-igure-latex/crvCorConjugateMDS-1.pdf  used on input line 1137.
-(pdftex.def)             Requested size: 253.95198pt x 214.80524pt.
+igure-latex/crvCorConjugateMDS-1.pdf  used on input line 1161.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 [36 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCor
 Conjugate-1.pdf>] [37 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugateMDS-1.pdf>] (./Svetunkov---Svetunkov---Complex-Dynam
@@ -839,13 +843,13 @@ Package natbib Warning: There were undefined citations.
 
 [41] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 16133 strings out of 479648
- 260707 string characters out of 5886115
- 586130 words of memory out of 5000000
- 33395 multiletter control sequences out of 15000+600000
+ 16143 strings out of 479648
+ 260864 string characters out of 5886115
+ 587257 words of memory out of 5000000
+ 33399 multiletter control sequences out of 15000+600000
  549955 words of font info for 182 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
- 74i,14n,77p,1163b,414s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,14n,77p,1163b,408s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/
 fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.en
 c}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dv
@@ -862,10 +866,10 @@ lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texm
 f/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt
 10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (41 pages,
- 947158 bytes).
+ 952508 bytes).
 PDF statistics:
- 653 PDF objects out of 1000 (max. 8388607)
- 539 compressed objects within 6 object streams
- 184 named destinations out of 1000 (max. 500000)
+ 661 PDF objects out of 1000 (max. 8388607)
+ 547 compressed objects within 6 object streams
+ 190 named destinations out of 1000 (max. 500000)
  45179 words of extra memory for PDF output out of 51595 (max. 10000000)
 
