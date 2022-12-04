@@ -37,7 +37,7 @@ install.packages("complex")
 palette("Tableau 10")
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'greybox', 'complex', 'plotrix'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'greybox', 'complex', 'plotrix', 'plotly'
 ), 'packages.bib')
 # Load the necessary packages
 library("latex2exp")
@@ -46,5 +46,6 @@ library("statmod")
 library("pracma")
 library("greybox")
 library("plotrix")
+library("plotly")
 library("complex")
 ```

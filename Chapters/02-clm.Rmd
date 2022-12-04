@@ -1,5 +1,8 @@
 # Complex Linear Regression {#CLR}
 
+```{r echo=FALSE}
+options(scipen = 100)
+```
 
 ## Simple Complex Linear Regression {#simpleCLR}
 ### Model formulation
@@ -166,7 +169,98 @@ or in terms of direct moments for complex random variables:
     (\#eq:SimpleCLRCLSLossParametersMoments)
 \end{equation}
 
+```{r echo=FALSE}
+load("./data/CLSMDS.Rdata")
+```
 
+```{r eval=FALSE}
+# Create real part of a c.r.v. x
+xr <- rnorm(1000,0,10)
+# Create a c.r.v. x
+x <- complex(real=xr, imaginary=1.5*xr+rnorm(1000,0,10))
+# Create a c.r.v. y
+y <- (1.5 + 1.2i) * x +
+    complex(real=rnorm(1000,0,10), imaginary=rnorm(1000,0,10))
+
+# Define number of iterations and the matrix with the values
+nsim <- 10000
+clsValues <- matrix(NA, nsim, 4, dimnames=list(NULL, c("b1r","b1i","CLSr","CLSi")))
+
+# CLS loss function
+clsLoss <- function(y, yHat){
+    return(sum((y - yHat)^2))
+}
+
+# Loop for values of b1r from 0.52 to 2.5 and for b1i from 0.22 to 2.2
+l <- 1
+for(i in 1:(nsim/100)){
+    for(j in 1:(nsim/100)){
+        b <- complex(real=i/100*2+0.5, imaginary=j/100*2+0.2)
+        yHat <- (10 + 15i) + b * x
+        clsResult <- clsLoss(y, yHat)
+        clsValues[l,1] <- Re(b);
+        clsValues[l,2] <- Im(b);
+        clsValues[l,3] <- Re(clsResult);
+        clsValues[l,4] <- Im(clsResult);
+        l <- l+1;
+    }
+}
+
+# Estimate b1 using CLS
+bOptimal <- ccov(x,y) / cvar(x)
+# Produce fitted values
+yHat <- bOptimal * x
+# Calculate the loss
+clsResult <- clsLoss(y, yHat)
+```
+
+```{r}
+plot(clsValues[,3:4], type="l",
+     xlab="Re(CLS loss)", ylab="Im(CLS loss)")
+abline(h=0, col="grey", lty=2, lwd=2)
+abline(v=0, col="grey", lty=2, lwd=2)
+points(Re(clsResult), Im(clsResult), col="red", pch=16)
+```
+
+```{r eval=FALSE}
+# Calculate distance matrix for all losses (including the CLS point)
+clsMDSDistance <- dist(rbind(clsValues[,3:4],
+                             c(Re(clsResult),Im(clsResult))))
+
+# Do Multidimensional scaling
+clsMDS <- cmdscale(clsMDSDistance,k=1)
+
+# Create a data frame with the coordinates
+clsMDSValues <- data.frame(z=clsMDS,
+                           x=c(clsValues[,1],Re(bOptimal)),
+                           y=c(clsValues[,2],Im(bOptimal)))
+
+# Create a matrix with loss values for 3d plotting
+clsMDSValuesZ <- matrix(clsMDSValues$z[-10001], 100, 100)
+```
+
+To produce the 3d surface, we use `plotly` package in R.
+
+```{r eval=FALSE}
+plot_ly(z=clsMDSValuesZ,
+        x=unique(clsMDSValues$x[-10001]),
+        y=unique(clsMDSValues$y[-10001])) |>
+    plotly::layout(scene=list(xaxis = list(title = "Re(b1)"),
+                      yaxis = list(title = "Im(b1)"),
+                      zaxis = list(title = "MDS of CLS loss"))) |>
+    add_surface() |>
+    add_trace(data = tail(clsMDSValues,1),
+              x = ~x,
+              y = ~y,
+              z = ~z,
+              mode = "markers",
+              type = "scatter3d",
+              marker = list(size = 10))
+```
+
+```{r plotlyCLS, echo=FALSE, fig.cap="Plot of the 3d surface for the MDS of the CLS loss."}
+knitr::include_graphics("images/CLSPlot.png")
+```
 
 #### Likelihood
 
