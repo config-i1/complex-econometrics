@@ -19,8 +19,8 @@ where $j$ is the index for an observation and every parameter and variable is a 
 which is in fact a multivariate model, capturing how the change of values in pair of variables $x_r$, $x_i$ leads to the change in the pair of variables $y_r$ and $y_i$. Given that any complex equation can be represented as a system of two equations, the model \@ref(eq:SimpleCLR) can be represented as a system of two linear regressions:
 \begin{equation}
     \begin{aligned}
-        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{r,j} - \beta_{1,i} x_i + \epsilon_{r,j} \\
-        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{i,j} + \beta_{1,i} x_r + \epsilon_{i,j}
+        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{r,j} - \beta_{1,i} x_{i,j} + \epsilon_{r,j} \\
+        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{i,j} + \beta_{1,i} x_{r,j} + \epsilon_{i,j}
     \end{aligned}
     (\#eq:SimpleCLRSystem)
 \end{equation}
@@ -63,8 +63,8 @@ or
 or
 \begin{equation}
     \begin{aligned}
-        y_{r,j} = & b_{0,r} + b_{1,r} x_{r,j} - b_{1,i} x_i + e_{r,j} \\
-        y_{i,j} = & b_{0,i} + b_{1,r} x_{i,j} + b_{1,i} x_r + e_{i,j}
+        y_{r,j} = & b_{0,r} + b_{1,r} x_{r,j} - b_{1,i} x_{i,j} + e_{r,j} \\
+        y_{i,j} = & b_{0,i} + b_{1,r} x_{i,j} + b_{1,i} x_{r,j} + e_{i,j}
     \end{aligned}
     (\#eq:SimpleCLRSystemEstimated)
 \end{equation}
