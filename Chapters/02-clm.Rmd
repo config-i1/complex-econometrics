@@ -122,6 +122,8 @@ which can also be written in terms of conjugate moments as:
 \end{equation}
 As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is similar to the one that is typically used for the conventional simple linear regression with the only difference that the parameters in \@ref(eq:SimpleCLROLSLossParametersMoments) are complex and that each of the moments in \@ref(eq:SimpleCLROLSLossParametersMoments) is a moment for respective complex variable.
 
+It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParametersMoments) correspond to: they minimise the loss \@ref(eq:SimpleCLROLSLoss), thus in the case, when $\mathrm{E}(e_j)=0$ they minimise variances of real and imaginary parts of the complex residuals. A thing to note is that they ignore the potential covariance between them, which in some cases might be a desirable property, but in the others might cause issues.
+
 
 #### Complex Least Squares
 An alternative estimation technique involves the minimisation of a rather exotic loss function:
@@ -212,7 +214,8 @@ for(i in 1:(nsim/100)){
 }
 
 # Estimate b1 using CLS
-bOptimal <- ccov(x,y) / cvar(x)
+bOptimal <- ccov(x, y, method="direct") /
+            cvar(x, method="direct")
 # Produce fitted values
 yHat <- bOptimal * x
 # Calculate the loss
@@ -251,7 +254,7 @@ clsMDSValues <- data.frame(z=clsMDS,
 clsMDSValuesZ <- matrix(clsMDSValues$z[-10001], 100, 100)
 ```
 
-Then, to produce the 3d surface on the plane of "loss-$b_{1,r}$-$b_{1,i}$, we can use functions from the `plotly` package in R as shown in the code below:
+Then, to produce the 3d surface on the plane of "loss - $b_{1,r}$ - $b_{1,i}$, we can use functions from the `plotly` package in R as shown in the code below:
 
 ```{r eval=FALSE}
 plot_ly(z=clsMDSValuesZ,
@@ -280,6 +283,32 @@ So, we can see that despite being counter-intuitive, the CLS produces the estima
 
 
 #### Likelihood
+Finally, another way of estimating the simple CLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
+\begin{equation}
+    \boldsymbol{\Sigma}_\epsilon = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
+    (\#eq:SimpleCLRLikelihoodSigma)
+\end{equation}
+The log-likelihood in this case can be written as:
+\begin{equation}
+	\ell(\boldsymbol{\theta}, \boldsymbol{\Sigma}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi) + \log | \boldsymbol{\Sigma}_\epsilon| \right) -\frac{1}{2} \sum_{j=1}^n \left( \boldsymbol{\epsilon}_j^\prime \boldsymbol{\Sigma}_\epsilon^{-1} \boldsymbol{\epsilon}_j \right) ,
+    (\#eq:additiveLogLik)
+\end{equation}
+where $\boldsymbol{\theta}$ is the vector of estimated parameters and $\boldsymbol{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\  \epsilon_{i,j} \end{pmatrix}$ is the two dimensional error term. This likelihood is maximised when the covariance matrix \@ref(eq:SimpleCLRLikelihoodSigma) is estimated via:
+\begin{equation} \label{eq:Sigmaest}
+	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
+    (\#eq:Sigmaest)
+\end{equation}
+where $\prime$ denotes transposition of a matrix. It can be shown that if the \@ref(eq:Sigmaest) is inserted in \@ref(eq:additiveLogLik) then the following concentrated log-likelihood can be obtained [see, for example, @Snyder2017]:
+\begin{equation}
+	\ell(\boldsymbol{\theta}, \hat{\boldsymbol{\Sigma}}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi e) + \log | \hat{\boldsymbol{\Sigma}}_\epsilon | \right) .
+	(\#eq:additiveLogLikConcentrated)
+\end{equation}
+It is obvious that the maximisation of the log-likelihood \@ref(eq:additiveLogLikConcentrated) is equivalent to minimising the generalised variance of the complex error term (as discussed in Subsection \@ref(crvSecondMoment)):
+\begin{equation}
+    \mathrm{GV} = |\hat{\boldsymbol{\Sigma}}_\epsilon| = \sigma_{\epsilon_r}^2 \sigma_{\epsilon_i}^2 - \sigma_{\epsilon_r, \epsilon_i}^2 .
+    (\#eq:additiveLogLikConcentratedGV)
+\end{equation}
+The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary part of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related.
 
 
 #### Comparing different losses
