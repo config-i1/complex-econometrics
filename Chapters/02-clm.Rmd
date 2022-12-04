@@ -294,7 +294,7 @@ The log-likelihood in this case can be written as:
     (\#eq:additiveLogLik)
 \end{equation}
 where $\boldsymbol{\theta}$ is the vector of estimated parameters and $\boldsymbol{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\  \epsilon_{i,j} \end{pmatrix}$ is the two dimensional error term. This likelihood is maximised when the covariance matrix \@ref(eq:SimpleCLRLikelihoodSigma) is estimated via:
-\begin{equation} \label{eq:Sigmaest}
+\begin{equation}
 	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
     (\#eq:Sigmaest)
 \end{equation}
