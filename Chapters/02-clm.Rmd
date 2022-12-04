@@ -184,14 +184,17 @@ y <- (1.5 + 1.2i) * x +
 
 # Define number of iterations and the matrix with the values
 nsim <- 10000
-clsValues <- matrix(NA, nsim, 4, dimnames=list(NULL, c("b1r","b1i","CLSr","CLSi")))
+clsValues <- matrix(NA, nsim, 4,
+                    dimnames=list(NULL,
+                                  c("b1r","b1i","CLSr","CLSi")))
 
 # CLS loss function
 clsLoss <- function(y, yHat){
     return(sum((y - yHat)^2))
 }
 
-# Loop for values of b1r from 0.52 to 2.5 and for b1i from 0.22 to 2.2
+# Loop for values of b1r from 0.52 to 2.5 and
+# for b1i from 0.22 to 2.2
 l <- 1
 for(i in 1:(nsim/100)){
     for(j in 1:(nsim/100)){
@@ -223,7 +226,8 @@ points(Re(clsResult), Im(clsResult), col="red", pch=16)
 ```
 
 ```{r eval=FALSE}
-# Calculate distance matrix for all losses (including the CLS point)
+# Calculate distance matrix for all losses
+# (including the CLS point)
 clsMDSDistance <- dist(rbind(clsValues[,3:4],
                              c(Re(clsResult),Im(clsResult))))
 
