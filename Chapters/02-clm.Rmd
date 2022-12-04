@@ -60,6 +60,14 @@ or
     y_{r,j}+i y_{i,j} = (b_{0,r} + i b_{0,i}) + (b_{1,r} + i b_{1,i}) (x_{r,j}+i x_{i,j}) + (e_{r,j} + i e_{i,j}),
     (\#eq:SimpleCLREstimated)
 \end{equation}
+or
+\begin{equation}
+    \begin{aligned}
+        y_{r,j} = & b_{0,r} + b_{1,r} x_{r,j} - b_{1,i} x_i + e_{r,j} \\
+        y_{i,j} = & b_{0,i} + b_{1,r} x_{i,j} + b_{1,i} x_r + e_{i,j}
+    \end{aligned}
+    (\#eq:SimpleCLRSystemEstimated)
+\end{equation}
 or equivalently in matrix notations:
 \begin{equation}
     \mathbf{y}_j = \mathbf{X}_j \boldsymbol{b} + \boldsymbol{e}_j ,
@@ -308,7 +316,7 @@ It is obvious that the maximisation of the log-likelihood \@ref(eq:additiveLogLi
     \mathrm{GV} = |\hat{\boldsymbol{\Sigma}}_\epsilon| = \sigma_{\epsilon_r}^2 \sigma_{\epsilon_i}^2 - \sigma_{\epsilon_r, \epsilon_i}^2 .
     (\#eq:additiveLogLikConcentratedGV)
 \end{equation}
-The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary part of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related.
+The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary part of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related. This loss function might be especially useful if we indeed can assume that the real and imaginary part of the residuals are linearly related and we want to use this information in the estimation.
 
 
 #### Comparing different losses
