@@ -126,10 +126,10 @@ As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is simila
 #### Complex Least Squares
 An alternative estimation technique involves the minimisation of a rather exotic loss function:
 \begin{equation}
-    \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n (e_{r,j}^2 - e_{i,j}^2 + i 2 e_{r,j} e_{i,j}).
+    \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n (e_{r,j}^2 - e_{i,j}^2 + i 2 e_{r,j} e_{i,j}),
     (\#eq:SimpleCLRCLSLoss)
 \end{equation}
-It can be considered exotic, because the value of the loss is a complex number. It is difficult to explain how one can minimise a complex number, but from what follows, we show that the estimation technique works and gives adequate estimates of parameters.
+for which in case of $\mathrm{E}(e_j)=0$, the real part corresponds to the difference between the variances of the real and imaginary parts of the residuals, while the imaginary parts corresponds to the covariance between them. This loss be considered exotic, because its value is a complex number. It is difficult to explain how one can minimise a complex number, but from what follows, we show that the estimation technique has some meaning, works and gives adequate estimates of parameters.
 
 The logic for the derivation of CLS is similar to OLS. We expand \@ref(eq:SimpleCLRCLSLoss) to:
 \begin{equation}
@@ -168,6 +168,8 @@ or in terms of direct moments for complex random variables:
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMoments)
 \end{equation}
+
+In order to better understand what is specifically minimised, when the formulae \@ref(eq:SimpleCLRCLSLossParametersMoments) are used for the estimation of parameters, we conduct a small experiment in R with the following code:
 
 ```{r echo=FALSE}
 load("./data/CLSMDS.Rdata")
@@ -217,13 +219,19 @@ yHat <- bOptimal * x
 clsResult <- clsLoss(y, yHat)
 ```
 
-```{r}
-plot(clsValues[,3:4], type="l",
+In this experiment we generate complex variables $x$ and $y$ and then calculate values of the complex loss function based on a combination of values of the complex slope $b_1$ (which we call just `b` in the code). After running the code above we end up with 10,000 values of the loss function and one additional, which corresponds to the optimal point according to \@ref(eq:SimpleCLRCLSLossParametersMoments). We can then produce several plots to better understand what is happening.
+
+```{r clsScatter, fig.cap="Variety of CLS loss function values for different values of $b_1$."}
+plot(clsValues[,3:4], type="p",
      xlab="Re(CLS loss)", ylab="Im(CLS loss)")
 abline(h=0, col="grey", lty=2, lwd=2)
 abline(v=0, col="grey", lty=2, lwd=2)
-points(Re(clsResult), Im(clsResult), col="red", pch=16)
+points(Re(clsResult), Im(clsResult), col="red", pch=19)
 ```
+
+Figure \@ref(fig:clsScatter) shows a scatterplot of values of the complex loss \@ref(eq:SimpleCLRCLSLoss). The red point close to the origin corresponds to the estimate obtained using \@ref(eq:SimpleCLRCLSLossParametersMoments). As we can see, it is close to the origin, which implies that the minimisation of the loss \@ref(eq:SimpleCLRCLSLoss) is equivalent to making both real and imaginary parts of it close to zero. This means that CLS makes variances of real and imaginary residuals similar and shrinks the covariance between them to zero.
+
+Another way of looking at how CLS works is to reduce its dimensionality via the Multidimensional Scaling [@Gower] and then visualise it. The R code below is relatively slow but produces a solution for this task.
 
 ```{r eval=FALSE}
 # Calculate distance matrix for all losses
@@ -232,7 +240,7 @@ clsMDSDistance <- dist(rbind(clsValues[,3:4],
                              c(Re(clsResult),Im(clsResult))))
 
 # Do Multidimensional scaling
-clsMDS <- cmdscale(clsMDSDistance,k=1)
+clsMDS <- cmdscale(clsMDSDistance, k=1)
 
 # Create a data frame with the coordinates
 clsMDSValues <- data.frame(z=clsMDS,
@@ -243,7 +251,7 @@ clsMDSValues <- data.frame(z=clsMDS,
 clsMDSValuesZ <- matrix(clsMDSValues$z[-10001], 100, 100)
 ```
 
-To produce the 3d surface, we use `plotly` package in R.
+Then, to produce the 3d surface on the plane of "loss-$b_{1,r}$-$b_{1,i}$, we can use functions from the `plotly` package in R as shown in the code below:
 
 ```{r eval=FALSE}
 plot_ly(z=clsMDSValuesZ,
@@ -265,6 +273,11 @@ plot_ly(z=clsMDSValuesZ,
 ```{r plotlyCLS, echo=FALSE, fig.cap="Plot of the 3d surface for the MDS of the CLS loss."}
 knitr::include_graphics("images/CLSPlot.png")
 ```
+
+Figure \@ref(fig:plotlyCLS) demonstrates how the projection of the two-dimensional loss behaves for a variety of parameters of the regression. The orange point in the middle corresponds to the one obtained via CLS. We can see that it corresponds to the loss being close to zero, and represents a 2-dimensional inflection point, where the surface bends in different directions.
+
+So, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
+
 
 #### Likelihood
 
