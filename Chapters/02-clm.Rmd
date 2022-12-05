@@ -318,6 +318,8 @@ It is obvious that the maximisation of the log-likelihood \@ref(eq:additiveLogLi
 \end{equation}
 The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary part of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related. This loss function might be especially useful if we indeed can assume that the real and imaginary part of the residuals are linearly related and we want to use this information in the estimation.
 
+The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
+
 
 #### Comparing different losses
 
