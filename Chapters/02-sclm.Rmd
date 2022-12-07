@@ -1,13 +1,12 @@
-# Complex Linear Regression {#CLR}
+# Simple Complex Linear Regression {#simpleCLR}
 
 ```{r echo=FALSE}
 options(scipen = 100)
 ```
 
-## Simple Complex Linear Regression {#simpleCLR}
 We start with the simplest Complex Linear Regression (CLR), which we call "simple", because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
 
-### Model formulation
+## Model formulation
 The simple Complex Linear Regression can be written as:
 \begin{equation}
     y_j = \beta_0 + \beta_1 x_j + \epsilon_j,
@@ -51,7 +50,7 @@ And if we stack each of the vectors and matrices for each $j=1 \dots n$ we get e
 where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. The form \@ref(eq:SimpleCLRSystemVectorFinal) shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
 
 
-### Estimation {#SCLREstimation}
+## Estimation {#SCLREstimation}
 Whenever we estimate a model, we substitute the "true" parameters by their sample estimates. So, for the CLR, the model applied to the data should be written as:
 \begin{equation}
     y_j = b_0 + b_1 x_j + e_j,
@@ -78,7 +77,7 @@ or equivalently in matrix notations:
 where $b_{l}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\beta_l$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $e_j$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
 
 
-#### Ordinary Least Squares
+### Ordinary Least Squares
 We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
     \sum_{j=1}^n (e_j \tilde{e}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
@@ -135,7 +134,7 @@ As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is simila
 It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParametersMoments) correspond to: they minimise the loss \@ref(eq:SimpleCLROLSLoss), thus in the case, when $\mathrm{E}(e_j)=0$ they minimise variances of real and imaginary parts of the complex residuals. A thing to note is that they ignore the potential covariance between them, which in some cases might be a desirable property, but in the others might cause issues.
 
 
-#### Complex Least Squares
+### Complex Least Squares
 An alternative estimation technique involves the minimisation of a rather exotic loss function:
 \begin{equation}
     \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n (e_{r,j}^2 - e_{i,j}^2 + i 2 e_{r,j} e_{i,j}),
@@ -292,7 +291,7 @@ Figure \@ref(fig:plotlyCLS) demonstrates how the projection of the two-dimension
 So, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
 
 
-#### Likelihood
+### Likelihood
 Finally, another way of estimating the simple CLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
 \begin{equation}
     \boldsymbol{\Sigma}_\epsilon = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
@@ -323,7 +322,7 @@ The minimisation of GV in its turn implies the joint minimisation of variances o
 The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
 
 
-#### Comparing different estimators
+### Comparing different estimators
 Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
 
 ```{r echo=FALSE}
@@ -381,13 +380,7 @@ mtext(TeX("Im($b_1$)"), side=1, line=3, at=1.5/2, outer=TRUE)
 Ratio of variances for several sample sizes...
 
 
-
-### Inference
-Number of estimated parameters is k, number of degrees of freedom per series is k/2.
-
-
-
-## Correlation analysis of complex random variables
+# Correlation analysis of complex random variables
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
 For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances for variables $x$ and $y$:
@@ -400,7 +393,7 @@ For modelling purposes, it might be useful to have the information about all pos
 6. $\sigma_{y_r,x_i}$.
 
 
-### Visualisation of relations {#correlationVisual}
+## Visualisation of relations {#correlationVisual}
 In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \@ref(fig:crvScatterplots) for two generated complex random variables $x$ and $y$, created using `cplot()` function from `complex` package in R.
 
 ```{r crvScatterplots, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
@@ -455,7 +448,7 @@ The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the 
 <!-- The only thing to note is that due to the nature of MDS, the direction of the relation and the strength of the relationship might be lost during scaling. -->
 
 
-### Conjugate and Direct correlations
+## Conjugate and Direct correlations
 The literature knows two correlation coefficients for complex variables [@ref]: the conjugate and the direct correlation (the latter is known in the literature as "pseudo-correlation"). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
 
 1. Conjugate correlation
@@ -576,7 +569,7 @@ As can be seen from the plot in Figure \@ref(fig:crvCorConjugateMDS), it seems t
 
 
 
-### Direct correlation
+## Direct correlation
 The direct correlation can be expanded to:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}}.
@@ -652,7 +645,7 @@ Father's stuff here.
 <!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left(\left(\sigma_{x_r}^2 - \sigma_{x_i}^2\right)^2 + 4 \sigma_{x_r,x_i}^2 \right) \left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
 
 
-### Pearson's correlation
+## Pearson's correlation
 We can also use MDS to analyse the projections of complex variables on x and y axes, similar to how we have done that in Subsection \@ref(correlationVisual). In that case, we can calculate Pearson's correlation coefficient:
 
 ```{r}
@@ -672,24 +665,10 @@ ccor(x, y, method="pearson")
 The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it can reach the local optimum and not being able to get to the global one. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the long series. This means that in some cases it might take plenty of time before we get the Pearson's correlation value. Nonetheless, this is an additional way of analysing relations between complex variables.
 
 
-### Correlation matrix
+## Correlation matrix
 Finally, as discussed in Subsection \@ref(crvSecondMoment), it is possible to calculate the covariance matrix between two c.r.v. Based on that matrix, we can calculate the correlation matrix, which will summarise all the relations between the real and imaginary parts of $x$ and $y$. This is done by dividing each element of the covariance matrix by geometric means of variances of the variables under consideration. In R, this can be done using `covar()` function from the `complex` package and `cov2cor()` function from the `stats` package:
 
 ```{r}
 cov2cor(covar(cbind(x,y)))
 ```
 This matrix will not tell us how the variables $x$ and $y$ are related overall, but it will contain information about each of their individual elements.
-
-
-## Multiple CLR
-### Model formulation 
-
-### Estimation
-
-### Inference
-
-### Diagnostics
-
-### Forecasting
-
-### Examples of application (Production functions)

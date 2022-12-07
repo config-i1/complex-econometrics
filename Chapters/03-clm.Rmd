@@ -1,0 +1,17 @@
+# Multiple Complex Linear Regression {#simpleCLR}
+
+```{r echo=FALSE}
+options(scipen = 100)
+```
+
+## Model formulation 
+
+## Estimation
+
+## Inference
+
+## Diagnostics
+
+## Forecasting
+
+## Examples of application (Production functions)
