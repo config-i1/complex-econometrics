@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.744+102.0836i
+## [1] 49.19141+99.55549i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 134.067+0i
+## 135.3665+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -599,7 +599,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -68.77334-2.14847i
+## -93.51248-7.19742i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -625,8 +625,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r        x_i
-## x_r 32.646816  -1.074235
-## x_i -1.074235 101.420151
+## x_r 20.927027  -3.598709
+## x_i -3.598709 114.439503
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3309.891
+## [1] 2381.928
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 53.85166-89.24976i
+## 69.55268-93.49962i
 \end{verbatim}
 
 \begin{Shaded}
@@ -718,7 +718,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##  Direct covariance 
-## -52.51229+37.2269i
+## -47.9624+68.82301i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -731,9 +731,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                  y
-## x -62.19110-14.09457i -52.51229+37.2269i
-## y -52.51229+37.22690i  36.99174+49.0458i
+##                     x                   y
+## x -89.99089- 2.34275i -47.96240+68.82301i
+## y -47.96240+68.82301i  47.33523+78.60882i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -741,16 +741,13 @@ While there exist higher order moments for complex random variables, we do not d
 \hypertarget{normal-c.r.v.}{%
 \section{Normal c.r.v.}\label{normal-c.r.v.}}
 
-\hypertarget{CLR}{%
-\chapter{Complex Linear Regression}\label{CLR}}
-
 \hypertarget{simpleCLR}{%
-\section{Simple Complex Linear Regression}\label{simpleCLR}}
+\chapter{Simple Complex Linear Regression}\label{simpleCLR}}
 
 We start with the simplest Complex Linear Regression (CLR), which we call ``simple'', because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
 
 \hypertarget{model-formulation}{%
-\subsection{Model formulation}\label{model-formulation}}
+\section{Model formulation}\label{model-formulation}}
 
 The simple Complex Linear Regression can be written as:
 \begin{equation}
@@ -795,7 +792,7 @@ And if we stack each of the vectors and matrices for each \(j=1 \dots n\) we get
 where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}\), \(\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}\) and \(\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}\). The form \eqref{eq:SimpleCLRSystemVectorFinal} shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
 
 \hypertarget{SCLREstimation}{%
-\subsection{Estimation}\label{SCLREstimation}}
+\section{Estimation}\label{SCLREstimation}}
 
 Whenever we estimate a model, we substitute the ``true'' parameters by their sample estimates. So, for the CLR, the model applied to the data should be written as:
 \begin{equation}
@@ -823,7 +820,7 @@ or equivalently in matrix notations:
 where \(b_{l}\), \(b_{l,r}+ib_{l,i}\) and \(\boldsymbol{b}\) are the estimates of respective \(\beta_l\), \(\beta_{l,r} + i \beta_{l,i}\) and \(\boldsymbol{\beta}\) and \(e_j\), \(e_{r,j} + i e_{i,j}\) and \(\boldsymbol{e}_j\) are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
 
 \hypertarget{ordinary-least-squares}{%
-\subsubsection{Ordinary Least Squares}\label{ordinary-least-squares}}
+\subsection{Ordinary Least Squares}\label{ordinary-least-squares}}
 
 We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
@@ -881,7 +878,7 @@ As we can see, the formula \eqref{eq:SimpleCLROLSLossParametersMoments} is simil
 It is apparent what the estimates of parameters \eqref{eq:SimpleCLROLSLossParametersMoments} correspond to: they minimise the loss \eqref{eq:SimpleCLROLSLoss}, thus in the case, when \(\mathrm{E}(e_j)=0\) they minimise variances of real and imaginary parts of the complex residuals. A thing to note is that they ignore the potential covariance between them, which in some cases might be a desirable property, but in the others might cause issues.
 
 \hypertarget{complex-least-squares}{%
-\subsubsection{Complex Least Squares}\label{complex-least-squares}}
+\subsection{Complex Least Squares}\label{complex-least-squares}}
 
 An alternative estimation technique involves the minimisation of a rather exotic loss function:
 \begin{equation}
@@ -1051,7 +1048,7 @@ Figure \ref{fig:plotlyCLS} demonstrates how the projection of the two-dimensiona
 So, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
 
 \hypertarget{likelihood}{%
-\subsubsection{Likelihood}\label{likelihood}}
+\subsection{Likelihood}\label{likelihood}}
 
 Finally, another way of estimating the simple CLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
 \begin{equation}
@@ -1083,7 +1080,7 @@ The minimisation of GV in its turn implies the joint minimisation of variances o
 The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
 
 \hypertarget{comparing-different-estimators}{%
-\subsubsection{Comparing different estimators}\label{comparing-different-estimators}}
+\subsection{Comparing different estimators}\label{comparing-different-estimators}}
 
 Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
 
@@ -1097,13 +1094,8 @@ In order to do that, we set up several experiments with the following settings\l
 
 Ratio of variances for several sample sizes\ldots{}
 
-\hypertarget{inference}{%
-\subsection{Inference}\label{inference}}
-
-Number of estimated parameters is k, number of degrees of freedom per series is k/2.
-
 \hypertarget{correlation-analysis-of-complex-random-variables}{%
-\section{Correlation analysis of complex random variables}\label{correlation-analysis-of-complex-random-variables}}
+\chapter{Correlation analysis of complex random variables}\label{correlation-analysis-of-complex-random-variables}}
 
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
@@ -1127,7 +1119,7 @@ For modelling purposes, it might be useful to have the information about all pos
 \end{enumerate}
 
 \hypertarget{correlationVisual}{%
-\subsection{Visualisation of relations}\label{correlationVisual}}
+\section{Visualisation of relations}\label{correlationVisual}}
 
 In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \ref{fig:crvScatterplots} for two generated complex random variables \(x\) and \(y\), created using \texttt{cplot()} function from \texttt{complex} package in R.
 
@@ -1219,7 +1211,7 @@ The same code is implemented in \texttt{cplot()} function from \texttt{complex} 
 The plot in Figure \ref{fig:crvScatterplotMDS} is much easier to read than the collection of scatterplots in Figure \ref{fig:crvScatterplots}, and in our example, we can conclude that the two complex variables exhibit strong linear relation.
 
 \hypertarget{conjugate-and-direct-correlations}{%
-\subsection{Conjugate and Direct correlations}\label{conjugate-and-direct-correlations}}
+\section{Conjugate and Direct correlations}\label{conjugate-and-direct-correlations}}
 
 The literature knows two correlation coefficients for complex variables \citep{ref}: the conjugate and the direct correlation (the latter is known in the literature as ``pseudo-correlation''). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \ref{crvSecondMoment}):
 
@@ -1372,7 +1364,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.706318-0.7042757i
+## [1] 0.7038216-0.7063588i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1392,7 +1384,7 @@ As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the co
 As can be seen from the plot in Figure \ref{fig:crvCorConjugateMDS}, it seems that the variables indeed exhibit a strong linear relation. So, the conjugate correlation has provided an adequate information about it.
 
 \hypertarget{direct-correlation}{%
-\subsection{Direct correlation}\label{direct-correlation}}
+\section{Direct correlation}\label{direct-correlation}}
 
 The direct correlation can be expanded to:
 \begin{equation}
@@ -1414,7 +1406,7 @@ Note however that due to the division by a complex number, the value of 1 can al
 Father's stuff here.
 
 \hypertarget{pearsons-correlation}{%
-\subsection{Pearson's correlation}\label{pearsons-correlation}}
+\section{Pearson's correlation}\label{pearsons-correlation}}
 
 We can also use MDS to analyse the projections of complex variables on x and y axes, similar to how we have done that in Subsection \ref{correlationVisual}. In that case, we can calculate Pearson's correlation coefficient:
 
@@ -1429,8 +1421,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##           [,1]
-## [1,] 0.9764569
+##            [,1]
+## [1,] -0.9948536
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1444,7 +1436,7 @@ Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does
 The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it can reach the local optimum and not being able to get to the global one. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the long series. This means that in some cases it might take plenty of time before we get the Pearson's correlation value. Nonetheless, this is an additional way of analysing relations between complex variables.
 
 \hypertarget{correlation-matrix}{%
-\subsection{Correlation matrix}\label{correlation-matrix}}
+\section{Correlation matrix}\label{correlation-matrix}}
 
 Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to calculate the covariance matrix between two c.r.v. Based on that matrix, we can calculate the correlation matrix, which will summarise all the relations between the real and imaginary parts of \(x\) and \(y\). This is done by dividing each element of the covariance matrix by geometric means of variances of the variables under consideration. In R, this can be done using \texttt{covar()} function from the \texttt{complex} package and \texttt{cov2cor()} function from the \texttt{stats} package:
 
@@ -1455,35 +1447,35 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i        y_r       y_i
-## x_r 1.0000000  0.0266662  0.7014751 0.7178796
-## x_i 0.0266662  1.0000000 -0.6903419 0.7113089
-## y_r 0.7014751 -0.6903419  1.0000000 0.0121189
-## y_i 0.7178796  0.7113089  0.0121189 1.0000000
+##           x_r        x_i         y_r        y_i
+## x_r 1.0000000  0.1060104  0.69781663 0.76507162
+## x_i 0.1060104  1.0000000 -0.63376980 0.71780021
+## y_r 0.6978166 -0.6337698  1.00000000 0.07782119
+## y_i 0.7650716  0.7178002  0.07782119 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
 
-\hypertarget{multiple-clr}{%
-\section{Multiple CLR}\label{multiple-clr}}
+\hypertarget{simpleCLR}{%
+\chapter{Multiple Complex Linear Regression}\label{simpleCLR}}
 
 \hypertarget{model-formulation-1}{%
-\subsection{Model formulation}\label{model-formulation-1}}
+\section{Model formulation}\label{model-formulation-1}}
 
 \hypertarget{estimation}{%
-\subsection{Estimation}\label{estimation}}
+\section{Estimation}\label{estimation}}
 
-\hypertarget{inference-1}{%
-\subsection{Inference}\label{inference-1}}
+\hypertarget{inference}{%
+\section{Inference}\label{inference}}
 
 \hypertarget{diagnostics}{%
-\subsection{Diagnostics}\label{diagnostics}}
+\section{Diagnostics}\label{diagnostics}}
 
 \hypertarget{forecasting}{%
-\subsection{Forecasting}\label{forecasting}}
+\section{Forecasting}\label{forecasting}}
 
 \hypertarget{examples-of-application-production-functions}{%
-\subsection{Examples of application (Production functions)}\label{examples-of-application-production-functions}}
+\section{Examples of application (Production functions)}\label{examples-of-application-production-functions}}
 
   \bibliography{library.bib,packages.bib,websites.bib}
 
