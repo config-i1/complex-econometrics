@@ -40,12 +40,12 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'greybox', 'complex', 'plotrix', 'plotly'
 ), 'packages.bib')
 # Load the necessary packages
+library("plotly")
 library("latex2exp")
 library("kableExtra")
 library("statmod")
 library("pracma")
 library("greybox")
 library("plotrix")
-library("plotly")
 library("complex")
 ```

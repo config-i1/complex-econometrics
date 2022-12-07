@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.10.5)  7 DEC 2022 12:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.10.5)  7 DEC 2022 12:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -809,14 +809,14 @@ e 1069.
 
 [35 <./images/CLSPlot.png>] [36]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-ots-1.pdf, id=442, 262.9825pt x 264.99pt>
+ots-1.pdf, id=442, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplots-1.pdf  used on input line 1136.
-(pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
+(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 145.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
@@ -828,14 +828,14 @@ Package natbib Warning: Citation `refMDS' on page 38 undefined on input line 11
 81.
 
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-otMDS-1.pdf, id=459, 257.96375pt x 218.8175pt>
+otMDS-1.pdf, id=459, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplotMDS-1.pdf  used on input line 1201.
-(pdftex.def)             Requested size: 257.96703pt x 218.82028pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Package natbib Warning: Citation `ref' on page 38 undefined on input line 1210.
 
@@ -912,7 +912,7 @@ f/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy
 s/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pf
 b>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (47 pages,
- 1654168 bytes).
+ 1654544 bytes).
 PDF statistics:
  747 PDF objects out of 1000 (max. 8388607)
  617 compressed objects within 7 object streams
