@@ -1,386 +1,4 @@
-# Simple Complex Linear Regression {#simpleCLR}
-
-```{r echo=FALSE}
-options(scipen = 100)
-```
-
-We start with the simplest Complex Linear Regression (CLR), which we call "simple", because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
-
-## Model formulation
-The simple Complex Linear Regression can be written as:
-\begin{equation}
-    y_j = \beta_0 + \beta_1 x_j + \epsilon_j,
-    (\#eq:SimpleCLRComplex)
-\end{equation}
-where $j$ is the index for an observation and every parameter and variable is a complex number, i.e. $y_j = y_{r,j}+i y_{i,j}$ is the complex response variable, $x_j = x_{r,j}+i x_{i,j}$ is the complex explanatory variable, $\beta_{l} = \beta_{l,r} + i \beta_{l,i}$ is the $l$-th parameter and $\epsilon_j = \epsilon_{r,j} + i \epsilon_{i,j}$ is the error term. For now, we do not make any specific assumptions about the distribution of the complex error term, we will come back to this later in this chapter. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
-\begin{equation}
-    y_{r,j}+i y_{i,j} = (\beta_{0,r} + i \beta_{0,i}) + (\beta_{1,r} + i \beta_{1,i}) (x_{r,j}+i x_{i,j}) + (\epsilon_{r,j} + i \epsilon_{i,j}),
-    (\#eq:SimpleCLR)
-\end{equation}
-which is in fact a multivariate model, capturing how the change of values in pair of variables $x_r$, $x_i$ leads to the change in the pair of variables $y_r$ and $y_i$. Given that any complex equation can be represented as a system of two equations, the model \@ref(eq:SimpleCLR) can be represented as a system of two linear regressions:
-\begin{equation}
-    \begin{aligned}
-        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{r,j} - \beta_{1,i} x_{i,j} + \epsilon_{r,j} \\
-        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{i,j} + \beta_{1,i} x_{r,j} + \epsilon_{i,j}
-    \end{aligned}
-    (\#eq:SimpleCLRSystem)
-\end{equation}
-This model captures a very specific dynamics between the real and imaginary parts, given that they share the same set of parameters for the slope. But most importantly it shows how each complex variable $y$ relates to variable $x$ in a four dimensional space. Note that the real and imaginary parts of $y$ can be exchanged without a serious impact on the model: in that case the values of parameters would change, but the relation between $x$ and $y$ would stay the same. Similarly, changing $x_r$ with $x_i$ would only lead to different estimates of parameters, the general relation will hold.
-
-Going even further, using the vector and matrix representations of complex variables, the same system of equations \@ref(eq:SimpleCLRSystem) can be rewritten as:
-\begin{equation}
-    \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix} = \begin{pmatrix} \beta_{0,r} \\ \beta_{0,i} \end{pmatrix} + \begin{pmatrix} x_{r,j} & -x_{i,j} \\ x_{i,j} & x_{r,j} \end{pmatrix} \begin{pmatrix} \beta_{1,r} \\ \beta_{1,i} \end{pmatrix} + \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix} ,
-    (\#eq:SimpleCLRSystemVector01)
-\end{equation}
-or uniting all the parameters in one vector:
-\begin{equation}
-    \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix} = \begin{pmatrix} 1 & 0 & x_{r,j} & -x_{i,j} \\ 0 & 1 & x_{i,j} & x_{r,j} \end{pmatrix} \begin{pmatrix} \beta_{0,r} \\ \beta_{0,i} \\ \beta_{1,r} \\ \beta_{1,i} \end{pmatrix} + \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix} .
-    (\#eq:SimpleCLRSystemVector02)
-\end{equation}
-This form can then be represented in a classical matrix notations:
-\begin{equation}
-    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{\beta} + \boldsymbol{\epsilon}_j .
-    (\#eq:SimpleCLRSystemVector03)
-\end{equation}
-And if we stack each of the vectors and matrices for each $j=1 \dots n$ we get even more compact form:
-\begin{equation}
-    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{E} ,
-    (\#eq:SimpleCLRSystemVectorFinal)
-\end{equation}
-where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. The form \@ref(eq:SimpleCLRSystemVectorFinal) shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
-
-
-## Estimation {#SCLREstimation}
-Whenever we estimate a model, we substitute the "true" parameters by their sample estimates. So, for the CLR, the model applied to the data should be written as:
-\begin{equation}
-    y_j = b_0 + b_1 x_j + e_j,
-    (\#eq:SimpleCLRComplexEstimated)
-\end{equation}
-or
-\begin{equation}
-    y_{r,j}+i y_{i,j} = (b_{0,r} + i b_{0,i}) + (b_{1,r} + i b_{1,i}) (x_{r,j}+i x_{i,j}) + (e_{r,j} + i e_{i,j}),
-    (\#eq:SimpleCLREstimated)
-\end{equation}
-or
-\begin{equation}
-    \begin{aligned}
-        y_{r,j} = & b_{0,r} + b_{1,r} x_{r,j} - b_{1,i} x_{i,j} + e_{r,j} \\
-        y_{i,j} = & b_{0,i} + b_{1,r} x_{i,j} + b_{1,i} x_{r,j} + e_{i,j}
-    \end{aligned}
-    (\#eq:SimpleCLRSystemEstimated)
-\end{equation}
-or equivalently in matrix notations:
-\begin{equation}
-    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{b} + \boldsymbol{e}_j ,
-    (\#eq:SimpleCLRSystemVector03Estimated)
-\end{equation}
-where $b_{l}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\beta_l$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $e_j$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
-
-
-### Ordinary Least Squares
-We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
-\begin{equation}
-    \sum_{j=1}^n (e_j \tilde{e}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
-    (\#eq:SimpleCLROLSLoss)
-\end{equation}
-The residuals can be substituted as: $e_j = y_j - b_0 - b_1 x_j$ and $\tilde{e}_j = \tilde{y}_j - \tilde{b}_0 - \tilde{b}_1 \tilde{x}_j$ to get:
-\begin{equation}
-    \sum_{j=1}^n (y_j - b_0 - b_1 x_j) (\tilde{y}_j - \tilde{b}_0 - \tilde{b}_1 \tilde{x}_j),
-    (\#eq:SimpleCLROLSLoss01)
-\end{equation}
-which after opening the brackets becomes:
-\begin{equation}
-    \sum_{j=1}^n \left(y_j \tilde{y}_j - y_j \tilde{b}_0 - y_j \tilde{b}_1 \tilde{x}_j - b_0\tilde{y}_j + b_0 \tilde{b}_0 + b_0 \tilde{b}_1 \tilde{x}_j - b_1 x_j \tilde{y}_j + b_1 x_j \tilde{b}_0 + b_1 x_j \tilde{b}_1 \tilde{x}_j \right) .
-    (\#eq:SimpleCLROLSLoss02)
-\end{equation}
-In order to minimise the sum of squared errors \@ref(eq:SimpleCLROLSLoss), we need to take derivative of \@ref(eq:SimpleCLROLSLoss02) with respect to each of the parameters $b_{0,r}$, $b_{0,i}$, $b_{1,r}$ and $b_{1,i}$ and equate each of the resulting equations to zero to find the extrema:
-\begin{equation}
-    \begin{aligned}
-        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,r}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,i}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{1,r}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{1,i}} = 0
-    \end{aligned}
-    (\#eq:SimpleCLROLSLossSystem01)
-\end{equation}
-to get:
-\begin{equation}
-    \begin{aligned}
-        & - \sum_{j=1}^n y_j - \sum_{j=1}^n \tilde{y}_j + 2 n b_{0,r} + \tilde{b}_1 \sum_{j=1}^n \tilde{x}_j + {b}_1 \sum_{j=1}^n {x}_j = 0 \\
-        & i \sum_{j=1}^n y_j - i \sum_{j=1}^n \tilde{y}_j + 2 n b_{0,i} + i \tilde{b}_1 \sum_{j=1}^n \tilde{x}_j - i {b}_1 \sum_{j=1}^n {x}_j = 0 \\
-        & - \sum_{j=1}^n y_j \tilde{x}_j + b_0 \sum_{j=1}^n \tilde{x}_j - \sum_{j=1}^n x_j \tilde{y}_j + \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,r} \sum_{j=1}^n x_j \tilde{x}_j = 0 \\
-        & i \sum_{j=1}^n y_j \tilde{x}_j - i b_0 \sum_{j=1}^n \tilde{x}_j - i \sum_{j=1}^n x_j \tilde{y}_j + i \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,i} \sum_{j=1}^n x_j \tilde{x}_j = 0 .
-    \end{aligned}
-    (\#eq:SimpleCLROLSLossSystem02)
-\end{equation}
-As shown by @Svetunkov2012, solving the system of equations \@ref(eq:SimpleCLROLSLossSystem02) gives the following formulae for the parameters of the model:
-\begin{equation}
-    \begin{aligned}
-        & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) (\tilde{x}_j-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x}) (\tilde{x}_j-\hat{\tilde{\mu}}_{x})} \\
-        & b_0 = \frac{1}{n} \sum_{j=1}^n y_j - b_1 \sum_{j=1}^n x_j ,
-    \end{aligned}
-    (\#eq:SimpleCLROLSLossParameters)
-\end{equation}
-which can also be written in terms of conjugate moments as:
-\begin{equation}
-    \begin{aligned}
-        & b_{1} = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x^2} \\
-        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
-    \end{aligned}
-    (\#eq:SimpleCLROLSLossParametersMoments)
-\end{equation}
-As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is similar to the one that is typically used for the conventional simple linear regression with the only difference that the parameters in \@ref(eq:SimpleCLROLSLossParametersMoments) are complex and that each of the moments in \@ref(eq:SimpleCLROLSLossParametersMoments) is a moment for respective complex variable.
-
-It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParametersMoments) correspond to: they minimise the loss \@ref(eq:SimpleCLROLSLoss), thus in the case, when $\mathrm{E}(e_j)=0$ they minimise variances of real and imaginary parts of the complex residuals. A thing to note is that they ignore the potential covariance between them, which in some cases might be a desirable property, but in the others might cause issues.
-
-
-### Complex Least Squares
-An alternative estimation technique involves the minimisation of a rather exotic loss function:
-\begin{equation}
-    \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n (e_{r,j}^2 - e_{i,j}^2 + i 2 e_{r,j} e_{i,j}),
-    (\#eq:SimpleCLRCLSLoss)
-\end{equation}
-for which in case of $\mathrm{E}(e_j)=0$, the real part corresponds to the difference between the variances of the real and imaginary parts of the residuals, while the imaginary parts corresponds to the covariance between them. This loss be considered exotic, because its value is a complex number. It is difficult to explain how one can minimise a complex number, but from what follows, we show that the estimation technique has some meaning, works and gives adequate estimates of parameters.
-
-The logic for the derivation of CLS is similar to OLS. We expand \@ref(eq:SimpleCLRCLSLoss) to:
-\begin{equation}
-    \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n y_j^2 + n b_0^2 + b_1^2 \sum_{j=1}^n x_j^2 - 2 b_0 \sum_{j=1}^n y_j - 2 b_1 \sum_{j=1}^n x_j y_j + 2 b_0 b_1 \sum_{j=1}^n x_j 
-    (\#eq:SimpleCLRCLSLoss02)
-\end{equation}
-and then take derivatives of \@ref(eq:SimpleCLRCLSLoss02) with respect to parameter $b_0$ and $b_1$ and then equate the resulting equations to zero:
-\begin{equation}
-    \begin{aligned}
-        & \frac{d \sum_{j=1}^n (e_j^2)}{d b_{0}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j^2)}{d b_{1}} = 0 .
-    \end{aligned}
-    (\#eq:SimpleCLRCLSLossSystem01)
-\end{equation}
-The derivatives \@ref(eq:SimpleCLRCLSLossSystem01) give the following system of complex equations:
-\begin{equation}
-    \begin{aligned}
-        & 2 n b_0 - 2 \sum_{j=1}^n y_j + 2 b_1 \sum_{j=1}^n x_j = 0 \\
-        & 2 b_1 \sum_{j=1}^n x_j^2 - 2 \sum_{j=1}^n x_j y_j + 2 b_0 \sum_{j=1}^n x_j = 0 .
-    \end{aligned}
-    (\#eq:SimpleCLRCLSLossSystem02)
-\end{equation}
-The solution for this system of equations, as it was shown by @Svetunkov2012, is:
-\begin{equation}
-    \begin{aligned}
-        & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) ({x}_j-\hat{\mu}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x})^2} \\
-        & b_0 = \frac{1}{n} \sum_{j=1}^n y_j - b_1 \sum_{j=1}^n x_j ,
-    \end{aligned}
-    (\#eq:SimpleCLRCLSLossParameters)
-\end{equation}
-or in terms of direct moments for complex random variables:
-\begin{equation}
-    \begin{aligned}
-        & b_{1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x^2} \\
-        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
-    \end{aligned}
-    (\#eq:SimpleCLRCLSLossParametersMoments)
-\end{equation}
-
-In order to better understand what is specifically minimised, when the formulae \@ref(eq:SimpleCLRCLSLossParametersMoments) are used for the estimation of parameters, we conduct a small experiment in R with the following code:
-
-```{r echo=FALSE}
-load("./data/CLSMDS.Rdata")
-```
-
-```{r eval=FALSE}
-# Create real part of a c.r.v. x
-xr <- rnorm(1000,0,10)
-# Create a c.r.v. x
-x <- complex(real=xr, imaginary=1.5*xr+rnorm(1000,0,10))
-# Create a c.r.v. y
-y <- (1.5 + 1.2i) * x +
-    complex(real=rnorm(1000,0,10), imaginary=rnorm(1000,0,10))
-
-# Define number of iterations and the matrix with the values
-nsim <- 10000
-clsValues <- matrix(NA, nsim, 4,
-                    dimnames=list(NULL,
-                                  c("b1r","b1i","CLSr","CLSi")))
-
-# CLS loss function
-clsLoss <- function(y, yHat){
-    return(sum((y - yHat)^2))
-}
-
-# Loop for values of b1r from 0.52 to 2.5 and
-# for b1i from 0.22 to 2.2
-l <- 1
-for(i in 1:(nsim/100)){
-    for(j in 1:(nsim/100)){
-        b <- complex(real=i/100*2+0.5, imaginary=j/100*2+0.2)
-        yHat <- (10 + 15i) + b * x
-        clsResult <- clsLoss(y, yHat)
-        clsValues[l,1] <- Re(b);
-        clsValues[l,2] <- Im(b);
-        clsValues[l,3] <- Re(clsResult);
-        clsValues[l,4] <- Im(clsResult);
-        l <- l+1;
-    }
-}
-
-# Estimate b1 using CLS
-bOptimal <- ccov(x, y, method="direct") /
-            cvar(x, method="direct")
-# Produce fitted values
-yHat <- bOptimal * x
-# Calculate the loss
-clsResult <- clsLoss(y, yHat)
-```
-
-In this experiment we generate complex variables $x$ and $y$ and then calculate values of the complex loss function based on a combination of values of the complex slope $b_1$ (which we call just `b` in the code). After running the code above we end up with 10,000 values of the loss function and one additional, which corresponds to the optimal point according to \@ref(eq:SimpleCLRCLSLossParametersMoments). We can then produce several plots to better understand what is happening.
-
-```{r clsScatter, fig.cap="Variety of CLS loss function values for different values of $b_1$."}
-plot(clsValues[,3:4], type="p",
-     xlab="Re(CLS loss)", ylab="Im(CLS loss)")
-abline(h=0, col="grey", lty=2, lwd=2)
-abline(v=0, col="grey", lty=2, lwd=2)
-points(Re(clsResult), Im(clsResult), col="red", pch=19)
-```
-
-Figure \@ref(fig:clsScatter) shows a scatterplot of values of the complex loss \@ref(eq:SimpleCLRCLSLoss). The red point close to the origin corresponds to the estimate obtained using \@ref(eq:SimpleCLRCLSLossParametersMoments). As we can see, it is close to the origin, which implies that the minimisation of the loss \@ref(eq:SimpleCLRCLSLoss) is equivalent to making both real and imaginary parts of it close to zero. This means that CLS makes variances of real and imaginary residuals similar and shrinks the covariance between them to zero.
-
-Another way of looking at how CLS works is to reduce its dimensionality via the Multidimensional Scaling [@Gower] and then visualise it. The R code below is relatively slow but produces a solution for this task.
-
-```{r eval=FALSE}
-# Calculate distance matrix for all losses
-# (including the CLS point)
-clsMDSDistance <- dist(rbind(clsValues[,3:4],
-                             c(Re(clsResult),Im(clsResult))))
-
-# Do Multidimensional scaling
-clsMDS <- cmdscale(clsMDSDistance, k=1)
-
-# Create a data frame with the coordinates
-clsMDSValues <- data.frame(z=clsMDS,
-                           x=c(clsValues[,1],Re(bOptimal)),
-                           y=c(clsValues[,2],Im(bOptimal)))
-
-# Create a matrix with loss values for 3d plotting
-clsMDSValuesZ <- matrix(clsMDSValues$z[-10001], 100, 100)
-```
-
-Then, to produce the 3d surface on the plane of "loss - $b_{1,r}$ - $b_{1,i}$, we can use functions from the `plotly` package in R as shown in the code below:
-
-```{r eval=FALSE}
-plot_ly(z=clsMDSValuesZ,
-        x=unique(clsMDSValues$x[-10001]),
-        y=unique(clsMDSValues$y[-10001])) |>
-    plotly::layout(scene=list(xaxis = list(title = "Re(b1)"),
-                      yaxis = list(title = "Im(b1)"),
-                      zaxis = list(title = "MDS of CLS loss"))) |>
-    add_surface() |>
-    add_trace(data = tail(clsMDSValues,1),
-              x = ~x,
-              y = ~y,
-              z = ~z,
-              mode = "markers",
-              type = "scatter3d",
-              marker = list(size = 10))
-```
-
-```{r plotlyCLS, echo=FALSE, fig.cap="Plot of the 3d surface for the MDS of the CLS loss."}
-knitr::include_graphics("images/CLSPlot.png")
-```
-
-Figure \@ref(fig:plotlyCLS) demonstrates how the projection of the two-dimensional loss behaves for a variety of parameters of the regression. The orange point in the middle corresponds to the one obtained via CLS. We can see that it corresponds to the loss being close to zero, and represents a 2-dimensional inflection point, where the surface bends in different directions.
-
-So, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
-
-
-### Likelihood
-Finally, another way of estimating the simple CLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
-\begin{equation}
-    \boldsymbol{\Sigma}_\epsilon = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
-    (\#eq:SimpleCLRLikelihoodSigma)
-\end{equation}
-The log-likelihood in this case can be written as:
-\begin{equation}
-	\ell(\boldsymbol{\theta}, \boldsymbol{\Sigma}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi) + \log | \boldsymbol{\Sigma}_\epsilon| \right) -\frac{1}{2} \sum_{j=1}^n \left( \boldsymbol{\epsilon}_j^\prime \boldsymbol{\Sigma}_\epsilon^{-1} \boldsymbol{\epsilon}_j \right) ,
-    (\#eq:additiveLogLik)
-\end{equation}
-where $\boldsymbol{\theta}$ is the vector of estimated parameters and $\boldsymbol{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\  \epsilon_{i,j} \end{pmatrix}$ is the two dimensional error term. This likelihood is maximised when the covariance matrix \@ref(eq:SimpleCLRLikelihoodSigma) is estimated via:
-\begin{equation}
-	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
-    (\#eq:Sigmaest)
-\end{equation}
-where $\prime$ denotes transposition of a matrix. It can be shown that if the \@ref(eq:Sigmaest) is inserted in \@ref(eq:additiveLogLik) then the following concentrated log-likelihood can be obtained [see, for example, @Snyder2017]:
-\begin{equation}
-	\ell(\boldsymbol{\theta}, \hat{\boldsymbol{\Sigma}}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi e) + \log | \hat{\boldsymbol{\Sigma}}_\epsilon | \right) .
-	(\#eq:additiveLogLikConcentrated)
-\end{equation}
-It is obvious that the maximisation of the log-likelihood \@ref(eq:additiveLogLikConcentrated) is equivalent to minimising the generalised variance of the complex error term (as discussed in Subsection \@ref(crvSecondMoment)):
-\begin{equation}
-    \mathrm{GV} = |\hat{\boldsymbol{\Sigma}}_\epsilon| = \sigma_{\epsilon_r}^2 \sigma_{\epsilon_i}^2 - \sigma_{\epsilon_r, \epsilon_i}^2 .
-    (\#eq:additiveLogLikConcentratedGV)
-\end{equation}
-The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary part of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related. This loss function might be especially useful if we indeed can assume that the real and imaginary part of the residuals are linearly related and we want to use this information in the estimation.
-
-The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
-
-
-## Comparing different estimators for SCLR
-Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
-
-```{r echo=FALSE}
-load("./data/clmExperimentsParameters.Rdata")
-```
-
-In order to do that, we set up several experiments with the following settings...
-
-
-```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot)", echo=FALSE}
-methods <- c("CLS","OLS","Likelihood")
-par(mfcol=c(3,2), mar=rep(0.1,4), oma=c(5,5,2,2), xaxt="s",yaxt="s",cex.main=1.5)
-plot(Re(parametersCorError[,2,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
-     ylim=range(Re(parametersCorError[,,2])), type="l", axes=F)
-abline(h=2, col="orange", lwd=2)
-axis(side=2)
-box(col="black", lwd=1)
-mtext(methods[2], side=2, line=3, at=2.5/3, outer=TRUE)
-
-plot(Re(parametersCorError[,1,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
-     ylim=range(Re(parametersCorError[,,2])), type="l", axes=F)
-abline(h=2, col="orange", lwd=2)
-axis(side=2)
-box(col="black", lwd=1)
-mtext(methods[1], side=2, line=3, outer=TRUE)
-
-plot(Re(parametersCorError[,3,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
-     ylim=range(Re(parametersCorError[,,2])), type="l", axes=F)
-abline(h=2, col="orange", lwd=2)
-axis(side=2)
-axis(side=1)
-box(col="black", lwd=1)
-mtext(methods[3], side=2, line=3, at=0.5/3, outer=TRUE)
-mtext(TeX("Re($b_1$)"), side=1, line=3, at=0.5/2, outer=TRUE);
-
-plot(Im(parametersCorError[,2,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
-     ylim=range(Im(parametersCorError[,,2])), type="l", axes=F)
-abline(h=-1.5, col="orange", lwd=2)
-axis(side=4)
-box(col="black", lwd=1)
-plot(Im(parametersCorError[,1,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
-     ylim=range(Im(parametersCorError[,,2])), type="l", axes=F)
-abline(h=-1.5, col="orange", lwd=2)
-axis(side=4)
-box(col="black", lwd=1)
-plot(Im(parametersCorError[,3,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
-     ylim=range(Im(parametersCorError[,,2])), type="l", axes=F)
-abline(h=-1.5, col="orange", lwd=2)
-axis(side=4)
-axis(side=1)
-box(col="black", lwd=1)
-mtext(TeX("Im($b_1$)"), side=1, line=3, at=1.5/2, outer=TRUE)
-```
-
-Ratio of variances for several sample sizes...
-
-
-## Correlation analysis of complex random variables
+# Correlation analysis of complex random variables {#correlationAnalysis}
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
 For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances for variables $x$ and $y$:
@@ -393,7 +11,7 @@ For modelling purposes, it might be useful to have the information about all pos
 6. $\sigma_{y_r,x_i}$.
 
 
-### Visualisation of relations {#correlationVisual}
+## Visualisation of relations {#correlationVisual}
 In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \@ref(fig:crvScatterplots) for two generated complex random variables $x$ and $y$, created using `cplot()` function from `complex` package in R.
 
 ```{r crvScatterplots, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
@@ -448,7 +66,7 @@ The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the 
 <!-- The only thing to note is that due to the nature of MDS, the direction of the relation and the strength of the relationship might be lost during scaling. -->
 
 
-### Conjugate and Direct correlations
+## Conjugate and Direct correlations
 The literature knows two correlation coefficients for complex variables [@ref]: the conjugate and the direct correlation (the latter is known in the literature as "pseudo-correlation"). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
 
 1. Conjugate correlation
@@ -511,7 +129,7 @@ which then leads to the formula \@ref(eq:correlationConventional). Similarly, fo
 which after taking the same geometric means leads to \@ref(eq:correlationPseudo). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
 
 
-### Conjugate correlation
+## Conjugate correlation
 When it comes to the interpretation of the coefficients, the conjugate one is a real number. It can be written as:
 \begin{equation}
     {\rho}_{x,y} = \frac{\sqrt{(\sigma_{x_r, y_r} + \sigma_{x_i, y_i})^2 + (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})^2}}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
@@ -569,7 +187,7 @@ As can be seen from the plot in Figure \@ref(fig:crvCorConjugateMDS), it seems t
 
 
 
-### Direct correlation
+## Direct correlation
 The direct correlation can be expanded to:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}}.
@@ -645,7 +263,7 @@ Father's stuff here.
 <!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left(\left(\sigma_{x_r}^2 - \sigma_{x_i}^2\right)^2 + 4 \sigma_{x_r,x_i}^2 \right) \left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
 
 
-### Pearson's correlation
+## Pearson's correlation
 We can also use MDS to analyse the projections of complex variables on x and y axes, similar to how we have done that in Subsection \@ref(correlationVisual). In that case, we can calculate Pearson's correlation coefficient:
 
 ```{r}
@@ -665,7 +283,7 @@ ccor(x, y, method="pearson")
 The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it can reach the local optimum and not being able to get to the global one. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the long series. This means that in some cases it might take plenty of time before we get the Pearson's correlation value. Nonetheless, this is an additional way of analysing relations between complex variables.
 
 
-### Correlation matrix
+## Correlation matrix
 Finally, as discussed in Subsection \@ref(crvSecondMoment), it is possible to calculate the covariance matrix between two c.r.v. Based on that matrix, we can calculate the correlation matrix, which will summarise all the relations between the real and imaginary parts of $x$ and $y$. This is done by dividing each element of the covariance matrix by geometric means of variances of the variables under consideration. In R, this can be done using `covar()` function from the `complex` package and `cov2cor()` function from the `stats` package:
 
 ```{r}
