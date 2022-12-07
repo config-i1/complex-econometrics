@@ -1,4 +1,4 @@
-# Multiple Complex Linear Regression {#simpleCLR}
+# Multiple Complex Linear Regression {#multipleCLR}
 
 ```{r echo=FALSE}
 options(scipen = 100)
