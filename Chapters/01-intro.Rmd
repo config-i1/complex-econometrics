@@ -1,4 +1,4 @@
-# Introduction to complex random variables {#intro}
+# Introduction to theory of complex variables {#intro}
 ## Theory of complex numbers {#theoryOfComplexNumbers}
 This section sets out the basic concepts of the Theory of Complex Variables Functions (TCVF) with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
