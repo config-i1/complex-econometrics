@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.4005+100.6601i
+## [1] 50.744+102.0836i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 124.6514+0i
+## 134.067+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -599,7 +599,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -62.52101+5.24769i
+## -68.77334-2.14847i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +624,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 31.065202  2.623843
-## x_i  2.623843 93.586215
+##           x_r        x_i
+## x_r 32.646816  -1.074235
+## x_i -1.074235 101.420151
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2900.39
+## [1] 3309.891
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 48.53168-68.16217i
+## 53.85166-89.24976i
 \end{verbatim}
 
 \begin{Shaded}
@@ -717,8 +717,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -15.48358+48.77705i
+##  Direct covariance 
+## -52.51229+37.2269i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -731,9 +731,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -61.70335+ 7.58959i -15.48358+48.77705i
-## y -15.48358+48.77705i  32.89294+39.60887i
+##                     x                  y
+## x -62.19110-14.09457i -52.51229+37.2269i
+## y -52.51229+37.22690i  36.99174+49.0458i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -794,8 +794,8 @@ And if we stack each of the vectors and matrices for each \(j=1 \dots n\) we get
 \end{equation}
 where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}\), \(\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}\) and \(\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}\). The form \eqref{eq:SimpleCLRSystemVectorFinal} shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
 
-\hypertarget{estimation}{%
-\subsection{Estimation}\label{estimation}}
+\hypertarget{SCLREstimation}{%
+\subsection{Estimation}\label{SCLREstimation}}
 
 Whenever we estimate a model, we substitute the ``true'' parameters by their sample estimates. So, for the CLR, the model applied to the data should be written as:
 \begin{equation}
@@ -1082,8 +1082,8 @@ The minimisation of GV in its turn implies the joint minimisation of variances o
 
 The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
 
-\hypertarget{comparing-different-losses}{%
-\subsubsection{Comparing different losses}\label{comparing-different-losses}}
+\hypertarget{comparing-different-estimators}{%
+\subsubsection{Comparing different estimators}\label{comparing-different-estimators}}
 
 Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
 
@@ -1095,17 +1095,19 @@ In order to do that, we set up several experiments with the following settings\l
 \caption{\label{fig:parametersCorError}Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of \(b_1=2-1.5i\) (orange horizontal lines on the plot)}
 \end{figure}
 
-Number of estimated parameters is k, number of degrees of freedom per series is k/2.
+Ratio of variances for several sample sizes\ldots{}
 
 \hypertarget{inference}{%
 \subsection{Inference}\label{inference}}
+
+Number of estimated parameters is k, number of degrees of freedom per series is k/2.
 
 \hypertarget{correlation-analysis-of-complex-random-variables}{%
 \section{Correlation analysis of complex random variables}\label{correlation-analysis-of-complex-random-variables}}
 
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
-For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances:
+For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances for variables \(x\) and \(y\):
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1285,7 +1287,7 @@ The formulae \eqref{eq:correlationConventional} and \eqref{eq:correlationPseudo}
     \end{aligned}
     \label{eq:twoRegressions}
 \end{equation}
-where \(\alpha_0\) and \(\beta_0\) are the intercepts, \(\alpha_1\) and \(\beta_1\) are the slopes of the regression lines and \(e\) and \(u\) are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \ref{simpleCLR}, the parameters of slope can be estimated using either Ordinary Least Squares (OLS), or the Complex Least Squares (CLS). For the OLS, the formulae for the slopes are:
+where \(\alpha_0\) and \(\beta_0\) are the intercepts, \(\alpha_1\) and \(\beta_1\) are the slopes of the regression lines and \(e\) and \(u\) are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \ref{simpleCLR}, the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares (discussed in Subsection \ref{SCLREstimation}). For the OLS, the formulae for the slopes are:
 \begin{equation}
     \begin{aligned}
         &b_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
@@ -1370,7 +1372,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.7076127-0.7036436i
+## [1] 0.706318-0.7042757i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1428,7 +1430,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9964781
+## [1,] 0.9764569
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1444,6 +1446,8 @@ The interpretation of the coefficient is straightforward and follows the convent
 \hypertarget{correlation-matrix}{%
 \subsection{Correlation matrix}\label{correlation-matrix}}
 
+Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to calculate the covariance matrix between two c.r.v. Based on that matrix, we can calculate the correlation matrix, which will summarise all the relations between the real and imaginary parts of \(x\) and \(y\). This is done by dividing each element of the covariance matrix by geometric means of variances of the variables under consideration. In R, this can be done using \texttt{covar()} function from the \texttt{complex} package and \texttt{cov2cor()} function from the \texttt{stats} package:
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{cov2cor}\NormalTok{(}\FunctionTok{covar}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(x,y)))}
@@ -1451,12 +1455,14 @@ The interpretation of the coefficient is straightforward and follows the convent
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i          y_r         y_i
-## x_r 1.00000000  0.04771491  0.693574124 0.722765091
-## x_i 0.04771491  1.00000000 -0.683585989 0.721800306
-## y_r 0.69357412 -0.68358599  1.000000000 0.007337949
-## y_i 0.72276509  0.72180031  0.007337949 1.000000000
+##           x_r        x_i        y_r       y_i
+## x_r 1.0000000  0.0266662  0.7014751 0.7178796
+## x_i 0.0266662  1.0000000 -0.6903419 0.7113089
+## y_r 0.7014751 -0.6903419  1.0000000 0.0121189
+## y_i 0.7178796  0.7113089  0.0121189 1.0000000
 \end{verbatim}
+
+This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
 
 \hypertarget{multiple-clr}{%
 \section{Multiple CLR}\label{multiple-clr}}
@@ -1464,8 +1470,8 @@ The interpretation of the coefficient is straightforward and follows the convent
 \hypertarget{model-formulation-1}{%
 \subsection{Model formulation}\label{model-formulation-1}}
 
-\hypertarget{estimation-1}{%
-\subsection{Estimation}\label{estimation-1}}
+\hypertarget{estimation}{%
+\subsection{Estimation}\label{estimation}}
 
 \hypertarget{inference-1}{%
 \subsection{Inference}\label{inference-1}}
