@@ -333,7 +333,7 @@ load("./data/clmExperimentsParameters.Rdata")
 In order to do that, we set up several experiments with the following settings...
 
 
-```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$" (orange horizontal lines on the plot)", echo=FALSE}
+```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot)", echo=FALSE}
 methods <- c("CLS","OLS","Likelihood")
 par(mfcol=c(3,2), mar=rep(0.1,4), oma=c(5,5,2,2), xaxt="s",yaxt="s",cex.main=1.5)
 plot(Re(parametersCorError[,2,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
