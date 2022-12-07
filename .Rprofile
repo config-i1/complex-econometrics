@@ -1,7 +1,7 @@
 options(bookdown.render.file_scope = FALSE)
+library(plotly)
 library(greybox)
 library(smooth)
 library(latex2exp)
 library(plotrix)
 library(complex)
-library(plotly)
