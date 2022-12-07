@@ -324,7 +324,59 @@ The main difference between the Likelihood and the other two estimators discusse
 
 
 #### Comparing different losses
+Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
 
+```{r echo=FALSE}
+load("./data/clmExperimentsParameters.Rdata")
+```
+
+In order to do that, we set up several experiments with the following settings...
+
+
+```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$" (orange horizontal lines on the plot)", echo=FALSE}
+methods <- c("CLS","OLS","Likelihood")
+par(mfcol=c(3,2), mar=rep(0.1,4), oma=c(5,5,2,2), xaxt="s",yaxt="s",cex.main=1.5)
+plot(Re(parametersCorError[,2,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
+     ylim=range(Re(parametersCorError[,,2])), type="l", axes=F)
+abline(h=2, col="orange", lwd=2)
+axis(side=2)
+box(col="black", lwd=1)
+mtext("OLS", side=2, line=3, at=2.5/3, outer=TRUE)
+
+plot(Re(parametersCorError[,1,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
+     ylim=range(Re(parametersCorError[,,2])), type="l", axes=F)
+abline(h=2, col="orange", lwd=2)
+axis(side=2)
+box(col="black", lwd=1)
+mtext("CLS", side=2, line=3, outer=TRUE)
+
+plot(Re(parametersCorError[,3,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
+     ylim=range(Re(parametersCorError[,,2])), type="l", axes=F)
+abline(h=2, col="orange", lwd=2)
+axis(side=2)
+axis(side=1)
+box(col="black", lwd=1)
+mtext("Likelihood", side=2, line=3, at=0.5/3, outer=TRUE)
+mtext(TeX("Re($b_1$)"), side=1, line=3, at=0.5/2, outer=TRUE);
+
+plot(Im(parametersCorError[,2,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
+     ylim=range(Im(parametersCorError[,,2])), type="l", axes=F)
+abline(h=-1.5, col="orange", lwd=2)
+axis(side=4)
+box(col="black", lwd=1)
+plot(Im(parametersCorError[,1,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
+     ylim=range(Im(parametersCorError[,,2])), type="l", axes=F)
+abline(h=-1.5, col="orange", lwd=2)
+axis(side=4)
+box(col="black", lwd=1)
+plot(Im(parametersCorError[,3,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
+     ylim=range(Im(parametersCorError[,,2])), type="l", axes=F)
+abline(h=-1.5, col="orange", lwd=2)
+axis(side=4)
+axis(side=1)
+box(col="black", lwd=1)
+mtext(TeX("Im($b_1$)"), side=1, line=3, at=1.5/2, outer=TRUE)
+```
 
 
 Number of estimated parameters is k, number of degrees of freedom per series is k/2.
@@ -335,7 +387,7 @@ Number of estimated parameters is k, number of degrees of freedom per series is 
 
 
 
-## Correlations analysis of complex random variables
+## Correlation analysis of complex random variables
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
 For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances:
