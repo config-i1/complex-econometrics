@@ -329,19 +329,19 @@ Arguably, all three estimators discussed in this Section give adequate estimates
 load("./data/clmExperimentsParameters.Rdata")
 ```
 
-In order to do that, we set up several experiments based on the following simple CLR: $y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + \epsilon_r + i \epsilon_i$. We had several settings:
+In order to do that, we set up several experiments based on the following simple CLR: $y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)$. We had several settings:
 
 1. $x_r$ and $x_i$ are uncorrelated and have different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=20$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have similar variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
 
 2. $x_r$ and $x_i$ are perfectly correlated ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have similar variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
 
-3. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are equal to zero (i.e. $x$ and $y$ have functional relation).
+3. $x_r$ and $x_i$ are uncorrelated and have the same variances ($\sigma_{x_r}=\sigma_{x_i}=20$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have the same variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
 
-4. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are correlated with different variances.
+4. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are equal to zero (i.e. $x$ and $y$ have functional relation).
 
-5. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have similar high variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=100$).
+5. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are correlated with different variances ($\sigma_{\epsilon_r}=10$, $\sigma_{\epsilon_i}=8$).
 
-6. $x_r$ and $x_i$ are uncorrelated and have the same variances ($\sigma_{x_r}=\sigma_{x_i}=20$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have the same variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
+6. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have similar high variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=100$).
 
 
 These six scenarios cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave both on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex $b_1$ is estimated. The experiments were done using `clm()` function from the `complex` package with `method` parameter equal to "OLS", "CLS" and "likelihood" for each of the respective estimators. A sample of the script used in the experiments is shown below:
@@ -359,10 +359,11 @@ y <- b0 + b1 * x + 1.5*complex(real=rnorm(obs,0,1),
 complexData <- cbind(y,x)
 
 nsim <- 9980
-parametersValues <- array(NA, c(nsim,3,2),
-                          dimnames=list(NULL,
-                                        c("CLS","OLS","Likelihood"),
-                                        c("b0","b1")))
+parametersValues <-
+    array(NA, c(nsim,3,2),
+          dimnames=list(NULL,
+                        c("CLS","OLS","Likelihood"),
+                        c("b0","b1")))
 
 for(i in 1:nsim){
     test <- clm(y~x, complexData, loss="CLS",
@@ -380,25 +381,26 @@ for(i in 1:nsim){
 ```{r echo=FALSE}
 # Function produces plots based on the provided data
 parametersPlots <- function(data){
+    lineColour <- rgb(255/255,165/255,0,0.75)
     methods <- c("CLS","OLS","Likelihood")
     par(mfcol=c(3,2), mar=rep(0.1,4), oma=c(5,5,2,2), xaxt="s",yaxt="s",cex.main=1.5)
     plot(Re(data[,2,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
          ylim=c(1.5,2.5), type="l", axes=F)
-    abline(h=2, col="orange", lwd=2)
+    abline(h=2, col=lineColour, lwd=2)
     axis(side=2)
     box(col="black", lwd=1)
     mtext(methods[2], side=2, line=3, at=2.5/3, outer=TRUE)
     
     plot(Re(data[,1,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
          ylim=c(1.5,2.5), type="l", axes=F)
-    abline(h=2, col="orange", lwd=2)
+    abline(h=2, col=lineColour, lwd=2)
     axis(side=2)
     box(col="black", lwd=1)
     mtext(methods[1], side=2, line=3, outer=TRUE)
     
     plot(Re(data[,3,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
          ylim=c(1.5,2.5), type="l", axes=F)
-    abline(h=2, col="orange", lwd=2)
+    abline(h=2, col=lineColour, lwd=2)
     axis(side=2)
     axis(side=1)
     box(col="black", lwd=1)
@@ -407,17 +409,17 @@ parametersPlots <- function(data){
     
     plot(Im(data[,2,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
          ylim=c(-3,0), type="l", axes=F)
-    abline(h=-1.5, col="orange", lwd=2)
+    abline(h=-1.5, col=lineColour, lwd=2)
     axis(side=4)
     box(col="black", lwd=1)
     plot(Im(data[,1,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
          ylim=c(-3,0), type="l", axes=F)
-    abline(h=-1.5, col="orange", lwd=2)
+    abline(h=-1.5, col=lineColour, lwd=2)
     axis(side=4)
     box(col="black", lwd=1)
     plot(Im(data[,3,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
          ylim=c(-3,0), type="l", axes=F)
-    abline(h=-1.5, col="orange", lwd=2)
+    abline(h=-1.5, col=lineColour, lwd=2)
     axis(side=4)
     axis(side=1)
     box(col="black", lwd=1)
@@ -425,30 +427,49 @@ parametersPlots <- function(data){
 }
 ```
 
-```{r parametersUCDV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 1.", echo=FALSE}
+Figure \@ref(fig:parametersUCDV) demonstrates how estimates of parameters change with the increase of sample size in Scenario 1.
+
+```{r parametersUCDV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 1.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersUCDV)
 ```
 
-```{r parametersPC, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 2.", echo=FALSE}
+Apparently, all three estimators produce very similar estimates of parameters in this case and converge to the true values quite fast. A similar behaviour is observed for the Scenario 2, shown in Figure \@ref(fig:parametersPC). The difference between the three estimators does not look substantial.
+
+```{r parametersPC, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 2.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersPC)
 ```
 
-```{r parametersFR, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 3.", echo=FALSE}
-parametersPlots(parametersFR)
-```
+In both Scenarios 1 and 2 the error term has a small variance, in Scenario 2 $x_r$ and $x_i$ are perfectly correlated, transforming the original model into: $y_r + i y_i = 10+15i + (2-1.5i) (1 + 1.5 i) x_r + (\epsilon_r + i \epsilon_i)$.
 
-```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 4.", echo=FALSE}
-parametersPlots(parametersCorError)
-```
+The Scenario 3 demonstrates an exotic case, when the variances of $x_r$ and $x_i$ are the same (as shown in Figure \@ref(fig:parametersUCSV)).
 
-```{r parametersHVError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 5.", echo=FALSE}
-parametersPlots(parametersHVError)
-```
-
-```{r parametersUCSV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 6.", echo=FALSE}
+```{r parametersUCSV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 3.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersUCSV)
 ```
 
+In this scenario, OLS and Likelihood produce efficient, unbiased and consistent estimates of parameters, which cannot be said about the CLS. The behaviour of CLS is explainable because in the formula \@ref(eq:SimpleCLRCLSLossParametersMoments), the division is done by the direct variance, which has the subtraction of variances. Scenarios 1 and 3 could be considered as two special cases of the spectrum of values, showing that the closer the variances of the real and imaginary parts of $x$ are, the less consitent, efficient and unbiased estimates of parameters are produced by CLS.
 
+Next, the three estimators give the same estimates of parameters in Scenario 4 of functional relation between $x$ and $y$, which is shown in Figure \@ref(fig:parametersFR).
 
-Ratio of variances for several sample sizes...
+```{r parametersFR, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 4.", echo=FALSE, fig.height=3, fig.width=8}
+parametersPlots(parametersFR)
+```
+
+The main difficulties for the estimators appear, when the variance of the error term increases. Figure \@ref(fig:parametersCorError) shows how the three perform in case of a higher variance of the error term in Scenario 5.
+
+```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 5.", echo=FALSE, fig.height=3, fig.width=8}
+parametersPlots(parametersCorError)
+```
+
+It becomes apparent that OLS and Likelihood produce more efficient estimates of parameters than CLS on small samples. This is because the variability of estimates of parameter is higher for CLS than for the other two on small samples.
+
+The situations worsens for the three estimators when we consider Scenario 6, when the variances of the error term become much higher than before, which is shown in Figure \@ref(fig:parametersHVError).
+
+```{r parametersHVError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 6.", echo=FALSE, fig.height=3, fig.width=8}
+parametersPlots(parametersHVError)
+```
+
+In addition to being less efficient, the real parts of estimates of parameters exhibit a bias, which is diminished with the increase of sample size. Comparing the three estimators, it appears that CLS produces less efficient and more biased estimates of parameters than OLS or Likelihood in this Scenario.
+
+These six scenarios show a variety of situations in which the three estimators produce different estimates of parameters. Arguably, OLS and Likelihood could be considered as robust alternatives, but all three seem to perform well in several sensible situations.
+
