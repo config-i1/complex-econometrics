@@ -129,6 +129,15 @@ which can also be written in terms of conjugate moments as:
     \end{aligned}
     (\#eq:SimpleCLROLSLossParametersMoments)
 \end{equation}
+or after expanding the moments (based on formulae from Section \@ref(crvSecondMoment)) as:
+\begin{equation}
+    \begin{aligned}
+        & b_{1} = \frac{\hat{\sigma}_{x_r, y_r} + \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_r, y_i} - \hat{\sigma}_{x_i, y_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} \\
+        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+    \end{aligned}
+    (\#eq:SimpleCLROLSLossParametersMomentsExpanded)
+\end{equation}
+
 As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is similar to the one that is typically used for the conventional simple linear regression with the only difference that the parameters in \@ref(eq:SimpleCLROLSLossParametersMoments) are complex and that each of the moments in \@ref(eq:SimpleCLROLSLossParametersMoments) is a moment for respective complex variable.
 
 It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParametersMoments) correspond to: they minimise the loss \@ref(eq:SimpleCLROLSLoss), thus in the case, when $\mathrm{E}(e_j)=0$ they minimise variances of real and imaginary parts of the complex residuals. A thing to note is that they ignore the potential covariance between them, which in some cases might be a desirable property, but in the others might cause issues.
@@ -175,9 +184,17 @@ or in terms of direct moments for complex random variables:
 \begin{equation}
     \begin{aligned}
         & b_{1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x^2} \\
-        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMoments)
+\end{equation}
+or after inserting the values for direct variance and covariance (from Section \@ref(crvSecondMoment)):
+\begin{equation}
+    \begin{aligned}
+        & b_{1} = \frac{\hat{\sigma}_{x_r, y_r} - \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_i, y_r} + \hat{\sigma}_{x_r, y_i})}{\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 + i2 \hat{\sigma}_{x_r,x_i}} \\
+        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+    \end{aligned}
+    (\#eq:SimpleCLRCLSLossParametersMomentsExpanded)
 \end{equation}
 
 In order to better understand what is specifically minimised, when the formulae \@ref(eq:SimpleCLRCLSLossParametersMoments) are used for the estimation of parameters, we conduct a small experiment in R with the following code:
@@ -331,17 +348,17 @@ load("./data/clmExperimentsParameters.Rdata")
 
 In order to do that, we set up several experiments based on the following simple CLR: $y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)$. We had several settings:
 
-1. $x_r$ and $x_i$ are uncorrelated and have different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=20$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have similar variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
+1. $x_r$ and $x_i$ are **uncorrelated** and have **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
 
-2. $x_r$ and $x_i$ are perfectly correlated ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have similar variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
+2. $x_r$ and $x_i$ are **perfectly correlated** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
 
-3. $x_r$ and $x_i$ are uncorrelated and have the same variances ($\sigma_{x_r}=\sigma_{x_i}=20$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have the same variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
+3. $x_r$ and $x_i$ are **uncorrelated** and have **the same variances** ($\sigma_{x_r}=\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **the same variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
 
-4. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are equal to zero (i.e. $x$ and $y$ have functional relation).
+4. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **equal to zero** (i.e. $x$ and $y$ have functional relation).
 
-5. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are correlated with different variances ($\sigma_{\epsilon_r}=10$, $\sigma_{\epsilon_i}=8$).
+5. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **correlated** with **different variances** ($\sigma_{\epsilon_r}=10$, $\sigma_{\epsilon_i}=8$).
 
-6. $x_r$ and $x_i$ are correlated with different variances ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$), $\epsilon_r$ and $\epsilon_i$ are uncorrelated and have similar high variances ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=100$).
+6. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar high variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=100$).
 
 
 These six scenarios cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave both on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex $b_1$ is estimated. The experiments were done using `clm()` function from the `complex` package with `method` parameter equal to "OLS", "CLS" and "likelihood" for each of the respective estimators. A sample of the script used in the experiments is shown below:
@@ -447,7 +464,7 @@ The Scenario 3 demonstrates an exotic case, when the variances of $x_r$ and $x_i
 parametersPlots(parametersUCSV)
 ```
 
-In this scenario, OLS and Likelihood produce efficient, unbiased and consistent estimates of parameters, which cannot be said about the CLS. The behaviour of CLS is explainable because in the formula \@ref(eq:SimpleCLRCLSLossParametersMoments), the division is done by the direct variance, which has the subtraction of variances. Scenarios 1 and 3 could be considered as two special cases of the spectrum of values, showing that the closer the variances of the real and imaginary parts of $x$ are, the less consitent, efficient and unbiased estimates of parameters are produced by CLS.
+In this scenario, OLS and Likelihood produce efficient, unbiased and consistent estimates of parameters, which cannot be said about the CLS. The behaviour of CLS is explainable because for this specific scenario the direct variance of the complex variable $x_r + i x_i$ becomes close to zero. As a result, the direct covariance in \@ref(eq:SimpleCLRCLSLossParametersMomentsExpanded) is divided by zero, and the estimate of the parameter becomes unstable. Scenarios 1 and 3 could be considered as two special cases of the spectrum of values, showing that the closer the variances of the real and imaginary parts of $x$ are, the less consistent, efficient and unbiased estimates of parameters are produced by CLS. Scenario 2 is complimentary, because it shows that if the real and imaginary parts are correlated, the CLS estimates of parameters become as good (in statistical terms) as the estimates of OLS and/or Likelihood. So, the CLS becomes unreliable in a special case, when $\sigma_{x_r}^2 = \sigma_{x_i}^2$ and $\sigma_{x_r,x_i}=0$.
 
 Next, the three estimators give the same estimates of parameters in Scenario 4 of functional relation between $x$ and $y$, which is shown in Figure \@ref(fig:parametersFR).
 
