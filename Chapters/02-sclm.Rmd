@@ -346,9 +346,21 @@ Arguably, all three estimators discussed in this Section give adequate estimates
 load("./data/clmExperimentsParameters.Rdata")
 ```
 
-In order to do that, we set up several experiments based on the following simple CLR: $y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)$. We had several scenarios:
+In order to do that, we set up several experiments based on the following simple CLR: $y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)$. We had several scenarios, parameters for which are shown in Table \@ref(tab:scenariosEstimators). They covered several important situations: when $x_r$ and $x_i$ are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different and then when the real and imaginary parts of the error term are not correlated, have medium correlation, are equal to zero and when their variances have high or low values.
 
-```{r scenarios, echo=FALSE}
+<!-- 1. $x_r$ and $x_i$ are **uncorrelated** and have **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$). -->
+
+<!-- 2. $x_r$ and $x_i$ are **perfectly correlated** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$). -->
+
+<!-- 3. $x_r$ and $x_i$ are **uncorrelated** and have **the same variances** ($\sigma_{x_r}=\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **the same variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$). -->
+
+<!-- 4. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **equal to zero** (i.e. $x$ and $y$ have functional relation). -->
+
+<!-- 5. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **correlated** with **different variances** ($\sigma_{\epsilon_r}=10$, $\sigma_{\epsilon_i}=8$). -->
+
+<!-- 6. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar high variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=100$). -->
+
+```{r scenariosEstimators, echo=FALSE}
 scenarios <- matrix(c("0","1","0","medium","medium","medium",
                       # "different variances","different variances","same variance","different variances","different variances","different variances",
                       "$\\sigma_{x_r}=10$, $\\sigma_{x_i}=20$", "$\\sigma_{x_r}=10$, while $\\sigma_{x_i}=15$", "$\\sigma_{x_r}=\\sigma_{x_i}=20$", "$\\sigma_{x_r}=10$, $\\sigma_{x_i}=15$", "$\\sigma_{x_r}=10$, $\\sigma_{x_i}=15$", "$\\sigma_{x_r}=10$, $\\sigma_{x_i}=15$",
@@ -361,21 +373,7 @@ kableTable <- kableExtra::kable(scenarios, escape=FALSE, caption="Several scenar
 kableExtra::kable_styling(kableTable, font_size=12, protect_latex=TRUE, latex_options="scale_down")
 ```
 
-
-1. $x_r$ and $x_i$ are **uncorrelated** and have **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
-
-2. $x_r$ and $x_i$ are **perfectly correlated** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
-
-3. $x_r$ and $x_i$ are **uncorrelated** and have **the same variances** ($\sigma_{x_r}=\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **the same variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
-
-4. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **equal to zero** (i.e. $x$ and $y$ have functional relation).
-
-5. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **correlated** with **different variances** ($\sigma_{\epsilon_r}=10$, $\sigma_{\epsilon_i}=8$).
-
-6. $x_r$ and $x_i$ are **correlated** with **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=15$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar high variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=100$).
-
-
-These six scenarios cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave both on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex $b_1$ is estimated. The experiments were done using `clm()` function from the `complex` package with `method` parameter equal to "OLS", "CLS" and "likelihood" for each of the respective estimators. A sample of the script used in the experiments is shown below:
+These six scenarios in Table \@ref(tab:scenariosEstimators) cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave both on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex $b_1$ is estimated. The experiments were done using `clm()` function from the `complex` package with `method` parameter equal to "OLS", "CLS" and "likelihood" for each of the respective estimators. A sample of the script used in the experiments is shown below:
 
 ```{r eval=FALSE}
 obs <- 10000
@@ -502,5 +500,4 @@ parametersPlots(parametersHVError)
 
 In addition to being less efficient, the real parts of estimates of parameters exhibit a bias, which is diminished with the increase of sample size. Comparing the three estimators, it appears that CLS produces less efficient and more biased estimates of parameters than OLS or Likelihood in this Scenario.
 
-These six scenarios show a variety of situations in which the three estimators produce different estimates of parameters. Arguably, OLS and Likelihood could be considered as robust alternatives, but all three seem to perform well in several sensible situations.
-
+These six scenarios show a variety of situations in which the three estimators produce different estimates of parameters. Arguably, OLS and Likelihood could be considered as robust alternatives, but all the three estimators seem to perform well in several sensible situations.
