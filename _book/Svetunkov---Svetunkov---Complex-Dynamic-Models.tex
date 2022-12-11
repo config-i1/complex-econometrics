@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.0387+100.9002i
+## [1] 50.49833+99.32403i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 133.6702+0i
+## 109.7126+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -598,8 +598,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct variance 
-## -88.61917+6.8315i
+##    Direct variance 
+## -65.60748+4.49938i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +624,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##          x_r       x_i
-## x_r 22.52553   3.41575
-## x_i  3.41575 111.14470
+##           x_r       x_i
+## x_r 22.052558  2.249688
+## x_i  2.249688 87.660040
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2491.926
+## [1] 1928.067
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 70.0972-110.2293i
+## 56.57673-90.10129i
 \end{verbatim}
 
 \begin{Shaded}
@@ -718,7 +718,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -52.94334+64.10197i
+## -19.91108+40.44243i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -732,8 +732,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -82.90465- 3.99028i -52.94334+64.10197i
-## y -52.94334+64.10197i -18.80456+92.23400i
+## x -61.59176- 6.73721i -19.91108+40.44243i
+## y -19.91108+40.44243i  24.90726- 2.48686i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1101,7 +1101,32 @@ The main difference between the Likelihood and the other two estimators discusse
 
 Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
 
-In order to do that, we set up several experiments based on the following simple CLR: \(y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)\). We had several settings:
+In order to do that, we set up several experiments based on the following simple CLR: \(y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)\). We had several scenarios:
+
+\begin{table}
+
+\caption{\label{tab:scenarios}Several scenarios for the comparison of estimators.}
+\centering
+\resizebox{\linewidth}{!}{
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{l|l|l|l|l}
+\hline
+  & cor($x_r$, $x_i$) & std.dev. of $x_r$ and $x_i$ & cor($\epsilon_r$, $\epsilon_i$) & std.dev. of $\epsilon_r$ and $\epsilon_i$\\
+\hline
+Scenario 1 & 0 & $\sigma_{x_r}=10$, $\sigma_{x_i}=20$ & 0 & $\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$\\
+\hline
+Scenario 2 & 1 & $\sigma_{x_r}=10$, while $\sigma_{x_i}=15$ & 0 & $\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$\\
+\hline
+Scenario 3 & 0 & $\sigma_{x_r}=\sigma_{x_i}=20$ & 0 & $\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$\\
+\hline
+Scenario 4 & medium & $\sigma_{x_r}=10$, $\sigma_{x_i}=15$ & NA & $\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=0$\\
+\hline
+Scenario 5 & medium & $\sigma_{x_r}=10$, $\sigma_{x_i}=15$ & medium & $\sigma_{\epsilon_r}=10$, $\sigma_{\epsilon_i}=8$\\
+\hline
+Scenario 6 & medium & $\sigma_{x_r}=10$, $\sigma_{x_i}=15$ & 0 & $\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=100$\\
+\hline
+\end{tabular}}
+\end{table}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1483,7 +1508,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.7073737-0.7036172i
+## [1] 0.7058795-0.7055328i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1541,7 +1566,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9969964
+## [1,] 0.9937576
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1566,11 +1591,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i        y_r       y_i
-## x_r 1.0000000  0.1429864  0.6978692 0.7790918
-## x_i 0.1429864  1.0000000 -0.6058494 0.7284531
-## y_r 0.6978692 -0.6058494  1.0000000 0.0990107
-## y_i 0.7790918  0.7284531  0.0990107 1.0000000
+##            x_r         x_i        y_r       y_i
+## x_r 1.00000000  0.01705964  0.7138992 0.7257425
+## x_i 0.01705964  1.00000000 -0.6844960 0.6980294
+## y_r 0.71389922 -0.68449599  1.0000000 0.0402115
+## y_i 0.72574245  0.69802940  0.0402115 1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.

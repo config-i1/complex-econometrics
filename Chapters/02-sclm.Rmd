@@ -357,7 +357,6 @@ scenarios <- matrix(c("0","1","0","medium","medium","medium",
                       "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=1.5$", "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=1.5$", "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=1.5$", "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=0$", "$\\sigma_{\\epsilon_r}=10$, $\\sigma_{\\epsilon_i}=8$", "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=100$"),
                     nrow=6, dimnames=list(paste0("Scenario ",1:6),
                                           c("cor($x_r$, $x_i$)", "std.dev. of $x_r$ and $x_i$", "cor($\\epsilon_r$, $\\epsilon_i$)", "std.dev. of $\\epsilon_r$ and $\\epsilon_i$")))
-knitr::kable(scenarios)
 kableTable <- kableExtra::kable(scenarios, escape=FALSE, caption="Several scenarios for the comparison of estimators.")
 kableExtra::kable_styling(kableTable, font_size=12, protect_latex=TRUE, latex_options="scale_down")
 ```
