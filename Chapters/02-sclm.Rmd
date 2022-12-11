@@ -346,7 +346,22 @@ Arguably, all three estimators discussed in this Section give adequate estimates
 load("./data/clmExperimentsParameters.Rdata")
 ```
 
-In order to do that, we set up several experiments based on the following simple CLR: $y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)$. We had several settings:
+In order to do that, we set up several experiments based on the following simple CLR: $y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)$. We had several scenarios:
+
+```{r scenarios, echo=FALSE}
+scenarios <- matrix(c("0","1","0","medium","medium","medium",
+                      # "different variances","different variances","same variance","different variances","different variances","different variances",
+                      "$\\sigma_{x_r}=10$, $\\sigma_{x_i}=20$", "$\\sigma_{x_r}=10$, while $\\sigma_{x_i}=15$", "$\\sigma_{x_r}=\\sigma_{x_i}=20$", "$\\sigma_{x_r}=10$, $\\sigma_{x_i}=15$", "$\\sigma_{x_r}=10$, $\\sigma_{x_i}=15$", "$\\sigma_{x_r}=10$, $\\sigma_{x_i}=15$",
+                      "0","0","0","NA","medium","0",
+                      # "same variance","same variance","same variance","zero variance","different variances","same variance",
+                      "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=1.5$", "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=1.5$", "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=1.5$", "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=0$", "$\\sigma_{\\epsilon_r}=10$, $\\sigma_{\\epsilon_i}=8$", "$\\sigma_{\\epsilon_r}=\\sigma_{\\epsilon_i}=100$"),
+                    nrow=6, dimnames=list(paste0("Scenario ",1:6),
+                                          c("cor($x_r$, $x_i$)", "std.dev. of $x_r$ and $x_i$", "cor($\\epsilon_r$, $\\epsilon_i$)", "std.dev. of $\\epsilon_r$ and $\\epsilon_i$")))
+knitr::kable(scenarios)
+kableTable <- kableExtra::kable(scenarios, escape=FALSE, caption="Several scenarios for the comparison of estimators.")
+kableExtra::kable_styling(kableTable, font_size=12, protect_latex=TRUE, latex_options="scale_down")
+```
+
 
 1. $x_r$ and $x_i$ are **uncorrelated** and have **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$).
 
