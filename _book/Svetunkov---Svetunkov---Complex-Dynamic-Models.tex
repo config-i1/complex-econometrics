@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.2054+100.8659i
+## [1] 50.08082+98.34215i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 150.358+0i
+## 143.4158+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -598,8 +598,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct variance 
-## -101.4573-5.8388i
+##    Direct variance 
+## -90.36448+1.68145i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +624,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 24.450393  -2.919424
-## x_i -2.919424 125.907645
+##            x_r         x_i
+## x_r 26.5256457   0.8407238
+## x_i  0.8407238 116.8901218
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3069.968
+## [1] 3099.879
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 71.6869-98.81656i
+## 60.88714-75.7698i
 \end{verbatim}
 
 \begin{Shaded}
@@ -717,8 +717,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-## Direct covariance 
-## -54.03932+61.989i
+##   Direct covariance 
+## -40.25496+31.36828i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -732,8 +732,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -75.91614+ 8.82602i -54.03932+ 61.9890i
-## y -54.03932+61.98900i  -7.46377+113.4122i
+## x -51.92684+ 3.55392i -40.25496+31.36828i
+## y -40.25496+31.36828i  -7.59328+26.69567i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -901,21 +901,14 @@ or:
         b_{1} = \beta_1 + \frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i} + i (\hat{\sigma}_{x_r, \epsilon_i} - \hat{\sigma}_{x_i, \epsilon_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} .
     \label{eq:SimpleCLROLSb1Value03}
 \end{equation}
-On small samples, the covariance between the true error and the available \(x\) can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population \(\mathrm{cov}(x_r,\epsilon_r)=\mathrm{cov}(x_i,\epsilon_r)=\mathrm{cov}(x_r,\epsilon_i)=\mathrm{cov}(x_i,\epsilon_i)=0\), which implies that the expectation of \(b_1\) is:
+On small samples, the covariance between the true error and the available \(x\) can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population estimated covariances will converge to their true values and then \({\sigma}_{x_r, \epsilon_r} = {\sigma}_{x_i, \epsilon_i} = {\sigma}_{x_r, \epsilon_i} = {\sigma}_{x_i, \epsilon_r}=0\), which implies that the expectation of \(b_1\) is:
 \begin{equation}
         \mathrm{E}(b_{1}) = \beta_1 .
     \label{eq:SimpleCLROLSb1Expectation}
 \end{equation}
-As for the variance of \(b_1\), it can be calculated as:
-\begin{equation}
-    \begin{aligned}
-        \mathrm{V}(b_1) = & \mathrm{E}\left((b_1 - \beta_1)(\tilde{b}_1 - \tilde{\beta}_1)\right) = \\
-                          & \mathrm{E}\left((\beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} - \beta_1)(\tilde{\beta}_1 + \frac{\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^2} - \tilde{\beta}_1)\right) = \\
-                          & \mathrm{E}\left((\frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2})(\frac{\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^2})\right) = \\
-                          & \mathrm{E}\left(\frac{\hat{\sigma}_{x,\epsilon}\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^4}\right)
-    \end{aligned}
-    \label{eq:SimpleCLROLSb1Variance}
-\end{equation}
+This implies that OLS gives unbiased estimates of the slope parameter. The same property can be shown to hold for the intercept \(b_0\).
+
+\textbf{Derive variance of estimator}
 
 \hypertarget{complex-least-squares}{%
 \subsection{Complex Least Squares}\label{complex-least-squares}}
@@ -1094,6 +1087,16 @@ Then, to produce the 3d surface on the plane of ``loss - \(b_{1,r}\) - \(b_{1,i}
 Figure \ref{fig:plotlyCLS} demonstrates how the projection of the two-dimensional loss behaves for a variety of parameters of the regression. The orange point in the middle corresponds to the one obtained via CLS. We can see that it corresponds to the loss being close to zero, and represents a 2-dimensional inflection point, where the surface bends in different directions.
 
 So, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Derive expectation of estimator}
+\item
+  \textbf{Derive variance of estimator}
+\item
+  \textbf{Compare with OLS}
+\end{enumerate}
 
 \hypertarget{likelihood}{%
 \subsection{Likelihood}\label{likelihood}}
@@ -1522,7 +1525,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9979426+0i
+## [1] 0.9976143+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1580,7 +1583,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9917511
+## [1,] -0.997519
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1606,10 +1609,10 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 
 \begin{verbatim}
 ##             x_r         x_i         y_r         y_i
-## x_r  1.00000000 -0.02679107  0.69806422  0.66559452
-## x_i -0.02679107  1.00000000 -0.73150845  0.72563236
-## y_r  0.69806422 -0.73150845  1.00000000 -0.06537891
-## y_i  0.66559452  0.72563236 -0.06537891  1.00000000
+## x_r  1.00000000 -0.03047576  0.70543888  0.67608786
+## x_i -0.03047576  1.00000000 -0.72688507  0.71235745
+## y_r  0.70543888 -0.72688507  1.00000000 -0.03985377
+## y_i  0.67608786  0.71235745 -0.03985377  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
