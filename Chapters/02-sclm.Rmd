@@ -144,12 +144,12 @@ It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParamet
 
 In terms of properties of the estimator, it can be shown that $b_1$ equals to:
 \begin{equation}
-        b_{1} = \frac{\mathrm{cov}(x, y)}{\mathrm{V}(x)} = \frac{\mathrm{cov}(x, \beta_0 + \beta_1 x + \epsilon)}{\mathrm{V}(x)} = \frac{\mathrm{cov}(x, \beta_0) + \mathrm{cov}(x, \beta_1 x) + \mathrm{cov}(x, \epsilon)}{\mathrm{V}(x)},
+        b_{1} = \frac{\mathrm{cov}(\tilde{x}, y)}{\mathrm{cov}(\tilde{x},x)} = \frac{\mathrm{cov}(\tilde{x}, \beta_0 + \beta_1 x + \epsilon)}{\mathrm{cov}(\tilde{x},x)} = \frac{\mathrm{cov}(\tilde{x}, \beta_0) + \mathrm{cov}(\tilde{x}, \beta_1 x) + \mathrm{cov}(\tilde{x}, \epsilon)}{\mathrm{cov}(\tilde{x},x)},
     (\#eq:SimpleCLROLSb1Value01)
 \end{equation}
 which then simplifies to:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\mathrm{cov}(x, \epsilon)}{\mathrm{V}(x)} = \beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
+        b_{1} = \beta_1 + \frac{\mathrm{cov}(\tilde{x}, \epsilon)}{\mathrm{cov}(\tilde{x},x)} = \beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
     (\#eq:SimpleCLROLSb1Value02)
 \end{equation}
 or:

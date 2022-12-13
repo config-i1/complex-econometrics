@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.15882+99.11767i
+## [1] 47.7164+100.6858i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 147.7327+0i
+## 104.8752+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -599,7 +599,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -96.55074-0.02951i
+## -49.25038-3.51946i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +624,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r          x_i
-## x_r 25.59099629  -0.01475377
-## x_i -0.01475377 122.14173484
+##           x_r       x_i
+## x_r 27.812430 -1.759731
+## x_i -1.759731 77.062811
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3125.728
+## [1] 2140.207
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 52.96193-72.8033i
+## 64.2096-109.7683i
 \end{verbatim}
 
 \begin{Shaded}
@@ -718,7 +718,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -42.96554+34.74186i
+## -20.05934+80.67706i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -732,8 +732,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -55.74371-19.78162i -42.96554+34.74186i
-## y -42.96554+34.74186i -28.95323+26.05065i
+## x -77.90165+11.75050i -20.05934+80.67706i
+## y -20.05934+80.67706i  49.49606+24.93579i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -888,12 +888,12 @@ It is apparent what the estimates of parameters \eqref{eq:SimpleCLROLSLossParame
 
 In terms of properties of the estimator, it can be shown that \(b_1\) equals to:
 \begin{equation}
-        b_{1} = \frac{\mathrm{cov}(x, y)}{\mathrm{V}(x)} = \frac{\mathrm{cov}(x, \beta_0 + \beta_1 x + \epsilon)}{\mathrm{V}(x)} = \frac{\mathrm{cov}(x, \beta_0) + \mathrm{cov}(x, \beta_1 x) + \mathrm{cov}(x, \epsilon)}{\mathrm{V}(x)},
+        b_{1} = \frac{\mathrm{cov}(\tilde{x}, y)}{\mathrm{cov}(\tilde{x},x)} = \frac{\mathrm{cov}(\tilde{x}, \beta_0 + \beta_1 x + \epsilon)}{\mathrm{cov}(\tilde{x},x)} = \frac{\mathrm{cov}(\tilde{x}, \beta_0) + \mathrm{cov}(\tilde{x}, \beta_1 x) + \mathrm{cov}(\tilde{x}, \epsilon)}{\mathrm{cov}(\tilde{x},x)},
     \label{eq:SimpleCLROLSb1Value01}
 \end{equation}
 which then simplifies to:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\mathrm{cov}(x, \epsilon)}{\mathrm{V}(x)} = \beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
+        b_{1} = \beta_1 + \frac{\mathrm{cov}(\tilde{x}, \epsilon)}{\mathrm{cov}(\tilde{x},x)} = \beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
     \label{eq:SimpleCLROLSb1Value02}
 \end{equation}
 or:
@@ -1512,7 +1512,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9976548+0i
+## [1] 0.9978319+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1570,7 +1570,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9980818
+## [1,] 0.9980494
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1595,11 +1595,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i        y_r       y_i
-## x_r 1.0000000  0.1074631  0.7366726 0.7966553
-## x_i 0.1074631  1.0000000 -0.5890118 0.6833937
-## y_r 0.7366726 -0.5890118  1.0000000 0.1830097
-## y_i 0.7966553  0.6833937  0.1830097 1.0000000
+##             x_r         x_i         y_r        y_i
+## x_r  1.00000000 -0.08732063  0.75892500 0.70481152
+## x_i -0.08732063  1.00000000 -0.71203282 0.64169145
+## y_r  0.75892500 -0.71203282  1.00000000 0.07736091
+## y_i  0.70481152  0.64169145  0.07736091 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
