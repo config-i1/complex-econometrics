@@ -157,12 +157,21 @@ or:
         b_{1} = \beta_1 + \frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i} + i (\hat{\sigma}_{x_r, \epsilon_i} - \hat{\sigma}_{x_i, \epsilon_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} .
     (\#eq:SimpleCLROLSb1Value03)
 \end{equation}
-On small samples the covariance between the true error and the available $x$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population $\mathrm{cov}(x_r,\epsilon_r)=\mathrm{cov}(x_i,\epsilon_r)=\mathrm{cov}(x_r,\epsilon_i)=\mathrm{cov}(x_i,\epsilon_i)=0$, which implies that the expectation of $b_1$ is:
+On small samples, the covariance between the true error and the available $x$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population $\mathrm{cov}(x_r,\epsilon_r)=\mathrm{cov}(x_i,\epsilon_r)=\mathrm{cov}(x_r,\epsilon_i)=\mathrm{cov}(x_i,\epsilon_i)=0$, which implies that the expectation of $b_1$ is:
 \begin{equation}
         \mathrm{E}(b_{1}) = \beta_1 .
     (\#eq:SimpleCLROLSb1Expectation)
 \end{equation}
-
+As for the variance of $b_1$, it can be calculated as:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}(b_1) = & \mathrm{E}\left((b_1 - \beta_1)(\tilde{b}_1 - \tilde{\beta}_1)\right) = \\
+                          & \mathrm{E}\left((\beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} - \beta_1)(\tilde{\beta}_1 + \frac{\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^2} - \tilde{\beta}_1)\right) = \\
+                          & \mathrm{E}\left((\frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2})(\frac{\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^2})\right) = \\
+                          & \mathrm{E}\left(\frac{\hat{\sigma}_{x,\epsilon}\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^4}\right)
+    \end{aligned}
+    (\#eq:SimpleCLROLSb1Variance)
+\end{equation}
 
 
 ### Complex Least Squares
