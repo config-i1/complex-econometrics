@@ -157,21 +157,24 @@ or:
         b_{1} = \beta_1 + \frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i} + i (\hat{\sigma}_{x_r, \epsilon_i} - \hat{\sigma}_{x_i, \epsilon_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} .
     (\#eq:SimpleCLROLSb1Value03)
 \end{equation}
-On small samples, the covariance between the true error and the available $x$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population $\mathrm{cov}(x_r,\epsilon_r)=\mathrm{cov}(x_i,\epsilon_r)=\mathrm{cov}(x_r,\epsilon_i)=\mathrm{cov}(x_i,\epsilon_i)=0$, which implies that the expectation of $b_1$ is:
+On small samples, the covariance between the true error and the available $x$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population estimated covariances will converge to their true values and then ${\sigma}_{x_r, \epsilon_r} = {\sigma}_{x_i, \epsilon_i} = {\sigma}_{x_r, \epsilon_i} = {\sigma}_{x_i, \epsilon_r}=0$, which implies that the expectation of $b_1$ is:
 \begin{equation}
         \mathrm{E}(b_{1}) = \beta_1 .
     (\#eq:SimpleCLROLSb1Expectation)
 \end{equation}
-As for the variance of $b_1$, it can be calculated as:
-\begin{equation}
-    \begin{aligned}
-        \mathrm{V}(b_1) = & \mathrm{E}\left((b_1 - \beta_1)(\tilde{b}_1 - \tilde{\beta}_1)\right) = \\
-                          & \mathrm{E}\left((\beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} - \beta_1)(\tilde{\beta}_1 + \frac{\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^2} - \tilde{\beta}_1)\right) = \\
-                          & \mathrm{E}\left((\frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2})(\frac{\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^2})\right) = \\
-                          & \mathrm{E}\left(\frac{\hat{\sigma}_{x,\epsilon}\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^4}\right)
-    \end{aligned}
-    (\#eq:SimpleCLROLSb1Variance)
-\end{equation}
+This implies that OLS gives unbiased estimates of the slope parameter. The same property can be shown to hold for the intercept $b_0$.
+<!-- As for the variance of $b_1$, it can be calculated as: -->
+<!-- \begin{equation} -->
+<!--     \begin{aligned} -->
+<!--         \mathrm{V}(b_1) = & \mathrm{E}\left((b_1 - \beta_1)(\tilde{b}_1 - \tilde{\beta}_1)\right) = \\ -->
+<!--                           & \mathrm{E}\left(\left(\beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} - \beta_1 \right) \left(\tilde{\beta}_1 + \frac{\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^2} - \tilde{\beta}_1 \right)\right) = \\ -->
+<!--                           & \mathrm{E}\left(\frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} \frac{\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^2}\right) = \\ -->
+<!--                           & \mathrm{E}\left(\frac{\hat{\sigma}_{x,\epsilon}\hat{\sigma}_{\epsilon,x}}{\hat{\sigma}_x^4}\right) -->
+<!--     \end{aligned} -->
+<!--     (\#eq:SimpleCLROLSb1Variance) -->
+<!-- \end{equation} -->
+
+**Derive variance of estimator**
 
 
 ### Complex Least Squares
@@ -337,6 +340,12 @@ knitr::include_graphics("images/CLSPlot.png")
 Figure \@ref(fig:plotlyCLS) demonstrates how the projection of the two-dimensional loss behaves for a variety of parameters of the regression. The orange point in the middle corresponds to the one obtained via CLS. We can see that it corresponds to the loss being close to zero, and represents a 2-dimensional inflection point, where the surface bends in different directions.
 
 So, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
+
+1. **Derive expectation of estimator**
+
+2. **Derive variance of estimator**
+
+3. **Compare with OLS**
 
 
 ### Likelihood
