@@ -142,6 +142,28 @@ As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is simila
 
 It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParametersMoments) correspond to: they minimise the loss \@ref(eq:SimpleCLROLSLoss), thus in the case, when $\mathrm{E}(e_j)=0$ they minimise variances of real and imaginary parts of the complex residuals. A thing to note is that they ignore the potential covariance between them, which in some cases might be a desirable property, but in the others might cause issues.
 
+In terms of properties of the estimator, it can be shown that $b_1$ equals to:
+\begin{equation}
+        b_{1} = \frac{\mathrm{cov}(x, y)}{\mathrm(V(x))} = \frac{\mathrm{cov}(x, \beta_0 + \beta_1 x + \epsilon)}{\mathrm(V(x))},
+    (\#eq:SimpleCLROLSb1Value01)
+\end{equation}
+which then simplifies to:
+\begin{equation}
+        b_{1} = \beta_1 + \frac{\mathrm{cov}(x, \epsilon)}{\mathrm(V(x))} = \beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
+    (\#eq:SimpleCLROLSb1Value02)
+\end{equation}
+or:
+\begin{equation}
+        b_{1} = \beta_1 + \frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i} + i (\hat{\sigma}_{x_r, \epsilon_i} - \hat{\sigma}_{x_i, \epsilon_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} .
+    (\#eq:SimpleCLROLSb1Value03)
+\end{equation}
+On small samples the covariance between the true error and the available $x$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population $\mathrm{cov}(x_r,\epsilon_r)=\mathrm{cov}(x_i,\epsilon_r)=\mathrm{cov}(x_r,\epsilon_i)=\mathrm{cov}(x_i,\epsilon_i)=0$, which implies that the expectation of $b_1$ is:
+\begin{equation}
+        \mathrm{E}(b_{1}) = \beta_1 .
+    (\#eq:SimpleCLROLSb1Expectation)
+\end{equation}
+
+
 
 ### Complex Least Squares
 An alternative estimation technique involves the minimisation of a rather exotic loss function:
