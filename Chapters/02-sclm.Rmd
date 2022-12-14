@@ -163,6 +163,17 @@ On small samples, the covariance between the true error and the available $x$ ca
     (\#eq:SimpleCLROLSb1Expectation)
 \end{equation}
 This implies that OLS gives unbiased estimates of the slope parameter. The same property can be shown to hold for the intercept $b_0$.
+
+The same formula \@ref(eq:SimpleCLROLSb1Value03) can be rewritten separately for the real and imaginary parts of the parameter:
+\begin{equation}
+    \begin{aligned}
+        b_{1,r} = & \beta_{1,r} + \frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} \\
+        b_{1,i} = & \beta_{1,i} + \frac{\hat{\sigma}_{x_r, \epsilon_i} - \hat{\sigma}_{x_i, \epsilon_r}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} ,
+    \end{aligned}
+    (\#eq:SimpleCLROLSb1Value04)
+\end{equation}
+which shows what specific covariances impact different parts of the slope parameter.
+
 <!-- As for the variance of $b_1$, it can be calculated as: -->
 <!-- \begin{equation} -->
 <!--     \begin{aligned} -->
