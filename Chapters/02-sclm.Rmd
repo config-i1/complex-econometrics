@@ -440,6 +440,8 @@ We cannot compare the efficiency of the likelihood estimator directly with the O
 
 In terms of consistency, in one specific situation, when $\hat{\sigma}_{x_r}^2 = \hat{\sigma}_{x_i}^2$ and $\hat{\sigma}_{x_r, x_i}=0$, CLS might produce non-consistent estimates of parameters. This means that if we deal with explanatory variables with these properties, we should use either OLS or Likelihood.
 
+Similar analysis can be done for the coefficient $b_{1,i}$, with the conclusions similar to the above, so we skip this discussion.
+
 ```{r echo=FALSE}
 load("./data/clmExperimentsParameters.Rdata")
 ```
