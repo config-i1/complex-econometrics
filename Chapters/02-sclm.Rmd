@@ -427,7 +427,7 @@ The main difference between the Likelihood and the other two estimators discusse
 ## Comparing different estimators for SCLR {#SCLREstimatorsComparison}
 Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
 
-First, comparing variances of estimates of $b_{1,r}$ \@ref(eq:SimpleCLRCLSb1Variance) with \@ref(eq:SimpleCLROLSb1Variance):
+First, comparing variances of OLS and CLS estimates of $b_{1,r}$ \@ref(eq:SimpleCLRCLSb1Variance) with \@ref(eq:SimpleCLROLSb1Variance):
 \begin{equation*}
     \begin{aligned}
         \mathrm{V}(b_{1,r}^{\mathrm{OLS}}) = & \mathrm{V}\left(\frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}\right) \\
@@ -436,11 +436,17 @@ First, comparing variances of estimates of $b_{1,r}$ \@ref(eq:SimpleCLRCLSb1Vari
 \end{equation*}
 we can conclude that there are some situations, when the estimates of parameters via CLS are less efficient than the estimates via OLS. There are some cases, when the variance \@ref(eq:SimpleCLRCLSb1Variance) is much higher than \@ref(eq:SimpleCLROLSb1Variance). For example, when the real and imaginary parts of $x$ are not correlated (i.e. $\hat{\sigma}_{x_r, x_i}=0$) and when the variances of the real and imaginary parts of $x$ are equal, the variance of $b_{1,r}$ explodes. However, there are also some cases, when CLS estimates are more efficient than the OLS ones. For example, when $\hat{\sigma}_{x_r, \epsilon_i}=\hat{\sigma}_{x_i, \epsilon_i}$ and $\hat{\sigma}_{x_r, x_i}=0$, the variance \@ref(eq:SimpleCLROLSb1Variance) will be equal to zero, while the variance \@ref(eq:SimpleCLRCLSb1Variance) will be greater than zero. So, in general, we can conclude which of the estimators will be more efficient, but we know that in different circumstances, they will have different properties.
 
+We cannot compare the efficiency of the likelihood estimator directly with the OLS and CLS, but we know from the statistics literature [@referenceLikelihoodPaper] that likelihood gives consistent and asymptotically efficient estimates of parameters.
+
 ```{r echo=FALSE}
 load("./data/clmExperimentsParameters.Rdata")
 ```
 
-In order to do that, we set up several experiments based on the following simple CLR: $y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)$. We had several scenarios, parameters for which are shown in Table \@ref(tab:scenariosEstimators). They covered several important situations: when $x_r$ and $x_i$ are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different and then when the real and imaginary parts of the error term are not correlated, have medium correlation, are equal to zero and when their variances have high or low values.
+In order to do a more thorough comparison of the three estimators, we set up an experiment based on the following simple CLR:
+\begin{equation*}
+    y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)
+\end{equation*}
+with several scenarios, parameters for which are shown in Table \@ref(tab:scenariosEstimators). They covered several important situations: when $x_r$ and $x_i$ are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different and then when the real and imaginary parts of the error term are not correlated, have medium correlation, are equal to zero and when their variances have high or low values.
 
 <!-- 1. $x_r$ and $x_i$ are **uncorrelated** and have **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$). -->
 
