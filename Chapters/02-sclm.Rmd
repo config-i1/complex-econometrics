@@ -272,12 +272,14 @@ This then can be split into two parts:
 or
 \begin{equation}
     \begin{aligned}
-        b_{1,r} = & \beta_{1,r} + \frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2} \\
-        b_{1,i} = & \beta_{1,i} + \frac{\left( \\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) + 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_i, \epsilon_i} - \hat{\sigma}_{x_r, \epsilon_r}\right)}{\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}
+        b_{1,r} = & \beta_{1,r} + \frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2} \\
+        b_{1,i} = & \beta_{1,i} + \frac{\left( \hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) + 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_i, \epsilon_i} - \hat{\sigma}_{x_r, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}
     \end{aligned}
     (\#eq:SimpleCLRCLSSlopeExpansion06)
 \end{equation}
 If we now consider the properties of $b_{1,r}$, we can see that it is an asymptotically unbiased estimate of $\beta_{1,r}$ when the basic regression assumptions hold (i.e. ${\sigma}_{x_r, \epsilon_r} = {\sigma}_{x_i, \epsilon_i} = {\sigma}_{x_r, \epsilon_i} = {\sigma}_{x_i, \epsilon_r}=0$).
+
+$\begin{aligned} b_{1,r} = & \beta_{1,r} + \frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2} \\ b_{1,i} = & \beta_{1,i} + \frac{\left( \hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) + 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_i, \epsilon_i} - \hat{\sigma}_{x_r, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2} \end{aligned}$
 
 
 In order to better understand what is specifically minimised, when the formulae \@ref(eq:SimpleCLRCLSLossParametersMoments) are used for the estimation of parameters, we conduct a small experiment in R with the following code:
