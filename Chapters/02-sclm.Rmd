@@ -280,7 +280,7 @@ The variance of $b_{1,r}$ can be written as:
     \mathrm{V}(b_{1,r}) = \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right) .
     (\#eq:SimpleCLRCLSb1Variance)
 \end{equation}
-Comparing \@ref(eq:SimpleCLRCLSb1Variance) with \@ref(eq:SimpleCLROLSb1Variance), we can conclude that the estimates of parameters via CLS are in general less than or equally efficient as the estimates via OLS. There are some cases, when the variance \@ref(eq:SimpleCLRCLSb1Variance) is much higher than \@ref(eq:SimpleCLROLSb1Variance). For example, when the real and imaginary parts of $x$ are not correlated (i.e. $\hat{\sigma}_{x_r, x_i}=0$) and when the variances of the real and imaginary parts of $x$ are equal, the variance of $b_{1,r}$ explodes. In the opposite situation, when $\hat{\sigma}_{x_r, x_i} \neq 0$ and $\hat{\sigma}_{x_r}^2 \neq \hat{\sigma}_{x_i}^2$, the variance \@ref(eq:SimpleCLRCLSb1Variance) will typically be greater or equal to the variance of \@ref(eq:SimpleCLROLSb1Variance). So, we can conclude that in general CLS produces less efficient estimates of parameters than OLS for the simple CLR.
+We will come back to this variance, when comparing the efficiency of OLS and CLS estimators in Section \@ref(SCLREstimatorsComparison).
 
 In order to better understand what is specifically minimised, when the formulae \@ref(eq:SimpleCLRCLSLossParametersMoments) are used for the estimation of parameters, we conduct a small experiment in R with the following code:
 
@@ -392,12 +392,6 @@ Figure \@ref(fig:plotlyCLS) demonstrates how the projection of the two-dimension
 
 So, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
 
-1. **Derive expectation of estimator**
-
-2. **Derive variance of estimator**
-
-3. **Compare with OLS**
-
 
 ### Likelihood
 Finally, another way of estimating the simple CLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
@@ -430,8 +424,17 @@ The minimisation of GV in its turn implies the joint minimisation of variances o
 The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
 
 
-## Comparing different estimators for SCLR
+## Comparing different estimators for SCLR {#SCLREstimatorsComparison}
 Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
+
+First, comparing variances of estimates of $b_{1,r}$ \@ref(eq:SimpleCLRCLSb1Variance) with \@ref(eq:SimpleCLROLSb1Variance):
+\begin{equation*}
+    \begin{aligned}
+        \mathrm{V}(b_{1,r}^{\mathrm{OLS}}) = & \mathrm{V}\left(\frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}\right) \\
+        \mathrm{V}(b_{1,r}^{\mathrm{CLS}}) = & \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right)
+    \end{aligned}
+\end{equation*}
+we can conclude that there are some situations, when the estimates of parameters via CLS are less efficient than the estimates via OLS. There are some cases, when the variance \@ref(eq:SimpleCLRCLSb1Variance) is much higher than \@ref(eq:SimpleCLROLSb1Variance). For example, when the real and imaginary parts of $x$ are not correlated (i.e. $\hat{\sigma}_{x_r, x_i}=0$) and when the variances of the real and imaginary parts of $x$ are equal, the variance of $b_{1,r}$ explodes. However, there are also some cases, when CLS estimates are more efficient than the OLS ones. For example, when $\hat{\sigma}_{x_r, \epsilon_i}=\hat{\sigma}_{x_i, \epsilon_i}$ and $\hat{\sigma}_{x_r, x_i}=0$, the variance \@ref(eq:SimpleCLROLSb1Variance) will be equal to zero, while the variance \@ref(eq:SimpleCLRCLSb1Variance) will be greater than zero. So, in general, we can conclude which of the estimators will be more efficient, but we know that in different circumstances, they will have different properties.
 
 ```{r echo=FALSE}
 load("./data/clmExperimentsParameters.Rdata")

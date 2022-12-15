@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.97874+99.35695i
+## [1] 48.44773+98.62069i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 138.9748+0i
+## 127.8114+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -599,7 +599,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -88.92485+7.15113i
+## -75.85152+4.80234i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -625,8 +625,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r        x_i
-## x_r 25.024991   3.575565
-## x_i  3.575565 113.949840
+## x_r 25.979941   2.401172
+## x_i  2.401172 101.831459
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2838.809
+## [1] 2639.81
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 67.42236-97.88509i
+## 75.30579-98.78238i
 \end{verbatim}
 
 \begin{Shaded}
@@ -717,8 +717,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -34.22323+75.70742i
+##  Direct covariance 
+## -68.6001+57.94139i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -731,9 +731,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -91.38410+11.11976i -34.22323+75.70742i
-## y -34.22323+75.70742i  62.41384+54.18499i
+##                     x                  y
+## x -83.50477-10.03319i -68.6001+57.94139i
+## y -68.60010+57.94139i  -6.6104+91.24075i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1025,7 +1025,7 @@ The variance of \(b_{1,r}\) can be written as:
     \mathrm{V}(b_{1,r}) = \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right) .
     \label{eq:SimpleCLRCLSb1Variance}
 \end{equation}
-Comparing \eqref{eq:SimpleCLRCLSb1Variance} with \eqref{eq:SimpleCLROLSb1Variance}, we can conclude that the estimates of parameters via CLS are in general less than or equally efficient as the estimates via OLS. There are some cases, when the variance \eqref{eq:SimpleCLRCLSb1Variance} is much higher than \eqref{eq:SimpleCLROLSb1Variance}. For example, when the real and imaginary parts of \(x\) are not correlated (i.e.~\(\hat{\sigma}_{x_r, x_i}=0\)) and when the variances of the real and imaginary parts of \(x\) are equal, the variance of \(b_{1,r}\) explodes. In the opposite situation, when \(\hat{\sigma}_{x_r, x_i} \neq 0\) and \(\hat{\sigma}_{x_r}^2 \neq \hat{\sigma}_{x_i}^2\), the variance \eqref{eq:SimpleCLRCLSb1Variance} will typically be greater or equal to the variance of \eqref{eq:SimpleCLROLSb1Variance}. So, we can conclude that in general CLS produces less efficient estimates of parameters than OLS for the simple CLR.
+We will come back to this variance, when comparing the efficiency of OLS and CLS estimators in Section \ref{SCLREstimatorsComparison}.
 
 In order to better understand what is specifically minimised, when the formulae \eqref{eq:SimpleCLRCLSLossParametersMoments} are used for the estimation of parameters, we conduct a small experiment in R with the following code:
 
@@ -1149,16 +1149,6 @@ Figure \ref{fig:plotlyCLS} demonstrates how the projection of the two-dimensiona
 
 So, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Derive expectation of estimator}
-\item
-  \textbf{Derive variance of estimator}
-\item
-  \textbf{Compare with OLS}
-\end{enumerate}
-
 \hypertarget{likelihood}{%
 \subsection{Likelihood}\label{likelihood}}
 
@@ -1191,10 +1181,19 @@ The minimisation of GV in its turn implies the joint minimisation of variances o
 
 The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
 
-\hypertarget{comparing-different-estimators-for-sclr}{%
-\section{Comparing different estimators for SCLR}\label{comparing-different-estimators-for-sclr}}
+\hypertarget{SCLREstimatorsComparison}{%
+\section{Comparing different estimators for SCLR}\label{SCLREstimatorsComparison}}
 
 Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
+
+First, comparing variances of estimates of \(b_{1,r}\) \eqref{eq:SimpleCLRCLSb1Variance} with \eqref{eq:SimpleCLROLSb1Variance}:
+\begin{equation*}
+    \begin{aligned}
+        \mathrm{V}(b_{1,r}^{\mathrm{OLS}}) = & \mathrm{V}\left(\frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}\right) \\
+        \mathrm{V}(b_{1,r}^{\mathrm{CLS}}) = & \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right)
+    \end{aligned}
+\end{equation*}
+we can conclude that there are some situations, when the estimates of parameters via CLS are less efficient than the estimates via OLS. There are some cases, when the variance \eqref{eq:SimpleCLRCLSb1Variance} is much higher than \eqref{eq:SimpleCLROLSb1Variance}. For example, when the real and imaginary parts of \(x\) are not correlated (i.e.~\(\hat{\sigma}_{x_r, x_i}=0\)) and when the variances of the real and imaginary parts of \(x\) are equal, the variance of \(b_{1,r}\) explodes. However, there are also some cases, when CLS estimates are more efficient than the OLS ones. For example, when \(\hat{\sigma}_{x_r, \epsilon_i}=\hat{\sigma}_{x_i, \epsilon_i}\) and \(\hat{\sigma}_{x_r, x_i}=0\), the variance \eqref{eq:SimpleCLROLSb1Variance} will be equal to zero, while the variance \eqref{eq:SimpleCLRCLSb1Variance} will be greater than zero. So, in general, we can conclude which of the estimators will be more efficient, but we know that in different circumstances, they will have different properties.
 
 In order to do that, we set up several experiments based on the following simple CLR: \(y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)\). We had several scenarios, parameters for which are shown in Table \ref{tab:scenariosEstimators}. They covered several important situations: when \(x_r\) and \(x_i\) are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different and then when the real and imaginary parts of the error term are not correlated, have medium correlation, are equal to zero and when their variances have high or low values.
 
@@ -1586,7 +1585,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9979237+0i
+## [1] 0.9973863+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1643,8 +1642,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]
-## [1,] -0.9950732
+##        [,1]
+## [1,] 0.9979
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1669,11 +1668,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i         y_r         y_i
-## x_r  1.0000000 -0.0451660  0.71278451  0.69119678
-## x_i -0.0451660  1.0000000 -0.72981869  0.68793861
-## y_r  0.7127845 -0.7298187  1.00000000 -0.01059836
-## y_i  0.6911968  0.6879386 -0.01059836  1.00000000
+##            x_r         x_i        y_r       y_i
+## x_r 1.00000000  0.00766572  0.7603488 0.7519689
+## x_i 0.00766572  1.00000000 -0.6398278 0.6608530
+## y_r 0.76034883 -0.63982780  1.0000000 0.1478160
+## y_i 0.75196894  0.66085303  0.1478160 1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
