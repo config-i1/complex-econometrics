@@ -247,19 +247,18 @@ which after some simplifications becomes:
 \end{equation}
 which can be expanded to:
 \begin{equation}
-\resizebox{1\textwidth}{!}{$
-    b_{1} = \beta_1 + \frac{\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))}{V(x_r) - V(x_i) + 2i \mathrm{cov}(x_r, x_i)}$} . 
+    b_{1} = \beta_1 + \frac{\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))}{V(x_r) - V(x_i) + 2i \mathrm{cov}(x_r, x_i)} . 
     (\#eq:SimpleCLRCLSb1Expansion03)
 \end{equation}
 Note that both numerator and denominator of \@ref(eq:SimpleCLRCLSb1Expansion03) are complex numbers. In order to have a proper split into real and imaginary parts we need to multiply the fraction by the complex number conjugate to the denominator:
 \begin{equation}
-\resizebox{1\textwidth}{!}{$
+\resizebox{0.9\textwidth}{!}{$
         b_{1} = \beta_1 + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))\right)\left(V(x_r) - V(x_i) - 2i \mathrm{cov}(x_r, x_i)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} $}.
     (\#eq:SimpleCLRCLSb1Expansion04)
 \end{equation}
 This then can be split into two parts:
 \begin{equation}
-\resizebox{1\textwidth}{!}{$
+\resizebox{0.9\textwidth}{!}{$
     \begin{aligned}
         b_{1,r} = & \beta_{1,r} + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i)\right) \left(V(x_r) - V(x_i)\right) - 2 \mathrm{cov}(x_r, x_i) \left(\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} \\
         b_{1,i} = & \beta_{1,i} + \frac{\left( \mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r)\right)\left(V(x_r) - V(x_i) \right) + 2 \mathrm{cov}(x_r, x_i) \left(\mathrm{cov}(x_i, \epsilon_i) - \mathrm{cov}(x_r, \epsilon_r)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} 
@@ -281,7 +280,7 @@ The variance of $b_{1,r}$ can be written as:
     \mathrm{V}(b_{1,r}) = \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right) .
     (\#eq:SimpleCLRCLSb1Variance)
 \end{equation}
-Comparing \@ref(eq:SimpleCLRCLSb1Variance) with \@ref(eq:SimpleCLROLSb1Variance), we can conclude that the estimates of parameters via CLS are in general less than or equally efficient as the estimates via OLS. There are some cases, when the variance \@ref(eq:SimpleCLRCLSb1Variance) is much higher than \@ref(eq:SimpleCLROLSb1Variance). For example, when the real and imaginary parts of $x$ are not correlated (i.e. $\hat{\sigma}_{x_r, x_i}=0$) and when the variances of the real and imaginary parts of $x$ are equal, the variance of $b_{1,r}$ explodes. But at the same time there is also a variety of covariance values for which the estimates of CLS would be more efficient than the ones from OLS. For example,
+Comparing \@ref(eq:SimpleCLRCLSb1Variance) with \@ref(eq:SimpleCLROLSb1Variance), we can conclude that the estimates of parameters via CLS are in general less than or equally efficient as the estimates via OLS. There are some cases, when the variance \@ref(eq:SimpleCLRCLSb1Variance) is much higher than \@ref(eq:SimpleCLROLSb1Variance). For example, when the real and imaginary parts of $x$ are not correlated (i.e. $\hat{\sigma}_{x_r, x_i}=0$) and when the variances of the real and imaginary parts of $x$ are equal, the variance of $b_{1,r}$ explodes. In the opposite situation, when $\hat{\sigma}_{x_r, x_i} \neq 0$ and $\hat{\sigma}_{x_r}^2 \neq \hat{\sigma}_{x_i}^2$, the variance \@ref(eq:SimpleCLRCLSb1Variance) will typically be greater or equal to the variance of \@ref(eq:SimpleCLROLSb1Variance). So, we can conclude that in general CLS produces less efficient estimates of parameters than OLS for the simple CLR.
 
 In order to better understand what is specifically minimised, when the formulae \@ref(eq:SimpleCLRCLSLossParametersMoments) are used for the estimation of parameters, we conduct a small experiment in R with the following code:
 
