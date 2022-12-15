@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.13187+99.3358i
+## [1] 49.7663+100.4084i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 109.4819+0i
+## 144.2883+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -598,8 +598,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -51.12468+14.05632i
+##   Direct variance 
+## -88.6852-2.83221i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +624,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 29.178627  7.028159
-## x_i  7.028159 80.303308
+##           x_r        x_i
+## x_r 27.801562  -1.416103
+## x_i -1.416103 116.486760
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2293.745
+## [1] 3236.508
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 47.13966-85.55978i
+## 66.22351-79.90239i
 \end{verbatim}
 
 \begin{Shaded}
@@ -717,8 +717,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-## Direct covariance 
-## -46.4424+57.5335i
+##   Direct covariance 
+## -28.05816+38.08123i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -731,9 +731,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                  y
-## x -66.39642-10.80031i -46.44240+57.5335i
-## y -46.44240+57.53350i  35.19958+72.3849i
+##                     x                   y
+## x -63.41362+ 6.05879i -28.05816+38.08123i
+## y -28.05816+38.08123i  27.11580+64.05410i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -992,28 +992,32 @@ which after some simplifications becomes:
 \end{equation}
 which can be expanded to:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))}{V(x_r) - V(x_i) + 2i \mathrm{cov}(x_r, x_i)} .
+\resizebox{1\textwidth}{!}{$
+    b_{1} = \beta_1 + \frac{\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))}{V(x_r) - V(x_i) + 2i \mathrm{cov}(x_r, x_i)}$} . 
     \label{eq:SimpleCLRCLSb1Expansion03}
 \end{equation}
 Note that both numerator and denominator of \eqref{eq:SimpleCLRCLSb1Expansion03} are complex numbers. In order to have a proper split into real and imaginary parts we need to multiply the fraction by the complex number conjugate to the denominator:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))\right)\left(V(x_r) - V(x_i) - 2i \mathrm{cov}(x_r, x_i)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} .
+\resizebox{1\textwidth}{!}{$
+        b_{1} = \beta_1 + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))\right)\left(V(x_r) - V(x_i) - 2i \mathrm{cov}(x_r, x_i)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} $}.
     \label{eq:SimpleCLRCLSb1Expansion04}
 \end{equation}
 This then can be split into two parts:
 \begin{equation}
+\resizebox{1\textwidth}{!}{$
     \begin{aligned}
         b_{1,r} = & \beta_{1,r} + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i)\right) \left(V(x_r) - V(x_i)\right) - 2 \mathrm{cov}(x_r, x_i) \left(\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} \\
         b_{1,i} = & \beta_{1,i} + \frac{\left( \mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r)\right)\left(V(x_r) - V(x_i) \right) + 2 \mathrm{cov}(x_r, x_i) \left(\mathrm{cov}(x_i, \epsilon_i) - \mathrm{cov}(x_r, \epsilon_r)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} 
-    \end{aligned}
+    \end{aligned}$}
     \label{eq:SimpleCLRCLSb1Expansion05}
 \end{equation}
 or
 \begin{equation}
+\resizebox{1\textwidth}{!}{$
     \begin{aligned}
         b_{1,r} = & \beta_{1,r} + \frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2} \\
         b_{1,i} = & \beta_{1,i} + \frac{\left( \hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) + 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_i, \epsilon_i} - \hat{\sigma}_{x_r, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}
-    \end{aligned}
+    \end{aligned} $}
     \label{eq:SimpleCLRCLSb1Expansion06}
 \end{equation}
 If we now consider the properties of \(b_{1,r}\), we can see that it is an asymptotically unbiased estimate of \(\beta_{1,r}\) when the basic regression assumptions hold (i.e.~\({\sigma}_{x_r, \epsilon_r} = {\sigma}_{x_i, \epsilon_i} = {\sigma}_{x_r, \epsilon_i} = {\sigma}_{x_i, \epsilon_r}=0\)). Similar holds for the \(b_{1,i}\).
@@ -1584,7 +1588,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9977752+0i
+## [1] 0.9980318+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1642,7 +1646,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9980227
+## [1,] 0.9973899
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1667,11 +1671,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i         y_r        y_i
-## x_r 1.0000000  0.1233933  0.68631486 0.77219694
-## x_i 0.1233933  1.0000000 -0.63373293 0.72259363
-## y_r 0.6863149 -0.6337329  1.00000000 0.07208499
-## y_i 0.7721969  0.7225936  0.07208499 1.00000000
+##            x_r         x_i        y_r        y_i
+## x_r 1.00000000  0.02140268  0.6474942  0.6795592
+## x_i 0.02140268  1.00000000 -0.7454387  0.7453538
+## y_r 0.64749419 -0.74543868  1.0000000 -0.1156691
+## y_i 0.67955922  0.74535381 -0.1156691  1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.

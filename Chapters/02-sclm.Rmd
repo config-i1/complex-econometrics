@@ -247,20 +247,23 @@ which after some simplifications becomes:
 \end{equation}
 which can be expanded to:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))}{V(x_r) - V(x_i) + 2i \mathrm{cov}(x_r, x_i)} .
+\resizebox{1\textwidth}{!}{$
+    b_{1} = \beta_1 + \frac{\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))}{V(x_r) - V(x_i) + 2i \mathrm{cov}(x_r, x_i)}$} . 
     (\#eq:SimpleCLRCLSb1Expansion03)
 \end{equation}
 Note that both numerator and denominator of \@ref(eq:SimpleCLRCLSb1Expansion03) are complex numbers. In order to have a proper split into real and imaginary parts we need to multiply the fraction by the complex number conjugate to the denominator:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))\right)\left(V(x_r) - V(x_i) - 2i \mathrm{cov}(x_r, x_i)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} .
+\resizebox{1\textwidth}{!}{$
+        b_{1} = \beta_1 + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))\right)\left(V(x_r) - V(x_i) - 2i \mathrm{cov}(x_r, x_i)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} $}.
     (\#eq:SimpleCLRCLSb1Expansion04)
 \end{equation}
 This then can be split into two parts:
 \begin{equation}
+\resizebox{1\textwidth}{!}{$
     \begin{aligned}
         b_{1,r} = & \beta_{1,r} + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i)\right) \left(V(x_r) - V(x_i)\right) - 2 \mathrm{cov}(x_r, x_i) \left(\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} \\
         b_{1,i} = & \beta_{1,i} + \frac{\left( \mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r)\right)\left(V(x_r) - V(x_i) \right) + 2 \mathrm{cov}(x_r, x_i) \left(\mathrm{cov}(x_i, \epsilon_i) - \mathrm{cov}(x_r, \epsilon_r)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} 
-    \end{aligned}
+    \end{aligned}$}
     (\#eq:SimpleCLRCLSb1Expansion05)
 \end{equation}
 or
