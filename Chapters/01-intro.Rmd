@@ -569,8 +569,41 @@ cvar(ourData, method="direct")
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
 
 
-## Normal c.r.v.
-<!-- + Spherical c.r.v. -->
+## Parametric Distributions of c.r.v.
+Similarly to the real valued random variables, complex random variables can follow some parametric distributions. In this section, we discuss several simple ones, some of which will be used later in this monograph.
 
+
+### Elliptic uniform distribution
+The elliptic uniform distribution of CRV is based on the equation of ellipse:
+\begin{equation}
+    \frac{(x_r-a_1)^2}{a_2^2} + \frac{(x_i-b_1)^2}{b_2^2} - \frac{(x_r-a_1) (x_i-b_1)}{a_2 b_2} = 1,
+    (\#eq:ellipseFormula)
+\end{equation}
+where $a_1$ and $b_1$ are the shifts along the real and imaginary axes respectively, while $a_2$ and $b_2$ are the values that characterise the width and the height of the ellipse along the axes at the origin. The area of this ellipse is:
+\begin{equation}
+    A = \pi a_2 b_2 .
+    (\#eq:EllipseArea)
+\end{equation}
+Based on this 
+The PDF based on that is:
+\begin{equation} \label{eq:EllipseArea2}
+    f_z(z_j) = \left\{
+        \begin{matrix}
+            \frac{1}{\pi a b} & \text{when $z_j$ satisfies \eqref{eq:Ellipse}} \\
+            0 & \text{otherwise}
+        \end{matrix}
+    \right. .
+\end{equation}
+
+
+### Rectangular uniform distribution
+
+
+### Normal distribution
+
++ Spherical c.r.v.
+
+
+### Hotelling's distribution
 
 
