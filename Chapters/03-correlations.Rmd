@@ -194,11 +194,11 @@ Given that it contains a complex number in the denominator, it is more complicat
 
 1. The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all cross-covariances between the real and imaginary parts of $x$ and $y$ are equal to zero.
 
-2. When the complex variables $x$ and $y$ have positive functional relation between them, so that $a_1 = \frac{1}{b_1}$, the coefficient will be equal to one.
+2. When the complex variables $x$ and $y$ have functional relation between them, so that $a_1 = \frac{1}{b_1}$, the coefficient will be equal to one.
 
 Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables $x$ and $y$.
 
-Father's stuff here.
+Coefficient equal to -1 and to i.
 
 <!-- To get other insights about the direct correlation coefficient, we express its denominator in the exponential form: -->
 <!-- \begin{equation} -->
