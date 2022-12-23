@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-12-15}
+\date{2022-12-23}
 
 \begin{document}
 \maketitle
@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.30362+99.49582i
+## [1] 50.38449+99.48907i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 138.2714+0i
+## 132.4765+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -598,8 +598,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -89.94922+1.31956i
+##     Direct variance 
+## -80.95432+11.08409i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +624,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i
-## x_r 24.1610659   0.6597825
-## x_i  0.6597825 114.1102887
+##           x_r        x_i
+## x_r 25.761099   5.542044
+## x_i  5.542044 106.715424
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2756.591
+## [1] 2718.392
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 78.38752-94.83093i
+## 92.42022-82.21708i
 \end{verbatim}
 
 \begin{Shaded}
@@ -718,7 +718,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -53.35487+54.14516i
+## -56.10198+52.69758i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -732,22 +732,63 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -79.08373+ 3.98378i -53.35487+54.14516i
-## y -53.35487+54.14516i  -8.69699+61.08619i
+## x -84.87973- 6.63385i -56.10198+52.69758i
+## y -56.10198+52.69758i  14.67318+69.63248i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
 
-\hypertarget{normal-c.r.v.}{%
-\section{Normal c.r.v.}\label{normal-c.r.v.}}
+\hypertarget{parametric-distributions-of-c.r.v.}{%
+\section{Parametric Distributions of c.r.v.}\label{parametric-distributions-of-c.r.v.}}
+
+Similarly to the real valued random variables, complex random variables can follow some parametric distributions. In this section, we discuss several simple ones, some of which will be used later in this monograph.
+
+\hypertarget{elliptic-uniform-distribution}{%
+\subsection{Elliptic uniform distribution}\label{elliptic-uniform-distribution}}
+
+The elliptic uniform distribution of CRV is based on the equation of ellipse:
+\begin{equation}
+    \frac{(x_r-a_1)^2}{a_2^2} + \frac{(x_i-b_1)^2}{b_2^2} - \frac{(x_r-a_1) (x_i-b_1)}{a_2 b_2} = 1,
+    \label{eq:ellipseFormula}
+\end{equation}
+where \(a_1\) and \(b_1\) are the shifts along the real and imaginary axes respectively, while \(a_2\) and \(b_2\) are the values that characterise the width and the height of the ellipse along the axes at the origin. The area of this ellipse is:
+\begin{equation}
+    A = \pi a_2 b_2 .
+    \label{eq:EllipseArea}
+\end{equation}
+Based on this
+The PDF based on that is:
+\begin{equation} \label{eq:EllipseArea2}
+    f_z(z_j) = \left\{
+        \begin{matrix}
+            \frac{1}{\pi a b} & \text{when $z_j$ satisfies \eqref{eq:Ellipse}} \\
+            0 & \text{otherwise}
+        \end{matrix}
+    \right. .
+\end{equation}
+
+\hypertarget{rectangular-uniform-distribution}{%
+\subsection{Rectangular uniform distribution}\label{rectangular-uniform-distribution}}
+
+\hypertarget{normal-distribution}{%
+\subsection{Normal distribution}\label{normal-distribution}}
+
+\begin{itemize}
+\tightlist
+\item
+  Spherical c.r.v.
+\end{itemize}
+
+\hypertarget{hotellings-distribution}{%
+\subsection{Hotelling's distribution}\label{hotellings-distribution}}
 
 \hypertarget{simpleCLR}{%
 \chapter{Simple Complex Linear Regression}\label{simpleCLR}}
 
 We start with the simplest Complex Linear Regression (CLR), which we call ``simple'', because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
 
-\hypertarget{model-formulation}{%
-\section{Model formulation}\label{model-formulation}}
+\hypertarget{simpleCLRModel}{%
+\section{Model formulation}\label{simpleCLRModel}}
 
 The simple Complex Linear Regression can be written as:
 \begin{equation}
@@ -1199,6 +1240,8 @@ We cannot compare the efficiency of the likelihood estimator directly with the O
 
 In terms of consistency, in one specific situation, when \(\hat{\sigma}_{x_r}^2 = \hat{\sigma}_{x_i}^2\) and \(\hat{\sigma}_{x_r, x_i}=0\), CLS might produce non-consistent estimates of parameters. This means that if we deal with explanatory variables with these properties, we should use either OLS or Likelihood.
 
+Similar analysis can be done for the coefficient \(b_{1,i}\), with the conclusions similar to the above, so we skip this discussion.
+
 In order to do a more thorough comparison of the three estimators, we set up an experiment based on the following simple CLR:
 \begin{equation*}
     y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)
@@ -1593,7 +1636,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9971739+0i
+## [1] 0.9971927+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1627,12 +1670,12 @@ Given that it contains a complex number in the denominator, it is more complicat
 \item
   The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when \(\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0\) and \(\sigma_{x_r,y_r}=\sigma_{x_i,y_i}\). One of the special cases of this is when all cross-covariances between the real and imaginary parts of \(x\) and \(y\) are equal to zero.
 \item
-  When the complex variables \(x\) and \(y\) have positive functional relation between them, so that \(a_1 = \frac{1}{b_1}\), the coefficient will be equal to one.
+  When the complex variables \(x\) and \(y\) have functional relation between them, so that \(a_1 = \frac{1}{b_1}\), the coefficient will be equal to one.
 \end{enumerate}
 
-Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables \(x\) and \(y\).
+Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables \(x\) and/or \(y\).
 
-Father's stuff here.
+Coefficient equal to -1 and to i.
 
 \hypertarget{pearsons-correlation}{%
 \section{Pearson's correlation}\label{pearsons-correlation}}
@@ -1651,7 +1694,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##            [,1]
-## [1,] -0.9972434
+## [1,] -0.9971611
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1676,11 +1719,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i         y_r         y_i
-## x_r 1.0000000  0.1538229  0.61813584  0.74551114
-## x_i 0.1538229  1.0000000 -0.67701284  0.77006999
-## y_r 0.6181358 -0.6770128  1.00000000 -0.05778968
-## y_i 0.7455111  0.7700700 -0.05778968  1.00000000
+##            x_r         x_i         y_r        y_i
+## x_r 1.00000000  0.01218522  0.73160378 0.73971971
+## x_i 0.01218522  1.00000000 -0.66952676 0.67683201
+## y_r 0.73160378 -0.66952676  1.00000000 0.08797311
+## y_i 0.73971971  0.67683201  0.08797311 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
@@ -1688,11 +1731,53 @@ This matrix will not tell us how the variables \(x\) and \(y\) are related overa
 \hypertarget{multipleCLR}{%
 \chapter{Multiple Complex Linear Regression}\label{multipleCLR}}
 
-\hypertarget{model-formulation-1}{%
-\section{Model formulation}\label{model-formulation-1}}
+We now move to the discussion of the multiple CLR, the model that captures relations between one complex random variable, \(y_r + i y_i\) and a set of explanatory complex random variables.
+
+\hypertarget{model-formulation}{%
+\section{Model formulation}\label{model-formulation}}
+
+Similarly to how the multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
+\begin{equation}
+    y_j = \beta_0 + \beta_1 x_{1,j} + \beta_2 x_{2,j} + \dots + \beta_k x_{k,j} + \epsilon_j,
+    \label{eq:MultipleCLRComplex}
+\end{equation}
+where \(k\) is the number of complex random variables. Similarly to how it was done with SCLR in \eqref{eq:SimpleCLRSystem}, we can expand the formula \eqref{eq:MultipleCLRComplex} as a system of two equations, taking that every parameter and every variable in \eqref{eq:MultipleCLRComplex} is complex:
+\begin{equation}
+    \begin{aligned}
+        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k,r} x_{k,r,j} - \beta_{k,i} x_{k,i,j} \epsilon_{r,j} \\
+        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{1,i,j} + \beta_{1,i} x_{1,r,j} + \dots + \beta_{k,r} x_{k,i,j} + \beta_{k,i} x_{k,r,j} + \epsilon_{i,j} .
+    \end{aligned}
+    \label{eq:MultipleCLRSystem}
+\end{equation}
+As can be seen from \eqref{eq:MultipleCLRSystem}, the multiple CLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework. Furthermore, this system can also be used to represent the multiple CLR in a simple form using vector and matrix notations:
+\begin{equation}
+    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
+    \label{eq:MultipleCLRSystemVector}
+\end{equation}
+where \(\mathbf{X}_j = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}\) and \(\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}\). This can be then represented in the even more compact form, using the same principles as discussed in Section \ref{simpleCLRModel} in formula \eqref{eq:SimpleCLRSystemVectorFinal}:
+\begin{equation*}
+    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{E} 
+\end{equation*}
+with where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}\), \(\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}\) and \(\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}\). This formula becomes especially useful for multiple CLR because it can be used in the estimation of the model via OLS or CLS in the matrix form.
 
 \hypertarget{estimation}{%
 \section{Estimation}\label{estimation}}
+
+\hypertarget{ols}{%
+\subsection{OLS}\label{ols}}
+
+\begin{equation}
+    \boldsymbol{b} = \left( \mathbf{\tilde{X}}^\prime \mathbf{X}\right)^{-1} \mathbf{\tilde{X}}^\prime \mathbf{Y}
+    \label{eq:MCLROLSEstimate}
+\end{equation}
+
+\hypertarget{cls}{%
+\subsection{CLS}\label{cls}}
+
+\begin{equation}
+    \boldsymbol{b} = \left( \mathbf{X}^\prime \mathbf{X}\right)^{-1} \mathbf{X}^\prime \mathbf{Y}
+    \label{eq:MCLROLSEstimate}
+\end{equation}
 
 \hypertarget{inference}{%
 \section{Inference}\label{inference}}
