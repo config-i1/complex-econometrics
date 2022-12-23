@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  23 DEC 2022 21:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  23 DEC 2022 21:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -501,11 +501,7 @@ Package: xurl 2022/01/09 v 0.10 modify URL breaks
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count314
 \l__pdf_internal_box=\box74
-) (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux
-
-LaTeX Warning: Label `eq:MCLROLSEstimate' multiply defined.
-
-)
+) (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux)
 \openout1 = `Svetunkov---Svetunkov---Complex-Dynamic-Models.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
@@ -1053,15 +1049,12 @@ Package natbib Warning: There were undefined citations.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 16414 strings out of 479648
- 268586 string characters out of 5886115
- 595376 words of memory out of 5000000
- 33539 multiletter control sequences out of 15000+600000
+ 16415 strings out of 479648
+ 268606 string characters out of 5886115
+ 595392 words of memory out of 5000000
+ 33540 multiletter control sequences out of 15000+600000
  572322 words of font info for 205 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
  74i,14n,77p,1163b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1084,10 +1077,10 @@ ublic/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/sha
 re/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmtti10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (59 pages,
- 2992532 bytes).
+ 2993891 bytes).
 PDF statistics:
- 1053 PDF objects out of 1200 (max. 8388607)
- 884 compressed objects within 9 object streams
+ 1055 PDF objects out of 1200 (max. 8388607)
+ 886 compressed objects within 9 object streams
  273 named destinations out of 1000 (max. 500000)
  59667 words of extra memory for PDF output out of 61914 (max. 10000000)
 
