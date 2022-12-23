@@ -6,7 +6,7 @@ options(scipen = 100)
 
 We start with the simplest Complex Linear Regression (CLR), which we call "simple", because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
 
-## Model formulation
+## Model formulation {#simpleCLRModel}
 The simple Complex Linear Regression can be written as:
 \begin{equation}
     y_j = \beta_0 + \beta_1 x_j + \epsilon_j,

@@ -196,7 +196,7 @@ Given that it contains a complex number in the denominator, it is more complicat
 
 2. When the complex variables $x$ and $y$ have functional relation between them, so that $a_1 = \frac{1}{b_1}$, the coefficient will be equal to one.
 
-Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables $x$ and $y$.
+Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables $x$ and/or $y$.
 
 Coefficient equal to -1 and to i.
 

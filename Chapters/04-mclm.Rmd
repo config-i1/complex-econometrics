@@ -1,12 +1,46 @@
 # Multiple Complex Linear Regression {#multipleCLR}
-
-```{r echo=FALSE}
-options(scipen = 100)
-```
+We now move to the discussion of the multiple CLR, the model that captures relations between one complex random variable, $y_r + i y_i$ and a set of explanatory complex random variables.
 
 ## Model formulation 
+Similarly to how the multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
+\begin{equation}
+    y_j = \beta_0 + \beta_1 x_{1,j} + \beta_2 x_{2,j} + \dots + \beta_k x_{k,j} + \epsilon_j,
+    (\#eq:MultipleCLRComplex)
+\end{equation}
+where $k$ is the number of complex random variables. Similarly to how it was done with SCLR in \@ref(eq:SimpleCLRSystem), we can expand the formula \@ref(eq:MultipleCLRComplex) as a system of two equations, taking that every parameter and every variable in \@ref(eq:MultipleCLRComplex) is complex:
+\begin{equation}
+    \begin{aligned}
+        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k,r} x_{k,r,j} - \beta_{k,i} x_{k,i,j} \epsilon_{r,j} \\
+        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{1,i,j} + \beta_{1,i} x_{1,r,j} + \dots + \beta_{k,r} x_{k,i,j} + \beta_{k,i} x_{k,r,j} + \epsilon_{i,j} .
+    \end{aligned}
+    (\#eq:MultipleCLRSystem)
+\end{equation}
+As can be seen from \@ref(eq:MultipleCLRSystem), the multiple CLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework. Furthermore, this system can also be used to represent the multiple CLR in a simple form using vector and matrix notations:
+\begin{equation}
+    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
+    (\#eq:MultipleCLRSystemVector)
+\end{equation}
+where $\mathbf{X}_j = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}$ and $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
+\begin{equation*}
+    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{E} 
+\end{equation*}
+with where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. This formula becomes especially useful for multiple CLR because it can be used in the estimation of the model via OLS or CLS in the matrix form.
+
 
 ## Estimation
+
+### OLS
+\begin{equation}
+    \boldsymbol{b} = \left( \mathbf{\tilde{X}}^\prime \mathbf{X}\right)^{-1} \mathbf{\tilde{X}}^\prime \mathbf{Y}
+    (\#eq:MCLROLSEstimate)
+\end{equation}
+
+### CLS
+\begin{equation}
+    \boldsymbol{b} = \left( \mathbf{X}^\prime \mathbf{X}\right)^{-1} \mathbf{X}^\prime \mathbf{Y}
+    (\#eq:MCLROLSEstimate)
+\end{equation}
+
 
 ## Inference
 
