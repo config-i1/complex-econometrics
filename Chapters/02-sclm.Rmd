@@ -182,7 +182,7 @@ As for the variance of $b_1$, it can be shown to be equal to:
 we do not expand it further, because the formula \@ref(eq:SimpleCLROLSb1Variance) suffices for the comparison of OLS with other estimators.
 
 
-### Complex Least Squares
+### Complex Least Squares {#SCLREstimationCLS}
 An alternative estimation technique involves the minimisation of a rather exotic loss function:
 \begin{equation}
     \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n (e_{r,j}^2 - e_{i,j}^2 + i 2 e_{r,j} e_{i,j}),
