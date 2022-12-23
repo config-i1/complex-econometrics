@@ -30,7 +30,9 @@ with where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \
     \underset{\sim}{\mathbf{Y}} = \underset{\sim}{\mathbf{X}} \underset{\sim}{\boldsymbol{\beta}} + \underset{\sim}{\mathbf{E}},
     (\#eq:CLRSystemVectorComplexFinal)
 \end{equation}
-where $\underset{\sim}{\mathbf{Y}} = \begin{pmatrix} {y}_{1,r} + i {y}_{1,i} \\ {y}_{2,r} + i {y}_{2,i} \\ \vdots \\ {y}_{n,r} + i {y}_{n,i} \end{pmatrix}$, $\underset{\sim}{\mathbf{X}} = \begin{pmatrix} 1 & x_{1,r,1} + i x_{1,i,1} & \dots & x_{k,r,1} + i x_{k,i,1} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{1,r,n} + i x_{1,i,n} & \dots & x_{k,r,n} + i x_{k,i,n} \end{pmatrix}$, $\underset{\sim}{\boldsymbol{\beta}} = \begin{pmatrix} \beta_{0,r} + i \beta_{0,i} \\ \beta_{1,r} + i \beta_{1,i} \\ \vdots \\ \beta_{k,r} + i \beta_{k,i} \end{pmatrix}$ and $\underset{\sim}{\mathbf{E}} = \begin{pmatrix} {\epsilon}_{1,r} + i {\epsilon}_{1,i} \\ {\epsilon}_{2,r} + i {\epsilon}_{2,i} \\ \vdots \\ {\epsilon}_{n,r} + i {\epsilon}_{n,i} \end{pmatrix}$. So, the main difference of the form \@ref(eq:CLRSystemVectorComplexFinal) from the \@ref(eq:CLRSystemVectorFinal) is that it contains complex numbers inside each of the matrices and vectors.
+where $\underset{\sim}{\mathbf{Y}} = \begin{pmatrix} {y}_{1,r} + i {y}_{1,i} \\ {y}_{2,r} + i {y}_{2,i} \\ \vdots \\ {y}_{n,r} + i {y}_{n,i} \end{pmatrix}$, $\underset{\sim}{\mathbf{X}} = \begin{pmatrix} 1 & x_{1,r,1} + i x_{1,i,1} & \dots & x_{k,r,1} + i x_{k,i,1} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{1,r,n} + i x_{1,i,n} & \dots & x_{k,r,n} + i x_{k,i,n} \end{pmatrix}$, $\underset{\sim}{\boldsymbol{\beta}} = \begin{pmatrix} \beta_{0,r} + i \beta_{0,i} \\ \beta_{1,r} + i \beta_{1,i} \\ \vdots \\ \beta_{k,r} + i \beta_{k,i} \end{pmatrix}$ and $\underset{\sim}{\mathbf{E}} = \begin{pmatrix} {\epsilon}_{1,r} + i {\epsilon}_{1,i} \\ {\epsilon}_{2,r} + i {\epsilon}_{2,i} \\ \vdots \\ {\epsilon}_{n,r} + i {\epsilon}_{n,i} \end{pmatrix}$.
+
+So, the main difference of the form \@ref(eq:CLRSystemVectorComplexFinal) from the \@ref(eq:CLRSystemVectorFinal) is that it contains complex numbers inside each of the matrices and vectors.
 
 
 ## Estimation
@@ -86,10 +88,10 @@ Using the same logic as with OLS, the minimisation of this criterion implies the
 \end{equation}
 which then results to the following formula for the CLS estimate of parameters:
 \begin{equation}
-    \boldsymbol{b} = \left( \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{Y}}
+    \boldsymbol{b} = \left( \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{Y}} .
     (\#eq:MCLROLSEstimate)
 \end{equation}
-
+For the simple CLR, the formula \@ref(eq:MCLROLSEstimate) becomes equivalent to \@ref(eq:SimpleCLRCLSLossParameters). The main difference from the OLS, as we can see, is that the CLS does not do multiplication by the conjugate complex numbers.
 
 
 

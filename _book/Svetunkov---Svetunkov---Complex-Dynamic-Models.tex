@@ -525,7 +525,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.96008+97.55395i
+## [1] 50.23738+98.84779i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +586,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 116.8037+0i
+## 132.3037+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -598,8 +598,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -78.67394-6.72463i
+##     Direct variance 
+## -92.63939-11.22523i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +624,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 19.064858 -3.362314
-## x_i -3.362314 97.738798
+##           x_r        x_i
+## x_r 19.832142  -5.612617
+## x_i -5.612617 112.471530
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +638,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1852.071
+## [1] 2199.05
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +705,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 63.00557-76.97164i
+## 51.6959-101.3488i
 \end{verbatim}
 
 \begin{Shaded}
@@ -718,7 +718,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -39.93852+33.99703i
+## -13.19319+68.05266i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -732,8 +732,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -68.66881- 3.92511i -39.93852+33.99703i
-## y -39.93852+33.99703i -19.30372+29.71167i
+## x -80.83590- 1.09606i -13.19319+68.05266i
+## y -13.19319+68.05266i  33.20500+48.49126i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1636,7 +1636,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9976486+0i
+## [1] 0.9976496+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1693,8 +1693,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##           [,1]
-## [1,] -0.997409
+##            [,1]
+## [1,] -0.9972798
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1719,11 +1719,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i        y_r        y_i
-## x_r 1.00000000  0.02281613  0.6475922  0.6697336
-## x_i 0.02281613  1.00000000 -0.7433346  0.7551896
-## y_r 0.64759219 -0.74333460  1.0000000 -0.1285211
-## y_i 0.66973363  0.75518964 -0.1285211  1.0000000
+##             x_r         x_i        y_r        y_i
+## x_r  1.00000000 -0.01406896  0.6713274  0.6598193
+## x_i -0.01406896  1.00000000 -0.7471041  0.7392100
+## y_r  0.67132744 -0.74710408  1.0000000 -0.1094881
+## y_i  0.65981925  0.73920997 -0.1094881  1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
@@ -1764,7 +1764,9 @@ with where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ 
     \underset{\sim}{\mathbf{Y}} = \underset{\sim}{\mathbf{X}} \underset{\sim}{\boldsymbol{\beta}} + \underset{\sim}{\mathbf{E}},
     \label{eq:CLRSystemVectorComplexFinal}
 \end{equation}
-where \(\underset{\sim}{\mathbf{Y}} = \begin{pmatrix} {y}_{1,r} + i {y}_{1,i} \\ {y}_{2,r} + i {y}_{2,i} \\ \vdots \\ {y}_{n,r} + i {y}_{n,i} \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}} = \begin{pmatrix} 1 & x_{1,r,1} + i x_{1,i,1} & \dots & x_{k,r,1} + i x_{k,i,1} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{1,r,n} + i x_{1,i,n} & \dots & x_{k,r,n} + i x_{k,i,n} \end{pmatrix}\), \(\underset{\sim}{\boldsymbol{\beta}} = \begin{pmatrix} \beta_{0,r} + i \beta_{0,i} \\ \beta_{1,r} + i \beta_{1,i} \\ \vdots \\ \beta_{k,r} + i \beta_{k,i} \end{pmatrix}\) and \(\underset{\sim}{\mathbf{E}} = \begin{pmatrix} {\epsilon}_{1,r} + i {\epsilon}_{1,i} \\ {\epsilon}_{2,r} + i {\epsilon}_{2,i} \\ \vdots \\ {\epsilon}_{n,r} + i {\epsilon}_{n,i} \end{pmatrix}\). So, the main difference of the form \eqref{eq:CLRSystemVectorComplexFinal} from the \eqref{eq:CLRSystemVectorFinal} is that it contains complex numbers inside each of the matrices and vectors.
+where \(\underset{\sim}{\mathbf{Y}} = \begin{pmatrix} {y}_{1,r} + i {y}_{1,i} \\ {y}_{2,r} + i {y}_{2,i} \\ \vdots \\ {y}_{n,r} + i {y}_{n,i} \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}} = \begin{pmatrix} 1 & x_{1,r,1} + i x_{1,i,1} & \dots & x_{k,r,1} + i x_{k,i,1} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{1,r,n} + i x_{1,i,n} & \dots & x_{k,r,n} + i x_{k,i,n} \end{pmatrix}\), \(\underset{\sim}{\boldsymbol{\beta}} = \begin{pmatrix} \beta_{0,r} + i \beta_{0,i} \\ \beta_{1,r} + i \beta_{1,i} \\ \vdots \\ \beta_{k,r} + i \beta_{k,i} \end{pmatrix}\) and \(\underset{\sim}{\mathbf{E}} = \begin{pmatrix} {\epsilon}_{1,r} + i {\epsilon}_{1,i} \\ {\epsilon}_{2,r} + i {\epsilon}_{2,i} \\ \vdots \\ {\epsilon}_{n,r} + i {\epsilon}_{n,i} \end{pmatrix}\).
+
+So, the main difference of the form \eqref{eq:CLRSystemVectorComplexFinal} from the \eqref{eq:CLRSystemVectorFinal} is that it contains complex numbers inside each of the matrices and vectors.
 
 \hypertarget{estimation}{%
 \section{Estimation}\label{estimation}}
@@ -1823,9 +1825,10 @@ Using the same logic as with OLS, the minimisation of this criterion implies the
 \end{equation}
 which then results to the following formula for the CLS estimate of parameters:
 \begin{equation}
-    \boldsymbol{b} = \left( \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{Y}}
+    \boldsymbol{b} = \left( \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{Y}} .
     \label{eq:MCLROLSEstimate}
 \end{equation}
+For the simple CLR, the formula \eqref{eq:MCLROLSEstimate} becomes equivalent to \eqref{eq:SimpleCLRCLSLossParameters}. The main difference from the OLS, as we can see, is that the CLS does not do multiplication by the conjugate complex numbers.
 
 \hypertarget{inference}{%
 \section{Inference}\label{inference}}
