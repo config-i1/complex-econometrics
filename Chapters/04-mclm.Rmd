@@ -10,7 +10,7 @@ Similarly to how the multiple linear regression is formulated for real valued va
 where $k$ is the number of complex random variables. Similarly to how it was done with SCLR in \@ref(eq:SimpleCLRSystem), we can expand the formula \@ref(eq:MultipleCLRComplex) as a system of two equations, taking that every parameter and every variable in \@ref(eq:MultipleCLRComplex) is complex:
 \begin{equation}
     \begin{aligned}
-        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k,r} x_{k,r,j} - \beta_{k,i} x_{k,i,j} \epsilon_{r,j} \\
+        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k,r} x_{k,r,j} - \beta_{k,i} x_{k,i,j} + \epsilon_{r,j} \\
         y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{1,i,j} + \beta_{1,i} x_{1,r,j} + \dots + \beta_{k,r} x_{k,i,j} + \beta_{k,i} x_{k,r,j} + \epsilon_{i,j} .
     \end{aligned}
     (\#eq:MultipleCLRSystem)
@@ -20,7 +20,7 @@ As can be seen from \@ref(eq:MultipleCLRSystem), the multiple CLR captures more 
     \mathbf{y}_j = \mathbf{X}_j \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
     (\#eq:MultipleCLRSystemVector)
 \end{equation}
-where $\mathbf{y}_j = \begin{pmatrix} y_{j,r} \\ y_{j,i} \end{pmatrix}$, $\mathbf{X}_j = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}$ and $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
+where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\mathbf{X}_j = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}$, $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}$ and $\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
 \begin{equation}
     \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{E} 
     (\#eq:CLRSystemVectorFinal)
