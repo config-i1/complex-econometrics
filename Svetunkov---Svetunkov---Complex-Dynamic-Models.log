@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  24 DEC 2022 18:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  24 DEC 2022 18:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -968,14 +968,14 @@ Package natbib Warning: Citation `refMDS' on page 49 undefined on input line 15
 10.
 
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-otMDS-1.pdf, id=678, 254.9525pt x 212.795pt>
+otMDS-1.pdf, id=678, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplotMDS-1.pdf  used on input line 1530.
-(pdftex.def)             Requested size: 254.96352pt x 212.8042pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Package natbib Warning: Citation `ref' on page 49 undefined on input line 1539.
 
@@ -1084,7 +1084,7 @@ ublic/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/sha
 re/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmtti10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (61 pages,
- 2999396 bytes).
+ 2998353 bytes).
 PDF statistics:
  1093 PDF objects out of 1200 (max. 8388607)
  921 compressed objects within 10 object streams

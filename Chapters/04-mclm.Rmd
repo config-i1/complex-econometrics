@@ -95,7 +95,7 @@ For the simple CLR, the formula \@ref(eq:MCLRCLSEstimate) becomes equivalent to 
 
 Finally, using the direct multiplication \@ref(eq:complexNumberMatrixMultiDirect), it can be shown that the estimates of parameters according to CLS, can be calculated as:
 \begin{equation}
-    \boldsymbol{b} = \left( \mathbf{{X}}^\top \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\top \underset{\sim}{\mathbf{Y}} ,
+    \boldsymbol{b} = \left( \mathbf{{X}}^\top {\mathbf{X}}\right)^{-1} {\mathbf{{X}}}^\top {\mathbf{Y}} ,
     (\#eq:MCLRCLSEstimateTranspose)
 \end{equation}
 where $\mathbf{{X}}^\top$ is the complex transposition of the original matrix $\mathbf{{X}}$, as discussed in Subsection \@ref(vectorComplexVariables).
