@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-12-23}
+\date{2022-12-24}
 
 \begin{document}
 \maketitle
@@ -404,7 +404,13 @@ and for the matrix:
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     \label{eq:complexNumberMatrixMulti}
 \end{equation}
-These representations become especially useful when we work with complex variables to construct complex models.
+These representations become especially useful when we work with complex variables to construct complex models. Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
+\begin{equation}
+    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
+    \begin{pmatrix} x^2 - y^2 & - 2 xy \\ 2 xy & x^2 - y^2 \end{pmatrix}.
+    \label{eq:complexNumberMatrixMultiDirect}
+\end{equation}
+In this monograph, we will call the multiplications \eqref{eq:complexNumberMatrixMulti} and \eqref{eq:complexNumberMatrixMultiDirect} ``conjugate'' and ``direct'' respectively.
 
 \hypertarget{complexVariable}{%
 \subsection{Complex variables}\label{complexVariable}}
@@ -481,6 +487,50 @@ while for the latter, an example is
 \end{equation*}
 where two different input complex numbers (for example \(0 + i\) and \(0-i\)) correspond to the same output number (\(-1 + i0\)). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed in the previous Subsection.
 
+\hypertarget{vectorComplexVariables}{%
+\subsection{Vectors of complex variables}\label{vectorComplexVariables}}
+
+Last but not least, for what follows, we introduce vectors and matrices of complex variables. There are different ways how one can represent a vector of complex variables. The simplest and most direct one is:
+\begin{equation}
+    \mathbf{x} = \begin{pmatrix} x_{r,1} + i x_{i,1} \\ x_{r,2} + i x_{i,2} \\ x_{r,3} + i x_{i,3} \end{pmatrix} ,
+    \label{eq:complexVector}
+\end{equation}
+where the index in subscript (1, 2, 3) represents the observed first, second and third values of the complex variable. Alternatively, given that any complex variable can be represented as a vector \eqref{eq:complexNumberVectors}, the same complex vector can be written as a matrix:
+\begin{equation}
+    \mathbf{x} = \begin{pmatrix} x_{r,1} & x_{i,1} \\ x_{r,2} & x_{i,2} \\ x_{r,3} & x_{i,3} \end{pmatrix} .
+    \label{eq:complexVectorMatrix}
+\end{equation}
+Finally, given the connection of complex numbers and matrices \eqref{eq:complexNumberMatrix}, the same complex vector \(x\) can be written as a matrix:
+\begin{equation}
+    \mathbf{x} = \begin{pmatrix} x_{r,1} & - x_{i,1} \\ x_{i,1} & x_{r,1} \\
+                                 x_{r,2} & - x_{i,2} \\ x_{i,2} & x_{r,2} \\
+                                 x_{r,3} & - x_{i,3} \\ x_{i,3} & x_{r,3} \end{pmatrix} .
+    \label{eq:complexMatrix}
+\end{equation}
+Each of the forms \eqref{eq:complexVector}, \eqref{eq:complexVectorMatrix} and \eqref{eq:complexMatrix} might be useful in different circumstances, their usage should be dictated by the modelling purpose.
+
+Finally, note that the transposition of these three forms will imply different things. As discussed earlier, in vector and matrix forms transposition of a complex number implies the conjugation. However, transposing \eqref{eq:complexVector} will not have the same effect - it will only switch rows and columns of the complex vector:
+\begin{equation}
+    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} + i x_{i,1} & x_{r,2} + i x_{i,2} & x_{r,3} + i x_{i,3}
+                        \end{pmatrix} ,
+    \label{eq:complexVectorTransposed}
+\end{equation}
+If we then switch to either the form \eqref{eq:complexNumberVectors} or \eqref{eq:complexNumberMatrix}, we will not get the vector of conjugate complex numbers, but rather an object of the original complex variables with the switched rows and columns:
+\begin{equation}
+    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} & x_{r,2} & x_{r,3} \\
+                                 x_{i,1} & x_{i,2} & x_{i,3}
+                        \end{pmatrix} 
+    \label{eq:complexVectorMatrixTransposed}
+\end{equation}
+and
+\begin{equation}
+    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} & - x_{i,1} & x_{r,2} & - x_{i,2} & x_{r,3} & - x_{i,3} \\
+                                        x_{i,1} & x_{r,1} & x_{i,2} & x_{r,2} & x_{i,3} & x_{r,3}
+                        \end{pmatrix} .
+    \label{eq:complexMatrixTransposed}
+\end{equation}
+We will denote the operation of transposition above with the \(\top\) symbol and will call it ``complex transposition'' as opposed to the original \(\prime\) and conventional transposition.
+
 \hypertarget{complexRandomVariable}{%
 \section{Complex random variable}\label{complexRandomVariable}}
 
@@ -525,7 +575,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.49833+99.77421i
+## [1] 50.0633+100.5752i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -586,7 +636,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 119.776+0i
+## 136.0083+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -599,7 +649,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -78.61118-2.75383i
+## -93.91651+6.81094i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -624,9 +674,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 20.582433 -1.376915
-## x_i -1.376915 99.193610
+##           x_r        x_i
+## x_r 21.045893   3.405471
+## x_i  3.405471 114.962401
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -638,7 +688,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2039.75
+## [1] 2407.889
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -705,7 +755,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 65.3046-101.7676i
+## 38.9677-108.0397i
 \end{verbatim}
 
 \begin{Shaded}
@@ -718,7 +768,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -37.08268+53.59114i
+## -15.83853+74.91418i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -732,8 +782,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -69.49950- 1.06686i -37.08268+53.59114i
-## y -37.08268+53.59114i  24.74372+55.40272i
+## x -77.09707+ 7.20309i -15.83853+74.91418i
+## y -15.83853+74.91418i  52.61669+62.66347i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1636,7 +1686,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9968902+0i
+## [1] 0.9980541+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1694,7 +1744,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9972635
+## [1,] 0.9276287
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1719,11 +1769,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i         y_r         y_i
-## x_r  1.00000000 -0.05301899  0.72180555  0.67827558
-## x_i -0.05301899  1.00000000 -0.72573819  0.69271676
-## y_r  0.72180555 -0.72573819  1.00000000 -0.01220099
-## y_i  0.67827558  0.69271676 -0.01220099  1.00000000
+##              x_r           x_i          y_r         y_i
+## x_r 1.0000000000  0.0008457202  0.712153669 0.705694371
+## x_i 0.0008457202  1.0000000000 -0.698765094 0.706322156
+## y_r 0.7121536692 -0.6987650942  1.000000000 0.009398905
+## y_i 0.7056943707  0.7063221556  0.009398905 1.000000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
@@ -1829,6 +1879,18 @@ which then results in the following formula for the CLS estimate of parameters:
     \label{eq:MCLRCLSEstimate}
 \end{equation}
 For the simple CLR, the formula \eqref{eq:MCLRCLSEstimate} becomes equivalent to \eqref{eq:SimpleCLRCLSLossParameters}. The main difference between \eqref{eq:MCLRCLSEstimate} and \eqref{eq:MCLROLSEstimateComplex}, as we can see, is that the CLS does not do multiplication by the conjugate complex numbers.
+
+Finally, using the direct multiplication \eqref{eq:complexNumberMatrixMultiDirect}, it can be shown that the estimates of parameters according to CLS, can be calculated as:
+\begin{equation}
+    \boldsymbol{b} = \left( \mathbf{{X}}^\top \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\top \underset{\sim}{\mathbf{Y}} ,
+    \label{eq:MCLRCLSEstimateTranspose}
+\end{equation}
+where \(\mathbf{{X}}^\top\) is the complex transposition of the original matrix \(\mathbf{{X}}\), as discussed in Subsection \ref{vectorComplexVariables}.
+
+The two formulae \eqref{eq:MCLRCLSEstimate} and \eqref{eq:MCLRCLSEstimateTranspose} result in exactly the same values of parameters, but will be useful for inference in the following sections.
+
+\hypertarget{likelihood-1}{%
+\subsection{Likelihood}\label{likelihood-1}}
 
 \hypertarget{inference}{%
 \section{Inference}\label{inference}}
