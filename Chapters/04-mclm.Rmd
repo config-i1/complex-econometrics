@@ -93,6 +93,17 @@ which then results in the following formula for the CLS estimate of parameters:
 \end{equation}
 For the simple CLR, the formula \@ref(eq:MCLRCLSEstimate) becomes equivalent to \@ref(eq:SimpleCLRCLSLossParameters). The main difference between \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLROLSEstimateComplex), as we can see, is that the CLS does not do multiplication by the conjugate complex numbers.
 
+Finally, using the direct multiplication \@ref(eq:complexNumberMatrixMultiDirect), it can be shown that the estimates of parameters according to CLS, can be calculated as:
+\begin{equation}
+    \boldsymbol{b} = \left( \mathbf{{X}}^\top \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\top \underset{\sim}{\mathbf{Y}} ,
+    (\#eq:MCLRCLSEstimateTranspose)
+\end{equation}
+where $\mathbf{{X}}^\top$ is the complex transposition of the original matrix $\mathbf{{X}}$, as discussed in Subsection \@ref(vectorComplexVariables).
+
+The two formulae \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLRCLSEstimateTranspose) result in exactly the same values of parameters, but will be useful for inference in the following sections.
+
+
+### Likelihood
 
 
 ## Inference
