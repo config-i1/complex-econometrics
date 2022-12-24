@@ -293,7 +293,13 @@ and for the matrix:
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     (\#eq:complexNumberMatrixMulti)
 \end{equation}
-These representations become especially useful when we work with complex variables to construct complex models.
+These representations become especially useful when we work with complex variables to construct complex models. Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
+\begin{equation}
+    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
+    \begin{pmatrix} x^2 - y^2 & - 2 xy \\ 2 xy & x^2 - y^2 \end{pmatrix}.
+    (\#eq:complexNumberMatrixMultiDirect)
+\end{equation}
+In this monograph, we will call the multiplications \@ref(eq:complexNumberMatrixMulti) and \@ref(eq:complexNumberMatrixMultiDirect)  "conjugate" and "direct" respectively.
 
 
 ### Complex variables {#complexVariable}
@@ -368,6 +374,49 @@ while for the latter, an example is
     y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i})^2, 
 \end{equation*}
 where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed in the previous Subsection.
+
+
+### Vectors of complex variables {#vectorComplexVariables}
+Last but not least, for what follows, we introduce vectors and matrices of complex variables. There are different ways how one can represent a vector of complex variables. The simplest and most direct one is:
+\begin{equation}
+    \mathbf{x} = \begin{pmatrix} x_{r,1} + i x_{i,1} \\ x_{r,2} + i x_{i,2} \\ x_{r,3} + i x_{i,3} \end{pmatrix} ,
+    (\#eq:complexVector)
+\end{equation}
+where the index in subscript (1, 2, 3) represents the observed first, second and third values of the complex variable. Alternatively, given that any complex variable can be represented as a vector \@ref(eq:complexNumberVectors), the same complex vector can be written as a matrix:
+\begin{equation}
+    \mathbf{x} = \begin{pmatrix} x_{r,1} & x_{i,1} \\ x_{r,2} & x_{i,2} \\ x_{r,3} & x_{i,3} \end{pmatrix} .
+    (\#eq:complexVectorMatrix)
+\end{equation}
+Finally, given the connection of complex numbers and matrices \@ref(eq:complexNumberMatrix), the same complex vector $x$ can be written as a matrix:
+\begin{equation}
+    \mathbf{x} = \begin{pmatrix} x_{r,1} & - x_{i,1} \\ x_{i,1} & x_{r,1} \\
+                                 x_{r,2} & - x_{i,2} \\ x_{i,2} & x_{r,2} \\
+                                 x_{r,3} & - x_{i,3} \\ x_{i,3} & x_{r,3} \end{pmatrix} .
+    (\#eq:complexMatrix)
+\end{equation}
+Each of the forms \@ref(eq:complexVector), \@ref(eq:complexVectorMatrix) and \@ref(eq:complexMatrix) might be useful in different circumstances, their usage should be dictated by the modelling purpose.
+
+Finally, note that the transposition of these three forms will imply different things. As discussed earlier, in vector and matrix forms transposition of a complex number implies the conjugation. However, transposing \@ref(eq:complexVector) will not have the same effect - it will only switch rows and columns of the complex vector:
+\begin{equation}
+    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} + i x_{i,1} & x_{r,2} + i x_{i,2} & x_{r,3} + i x_{i,3}
+                        \end{pmatrix} ,
+    (\#eq:complexVectorTransposed)
+\end{equation}
+If we then switch to either the form \@ref(eq:complexNumberVectors) or \@ref(eq:complexNumberMatrix), we will not get the vector of conjugate complex numbers, but rather an object of the original complex variables with the switched rows and columns:
+\begin{equation}
+    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} & x_{r,2} & x_{r,3} \\
+                                 x_{i,1} & x_{i,2} & x_{i,3}
+                        \end{pmatrix} 
+    (\#eq:complexVectorMatrixTransposed)
+\end{equation}
+and
+\begin{equation}
+    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} & - x_{i,1} & x_{r,2} & - x_{i,2} & x_{r,3} & - x_{i,3} \\
+                                        x_{i,1} & x_{r,1} & x_{i,2} & x_{r,2} & x_{i,3} & x_{r,3}
+                        \end{pmatrix} .
+    (\#eq:complexMatrixTransposed)
+\end{equation}
+We will denote the operation of transposition above with the $\top$ symbol and will call it "complex transposition" as opposed to the original $\prime$ and conventional transposition.
 
 
 ## Complex random variable {#complexRandomVariable}
