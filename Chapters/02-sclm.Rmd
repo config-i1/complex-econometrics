@@ -12,7 +12,7 @@ The simple Complex Linear Regression can be written as:
     \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_j} + \underline{\epsilon_j},
     (\#eq:SimpleCLRComplex)
 \end{equation}
-where $j$ is the index for an observation and every parameter and variable is a complex number, i.e. $\underline{y_j} = y_{r,j}+i y_{i,j}$ is the complex response variable, $x_j = x_{r,j}+i x_{i,j}$ is the complex explanatory variable, $\beta_{l} = \beta_{l,r} + i \beta_{l,i}$ is the $l$-th parameter and $\epsilon_j = \epsilon_{r,j} + i \epsilon_{i,j}$ is the error term. For now, we do not make any specific assumptions about the distribution of the complex error term, we will come back to this later in this chapter. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
+where $j$ is the index for an observation and every parameter and variable is a complex number, i.e. $\underline{y_j} = y_{r,j}+i y_{i,j}$ is the complex response variable, $\underline{x_j} = x_{r,j}+i x_{i,j}$ is the complex explanatory variable, $\underline{\beta_{l}} = \beta_{l,r} + i \beta_{l,i}$ is the $l$-th parameter and $\underline{\epsilon_j} = \epsilon_{r,j} + i \epsilon_{i,j}$ is the error term. For now, we do not make any specific assumptions about the distribution of the complex error term, we will come back to this later in this chapter. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
 \begin{equation}
     y_{r,j}+i y_{i,j} = (\beta_{0,r} + i \beta_{0,i}) + (\beta_{1,r} + i \beta_{1,i}) (x_{r,j}+i x_{i,j}) + (\epsilon_{r,j} + i \epsilon_{i,j}),
     (\#eq:SimpleCLR)
@@ -29,10 +29,10 @@ This model captures a very specific dynamics between the real and imaginary part
 
 Given that we deal with a sample of values, the model \@ref(eq:SimpleCLRComplex) can be represented in a vector form for all observations $j$ from 1 to $n$ (based on discussion in Subsection \@ref(vectorComplexVariables)):
 \begin{equation}
-    \mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon} ,
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
     (\#eq:SimpleCLRVector01)
 \end{equation}
-where $\mathbf{y}=\begin{pmatrix} {y}_1 \\ {y}_2\\ \vdots \\ {y}_n \end{pmatrix}$, $\mathbf{X} = \begin{pmatrix} 1 & {x}_1 \\ 1 & {x}_2\\ \vdots \\ 1 & {x}_n \end{pmatrix}$, $\boldsymbol{\beta} = \begin{pmatrix} {\beta}_0 \\ {\beta}_1 \end{pmatrix}$ and $\boldsymbol{\epsilon} = \begin{pmatrix} {\epsilon}_1 \\ {\epsilon}_2\\ \vdots \\ {\epsilon}_n \end{pmatrix}$, where each element of the objects above is a complex number.
+where $\underline{\mathbf{y}}=\begin{pmatrix} \underline{{y}_1} \\ \underline{{y}_2} \\ \vdots \\ \underline{{y}_n} \end{pmatrix}$, $\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_1} \\ 1 & \underline{{x}_2}\\ \vdots \\ 1 & \underline{{x}_n} \end{pmatrix}$, $\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \end{pmatrix}$ and $\underline{\boldsymbol{\epsilon}} = \begin{pmatrix} \underline{{\epsilon}_1} \\ \underline{{\epsilon}_2}\\ \vdots \\ \underline{{\epsilon}_n} \end{pmatrix}$, where each element of the objects above is a complex number.
 
 Going even further, using the vector and matrix representations of complex variables, the same system of equations \@ref(eq:SimpleCLRSystem) can be rewritten as:
 \begin{equation}
@@ -45,25 +45,23 @@ or uniting all the parameters in one vector:
     (\#eq:SimpleCLRSystemVector02)
 \end{equation}
 
-
-
 This form can then be represented in a classical matrix notations:
 \begin{equation}
-    \mathbf{y}_j = \underset{\sim}{\mathbf{X}}_j {\boldsymbol{\beta}} + \boldsymbol{\epsilon}_j .
+    \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} {\boldsymbol{\beta}} + \boldsymbol{\epsilon}_j .
     (\#eq:SimpleCLRSystemVector03)
 \end{equation}
 And if we stack each of the vectors and matrices for each $j=1 \dots n$ we get even more compact form:
 \begin{equation}
-    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{E} ,
+    \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} ,
     (\#eq:SimpleCLRSystemVectorFinal)
 \end{equation}
-where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. The form \@ref(eq:SimpleCLRSystemVectorFinal) shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
+where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. The form \@ref(eq:SimpleCLRSystemVectorFinal) shows the connection between the complex regression and the conventional real valued one. As it can be seen, they both can be represented in matrix forms, which means that some of the approaches used for the latter can be transferred to the former under some conditions.
 
 
 ## Estimation {#SCLREstimation}
 Whenever we estimate a model, we substitute the "true" parameters by their sample estimates. So, for the CLR, the model applied to the data should be written as:
 \begin{equation}
-    y_j = b_0 + b_1 x_j + e_j,
+    \underline{y_j} = \underline{b_0} + \underline{b_1} \underline{x_j} + \underline{e_j},
     (\#eq:SimpleCLRComplexEstimated)
 \end{equation}
 or
@@ -81,53 +79,53 @@ or
 \end{equation}
 or equivalently in matrix notations:
 \begin{equation}
-    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{b} + \boldsymbol{e}_j ,
+    \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{b} + \boldsymbol{e}_j ,
     (\#eq:SimpleCLRSystemVector03Estimated)
 \end{equation}
-where $b_{l}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\beta_l$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $e_j$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
+where $\underline{b_{l}}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\underline{\beta_l}$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $\underline{e_j}$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
 
 
 ### Ordinary Least Squares
 We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
-    \sum_{j=1}^n (e_j \tilde{e}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
+    \sum_{j=1}^n (\underline{e_j} \underline{\tilde{e}_j}) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     (\#eq:SimpleCLROLSLoss)
 \end{equation}
-The residuals can be substituted as: $e_j = y_j - b_0 - b_1 x_j$ and $\tilde{e}_j = \tilde{y}_j - \tilde{b}_0 - \tilde{b}_1 \tilde{x}_j$ to get:
+The residuals can be substituted as: $\underline{e_j} = \underline{y_j} - \underline{b_0} - \underline{b_1} \underline{x_j}$ and $\underline{\tilde{e}_j} = \underline{\tilde{y}_j} - \underline{\tilde{b}_0} - \underline{\underline{\tilde{b}_1}} \underline{\tilde{x}_j}$ to get:
 \begin{equation}
-    \sum_{j=1}^n (y_j - b_0 - b_1 x_j) (\tilde{y}_j - \tilde{b}_0 - \tilde{b}_1 \tilde{x}_j),
+    \sum_{j=1}^n (\underline{y_j} - \underline{b_0} - \underline{b_1} \underline{x_j}) (\underline{\tilde{y}_j} - \underline{\tilde{b}_0} - \underline{\tilde{b}_1} \underline{\tilde{x}_j}),
     (\#eq:SimpleCLROLSLoss01)
 \end{equation}
 which after opening the brackets becomes:
 \begin{equation}
-    \sum_{j=1}^n \left(y_j \tilde{y}_j - y_j \tilde{b}_0 - y_j \tilde{b}_1 \tilde{x}_j - b_0\tilde{y}_j + b_0 \tilde{b}_0 + b_0 \tilde{b}_1 \tilde{x}_j - b_1 x_j \tilde{y}_j + b_1 x_j \tilde{b}_0 + b_1 x_j \tilde{b}_1 \tilde{x}_j \right) .
+    \sum_{j=1}^n \left(\underline{y_j} \underline{\tilde{y}_j} - \underline{y_j} \underline{\tilde{b}_0} - \underline{y_j} \underline{\tilde{b}_1} \underline{\tilde{x}_j} - \underline{b_0}\underline{\tilde{y}_j} + \underline{b_0} \underline{\tilde{b}_0} + \underline{b_0} \underline{\tilde{b}_1} \underline{\tilde{x}_j} - \underline{b_1} \underline{x_j} \underline{\tilde{y}_j} + \underline{b_1} \underline{x_j} \underline{\tilde{b}_0} + \underline{b_1} \underline{x_j} \underline{\tilde{b}_1} \underline{\tilde{x}_j} \right) .
     (\#eq:SimpleCLROLSLoss02)
 \end{equation}
 In order to minimise the sum of squared errors \@ref(eq:SimpleCLROLSLoss), we need to take derivative of \@ref(eq:SimpleCLROLSLoss02) with respect to each of the parameters $b_{0,r}$, $b_{0,i}$, $b_{1,r}$ and $b_{1,i}$ and equate each of the resulting equations to zero to find the extrema:
 \begin{equation}
     \begin{aligned}
-        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,r}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{0,i}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{1,r}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j \tilde{e}_j)}{d b_{1,i}} = 0
+        & \frac{d \sum_{j=1}^n (\underline{e_j} \underline{\tilde{e}_j})}{d b_{0,r}} = 0 \\
+        & \frac{d \sum_{j=1}^n (\underline{e_j} \underline{\tilde{e}_j})}{d b_{0,i}} = 0 \\
+        & \frac{d \sum_{j=1}^n (\underline{e_j} \underline{\tilde{e}_j})}{d b_{1,r}} = 0 \\
+        & \frac{d \sum_{j=1}^n (\underline{e_j} \underline{\tilde{e}_j})}{d b_{1,i}} = 0
     \end{aligned}
     (\#eq:SimpleCLROLSLossSystem01)
 \end{equation}
 to get:
 \begin{equation}
     \begin{aligned}
-        & - \sum_{j=1}^n y_j - \sum_{j=1}^n \tilde{y}_j + 2 n b_{0,r} + \tilde{b}_1 \sum_{j=1}^n \tilde{x}_j + {b}_1 \sum_{j=1}^n {x}_j = 0 \\
-        & i \sum_{j=1}^n y_j - i \sum_{j=1}^n \tilde{y}_j + 2 n b_{0,i} + i \tilde{b}_1 \sum_{j=1}^n \tilde{x}_j - i {b}_1 \sum_{j=1}^n {x}_j = 0 \\
-        & - \sum_{j=1}^n y_j \tilde{x}_j + b_0 \sum_{j=1}^n \tilde{x}_j - \sum_{j=1}^n x_j \tilde{y}_j + \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,r} \sum_{j=1}^n x_j \tilde{x}_j = 0 \\
-        & i \sum_{j=1}^n y_j \tilde{x}_j - i b_0 \sum_{j=1}^n \tilde{x}_j - i \sum_{j=1}^n x_j \tilde{y}_j + i \tilde{b}_0 \sum_{j=1}^n {x}_j + 2 b_{1,i} \sum_{j=1}^n x_j \tilde{x}_j = 0 .
+        & - \sum_{j=1}^n \underline{y_j} - \sum_{j=1}^n \underline{\tilde{y}_j} + 2 n b_{0,r} + \underline{\tilde{b}_1} \sum_{j=1}^n \underline{\tilde{x}_j} + {b}_1 \sum_{j=1}^n {x}_j = 0 \\
+        & i \sum_{j=1}^n \underline{y_j} - i \sum_{j=1}^n \underline{\tilde{y}_j} + 2 n b_{0,i} + i \underline{\tilde{b}_1} \sum_{j=1}^n \underline{\tilde{x}_j} - i {b}_1 \sum_{j=1}^n {x}_j = 0 \\
+        & - \sum_{j=1}^n \underline{y_j} \underline{\tilde{x}_j} + \underline{b_0} \sum_{j=1}^n \underline{\tilde{x}_j} - \sum_{j=1}^n \underline{x_j} \underline{\tilde{y}_j} + \underline{\tilde{b}_0} \sum_{j=1}^n {x}_j + 2 b_{1,r} \sum_{j=1}^n \underline{x_j} \underline{\tilde{x}_j} = 0 \\
+        & i \sum_{j=1}^n \underline{y_j} \underline{\tilde{x}_j} - i \underline{b_0} \sum_{j=1}^n \underline{\tilde{x}_j} - i \sum_{j=1}^n \underline{x_j} \underline{\tilde{y}_j} + i \underline{\tilde{b}_0} \sum_{j=1}^n {x}_j + 2 b_{1,i} \sum_{j=1}^n \underline{x_j} \underline{\tilde{x}_j} = 0 .
     \end{aligned}
     (\#eq:SimpleCLROLSLossSystem02)
 \end{equation}
 As shown by @Svetunkov2012, solving the system of equations \@ref(eq:SimpleCLROLSLossSystem02) gives the following formulae for the parameters of the model:
 \begin{equation}
     \begin{aligned}
-        & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) (\tilde{x}_j-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x}) (\tilde{x}_j-\hat{\tilde{\mu}}_{x})} \\
-        & b_0 = \frac{1}{n} \sum_{j=1}^n y_j - b_1 \sum_{j=1}^n x_j ,
+        & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})} \\
+        & \underline{b_0} = \frac{1}{n} \sum_{j=1}^n \underline{y_j} - \underline{b_1} \sum_{j=1}^n \underline{x_j} ,
     \end{aligned}
     (\#eq:SimpleCLROLSLossParameters)
 \end{equation}
@@ -135,7 +133,7 @@ which can also be written in terms of conjugate moments as:
 \begin{equation}
     \begin{aligned}
         & b_{1} = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x^2} \\
-        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+        & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} .
     \end{aligned}
     (\#eq:SimpleCLROLSLossParametersMoments)
 \end{equation}
@@ -143,16 +141,16 @@ or after expanding the moments (based on formulae from Section \@ref(crvSecondMo
 \begin{equation}
     \begin{aligned}
         & b_{1} = \frac{\hat{\sigma}_{x_r, y_r} + \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_r, y_i} - \hat{\sigma}_{x_i, y_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} \\
-        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+        & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} .
     \end{aligned}
     (\#eq:SimpleCLROLSLossParametersMomentsExpanded)
 \end{equation}
 
 As we can see, the formula \@ref(eq:SimpleCLROLSLossParametersMoments) is similar to the one that is typically used for the conventional simple linear regression with the only difference that the parameters in \@ref(eq:SimpleCLROLSLossParametersMoments) are complex and that each of the moments in \@ref(eq:SimpleCLROLSLossParametersMoments) is a moment for respective complex variable.
 
-It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParametersMoments) correspond to: they minimise the loss \@ref(eq:SimpleCLROLSLoss), thus in the case, when $\mathrm{E}(e_j)=0$ they minimise variances of real and imaginary parts of the complex residuals. A thing to note is that they ignore the potential covariance between them, which in some cases might be a desirable property, but in the others might cause issues.
+It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParametersMoments) correspond to: they minimise the loss \@ref(eq:SimpleCLROLSLoss), thus in the case, when $\mathrm{E}(\underline{e_j})=0$ they minimise variances of real and imaginary parts of the complex residuals. A thing to note is that they ignore the potential covariance between them, which in some cases might be a desirable property, but in the others might cause issues.
 
-In terms of properties of the estimator, it can be shown that $b_1$ equals to:
+In terms of properties of the estimator, it can be shown that $\underline{b_1}$ equals to:
 \begin{equation}
         b_{1} = \frac{\mathrm{cov}(\tilde{x}, y)}{\mathrm{cov}(\tilde{x},x)} = \frac{\mathrm{cov}(\tilde{x}, \beta_0 + \beta_1 x + \epsilon)}{\mathrm{cov}(\tilde{x},x)} = \frac{\mathrm{cov}(\tilde{x}, \beta_0) + \mathrm{cov}(\tilde{x}, \beta_1 x) + \mathrm{cov}(\tilde{x}, \epsilon)}{\mathrm{cov}(\tilde{x},x)},
     (\#eq:SimpleCLROLSb1Value01)
@@ -167,12 +165,12 @@ or:
         b_{1} = \beta_1 + \frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i} + i (\hat{\sigma}_{x_r, \epsilon_i} - \hat{\sigma}_{x_i, \epsilon_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} .
     (\#eq:SimpleCLROLSb1Value03)
 \end{equation}
-On small samples, the covariance between the true error and the available $x$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population estimated covariances will converge to their true values and then ${\sigma}_{x_r, \epsilon_r} = {\sigma}_{x_i, \epsilon_i} = {\sigma}_{x_r, \epsilon_i} = {\sigma}_{x_i, \epsilon_r}=0$, which implies that the expectation of $b_1$ is:
+On small samples, the covariance between the true error and the available $x$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population estimated covariances will converge to their true values and then ${\sigma}_{x_r, \epsilon_r} = {\sigma}_{x_i, \epsilon_i} = {\sigma}_{x_r, \epsilon_i} = {\sigma}_{x_i, \epsilon_r}=0$, which implies that the expectation of $\underline{b_1}$ is:
 \begin{equation}
         \mathrm{E}(b_{1}) = \beta_1 .
     (\#eq:SimpleCLROLSb1Expectation)
 \end{equation}
-This implies that OLS gives unbiased estimates of the slope parameter. The same property can be shown to hold for the intercept $b_0$.
+This implies that OLS gives unbiased estimates of the slope parameter. The same property can be shown to hold for the intercept $\underline{b_0}$.
 
 The same formula \@ref(eq:SimpleCLROLSb1Value03) can be rewritten separately for the real and imaginary parts of the parameter:
 \begin{equation}
@@ -184,7 +182,7 @@ The same formula \@ref(eq:SimpleCLROLSb1Value03) can be rewritten separately for
 \end{equation}
 which shows what specific covariances impact different parts of the slope parameter.
 
-As for the variance of $b_1$, it can be shown to be equal to:
+As for the variance of $\underline{b_1}$, it can be shown to be equal to:
 \begin{equation}
     \mathrm{V}(b_{1,r}) = \mathrm{V}\left(\frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}\right)
     (\#eq:SimpleCLROLSb1Variance)
@@ -195,29 +193,29 @@ we do not expand it further, because the formula \@ref(eq:SimpleCLROLSb1Variance
 ### Complex Least Squares {#SCLREstimationCLS}
 An alternative estimation technique involves the minimisation of a rather exotic loss function:
 \begin{equation}
-    \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n (e_{r,j}^2 - e_{i,j}^2 + i 2 e_{r,j} e_{i,j}),
+    \sum_{j=1}^n (\underline{e_j} \underline{e_j}) = \sum_{j=1}^n (e_{r,j}^2 - e_{i,j}^2 + i 2 e_{r,j} e_{i,j}),
     (\#eq:SimpleCLRCLSLoss)
 \end{equation}
-for which in case of $\mathrm{E}(e_j)=0$, the real part corresponds to the difference between the variances of the real and imaginary parts of the residuals, while the imaginary parts corresponds to the covariance between them. This loss be considered exotic, because its value is a complex number. It is difficult to explain how one can minimise a complex number, but from what follows, we show that the estimation technique has some meaning, works and gives adequate estimates of parameters.
+for which in case of $\mathrm{E}(\underline{e_j})=0$, the real part corresponds to the difference between the variances of the real and imaginary parts of the residuals, while the imaginary parts corresponds to the covariance between them. This loss be considered exotic, because its value is a complex number. It is difficult to explain how one can minimise a complex number, but from what follows, we show that the estimation technique has some meaning, works and gives adequate estimates of parameters.
 
 The logic for the derivation of CLS is similar to OLS. We expand \@ref(eq:SimpleCLRCLSLoss) to:
 \begin{equation}
-    \sum_{j=1}^n (e_j e_j) = \sum_{j=1}^n y_j^2 + n b_0^2 + b_1^2 \sum_{j=1}^n x_j^2 - 2 b_0 \sum_{j=1}^n y_j - 2 b_1 \sum_{j=1}^n x_j y_j + 2 b_0 b_1 \sum_{j=1}^n x_j 
+    \sum_{j=1}^n (\underline{e_j} \underline{e_j}) = \sum_{j=1}^n \underline{y_j}^2 + n \underline{b_0}^2 + \underline{b_1}^2 \sum_{j=1}^n \underline{x_j}^2 - 2 \underline{b_0} \sum_{j=1}^n \underline{y_j} - 2 \underline{b_1} \sum_{j=1}^n \underline{x_j} \underline{y_j} + 2 \underline{b_0} \underline{b_1} \sum_{j=1}^n \underline{x_j} 
     (\#eq:SimpleCLRCLSLoss02)
 \end{equation}
-and then take derivatives of \@ref(eq:SimpleCLRCLSLoss02) with respect to parameter $b_0$ and $b_1$ and then equate the resulting equations to zero:
+and then take derivatives of \@ref(eq:SimpleCLRCLSLoss02) with respect to parameter $\underline{b_0}$ and $\underline{b_1}$ and then equate the resulting equations to zero:
 \begin{equation}
     \begin{aligned}
-        & \frac{d \sum_{j=1}^n (e_j^2)}{d b_{0}} = 0 \\
-        & \frac{d \sum_{j=1}^n (e_j^2)}{d b_{1}} = 0 .
+        & \frac{d \sum_{j=1}^n (\underline{e_j}^2)}{d b_{0}} = 0 \\
+        & \frac{d \sum_{j=1}^n (\underline{e_j}^2)}{d b_{1}} = 0 .
     \end{aligned}
     (\#eq:SimpleCLRCLSLossSystem01)
 \end{equation}
 The derivatives \@ref(eq:SimpleCLRCLSLossSystem01) give the following system of complex equations:
 \begin{equation}
     \begin{aligned}
-        & 2 n b_0 - 2 \sum_{j=1}^n y_j + 2 b_1 \sum_{j=1}^n x_j = 0 \\
-        & 2 b_1 \sum_{j=1}^n x_j^2 - 2 \sum_{j=1}^n x_j y_j + 2 b_0 \sum_{j=1}^n x_j = 0 .
+        & 2 n \underline{b_0} - 2 \sum_{j=1}^n \underline{y_j} + 2 \underline{b_1} \sum_{j=1}^n \underline{x_j} = 0 \\
+        & 2 \underline{b_1} \sum_{j=1}^n \underline{x_j}^2 - 2 \sum_{j=1}^n \underline{x_j} \underline{y_j} + 2 \underline{b_0} \sum_{j=1}^n \underline{x_j} = 0 .
     \end{aligned}
     (\#eq:SimpleCLRCLSLossSystem02)
 \end{equation}
@@ -225,7 +223,7 @@ The solution for this system of equations, as it was shown by @Svetunkov2012, is
 \begin{equation}
     \begin{aligned}
         & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) ({x}_j-\hat{\mu}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x})^2} \\
-        & b_0 = \frac{1}{n} \sum_{j=1}^n y_j - b_1 \sum_{j=1}^n x_j ,
+        & \underline{b_0} = \frac{1}{n} \sum_{j=1}^n \underline{y_j} - \underline{b_1} \sum_{j=1}^n \underline{x_j} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParameters)
 \end{equation}
@@ -233,7 +231,7 @@ or in terms of direct moments for complex random variables:
 \begin{equation}
     \begin{aligned}
         & b_{1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x^2} \\
-        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} ,
+        & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMoments)
 \end{equation}
@@ -241,11 +239,11 @@ or after inserting the values for direct variance and covariance (from Section \
 \begin{equation}
     \begin{aligned}
         & b_{1} = \frac{\hat{\sigma}_{x_r, y_r} - \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_i, y_r} + \hat{\sigma}_{x_r, y_i})}{\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 + i2 \hat{\sigma}_{x_r,x_i}} \\
-        & b_0 = \hat{\mu}_{y} - b_1 \hat{\mu}_{x} .
+        & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} .
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMomentsExpanded)
 \end{equation}
-Similarly to how it was done with OLS estimate of the slope, we can consider the estimate of $b_1$, expanding the covariance in the numerator of \@ref(eq:SimpleCLRCLSLossParametersMoments):
+Similarly to how it was done with OLS estimate of the slope, we can consider the estimate of $\underline{b_1}$, expanding the covariance in the numerator of \@ref(eq:SimpleCLRCLSLossParametersMoments):
 \begin{equation}
         b_{1} = \frac{\mathrm{cov}(x,y)}{V(x)} = \frac{\mathrm{cov}(x,\beta_0 + \beta_1 x + \epsilon)}{V(x)},
     (\#eq:SimpleCLRCLSb1Expansion01)
@@ -343,9 +341,9 @@ yHat <- bOptimal * x
 clsResult <- clsLoss(y, yHat)
 ```
 
-In this experiment we generate complex variables $x$ and $y$ and then calculate values of the complex loss function based on a combination of values of the complex slope $b_1$ (which we call just `b` in the code). After running the code above we end up with 10,000 values of the loss function and one additional, which corresponds to the optimal point according to \@ref(eq:SimpleCLRCLSLossParametersMoments). We can then produce several plots to better understand what is happening.
+In this experiment we generate complex variables $x$ and $y$ and then calculate values of the complex loss function based on a combination of values of the complex slope $\underline{b_1}$ (which we call just `b` in the code). After running the code above we end up with 10,000 values of the loss function and one additional, which corresponds to the optimal point according to \@ref(eq:SimpleCLRCLSLossParametersMoments). We can then produce several plots to better understand what is happening.
 
-```{r clsScatter, fig.cap="Variety of CLS loss function values for different values of $b_1$."}
+```{r clsScatter, fig.cap="Variety of CLS loss function values for different values of $\underline{b_1}$."}
 plot(clsValues[,3:4], type="p",
      xlab="Re(CLS loss)", ylab="Im(CLS loss)")
 abline(h=0, col="grey", lty=2, lwd=2)
@@ -487,7 +485,7 @@ kableTable <- kableExtra::kable(scenarios, escape=FALSE, caption="Several scenar
 kableExtra::kable_styling(kableTable, font_size=12, protect_latex=TRUE, latex_options="scale_down")
 ```
 
-These six scenarios in Table \@ref(tab:scenariosEstimators) cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave both on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex $b_1$ is estimated. The experiments were done using `clm()` function from the `complex` package with `method` parameter equal to "OLS", "CLS" and "likelihood" for each of the respective estimators. A sample of the script used in the experiments is shown below:
+These six scenarios in Table \@ref(tab:scenariosEstimators) cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave both on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex $\underline{b_1}$ is estimated. The experiments were done using `clm()` function from the `complex` package with `method` parameter equal to "OLS", "CLS" and "likelihood" for each of the respective estimators. A sample of the script used in the experiments is shown below:
 
 ```{r eval=FALSE}
 obs <- 10000
@@ -527,58 +525,58 @@ parametersPlots <- function(data){
     lineColour <- rgb(255/255,165/255,0,0.75)
     methods <- c("CLS","OLS","Likelihood")
     par(mfcol=c(3,2), mar=rep(0.1,4), oma=c(5,5,2,2), xaxt="s",yaxt="s",cex.main=1.5)
-    plot(Re(data[,2,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
+    plot(Re(data[,2,2]), xlab="Sample size", ylab=TeX("Re($\\underline{b_1}$)"),
          ylim=c(1.5,2.5), type="l", axes=F)
     abline(h=2, col=lineColour, lwd=2)
     axis(side=2)
     box(col="black", lwd=1)
     mtext(methods[2], side=2, line=3, at=2.5/3, outer=TRUE)
     
-    plot(Re(data[,1,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
+    plot(Re(data[,1,2]), xlab="Sample size", ylab=TeX("Re($\\underline{b_1}$)"),
          ylim=c(1.5,2.5), type="l", axes=F)
     abline(h=2, col=lineColour, lwd=2)
     axis(side=2)
     box(col="black", lwd=1)
     mtext(methods[1], side=2, line=3, outer=TRUE)
     
-    plot(Re(data[,3,2]), xlab="Sample size", ylab=TeX("Re($b_1$)"),
+    plot(Re(data[,3,2]), xlab="Sample size", ylab=TeX("Re($\\underline{b_1}$)"),
          ylim=c(1.5,2.5), type="l", axes=F)
     abline(h=2, col=lineColour, lwd=2)
     axis(side=2)
     axis(side=1)
     box(col="black", lwd=1)
     mtext(methods[3], side=2, line=3, at=0.5/3, outer=TRUE)
-    mtext(TeX("Re($b_1$)"), side=1, line=3, at=0.5/2, outer=TRUE);
+    mtext(TeX("Re($\\underline{b_1}$)"), side=1, line=3, at=0.5/2, outer=TRUE);
     
-    plot(Im(data[,2,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
+    plot(Im(data[,2,2]), xlab="Sample size", ylab=TeX("Im($\\underline{b_1}$)"),
          ylim=c(-3,0), type="l", axes=F)
     abline(h=-1.5, col=lineColour, lwd=2)
     axis(side=4)
     box(col="black", lwd=1)
-    plot(Im(data[,1,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
+    plot(Im(data[,1,2]), xlab="Sample size", ylab=TeX("Im($\\underline{b_1}$)"),
          ylim=c(-3,0), type="l", axes=F)
     abline(h=-1.5, col=lineColour, lwd=2)
     axis(side=4)
     box(col="black", lwd=1)
-    plot(Im(data[,3,2]), xlab="Sample size", ylab=TeX("Im($b_1$)"),
+    plot(Im(data[,3,2]), xlab="Sample size", ylab=TeX("Im($\\underline{b_1}$)"),
          ylim=c(-3,0), type="l", axes=F)
     abline(h=-1.5, col=lineColour, lwd=2)
     axis(side=4)
     axis(side=1)
     box(col="black", lwd=1)
-    mtext(TeX("Im($b_1$)"), side=1, line=3, at=1.5/2, outer=TRUE)
+    mtext(TeX("Im($\\underline{b_1}$)"), side=1, line=3, at=1.5/2, outer=TRUE)
 }
 ```
 
 Figure \@ref(fig:parametersUCDV) demonstrates how estimates of parameters change with the increase of sample size in Scenario 1.
 
-```{r parametersUCDV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 1.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersUCDV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 1.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersUCDV)
 ```
 
 Apparently, all three estimators produce very similar estimates of parameters in this case and converge to the true values quite fast. A similar behaviour is observed for the Scenario 2, shown in Figure \@ref(fig:parametersPC). The difference between the three estimators does not look substantial.
 
-```{r parametersPC, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 2.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersPC, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 2.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersPC)
 ```
 
@@ -586,7 +584,7 @@ In both Scenarios 1 and 2 the error term has a small variance, in Scenario 2 $x_
 
 The Scenario 3 demonstrates an exotic case, when the variances of $x_r$ and $x_i$ are the same (as shown in Figure \@ref(fig:parametersUCSV)).
 
-```{r parametersUCSV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 3.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersUCSV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 3.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersUCSV)
 ```
 
@@ -594,13 +592,13 @@ In this scenario, OLS and Likelihood produce efficient, unbiased and consistent 
 
 Next, the three estimators give the same estimates of parameters in Scenario 4 of functional relation between $x$ and $y$, which is shown in Figure \@ref(fig:parametersFR).
 
-```{r parametersFR, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 4.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersFR, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 4.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersFR)
 ```
 
 The main difficulties for the estimators appear, when the variance of the error term increases. Figure \@ref(fig:parametersCorError) shows how the three perform in case of a higher variance of the error term in Scenario 5.
 
-```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 5.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 5.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersCorError)
 ```
 
@@ -608,7 +606,7 @@ It becomes apparent that OLS and Likelihood produce more efficient estimates of 
 
 The situations worsens for the three estimators when we consider Scenario 6, when the variances of the error term become much higher than before, which is shown in Figure \@ref(fig:parametersHVError).
 
-```{r parametersHVError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $b_1=2-1.5i$ (orange horizontal lines on the plot). Scenario 6.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersHVError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 6.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersHVError)
 ```
 
