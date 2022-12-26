@@ -88,30 +88,28 @@ The form \@ref(eq:MCLROLSEstimateComplex) becomes especially useful for futher i
 
 
 ### Complex Least Squares
-As discussed in Section \@ref(SCLREstimation), there is also an alternative approach to estimation of CLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \@ref(eq:CLRSystemVectorComplexFinal), i.e. minimise the criterion (which is the same as the one discussed in Subsection \@ref(SCLREstimationCLS)):
+As discussed in Section \@ref(SCLREstimation), there is also an alternative approach to estimation of CLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \@ref(eq:CLRVector), i.e. minimise the criterion (which is the same as the one discussed in Subsection \@ref(SCLREstimationCLS)):
 \begin{equation}
-    \min S(\boldsymbol{b}) = \min \left(\underset{\sim}{\mathbf{\hat{E}}}^\prime \underset{\sim}{\mathbf{\hat{E}}}\right).
+    \min S(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right).
     (\#eq:CLRCLSCriterion)
 \end{equation}
 Using the same logic as with OLS, it can be shown that the minimisation of this criterion implies the solution of the following system of normal equations:
 \begin{equation}
-    \underset{\sim}{\mathbf{X}}^\prime \underset{\sim}{\mathbf{X}} \underset{\sim}{\boldsymbol{b}} = \underset{\sim}{\mathbf{X}}^\prime \underset{\sim}{\mathbf{Y}} ,
+    \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \underline{\boldsymbol{b}} = \underline{\mathbf{X}}^\top \underline{\mathbf{y}} ,
     (\#eq:CLRCLSSystemOfNormalEquations)
 \end{equation}
 which then results in the following formula for the CLS estimate of parameters:
 \begin{equation}
-    \boldsymbol{b} = \left( \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\prime \underset{\sim}{\mathbf{Y}} .
+    \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{y}} .
     (\#eq:MCLRCLSEstimate)
 \end{equation}
-For the simple CLR, the formula \@ref(eq:MCLRCLSEstimate) becomes equivalent to \@ref(eq:SimpleCLRCLSLossParameters). The main difference between \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLROLSEstimateComplex), as we can see, is that the CLS does not do multiplication by the conjugate complex numbers.
+For the simple CLR, the formula \@ref(eq:MCLRCLSEstimate) becomes equivalent to \@ref(eq:SimpleCLRCLSLossParameters). The main difference between \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLROLSEstimateComplex), as we can see, is that in the CLS, the transposition is done without the conjugation.
 
-Finally, using the direct multiplication \@ref(eq:complexNumberMatrixMultiDirect), it can be shown that the estimates of parameters according to CLS, can be calculated as:
+Finally, based on the form \@ref(eq:CLRSystemVectorFinalEstimated), it can be shown that the same estimates (but in a form of real-valued vector) can be obtained via:
 \begin{equation}
-    \boldsymbol{b} = \left( \mathbf{{X}}^\top {\mathbf{X}}\right)^{-1} {\mathbf{{X}}}^\top {\mathbf{Y}} ,
+    \boldsymbol{b} = \left( \underset{\sim}{\mathbf{X}}^\top \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{{X}}}^\top {\mathbf{Y}} .
     (\#eq:MCLRCLSEstimateTranspose)
 \end{equation}
-where $\mathbf{{X}}^\top$ is the complex transposition of the original matrix $\mathbf{{X}}$, as discussed in Subsection \@ref(vectorComplexVariables).
-
 The two formulae \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLRCLSEstimateTranspose) result in exactly the same values of parameters, but will be useful for inference in the following sections.
 
 
