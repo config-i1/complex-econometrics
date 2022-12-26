@@ -417,7 +417,25 @@ and
                         \end{pmatrix} .
     (\#eq:complexMatrixTransposed)
 \end{equation}
-We will denote the operation of transposition above with the symbol $\top$ and will call it just "transposition". The transposition that produces the conjugate complex numbers is called "conjugate transposition" and will be denoted as $\prime$ in this monograph.
+We will denote the operation of transposition above with the symbol $\top$ and will call it just "transposition". The transposition that produces the conjugate complex numbers is called "conjugate transposition" and will be denoted as $\prime$ in this monograph. For the three examples above, the conjugate transposition will be:
+\begin{equation}
+    \underline{\mathbf{x}}^{\prime} = \begin{pmatrix} x_{r,1} - i x_{i,1} & x_{r,2} - i x_{i,2} & x_{r,3} - i x_{i,3}
+                        \end{pmatrix} ,
+    (\#eq:complexVectorTransposedConj)
+\end{equation}
+\begin{equation}
+    {\mathbf{x}}^{\prime} = \begin{pmatrix} x_{r,1} & x_{r,2} & x_{r,3} \\
+                                         -x_{i,1} & -x_{i,2} & -x_{i,3}
+                        \end{pmatrix} 
+    (\#eq:complexVectorMatrixTransposedConj)
+\end{equation}
+and
+\begin{equation}
+    \underset{\sim}{\mathbf{x}}^{\prime} = \begin{pmatrix} x_{r,1} & + x_{i,1} & x_{r,2} & + x_{i,2} & x_{r,3} & + x_{i,3} \\
+                                        -x_{i,1} & x_{r,1} & -x_{i,2} & x_{r,2} & -x_{i,3} & x_{r,3}
+                        \end{pmatrix} .
+    (\#eq:complexMatrixTransposedConj)
+\end{equation}
 
 
 ## Complex random variable {#complexRandomVariable}

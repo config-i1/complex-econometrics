@@ -530,7 +530,25 @@ and
                         \end{pmatrix} .
     \label{eq:complexMatrixTransposed}
 \end{equation}
-We will denote the operation of transposition above with the symbol \(\top\) and will call it just ``transposition''. The transposition that produces the conjugate complex numbers is called ``conjugate transposition'' and will be denoted as \(\prime\) in this monograph.
+We will denote the operation of transposition above with the symbol \(\top\) and will call it just ``transposition''. The transposition that produces the conjugate complex numbers is called ``conjugate transposition'' and will be denoted as \(\prime\) in this monograph. For the three examples above, the conjugate transposition will be:
+\begin{equation}
+    \underline{\mathbf{x}}^{\prime} = \begin{pmatrix} x_{r,1} - i x_{i,1} & x_{r,2} - i x_{i,2} & x_{r,3} - i x_{i,3}
+                        \end{pmatrix} ,
+    \label{eq:complexVectorTransposedConj}
+\end{equation}
+\begin{equation}
+    {\mathbf{x}}^{\prime} = \begin{pmatrix} x_{r,1} & x_{r,2} & x_{r,3} \\
+                                         -x_{i,1} & -x_{i,2} & -x_{i,3}
+                        \end{pmatrix} 
+    \label{eq:complexVectorMatrixTransposedConj}
+\end{equation}
+and
+\begin{equation}
+    \underset{\sim}{\mathbf{x}}^{\prime} = \begin{pmatrix} x_{r,1} & + x_{i,1} & x_{r,2} & + x_{i,2} & x_{r,3} & + x_{i,3} \\
+                                        -x_{i,1} & x_{r,1} & -x_{i,2} & x_{r,2} & -x_{i,3} & x_{r,3}
+                        \end{pmatrix} .
+    \label{eq:complexMatrixTransposedConj}
+\end{equation}
 
 \hypertarget{complexRandomVariable}{%
 \section{Complex random variable}\label{complexRandomVariable}}
@@ -576,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.3739+100.8079i
+## [1] 49.94686+98.3693i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -638,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 118.9912+0i
+## 150.1052+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -650,8 +668,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -59.24817+7.97324i
+##   Direct variance 
+## -99.2776-9.58161i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -676,9 +694,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 29.871489  3.986618
-## x_i  3.986618 89.119664
+##           x_r        x_i
+## x_r 25.413810  -4.790803
+## x_i -4.790803 124.691412
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -690,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2646.244
+## [1] 3145.932
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -757,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 33.11182-75.26093i
+## 58.62947-97.7084i
 \end{verbatim}
 
 \begin{Shaded}
@@ -770,7 +788,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -17.27231+12.98344i
+## -47.87365+79.84853i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -784,8 +802,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -44.39037- 6.93243i -17.27231+12.98344i
-## y -17.27231+12.98344i  14.60790-30.68568i
+## x -81.65413- 1.24152i -47.87365+79.84853i
+## y -47.87365+79.84853i  33.64255+66.06062i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1696,7 +1714,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9978821+0i
+## [1] 0.9974957+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1753,8 +1771,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]
-## [1,] -0.9984984
+##           [,1]
+## [1,] 0.9977214
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1779,11 +1797,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i        y_r        y_i
-## x_r 1.0000000  0.1273213  0.5420015  0.6689577
-## x_i 0.1273213  1.0000000 -0.7615413  0.8202272
-## y_r 0.5420015 -0.7615413  1.0000000 -0.2576075
-## y_i 0.6689577  0.8202272 -0.2576075  1.0000000
+##            x_r         x_i        y_r       y_i
+## x_r 1.00000000  0.04332655  0.7645884 0.7911119
+## x_i 0.04332655  1.00000000 -0.6068553 0.6413303
+## y_r 0.76458845 -0.60685534  1.0000000 0.2160293
+## y_i 0.79111188  0.64133032  0.2160293 1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
