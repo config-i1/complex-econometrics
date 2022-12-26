@@ -149,7 +149,7 @@ It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParamet
 
 In terms of properties of the estimator, it can be shown that $\underline{b_1}$ equals to:
 \begin{equation}
-        \underline{b_1} = \frac{\mathrm{cov}(\underline{\tilde{x}}, y)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0} + \underline{\beta_1} \underline{x} + \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0}) + \mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_1} \underline{x}) + \mathrm{cov}(\underline{\tilde{x}}, \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})},
+        \underline{b_1} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{y})}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0} + \underline{\beta_1} \underline{x} + \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0}) + \mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_1} \underline{x}) + \mathrm{cov}(\underline{\tilde{x}}, \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})},
     (\#eq:SimpleCLROLSb1Value01)
 \end{equation}
 which then simplifies to:
@@ -242,12 +242,12 @@ or after inserting the values for direct variance and covariance (from Section \
 \end{equation}
 Similarly to how it was done with OLS estimate of the slope, we can consider the estimate of $\underline{b_1}$, expanding the covariance in the numerator of \@ref(eq:SimpleCLRCLSLossParametersMoments):
 \begin{equation}
-        \underline{b_1} = \frac{\mathrm{cov}(x,y)}{V(x)} = \frac{\mathrm{cov}(x,\underline{\beta_0} + \underline{\beta_1} x + \epsilon)}{V(x)},
+        \underline{b_1} = \frac{\mathrm{cov}(\underline{x},\underline{y})}{V(\underline{x})} = \frac{\mathrm{cov}(\underline{x},\underline{\beta_0} + \underline{\beta_1} \underline{x} + \underline{\epsilon})}{V(\underline{x})},
     (\#eq:SimpleCLRCLSb1Expansion01)
 \end{equation}
 which after some simplifications becomes:
 \begin{equation}
-        \underline{b_1} = \underline{\beta_1} + \frac{\mathrm{cov}(x, \epsilon)}{V(x)} ,
+        \underline{b_1} = \underline{\beta_1} + \frac{\mathrm{cov}(\underline{x}, \underline{\epsilon})}{V(\underline{x})} ,
     (\#eq:SimpleCLRCLSb1Expansion02)
 \end{equation}
 which can be expanded to:
