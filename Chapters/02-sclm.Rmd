@@ -124,7 +124,7 @@ to get:
 As shown by @Svetunkov2012, solving the system of equations \@ref(eq:SimpleCLROLSLossSystem02) gives the following formulae for the parameters of the model:
 \begin{equation}
     \begin{aligned}
-        & \underline{b_1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})} \\
+        & \underline{b_1} = \frac{\sum_{j=1}^n (y_{j}-\underline{\hat{\mu}_{y}}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\underline{\hat{\mu}_{x}}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})} \\
         & \underline{b_0} = \frac{1}{n} \sum_{j=1}^n \underline{y_j} - \underline{b_1} \sum_{j=1}^n \underline{x_j} ,
     \end{aligned}
     (\#eq:SimpleCLROLSLossParameters)
@@ -219,7 +219,7 @@ The derivatives \@ref(eq:SimpleCLRCLSLossSystem01) give the following system of 
 The solution for this system of equations, as it was shown by @Svetunkov2012, is:
 \begin{equation}
     \begin{aligned}
-        & \underline{b_1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) ({x}_j-\hat{\mu}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x})^2} \\
+        & \underline{b_1} = \frac{\sum_{j=1}^n (\underline{y_{j}}-\underline{\hat{\mu}_{y}}) (\underline{{x}_j}-\underline{\hat{\mu}_{x}})}{\sum_{j=1}^n (x_{j}-\underline{\hat{\mu}_{x}})^2} \\
         & \underline{b_0} = \frac{1}{n} \sum_{j=1}^n \underline{y_j} - \underline{b_1} \sum_{j=1}^n \underline{x_j} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParameters)
@@ -228,7 +228,7 @@ or in terms of direct moments for complex random variables:
 \begin{equation}
     \begin{aligned}
         & \underline{b_1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x^2} \\
-        & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} ,
+        & \underline{b_0} = \underline{\hat{\mu}_{y}} - \underline{b_1} \underline{\hat{\mu}_{x}} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMoments)
 \end{equation}
@@ -236,7 +236,7 @@ or after inserting the values for direct variance and covariance (from Section \
 \begin{equation}
     \begin{aligned}
         & \underline{b_1} = \frac{\hat{\sigma}_{x_r, y_r} - \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_i, y_r} + \hat{\sigma}_{x_r, y_i})}{\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 + i2 \hat{\sigma}_{x_r,x_i}} \\
-        & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} .
+        & \underline{b_0} = \underline{\hat{\mu}_{y}} - \underline{b_1} \underline{\hat{\mu}_{x}} .
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMomentsExpanded)
 \end{equation}
