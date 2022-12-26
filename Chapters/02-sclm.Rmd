@@ -124,7 +124,7 @@ to get:
 As shown by @Svetunkov2012, solving the system of equations \@ref(eq:SimpleCLROLSLossSystem02) gives the following formulae for the parameters of the model:
 \begin{equation}
     \begin{aligned}
-        & \underline{b_1} = \frac{\sum_{j=1}^n (y_{j}-\underline{\hat{\mu}_{y}}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\underline{\hat{\mu}_{x}}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})} \\
+        & \underline{b_1} = \frac{\sum_{j=1}^n (\underline{y_j}-\underline{\hat{\mu}_{y}}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (\underline{{x}_j}-\underline{\hat{\mu}_{x}}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})} \\
         & \underline{b_0} = \frac{1}{n} \sum_{j=1}^n \underline{y_j} - \underline{b_1} \sum_{j=1}^n \underline{x_j} ,
     \end{aligned}
     (\#eq:SimpleCLROLSLossParameters)
@@ -219,7 +219,7 @@ The derivatives \@ref(eq:SimpleCLRCLSLossSystem01) give the following system of 
 The solution for this system of equations, as it was shown by @Svetunkov2012, is:
 \begin{equation}
     \begin{aligned}
-        & \underline{b_1} = \frac{\sum_{j=1}^n (\underline{y_{j}}-\underline{\hat{\mu}_{y}}) (\underline{{x}_j}-\underline{\hat{\mu}_{x}})}{\sum_{j=1}^n (x_{j}-\underline{\hat{\mu}_{x}})^2} \\
+        & \underline{b_1} = \frac{\sum_{j=1}^n (\underline{y_{j}}-\underline{\hat{\mu}_{y}}) (\underline{{x}_j}-\underline{\hat{\mu}_{x}})}{\sum_{j=1}^n (\underline{{x}_j}-\underline{\hat{\mu}_{x}})^2} \\
         & \underline{b_0} = \frac{1}{n} \sum_{j=1}^n \underline{y_j} - \underline{b_1} \sum_{j=1}^n \underline{x_j} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParameters)
