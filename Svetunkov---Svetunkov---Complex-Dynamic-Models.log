@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  26 DEC 2022 13:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  26 DEC 2022 14:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -825,7 +825,7 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 ]
 Chapter 2.
 [29] [30]
-Overfull \hbox (2.10312pt too wide) detected at line 958
+Overfull \hbox (4.88086pt too wide) detected at line 958
 [][][] [] \OML/lmm/m/it/10 :
  []
 
@@ -953,14 +953,14 @@ tersHVError-1.pdf>] [46
 Chapter 3.
 [47]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-ots-1.pdf, id=669, 262.9825pt x 263.98625pt>
+ots-1.pdf, id=669, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplots-1.pdf  used on input line 1493.
-(pdftex.def)             Requested size: 262.99387pt x 263.99767pt.
+(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 48 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1011,29 +1011,29 @@ ANDOM VARIABLES
 
 [52]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ate-1.pdf, id=740, 262.9825pt x 264.99pt>
+ate-1.pdf, id=740, 264.99pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugate-1.pdf  used on input line 1705.
-(pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
+(pdftex.def)             Requested size: 265.00146pt x 262.99387pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ateMDS-1.pdf, id=742, 257.96375pt x 214.8025pt>
+ateMDS-1.pdf, id=742, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugateMDS-1.pdf  used on input line 1730.
-(pdftex.def)             Requested size: 257.96703pt x 214.80524pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
-Underfull \vbox (badness 6691) has occurred while \output is active []
+Underfull \vbox (badness 8019) has occurred while \output is active []
 
 [53 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCor
 Conjugate-1.pdf>]
-Underfull \vbox (badness 4518) has occurred while \output is active []
+Underfull \vbox (badness 5050) has occurred while \output is active []
 
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
@@ -1066,7 +1066,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  16450 strings out of 479648
  269281 string characters out of 5886115
- 595211 words of memory out of 5000000
+ 596232 words of memory out of 5000000
  33555 multiletter control sequences out of 15000+600000
  572414 words of font info for 206 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
@@ -1090,7 +1090,7 @@ ublic/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/sha
 re/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmtti10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (61 pages,
- 3002670 bytes).
+ 3006279 bytes).
 PDF statistics:
  1102 PDF objects out of 1200 (max. 8388607)
  930 compressed objects within 10 object streams

@@ -343,7 +343,7 @@ clsResult <- clsLoss(y, yHat)
 
 In this experiment we generate complex variables $x$ and $y$ and then calculate values of the complex loss function based on a combination of values of the complex slope $\underline{b_1}$ (which we call just `b` in the code). After running the code above we end up with 10,000 values of the loss function and one additional, which corresponds to the optimal point according to \@ref(eq:SimpleCLRCLSLossParametersMoments). We can then produce several plots to better understand what is happening.
 
-```{r clsScatter, fig.cap="Variety of CLS loss function values for different values of $\underline{b_1}$."}
+```{r clsScatter, fig.cap="Variety of CLS loss function values for different values of $\\underline{b_1}$."}
 plot(clsValues[,3:4], type="p",
      xlab="Re(CLS loss)", ylab="Im(CLS loss)")
 abline(h=0, col="grey", lty=2, lwd=2)
@@ -570,13 +570,13 @@ parametersPlots <- function(data){
 
 Figure \@ref(fig:parametersUCDV) demonstrates how estimates of parameters change with the increase of sample size in Scenario 1.
 
-```{r parametersUCDV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 1.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersUCDV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\\underline{\\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 1.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersUCDV)
 ```
 
 Apparently, all three estimators produce very similar estimates of parameters in this case and converge to the true values quite fast. A similar behaviour is observed for the Scenario 2, shown in Figure \@ref(fig:parametersPC). The difference between the three estimators does not look substantial.
 
-```{r parametersPC, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 2.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersPC, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\\underline{\\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 2.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersPC)
 ```
 
@@ -584,7 +584,7 @@ In both Scenarios 1 and 2 the error term has a small variance, in Scenario 2 $x_
 
 The Scenario 3 demonstrates an exotic case, when the variances of $x_r$ and $x_i$ are the same (as shown in Figure \@ref(fig:parametersUCSV)).
 
-```{r parametersUCSV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 3.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersUCSV, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\\underline{\\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 3.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersUCSV)
 ```
 
@@ -592,13 +592,13 @@ In this scenario, OLS and Likelihood produce efficient, unbiased and consistent 
 
 Next, the three estimators give the same estimates of parameters in Scenario 4 of functional relation between $x$ and $y$, which is shown in Figure \@ref(fig:parametersFR).
 
-```{r parametersFR, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 4.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersFR, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\\underline{\\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 4.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersFR)
 ```
 
 The main difficulties for the estimators appear, when the variance of the error term increases. Figure \@ref(fig:parametersCorError) shows how the three perform in case of a higher variance of the error term in Scenario 5.
 
-```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 5.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\\underline{\\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 5.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersCorError)
 ```
 
@@ -606,7 +606,7 @@ It becomes apparent that OLS and Likelihood produce more efficient estimates of 
 
 The situations worsens for the three estimators when we consider Scenario 6, when the variances of the error term become much higher than before, which is shown in Figure \@ref(fig:parametersHVError).
 
-```{r parametersHVError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\underline{\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 6.", echo=FALSE, fig.height=3, fig.width=8}
+```{r parametersHVError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\\underline{\\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 6.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersHVError)
 ```
 
