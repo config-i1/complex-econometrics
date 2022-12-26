@@ -109,7 +109,9 @@ The two formulae \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLRCLSEstimateTranspose
 ## Inference
 In both OLS and CLS, the individual contributions of real and imaginary parts of regression are ignored, everything is averaged-out. We just get a vector of errors. In likelihood, the split is preserved.
 
+Covariance of parameters of the three approaches.
 
+Difference in covariance matrices... Does OLS - CLS produce positive semidefinite matrix?
 
 
 ## Diagnostics
