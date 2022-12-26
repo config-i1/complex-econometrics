@@ -9,10 +9,10 @@ We start with the simplest Complex Linear Regression (CLR), which we call "simpl
 ## Model formulation {#simpleCLRModel}
 The simple Complex Linear Regression can be written as:
 \begin{equation}
-    \underline{y}_j = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_j + \underline{\epsilon}_j,
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_j} + \underline{\epsilon_j},
     (\#eq:SimpleCLRComplex)
 \end{equation}
-where $j$ is the index for an observation and every parameter and variable is a complex number, i.e. $\underline{y}_j = y_{r,j}+i y_{i,j}$ is the complex response variable, $x_j = x_{r,j}+i x_{i,j}$ is the complex explanatory variable, $\beta_{l} = \beta_{l,r} + i \beta_{l,i}$ is the $l$-th parameter and $\epsilon_j = \epsilon_{r,j} + i \epsilon_{i,j}$ is the error term. For now, we do not make any specific assumptions about the distribution of the complex error term, we will come back to this later in this chapter. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
+where $j$ is the index for an observation and every parameter and variable is a complex number, i.e. $\underline{y_j} = y_{r,j}+i y_{i,j}$ is the complex response variable, $x_j = x_{r,j}+i x_{i,j}$ is the complex explanatory variable, $\beta_{l} = \beta_{l,r} + i \beta_{l,i}$ is the $l$-th parameter and $\epsilon_j = \epsilon_{r,j} + i \epsilon_{i,j}$ is the error term. For now, we do not make any specific assumptions about the distribution of the complex error term, we will come back to this later in this chapter. Inserting these values in \@ref(eq:SimpleCLRComplex) leads to:
 \begin{equation}
     y_{r,j}+i y_{i,j} = (\beta_{0,r} + i \beta_{0,i}) + (\beta_{1,r} + i \beta_{1,i}) (x_{r,j}+i x_{i,j}) + (\epsilon_{r,j} + i \epsilon_{i,j}),
     (\#eq:SimpleCLR)

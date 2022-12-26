@@ -250,12 +250,12 @@ And this form allows calculating logarithms of a complex number:
 \end{equation*}
 This operation will become useful when we discuss transformations of complex-valued functions, but it also shows that a logarithm of a negative real number is a complex number, because in that case $\phi=\pi$. This demonstrates that the field of complex numbers is complete: any mathematical operation of a complex number will give another complex number.
 
-One of the important definitions in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $\underline{z} = x+ iy$ is $\tilde{\underline{z}} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
+One of the important definitions in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $\underline{z} = x+ iy$ is $\underline{\tilde{z}} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
 \begin{equation}
-    \underline{z} \times \tilde{\underline{z}} = (x+ iy) (x- iy) = x^2 + y^2 ,
+    \underline{z} \times \underline{\tilde{z}} = (x+ iy) (x- iy) = x^2 + y^2 ,
     (\#eq:complexNumberConjugateMulti)
 \end{equation}
-which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $\underline{z}$ and $\tilde{\underline{z}}$. Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
+which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $\underline{z}$ and $\underline{\tilde{z}}$. Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
 \begin{equation}
     \begin{aligned}
         & \tilde{x + y} = \tilde{x} + \tilde{y} \\
@@ -399,7 +399,7 @@ We use the symbol $\sim$ below a character to denote the complex variable in the
 
 Finally, note that the transposition of these three forms will imply different things. As discussed earlier, in vector and matrix forms transposition of a complex number implies the conjugation. However, transposing \@ref(eq:complexVector) will not have the same effect - it will only switch rows and columns of the complex vector:
 \begin{equation}
-    \underline{z}{\mathbf{x}}^{\top} = \begin{pmatrix} x_{r,1} + i x_{i,1} & x_{r,2} + i x_{i,2} & x_{r,3} + i x_{i,3}
+    \underline{\mathbf{x}}^{\top} = \begin{pmatrix} x_{r,1} + i x_{i,1} & x_{r,2} + i x_{i,2} & x_{r,3} + i x_{i,3}
                         \end{pmatrix} ,
     (\#eq:complexVectorTransposed)
 \end{equation}
