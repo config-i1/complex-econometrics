@@ -15,33 +15,40 @@ where $k$ is the number of complex random variables. Similarly to how it was don
     \end{aligned}
     (\#eq:MultipleCLRSystem)
 \end{equation}
-As can be seen from \@ref(eq:MultipleCLRSystem), the multiple CLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework. Furthermore, this system can also be used to represent the multiple CLR in a simple form using vector and matrix notations:
+As can be seen from \@ref(eq:MultipleCLRSystem), the multiple CLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework.
+
+This system can be represented in a more compact form, similarly to \@ref(eq:SimpleCLRVector):
 \begin{equation}
-    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
+    (\#eq:CLRVector)
+\end{equation}
+where now $\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_{1,1}} & \dots & \underline{{x}_{k,1}} \\ 1 & \underline{{x}_{1,2}} & \dots & \underline{{x}_{k,2}} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{{x}_{1,n}} & \dots & \underline{{x}_{k,n}} \end{pmatrix}$ and $\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \\ \vdots \\ \underline{{\beta}_k} \end{pmatrix}$, where each of the elements in the matrices and vectors above is a complex number.
+
+Furthermore, the system \@ref(eq:MultipleCLRSystem) can also be used to represent the multiple CLR in a simple form using vector and matrix notations, avoiding complex numbers:
+\begin{equation}
+    \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
     (\#eq:MultipleCLRSystemVector)
 \end{equation}
-where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\mathbf{X}_j = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}$, $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}$ and $\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
+where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\underset{\sim}{\mathbf{X}_j} = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}$, $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}$ and $\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
 \begin{equation}
-    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{E} 
+    \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} 
     (\#eq:CLRSystemVectorFinal)
 \end{equation}
-with where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. This formula becomes especially useful for multiple CLR because it can be used in the estimation of the model via OLS or CLS in the matrix form. The form \@ref(eq:CLRSystemVectorFinal) sidesteps the complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference. However, there is also an alternative presentation of the model, which will become useful in further discussions in this chapter:
-\begin{equation}
-    \underset{\sim}{\mathbf{Y}} = \underset{\sim}{\mathbf{X}} \underset{\sim}{\boldsymbol{\beta}} + \underset{\sim}{\mathbf{E}},
-    (\#eq:CLRSystemVectorComplexFinal)
-\end{equation}
-where $\underset{\sim}{\mathbf{Y}} = \begin{pmatrix} {y}_{1,r} + i {y}_{1,i} \\ {y}_{2,r} + i {y}_{2,i} \\ \vdots \\ {y}_{n,r} + i {y}_{n,i} \end{pmatrix}$, $\underset{\sim}{\mathbf{X}} = \begin{pmatrix} 1 & x_{1,r,1} + i x_{1,i,1} & \dots & x_{k,r,1} + i x_{k,i,1} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{1,r,n} + i x_{1,i,n} & \dots & x_{k,r,n} + i x_{k,i,n} \end{pmatrix}$, $\underset{\sim}{\boldsymbol{\beta}} = \begin{pmatrix} \beta_{0,r} + i \beta_{0,i} \\ \beta_{1,r} + i \beta_{1,i} \\ \vdots \\ \beta_{k,r} + i \beta_{k,i} \end{pmatrix}$ and $\underset{\sim}{\mathbf{E}} = \begin{pmatrix} {\epsilon}_{1,r} + i {\epsilon}_{1,i} \\ {\epsilon}_{2,r} + i {\epsilon}_{2,i} \\ \vdots \\ {\epsilon}_{n,r} + i {\epsilon}_{n,i} \end{pmatrix}$.
+with where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. Formula \@ref(eq:CLRSystemVectorFinal) becomes especially useful for multiple CLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \@ref(eq:CLRSystemVectorFinal) sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
 
-So, the main difference of the form \@ref(eq:CLRSystemVectorComplexFinal) from the \@ref(eq:CLRSystemVectorFinal) is that it contains complex numbers inside each of the matrices and vectors.
+The main difference between the form \@ref(eq:CLRVector) and \@ref(eq:CLRSystemVectorFinal) is that the former contains complex numbers inside each of the matrices and vectors.
 
 
 ## Estimation
-In order to estimate the parameters of the model \@ref(eq:CLRSystemVectorFinal), we can use the same methods as in the Chapter \@ref(simpleCLR): OLS, CLS and Likelihood. We will write the estimated model as:
+In order to estimate the parameters of the model \@ref(eq:CLRVector), we can use the same methods as in the Chapter \@ref(simpleCLR): OLS, CLS and Likelihood. We will write the estimated model as:
 \begin{equation}
-    \mathbf{Y} = \mathbf{X} \boldsymbol{b} + \mathbf{\hat{E}} ,
+    \underline{\mathbf{Y}} = \underline{\mathbf{X}} \underline{\boldsymbol{b}} + \underline{\mathbf{\hat{E}}} ,
     (\#eq:CLRSystemVectorFinalEstimated)
 \end{equation}
-where $\boldsymbol{b}$ is the estimate of $\boldsymbol{\beta}$ and $\mathbf{\hat{E}}$ is the estimate of $\mathbf{E}$.
+where $\underline{\boldsymbol{b}}$ is the estimate of $\underline{\boldsymbol{\beta}}$ and $\underline{\mathbf{\hat{E}}}$ is the estimate of $\underline{\mathbf{E}}$.
+
+
+
 
 
 ### Ordinary Least Squares

@@ -30,7 +30,7 @@ This model captures a very specific dynamics between the real and imaginary part
 Given that we deal with a sample of values, the model \@ref(eq:SimpleCLRComplex) can be represented in a vector form for all observations $j$ from 1 to $n$ (based on discussion in Subsection \@ref(vectorComplexVariables)):
 \begin{equation}
     \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
-    (\#eq:SimpleCLRVector01)
+    (\#eq:SimpleCLRVector)
 \end{equation}
 where $\underline{\mathbf{y}}=\begin{pmatrix} \underline{{y}_1} \\ \underline{{y}_2} \\ \vdots \\ \underline{{y}_n} \end{pmatrix}$, $\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_1} \\ 1 & \underline{{x}_2}\\ \vdots \\ 1 & \underline{{x}_n} \end{pmatrix}$, $\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \end{pmatrix}$ and $\underline{\boldsymbol{\epsilon}} = \begin{pmatrix} \underline{{\epsilon}_1} \\ \underline{{\epsilon}_2}\\ \vdots \\ \underline{{\epsilon}_n} \end{pmatrix}$, where each element of the objects above is a complex number.
 

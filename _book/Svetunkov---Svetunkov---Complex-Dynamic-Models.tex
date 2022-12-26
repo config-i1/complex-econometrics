@@ -594,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.4949+100.9796i
+## [1] 50.3811+100.1675i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -656,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 139.3103+0i
+## 127.1017+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -668,8 +668,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -86.08025+20.37801i
+##    Direct variance 
+## -70.71465+7.06122i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -694,9 +694,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##          x_r      x_i
-## x_r 26.61504  10.1890
-## x_i 10.18900 112.6953
+##           x_r       x_i
+## x_r 28.193509  3.530612
+## x_i  3.530612 98.908154
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -708,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2895.574
+## [1] 2776.103
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -775,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 64.27441-89.27017i
+## 56.0956-83.20569i
 \end{verbatim}
 
 \begin{Shaded}
@@ -788,7 +788,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -35.57351+58.80758i
+## -31.58867+57.72894i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -802,8 +802,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -68.92699- 3.79328i -35.57351+58.80758i
-## y -35.57351+58.80758i  14.67777+83.03028i
+## x -59.46059+ 7.06801i -31.58867+57.72894i
+## y -31.58867+57.72894i  49.43492+64.98011i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -883,7 +883,7 @@ This model captures a very specific dynamics between the real and imaginary part
 Given that we deal with a sample of values, the model \eqref{eq:SimpleCLRComplex} can be represented in a vector form for all observations \(j\) from 1 to \(n\) (based on discussion in Subsection \ref{vectorComplexVariables}):
 \begin{equation}
     \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
-    \label{eq:SimpleCLRVector01}
+    \label{eq:SimpleCLRVector}
 \end{equation}
 where \(\underline{\mathbf{y}}=\begin{pmatrix} \underline{{y}_1} \\ \underline{{y}_2} \\ \vdots \\ \underline{{y}_n} \end{pmatrix}\), \(\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_1} \\ 1 & \underline{{x}_2}\\ \vdots \\ 1 & \underline{{x}_n} \end{pmatrix}\), \(\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \end{pmatrix}\) and \(\underline{\boldsymbol{\epsilon}} = \begin{pmatrix} \underline{{\epsilon}_1} \\ \underline{{\epsilon}_2}\\ \vdots \\ \underline{{\epsilon}_n} \end{pmatrix}\), where each element of the objects above is a complex number.
 
@@ -1711,7 +1711,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9976167+0i
+## [1] 0.9979582+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1745,7 +1745,7 @@ Given that it contains a complex number in the denominator, it is more complicat
 \item
   The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when \(\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0\) and \(\sigma_{x_r,y_r}=\sigma_{x_i,y_i}\). One of the special cases of this is when all cross-covariances between the real and imaginary parts of \(\underline{x}\) and \(\underline{y}\) are equal to zero.
 \item
-  When the complex variables \(\underline{x}\) and \(\underline{y}\) have functional relation between them, so that \(a_1 = \frac{1}{b_1}\), the coefficient will be equal to one.
+  When the complex variables \(\underline{x}\) and \(\underline{y}\) have functional relation between them, so that \(\underline{a_1} = \frac{1}{\underline{b_1}}\), the coefficient will be equal to one.
 \end{enumerate}
 
 Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables \(\underline{x}\) and/or \(\underline{y}\).
@@ -1769,7 +1769,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9927916
+## [1,] 0.9360898
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1794,11 +1794,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i         y_r        y_i
-## x_r 1.0000000  0.0746578  0.69176697 0.74061051
-## x_i 0.0746578  1.0000000 -0.66497161 0.72225313
-## y_r 0.6917670 -0.6649716  1.00000000 0.03259931
-## y_i 0.7406105  0.7222531  0.03259931 1.00000000
+##            x_r         x_i         y_r        y_i
+## x_r 1.00000000  0.01524961  0.70785264 0.72552121
+## x_i 0.01524961  1.00000000 -0.69226304 0.69670514
+## y_r 0.70785264 -0.69226304  1.00000000 0.03099008
+## y_i 0.72552121  0.69670514  0.03099008 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -1824,34 +1824,38 @@ where \(k\) is the number of complex random variables. Similarly to how it was d
     \end{aligned}
     \label{eq:MultipleCLRSystem}
 \end{equation}
-As can be seen from \eqref{eq:MultipleCLRSystem}, the multiple CLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework. Furthermore, this system can also be used to represent the multiple CLR in a simple form using vector and matrix notations:
+As can be seen from \eqref{eq:MultipleCLRSystem}, the multiple CLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework.
+
+This system can be represented in a more compact form, similarly to \eqref{eq:SimpleCLRVector}:
 \begin{equation}
-    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
+    \label{eq:CLRVector}
+\end{equation}
+where now \(\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_{1,1}} & \dots & \underline{{x}_{k,1}} \\ 1 & \underline{{x}_{1,2}} & \dots & \underline{{x}_{k,2}} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{{x}_{1,n}} & \dots & \underline{{x}_{k,n}} \end{pmatrix}\) and \(\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \\ \vdots \\ \underline{{\beta}_k} \end{pmatrix}\), where each of the elements in the matrices and vectors above is a complex number.
+
+Furthermore, the system \eqref{eq:MultipleCLRSystem} can also be used to represent the multiple CLR in a simple form using vector and matrix notations, avoiding complex numbers:
+\begin{equation}
+    \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
     \label{eq:MultipleCLRSystemVector}
 \end{equation}
-where \(\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}\), \(\mathbf{X}_j = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}\), \(\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}\) and \(\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}\). This can be then represented in the even more compact form, using the same principles as discussed in Section \ref{simpleCLRModel} in formula \eqref{eq:SimpleCLRSystemVectorFinal}:
+where \(\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}_j} = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}\), \(\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}\) and \(\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}\). This can be then represented in the even more compact form, using the same principles as discussed in Section \ref{simpleCLRModel} in formula \eqref{eq:SimpleCLRSystemVectorFinal}:
 \begin{equation}
-    \mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{E} 
+    \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} 
     \label{eq:CLRSystemVectorFinal}
 \end{equation}
-with where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}\), \(\mathbf{X}=\begin{pmatrix}\mathbf{X}_1 \\ \mathbf{X}_2\\ \vdots \\ \mathbf{X}_n \end{pmatrix}\) and \(\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}\). This formula becomes especially useful for multiple CLR because it can be used in the estimation of the model via OLS or CLS in the matrix form. The form \eqref{eq:CLRSystemVectorFinal} sidesteps the complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference. However, there is also an alternative presentation of the model, which will become useful in further discussions in this chapter:
-\begin{equation}
-    \underset{\sim}{\mathbf{Y}} = \underset{\sim}{\mathbf{X}} \underset{\sim}{\boldsymbol{\beta}} + \underset{\sim}{\mathbf{E}},
-    \label{eq:CLRSystemVectorComplexFinal}
-\end{equation}
-where \(\underset{\sim}{\mathbf{Y}} = \begin{pmatrix} {y}_{1,r} + i {y}_{1,i} \\ {y}_{2,r} + i {y}_{2,i} \\ \vdots \\ {y}_{n,r} + i {y}_{n,i} \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}} = \begin{pmatrix} 1 & x_{1,r,1} + i x_{1,i,1} & \dots & x_{k,r,1} + i x_{k,i,1} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{1,r,n} + i x_{1,i,n} & \dots & x_{k,r,n} + i x_{k,i,n} \end{pmatrix}\), \(\underset{\sim}{\boldsymbol{\beta}} = \begin{pmatrix} \beta_{0,r} + i \beta_{0,i} \\ \beta_{1,r} + i \beta_{1,i} \\ \vdots \\ \beta_{k,r} + i \beta_{k,i} \end{pmatrix}\) and \(\underset{\sim}{\mathbf{E}} = \begin{pmatrix} {\epsilon}_{1,r} + i {\epsilon}_{1,i} \\ {\epsilon}_{2,r} + i {\epsilon}_{2,i} \\ \vdots \\ {\epsilon}_{n,r} + i {\epsilon}_{n,i} \end{pmatrix}\).
+with where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}\) and \(\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}\). Formula \eqref{eq:CLRSystemVectorFinal} becomes especially useful for multiple CLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \eqref{eq:CLRSystemVectorFinal} sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
 
-So, the main difference of the form \eqref{eq:CLRSystemVectorComplexFinal} from the \eqref{eq:CLRSystemVectorFinal} is that it contains complex numbers inside each of the matrices and vectors.
+The main difference between the form \eqref{eq:CLRVector} and \eqref{eq:CLRSystemVectorFinal} is that the former contains complex numbers inside each of the matrices and vectors.
 
 \hypertarget{estimation}{%
 \section{Estimation}\label{estimation}}
 
-In order to estimate the parameters of the model \eqref{eq:CLRSystemVectorFinal}, we can use the same methods as in the Chapter \ref{simpleCLR}: OLS, CLS and Likelihood. We will write the estimated model as:
+In order to estimate the parameters of the model \eqref{eq:CLRVector}, we can use the same methods as in the Chapter \ref{simpleCLR}: OLS, CLS and Likelihood. We will write the estimated model as:
 \begin{equation}
-    \mathbf{Y} = \mathbf{X} \boldsymbol{b} + \mathbf{\hat{E}} ,
+    \underline{\mathbf{Y}} = \underline{\mathbf{X}} \underline{\boldsymbol{b}} + \underline{\mathbf{\hat{E}}} ,
     \label{eq:CLRSystemVectorFinalEstimated}
 \end{equation}
-where \(\boldsymbol{b}\) is the estimate of \(\boldsymbol{\beta}\) and \(\mathbf{\hat{E}}\) is the estimate of \(\mathbf{E}\).
+where \(\underline{\boldsymbol{b}}\) is the estimate of \(\underline{\boldsymbol{\beta}}\) and \(\underline{\mathbf{\hat{E}}}\) is the estimate of \(\underline{\mathbf{E}}\).
 
 \hypertarget{ordinary-least-squares-1}{%
 \subsection{Ordinary Least Squares}\label{ordinary-least-squares-1}}
