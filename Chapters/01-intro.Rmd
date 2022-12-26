@@ -28,7 +28,7 @@ Now it is possible to get a solution of the problem, and the root of the cubic e
 
 For a long time, Bombelli's approach was considered by scientists as a convenient mathematical trick. And the square root of minus one was called "magic unit", "vanishing unit", etc. Finally, the term "imaginary unit" was established by René Descartes in 1637 and any number multiplied by the imaginary unit would be called "imaginary number". Merging a real number with an imaginary number gives another number, which can be considered as a more general to the two, which is called "complex". It can be written as:
 \begin{equation}
-    z = x+iy ,
+    \underline{z} = x+iy ,
     (\#eq:complexNumber)
 \end{equation}
 where $x$ is the real part, $iy$ is the imaginary part of a complex number, $x$ and $y$ are real numbers and $i$ is the imaginary unit that satisfies the equality:
@@ -36,6 +36,7 @@ where $x$ is the real part, $iy$ is the imaginary part of a complex number, $x$ 
     i^2 = -1 .
     (\#eq:imaginaryUnit)
 \end{equation}
+We use the symbol $\underline{}$ to denote a complex number.
 
 With complex numbers, one can perform almost all the same operations as with the real ones. However, taking into account the properties of the imaginary unit, these operations can lead to results that are not common in the domain of real numbers.
 
@@ -47,7 +48,7 @@ Imaginary and complex numbers are mathematical instruments that can help in desc
 
 In order to better understand how the modelling with complex variables can be done, we need to better understand how complex variables can be represented and interpreted. A real number represents visually a certain segment on the numerical axis, which has a zero point and a multitude of values from minus infinity to infinity. Any real number is characterized by the distance from zero to the value of that number. Negative numbers are located to the left of zero, while the positive ones are located to the right of it.
 
-A complex number consists of two parts, which can be visualised on the plane with two perpendicular axes, where the real numbers are marked on the horizontal line, and the imaginary ones are on the vertical one. This is shown visually in Figure \@ref(fig:complexPlane) with a complex number $z=x+iy$.
+A complex number consists of two parts, which can be visualised on the plane with two perpendicular axes, where the real numbers are marked on the horizontal line, and the imaginary ones are on the vertical one. This is shown visually in Figure \@ref(fig:complexPlane) with a complex number $\underline{z}=x+iy$.
 
 ```{r complexPlane, fig.width=3, fig.height=2, fig.cap="Visual presentation of a complex number on the complex plane.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
@@ -58,7 +59,7 @@ plot(c(0,9),c(0,6), type="l",
 lines(c(0,9), c(6,6), lwd=2, lty=2, col="grey")
 lines(c(9,9), c(0,6), lwd=2, lty=2, col="grey")
 arrows(0,0,9,6, lwd=2, angle=15)
-text(9,6,"z",pos=3)
+text(9,6,TeX("$\\underline{z}"),pos=3)
 text(9.3,0,"x",pos=3)
 text(0,6.4,"y",pos=4)
 abline(h=0,v=0,lty=1)
@@ -66,19 +67,19 @@ title(ylab="Imaginary number", line=0)
 title(xlab="Real number", line=0)
 ```
 
-Any point lying on the complex plane in Figure \@ref(fig:complexPlane) characterises a complex number, even if that point lies on the axis of real numbers. In that specific case, we would be talking about a complex number with a zero imaginary part, i.e. $z=x+i0$.
+Any point lying on the complex plane in Figure \@ref(fig:complexPlane) characterises a complex number, even if that point lies on the axis of real numbers. In that specific case, we would be talking about a complex number with a zero imaginary part, i.e. $\underline{z}=x+i0$.
 
 Given that complex numbers can be represented on a plane (in so called Cartesian coordinates), the number \@ref(eq:complexNumber) can be represented in a form of a vector that starts in the origin of coordinates and ends at the point (x, y). Then any complex number can be represented in form of polar coordinates using the magnitude of the vector and its polar angle:
 \begin{equation}
-    z = x+iy = r (\cos \phi + i \sin \phi),
+    \underline{z} = x+iy = r (\cos \phi + i \sin \phi),
     (\#eq:complexNumberTrigonometric)
 \end{equation}
-where $r=|z|$ is the magnitude, which is calculated as a Euclidean distance from the origin to the point (x, y) on the plane:
+where $r=|\underline{z}|$ is the magnitude, which is calculated as a Euclidean distance from the origin to the point (x, y) on the plane:
 \begin{equation}
     r = \sqrt{x^2 + y^2},
     (\#eq:complexNumberMagnitude)
 \end{equation}
-and $\phi=\Arg(z)$ is the angle, which equals to:
+and $\phi=\Arg(\underline{z})$ is the angle, which equals to:
 \begin{equation}
     \phi = \arctan \frac{y}{x} + 2 \pi l,
     (\#eq:complexNumberAngle)
@@ -87,7 +88,7 @@ where $l$ is an integer number. While depending on a task, $l$ can be set to a p
 
 Using the magnitude and the polar angle, we can also represent any complex number in the exponential form, which was first proposed in 1748 by Euler, in his book "Introduction to the Infinitesimal Analysis" **(Euler, 1961, pp. 118-119)**, which:
 \begin{equation}
-    z = r e^{i \phi} ,
+    \underline{z} = r e^{i \phi} ,
     (\#eq:complexNumberExponential)
 \end{equation}
 where $e$ is the Euler's constant. Equation \@ref(eq:complexNumberExponential) is nowadays also called "Euler's form". Comparing \@ref{eq:complexNumberTrigonometric} with \@ref{eq:complexNumberExponential}, we can conclude that:
@@ -159,7 +160,7 @@ plot(0,0, type="p",
 lines(c(0,abs(9+6i)), c(Arg(9+6i),Arg(9+6i)), lwd=2, lty=2, col="grey")
 lines(c(abs(9+6i),abs(9+6i)), c(0,Arg(9+6i)), lwd=2, lty=2, col="grey")
 points(abs(9+6i),Arg(9+6i), lwd=2, pch=20)
-text(abs(9+6i),Arg(9+6i),"z",pos=3)
+text(abs(9+6i),Arg(9+6i),TeX("$\\underline{z}$"),pos=3)
 text(abs(9+6i)*(1+0.05),0,"r",pos=3)
 text(0,Arg(9+6i)*(1+0.15),TeX("$\\phi$", italic=T),pos=4)
 abline(h=0,v=0,lty=1)
@@ -240,21 +241,21 @@ Continuing the discussion of different forms of a complex number, its magnitude 
 \end{equation*}
 where $\ln$ is the natural logarithm. This can then be used to rewrite the exponential form of a complex number as:
 \begin{equation}
-    z = e^{\ln r + i \phi} ,
+    \underline{z} = e^{\ln r + i \phi} ,
     (\#eq:complexNumberExponentialAll)
 \end{equation}
 And this form allows calculating logarithms of a complex number:
 \begin{equation*}
-    \ln z = \ln \left(e^{\ln r + i \phi} \right) = \ln r + i \phi .
+    \ln \underline{z} = \ln \left(e^{\ln r + i \phi} \right) = \ln r + i \phi .
 \end{equation*}
 This operation will become useful when we discuss transformations of complex-valued functions, but it also shows that a logarithm of a negative real number is a complex number, because in that case $\phi=\pi$. This demonstrates that the field of complex numbers is complete: any mathematical operation of a complex number will give another complex number.
 
-One of the important definitions in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $z = x+ iy$ is $\tilde{z} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
+One of the important definitions in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $\underline{z} = x+ iy$ is $\tilde{\underline{z}} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
 \begin{equation}
-    z \times \tilde{z} = (x+ iy) (x- iy) = x^2 + y^2 ,
+    \underline{z} \times \tilde{\underline{z}} = (x+ iy) (x- iy) = x^2 + y^2 ,
     (\#eq:complexNumberConjugateMulti)
 \end{equation}
-which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $z$ and $\tilde{z}$. Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
+which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $\underline{z}$ and $\tilde{\underline{z}}$. Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
 \begin{equation}
     \begin{aligned}
         & \tilde{x + y} = \tilde{x} + \tilde{y} \\
@@ -379,15 +380,15 @@ where two different input complex numbers (for example $0 + i$ and $0-i$) corres
 ### Vectors of complex variables {#vectorComplexVariables}
 Last but not least, for what follows, we introduce vectors and matrices of complex variables. There are different ways how one can represent a vector of complex variables. The simplest and most direct one is:
 \begin{equation}
-    \mathbf{x} = \begin{pmatrix} x_{r,1} + i x_{i,1} \\ x_{r,2} + i x_{i,2} \\ x_{r,3} + i x_{i,3} \end{pmatrix} ,
+    \underline{\mathbf{x}} = \begin{pmatrix} x_{r,1} + i x_{i,1} \\ x_{r,2} + i x_{i,2} \\ x_{r,3} + i x_{i,3} \end{pmatrix} ,
     (\#eq:complexVector)
 \end{equation}
-where the index in subscript (1, 2, 3) represents the observed first, second and third values of the complex variable. Alternatively, given that any complex variable can be represented as a vector \@ref(eq:complexNumberVectors), the same complex vector can be written as a matrix:
+where the index in subscript (1, 2, 3) represents the observed first, second and third values of the complex variable.  Alternatively, given that any complex variable can be represented as a vector \@ref(eq:complexNumberVectors), the same complex vector can be written as a matrix:
 \begin{equation}
-    \underline{\mathbf{x}} = \begin{pmatrix} x_{r,1} & x_{i,1} \\ x_{r,2} & x_{i,2} \\ x_{r,3} & x_{i,3} \end{pmatrix} ,
+    \mathbf{x} = \begin{pmatrix} x_{r,1} & x_{i,1} \\ x_{r,2} & x_{i,2} \\ x_{r,3} & x_{i,3} \end{pmatrix} ,
     (\#eq:complexVectorMatrix)
 \end{equation}
-we use the $\underline{}$ symbol below the character to denote the complex variable represented in the form \@ref(eq:complexVectorMatrix). Finally, given the connection of complex numbers and matrices \@ref(eq:complexNumberMatrix), the same complex vector $x$ can be written as a matrix:
+Finally, given the connection of complex numbers and matrices \@ref(eq:complexNumberMatrix), the same complex vector $x$ can be written as a matrix:
 \begin{equation}
     \underset{\sim}{\mathbf{x}} = \begin{pmatrix} x_{r,1} & - x_{i,1} \\ x_{i,1} & x_{r,1} \\
                                  x_{r,2} & - x_{i,2} \\ x_{i,2} & x_{r,2} \\
@@ -398,13 +399,13 @@ We use the symbol $\sim$ below a character to denote the complex variable in the
 
 Finally, note that the transposition of these three forms will imply different things. As discussed earlier, in vector and matrix forms transposition of a complex number implies the conjugation. However, transposing \@ref(eq:complexVector) will not have the same effect - it will only switch rows and columns of the complex vector:
 \begin{equation}
-    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} + i x_{i,1} & x_{r,2} + i x_{i,2} & x_{r,3} + i x_{i,3}
+    \underline{z}{\mathbf{x}}^{\top} = \begin{pmatrix} x_{r,1} + i x_{i,1} & x_{r,2} + i x_{i,2} & x_{r,3} + i x_{i,3}
                         \end{pmatrix} ,
     (\#eq:complexVectorTransposed)
 \end{equation}
 If we then switch to either the form \@ref(eq:complexNumberVectors) or \@ref(eq:complexNumberMatrix), we will not get the vector of conjugate complex numbers, but rather an object of the original complex variables with the switched rows and columns:
 \begin{equation}
-    \underline{\mathbf{x}}^{\top} = \begin{pmatrix} x_{r,1} & x_{r,2} & x_{r,3} \\
+    {\mathbf{x}}^{\top} = \begin{pmatrix} x_{r,1} & x_{r,2} & x_{r,3} \\
                                  x_{i,1} & x_{i,2} & x_{i,3}
                         \end{pmatrix} 
     (\#eq:complexVectorMatrixTransposed)
@@ -426,14 +427,14 @@ As any other random variable, c.r.v. can be characterised by its moments. Howeve
 
 
 ### First moment
-The first moment of any c.r.v. is relatively straightforward. For the variable $x=x_r+ix_i$ it is:
+The first moment of any c.r.v. is relatively straightforward. For the variable $\underline{x}=x_r+ix_i$ it is:
 \begin{equation}
-    \mu = \mathrm{E}(x) = \mathrm{E}(x_r + i x_i) = \mathrm{E}(x_r) + i \mathrm{E}(x_i) = \mu_{r} + i \mu_{i},
+    \underline{\mu} = \mathrm{E}(\underline{x}) = \mathrm{E}(x_r + i x_i) = \mathrm{E}(x_r) + i \mathrm{E}(x_i) = \mu_{r} + i \mu_{i},
     (\#eq:crvMomentFirst)
 \end{equation}
-due to the law of total expectation and because $i$ is a constant. In \@ref(eq:crvMomentFirst), $\mathrm{E}(.)$ is the expectation of a variable, $\mu$ is the first moment of a complex variable and $\mu_{r}$ and $\mu_{i}$ are the respective real and imaginary parts of the first moment. In sample, this moment can be calculated as:
+due to the law of total expectation and because $i$ is a constant. In \@ref(eq:crvMomentFirst), $\mathrm{E}(.)$ is the expectation of a variable, $\underline{\mu}$ is the first moment of a complex variable and $\mu_{r}$ and $\mu_{i}$ are the respective real and imaginary parts of the first moment. In sample, this moment can be calculated as:
 \begin{equation}
-    \hat{\mu} = \hat{\mu}_{r} + i \hat{\mu}_{i} = \frac{1}{n}\sum_{j=1}^n x_{r,j} + i \frac{1}{n}\sum_{j=1}^n x_{i,j},
+    \underline{\hat{\mu}} = \hat{\mu}_{r} + i \hat{\mu}_{i} = \frac{1}{n}\sum_{j=1}^n x_{r,j} + i \frac{1}{n}\sum_{j=1}^n x_{i,j},
     (\#eq:crvMomentFirstSample)
 \end{equation}
 where $n$ is the sample size and $\hat{\mu}$ is the estimate of $\mu$. The properties of the first moment of c.r.v. are similar to the properties of any other random variable. The only thing to note is that the moment can also be represented in a vector or matrix form (see Subsection \@ref(complexVariable)):
@@ -462,8 +463,9 @@ mean(x)
 While there are raw moments for c.r.v., here we will focus on the centred ones, i.e. moments for $x-\bar{x}$. There are several instruments related to the second moment that could characterise a complex random variable. The first one is called "variance" and is based on the multiplication by a conjugate number [@reference]. So for the c.r.v. $x_r + i x_i$ the variance is:
 \begin{equation}
     \begin{aligned}
-    \sigma_x^2 = & \mathrm{E}((x-\mu) (\tilde{x}-\tilde{\mu})) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))((x_r-\mu_{r}) - i (x_i-\mu_{i}))\right) = \\
-                & \mathrm{E}((x_r-\mu_{r})^2) +  \mathrm{E}((x_i-\mu_{i})^2)
+    \sigma_x^2 = & \mathrm{E}((x-\mu) (\tilde{x}-\tilde{\mu})) = \\
+                 & \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))((x_r-\mu_{r}) - i (x_i-\mu_{i}))\right) = \\
+                 & \mathrm{E}((x_r-\mu_{r})^2) +  \mathrm{E}((x_i-\mu_{i})^2)
     \end{aligned}
     (\#eq:crvMomentSecondVariance)
 \end{equation}
