@@ -55,32 +55,30 @@ where $\underline{\boldsymbol{b}}$ is the estimate of $\underline{\boldsymbol{\b
 ### Ordinary Least Squares
 The criterion of OLS for multiple CLR can be written as:
 \begin{equation}
-    \min S(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right),
+    \min S(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right),
     (\#eq:CLROLSCriterion)
 \end{equation}
 which can be expanded to:
 \begin{equation}
     \begin{aligned}
     S(\underline{\boldsymbol{b}}) = & \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right)^\prime \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right) = \\
-    & \underline{\mathbf{y}^\prime} \underline{\mathbf{y}} - \underline{\mathbf{y}^\prime} \underline{\mathbf{X}} \underline{\boldsymbol{b}} - \underline{\boldsymbol{b}}^\prime \underline{\mathbf{X}^\prime} \underline{\mathbf{y}} + \underline{\boldsymbol{b}^\prime} \underline{\mathbf{X}^\prime} \underline{\mathbf{X}} \underline{\boldsymbol{b}}
+    & \underline{\mathbf{y}}^\prime \underline{\mathbf{y}} - \underline{\mathbf{y}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{b}} - \underline{\boldsymbol{b}}^\prime \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} + \underline{\boldsymbol{b}}^\prime \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{b}}
     \end{aligned}. 
     (\#eq:CLROLSCriterionExpanded)
 \end{equation}
-
-
 Taking derivative of \@ref(eq:CLROLSCriterionExpanded) with respect to $\underline{\boldsymbol{b}}$ and equating it to zero, results in the following system of normal equations:
 \begin{equation}
-    \mathbf{X}^\prime \mathbf{X} \underline{\boldsymbol{b}} = \mathbf{X}^\prime \mathbf{Y} ,
+    \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{b}} = \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} ,
     (\#eq:CLROLSSystemOfNormalEquations)
 \end{equation}
 which gives the classical formula for the estimation of parameters of the model \@ref(eq:CLRSystemVectorFinal):
 \begin{equation}
-    \underline{\boldsymbol{b}} = \left( \mathbf{{X}}^\prime \mathbf{X}\right)^{-1} \mathbf{{X}}^\prime \mathbf{Y}
+    \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}}
     (\#eq:MCLROLSEstimate)
 \end{equation}
-Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operation of transposition on matrices is equivalent to the multiplication by the conjugate complex number. This means that for the special case of simple CLR, the classical OLS gives the same formula as \@ref(eq:SimpleCLROLSLossParametersMoments). This also means that the same estimates of parameters can be obtained if we estimate the model \@ref(eq:CLRSystemVectorComplexFinal) directly and use the following formula:
+Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operation of transposition on matrices is equivalent to the multiplication by the conjugate complex number. This means that for the special case of simple CLR, the classical OLS gives the same formula as \@ref(eq:SimpleCLROLSLossParametersMoments). Furthermore, using the same principles, we can show that the estimates of parameters can be obtained if we use the form \@ref(eq:CLRSystemVectorFinalEstimated) instead of the vectors of complex variables:
 \begin{equation}
-    \boldsymbol{b} = \left( \underset{\sim}{\mathbf{\tilde{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{\tilde{X}}}^\prime \underset{\sim}{\mathbf{Y}} .
+    \boldsymbol{b} = \left( \underset{\sim}{\mathbf{\tilde{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{\tilde{X}}}^\prime {\mathbf{Y}} .
     (\#eq:MCLROLSEstimateComplex)
 \end{equation}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  26 DEC 2022 17:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  26 DEC 2022 17:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1011,14 +1011,14 @@ ANDOM VARIABLES
 
 [52]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ate-1.pdf, id=740, 264.99pt x 262.9825pt>
+ate-1.pdf, id=740, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugate-1.pdf  used on input line 1702.
-(pdftex.def)             Requested size: 265.00146pt x 262.99387pt.
+(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
 ateMDS-1.pdf, id=742, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
@@ -1055,11 +1055,7 @@ Chapter 4.
 ] [58]
 
 LaTeX Warning: Reference `eq:CLRSystemVectorComplexFinal' on page 59 undefined 
-on input line 1891.
-
-
-LaTeX Warning: Reference `eq:CLRSystemVectorComplexFinal' on page 59 undefined 
-on input line 1900.
+on input line 1899.
 
 [59] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [60])
 
@@ -1099,10 +1095,10 @@ ublic/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/sha
 re/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmtti10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (61 pages,
- 3009559 bytes).
+ 3009532 bytes).
 PDF statistics:
- 1105 PDF objects out of 1200 (max. 8388607)
- 933 compressed objects within 10 object streams
+ 1106 PDF objects out of 1200 (max. 8388607)
+ 934 compressed objects within 10 object streams
  292 named destinations out of 1000 (max. 500000)
  59667 words of extra memory for PDF output out of 61914 (max. 10000000)
 
