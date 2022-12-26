@@ -4,7 +4,7 @@ We now move to the discussion of the multiple CLR, the model that captures relat
 ## Model formulation 
 Similarly to how the multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
 \begin{equation}
-    y_j = \beta_0 + \beta_1 x_{1,j} + \beta_2 x_{2,j} + \dots + \beta_k x_{k,j} + \epsilon_j,
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \underline{\beta_2} \underline{x_{2,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\epsilon_j},
     (\#eq:MultipleCLRComplex)
 \end{equation}
 where $k$ is the number of complex random variables. Similarly to how it was done with SCLR in \@ref(eq:SimpleCLRSystem), we can expand the formula \@ref(eq:MultipleCLRComplex) as a system of two equations, taking that every parameter and every variable in \@ref(eq:MultipleCLRComplex) is complex:
@@ -42,37 +42,40 @@ The main difference between the form \@ref(eq:CLRVector) and \@ref(eq:CLRSystemV
 ## Estimation
 In order to estimate the parameters of the model \@ref(eq:CLRVector), we can use the same methods as in the Chapter \@ref(simpleCLR): OLS, CLS and Likelihood. We will write the estimated model as:
 \begin{equation}
-    \underline{\mathbf{Y}} = \underline{\mathbf{X}} \underline{\boldsymbol{b}} + \underline{\mathbf{\hat{E}}} ,
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{b}} + \underline{\mathbf{e}} ,
+    (\#eq:CLRVectorEstimated)
+\end{equation}
+where $\underline{\boldsymbol{b}}$ is the estimate of $\underline{\boldsymbol{\beta}}$ and $\underline{\mathbf{e}}$ is the estimate of $\underline{\mathbf{\epsilon}}$. And in case of matrix notations, instead of \@ref(eq:CLRSystemVectorFinal) we will have:
+\begin{equation}
+    \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{b} + \mathbf{\hat{E}} 
     (\#eq:CLRSystemVectorFinalEstimated)
 \end{equation}
-where $\underline{\boldsymbol{b}}$ is the estimate of $\underline{\boldsymbol{\beta}}$ and $\underline{\mathbf{\hat{E}}}$ is the estimate of $\underline{\mathbf{E}}$.
-
-
-
 
 
 ### Ordinary Least Squares
 The criterion of OLS for multiple CLR can be written as:
 \begin{equation}
-    \min S(\boldsymbol{b}) = \min \left(\mathbf{\hat{E}}^\prime \mathbf{\hat{E}}\right),
+    \min S(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right),
     (\#eq:CLROLSCriterion)
 \end{equation}
 which can be expanded to:
 \begin{equation}
     \begin{aligned}
-    S(\boldsymbol{b}) = & \left( \mathbf{Y} - \mathbf{X} \boldsymbol{b} \right)^\prime \left( \mathbf{Y} - \mathbf{X} \boldsymbol{b} \right) = \\
-    & \mathbf{Y}^\prime \mathbf{Y} - \mathbf{Y}^\prime \mathbf{X} \boldsymbol{b} - \boldsymbol{b}^\prime \mathbf{X}^\prime \mathbf{Y} + \boldsymbol{b}^\prime \mathbf{X}^\prime \mathbf{X} \boldsymbol{b}
+    S(\underline{\boldsymbol{b}}) = & \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right)^\prime \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right) = \\
+    & \underline{\mathbf{y}^\prime} \underline{\mathbf{y}} - \underline{\mathbf{y}^\prime} \underline{\mathbf{X}} \underline{\boldsymbol{b}} - \underline{\boldsymbol{b}}^\prime \underline{\mathbf{X}^\prime} \underline{\mathbf{y}} + \underline{\boldsymbol{b}^\prime} \underline{\mathbf{X}^\prime} \underline{\mathbf{X}} \underline{\boldsymbol{b}}
     \end{aligned}. 
     (\#eq:CLROLSCriterionExpanded)
 \end{equation}
-Taking derivative of \@ref(eq:CLROLSCriterionExpanded) with respect to $\boldsymbol{b}$ and equating it to zero, results in the following system of normal equations:
+
+
+Taking derivative of \@ref(eq:CLROLSCriterionExpanded) with respect to $\underline{\boldsymbol{b}}$ and equating it to zero, results in the following system of normal equations:
 \begin{equation}
-    \mathbf{X}^\prime \mathbf{X} \boldsymbol{b} = \mathbf{X}^\prime \mathbf{Y} ,
+    \mathbf{X}^\prime \mathbf{X} \underline{\boldsymbol{b}} = \mathbf{X}^\prime \mathbf{Y} ,
     (\#eq:CLROLSSystemOfNormalEquations)
 \end{equation}
 which gives the classical formula for the estimation of parameters of the model \@ref(eq:CLRSystemVectorFinal):
 \begin{equation}
-    \boldsymbol{b} = \left( \mathbf{{X}}^\prime \mathbf{X}\right)^{-1} \mathbf{{X}}^\prime \mathbf{Y}
+    \underline{\boldsymbol{b}} = \left( \mathbf{{X}}^\prime \mathbf{X}\right)^{-1} \mathbf{{X}}^\prime \mathbf{Y}
     (\#eq:MCLROLSEstimate)
 \end{equation}
 Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operation of transposition on matrices is equivalent to the multiplication by the conjugate complex number. This means that for the special case of simple CLR, the classical OLS gives the same formula as \@ref(eq:SimpleCLROLSLossParametersMoments). This also means that the same estimates of parameters can be obtained if we estimate the model \@ref(eq:CLRSystemVectorComplexFinal) directly and use the following formula:
