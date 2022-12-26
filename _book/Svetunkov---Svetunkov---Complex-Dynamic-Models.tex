@@ -594,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.0071+100.4741i
+## [1] 51.4949+100.9796i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -656,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 90.40216+0i
+## 139.3103+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -668,8 +668,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -52.29456-1.91555i
+##     Direct variance 
+## -86.08025+20.37801i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -694,9 +694,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i
-## x_r 19.0538008 -0.9577748
-## x_i -0.9577748 71.3483630
+##          x_r      x_i
+## x_r 26.61504  10.1890
+## x_i 10.18900 112.6953
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -708,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1358.54
+## [1] 2895.574
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -775,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 70.7203-103.6365i
+## 64.27441-89.27017i
 \end{verbatim}
 
 \begin{Shaded}
@@ -788,7 +788,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -44.20005+57.82513i
+## -35.57351+58.80758i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -802,8 +802,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -87.77004- 4.04550i -44.20005+57.82513i
-## y -44.20005+57.82513i   4.96647+62.55485i
+## x -68.92699- 3.79328i -35.57351+58.80758i
+## y -35.57351+58.80758i  14.67777+83.03028i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1447,7 +1447,7 @@ These six scenarios show a variety of situations in which the three estimators p
 
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
-For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances for variables \(x\) and \(y\):
+For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances for variables \(\underline{x}\) and \(\underline{y}\):
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1469,7 +1469,7 @@ For modelling purposes, it might be useful to have the information about all pos
 \hypertarget{correlationVisual}{%
 \section{Visualisation of relations}\label{correlationVisual}}
 
-In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \ref{fig:crvScatterplots} for two generated complex random variables \(x\) and \(y\), created using \texttt{cplot()} function from \texttt{complex} package in R.
+In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \ref{fig:crvScatterplots} for two generated complex random variables \(\underline{x}\) and \(\underline{y}\), created using \texttt{cplot()} function from \texttt{complex} package in R.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1500,7 +1500,7 @@ This scatterplot has several important elements in it:
 \item
   It shows cross-relations between parts of one variable and parts of the other one (e.g.~the rest four plots),
 \item
-  The colour shows ordering of the original variable \(x\) with dark values corresponding to point with higher magnitude and light ones being closer to zero. This way, we can see what the original points in \(x\) correspond to in \(y\).
+  The colour shows ordering of the original variable \(\underline{x}\) with dark values corresponding to point with higher magnitude and light ones being closer to zero. This way, we can see what the original points in \(\underline{x}\) correspond to in \(\underline{y}\).
 \end{itemize}
 
 The plots are positioned to satisfy two rules:
@@ -1511,7 +1511,7 @@ The plots are positioned to satisfy two rules:
 \item
   When a scatterplot for a c.r.v. is produced, the real part should be in x-axis, while the imaginary should be in the y-axis.
 \item
-  When parts of variables \(x\) and \(y\) are compared, the part for \(x\) should be in x-axis, while the part for \(y\) should be in y-axis, which should the reflect the idea that \(x\) could be an explanatory variable for \(y\).
+  When parts of variables \(\underline{x}\) and \(\underline{y}\) are compared, the part for \(\underline{x}\) should be in x-axis, while the part for \(\underline{y}\) should be in y-axis, which should the reflect the idea that \(\underline{x}\) could be an explanatory variable for \(\underline{y}\).
 \end{enumerate}
 
 While a simple scatterplot matrix could have been constructed instead of Figure \ref{fig:crvScatterplots}, we argue that the latter has a logical grouping and should be preferred for analysis of complex variables. For example, based on the plots in Figure \ref{fig:crvScatterplots} we can conclude that:
@@ -1519,15 +1519,15 @@ While a simple scatterplot matrix could have been constructed instead of Figure 
 \begin{itemize}
 \tightlist
 \item
-  There is a positive relation between the real and imaginary parts of \(x\),
+  There is a positive relation between the real and imaginary parts of \(\underline{x}\),
 \item
-  There is a negative relation between the real and imaginary parts of \(y\),
+  There is a negative relation between the real and imaginary parts of \(\underline{y}\),
 \item
-  Real parts of \(x\) and \(y\) do not exhibit a strong linear relation,
+  Real parts of \(\underline{x}\) and \(\underline{y}\) do not exhibit a strong linear relation,
 \item
-  But the respective imaginary parts of \(x\) and \(y\) have the positive relation between them,
+  But the respective imaginary parts of \(\underline{x}\) and \(\underline{y}\) have the positive relation between them,
 \item
-  Finally, we see that with the increase of real and imaginary parts of \(x\), the real part of \(y\) decreases, while the imaginary one increases. This sort of behaviour implies positive complex slope in the potential linear regression (discussed in Section \ref{simpleCLR}).
+  Finally, we see that with the increase of real and imaginary parts of \(\underline{x}\), the real part of \(\underline{y}\) decreases, while the imaginary one increases. This sort of behaviour implies positive complex slope in the potential linear regression (discussed in Section \ref{simpleCLR}).
 \end{itemize}
 
 We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
@@ -1579,7 +1579,7 @@ The literature knows two correlation coefficients for complex variables \citep{r
   \end{equation}
 \end{enumerate}
 
-Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances \citep[as done, for example, by][]{Panchev1971} then the value of correlation coefficient will be ambiguous, implying that the correlation between \(x\) and \(y\) differs from the correlation between \(y\) and \(x\). Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between \(x\) and \(y\), the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
+Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances \citep[as done, for example, by][]{Panchev1971} then the value of correlation coefficient will be ambiguous, implying that the correlation between \(\underline{x}\) and \(\underline{y}\) differs from the correlation between \(\underline{y}\) and \(\underline{x}\). Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between \(\underline{x}\) and \(\underline{y}\), the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1622,29 +1622,29 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 The formulae \eqref{eq:correlationConventional} and \eqref{eq:correlationPseudo} are derived based on the original definition of Pearson's correlation coefficient \citep{refPearson}. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
-        &y = \beta_0 + \beta_1 x + \epsilon \\
-        &x = \alpha_0 + \alpha_1 y + \upsilon ,
+        &\underline{y} = \underline{\beta_0} + \underline{\beta_1} \underline{x} + \underline{\epsilon} \\
+        &\underline{x} = \underline{\alpha_0} + \underline{\alpha_1} \underline{y} + \underline{\upsilon} ,
     \end{aligned}
     \label{eq:twoRegressions}
 \end{equation}
-where \(\alpha_0\) and \(\beta_0\) are the intercepts, \(\alpha_1\) and \(\beta_1\) are the slopes of the regression lines and \(e\) and \(u\) are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \ref{simpleCLR}, the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares (discussed in Subsection \ref{SCLREstimation}). For the OLS, the formulae for the slopes are:
+where \(\underline{\alpha_0}\) and \(\underline{\beta_0}\) are the intercepts, \(\underline{\alpha_1}\) and \(\underline{\beta_1}\) are the slopes of the regression lines and \(\underline{\epsilon}\) and \(\underline{\upsilon}\) are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \ref{simpleCLR}, the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares (discussed in Subsection \ref{SCLREstimation}). For the OLS, the formulae for the slopes are:
 \begin{equation}
     \begin{aligned}
-        &b_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
-        &a_1 = \frac{\hat{\sigma}_{y,x}}{\hat{\sigma}_y} .
+        &\underline{b_1} = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
+        &\underline{a_1} = \frac{\hat{\sigma}_{y,x}}{\hat{\sigma}_y} .
     \end{aligned}
     \label{eq:twoRegressionsOLS}
 \end{equation}
 Taking their geometric means leads to:
 \begin{equation}
-    \hat{\rho}_{x,y} = \sqrt{a_1 b_1},
+    \hat{\rho}_{x,y} = \sqrt{\underline{a_1} \underline{b_1}},
     \label{eq:correlationConventionalEstimate}
 \end{equation}
 which then leads to the formula \eqref{eq:correlationConventional}. Similarly, for CLS estimated regressions, we have:
 \begin{equation}
     \begin{aligned}
-        &b_1 = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x} \\
-        &a_1 = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_y} ,
+        &\underline{b_1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x} \\
+        &\underline{a_1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_y} ,
     \end{aligned}
     \label{eq:twoRegressionsCLS}
 \end{equation}
@@ -1658,9 +1658,9 @@ When it comes to the interpretation of the coefficients, the conjugate one is a 
     {\rho}_{x,y} = \frac{\sqrt{(\sigma_{x_r, y_r} + \sigma_{x_i, y_i})^2 + (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})^2}}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
     \label{eq:correlationConventionalExpanded}
 \end{equation}
-As can be seen from the formula \eqref{eq:correlationConventionalExpanded}, the coefficient is a real number, showing the average strength of linear relation between two complex variables \(x\) and \(y\). The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables \(x\) and \(y\) and when the cross-covariances are equal (i.e.~\(\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0\) and \(\sigma_{x_i, y_r} = \sigma_{x_r, y_i}\)). A special case of this condition is when all the covariances are equal to zero. On the other hand, it will be close to one by absolute value if the complex relation between variables \(y\) and \(x\) is close to the linear, i.e.~\(a_1 = \frac{1}{b_1}\).
+As can be seen from the formula \eqref{eq:correlationConventionalExpanded}, the coefficient is a real number, showing the average strength of linear relation between two complex variables \(\underline{x}\) and \(\underline{y}\). The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables \(\underline{x}\) and \(\underline{y}\) and when the cross-covariances are equal (i.e.~\(\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0\) and \(\sigma_{x_i, y_r} = \sigma_{x_r, y_i}\)). A special case of this condition is when all the covariances are equal to zero. On the other hand, it will be close to one by absolute value if the complex relation between variables \(\underline{y}\) and \(\underline{x}\) is close to the linear, i.e.~\(\underline{a_1} = \frac{1}{\underline{b_1}}\).
 
-In order to better understand what the conjugate correlation means, we expand the formula \eqref{eq:correlationConventionalEstimate} by substituting \(b_1 = b_{1,r} + i b_{1,i}\) and \(a_1 = a_{1,r} + i a_{1,i}\):
+In order to better understand what the conjugate correlation means, we expand the formula \eqref{eq:correlationConventionalEstimate} by substituting \(\underline{b_1} = b_{1,r} + i b_{1,i}\) and \(\underline{a_1} = a_{1,r} + i a_{1,i}\):
 \begin{equation}
     \begin{aligned}
         \hat{\rho}_{x,y} = & \sqrt{(a_{1,r} + i a_{1,i}) (b_{1,r}+ib_{1,i})} = \\
@@ -1681,7 +1681,7 @@ where
     \end{aligned}
     \label{eq:correlationConjugateExpanded03}
 \end{equation}
-As can be seen from \eqref{eq:correlationConjugateExpanded03}, there is a multitude of combinations of parameters of the model that can give the unity magnitude \(R\). For example, if \(a_{1,r} = 0.5\), \(b_{1,r} = 1\), \(a_{1,i} = -0.5\) and \(b_{1,i} = 1\), \(R\) would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of \(0\) and \(\pi\), leading to positive or negative real numbers. In fact, for the example above, \(\phi=0\), implying that the correlation coefficient will be equal to one, implying that the variables \(x\) and \(y\) exhibit a strong linear relation.
+As can be seen from \eqref{eq:correlationConjugateExpanded03}, there is a multitude of combinations of parameters of the model that can give the unity magnitude \(R\). For example, if \(a_{1,r} = 0.5\), \(b_{1,r} = 1\), \(a_{1,i} = -0.5\) and \(b_{1,i} = 1\), \(R\) would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of \(0\) and \(\pi\), leading to positive or negative real numbers. In fact, for the example above, \(\phi=0\), implying that the correlation coefficient will be equal to one, implying that the variables \(\underline{x}\) and \(\underline{y}\) exhibit a strong linear relation.
 
 An R example of a conjugate correlation (via \texttt{ccor()} function from \texttt{complex} package) with the aforementioned values of parameters is shown below and in Figure \ref{fig:crvCorConjugate}.
 
@@ -1711,10 +1711,10 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9972485+0i
+## [1] 0.9976167+0i
 \end{verbatim}
 
-As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
+As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1743,12 +1743,12 @@ Given that it contains a complex number in the denominator, it is more complicat
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when \(\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0\) and \(\sigma_{x_r,y_r}=\sigma_{x_i,y_i}\). One of the special cases of this is when all cross-covariances between the real and imaginary parts of \(x\) and \(y\) are equal to zero.
+  The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when \(\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0\) and \(\sigma_{x_r,y_r}=\sigma_{x_i,y_i}\). One of the special cases of this is when all cross-covariances between the real and imaginary parts of \(\underline{x}\) and \(\underline{y}\) are equal to zero.
 \item
-  When the complex variables \(x\) and \(y\) have functional relation between them, so that \(a_1 = \frac{1}{b_1}\), the coefficient will be equal to one.
+  When the complex variables \(\underline{x}\) and \(\underline{y}\) have functional relation between them, so that \(a_1 = \frac{1}{b_1}\), the coefficient will be equal to one.
 \end{enumerate}
 
-Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables \(x\) and/or \(y\).
+Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables \(\underline{x}\) and/or \(\underline{y}\).
 
 Coefficient equal to -1 and to i.
 
@@ -1769,7 +1769,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9973842
+## [1,] 0.9927916
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1785,7 +1785,7 @@ The interpretation of the coefficient is straightforward and follows the convent
 \hypertarget{correlation-matrix}{%
 \section{Correlation matrix}\label{correlation-matrix}}
 
-Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to calculate the covariance matrix between two c.r.v. Based on that matrix, we can calculate the correlation matrix, which will summarise all the relations between the real and imaginary parts of \(x\) and \(y\). This is done by dividing each element of the covariance matrix by geometric means of variances of the variables under consideration. In R, this can be done using \texttt{covar()} function from the \texttt{complex} package and \texttt{cov2cor()} function from the \texttt{stats} package:
+Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to calculate the covariance matrix between two c.r.v. Based on that matrix, we can calculate the correlation matrix, which will summarise all the relations between the real and imaginary parts of \(\underline{x}\) and \(\underline{y}\). This is done by dividing each element of the covariance matrix by geometric means of variances of the variables under consideration. In R, this can be done using \texttt{covar()} function from the \texttt{complex} package and \texttt{cov2cor()} function from the \texttt{stats} package:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1794,14 +1794,14 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i        y_r        y_i
-## x_r  1.0000000 -0.1238724  0.6934680  0.5721496
-## x_i -0.1238724  1.0000000 -0.7978670  0.7387626
-## y_r  0.6934680 -0.7978670  1.0000000 -0.1892224
-## y_i  0.5721496  0.7387626 -0.1892224  1.0000000
+##           x_r        x_i         y_r        y_i
+## x_r 1.0000000  0.0746578  0.69176697 0.74061051
+## x_i 0.0746578  1.0000000 -0.66497161 0.72225313
+## y_r 0.6917670 -0.6649716  1.00000000 0.03259931
+## y_i 0.7406105  0.7222531  0.03259931 1.00000000
 \end{verbatim}
 
-This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
+This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
 
 \hypertarget{multipleCLR}{%
 \chapter{Multiple Complex Linear Regression}\label{multipleCLR}}
