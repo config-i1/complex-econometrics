@@ -91,7 +91,7 @@ We start with the conventional Ordinary Least Squares (OLS), which relies on the
     \sum_{j=1}^n (\underline{e_j} \underline{\tilde{e}_j}) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     (\#eq:SimpleCLROLSLoss)
 \end{equation}
-The residuals can be substituted as: $\underline{e_j} = \underline{y_j} - \underline{b_0} - \underline{b_1} \underline{x_j}$ and $\underline{\tilde{e}_j} = \underline{\tilde{y}_j} - \underline{\tilde{b}_0} - \underline{\underline{\tilde{b}_1}} \underline{\tilde{x}_j}$ to get:
+The residuals can be substituted as: $\underline{e_j} = \underline{y_j} - \underline{b_0} - \underline{b_1} \underline{x_j}$ and $\underline{\tilde{e}_j} = \underline{\tilde{y}_j} - \underline{\tilde{b}_0} - \underline{\tilde{b}_1} \underline{\tilde{x}_j}$ to get:
 \begin{equation}
     \sum_{j=1}^n (\underline{y_j} - \underline{b_0} - \underline{b_1} \underline{x_j}) (\underline{\tilde{y}_j} - \underline{\tilde{b}_0} - \underline{\tilde{b}_1} \underline{\tilde{x}_j}),
     (\#eq:SimpleCLROLSLoss01)
@@ -114,8 +114,8 @@ In order to minimise the sum of squared errors \@ref(eq:SimpleCLROLSLoss), we ne
 to get:
 \begin{equation}
     \begin{aligned}
-        & - \sum_{j=1}^n \underline{y_j} - \sum_{j=1}^n \underline{\tilde{y}_j} + 2 n b_{0,r} + \underline{\tilde{b}_1} \sum_{j=1}^n \underline{\tilde{x}_j} + {b}_1 \sum_{j=1}^n {x}_j = 0 \\
-        & i \sum_{j=1}^n \underline{y_j} - i \sum_{j=1}^n \underline{\tilde{y}_j} + 2 n b_{0,i} + i \underline{\tilde{b}_1} \sum_{j=1}^n \underline{\tilde{x}_j} - i {b}_1 \sum_{j=1}^n {x}_j = 0 \\
+        & - \sum_{j=1}^n \underline{y_j} - \sum_{j=1}^n \underline{\tilde{y}_j} + 2 n b_{0,r} + \underline{\tilde{b}_1} \sum_{j=1}^n \underline{\tilde{x}_j} + \underline{b_1} \sum_{j=1}^n {x}_j = 0 \\
+        & i \sum_{j=1}^n \underline{y_j} - i \sum_{j=1}^n \underline{\tilde{y}_j} + 2 n b_{0,i} + i \underline{\tilde{b}_1} \sum_{j=1}^n \underline{\tilde{x}_j} - i \underline{b_1} \sum_{j=1}^n {x}_j = 0 \\
         & - \sum_{j=1}^n \underline{y_j} \underline{\tilde{x}_j} + \underline{b_0} \sum_{j=1}^n \underline{\tilde{x}_j} - \sum_{j=1}^n \underline{x_j} \underline{\tilde{y}_j} + \underline{\tilde{b}_0} \sum_{j=1}^n {x}_j + 2 b_{1,r} \sum_{j=1}^n \underline{x_j} \underline{\tilde{x}_j} = 0 \\
         & i \sum_{j=1}^n \underline{y_j} \underline{\tilde{x}_j} - i \underline{b_0} \sum_{j=1}^n \underline{\tilde{x}_j} - i \sum_{j=1}^n \underline{x_j} \underline{\tilde{y}_j} + i \underline{\tilde{b}_0} \sum_{j=1}^n {x}_j + 2 b_{1,i} \sum_{j=1}^n \underline{x_j} \underline{\tilde{x}_j} = 0 .
     \end{aligned}
@@ -124,7 +124,7 @@ to get:
 As shown by @Svetunkov2012, solving the system of equations \@ref(eq:SimpleCLROLSLossSystem02) gives the following formulae for the parameters of the model:
 \begin{equation}
     \begin{aligned}
-        & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})} \\
+        & \underline{b_1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x}) (\underline{\tilde{x}_j}-\hat{\tilde{\mu}}_{x})} \\
         & \underline{b_0} = \frac{1}{n} \sum_{j=1}^n \underline{y_j} - \underline{b_1} \sum_{j=1}^n \underline{x_j} ,
     \end{aligned}
     (\#eq:SimpleCLROLSLossParameters)
@@ -132,17 +132,14 @@ As shown by @Svetunkov2012, solving the system of equations \@ref(eq:SimpleCLROL
 which can also be written in terms of conjugate moments as:
 \begin{equation}
     \begin{aligned}
-        & b_{1} = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x^2} \\
-        & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} .
+        & \underline{b_1} = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x^2} \\
+        & \underline{b_0} = \underline{\hat{\mu}_{y}} - \underline{b_1} \underline{\hat{\mu}_{x}} .
     \end{aligned}
     (\#eq:SimpleCLROLSLossParametersMoments)
 \end{equation}
 or after expanding the moments (based on formulae from Section \@ref(crvSecondMoment)) as:
 \begin{equation}
-    \begin{aligned}
-        & b_{1} = \frac{\hat{\sigma}_{x_r, y_r} + \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_r, y_i} - \hat{\sigma}_{x_i, y_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} \\
-        & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} .
-    \end{aligned}
+        \underline{b_1} = \frac{\hat{\sigma}_{x_r, y_r} + \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_r, y_i} - \hat{\sigma}_{x_i, y_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}
     (\#eq:SimpleCLROLSLossParametersMomentsExpanded)
 \end{equation}
 
@@ -152,22 +149,22 @@ It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParamet
 
 In terms of properties of the estimator, it can be shown that $\underline{b_1}$ equals to:
 \begin{equation}
-        b_{1} = \frac{\mathrm{cov}(\tilde{x}, y)}{\mathrm{cov}(\tilde{x},x)} = \frac{\mathrm{cov}(\tilde{x}, \beta_0 + \beta_1 x + \epsilon)}{\mathrm{cov}(\tilde{x},x)} = \frac{\mathrm{cov}(\tilde{x}, \beta_0) + \mathrm{cov}(\tilde{x}, \beta_1 x) + \mathrm{cov}(\tilde{x}, \epsilon)}{\mathrm{cov}(\tilde{x},x)},
+        \underline{b_1} = \frac{\mathrm{cov}(\underline{\tilde{x}}, y)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0} + \underline{\beta_1} \underline{x} + \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0}) + \mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_1} \underline{x}) + \mathrm{cov}(\underline{\tilde{x}}, \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})},
     (\#eq:SimpleCLROLSb1Value01)
 \end{equation}
 which then simplifies to:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\mathrm{cov}(\tilde{x}, \epsilon)}{\mathrm{cov}(\tilde{x},x)} = \beta_1 + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
+        \underline{b_1} = \underline{\beta_1} + \frac{\mathrm{cov}(\underline{\tilde{x}}, \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \underline{\beta_1} + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
     (\#eq:SimpleCLROLSb1Value02)
 \end{equation}
 or:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i} + i (\hat{\sigma}_{x_r, \epsilon_i} - \hat{\sigma}_{x_i, \epsilon_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} .
+        \underline{b_1} = \underline{\beta_1} + \frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i} + i (\hat{\sigma}_{x_r, \epsilon_i} - \hat{\sigma}_{x_i, \epsilon_r})}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2} .
     (\#eq:SimpleCLROLSb1Value03)
 \end{equation}
-On small samples, the covariance between the true error and the available $x$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population estimated covariances will converge to their true values and then ${\sigma}_{x_r, \epsilon_r} = {\sigma}_{x_i, \epsilon_i} = {\sigma}_{x_r, \epsilon_i} = {\sigma}_{x_i, \epsilon_r}=0$, which implies that the expectation of $\underline{b_1}$ is:
+On small samples, the covariance between the true error and the available $\underline{x}$ can be not equal to zero, implying that the value of the estimated parameter would differ from the true one. If the basic regression assumptions hold, in the population estimated covariances will converge to their true values and then ${\sigma}_{x_r, \epsilon_r} = {\sigma}_{x_i, \epsilon_i} = {\sigma}_{x_r, \epsilon_i} = {\sigma}_{x_i, \epsilon_r}=0$, which implies that the expectation of $\underline{b_1}$ is:
 \begin{equation}
-        \mathrm{E}(b_{1}) = \beta_1 .
+        \mathrm{E}(\underline{b_1}) = \underline{\beta_1} .
     (\#eq:SimpleCLROLSb1Expectation)
 \end{equation}
 This implies that OLS gives unbiased estimates of the slope parameter. The same property can be shown to hold for the intercept $\underline{b_0}$.
@@ -206,8 +203,8 @@ The logic for the derivation of CLS is similar to OLS. We expand \@ref(eq:Simple
 and then take derivatives of \@ref(eq:SimpleCLRCLSLoss02) with respect to parameter $\underline{b_0}$ and $\underline{b_1}$ and then equate the resulting equations to zero:
 \begin{equation}
     \begin{aligned}
-        & \frac{d \sum_{j=1}^n (\underline{e_j}^2)}{d b_{0}} = 0 \\
-        & \frac{d \sum_{j=1}^n (\underline{e_j}^2)}{d b_{1}} = 0 .
+        & \frac{d \sum_{j=1}^n (\underline{e_j}^2)}{d \underline{b_0}} = 0 \\
+        & \frac{d \sum_{j=1}^n (\underline{e_j}^2)}{d \underline{b_1}} = 0 .
     \end{aligned}
     (\#eq:SimpleCLRCLSLossSystem01)
 \end{equation}
@@ -222,7 +219,7 @@ The derivatives \@ref(eq:SimpleCLRCLSLossSystem01) give the following system of 
 The solution for this system of equations, as it was shown by @Svetunkov2012, is:
 \begin{equation}
     \begin{aligned}
-        & b_{1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) ({x}_j-\hat{\mu}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x})^2} \\
+        & \underline{b_1} = \frac{\sum_{j=1}^n (y_{j}-\hat{\mu}_{y}) ({x}_j-\hat{\mu}_{x})}{\sum_{j=1}^n (x_{j}-\hat{\mu}_{x})^2} \\
         & \underline{b_0} = \frac{1}{n} \sum_{j=1}^n \underline{y_j} - \underline{b_1} \sum_{j=1}^n \underline{x_j} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParameters)
@@ -230,7 +227,7 @@ The solution for this system of equations, as it was shown by @Svetunkov2012, is
 or in terms of direct moments for complex random variables:
 \begin{equation}
     \begin{aligned}
-        & b_{1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x^2} \\
+        & \underline{b_1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x^2} \\
         & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMoments)
@@ -238,30 +235,30 @@ or in terms of direct moments for complex random variables:
 or after inserting the values for direct variance and covariance (from Section \@ref(crvSecondMoment)):
 \begin{equation}
     \begin{aligned}
-        & b_{1} = \frac{\hat{\sigma}_{x_r, y_r} - \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_i, y_r} + \hat{\sigma}_{x_r, y_i})}{\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 + i2 \hat{\sigma}_{x_r,x_i}} \\
+        & \underline{b_1} = \frac{\hat{\sigma}_{x_r, y_r} - \hat{\sigma}_{x_i, y_i} + i (\hat{\sigma}_{x_i, y_r} + \hat{\sigma}_{x_r, y_i})}{\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 + i2 \hat{\sigma}_{x_r,x_i}} \\
         & \underline{b_0} = \hat{\mu}_{y} - \underline{b_1} \hat{\mu}_{x} .
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMomentsExpanded)
 \end{equation}
 Similarly to how it was done with OLS estimate of the slope, we can consider the estimate of $\underline{b_1}$, expanding the covariance in the numerator of \@ref(eq:SimpleCLRCLSLossParametersMoments):
 \begin{equation}
-        b_{1} = \frac{\mathrm{cov}(x,y)}{V(x)} = \frac{\mathrm{cov}(x,\beta_0 + \beta_1 x + \epsilon)}{V(x)},
+        \underline{b_1} = \frac{\mathrm{cov}(x,y)}{V(x)} = \frac{\mathrm{cov}(x,\underline{\beta_0} + \underline{\beta_1} x + \epsilon)}{V(x)},
     (\#eq:SimpleCLRCLSb1Expansion01)
 \end{equation}
 which after some simplifications becomes:
 \begin{equation}
-        b_{1} = \beta_1 + \frac{\mathrm{cov}(x, \epsilon)}{V(x)} ,
+        \underline{b_1} = \underline{\beta_1} + \frac{\mathrm{cov}(x, \epsilon)}{V(x)} ,
     (\#eq:SimpleCLRCLSb1Expansion02)
 \end{equation}
 which can be expanded to:
 \begin{equation}
-    b_{1} = \beta_1 + \frac{\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))}{V(x_r) - V(x_i) + 2i \mathrm{cov}(x_r, x_i)} . 
+    \underline{b_1} = \underline{\beta_1} + \frac{\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))}{V(x_r) - V(x_i) + 2i \mathrm{cov}(x_r, x_i)} . 
     (\#eq:SimpleCLRCLSb1Expansion03)
 \end{equation}
 Note that both numerator and denominator of \@ref(eq:SimpleCLRCLSb1Expansion03) are complex numbers. In order to have a proper split into real and imaginary parts we need to multiply the fraction by the complex number conjugate to the denominator:
 \begin{equation}
 \resizebox{0.9\textwidth}{!}{$
-        b_{1} = \beta_1 + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))\right)\left(V(x_r) - V(x_i) - 2i \mathrm{cov}(x_r, x_i)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} $}.
+        \underline{b_1} = \underline{\beta_1} + \frac{\left(\mathrm{cov}(x_r, \epsilon_r) - \mathrm{cov}(x_i, \epsilon_i) + i (\mathrm{cov}(x_r, \epsilon_i) + \mathrm{cov}(x_i, \epsilon_r))\right)\left(V(x_r) - V(x_i) - 2i \mathrm{cov}(x_r, x_i)\right)}{\left(V(x_r) - V(x_i)\right)^2 + 4 \mathrm{cov}(x_r, x_i)^2} $}.
     (\#eq:SimpleCLRCLSb1Expansion04)
 \end{equation}
 This then can be split into two parts:
