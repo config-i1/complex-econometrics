@@ -76,7 +76,7 @@ which gives the classical formula for the estimation of parameters of the model 
     \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}}
     (\#eq:MCLROLSEstimate)
 \end{equation}
-Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operator $\prime$ denotes conjugate transition, which means that for the special case of simple CLR, the formula \@ref(eq:MCLROLSEstimate) will become \@ref(eq:SimpleCLROLSLossParametersMoments).
+Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operator $\prime$ denotes conjugate transposition, which means that for the special case of simple CLR, the formula \@ref(eq:MCLROLSEstimate) will become \@ref(eq:SimpleCLROLSLossParametersMoments).
 
 Finally, using the same principles, we can show that the estimates of parameters can be obtained if we use the form \@ref(eq:CLRSystemVectorFinalEstimated) instead of the vectors of complex variables:
 \begin{equation}
@@ -113,28 +113,42 @@ Finally, based on the form \@ref(eq:CLRSystemVectorFinalEstimated), it can be sh
 The two formulae \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLRCLSEstimateTranspose) result in exactly the same values of parameters, but will be useful for inference in the following sections.
 
 
-### Issues with OLS and CLS
+### Issues with OLS and CLS {#CLREstimationIssue}
 Note that both OLS and CLS imply that the individual contributions of the real and imaginary parts of the error term are lost, and that the estimates of parameters are obtained for an overall variance of the complex error. In case of the OLS, this can be seen from the criterion \@ref(eq:CLROLSCriterion), the minimisation of which is equivalent to the minimisation of the sum of variances:
 \begin{equation}
-    \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) <=> \min (\hat{\sigma}_{e_r}^2 + \hat{\sigma}_{e_i}^2),
+    \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right) \iff \min \left(\hat{\sigma}_{e_r}^2 + \hat{\sigma}_{e_i}^2 \right),
     (\#eq:CLROLSCriterionVariance)
 \end{equation}
 where $\hat{\sigma}_{e_r}^2$ and $\hat{\sigma}_{e_i}^2$ are the variances of the real and imaginary parts of the error term respectively. The connection becomes apparent if we recall tha the main assumption of a regression model is that the expectation of the error term equals to zero. Because of that, the estimates of OLS lead to averaged out performance, ignoring the individual contribution of $e_r$ and $e_i$ and the covariance between the parts.
 
-When it comes to CLS, the criterion \@ref(eq:CLRCLSCriterion) is equivalent to:
+When it comes to CLS, the criterion \@ref(eq:CLRCLSCriterion) implies that:
 \begin{equation}
-    \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\hat{\sigma}_{e_r}^2 - \hat{\sigma}_{e_i}^2 + 2i \hat{\sigma}_{e_r, e_i} \right),
+    \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right) \iff \min \left(\hat{\sigma}_{e_r}^2 - \hat{\sigma}_{e_i}^2 + 2i \hat{\sigma}_{e_r, e_i} \right),
     (\#eq:CLRCLSCriterionVariance)
 \end{equation}
 which now takes the covariance into account but ignores the sizes of the individual variances of the real and imaginary parts of the complex residuals.
 
-Implication: variance of parameters will not be what it needs to be.
-
+In order to take the individual variances into account, we need to use a different criterion and, as a result, a different estimator. One of such estimators is the Maximum Likelihood Estimator (MLE).
 
 
 ### Likelihood
+Similarly to how it was done in Subsection \@ref(SCLREstimationLikelihood), we can make an assumption about the distribution of the error term of the CLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \@ref(MultipleCLRSystemVector) then after being estimated it becomes:
+\begin{equation}
+    \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{b} + \boldsymbol{e}_j .
+    (\#eq:MultipleCLRSystemVectorEstimated)
+\end{equation}
+The concentrated log-likelihood for the complex regression model \@ref(eq:MultipleCLRSystemVectorEstimated) will be exactly the same as for the simple CLR:
+\begin{equation*}
+	\ell^*(\boldsymbol{\theta}, \hat{\boldsymbol{\Sigma}}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi e) + \log | \hat{\boldsymbol{\Sigma}}_\epsilon | \right) .
+\end{equation*}
+Maximising this likelihood, as discussed in Subsection \@ref(SCLREstimationLikelihood), implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
+
 
 ## Inference
+It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). The main issue in this approach, as discussed in Subsection \@ref(CLREstimationIssue), is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense. In order to get the individual effects correctly, we need to refer to the model form \@ref(eq:MultipleCLRSystemVectorEstimated), and use the covariance matrix of the error term $\hat{\Sigma}$ instead of either direct or conjugate variances.
+
+
+
 In both OLS and CLS, the individual contributions of real and imaginary parts of regression are ignored, everything is averaged-out. We just get a vector of errors. In likelihood, the split is preserved.
 
 Covariance of parameters of the three approaches.
