@@ -55,13 +55,13 @@ where $\underline{\boldsymbol{b}}$ is the estimate of $\underline{\boldsymbol{\b
 ### Ordinary Least Squares
 The criterion of OLS for multiple CLR can be written as:
 \begin{equation}
-    \min S(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right),
+    \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right),
     (\#eq:CLROLSCriterion)
 \end{equation}
 which can be expanded to:
 \begin{equation}
     \begin{aligned}
-    S(\underline{\boldsymbol{b}}) = & \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right)^\prime \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right) = \\
+    S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = & \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right)^\prime \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right) = \\
     & \underline{\mathbf{y}}^\prime \underline{\mathbf{y}} - \underline{\mathbf{y}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{b}} - \underline{\boldsymbol{b}}^\prime \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} + \underline{\boldsymbol{b}}^\prime \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{b}}
     \end{aligned}. 
     (\#eq:CLROLSCriterionExpanded)
@@ -90,7 +90,7 @@ The form \@ref(eq:MCLROLSEstimateComplex) becomes especially useful for futher i
 ### Complex Least Squares
 As discussed in Section \@ref(SCLREstimation), there is also an alternative approach to estimation of CLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \@ref(eq:CLRVector), i.e. minimise the criterion (which is the same as the one discussed in Subsection \@ref(SCLREstimationCLS)):
 \begin{equation}
-    \min S(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right).
+    \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right).
     (\#eq:CLRCLSCriterion)
 \end{equation}
 Using the same logic as with OLS, it can be shown that the minimisation of this criterion implies the solution of the following system of normal equations:
@@ -113,8 +113,26 @@ Finally, based on the form \@ref(eq:CLRSystemVectorFinalEstimated), it can be sh
 The two formulae \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLRCLSEstimateTranspose) result in exactly the same values of parameters, but will be useful for inference in the following sections.
 
 
-### Likelihood
+### Issues with OLS and CLS
+Note that both OLS and CLS imply that the individual contributions of the real and imaginary parts of the error term are lost, and that the estimates of parameters are obtained for an overall variance of the complex error. In case of the OLS, this can be seen from the criterion \@ref(eq:CLROLSCriterion), the minimisation of which is equivalent to the minimisation of the sum of variances:
+\begin{equation}
+    \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) <=> \min (\hat{\sigma}_{e_r}^2 + \hat{\sigma}_{e_i}^2),
+    (\#eq:CLROLSCriterionVariance)
+\end{equation}
+where $\hat{\sigma}_{e_r}^2$ and $\hat{\sigma}_{e_i}^2$ are the variances of the real and imaginary parts of the error term respectively. The connection becomes apparent if we recall tha the main assumption of a regression model is that the expectation of the error term equals to zero. Because of that, the estimates of OLS lead to averaged out performance, ignoring the individual contribution of $e_r$ and $e_i$ and the covariance between the parts.
 
+When it comes to CLS, the criterion \@ref(eq:CLRCLSCriterion) is equivalent to:
+\begin{equation}
+    \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\hat{\sigma}_{e_r}^2 - \hat{\sigma}_{e_i}^2 + 2i \hat{\sigma}_{e_r, e_i} \right),
+    (\#eq:CLRCLSCriterionVariance)
+\end{equation}
+which now takes the covariance into account but ignores the sizes of the individual variances of the real and imaginary parts of the complex residuals.
+
+Implication: variance of parameters will not be what it needs to be.
+
+
+
+### Likelihood
 
 ## Inference
 In both OLS and CLS, the individual contributions of real and imaginary parts of regression are ignored, everything is averaged-out. We just get a vector of errors. In likelihood, the split is preserved.

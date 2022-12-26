@@ -594,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.3538+101.3285i
+## [1] 49.773+101.3147i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -656,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 124.851+0i
+## 104.577+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -669,7 +669,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -89.43311-2.89813i
+## -60.74029-3.12646i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -694,9 +694,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 17.708921  -1.449065
-## x_i -1.449065 107.142034
+##           x_r       x_i
+## x_r 21.918366 -1.563228
+## x_i -1.563228 82.658653
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -708,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1895.27
+## [1] 1809.299
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -775,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 69.6436-109.0832i
+## 55.4188-112.4477i
 \end{verbatim}
 
 \begin{Shaded}
@@ -787,8 +787,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -58.82753+60.12537i
+##  Direct covariance 
+## -7.11477+69.48584i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -801,9 +801,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -85.00224-19.88705i -58.82753+60.12537i
-## y -58.82753+60.12537i  33.82473+76.76904i
+##                     x                  y
+## x -86.78452+21.69619i -7.11477+69.48584i
+## y  -7.11477+69.48584i 49.23183+56.62476i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1711,7 +1711,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9972422+0i
+## [1] 0.997418+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1769,7 +1769,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9969063
+## [1,] 0.9981155
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1794,11 +1794,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i        y_r        y_i
-## x_r  1.00000000 -0.06860261  0.6761593  0.6228030
-## x_i -0.06860261  1.00000000 -0.7775768  0.7346577
-## y_r  0.67615932 -0.77757680  1.0000000 -0.1502601
-## y_i  0.62280298  0.73465768 -0.1502601  1.0000000
+##            x_r         x_i        y_r        y_i
+## x_r 1.00000000  0.09251253  0.6158964  0.7087699
+## x_i 0.09251253  1.00000000 -0.7243324  0.7643915
+## y_r 0.61589644 -0.72433241  1.0000000 -0.1129345
+## y_i 0.70876987  0.76439151 -0.1129345  1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -1866,13 +1866,13 @@ where \(\underline{\boldsymbol{b}}\) is the estimate of \(\underline{\boldsymbol
 
 The criterion of OLS for multiple CLR can be written as:
 \begin{equation}
-    \min S(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right),
+    \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right),
     \label{eq:CLROLSCriterion}
 \end{equation}
 which can be expanded to:
 \begin{equation}
     \begin{aligned}
-    S(\underline{\boldsymbol{b}}) = & \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right)^\prime \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right) = \\
+    S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = & \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right)^\prime \left( \underline{\mathbf{y}} - \underline{\mathbf{X}} \underline{\boldsymbol{b}} \right) = \\
     & \underline{\mathbf{y}}^\prime \underline{\mathbf{y}} - \underline{\mathbf{y}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{b}} - \underline{\boldsymbol{b}}^\prime \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} + \underline{\boldsymbol{b}}^\prime \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{b}}
     \end{aligned}. 
     \label{eq:CLROLSCriterionExpanded}
@@ -1901,7 +1901,7 @@ The form \eqref{eq:MCLROLSEstimateComplex} becomes especially useful for futher 
 
 As discussed in Section \ref{SCLREstimation}, there is also an alternative approach to estimation of CLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \eqref{eq:CLRVector}, i.e.~minimise the criterion (which is the same as the one discussed in Subsection \ref{SCLREstimationCLS}):
 \begin{equation}
-    \min S(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right).
+    \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right).
     \label{eq:CLRCLSCriterion}
 \end{equation}
 Using the same logic as with OLS, it can be shown that the minimisation of this criterion implies the solution of the following system of normal equations:
@@ -1922,6 +1922,25 @@ Finally, based on the form \eqref{eq:CLRSystemVectorFinalEstimated}, it can be s
     \label{eq:MCLRCLSEstimateTranspose}
 \end{equation}
 The two formulae \eqref{eq:MCLRCLSEstimate} and \eqref{eq:MCLRCLSEstimateTranspose} result in exactly the same values of parameters, but will be useful for inference in the following sections.
+
+\hypertarget{issues-with-ols-and-cls}{%
+\subsection{Issues with OLS and CLS}\label{issues-with-ols-and-cls}}
+
+Note that both OLS and CLS imply that the individual contributions of the real and imaginary parts of the error term are lost, and that the estimates of parameters are obtained for an overall variance of the complex error. In case of the OLS, this can be seen from the criterion \eqref{eq:CLROLSCriterion}, the minimisation of which is equivalent to the minimisation of the sum of variances:
+\begin{equation}
+    \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) <=> \min (\hat{\sigma}_{e_r}^2 + \hat{\sigma}_{e_i}^2),
+    \label{eq:CLROLSCriterionVariance}
+\end{equation}
+where \(\hat{\sigma}_{e_r}^2\) and \(\hat{\sigma}_{e_i}^2\) are the variances of the real and imaginary parts of the error term respectively. The connection becomes apparent if we recall tha the main assumption of a regression model is that the expectation of the error term equals to zero. Because of that, the estimates of OLS lead to averaged out performance, ignoring the individual contribution of \(e_r\) and \(e_i\) and the covariance between the parts.
+
+When it comes to CLS, the criterion \eqref{eq:CLRCLSCriterion} is equivalent to:
+\begin{equation}
+    \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\hat{\sigma}_{e_r}^2 - \hat{\sigma}_{e_i}^2 + 2i \hat{\sigma}_{e_r, e_i} \right),
+    \label{eq:CLRCLSCriterionVariance}
+\end{equation}
+which now takes the covariance into account but ignores the sizes of the individual variances of the real and imaginary parts of the complex residuals.
+
+Implication: variance of parameters will not be what it needs to be.
 
 \hypertarget{likelihood-1}{%
 \subsection{Likelihood}\label{likelihood-1}}
