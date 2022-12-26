@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-12-24}
+\date{2022-12-26}
 
 \begin{document}
 \maketitle
@@ -404,7 +404,7 @@ and for the matrix:
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     \label{eq:complexNumberMatrixMulti}
 \end{equation}
-These representations become especially useful when we work with complex variables to construct complex models. Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
+These transpositions will be called in this monograph ``conjugate transpositions''. The vector and matrix representations become especially useful when we work with complex variables to construct complex models. Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
 \begin{equation}
     \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 - y^2 & - 2 xy \\ 2 xy & x^2 - y^2 \end{pmatrix}.
@@ -497,17 +497,17 @@ Last but not least, for what follows, we introduce vectors and matrices of compl
 \end{equation}
 where the index in subscript (1, 2, 3) represents the observed first, second and third values of the complex variable. Alternatively, given that any complex variable can be represented as a vector \eqref{eq:complexNumberVectors}, the same complex vector can be written as a matrix:
 \begin{equation}
-    \mathbf{x} = \begin{pmatrix} x_{r,1} & x_{i,1} \\ x_{r,2} & x_{i,2} \\ x_{r,3} & x_{i,3} \end{pmatrix} .
+    \underline{\mathbf{x}} = \begin{pmatrix} x_{r,1} & x_{i,1} \\ x_{r,2} & x_{i,2} \\ x_{r,3} & x_{i,3} \end{pmatrix} ,
     \label{eq:complexVectorMatrix}
 \end{equation}
-Finally, given the connection of complex numbers and matrices \eqref{eq:complexNumberMatrix}, the same complex vector \(x\) can be written as a matrix:
+we use the \(\underline{}\) symbol below the character to denote the complex variable represented in the form \eqref{eq:complexVectorMatrix}. Finally, given the connection of complex numbers and matrices \eqref{eq:complexNumberMatrix}, the same complex vector \(x\) can be written as a matrix:
 \begin{equation}
-    \mathbf{x} = \begin{pmatrix} x_{r,1} & - x_{i,1} \\ x_{i,1} & x_{r,1} \\
+    \underset{\sim}{\mathbf{x}} = \begin{pmatrix} x_{r,1} & - x_{i,1} \\ x_{i,1} & x_{r,1} \\
                                  x_{r,2} & - x_{i,2} \\ x_{i,2} & x_{r,2} \\
                                  x_{r,3} & - x_{i,3} \\ x_{i,3} & x_{r,3} \end{pmatrix} .
     \label{eq:complexMatrix}
 \end{equation}
-Each of the forms \eqref{eq:complexVector}, \eqref{eq:complexVectorMatrix} and \eqref{eq:complexMatrix} might be useful in different circumstances, their usage should be dictated by the modelling purpose.
+We use the symbol \(\sim\) below a character to denote the complex variable in the matrix form \eqref{eq:complexMatrix}. Each of the forms \eqref{eq:complexVector}, \eqref{eq:complexVectorMatrix} and \eqref{eq:complexMatrix} might be useful in different circumstances, their usage should be dictated by the modelling purpose.
 
 Finally, note that the transposition of these three forms will imply different things. As discussed earlier, in vector and matrix forms transposition of a complex number implies the conjugation. However, transposing \eqref{eq:complexVector} will not have the same effect - it will only switch rows and columns of the complex vector:
 \begin{equation}
@@ -517,19 +517,19 @@ Finally, note that the transposition of these three forms will imply different t
 \end{equation}
 If we then switch to either the form \eqref{eq:complexNumberVectors} or \eqref{eq:complexNumberMatrix}, we will not get the vector of conjugate complex numbers, but rather an object of the original complex variables with the switched rows and columns:
 \begin{equation}
-    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} & x_{r,2} & x_{r,3} \\
+    \underline{\mathbf{x}}^{\top} = \begin{pmatrix} x_{r,1} & x_{r,2} & x_{r,3} \\
                                  x_{i,1} & x_{i,2} & x_{i,3}
                         \end{pmatrix} 
     \label{eq:complexVectorMatrixTransposed}
 \end{equation}
 and
 \begin{equation}
-    \mathbf{x}^{\top} = \begin{pmatrix} x_{r,1} & - x_{i,1} & x_{r,2} & - x_{i,2} & x_{r,3} & - x_{i,3} \\
+    \underset{\sim}{\mathbf{x}}^{\top} = \begin{pmatrix} x_{r,1} & - x_{i,1} & x_{r,2} & - x_{i,2} & x_{r,3} & - x_{i,3} \\
                                         x_{i,1} & x_{r,1} & x_{i,2} & x_{r,2} & x_{i,3} & x_{r,3}
                         \end{pmatrix} .
     \label{eq:complexMatrixTransposed}
 \end{equation}
-We will denote the operation of transposition above with the \(\top\) symbol and will call it ``complex transposition'' as opposed to the original \(\prime\) and conventional transposition.
+We will denote the operation of transposition above with the symbol \(\top\) and will call it just ``transposition''. The transposition that produces the conjugate complex numbers is called ``conjugate transposition'' and will be denoted as \(\prime\) in this monograph.
 
 \hypertarget{complexRandomVariable}{%
 \section{Complex random variable}\label{complexRandomVariable}}
@@ -575,7 +575,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.154+100.5178i
+## [1] 51.62156+98.92042i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -636,7 +636,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 122.0958+0i
+## 118.5255+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -649,7 +649,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -76.95358+5.71512i
+## -72.52418-10.3351i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -675,8 +675,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 22.571135  2.857558
-## x_i  2.857558 99.524711
+## x_r 23.000675 -5.167551
+## x_i -5.167551 95.524859
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -688,7 +688,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2238.22
+## [1] 2170.433
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -755,7 +755,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 51.46613-77.55966i
+## 39.54608-72.84439i
 \end{verbatim}
 
 \begin{Shaded}
@@ -768,7 +768,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -40.04953+35.66919i
+## -30.01901+40.60635i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -782,8 +782,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -68.01420+ 5.61922i -40.04953+35.66919i
-## y -40.04953+35.66919i  11.57130+67.70808i
+## x -62.66459- 1.24336i -30.01901+40.60635i
+## y -30.01901+40.60635i  -5.42114+29.55973i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -860,6 +860,13 @@ which is in fact a multivariate model, capturing how the change of values in pai
 \end{equation}
 This model captures a very specific dynamics between the real and imaginary parts, given that they share the same set of parameters for the slope. But most importantly it shows how each complex variable \(y\) relates to variable \(x\) in a four dimensional space. Note that the real and imaginary parts of \(y\) can be exchanged without a serious impact on the model: in that case the values of parameters would change, but the relation between \(x\) and \(y\) would stay the same. Similarly, changing \(x_r\) with \(x_i\) would only lead to different estimates of parameters, the general relation will hold.
 
+Given that we deal with a sample of values, the model \eqref{eq:SimpleCLRComplex} can be represented in a vector form for all observations \(j\) from 1 to \(n\) (based on discussion in Subsection \ref{vectorComplexVariables}):
+\begin{equation}
+    \mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon} ,
+    \label{eq:SimpleCLRVector01}
+\end{equation}
+where \(\mathbf{y}=\begin{pmatrix} {y}_1 \\ {y}_2\\ \vdots \\ {y}_n \end{pmatrix}\), \(\mathbf{X} = \begin{pmatrix} 1 & {x}_1 \\ 1 & {x}_2\\ \vdots \\ 1 & {x}_n \end{pmatrix}\), \(\boldsymbol{\beta} = \begin{pmatrix} {\beta}_0 \\ {\beta}_1 \end{pmatrix}\) and \(\boldsymbol{\epsilon} = \begin{pmatrix} {\epsilon}_1 \\ {\epsilon}_2\\ \vdots \\ {\epsilon}_n \end{pmatrix}\), where each element of the objects above is a complex number.
+
 Going even further, using the vector and matrix representations of complex variables, the same system of equations \eqref{eq:SimpleCLRSystem} can be rewritten as:
 \begin{equation}
     \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix} = \begin{pmatrix} \beta_{0,r} \\ \beta_{0,i} \end{pmatrix} + \begin{pmatrix} x_{r,j} & -x_{i,j} \\ x_{i,j} & x_{r,j} \end{pmatrix} \begin{pmatrix} \beta_{1,r} \\ \beta_{1,i} \end{pmatrix} + \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix} ,
@@ -870,9 +877,10 @@ or uniting all the parameters in one vector:
     \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix} = \begin{pmatrix} 1 & 0 & x_{r,j} & -x_{i,j} \\ 0 & 1 & x_{i,j} & x_{r,j} \end{pmatrix} \begin{pmatrix} \beta_{0,r} \\ \beta_{0,i} \\ \beta_{1,r} \\ \beta_{1,i} \end{pmatrix} + \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix} .
     \label{eq:SimpleCLRSystemVector02}
 \end{equation}
+
 This form can then be represented in a classical matrix notations:
 \begin{equation}
-    \mathbf{y}_j = \mathbf{X}_j \boldsymbol{\beta} + \boldsymbol{\epsilon}_j .
+    \mathbf{y}_j = \mathbf{X}_j \underset{\sim}{\boldsymbol{\beta}} + \boldsymbol{\epsilon}_j .
     \label{eq:SimpleCLRSystemVector03}
 \end{equation}
 And if we stack each of the vectors and matrices for each \(j=1 \dots n\) we get even more compact form:
@@ -1686,7 +1694,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9975954+0i
+## [1] 0.9974495+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(x\) and \(y\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1743,8 +1751,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]
-## [1,] -0.9969644
+##           [,1]
+## [1,] 0.9972891
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1769,11 +1777,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i        y_r        y_i
-## x_r 1.00000000  0.09042806  0.5992031  0.6800669
-## x_i 0.09042806  1.00000000 -0.7398517  0.7886935
-## y_r 0.59920308 -0.73985173  1.0000000 -0.1758981
-## y_i 0.68006691  0.78869346 -0.1758981  1.0000000
+##            x_r         x_i        y_r       y_i
+## x_r 1.00000000  0.02430215  0.7856704 0.7830713
+## x_i 0.02430215  1.00000000 -0.5952279 0.6368429
+## y_r 0.78567045 -0.59522791  1.0000000 0.2359024
+## y_i 0.78307127  0.63684289  0.2359024 1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(x\) and \(y\) are related overall, but it will contain information about each of their individual elements.
@@ -1896,6 +1904,10 @@ The two formulae \eqref{eq:MCLRCLSEstimate} and \eqref{eq:MCLRCLSEstimateTranspo
 \section{Inference}\label{inference}}
 
 In both OLS and CLS, the individual contributions of real and imaginary parts of regression are ignored, everything is averaged-out. We just get a vector of errors. In likelihood, the split is preserved.
+
+Covariance of parameters of the three approaches.
+
+Difference in covariance matrices\ldots{} Does OLS - CLS produce positive semidefinite matrix?
 
 \hypertarget{diagnostics}{%
 \section{Diagnostics}\label{diagnostics}}
