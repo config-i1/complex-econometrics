@@ -86,6 +86,7 @@ Finally, using the same principles, we can show that the estimates of parameters
 The form \@ref(eq:MCLROLSEstimateComplex) becomes especially useful for futher inference.
 
 
+
 ### Complex Least Squares
 As discussed in Section \@ref(SCLREstimation), there is also an alternative approach to estimation of CLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \@ref(eq:CLRSystemVectorComplexFinal), i.e. minimise the criterion (which is the same as the one discussed in Subsection \@ref(SCLREstimationCLS)):
 \begin{equation}

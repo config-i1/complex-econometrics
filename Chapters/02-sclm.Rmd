@@ -149,12 +149,12 @@ It is apparent what the estimates of parameters \@ref(eq:SimpleCLROLSLossParamet
 
 In terms of properties of the estimator, it can be shown that $\underline{b_1}$ equals to:
 \begin{equation}
-        \underline{b_1} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{y})}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0} + \underline{\beta_1} \underline{x} + \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0}) + \mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_1} \underline{x}) + \mathrm{cov}(\underline{\tilde{x}}, \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})},
+        \underline{b_1} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{y})}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0} + \underline{\beta_1} \underline{x} + \underline{\epsilon})}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_0}) + \mathrm{cov}(\underline{\tilde{x}}, \underline{\beta_1} \underline{x}) + \mathrm{cov}(\underline{\tilde{x}}, \underline{\epsilon})}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})},
     (\#eq:SimpleCLROLSb1Value01)
 \end{equation}
 which then simplifies to:
 \begin{equation}
-        \underline{b_1} = \underline{\beta_1} + \frac{\mathrm{cov}(\underline{\tilde{x}}, \epsilon)}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \underline{\beta_1} + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
+        \underline{b_1} = \underline{\beta_1} + \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\epsilon})}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \underline{\beta_1} + \frac{\hat{\sigma}_{x,\epsilon}}{\hat{\sigma}_x^2} ,
     (\#eq:SimpleCLROLSb1Value02)
 \end{equation}
 or:
@@ -179,12 +179,12 @@ The same formula \@ref(eq:SimpleCLROLSb1Value03) can be rewritten separately for
 \end{equation}
 which shows what specific covariances impact different parts of the slope parameter.
 
-As for the variance of $\underline{b_1}$, it can be shown to be equal to:
+As for the variance of $\underline{b_1}$, for the real part of the parameter, it can be shown to be equal to:
 \begin{equation}
-    \mathrm{V}(b_{1,r}) = \mathrm{V}\left(\frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}\right)
+    \mathrm{V}(b_{1,r}) = \mathrm{V}\left(\frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}\right) .
     (\#eq:SimpleCLROLSb1Variance)
 \end{equation}
-we do not expand it further, because the formula \@ref(eq:SimpleCLROLSb1Variance) suffices for the comparison of OLS with other estimators.
+The variance for the imaginary part will be similar. We do not expand it further, because the formula \@ref(eq:SimpleCLROLSb1Variance) is sufficient for the comparison of OLS with other estimators.
 
 
 ### Complex Least Squares {#SCLREstimationCLS}
