@@ -76,11 +76,14 @@ which gives the classical formula for the estimation of parameters of the model 
     \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}}
     (\#eq:MCLROLSEstimate)
 \end{equation}
-Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operation of transposition on matrices is equivalent to the multiplication by the conjugate complex number. This means that for the special case of simple CLR, the classical OLS gives the same formula as \@ref(eq:SimpleCLROLSLossParametersMoments). Furthermore, using the same principles, we can show that the estimates of parameters can be obtained if we use the form \@ref(eq:CLRSystemVectorFinalEstimated) instead of the vectors of complex variables:
+Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operator $\prime$ denotes conjugate transition, which means that for the special case of simple CLR, the formula \@ref(eq:MCLROLSEstimate) will become \@ref(eq:SimpleCLROLSLossParametersMoments).
+
+Finally, using the same principles, we can show that the estimates of parameters can be obtained if we use the form \@ref(eq:CLRSystemVectorFinalEstimated) instead of the vectors of complex variables:
 \begin{equation}
     \boldsymbol{b} = \left( \underset{\sim}{\mathbf{\tilde{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{\tilde{X}}}^\prime {\mathbf{Y}} .
     (\#eq:MCLROLSEstimateComplex)
 \end{equation}
+The form \@ref(eq:MCLROLSEstimateComplex) becomes especially useful for futher inference.
 
 
 ### Complex Least Squares
