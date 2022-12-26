@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  26 DEC 2022 18:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  26 DEC 2022 18:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -941,14 +941,14 @@ Chapter 3.
 
 ]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-ots-1.pdf, id=669, 262.9825pt x 262.9825pt>
+ots-1.pdf, id=669, 264.99pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplots-1.pdf  used on input line 1490.
-(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
+(pdftex.def)             Requested size: 265.00146pt x 262.99387pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 48 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -962,14 +962,14 @@ Package natbib Warning: Citation `refMDS' on page 49 undefined on input line 15
 35.
 
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-otMDS-1.pdf, id=685, 253.94875pt x 212.795pt>
+otMDS-1.pdf, id=685, 253.94875pt x 213.79875pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplotMDS-1.pdf  used on input line 1555.
-(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
+(pdftex.def)             Requested size: 253.94812pt x 213.79822pt.
 
 Package natbib Warning: Citation `ref' on page 49 undefined on input line 1564.
 
@@ -999,25 +999,25 @@ ANDOM VARIABLES
 
 [52]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ate-1.pdf, id=740, 262.9825pt x 262.9825pt>
+ate-1.pdf, id=740, 262.9825pt x 263.98625pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugate-1.pdf  used on input line 1702.
-(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
+(pdftex.def)             Requested size: 262.99387pt x 263.99767pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ateMDS-1.pdf, id=742, 253.94875pt x 212.795pt>
+ateMDS-1.pdf, id=742, 256.96pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugateMDS-1.pdf  used on input line 1727.
-(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
+(pdftex.def)             Requested size: 256.97504pt x 212.80745pt.
 
-Underfull \vbox (badness 2221) has occurred while \output is active []
+Underfull \vbox (badness 1939) has occurred while \output is active []
 
 [53 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCor
 Conjugate-1.pdf>]
@@ -1040,7 +1040,12 @@ ANDOM VARIABLES
 Chapter 4.
 [57
 
-] [58] [59] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [60] [61] [62
+] [58] [59]
+
+LaTeX Warning: Reference `MultipleCLRSystemVector' on page 60 undefined on inpu
+t line 1948.
+
+[60] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [61] [62
 
 ])
 
@@ -1052,10 +1057,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 16459 strings out of 479648
- 269439 string characters out of 5886115
- 596445 words of memory out of 5000000
- 33559 multiletter control sequences out of 15000+600000
+ 16462 strings out of 479648
+ 269530 string characters out of 5886115
+ 596488 words of memory out of 5000000
+ 33561 multiletter control sequences out of 15000+600000
  572322 words of font info for 205 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
  74i,14n,77p,1163b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1078,10 +1083,10 @@ ublic/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/sha
 re/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmtti10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (63 pages,
- 3013041 bytes).
+ 3015112 bytes).
 PDF statistics:
- 1123 PDF objects out of 1200 (max. 8388607)
- 949 compressed objects within 10 object streams
- 298 named destinations out of 1000 (max. 500000)
+ 1131 PDF objects out of 1200 (max. 8388607)
+ 957 compressed objects within 10 object streams
+ 299 named destinations out of 1000 (max. 500000)
  59667 words of extra memory for PDF output out of 61914 (max. 10000000)
 
