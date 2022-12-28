@@ -654,15 +654,15 @@ x <- R * exp(complex(imaginary=phi))
 plot(x)
 ```
 
-The example in Figure \@ref(fig:crvGeneratedCircle) demonstrates how a c.r.v. with uncorrelated real and imaginary parts looks on the complex plane. If there is a relation between the parts then the circle transforms into ellipse. So, it is only logical to consider the distributions that rely on circle or ellipse for the c.r.v. instead of any other geometric shapes.
+The example in Figure \@ref(fig:crvGeneratedCircle) demonstrates how a c.r.v. with uncorrelated real and imaginary parts looks on the complex plane. If there is a relation between the parts then the circle transforms into ellipse. So, it is only logical to consider the distributions that rely on a circle or an ellipse for the c.r.v. instead of any other geometric shapes.
 
 When it comes to distribution functions, in case of c.r.v. in general we should consider the joint bivariate distribution, thus all the probability density and cumulative distribution functions will be plotted in 3D with the density/probability in z-axis and the complex variable in x and y axes.
 
 
-### Elliptic uniform distribution
-The elliptic uniform distribution of c.r.v. is based on the equation of ellipse:
+### Uniform distribution
+The uniform distribution of c.r.v. is based on the equation of ellipse:
 \begin{equation}
-    \frac{(x_r-a_1)^2}{a_2^2} + \frac{(x_i-b_1)^2}{b_2^2} - \frac{(x_r-a_1) (x_i-b_1)}{a_2 b_2} = 1,
+    \frac{(x_r-a_1)^2}{a_2^2} + \frac{(x_i-b_1)^2}{b_2^2} - \frac{(x_r-a_1) (x_i-b_1)}{a_2 b_2} \leq 1,
     (\#eq:ellipseFormula)
 \end{equation}
 where $a_1$ and $b_1$ are the shifts along the real and imaginary axes respectively, while $a_2$ and $b_2$ are the values that characterise the width and the height of the ellipse along the axes at the origin. The area of this ellipse is:
@@ -675,7 +675,7 @@ The PDF based on that is:
 \begin{equation} \label{eq:EllipseArea2}
     f_z(z_j) = \left\{
         \begin{matrix}
-            \frac{1}{\pi a b} & \text{when $z_j$ satisfies \eqref{eq:Ellipse}} \\
+            \frac{1}{\pi a b} & \text{when $z_j$ satisfies \eqref{eq:ellipseFormula}} \\
             0 & \text{otherwise}
         \end{matrix}
     \right. .
