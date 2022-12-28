@@ -139,14 +139,34 @@ Similarly to how it was done in Subsection \@ref(SCLREstimationLikelihood), we c
 \end{equation}
 The concentrated log-likelihood for the complex regression model \@ref(eq:MultipleCLRSystemVectorEstimated) will be exactly the same as for the simple CLR:
 \begin{equation*}
-	\ell^*(\boldsymbol{\theta}, \hat{\boldsymbol{\Sigma}}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi e) + \log | \hat{\boldsymbol{\Sigma}}_\epsilon | \right) .
+	\ell^*(\boldsymbol{\theta}, \hat{\boldsymbol{\Sigma}}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi e) + \log | \hat{\boldsymbol{\Sigma}}_\epsilon | \right) ,
+\end{equation*}
+where (as a reminder)
+\begin{equation*}
+	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime .
 \end{equation*}
 Maximising this likelihood, as discussed in Subsection \@ref(SCLREstimationLikelihood), implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
 
 
 ## Inference
-It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). The main issue in this approach, as discussed in Subsection \@ref(CLREstimationIssue), is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense. In order to get the individual effects correctly, we need to refer to the model form \@ref(eq:MultipleCLRSystemVectorEstimated), and use the covariance matrix of the error term $\hat{\Sigma}$ instead of either direct or conjugate variances.
+It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). The main issue in this approach, as discussed in Subsection \@ref(CLREstimationIssue), is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense.
 
+In order to get the individual effects correctly, we need to refer to the model form \@ref(eq:MultipleCLRSystemVectorEstimated), and use the covariance matrix of the error term $\hat{\Sigma}$ instead of either direct or conjugate variances.
+
+
+$\underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}})$
+
+$\underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}}$
+
+$\underline{\boldsymbol{b}} = \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}}$
+
+$\mathrm{V}(\underline{\boldsymbol{b}}) = \mathrm{E}\left(\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}}\right) \left(\left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime  \tilde{\underline{\boldsymbol{\epsilon}}} \right) \right)$
+
+
+
+If we consider the values of $\underline{\mathbf{X}}$ as provided and known then $\mathrm{V}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1}\right)=0$, implying that:
+
+$\mathrm{V}(\underline{\boldsymbol{b}}) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \mathrm{V}(\underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \mathrm{V}( \underline{\boldsymbol{\epsilon}}) \underline{\mathbf{X}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \sigma_{\epsilon}^2 $
 
 
 In both OLS and CLS, the individual contributions of real and imaginary parts of regression are ignored, everything is averaged-out. We just get a vector of errors. In likelihood, the split is preserved.
