@@ -641,9 +641,26 @@ While there exist higher order moments for complex random variables, we do not d
 ## Parametric Distributions of c.r.v.
 Similarly to the real valued random variables, complex random variables can follow some parametric distributions. In this section, we discuss several simple ones, some of which will be used later in this monograph.
 
+In general, it is reasonable to assume that a c.r.v. has a distribution of a shape of a circle or ellipse on the complex plane. This becomes more apparent if we consider the exponential form of a c.r.v. \@ref(eq:complexNumberExponential) and consider both magnitude and the angle as random variables. In the simplest case, when they are not correlated and we consider a variable that is centred around the origin, the randomness coming from both of these components will result in a circle on the complex plane, see the following example in R (and Figure \@ref(fig:crvGeneratedCircle)):
+
+```{r crvGeneratedCircle, fig.cap="C.r.v. generated from a uniform distribuiton.", fig.width=4, fig.height=4}
+# Generate magnitudes from the uniform distribution
+R <- runif(1000,0,10)
+# Generate angles from the uniform distribution
+phi <- runif(1000,-pi,pi)
+# Create c.r.v in exponential form
+x <- R * exp(complex(imaginary=phi))
+# Plot the variable
+plot(x)
+```
+
+The example in Figure \@ref(fig:crvGeneratedCircle) demonstrates how a c.r.v. with uncorrelated real and imaginary parts looks on the complex plane. If there is a relation between the parts then the circle transforms into ellipse. So, it is only logical to consider the distributions that rely on circle or ellipse for the c.r.v. instead of any other geometric shapes.
+
+When it comes to distribution functions, in case of c.r.v. in general we should consider the joint bivariate distribution, thus all the probability density and cumulative distribution functions will be plotted in 3D with the density/probability in z-axis and the complex variable in x and y axes.
+
 
 ### Elliptic uniform distribution
-The elliptic uniform distribution of CRV is based on the equation of ellipse:
+The elliptic uniform distribution of c.r.v. is based on the equation of ellipse:
 \begin{equation}
     \frac{(x_r-a_1)^2}{a_2^2} + \frac{(x_i-b_1)^2}{b_2^2} - \frac{(x_r-a_1) (x_i-b_1)}{a_2 b_2} = 1,
     (\#eq:ellipseFormula)
@@ -664,8 +681,6 @@ The PDF based on that is:
     \right. .
 \end{equation}
 
-
-### Rectangular uniform distribution
 
 
 ### Normal distribution
