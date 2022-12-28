@@ -166,7 +166,7 @@ $\mathrm{V}(\underline{\boldsymbol{b}}) = \mathrm{E}\left(\left(\left( \underlin
 
 If we consider the values of $\underline{\mathbf{X}}$ as provided and known then $\mathrm{V}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1}\right)=0$, implying that:
 
-$\mathrm{V}(\underline{\boldsymbol{b}}) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \mathrm{V}(\underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \mathrm{V}( \underline{\boldsymbol{\epsilon}}) \underline{\mathbf{X}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \sigma_{\epsilon}^2 $
+<!-- $\mathrm{V}(\underline{\boldsymbol{b}}) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \mathrm{V}(\underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \mathrm{V}( \underline{\boldsymbol{\epsilon}}) \underline{\mathbf{X}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \sigma_{\epsilon}^2$ -->
 
 
 In both OLS and CLS, the individual contributions of real and imaginary parts of regression are ignored, everything is averaged-out. We just get a vector of errors. In likelihood, the split is preserved.
