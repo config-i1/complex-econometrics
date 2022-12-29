@@ -659,35 +659,69 @@ The example in Figure \@ref(fig:crvGeneratedCircle) demonstrates how a c.r.v. wi
 When it comes to distribution functions, in case of c.r.v. in general we should consider the joint bivariate distribution, thus all the probability density and cumulative distribution functions will be plotted in 3D with the density/probability in z-axis and the complex variable in x and y axes.
 
 
-### Uniform distribution
-The uniform distribution of c.r.v. is based on the equation of ellipse:
+<!-- ### Uniform distribution -->
+<!-- The uniform distribution of c.r.v. is based on the equation of ellipse: -->
+<!-- \begin{equation} -->
+<!--     \frac{(x_r-a_1)^2}{a_2^2} + \frac{(x_i-b_1)^2}{b_2^2} - \frac{(x_r-a_1) (x_i-b_1)}{a_2 b_2} \leq 1, -->
+<!--     (\#eq:ellipseFormula) -->
+<!-- \end{equation} -->
+<!-- where $a_1$ and $b_1$ are the shifts along the real and imaginary axes respectively, while $a_2$ and $b_2$ are the values that characterise the width and the height of the ellipse along the axes at the origin. The area of this ellipse is: -->
+<!-- \begin{equation} -->
+<!--     A = \pi a_2 b_2 . -->
+<!--     (\#eq:EllipseArea) -->
+<!-- \end{equation} -->
+<!-- Based on this  -->
+<!-- The PDF based on that is: -->
+<!-- \begin{equation} \label{eq:EllipseArea2} -->
+<!--     f_z(z_j) = \left\{ -->
+<!--         \begin{matrix} -->
+<!--             \frac{1}{\pi a b} & \text{when $z_j$ satisfies \eqref{eq:ellipseFormula}} \\ -->
+<!--             0 & \text{otherwise} -->
+<!--         \end{matrix} -->
+<!--     \right. . -->
+<!-- \end{equation} -->
+
+
+### Complex Normal distribution
+One of the most popular distributions in statistics is the Normal distribution. There exists a complex counterpart of that distribution, which has the following probability density function [@refGoodman]:
 \begin{equation}
-    \frac{(x_r-a_1)^2}{a_2^2} + \frac{(x_i-b_1)^2}{b_2^2} - \frac{(x_r-a_1) (x_i-b_1)}{a_2 b_2} \leq 1,
-    (\#eq:ellipseFormula)
+    f(\underline{x}) = \frac{1}{\pi^2 \sqrt{\sigma^4 - \varsigma^2 \tilde{\varsigma}^2}} \exp\left(- \frac{1}{2}
+        \begin{pmatrix} \underline{\tilde{x}} - \underline{\tilde{\mu}} & \underline{x} - \underline{\mu} \end{pmatrix}
+        \begin{pmatrix} \sigma^2 & \varsigma^2 \\ \tilde{\varsigma}^2 & \sigma^2 \end{pmatrix}^{-1}
+        \begin{pmatrix} \underline{x} - \underline{\mu} \\ \underline{\tilde{x}} - \underline{\tilde{\mu}} \end{pmatrix}
+    \right),
+    (\#eq:ComplexNormalPDF)
 \end{equation}
-where $a_1$ and $b_1$ are the shifts along the real and imaginary axes respectively, while $a_2$ and $b_2$ are the values that characterise the width and the height of the ellipse along the axes at the origin. The area of this ellipse is:
-\begin{equation}
-    A = \pi a_2 b_2 .
-    (\#eq:EllipseArea)
-\end{equation}
-Based on this 
-The PDF based on that is:
-\begin{equation} \label{eq:EllipseArea2}
-    f_z(z_j) = \left\{
-        \begin{matrix}
-            \frac{1}{\pi a b} & \text{when $z_j$ satisfies \eqref{eq:ellipseFormula}} \\
-            0 & \text{otherwise}
-        \end{matrix}
-    \right. .
-\end{equation}
+where $\underline{\mu}$ is the first moment of the c.r.v. $\underline{x}$ and $\sigma^2$ and $\varsigma^2$ are the conjugate and direct variances as defined in Section \@ref(complexRandomVariable). The variable that follows this distribution can be denoted as $\underline{x} \sim \mathcal{CN}(\underline{\mu}, \sigma^2, \varsigma^2)$ Note that both $\sigma^2$ and $\varsigma^2$ are important in the PDF \@ref(eq:ComplexNormalPDF) to define the shape of the distribution. For the real-valued variables, the conventional standard deviation $\sigma$ characterises the dispersion of the random variable, and in case of the normal distribution shows how many z-scores away the random variable can lie from its centre. For the c.r.v., $\sigma$ plays a similar role, but not in terms of units along the x axis, but rather in terms of radii from the centre. The direct variance $\varsigma^2$, on the other hand characterises the shape of the distribution itself: its real part shows whether the ellipse of the normal distribution should be wide (positive numbers) or narrow (negative numbers), while the imaginary part shows how close the points should be to the line drawn through them. These moments are shown visually in Figure \@ref(fig:crvNormalExample).
 
 
+```{r crvNormalExample, fig.height=5, fig.width=5, fig.cap="Visual representation of variances for a c.r.v. that follows Complex Normal distribution.", echo=FALSE}
+xr <- rnorm(1000, 100, 10)
+xi <- xr + rnorm(1000, 0, 10)
+x <- complex(real=xr, imaginary=xi)
+plot(x, col="lightblue", xlim=c(70, 130), ylim=c(70,130))
+abline(a=-40-sqrt(2), b=sqrt(2), col="darkblue", lwd=2, lty=2)
+lines(100+5+c(-10,10)/2, rep(100+5*sqrt(2)-10*sqrt(2)/2,2), col="black", lwd=1, lty=2)
+lines(rep(100+5+10/2,2), 100+5*sqrt(2)+c(-10,10)*sqrt(2)/2, col="black", lwd=1, lty=2)
+lines(100+5+c(-10,10)/2, 100+5*sqrt(2)+c(-10,10)*sqrt(2)/2, col="darkred", lwd=3)
+text(107, 97, latex2exp::TeX("$\\sigma_{x_r}$", italic=T))
+text(113, 105, latex2exp::TeX("$\\sigma_{x_i}$", italic=T))
+text(107, 110, latex2exp::TeX("$\\sigma_{x}$", italic=T), pos=2)
+draw.circle(100, 100, sqrt(300), border="darkred", lwd=2)
+lines(c(100,100-10),c(100,100+sqrt(150-10^2)), col="darkgreen", lwd=3)
+text(97, 98, latex2exp::TeX("Im$(\\varsigma_{x}^2)$", italic=F), pos=2)
+```
 
-### Normal distribution
+The overall conjugate standard deviation $\sigma_x$ represents the radius of the unit circle in Figure \@ref(fig:crvNormalExample), while the imaginary part of $\varsigma_x^2$ (i.e. $2 \sigma_{x_r, x_i}$) is shown with a green line. The real part of $\varsigma_x^2$ is not visualised, but for this plot it will be negative, showing that the distribution is narrower along the x-axis than along the y-axis.
 
-+ Spherical c.r.v.
+The Complex Normal distribution can be used for the joint estimation of parameters of a complex model and for generation of prediction intervals from it. However, in some cases it might be more convenient to consider a c.r.v. model as a bivariate vector model and thus to revert to the multivariate normal distribution.
+
+
+### Multivariate Normal distribution
 
 
 ### Hotelling's distribution
 
+
+### Student's t distribution
 
