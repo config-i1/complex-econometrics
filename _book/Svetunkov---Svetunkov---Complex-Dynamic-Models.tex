@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2022-12-28}
+\date{2022-12-29}
 
 \begin{document}
 \maketitle
@@ -594,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.9116+101.2759i
+## [1] 50.39374+98.93857i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -656,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 127.2661+0i
+## 152.1311+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -669,7 +669,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -66.66349+3.53155i
+## -102.5488+12.9187i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -694,9 +694,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 30.301294  1.765775
-## x_i  1.765775 96.964786
+##           x_r        x_i
+## x_r 24.791131   6.459333
+## x_i  6.459333 127.339929
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -708,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2935.041
+## [1] 3115.178
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -775,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 63.9934-102.712i
+## 61.15722-86.49048i
 \end{verbatim}
 
 \begin{Shaded}
@@ -787,8 +787,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -28.84246+65.13654i
+##  Direct covariance 
+## -41.8657+45.39371i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -802,8 +802,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -73.76715+ 9.29530i -28.84246+65.13654i
-## y -28.84246+65.13654i  31.65808+70.99584i
+## x -59.49847- 7.86769i -41.86570+45.39371i
+## y -41.86570+45.39371i  42.76261+55.32498i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -834,45 +834,42 @@ In general, it is reasonable to assume that a c.r.v. has a distribution of a sha
 \caption{\label{fig:crvGeneratedCircle}C.r.v. generated from a uniform distribuiton.}
 \end{figure}
 
-The example in Figure \ref{fig:crvGeneratedCircle} demonstrates how a c.r.v. with uncorrelated real and imaginary parts looks on the complex plane. If there is a relation between the parts then the circle transforms into ellipse. So, it is only logical to consider the distributions that rely on circle or ellipse for the c.r.v. instead of any other geometric shapes.
+The example in Figure \ref{fig:crvGeneratedCircle} demonstrates how a c.r.v. with uncorrelated real and imaginary parts looks on the complex plane. If there is a relation between the parts then the circle transforms into ellipse. So, it is only logical to consider the distributions that rely on a circle or an ellipse for the c.r.v. instead of any other geometric shapes.
 
 When it comes to distribution functions, in case of c.r.v. in general we should consider the joint bivariate distribution, thus all the probability density and cumulative distribution functions will be plotted in 3D with the density/probability in z-axis and the complex variable in x and y axes.
 
-\hypertarget{elliptic-uniform-distribution}{%
-\subsection{Elliptic uniform distribution}\label{elliptic-uniform-distribution}}
+\hypertarget{complex-normal-distribution}{%
+\subsection{Complex Normal distribution}\label{complex-normal-distribution}}
 
-The elliptic uniform distribution of c.r.v. is based on the equation of ellipse:
+One of the most popular distributions in statistics is the Normal distribution. There exists a complex counterpart of that distribution, which has the following probability density function \citep{refGoodman}:
 \begin{equation}
-    \frac{(x_r-a_1)^2}{a_2^2} + \frac{(x_i-b_1)^2}{b_2^2} - \frac{(x_r-a_1) (x_i-b_1)}{a_2 b_2} = 1,
-    \label{eq:ellipseFormula}
+    f(\underline{x}) = \frac{1}{\pi^2 \sqrt{\sigma^4 - \varsigma^2 \tilde{\varsigma}^2}} \exp\left(- \frac{1}{2}
+        \begin{pmatrix} \underline{\tilde{x}} - \underline{\tilde{\mu}} & \underline{x} - \underline{\mu} \end{pmatrix}
+        \begin{pmatrix} \sigma^2 & \varsigma^2 \\ \tilde{\varsigma}^2 & \sigma^2 \end{pmatrix}^{-1}
+        \begin{pmatrix} \underline{x} - \underline{\mu} \\ \underline{\tilde{x}} - \underline{\tilde{\mu}} \end{pmatrix}
+    \right),
+    \label{eq:ComplexNormalPDF}
 \end{equation}
-where \(a_1\) and \(b_1\) are the shifts along the real and imaginary axes respectively, while \(a_2\) and \(b_2\) are the values that characterise the width and the height of the ellipse along the axes at the origin. The area of this ellipse is:
-\begin{equation}
-    A = \pi a_2 b_2 .
-    \label{eq:EllipseArea}
-\end{equation}
-Based on this
-The PDF based on that is:
-\begin{equation} \label{eq:EllipseArea2}
-    f_z(z_j) = \left\{
-        \begin{matrix}
-            \frac{1}{\pi a b} & \text{when $z_j$ satisfies \eqref{eq:Ellipse}} \\
-            0 & \text{otherwise}
-        \end{matrix}
-    \right. .
-\end{equation}
+where \(\underline{\mu}\) is the first moment of the c.r.v. \(\underline{x}\) and \(\sigma^2\) and \(\varsigma^2\) are the conjugate and direct variances as defined in Section \ref{complexRandomVariable}. The variable that follows this distribution can be denoted as \(\underline{x} \sim \mathcal{CN}(\underline{\mu}, \sigma^2, \varsigma^2)\) Note that both \(\sigma^2\) and \(\varsigma^2\) are important in the PDF \eqref{eq:ComplexNormalPDF} to define the shape of the distribution. For the real-valued variables, the conventional standard deviation \(\sigma\) characterises the dispersion of the random variable, and in case of the normal distribution shows how many z-scores away the random variable can lie from its centre. For the c.r.v., \(\sigma\) plays a similar role, but not in terms of units along the x axis, but rather in terms of radii from the centre. The direct variance \(\varsigma^2\), on the other hand characterises the shape of the distribution itself: its real part shows whether the ellipse of the normal distribution should be wide (positive numbers) or narrow (negative numbers), while the imaginary part shows how close the points should be to the line drawn through them. These moments are shown visually in Figure \ref{fig:crvNormalExample}.
 
-\hypertarget{normal-distribution}{%
-\subsection{Normal distribution}\label{normal-distribution}}
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvNormalExample-1.pdf}
+\caption{\label{fig:crvNormalExample}Visual representation of variances for a c.r.v. that follows Complex Normal distribution.}
+\end{figure}
 
-\begin{itemize}
-\tightlist
-\item
-  Spherical c.r.v.
-\end{itemize}
+The overall conjugate standard deviation \(\sigma_x\) represents the radius of the unit circle in Figure \ref{fig:crvNormalExample}, while the imaginary part of \(\varsigma_x^2\) (i.e.~\(2 \sigma_{x_r, x_i}\)) is shown with a green line. The real part of \(\varsigma_x^2\) is not visualised, but for this plot it will be negative, showing that the distribution is narrower along the x-axis than along the y-axis.
+
+The Complex Normal distribution can be used for the joint estimation of parameters of a complex model and for generation of prediction intervals from it. However, in some cases it might be more convenient to consider a c.r.v. model as a bivariate vector model and thus to revert to the multivariate normal distribution.
+
+\hypertarget{multivariate-normal-distribution}{%
+\subsection{Multivariate Normal distribution}\label{multivariate-normal-distribution}}
 
 \hypertarget{hotellings-distribution}{%
 \subsection{Hotelling's distribution}\label{hotellings-distribution}}
+
+\hypertarget{students-t-distribution}{%
+\subsection{Student's t distribution}\label{students-t-distribution}}
 
 \hypertarget{simpleCLR}{%
 \chapter{Simple Complex Linear Regression}\label{simpleCLR}}
@@ -1733,7 +1730,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9979054+0i
+## [1] 0.9976539+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1791,7 +1788,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9875381
+## [1,] 0.9979548
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1816,11 +1813,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i         y_r        y_i
-## x_r 1.00000000  0.02459272  0.70960310 0.71596568
-## x_i 0.02459272  1.00000000 -0.68314484 0.71334097
-## y_r 0.70960310 -0.68314484  1.00000000 0.02096782
-## y_i 0.71596568  0.71334097  0.02096782 1.00000000
+##             x_r         x_i        y_r       y_i
+## x_r  1.00000000 -0.08768958  0.7965702 0.7516940
+## x_i -0.08768958  1.00000000 -0.6689688 0.5866908
+## y_r  0.79657019 -0.66896877  1.0000000 0.2050332
+## y_i  0.75169400  0.58669082  0.2050332 1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
