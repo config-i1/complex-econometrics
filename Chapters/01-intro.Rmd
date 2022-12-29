@@ -695,7 +695,7 @@ One of the most popular distributions in statistics is the Normal distribution. 
 where $\underline{\mu}$ is the first moment of the c.r.v. $\underline{x}$ and $\sigma^2$ and $\varsigma^2$ are the conjugate and direct variances as defined in Section \@ref(complexRandomVariable). The variable that follows this distribution can be denoted as $\underline{x} \sim \mathcal{CN}(\underline{\mu}, \sigma^2, \varsigma^2)$ Note that both $\sigma^2$ and $\varsigma^2$ are important in the PDF \@ref(eq:ComplexNormalPDF) to define the shape of the distribution. For the real-valued variables, the conventional standard deviation $\sigma$ characterises the dispersion of the random variable, and in case of the normal distribution shows how many z-scores away the random variable can lie from its centre. For the c.r.v., $\sigma$ plays a similar role, but not in terms of units along the x axis, but rather in terms of radii from the centre. The direct variance $\varsigma^2$, on the other hand characterises the shape of the distribution itself: its real part shows whether the ellipse of the normal distribution should be wide (positive numbers) or narrow (negative numbers), while the imaginary part shows how close the points should be to the line drawn through them. These moments are shown visually in Figure \@ref(fig:crvNormalExample).
 
 
-```{r crvNormalExample, fig.height=4, fig.width=4, fig.cap="Visual representation of variances for a c.r.v. that follows Complex Normal distribution.", echo=FALSE}
+```{r crvNormalExample, fig.height=5, fig.width=5, fig.cap="Visual representation of variances for a c.r.v. that follows Complex Normal distribution.", echo=FALSE}
 xr <- rnorm(1000, 100, 10)
 xi <- xr + rnorm(1000, 0, 10)
 x <- complex(real=xr, imaginary=xi)
