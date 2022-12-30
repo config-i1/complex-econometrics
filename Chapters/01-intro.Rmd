@@ -783,10 +783,10 @@ where $p$ is the confidence level. For the case of c.r.v., when $n=2$, the $\chi
 
 Note however that working with confidence regions is challenging, because there is an infinite number of values of the vector $\mathbf{q}$ that give the same critical value $\chi^2(n, p)$. So, in order to make it practical, unconditional prediction intervals can be constructed for each of the parts, dropping the other one. In this case, the classical formula for the intervals can be used:
 \begin{equation}
-    x_{r} \in (\mu_{x_r} + \sigma_{x_r} z({\frac{\alpha}{2}}) , \mu_{x_r} + \sigma_{x_r} z({\frac{1+\alpha}{2}})),
+    x_{r} \in (\mu_{x_r} + \sigma_{x_r} z \left({\frac{\alpha}{2}} \right) , \mu_{x_r} + \sigma_{x_r} z \left({\frac{1+\alpha}{2}} \right),
     (\#eq:NormalInterval)
 \end{equation}
-where $z({\frac{\alpha}{2}})$ and $z({\frac{1+\alpha}{2}})$ are the respective lower and upper quantiles of the standard normal distribution.
+where $z\left({\frac{\alpha}{2}} \right)$ and $z\left({\frac{1+\alpha}{2}} \right)$ are the respective lower and upper quantiles of the standard normal distribution.
 
 
 
