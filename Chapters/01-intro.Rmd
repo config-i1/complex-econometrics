@@ -682,7 +682,7 @@ When it comes to distribution functions, in case of c.r.v. in general we should 
 <!-- \end{equation} -->
 
 
-### Complex Normal distribution
+### Complex Normal distribution {#distributionCNorm}
 One of the most popular distributions in statistics is the Normal distribution. There exists a complex counterpart of that distribution, which has the following probability density function [@refGoodman]:
 \begin{equation}
     f(\underline{x}) = \frac{1}{\pi^2 \sqrt{\sigma^4 - \varsigma^2 \tilde{\varsigma}^2}} \exp\left(- \frac{1}{2}
@@ -714,10 +714,58 @@ text(97, 98, latex2exp::TeX("Im$(\\varsigma_{x}^2)$", italic=F), pos=2)
 
 The overall conjugate standard deviation $\sigma_x$ represents the radius of the unit circle in Figure \@ref(fig:crvNormalMoments), while the imaginary part of $\varsigma_x^2$ (i.e. $2 \sigma_{x_r, x_i}$) is shown with a green line. The real part of $\varsigma_x^2$ is not visualised, but for this plot it will be negative, showing that the distribution is narrower along the x-axis than along the y-axis.
 
-The Complex Normal distribution can be used for the joint estimation of parameters of a complex model and for generation of prediction intervals from it. However, in some cases it might be more convenient to consider a c.r.v. model as a bivariate vector model and thus to revert to the multivariate normal distribution.
+Figure \@ref(fig:plotlyCNormal) shows the PDF of $x \sim \mathcal{CN}(100+100i,100,-20+i30)$, while Figure \@ref(fig:plotlyCNormalHeatmap) shows the heatmap of the same PDF.
+
+```{r echo=FALSE, eval=FALSE}
+sigma <- 100
+varsigma <- -20 + 30i
+Sigma <- matrix(c((sigma+Re(varsigma))/2,Im(varsigma)/2,Im(varsigma)/2,(sigma-Re(varsigma))/2),2,2)
+pdfValues <- matrix(NA,200,200)
+x <- (c(1, 1)-100)/25
+
+for(i in 1:200){
+    for(j in 1:200){
+        x[] <- (c(i, j)-100)/5
+        pdfValues[i,j] <- dmvnorm(x, mean=c(0,0), sigma=Sigma)
+    }
+}
+```
+
+```{r echo=FALSE, eval=FALSE}
+plot_ly(z=~pdfValues, type="surface") |>
+    plotly::layout(title="",
+                   scene=list(xaxis=list(title="Re(x)"),
+                              yaxis=list(title="Im(x)"),
+                              zaxis=list(title="Density")))
+```
+
+```{r plotlyCNormal, echo=FALSE, fig.cap="Plot of the probability density function of complex normal distribution."}
+knitr::include_graphics("./images/plotlyCNormal.png")
+```
+
+```{r eval=FALSE, echo=FALSE}
+plot_ly(z=~pdfValues, type="heatmap") |>
+    plotly::layout(title="",
+                   scene=list(xaxis=list(title="Re(x)"),
+                              yaxis=list(title="Im(x)")))
+```
+
+```{r plotlyCNormalHeatmap, echo=FALSE, fig.cap="Heatmap of density of Complex Normal distribution."}
+knitr::include_graphics("./images/plotlyCNormalHeatmap.png")
+```
+
+The Complex Normal distribution can be used for the joint estimation of parameters of a complex-valued model and for generation of prediction intervals from it. However, in some cases it might be more convenient to consider a c.r.v. model as a bivariate vector model based on \@ref(eq:complexFunctionVectors) and thus to revert to the multivariate normal distribution.
 
 
 ### Multivariate Normal distribution
+The same normal distribution for a complex variable can be parametrised via a covariance matrix $\boldsymbol{\Sigma}$ from \@ref(eq:crvMomentSecondVarianceMatrix) instead of the conjugate and direct variances $\sigma^2$ and $\varsigma^2$. In general, the Probability Density Function for a vector of $n$ variables can be written as:
+\begin{equation}
+    f(\mathbf{x}) = \frac{1}{(2 \pi)^{\frac{n}{2}} \sqrt{|\boldsymbol{\Sigma}|}} \exp\left(- \frac{1}{2}
+        \begin{pmatrix} \mathbf{x} - \mathbf{\mu} \end{pmatrix}^\top \boldsymbol{\Sigma}^{-1} \begin{pmatrix} \mathbf{x} - \mathbf{\mu} \end{pmatrix}
+    \right).
+    (\#eq:MultivariateNormalPDF)
+\end{equation}
+For the bivariate case of a c.r.v. represented in a form of a vector, $n=2$ and the covariance matrix $\boldsymbol{\Sigma}$ has dimensionality of $2 \times 2$.
 
 
 ### Hotelling's distribution
