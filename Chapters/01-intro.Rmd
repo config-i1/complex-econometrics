@@ -790,11 +790,6 @@ where $z\left({\frac{\alpha}{2}} \right)$ and $z\left({\frac{1+\alpha}{2}} \righ
 
 
 
-### Multivariate t distribution
-
-
 ### Hotelling's distribution
 
-
-### Student's t distribution
 
