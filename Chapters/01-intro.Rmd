@@ -774,6 +774,20 @@ For the bivariate case of a c.r.v. represented in a form of a vector, $n=2$ and 
     (\#eq:MultivariateNormalPDFCovariance)
 \end{equation}
 
+When it comes to constructing confidence regions from the multivariate normal distribution then the following inequality is used to determine values of the vector of quantiles $\mathbf{q}$:
+\begin{equation}
+    (\mathbf{x} - \mathbf{q})^{\top} \mathbf{\Sigma}^{-1} (\mathbf{x} - \mathbf{q}) \leq \chi^2(n, p) ,
+    (\#eq:MultivariateNormalRegion)
+\end{equation}
+where $p$ is the confidence level. For the case of c.r.v., when $n=2$, the $\chi^2(n, p)$ transforms into the exponential distribution $\mathcal{Exp}(0.5)$.
+
+Note however that working with confidence regions is challenging, because there is an infinite number of values of the vector $\mathbf{q}$ that give the same critical value $\chi^2(n, p)$. So, in order to make it practical, unconditional prediction intervals can be constructed for each of the parts, dropping the other one. In this case, the classical formula for the intervals can be used:
+\begin{equation}
+    x_{r} \in (\mu_{x_r} + \sigma_{x_r} z_{\frac{\alpha}{2}} , \mu_{x_r} + \sigma_{x_r} z_{\frac{1+\alpha}{2}}),
+    (\#eq:NormalInterval)
+\end{equation}
+where $z_{\frac{\alpha}{2}}$ and $z_{\frac{1+\alpha}{2}}$ are the respective lower and upper quantiles of the standard normal distribution.
+
 
 
 ### Multivariate t distribution
