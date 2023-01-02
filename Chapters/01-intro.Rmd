@@ -781,9 +781,9 @@ When it comes to constructing confidence regions from the multivariate normal di
 \end{equation}
 where $p$ is the confidence level. For the case of c.r.v., when $n=2$, the $\chi^2(n, p)$ transforms into the exponential distribution $\mathcal{E}(0.5)$.
 
-Note however that working with confidence regions is challenging, because there is an infinite number of values of the vector $\mathbf{q}$ that give the same critical value $\chi^2(n, p)$. So, in order to make it practical, unconditional prediction intervals can be constructed for each of the parts, dropping the other one. In this case, the classical formula for the intervals can be used:
+Note however that working with confidence regions is challenging, because there is an infinite number of values of the vector $\mathbf{q}$ that give the same critical value $\chi^2(n, p)$. So, in order to make it practical, unconditional prediction intervals can be constructed for each of the parts, dropping the other one. In this case, the classical formula for the intervals can be used, for example for the real part of the c.r.v.:
 \begin{equation}
-    x_{r} \in (\mu_{x_r} + \sigma_{x_r} z \left({\frac{\alpha}{2}} \right) , \mu_{x_r} + \sigma_{x_r} z \left({\frac{1+\alpha}{2}} \right),
+    x_{r} \in \left( \mu_{x_r} + \sigma_{x_r} z \left({\frac{\alpha}{2}} \right) , \mu_{x_r} + \sigma_{x_r} z \left({\frac{1+\alpha}{2}} \right) \right),
     (\#eq:NormalInterval)
 \end{equation}
 where $z\left({\frac{\alpha}{2}} \right)$ and $z\left({\frac{1+\alpha}{2}} \right)$ are the respective lower and upper quantiles of the standard normal distribution.
