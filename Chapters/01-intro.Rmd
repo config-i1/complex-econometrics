@@ -105,7 +105,7 @@ which gives the connection between the linear, trigonometric and exponential for
     -i41 = & 41 e^{i \frac{3 \pi}{2}}
     \end{aligned}
 \end{equation*}
-In fact, multiplication of any complex number by the imaginary unit implies the rotation of complex vector by $\frac{\pi}{2}$, as shown in Figure \@ref(fig:complexPlaneMultiplication), where a complex number $z_1 = x_1 + i y_1$ becomes $z_2 = z_1 \times i = x_2 + i y_2$ etc.
+In fact, multiplication of any complex number by the imaginary unit implies the rotation of complex vector by $\frac{\pi}{2}$, as shown in Figure \@ref(fig:complexPlaneMultiplication), where a complex number $\underline{z}_1 = x_1 + i y_1$ becomes $\underline{z}_2 = \underline{z}_1 \times i = x_2 + i y_2$ etc.
 
 ```{r complexPlaneMultiplication, fig.width=3, fig.height=3, fig.cap="Multiplication of a complex number by $i$ implies the rotation of it by $\\frac{\\pi}{2}$.", echo=FALSE}
 x <- complex(real=9, imaginary=6)
@@ -116,20 +116,20 @@ plot(c(0,9),c(0,6), type="l",
      yaxt="n", xaxt="n", col="white")
 draw.circle(0,0,sqrt(9^2+6^2))
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=2)
-text(Re(x),Im(x),TeX("$z_1$", italic=T),pos=3)
+text(Re(x),Im(x),TeX("$\underline{z}_1$", italic=T),pos=3)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=1)
 text(1,1.5,TeX("$\\frac{\\pi}{2}$", italic=T),pos=3, cex=0.8)
 x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=3)
-text(Re(x),Im(x),TeX("$z_2$", italic=T),pos=3)
+text(Re(x),Im(x),TeX("$\underline{z}_2$", italic=T),pos=3)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=2)
 x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=4)
-text(Re(x),Im(x),TeX("$z_3$", italic=T),pos=1)
+text(Re(x),Im(x),TeX("$\underline{z}_3$", italic=T),pos=1)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=3)
 x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=1)
-text(Re(x),Im(x),TeX("$z_4$", italic=T),pos=1)
+text(Re(x),Im(x),TeX("$\underline{z}_4$", italic=T),pos=1)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=4)
 abline(h=0,v=0,lty=1)
 text(15, -1, "x", cex=1.25)
@@ -138,15 +138,15 @@ text(-1, 15, "y", cex=1.25)
 
 In a way, any mathematical operation with a complex number implies a change in magnitude and angle of the number, while the multiplication and division by a number with non-zero imaginary part will always lead to the rotation of the vector. Operations of addition and subtraction are simpler in the linear form:
 \begin{equation*}
-    z_3 = z_1 + z_2 = x_1 + x_2 + i (y_1 + y_2) ,
+    \underline{z}_3 = \underline{z}_1 + \underline{z}_2 = x_1 + x_2 + i (y_1 + y_2) ,
 \end{equation*}
 while operations of multiplication and division are easier to do in either exponential or trigonometric forms of complex numbers:
 \begin{equation*}
-    z_3 = z_1 \times z_2 = r_1 r_2 e^{i \phi_1 + \phi_2} 
+    \underline{z}_3 = \underline{z}_1 \times \underline{z}_2 = r_1 r_2 e^{i \phi_1 + \phi_2} 
 \end{equation*}
 or:
 \begin{equation*}
-    z_3 = r_1 r_2 \left(\cos (\phi_1 + \phi_2) + i \sin (\phi_1 + \phi_2) \right) .
+    \underline{z}_3 = r_1 r_2 \left(\cos (\phi_1 + \phi_2) + i \sin (\phi_1 + \phi_2) \right) .
 \end{equation*}
 
 Furthermore, given that any complex number can be represented in the exponential form \@ref(eq:complexNumberExponential), it can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \@ref(fig:complexPlanePolar).
@@ -192,9 +192,9 @@ title(xlab="Magnitude", line=0)
 
 In this case, modelling can be done in the exponential form of complex numbers, which might allow capturing complicated non-linear relations between variables.
 
-When it comes to comparing complex numbers, mathematically we will say that two complex numbers $z_1 = x_1 + i y_1$ and $z_2 = x_2 + i y_2$ are equal to each other if and only if their real and imaginary parts are equal:
+When it comes to comparing complex numbers, mathematically we will say that two complex numbers $\underline{z}_1 = x_1 + i y_1$ and $\underline{z}_2 = x_2 + i y_2$ are equal to each other if and only if their real and imaginary parts are equal:
 \begin{equation*}
-    z_1 = z_2 \iff \left \lbrace
+    \underline{z}_1 = \underline{z}_2 \iff \left \lbrace
     \begin{aligned}
         & x_1 = x_2 \\
         & y_1 = y_2
@@ -203,25 +203,25 @@ When it comes to comparing complex numbers, mathematically we will say that two 
 \end{equation*}
 which is equivalent to saying that their magnitudes and polar angles are equal:
 \begin{equation*}
-    z_1 = z_2 \iff \left \lbrace
+    \underline{z}_1 = \underline{z}_2 \iff \left \lbrace
     \begin{aligned}
-        & |z_1| = |z_2| \\
-        & \Arg(z_1) = \Arg(z_2)
+        & |\underline{z}_1| = |\underline{z}_2| \\
+        & \Arg(\underline{z}_1) = \Arg(\underline{z}_2)
     \end{aligned}
     \right. .
 \end{equation*}
 
 Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one number is greater or less than the other. However, we could use magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the number with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only give us information about rotation of a complex number and thus do not give any meaningful information about the comparison of numbers. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one number is greater than the other in this case. In order to conclude that, we would need to devise additional criteria for comparison of numbers (e.g. positive numbers are "better" than the negative ones, thus $\phi_1=\pi$ and $\phi_1=-\pi$ is "worse" than $\phi_2=0$).
 
-```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $z_1$ and $z_2$ that have the same magnitude $r$, but different angles $\\phi_1$ and $\\phi_2$.", echo=FALSE}
+```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $\underline{z}_1$ and $\underline{z}_2$ that have the same magnitude $r$, but different angles $\\phi_1$ and $\\phi_2$.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
 plot(c(0,9),c(0,6), type="l",
      xlab="", ylab="",
      xlim=c(0,12), ylim=c(0,12), axes=F,
      yaxt="n", xaxt="n", col="white")
 draw.circle(0,0,sqrt(9^2+6^2))
-text(9,6,TeX("$z_1$", italic=T),pos=3)
-text(6,9,TeX("$z_2$", italic=T),pos=3)
+text(9,6,TeX("$\underline{z}_1$", italic=T),pos=3)
+text(6,9,TeX("$\underline{z}_2$", italic=T),pos=3)
 text(4.5,3,TeX("$r$", italic=T),pos=3)
 text(3,4.5,TeX("$r$", italic=T),pos=3)
 draw.arc(0,0,2,0,atan(6/9), col="grey", lwd=2)
@@ -268,15 +268,15 @@ which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both co
 
 Finally, given that any complex number can be represented visually in a form of a vector, we can write it mathematically either like vector:
 \begin{equation}
-    \begin{pmatrix} x \\ y \end{pmatrix}
+    \boldymbol{z} = \begin{pmatrix} x \\ y \end{pmatrix}
     (\#eq:complexNumberVectors)
 \end{equation}
 or like a matrix:
 \begin{equation}
-    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} .
+    \underset{\sim}{\boldymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
     (\#eq:complexNumberMatrix)
 \end{equation}
-In the latter case, the real number can be represented as a diagonal matrix, while the imaginary one is the matrix with zero diagonal:
+where the symbold $\sim$ below the letter denotes a matrix presentation of a complex number. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
 \begin{equation*}
     \begin{aligned}
         & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
@@ -285,18 +285,18 @@ In the latter case, the real number can be represented as a diagonal matrix, whi
 \end{equation*}
 All the mathematical operations done with the vector and matrix representations would correspond to the ones for the conventional complex numbers. Furthermore, the multiplication by the transpose of the original object in both of these cases is equivalent to the multiplication by the conjugate value \@ref(eq:complexNumberConjugateMulti). For the vector:
 \begin{equation}
-    \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
+    \boldysymbol{z} \boldysymbol{z}^\prime \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
     (\#eq:complexNumberVectorsMulti)
 \end{equation}
 and for the matrix:
 \begin{equation}
-    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & y \\ -y & x \end{pmatrix} = 
+    \underset{\sim}{\boldymbol{z}} \underset{\sim}{\boldymbol{z}}^\prime = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & y \\ -y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     (\#eq:complexNumberMatrixMulti)
 \end{equation}
 These transpositions will be called in this monograph "conjugate transpositions". The vector and matrix representations become especially useful when we work with complex variables to construct complex models. Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
 \begin{equation}
-    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
+    \underset{\sim}{\boldymbol{z}} \underset{\sim}{\boldymbol{z}}^{\top} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 - y^2 & - 2 xy \\ 2 xy & x^2 - y^2 \end{pmatrix}.
     (\#eq:complexNumberMatrixMultiDirect)
 \end{equation}
@@ -457,12 +457,12 @@ due to the law of total expectation and because $i$ is a constant. In \@ref(eq:c
 \end{equation}
 where $n$ is the sample size and $\hat{\mu}$ is the estimate of $\mu$. The properties of the first moment of c.r.v. are similar to the properties of any other random variable. The only thing to note is that the moment can also be represented in a vector or matrix form (see Subsection \@ref(complexVariable)):
 \begin{equation}
-    \begin{pmatrix} \mu_{r} \\ \mu_{i} \end{pmatrix} 
+    \boldsymbol{\mu} = \begin{pmatrix} \mu_{r} \\ \mu_{i} \end{pmatrix} 
     (\#eq:crvMomentsVector)
 \end{equation}
 or
 \begin{equation}
-    \begin{pmatrix} \mu_{r} & - \mu_{i} \\ \mu_{i} & \mu_{r} \end{pmatrix} .
+    \underset{\sim}{\boldsymbol{\mu}} = \begin{pmatrix} \mu_{r} & - \mu_{i} \\ \mu_{i} & \mu_{r} \end{pmatrix} .
     (\#eq:crvMomentsMatrix)
 \end{equation}
 
@@ -754,6 +754,8 @@ plot_ly(z=~pdfValues, type="heatmap") |>
 knitr::include_graphics("./images/plotlyCNormalHeatmap.png")
 ```
 
+One special case of a Complex Normal distribution is a so called "Circular Symmetric" Complex Normal distribution. It is a distribution for which the direct variance equals to zero, which implies that the variances of the real and the imaginary parts are equal and that the covariance between them is equal to zero. This specific distribution is used extensively in signal processing literature [@referenceHere].
+
 The functions of the Complex Normal distribution are implemented as `dcnorm()`, `pcnorm()`, `qmcnorm()` and `rmcnorm()` in the `complex` package.
 
 The Complex Normal distribution can be used for the joint estimation of parameters of a complex-valued model and for generation of prediction intervals from it. However, in some cases it might be more convenient to consider a c.r.v. model as a bivariate vector model based on \@ref(eq:complexFunctionVectors) and thus to revert to the multivariate normal distribution.
@@ -789,7 +791,10 @@ Note however that working with confidence regions is challenging, because there 
 where $z\left({\frac{\alpha}{2}} \right)$ and $z\left({\frac{1+\alpha}{2}} \right)$ are the respective lower and upper quantiles of the standard normal distribution.
 
 
+### Hotelling's T-squared distribution
+When it comes to distribution of complex variables statistics, one of the most important ones is a distribution of a mean of a complex variable. In the case of real variables, it is well known that if the Central Limit Theorem (CLT) holds then the sample mean will follow Normal distribution, and confidence interval for the mean can be constructed using Student's t distribution (when the population variance is unknown, i.e. in reality). For c.r.v., the situation is similar: when CLT holds, the c.r.v. follows Complex Normal distribution, but instead of Student's t distribution, we need to use its multivariate counterpart, which is called "Hotelling's T-squared" distribution. It is more convenient to consider the statistics for a c.r.v in a vector form (i.e. treat it as bivariate). If we estimate the sample mean $\hat{\boldsymbol{\mu}}$ and a sample covariance matrix $\hat{\boldsymbol{\Sigma}}_x$
 
-### Hotelling's distribution
+
+
 
 
