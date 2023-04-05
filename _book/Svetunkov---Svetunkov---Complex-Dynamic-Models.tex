@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-01-02}
+\date{2023-04-05}
 
 \begin{document}
 \maketitle
@@ -280,7 +280,7 @@ which gives the connection between the linear, trigonometric and exponential for
     -i41 = & 41 e^{i \frac{3 \pi}{2}}
     \end{aligned}
 \end{equation*}
-In fact, multiplication of any complex number by the imaginary unit implies the rotation of complex vector by \(\frac{\pi}{2}\), as shown in Figure \ref{fig:complexPlaneMultiplication}, where a complex number \(z_1 = x_1 + i y_1\) becomes \(z_2 = z_1 \times i = x_2 + i y_2\) etc.
+In fact, multiplication of any complex number by the imaginary unit implies the rotation of complex vector by \(\frac{\pi}{2}\), as shown in Figure \ref{fig:complexPlaneMultiplication}, where a complex number \(\underline{z}_1 = x_1 + i y_1\) becomes \(\underline{z}_2 = \underline{z}_1 \times i = x_2 + i y_2\) etc.
 
 \begin{figure}
 \centering
@@ -290,15 +290,15 @@ In fact, multiplication of any complex number by the imaginary unit implies the 
 
 In a way, any mathematical operation with a complex number implies a change in magnitude and angle of the number, while the multiplication and division by a number with non-zero imaginary part will always lead to the rotation of the vector. Operations of addition and subtraction are simpler in the linear form:
 \begin{equation*}
-    z_3 = z_1 + z_2 = x_1 + x_2 + i (y_1 + y_2) ,
+    \underline{z}_3 = \underline{z}_1 + \underline{z}_2 = x_1 + x_2 + i (y_1 + y_2) ,
 \end{equation*}
 while operations of multiplication and division are easier to do in either exponential or trigonometric forms of complex numbers:
 \begin{equation*}
-    z_3 = z_1 \times z_2 = r_1 r_2 e^{i \phi_1 + \phi_2} 
+    \underline{z}_3 = \underline{z}_1 \times \underline{z}_2 = r_1 r_2 e^{i \phi_1 + \phi_2} 
 \end{equation*}
 or:
 \begin{equation*}
-    z_3 = r_1 r_2 \left(\cos (\phi_1 + \phi_2) + i \sin (\phi_1 + \phi_2) \right) .
+    \underline{z}_3 = r_1 r_2 \left(\cos (\phi_1 + \phi_2) + i \sin (\phi_1 + \phi_2) \right) .
 \end{equation*}
 
 Furthermore, given that any complex number can be represented in the exponential form \eqref{eq:complexNumberExponential}, it can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \ref{fig:complexPlanePolar}.
@@ -319,9 +319,9 @@ The usefulness of the polar coordinates presentation becomes apparent when a set
 
 In this case, modelling can be done in the exponential form of complex numbers, which might allow capturing complicated non-linear relations between variables.
 
-When it comes to comparing complex numbers, mathematically we will say that two complex numbers \(z_1 = x_1 + i y_1\) and \(z_2 = x_2 + i y_2\) are equal to each other if and only if their real and imaginary parts are equal:
+When it comes to comparing complex numbers, mathematically we will say that two complex numbers \(\underline{z}_1 = x_1 + i y_1\) and \(\underline{z}_2 = x_2 + i y_2\) are equal to each other if and only if their real and imaginary parts are equal:
 \begin{equation*}
-    z_1 = z_2 \iff \left \lbrace
+    \underline{z}_1 = \underline{z}_2 \iff \left \lbrace
     \begin{aligned}
         & x_1 = x_2 \\
         & y_1 = y_2
@@ -330,10 +330,10 @@ When it comes to comparing complex numbers, mathematically we will say that two 
 \end{equation*}
 which is equivalent to saying that their magnitudes and polar angles are equal:
 \begin{equation*}
-    z_1 = z_2 \iff \left \lbrace
+    \underline{z}_1 = \underline{z}_2 \iff \left \lbrace
     \begin{aligned}
-        & |z_1| = |z_2| \\
-        & \Arg(z_1) = \Arg(z_2)
+        & |\underline{z}_1| = |\underline{z}_2| \\
+        & \Arg(\underline{z}_1) = \Arg(\underline{z}_2)
     \end{aligned}
     \right. .
 \end{equation*}
@@ -343,7 +343,7 @@ Unfortunately, given that complex numbers are two dimensional, it is not possibl
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexPlaneCircle-1.pdf}
-\caption{\label{fig:complexPlaneCircle}Comparison of two complex numbers \(z_1\) and \(z_2\) that have the same magnitude \(r\), but different angles \(\phi_1\) and \(\phi_2\).}
+\caption{\label{fig:complexPlaneCircle}Comparison of two complex numbers \(\underline{z}_1\) and \(\underline{z}_2\) that have the same magnitude \(r\), but different angles \(\phi_1\) and \(\phi_2\).}
 \end{figure}
 
 Continuing the discussion of different forms of a complex number, its magnitude can be represented in exponential form:
@@ -369,25 +369,25 @@ One of the important definitions in theory of complex numbers is the conjugate c
 which is the square of the magnitude \eqref{eq:complexNumberMagnitude} of both complex variables \(\underline{z}\) and \(\underline{\tilde{z}}\). Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
 \begin{equation}
     \begin{aligned}
-        & \tilde{x + y} = \tilde{x} + \tilde{y} \\
-        & \tilde{x - y} = \tilde{x} - \tilde{y} \\
-        & \tilde{x \times y} = \tilde{x} \times \tilde{y} \\
-        & \tilde{\frac{x}{y}} = \frac{\tilde{x}}{\tilde{y}} .
+        & \widetilde{x + y} = \tilde{x} + \tilde{y} \\
+        & \widetilde{x - y} = \tilde{x} - \tilde{y} \\
+        & \widetilde{x \times y} = \tilde{x} \times \tilde{y} \\
+        & \widetilde{\frac{x}{y}} = \frac{\tilde{x}}{\tilde{y}} .
     \end{aligned}
     \label{eq:complexNumberConjugateDistributive}
 \end{equation}
 
 Finally, given that any complex number can be represented visually in a form of a vector, we can write it mathematically either like vector:
 \begin{equation}
-    \begin{pmatrix} x \\ y \end{pmatrix}
+    \boldsymbol{z} = \begin{pmatrix} x \\ y \end{pmatrix}
     \label{eq:complexNumberVectors}
 \end{equation}
 or like a matrix:
 \begin{equation}
-    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} .
+    \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
     \label{eq:complexNumberMatrix}
 \end{equation}
-In the latter case, the real number can be represented as a diagonal matrix, while the imaginary one is the matrix with zero diagonal:
+where the symbold \(\sim\) below the letter denotes a matrix presentation of a complex number. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
 \begin{equation*}
     \begin{aligned}
         & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
@@ -396,18 +396,18 @@ In the latter case, the real number can be represented as a diagonal matrix, whi
 \end{equation*}
 All the mathematical operations done with the vector and matrix representations would correspond to the ones for the conventional complex numbers. Furthermore, the multiplication by the transpose of the original object in both of these cases is equivalent to the multiplication by the conjugate value \eqref{eq:complexNumberConjugateMulti}. For the vector:
 \begin{equation}
-    \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
+    \boldsymbol{z} \boldsymbol{z}^\prime \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
     \label{eq:complexNumberVectorsMulti}
 \end{equation}
 and for the matrix:
 \begin{equation}
-    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & y \\ -y & x \end{pmatrix} = 
+    \underset{\sim}{\boldsymbol{z}} \underset{\sim}{\boldsymbol{z}}^\prime = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & y \\ -y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     \label{eq:complexNumberMatrixMulti}
 \end{equation}
 These transpositions will be called in this monograph ``conjugate transpositions''. The vector and matrix representations become especially useful when we work with complex variables to construct complex models. Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
 \begin{equation}
-    \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
+    \underset{\sim}{\boldsymbol{z}} \underset{\sim}{\boldsymbol{z}}^{\top} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 - y^2 & - 2 xy \\ 2 xy & x^2 - y^2 \end{pmatrix}.
     \label{eq:complexNumberMatrixMultiDirect}
 \end{equation}
@@ -572,12 +572,12 @@ due to the law of total expectation and because \(i\) is a constant. In \eqref{e
 \end{equation}
 where \(n\) is the sample size and \(\hat{\mu}\) is the estimate of \(\mu\). The properties of the first moment of c.r.v. are similar to the properties of any other random variable. The only thing to note is that the moment can also be represented in a vector or matrix form (see Subsection \ref{complexVariable}):
 \begin{equation}
-    \begin{pmatrix} \mu_{r} \\ \mu_{i} \end{pmatrix} 
+    \boldsymbol{\mu} = \begin{pmatrix} \mu_{r} \\ \mu_{i} \end{pmatrix} 
     \label{eq:crvMomentsVector}
 \end{equation}
 or
 \begin{equation}
-    \begin{pmatrix} \mu_{r} & - \mu_{i} \\ \mu_{i} & \mu_{r} \end{pmatrix} .
+    \underset{\sim}{\boldsymbol{\mu}} = \begin{pmatrix} \mu_{r} & - \mu_{i} \\ \mu_{i} & \mu_{r} \end{pmatrix} .
     \label{eq:crvMomentsMatrix}
 \end{equation}
 
@@ -594,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.7617+100.0264i
+## [1] 50.4395+100.9806i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -656,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 130.5641+0i
+## 126.697+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -669,7 +669,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -85.21439+8.41653i
+## -88.79525+5.37713i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -695,8 +695,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r        x_i
-## x_r 22.674876   4.208265
-## x_i  4.208265 107.889263
+## x_r 18.950852   2.688565
+## x_i  2.688565 107.746102
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -708,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2428.666
+## [1] 2034.652
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -775,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 49.72425-99.98518i
+## 46.64788-63.76266i
 \end{verbatim}
 
 \begin{Shaded}
@@ -787,8 +787,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-## Direct covariance 
-## -33.238+46.0364i
+##  Direct covariance 
+## -29.38773+32.7744i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -802,8 +802,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -70.42205- 8.05099i -33.23800+46.03640i
-## y -33.23800+46.03640i  14.65001+ 6.50463i
+## x -46.61703- 9.96792i -29.38773+32.77440i
+## y -29.38773+32.77440i  18.51647+45.90022i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -874,6 +874,8 @@ Figure \ref{fig:plotlyCNormal} shows the PDF of \(x \sim \mathcal{CN}(100+100i,1
 \caption{\label{fig:plotlyCNormalHeatmap}Heatmap of density of Complex Normal distribution.}
 \end{figure}
 
+One special case of a Complex Normal distribution is a so called ``Circular Symmetric'' Complex Normal distribution. It is a distribution for which the direct variance equals to zero, which implies that the variances of the real and the imaginary parts are equal and that the covariance between them is equal to zero. This specific distribution is used extensively in signal processing literature \citep{referenceHere}.
+
 The functions of the Complex Normal distribution are implemented as \texttt{dcnorm()}, \texttt{pcnorm()}, \texttt{qmcnorm()} and \texttt{rmcnorm()} in the \texttt{complex} package.
 
 The Complex Normal distribution can be used for the joint estimation of parameters of a complex-valued model and for generation of prediction intervals from it. However, in some cases it might be more convenient to consider a c.r.v. model as a bivariate vector model based on \eqref{eq:complexFunctionVectors} and thus to revert to the multivariate normal distribution.
@@ -909,8 +911,10 @@ Note however that working with confidence regions is challenging, because there 
 \end{equation}
 where \(z\left({\frac{\alpha}{2}} \right)\) and \(z\left({\frac{1+\alpha}{2}} \right)\) are the respective lower and upper quantiles of the standard normal distribution.
 
-\hypertarget{hotellings-distribution}{%
-\subsection{Hotelling's distribution}\label{hotellings-distribution}}
+\hypertarget{hotellings-t-squared-distribution}{%
+\subsection{Hotelling's T-squared distribution}\label{hotellings-t-squared-distribution}}
+
+When it comes to distribution of complex variables statistics, one of the most important ones is a distribution of a mean of a complex variable. In the case of real variables, it is well known that if the Central Limit Theorem (CLT) holds then the sample mean will follow Normal distribution, and confidence interval for the mean can be constructed using Student's t distribution (when the population variance is unknown, i.e.~in reality). For c.r.v., the situation is similar: when CLT holds, the c.r.v. follows Complex Normal distribution, but instead of Student's t distribution, we need to use its multivariate counterpart, which is called ``Hotelling's T-squared'' distribution. It is more convenient to consider the statistics for a c.r.v in a vector form (i.e.~treat it as bivariate). If we estimate the sample mean \(\hat{\boldsymbol{\mu}}\) and a sample covariance matrix \(\hat{\boldsymbol{\Sigma}}_x\)
 
 \hypertarget{simpleCLR}{%
 \chapter{Simple Complex Linear Regression}\label{simpleCLR}}
@@ -1771,7 +1775,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9981696+0i
+## [1] 0.9976548+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1829,7 +1833,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9977293
+## [1,] 0.9975616
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1854,11 +1858,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i         y_r        y_i
-## x_r 1.00000000  0.03791072  0.71996491 0.75083736
-## x_i 0.03791072  1.00000000 -0.66363146 0.68566337
-## y_r 0.71996491 -0.66363146  1.00000000 0.08625633
-## y_i 0.75083736  0.68566337  0.08625633 1.00000000
+##             x_r         x_i         y_r         y_i
+## x_r  1.00000000 -0.06674379  0.71302792  0.66973582
+## x_i -0.06674379  1.00000000 -0.74337746  0.69360226
+## y_r  0.71302792 -0.74337746  1.00000000 -0.03798638
+## y_i  0.66973582  0.69360226 -0.03798638  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.

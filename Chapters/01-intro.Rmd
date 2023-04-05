@@ -116,20 +116,20 @@ plot(c(0,9),c(0,6), type="l",
      yaxt="n", xaxt="n", col="white")
 draw.circle(0,0,sqrt(9^2+6^2))
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=2)
-text(Re(x),Im(x),TeX("$\underline{z}_1$", italic=T),pos=3)
+text(Re(x),Im(x),TeX("$\\underline{z}_1$", italic=T),pos=3)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=1)
 text(1,1.5,TeX("$\\frac{\\pi}{2}$", italic=T),pos=3, cex=0.8)
 x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=3)
-text(Re(x),Im(x),TeX("$\underline{z}_2$", italic=T),pos=3)
+text(Re(x),Im(x),TeX("$\\underline{z}_2$", italic=T),pos=3)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=2)
 x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=4)
-text(Re(x),Im(x),TeX("$\underline{z}_3$", italic=T),pos=1)
+text(Re(x),Im(x),TeX("$\\underline{z}_3$", italic=T),pos=1)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=3)
 x <- x * 1i
 draw.arc(0,0,2,Arg(x),Arg(x)+pi/2, lwd=2, col=1)
-text(Re(x),Im(x),TeX("$\underline{z}_4$", italic=T),pos=1)
+text(Re(x),Im(x),TeX("$\\underline{z}_4$", italic=T),pos=1)
 arrows(0,0,Re(x),Im(x), lwd=2, angle=15, col=4)
 abline(h=0,v=0,lty=1)
 text(15, -1, "x", cex=1.25)
@@ -213,15 +213,15 @@ which is equivalent to saying that their magnitudes and polar angles are equal:
 
 Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one number is greater or less than the other. However, we could use magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the number with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only give us information about rotation of a complex number and thus do not give any meaningful information about the comparison of numbers. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one number is greater than the other in this case. In order to conclude that, we would need to devise additional criteria for comparison of numbers (e.g. positive numbers are "better" than the negative ones, thus $\phi_1=\pi$ and $\phi_1=-\pi$ is "worse" than $\phi_2=0$).
 
-```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $\underline{z}_1$ and $\underline{z}_2$ that have the same magnitude $r$, but different angles $\\phi_1$ and $\\phi_2$.", echo=FALSE}
+```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $\\underline{z}_1$ and $\\underline{z}_2$ that have the same magnitude $r$, but different angles $\\phi_1$ and $\\phi_2$.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
 plot(c(0,9),c(0,6), type="l",
      xlab="", ylab="",
      xlim=c(0,12), ylim=c(0,12), axes=F,
      yaxt="n", xaxt="n", col="white")
 draw.circle(0,0,sqrt(9^2+6^2))
-text(9,6,TeX("$\underline{z}_1$", italic=T),pos=3)
-text(6,9,TeX("$\underline{z}_2$", italic=T),pos=3)
+text(9,6,TeX("$\\underline{z}_1$", italic=T),pos=3)
+text(6,9,TeX("$\\underline{z}_2$", italic=T),pos=3)
 text(4.5,3,TeX("$r$", italic=T),pos=3)
 text(3,4.5,TeX("$r$", italic=T),pos=3)
 draw.arc(0,0,2,0,atan(6/9), col="grey", lwd=2)
@@ -258,22 +258,23 @@ One of the important definitions in theory of complex numbers is the conjugate c
 which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $\underline{z}$ and $\underline{\tilde{z}}$. Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
 \begin{equation}
     \begin{aligned}
-        & \tilde{x + y} = \tilde{x} + \tilde{y} \\
-        & \tilde{x - y} = \tilde{x} - \tilde{y} \\
-        & \tilde{x \times y} = \tilde{x} \times \tilde{y} \\
-        & \tilde{\frac{x}{y}} = \frac{\tilde{x}}{\tilde{y}} .
+        & \widetilde{x + y} = \tilde{x} + \tilde{y} \\
+        & \widetilde{x - y} = \tilde{x} - \tilde{y} \\
+        & \widetilde{x \times y} = \tilde{x} \times \tilde{y} \\
+        & \widetilde{\frac{x}{y}} = \frac{\tilde{x}}{\tilde{y}} .
     \end{aligned}
     (\#eq:complexNumberConjugateDistributive)
 \end{equation}
 
+
 Finally, given that any complex number can be represented visually in a form of a vector, we can write it mathematically either like vector:
 \begin{equation}
-    \boldymbol{z} = \begin{pmatrix} x \\ y \end{pmatrix}
+    \boldsymbol{z} = \begin{pmatrix} x \\ y \end{pmatrix}
     (\#eq:complexNumberVectors)
 \end{equation}
 or like a matrix:
 \begin{equation}
-    \underset{\sim}{\boldymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
+    \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
     (\#eq:complexNumberMatrix)
 \end{equation}
 where the symbold $\sim$ below the letter denotes a matrix presentation of a complex number. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
@@ -285,18 +286,18 @@ where the symbold $\sim$ below the letter denotes a matrix presentation of a com
 \end{equation*}
 All the mathematical operations done with the vector and matrix representations would correspond to the ones for the conventional complex numbers. Furthermore, the multiplication by the transpose of the original object in both of these cases is equivalent to the multiplication by the conjugate value \@ref(eq:complexNumberConjugateMulti). For the vector:
 \begin{equation}
-    \boldysymbol{z} \boldysymbol{z}^\prime \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
+    \boldsymbol{z} \boldsymbol{z}^\prime \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
     (\#eq:complexNumberVectorsMulti)
 \end{equation}
 and for the matrix:
 \begin{equation}
-    \underset{\sim}{\boldymbol{z}} \underset{\sim}{\boldymbol{z}}^\prime = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & y \\ -y & x \end{pmatrix} = 
+    \underset{\sim}{\boldsymbol{z}} \underset{\sim}{\boldsymbol{z}}^\prime = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & y \\ -y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     (\#eq:complexNumberMatrixMulti)
 \end{equation}
 These transpositions will be called in this monograph "conjugate transpositions". The vector and matrix representations become especially useful when we work with complex variables to construct complex models. Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
 \begin{equation}
-    \underset{\sim}{\boldymbol{z}} \underset{\sim}{\boldymbol{z}}^{\top} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
+    \underset{\sim}{\boldsymbol{z}} \underset{\sim}{\boldsymbol{z}}^{\top} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 - y^2 & - 2 xy \\ 2 xy & x^2 - y^2 \end{pmatrix}.
     (\#eq:complexNumberMatrixMultiDirect)
 \end{equation}
