@@ -814,7 +814,7 @@ or equivalently:
     \end{aligned}
     (\#eq:hypothesisSecond)
 \end{equation}
-However, from practical point of view, testing the joint hypothesis \@ref(eq:hypothesisSecond) might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution might provide more detailed information, i.e. whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \@ref(eq:hypothesisSecond), rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
+However, from practical point of view, testing the joint hypothesis \@ref(eq:hypothesisSecond) might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution for each part of c.r.v. might provide more detailed information, i.e. whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \@ref(eq:hypothesisSecond), rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
 
 
 
