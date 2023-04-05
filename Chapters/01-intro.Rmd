@@ -261,7 +261,7 @@ which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both co
         & \widetilde{x + y} = \tilde{x} + \tilde{y} \\
         & \widetilde{x - y} = \tilde{x} - \tilde{y} \\
         & \widetilde{x \times y} = \tilde{x} \times \tilde{y} \\
-        & \widetilde{\frac{x}{y}} = \frac{\tilde{x}}{\tilde{y}} .
+        & \widetilde{\left(\frac{x}{y}\right)} = \frac{\tilde{x}}{\tilde{y}} .
     \end{aligned}
     (\#eq:complexNumberConjugateDistributive)
 \end{equation}
@@ -766,7 +766,7 @@ The Complex Normal distribution can be used for the joint estimation of paramete
 The same normal distribution for a complex variable can be parametrised via a covariance matrix $\boldsymbol{\Sigma}$ from \@ref(eq:crvMomentSecondVarianceMatrix) instead of the conjugate and direct variances $\sigma^2$ and $\varsigma^2$. In general, the Probability Density Function for a vector of $n$ variables can be written as:
 \begin{equation}
     f(\mathbf{x}) = \frac{1}{(2 \pi)^{\frac{n}{2}} \sqrt{|\boldsymbol{\Sigma}|}} \exp\left(- \frac{1}{2}
-        \begin{pmatrix} \mathbf{x} - \mathbf{\mu} \end{pmatrix}^\top \boldsymbol{\Sigma}^{-1} \begin{pmatrix} \mathbf{x} - \mathbf{\mu} \end{pmatrix}
+        \begin{pmatrix} \mathbf{x} - \boldsymbol{\mu} \end{pmatrix}^\top \boldsymbol{\Sigma}^{-1} \begin{pmatrix} \mathbf{x} - \boldsymbol{\mu} \end{pmatrix}
     \right).
     (\#eq:MultivariateNormalPDF)
 \end{equation}
@@ -793,9 +793,28 @@ where $z\left({\frac{\alpha}{2}} \right)$ and $z\left({\frac{1+\alpha}{2}} \righ
 
 
 ### Hotelling's T-squared distribution
-When it comes to distribution of complex variables statistics, one of the most important ones is a distribution of a mean of a complex variable. In the case of real variables, it is well known that if the Central Limit Theorem (CLT) holds then the sample mean will follow Normal distribution, and confidence interval for the mean can be constructed using Student's t distribution (when the population variance is unknown, i.e. in reality). For c.r.v., the situation is similar: when CLT holds, the c.r.v. follows Complex Normal distribution, but instead of Student's t distribution, we need to use its multivariate counterpart, which is called "Hotelling's T-squared" distribution. It is more convenient to consider the statistics for a c.r.v in a vector form (i.e. treat it as bivariate). If we estimate the sample mean $\hat{\boldsymbol{\mu}}$ and a sample covariance matrix $\hat{\boldsymbol{\Sigma}}_x$
-
-
+When it comes to distribution of complex variables statistics, one of the most important ones is a distribution of a mean of a complex variable. In the case of real variables, it is well known that if the Central Limit Theorem (CLT) holds then the sample mean will follow Normal distribution, and confidence interval for the mean can be constructed using Student's t distribution (when the population variance is unknown, i.e. in reality). For c.r.v., the situation is similar: when CLT holds, the c.r.v. follows Complex Normal distribution, but instead of Student's t distribution, we need to use its multivariate counterpart, which is called "Hotelling's T-squared" distribution. It is more convenient to consider the statistics for a c.r.v in a vector form (i.e. treat it as bivariate). If we estimate the sample mean $\hat{\boldsymbol{\mu}}_x$ and a sample covariance matrix of the mean $\hat{\boldsymbol{\Sigma}}_{\mu_{x}}$ then the following holds (if CLT holds):
+\begin{equation}
+    (\hat{\boldsymbol{\mu}}_x - \boldsymbol{\mu}_x)^\prime \hat{\boldsymbol{\Sigma}}_{\mu_{x}}^{-1} (\hat{\boldsymbol{\mu}}_x - \boldsymbol{\mu}_x) \sim T^2(2, n-1) = \frac{2(n-1)}{n-2} F(2, n-2),
+    (\#eq:hotellingT)
+\end{equation}
+where $T^2(2, n-1)$ is a T-squared Hotelling's statistics with 2 and $n-1$ degrees of freedom, and $F(2, n-2)$ is the Fisher's distribution statistics with 2 and $n-2$ degrees of freedom. Equation \@ref(eq:hotellingT) can be used to construct confidence interval for a multivariate mean or for testing statistical hypotheses. One of the possible hypotheses that would make sense in case of c.r.v. and could be tested based on \@ref(eq:hotellingT) is the following:
+\begin{equation}
+    \begin{aligned}
+        & \mathrm{H}_0: \boldsymbol{\mu}_x = 0 \\
+        & \mathrm{H}_1: \boldsymbol{\mu}_x \neq 0
+    \end{aligned}
+    (\#eq:hypothesisFirst)
+\end{equation}
+or equivalently:
+\begin{equation}
+    \begin{aligned}
+        & \mathrm{H}_0: \mu_{x_r} = \mu_{x_i} = 0 \\
+        & \mathrm{H}_1: \mu_{x_r} \neq 0 \vee \mu_{x_i} \neq 0
+    \end{aligned}
+    (\#eq:hypothesisSecond)
+\end{equation}
+However, from practical point of view, testing the joint hypothesis \@ref(eq:hypothesisSecond) might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution might provide more detailed information, i.e. whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \@ref(eq:hypothesisSecond), rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
 
 
 
