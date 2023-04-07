@@ -200,15 +200,7 @@ The expectation of the product in \@ref(eq:MCLROLSVariance03) can be rewritten a
     \end{aligned}
     (\#eq:MCLROLSConjVar)
 \end{equation}
-where the expectations of each term are equal to zero as long as the classical regression assumptions hold and $\sigma_{\underline{\epsilon}}^2$ is the conjugate variance of the error term. Similarly, conjugate variance can be calculated for the CLS estimates of parameters, which will result in:
-\begin{equation}
-    \begin{aligned}
-        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
-        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \left( \tilde{\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\top \sigma_{\underline{\epsilon}}^2 .
-    \end{aligned}
-    (\#eq:MCLRCLSConjVar)
-\end{equation}
-Finally, using the same logic, it can be shown that the direct variances of parameters for both methods can be calculated as:
+where the expectations of each term are equal to zero as long as the classical regression assumptions hold and $\sigma_{\underline{\epsilon}}^2$ is the conjugate variance of the error term. Using the same logic, it can be shown that the direct variance of parameters can be calculated as:
 \begin{equation}
     \begin{aligned}
         \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
@@ -216,7 +208,15 @@ Finally, using the same logic, it can be shown that the direct variances of para
     \end{aligned}
     (\#eq:MCLROLSDirVar)
 \end{equation}
-for OLS and
+Finally, in a similar fashion, conjugate and direct covariance matrices of parameters can be calculated for the CLS:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
+        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \left( \tilde{\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\top \sigma_{\underline{\epsilon}}^2 .
+    \end{aligned}
+    (\#eq:MCLRCLSConjVar)
+\end{equation}
+and
 \begin{equation}
     \begin{aligned}
         \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
