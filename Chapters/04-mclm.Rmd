@@ -162,28 +162,75 @@ It is possible to calculate the variance of estimates of parameters, using the s
 \end{equation}
 One thing that becomes apparent from this expansion is that the OLS estimates of parameters for a multiple complex linear regression will be unbiased as long as the expectation of the error term $\underline{\boldsymbol{\epsilon}}$ is zero and it is not correlated with the explanatory variables. It is easy to show that the same holds for the CLS estimates as well based on the following expanded formula:
 \begin{equation}
-    \begin{aligned}
-    \underline{\boldsymbol{b}}^{\text{CLS}} = & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \underline{\boldsymbol{\epsilon}} .
-    \end{aligned}
+    \underline{\boldsymbol{b}}^{\text{CLS}} = \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \underline{\boldsymbol{\epsilon}} .
     (\#eq:MCLRCLSExpansion)
 \end{equation}
+This is a standard result from the real-valued regression analysis, but it is useful to know that it holds for the both estimation methods in complex-valued regression as well.
 
+Based on \@ref(eq:MCLROLSExpansion), we can calculate the conjugate variance to get conjugate covariance matrix of parameters:
+\begin{equation}
+    \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \mathrm{V}\left( \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) .
+    (\#eq:MCLROLSVariance01)
+\end{equation}
+In the formula \@ref(eq:MCLROLSVariance01), the true estimates of parameters $\underline{\boldsymbol{\beta}}$ will be independent of the explanatory variables and the error term, so the formula can be represented as a sum of variances. Furthermore, the true parameters do not have any uncertainty, i.e. $\mathrm{V}\left( \underline{\boldsymbol{\beta}} \right) = 0$, meaning that the formula \@ref(eq:MCLROLSVariance01) can be transformed into:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
+        & \mathrm{V}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) = \\
+        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \widetilde{ \left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}\right)} \right) .
+    \end{aligned}
+    (\#eq:MCLROLSVariance02)
+\end{equation}
+We switch from the variance to the expectation in \@ref(eq:MCLROLSVariance02), dropping the expectation of the term in the brackets from the formula because it will be equal to zero as long as the explanatory variables and the error term are uncorrelated (one of the classical assumptions of a regression model). The tilde over the second term in \@ref(eq:MCLROLSVariance02) shows that this is the conjugate of the original complex variable. Recalling distributive properties of the conjugation \@ref(eq:complexNumberConjugateDistributive), the same formula can be rewritten as:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
+        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\boldsymbol{\epsilon}}} \right) ,
+    \end{aligned}
+    (\#eq:MCLROLSVariance03)
+\end{equation}
+The expectation of the product in \@ref(eq:MCLROLSVariance03) can be rewritten as a product of expectations plus a covariance between the terms:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
+        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) \mathrm{E}\left( \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\boldsymbol{\epsilon}}} \right) + \\
+        & \mathrm{cov}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}, \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \mathrm{cov}\left( \underline{\boldsymbol{\epsilon}}, \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \sigma_{\underline{\epsilon}}^2 ,
+    \end{aligned}
+    (\#eq:MCLROLSConjVar)
+\end{equation}
+where the expectations of each term are equal to zero as long as the classical regression assumptions hold and $\sigma_{\underline{\epsilon}}^2$ is the conjugate variance of the error term. Similarly, conjugate variance can be calculated for the CLS estimates of parameters, which will result in:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
+        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \left( \tilde{\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\top \sigma_{\underline{\epsilon}}^2 .
+    \end{aligned}
+    (\#eq:MCLRCLSConjVar)
+\end{equation}
+Finally, using the same logic, it can be shown that the direct variances of parameters for both methods can be calculated as:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \sigma_{\underline{\epsilon}}^2 .
+    \end{aligned}
+    (\#eq:MCLROLSDirVar)
+\end{equation}
+for OLS and
+\begin{equation}
+    \begin{aligned}
+        \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
+        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \sigma_{\underline{\epsilon}}^2 .
+    \end{aligned}
+    (\#eq:MCLROLSDirVar)
+\end{equation}
+for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model.
 
-This is a standard result from the real-valued regression analysis, but
 
 
 The main issue in this approach, as discussed in Subsection \@ref(CLREstimationIssue), is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense.
 
 In order to get the individual effects correctly, we need to refer to the model form \@ref(eq:MultipleCLRSystemVectorEstimated), and use the covariance matrix of the error term $\hat{\Sigma}$ instead of either direct or conjugate variances.
-
-
-$\underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}})$
-
-$\underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}}$
-
-$\underline{\boldsymbol{b}} = \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}}$
-
-$\mathrm{V}(\underline{\boldsymbol{b}}) = \mathrm{E}\left(\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}}\right) \left(\left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime  \tilde{\underline{\boldsymbol{\epsilon}}} \right) \right)$
 
 
 
