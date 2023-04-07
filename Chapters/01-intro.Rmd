@@ -482,7 +482,7 @@ mean(x)
 While there are raw moments for c.r.v., here we will focus on the centred ones, i.e. moments for $x-\bar{x}$. There are several instruments related to the second moment that could characterise a complex random variable. The first one is called "variance" and is based on the multiplication by a conjugate number [@reference]. So for the c.r.v. $x_r + i x_i$ the variance is:
 \begin{equation}
     \begin{aligned}
-    \sigma_x^2 = & \mathrm{E}((x-\mu) (\tilde{x}-\tilde{\mu})) = \\
+    \mathrm{V}(\underline{x}) = \sigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu}) (\tilde{\underline{x}}-\tilde{\underline{\mu}})) = \\
                  & \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))((x_r-\mu_{r}) - i (x_i-\mu_{i}))\right) = \\
                  & \mathrm{E}((x_r-\mu_{r})^2) +  \mathrm{E}((x_i-\mu_{i})^2)
     \end{aligned}
@@ -514,7 +514,7 @@ Figure \@ref(fig:crvMomentSecondVariance) demonstrates graphically the relation 
 @Picinbono note that the moment \@ref(eq:crvMomentSecondVarianceShort) is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. Another measure of variability of a complex random variable is the so called "pseudo-variance" [@reference], which can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate:
 \begin{equation}
     \begin{aligned}
-    \varsigma_x^2 = & \mathrm{E}(x-\mu^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
+    \mathcal{V}(\underline{x}) = \varsigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu})^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
                     & \mathrm{E}((x_r-\mu_{r})^2) - \mathrm{E}((x_i-\mu_{i})^2) + i2 \mathrm{E}((x_r-\mu_{r})(x_i-\mu_{i}))
     \end{aligned}
     (\#eq:crvMomentSecondVariancePseudo)
