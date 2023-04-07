@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-04-05}
+\date{2023-04-07}
 
 \begin{document}
 \maketitle
@@ -594,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.5654+100.385i
+## [1] 51.1888+100.3911i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -656,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 150.509+0i
+## 123.3473+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -669,7 +669,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -96.64872-1.23656i
+## -73.34471-5.06083i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -694,9 +694,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i
-## x_r 26.9301538  -0.6182819
-## x_i -0.6182819 123.5788712
+##           x_r       x_i
+## x_r 25.001282 -2.530414
+## x_i -2.530414 98.345992
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -708,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3327.616
+## [1] 2452.373
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -775,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 52.5628-94.99459i
+## 69.01071-83.28382i
 \end{verbatim}
 
 \begin{Shaded}
@@ -788,7 +788,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -39.23729+44.04638i
+## -63.21845+50.52052i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -802,8 +802,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -68.23133-13.61148i -39.23729+44.04638i
-## y -39.23729+44.04638i   6.43149+57.71384i
+## x -76.49164- 6.44140i -63.21845+50.52052i
+## y -63.21845+50.52052i  10.37709+83.57549i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -935,7 +935,7 @@ or equivalently:
     \end{aligned}
     \label{eq:hypothesisSecond}
 \end{equation}
-However, from practical point of view, testing the joint hypothesis \eqref{eq:hypothesisSecond} might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution might provide more detailed information, i.e.~whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \eqref{eq:hypothesisSecond}, rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
+However, from practical point of view, testing the joint hypothesis \eqref{eq:hypothesisSecond} might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution for each part of c.r.v. might provide more detailed information, i.e.~whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \eqref{eq:hypothesisSecond}, rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
 
 \hypertarget{simpleCLR}{%
 \chapter{Simple Complex Linear Regression}\label{simpleCLR}}
@@ -1796,7 +1796,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9981047+0i
+## [1] 0.9971523+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1853,8 +1853,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##          [,1]
-## [1,] 0.997496
+##           [,1]
+## [1,] 0.9968711
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1879,11 +1879,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i         y_r         y_i
-## x_r 1.0000000  0.1166088  0.64563819  0.73476935
-## x_i 0.1166088  1.0000000 -0.67970883  0.75751947
-## y_r 0.6456382 -0.6797088  1.00000000 -0.03976467
-## y_i 0.7347693  0.7575195 -0.03976467  1.00000000
+##            x_r         x_i         y_r        y_i
+## x_r 1.00000000  0.03369468  0.72029618 0.73029383
+## x_i 0.03369468  1.00000000 -0.66461562 0.70346535
+## y_r 0.72029618 -0.66461562  1.00000000 0.05743829
+## y_i 0.73029383  0.70346535  0.05743829 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2025,12 +2025,12 @@ When it comes to CLS, the criterion \eqref{eq:CLRCLSCriterion} implies that:
 \end{equation}
 which now takes the covariance into account but ignores the sizes of the individual variances of the real and imaginary parts of the complex residuals.
 
-In order to take the individual variances into account, we need to use a different criterion and, as a result, a different estimator. One of such estimators is the Maximum Likelihood Estimator (MLE).
+In order to take the individual variances and the covariance into account, we need to use a different criterion and, as a result, a different estimator. One of such estimators is the Maximum Likelihood Estimator (MLE).
 
 \hypertarget{likelihood}{%
 \subsection{Likelihood}\label{likelihood}}
 
-Similarly to how it was done in Subsection \ref{SCLREstimationLikelihood}, we can make an assumption about the distribution of the error term of the CLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \ref{MultipleCLRSystemVector} then after being estimated it becomes:
+Similarly to how it was done in Subsection \ref{SCLREstimationLikelihood}, we can make an assumption about the distribution of the error term of the CLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \eqref{eq:MultipleCLRSystemVector} then after being estimated it becomes:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{b} + \boldsymbol{e}_j .
     \label{eq:MultipleCLRSystemVectorEstimated}
@@ -2048,7 +2048,19 @@ Maximising this likelihood, as discussed in Subsection \ref{SCLREstimationLikeli
 \hypertarget{inference}{%
 \section{Inference}\label{inference}}
 
-It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \eqref{eq:MCLROLSEstimate} or \eqref{eq:MCLRCLSEstimate}. The main issue in this approach, as discussed in Subsection \ref{CLREstimationIssue}, is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense.
+It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \eqref{eq:MCLROLSEstimate} or \eqref{eq:MCLRCLSEstimate}. In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variance can then be used in hypothesis testing or confidence interval construction. In order to do that, we need to replace the actual value \(\underline{\mathbf{y}}\) with \(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}\) in the OLS formula \eqref{eq:MCLROLSEstimate}:
+\begin{equation}
+    \begin{aligned}
+    \underline{\boldsymbol{b}} =
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} =
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}) = 
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}} =
+        & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}}
+    \end{aligned}
+    \label{eq:MCLROLSVariance01}
+\end{equation}
+
+The main issue in this approach, as discussed in Subsection \ref{CLREstimationIssue}, is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense.
 
 In order to get the individual effects correctly, we need to refer to the model form \eqref{eq:MultipleCLRSystemVectorEstimated}, and use the covariance matrix of the error term \(\hat{\Sigma}\) instead of either direct or conjugate variances.
 

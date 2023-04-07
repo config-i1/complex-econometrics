@@ -128,11 +128,11 @@ When it comes to CLS, the criterion \@ref(eq:CLRCLSCriterion) implies that:
 \end{equation}
 which now takes the covariance into account but ignores the sizes of the individual variances of the real and imaginary parts of the complex residuals.
 
-In order to take the individual variances into account, we need to use a different criterion and, as a result, a different estimator. One of such estimators is the Maximum Likelihood Estimator (MLE).
+In order to take the individual variances and the covariance into account, we need to use a different criterion and, as a result, a different estimator. One of such estimators is the Maximum Likelihood Estimator (MLE).
 
 
 ### Likelihood
-Similarly to how it was done in Subsection \@ref(SCLREstimationLikelihood), we can make an assumption about the distribution of the error term of the CLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \@ref(MultipleCLRSystemVector) then after being estimated it becomes:
+Similarly to how it was done in Subsection \@ref(SCLREstimationLikelihood), we can make an assumption about the distribution of the error term of the CLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \@ref(eq:MultipleCLRSystemVector) then after being estimated it becomes:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{b} + \boldsymbol{e}_j .
     (\#eq:MultipleCLRSystemVectorEstimated)
@@ -149,7 +149,20 @@ Maximising this likelihood, as discussed in Subsection \@ref(SCLREstimationLikel
 
 
 ## Inference
-It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). The main issue in this approach, as discussed in Subsection \@ref(CLREstimationIssue), is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense.
+It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variance can then be used in hypothesis testing or confidence interval construction. In order to do that, we need to replace the actual value $\underline{\mathbf{y}}$ with $\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}$ in the OLS formula \@ref(eq:MCLROLSEstimate):
+\begin{equation}
+    \begin{aligned}
+    \underline{\boldsymbol{b}} =
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} =
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}) = 
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}} =
+        & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime  \underline{\boldsymbol{\epsilon}}
+    \end{aligned}
+    (\#eq:MCLROLSVariance01)
+\end{equation}
+
+
+The main issue in this approach, as discussed in Subsection \@ref(CLREstimationIssue), is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense.
 
 In order to get the individual effects correctly, we need to refer to the model form \@ref(eq:MultipleCLRSystemVectorEstimated), and use the covariance matrix of the error term $\hat{\Sigma}$ instead of either direct or conjugate variances.
 

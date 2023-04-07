@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  5 APR 2023 11:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  7 APR 2023 13:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -808,14 +808,14 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 
 [26]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGenerated
-Circle-1.pdf, id=363, 258.9675pt x 216.81pt>
+Circle-1.pdf, id=363, 255.95625pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGene
 ratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGener
 atedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvGeneratedCircle-1.pdf  used on input line 833.
-(pdftex.def)             Requested size: 258.97868pt x 216.81938pt.
+(pdftex.def)             Requested size: 255.95561pt x 214.80197pt.
 [27 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGen
 eratedCircle-1.pdf>]
 
@@ -986,14 +986,14 @@ Chapter 3.
 
 ]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-ots-1.pdf, id=730, 262.9825pt x 262.9825pt>
+ots-1.pdf, id=730, 263.98625pt x 264.99pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplots-1.pdf  used on input line 1575.
-(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
+(pdftex.def)             Requested size: 264.0017pt x 265.00551pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 584.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
@@ -1023,6 +1023,9 @@ igure-latex/crvScatterplotMDS-1.pdf  used on input line 1640.
 Package natbib Warning: Citation `ref' on page 53 undefined on input line 1649.
 
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 [53]
 
 Package natbib Warning: Citation `Panchev1971' on page 54 undefined on input li
@@ -1048,14 +1051,14 @@ ANDOM VARIABLES
 
 [56]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ate-1.pdf, id=803, 262.9825pt x 262.9825pt>
+ate-1.pdf, id=803, 262.9825pt x 264.99pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugate-1.pdf  used on input line 1787.
-(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
+(pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
 ateMDS-1.pdf, id=805, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
@@ -1065,14 +1068,8 @@ njugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugateMDS-1.pdf  used on input line 1812.
 (pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
-
-Underfull \vbox (badness 2221) has occurred while \output is active []
-
 [57 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCor
 Conjugate-1.pdf>]
-Underfull \vbox (badness 4084) has occurred while \output is active []
-
-
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 58 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
 ANDOM VARIABLES
@@ -1089,54 +1086,50 @@ ANDOM VARIABLES
 Chapter 4.
 [61
 
-] [62] [63]
+] [62] [63] [64]
+Overfull \hbox (95.29985pt too wide) detected at line 2061
+[][][][]
+ []
 
-LaTeX Warning: Reference `MultipleCLRSystemVector' on page 64 undefined on inpu
-t line 2033.
-
-[64] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [65] [66])
+[65] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [66])
 
 Package natbib Warning: There were undefined citations.
 
 [67
 
-] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 16485 strings out of 479648
- 271228 string characters out of 5886115
- 597145 words of memory out of 5000000
+ 16486 strings out of 479648
+ 271240 string characters out of 5886115
+ 597187 words of memory out of 5000000
  33584 multiletter control sequences out of 15000+600000
  559887 words of font info for 195 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
  74i,14n,77p,1348b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/d
-vips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/shar
-e/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ma
-thsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/f
-onts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.
-pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/
-type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb><
-/usr/share/texmf/fonts/type1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/
-public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/sha
-re/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/l
-m/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/tex
-mf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr1
-7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/
-type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></u
-sr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/p
-ublic/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/sha
-re/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/
-lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
-ls/msbm10.pfb>
+{/usr/share/texmf/fon
+ts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr
+/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips
+/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/te
+xmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lm
+bx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/f
+onts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.
+pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/
+type1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/sha
+re/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf
+/fonts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pf
+b></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/ty
+pe1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (67 pages,
- 3410042 bytes).
+ 3412105 bytes).
 PDF statistics:
- 1200 PDF objects out of 1200 (max. 8388607)
- 1009 compressed objects within 11 object streams
- 310 named destinations out of 1000 (max. 500000)
+ 1203 PDF objects out of 1440 (max. 8388607)
+ 1012 compressed objects within 11 object streams
+ 311 named destinations out of 1000 (max. 500000)
  51495 words of extra memory for PDF output out of 51595 (max. 10000000)
 
