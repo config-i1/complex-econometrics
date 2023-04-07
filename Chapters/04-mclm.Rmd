@@ -204,7 +204,7 @@ where the expectations of each term are equal to zero as long as the classical r
 \begin{equation}
     \begin{aligned}
         \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \sigma_{\underline{\epsilon}}^2 .
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2 .
     \end{aligned}
     (\#eq:MCLROLSDirVar)
 \end{equation}
@@ -220,7 +220,7 @@ and
 \begin{equation}
     \begin{aligned}
         \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
-        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \sigma_{\underline{\epsilon}}^2 .
+        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2 .
     \end{aligned}
     (\#eq:MCLROLSDirVar)
 \end{equation}

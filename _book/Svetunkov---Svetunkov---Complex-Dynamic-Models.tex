@@ -594,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.1686+100.5091i
+## [1] 50.12556+99.74265i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 While there are raw moments for c.r.v., here we will focus on the centred ones, i.e.~moments for \(x-\bar{x}\). There are several instruments related to the second moment that could characterise a complex random variable. The first one is called ``variance'' and is based on the multiplication by a conjugate number \citep{reference}. So for the c.r.v. \(x_r + i x_i\) the variance is:
 \begin{equation}
     \begin{aligned}
-    \sigma_x^2 = & \mathrm{E}((x-\mu) (\tilde{x}-\tilde{\mu})) = \\
+    \mathrm{V}(\underline{x}) = \sigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu}) (\tilde{\underline{x}}-\tilde{\underline{\mu}})) = \\
                  & \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))((x_r-\mu_{r}) - i (x_i-\mu_{i}))\right) = \\
                  & \mathrm{E}((x_r-\mu_{r})^2) +  \mathrm{E}((x_i-\mu_{i})^2)
     \end{aligned}
@@ -627,7 +627,7 @@ Figure \ref{fig:crvMomentSecondVariance} demonstrates graphically the relation b
 \citet{Picinbono} note that the moment \eqref{eq:crvMomentSecondVarianceShort} is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. Another measure of variability of a complex random variable is the so called ``pseudo-variance'' \citep{reference}, which can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate:
 \begin{equation}
     \begin{aligned}
-    \varsigma_x^2 = & \mathrm{E}(x-\mu^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
+    \mathcal{V}(\underline{x}) = \varsigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu})^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
                     & \mathrm{E}((x_r-\mu_{r})^2) - \mathrm{E}((x_i-\mu_{i})^2) + i2 \mathrm{E}((x_r-\mu_{r})(x_i-\mu_{i}))
     \end{aligned}
     \label{eq:crvMomentSecondVariancePseudo}
@@ -656,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 152.0927+0i
+## 115.6628+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -668,8 +668,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -92.85769+0.62552i
+##     Direct variance 
+## -60.20029+15.23552i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -694,9 +694,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 29.617492   0.312761
-## x_i  0.312761 122.475179
+##           x_r       x_i
+## x_r 27.731233  7.617759
+## x_i  7.617759 87.931520
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -708,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3627.31
+## [1] 2380.419
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -775,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 79.8905-102.5463i
+## 90.45748-97.79569i
 \end{verbatim}
 
 \begin{Shaded}
@@ -788,7 +788,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -46.22346+79.14255i
+## -58.48847+85.40248i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -801,9 +801,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -90.46740+14.36533i -46.22346+79.14255i
-## y -46.22346+79.14255i   9.87479+38.70749i
+##                     x                    y
+## x -88.84877+ 2.87645i -58.48847+ 85.40248i
+## y -58.48847+85.40248i  28.91280+135.65121i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1796,7 +1796,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9968808+0i
+## [1] 0.9967445+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1854,7 +1854,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9961744
+## [1,] 0.9962098
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1879,11 +1879,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i        y_r        y_i
-## x_r 1.0000000  0.0118843  0.6577379  0.6777723
-## x_i 0.0118843  1.0000000 -0.7411116  0.7391809
-## y_r 0.6577379 -0.7411116  1.0000000 -0.1019670
-## y_i 0.6777723  0.7391809 -0.1019670  1.0000000
+##            x_r         x_i         y_r        y_i
+## x_r 1.00000000  0.07624239  0.70103273 0.75032738
+## x_i 0.07624239  1.00000000 -0.65262409 0.71184007
+## y_r 0.70103273 -0.65262409  1.00000000 0.06114226
+## y_i 0.75032738  0.71184007  0.06114226 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2099,7 +2099,7 @@ The expectation of the product in \eqref{eq:MCLROLSVariance03} can be rewritten 
     \end{aligned}
     \label{eq:MCLROLSConjVar}
 \end{equation}
-where the expectations of each term are equal to zero as long as the classical regression assumptions hold and \(\sigma_{\underline{\epsilon}}^2\) is the conjugate variance of the error term. Using the same logic, it can be shown that the direct variances of parameters can be calculated as:
+where the expectations of each term are equal to zero as long as the classical regression assumptions hold and \(\sigma_{\underline{\epsilon}}^2\) is the conjugate variance of the error term. Using the same logic, it can be shown that the direct variance of parameters can be calculated as:
 \begin{equation}
     \begin{aligned}
         \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
@@ -2107,7 +2107,7 @@ where the expectations of each term are equal to zero as long as the classical r
     \end{aligned}
     \label{eq:MCLROLSDirVar}
 \end{equation}
-Finally, in a similar fashion, conjugate and direct variances can be calculated for the CLS estimates of parameters:
+Finally, in a similar fashion, conjugate and direct covariance matrices of parameters can be calculated for the CLS:
 \begin{equation}
     \begin{aligned}
         \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
