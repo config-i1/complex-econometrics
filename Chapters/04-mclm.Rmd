@@ -195,8 +195,8 @@ The expectation of the product in \@ref(eq:MCLROLSVariance03) can be rewritten a
         \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
         & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) \mathrm{E}\left( \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\boldsymbol{\epsilon}}} \right) + \\
         & \mathrm{cov}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}, \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \mathrm{cov}\left( \underline{\boldsymbol{\epsilon}}, \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\prime \sigma_{\underline{\epsilon}}^2 ,
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \mathrm{cov}\left( \underline{\boldsymbol{\epsilon}}, \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( \tilde{\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2 ,
     \end{aligned}
     (\#eq:MCLROLSConjVar)
 \end{equation}
@@ -212,7 +212,7 @@ Finally, in a similar fashion, conjugate and direct covariance matrices of param
 \begin{equation}
     \begin{aligned}
         \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
-        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \left( \tilde{\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} \tilde{\underline{\mathbf{X}}}^\top \sigma_{\underline{\epsilon}}^2 .
+        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( \tilde{\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\epsilon}}^2 .
     \end{aligned}
     (\#eq:MCLRCLSConjVar)
 \end{equation}
