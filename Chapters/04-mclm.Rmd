@@ -224,7 +224,7 @@ and
     \end{aligned}
     (\#eq:MCLROLSDirVar)
 \end{equation}
-for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix $\hat{\boldsymbol{\Sigma}}$ and then use it in calculation of either Student's t-statistics or Hotelling's T$^2$ statistics.
+for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix $\hat{\boldsymbol{\Sigma}}$ and then use it in calculation of either Student's t-statistics or Hotelling's T$^2$ statistics (Subsection \@ref(Hotelling)).
 
 
 

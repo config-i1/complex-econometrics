@@ -792,7 +792,7 @@ Note however that working with confidence regions is challenging, because there 
 where $z\left({\frac{\alpha}{2}} \right)$ and $z\left({\frac{1+\alpha}{2}} \right)$ are the respective lower and upper quantiles of the standard normal distribution.
 
 
-### Hotelling's T-squared distribution
+### Hotelling's T-squared distribution {#Hotelling}
 When it comes to distribution of complex variables statistics, one of the most important ones is a distribution of a mean of a complex variable. In the case of real variables, it is well known that if the Central Limit Theorem (CLT) holds then the sample mean will follow Normal distribution, and confidence interval for the mean can be constructed using Student's t distribution (when the population variance is unknown, i.e. in reality). For c.r.v., the situation is similar: when CLT holds, the c.r.v. follows Complex Normal distribution, but instead of Student's t distribution, we need to use its multivariate counterpart, which is called "Hotelling's T-squared" distribution. It is more convenient to consider the statistics for a c.r.v in a vector form (i.e. treat it as bivariate). If we estimate the sample mean $\hat{\boldsymbol{\mu}}_x$ and a sample covariance matrix of the mean $\hat{\boldsymbol{\Sigma}}_{\mu_{x}}$ then the following holds (if CLT holds):
 \begin{equation}
     (\hat{\boldsymbol{\mu}}_x - \boldsymbol{\mu}_x)^\prime \hat{\boldsymbol{\Sigma}}_{\mu_{x}}^{-1} (\hat{\boldsymbol{\mu}}_x - \boldsymbol{\mu}_x) \sim T^2(2, n-1) = \frac{2(n-1)}{n-2} F(2, n-2),
