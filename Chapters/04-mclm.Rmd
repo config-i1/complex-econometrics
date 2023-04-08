@@ -224,26 +224,8 @@ and
     \end{aligned}
     (\#eq:MCLROLSDirVar)
 \end{equation}
-for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model.
+for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix $\hat{\boldsymbol{\Sigma}}$ and then use it in calculation of either Student's t-statistics or Hotelling's T$^2$ statistics.
 
-
-
-The main issue in this approach, as discussed in Subsection \@ref(CLREstimationIssue), is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense.
-
-In order to get the individual effects correctly, we need to refer to the model form \@ref(eq:MultipleCLRSystemVectorEstimated), and use the covariance matrix of the error term $\hat{\Sigma}$ instead of either direct or conjugate variances.
-
-
-
-If we consider the values of $\underline{\mathbf{X}}$ as provided and known then $\mathrm{V}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1}\right)=0$, implying that:
-
-<!-- $\mathrm{V}(\underline{\boldsymbol{b}}) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \mathrm{V}(\underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \mathrm{V}( \underline{\boldsymbol{\epsilon}}) \underline{\mathbf{X}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \sigma_{\epsilon}^2$ -->
-
-
-In both OLS and CLS, the individual contributions of real and imaginary parts of regression are ignored, everything is averaged-out. We just get a vector of errors. In likelihood, the split is preserved.
-
-Covariance of parameters of the three approaches.
-
-Difference in covariance matrices... Does OLS - CLS produce positive semidefinite matrix?
 
 
 ## Diagnostics
