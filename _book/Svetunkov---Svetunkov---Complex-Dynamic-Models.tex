@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-04-07}
+\date{2023-04-08}
 
 \begin{document}
 \maketitle
@@ -594,7 +594,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.69409+99.59551i
+## [1] 50.88343+97.36909i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -656,7 +656,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 100.1848+0i
+## 129.4027+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -668,8 +668,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -50.84682-0.68124i
+##     Direct variance 
+## -80.02685-20.40511i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -694,9 +694,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i
-## x_r 24.6689996 -0.3406204
-## x_i -0.3406204 75.5158172
+##           x_r       x_i
+## x_r  24.68794 -10.20256
+## x_i -10.20256 104.71479
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -708,7 +708,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1862.784
+## [1] 2481.1
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -775,7 +775,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 66.80243-86.00012i
+## 68.76492-90.30221i
 \end{verbatim}
 
 \begin{Shaded}
@@ -788,7 +788,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -38.81067+57.19927i
+## -29.06618+38.12778i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -802,8 +802,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -73.83082- 3.63653i -38.81067+57.19927i
-## y -38.81067+57.19927i  40.44221+53.20163i
+## x -57.52798- 3.58447i -29.06618+38.12778i
+## y -29.06618+38.12778i  32.43004+69.16716i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1796,7 +1796,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9974762+0i
+## [1] 0.9973417+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1854,7 +1854,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9960365
+## [1,] 0.9932741
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1879,11 +1879,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i         y_r        y_i
-## x_r  1.0000000 -0.0294042  0.75144930 0.72244474
-## x_i -0.0294042  1.0000000 -0.67777075 0.66633827
-## y_r  0.7514493 -0.6777707  1.00000000 0.09213322
-## y_i  0.7224447  0.6663383  0.09213322 1.00000000
+##             x_r         x_i         y_r         y_i
+## x_r  1.00000000 -0.06718548  0.70576891  0.66047520
+## x_i -0.06718548  1.00000000 -0.75071852  0.70117264
+## y_r  0.70576891 -0.75071852  1.00000000 -0.06095876
+## y_i  0.66047520  0.70117264 -0.06095876  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2123,19 +2123,7 @@ and
     \end{aligned}
     \label{eq:MCLROLSDirVar}
 \end{equation}
-for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model.
-
-The main issue in this approach, as discussed in Subsection \ref{CLREstimationIssue}, is that it does not distinguish the individual variances of real and imaginary parts of the model and thus the real and imaginary parts of parameters will have exactly the same overall variance, which does not make sense.
-
-In order to get the individual effects correctly, we need to refer to the model form \eqref{eq:MultipleCLRSystemVectorEstimated}, and use the covariance matrix of the error term \(\hat{\Sigma}\) instead of either direct or conjugate variances.
-
-If we consider the values of \(\underline{\mathbf{X}}\) as provided and known then \(\mathrm{V}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1}\right)=0\), implying that:
-
-In both OLS and CLS, the individual contributions of real and imaginary parts of regression are ignored, everything is averaged-out. We just get a vector of errors. In likelihood, the split is preserved.
-
-Covariance of parameters of the three approaches.
-
-Difference in covariance matrices\ldots{} Does OLS - CLS produce positive semidefinite matrix?
+for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix \(\hat{\boldsymbol{\Sigma}}\) and then use it in calculation of either Student's t-statistics or Hotelling's T\(^2\) statistics.
 
 \hypertarget{diagnostics}{%
 \section{Diagnostics}\label{diagnostics}}
