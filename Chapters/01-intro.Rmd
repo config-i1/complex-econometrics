@@ -528,6 +528,17 @@ In the literature, the moment \@ref(eq:crvMomentSecondVariancePseudoShort) is ca
 
 We should note that both measures can be considered as complex, and the main distinction between them is the multiplication by the same c.r.v or by its conjugate. As such we propose to call them respectively "conjugate variance" and "direct variance".
 
+Having calculated the two variances, we can then extract variances of real and imaginary parts and the covariance between them via formulae:
+\begin{equation}
+    \begin{aligned}
+        & \sigma_{x_r}^2 = \frac{\mathcal{R}(\sigma^2_x) + \mathcal{R}(\varsigma^2_x)}{2} \\
+        & \sigma_{x_i}^2 = \frac{\mathcal{R}(\sigma^2_x) - \mathcal{R}(\varsigma^2_x)}{2} \\
+        & \sigma_{x_r,x_i} = \frac{\mathcal{I}(\varsigma^2_x)}{2}
+    \end{aligned} .
+    (\#eq:IndividualVariances)
+\end{equation}
+These individual real-valued moments might be useful in case of hypothesis testing or constructing confidence intervals for each of the parts of c.r.v. independently.
+
 In R, the conjugate and direct variances are available in `cvar()` function of `complex` package.
 
 ```{r}
