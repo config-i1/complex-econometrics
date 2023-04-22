@@ -38,6 +38,8 @@ with where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \
 
 The main difference between the form \@ref(eq:CLRVector) and \@ref(eq:CLRSystemVectorFinal) is that the former contains complex numbers inside each of the matrices and vectors.
 
+## Assumptions
+
 
 ## Estimation
 In order to estimate the parameters of the model \@ref(eq:CLRVector), we can use the same methods as in the Chapter \@ref(simpleCLR): OLS, CLS and Likelihood. We will write the estimated model as:
@@ -225,7 +227,9 @@ and
     \end{aligned}
     (\#eq:MCLROLSDirVar)
 \end{equation}
-for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix $\hat{\boldsymbol{\Sigma}}$ and then use it in calculation of either Student's t-statistics or Hotelling's T$^2$ statistics (Subsection \@ref(Hotelling)).
+for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix ${\boldsymbol{\Sigma}}$ and then use it in calculation of either Student's t-statistics or Hotelling's T$^2$ statistics (Subsection \@ref(Hotelling)). This step of calculating the covariance matrix ${\boldsymbol{\Sigma}}$ is important because the direct and conjugate variances themselves do not provide information about the individual variability of real and imaginary parts of parameters.
+
+Finally, in case of the likelihood estimation, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
 
 
 
