@@ -38,8 +38,6 @@ with where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \
 
 The main difference between the form \@ref(eq:CLRVector) and \@ref(eq:CLRSystemVectorFinal) is that the former contains complex numbers inside each of the matrices and vectors.
 
-## Assumptions
-
 
 ## Estimation
 In order to estimate the parameters of the model \@ref(eq:CLRVector), we can use the same methods as in the Chapter \@ref(simpleCLR): OLS, CLS and Likelihood. We will write the estimated model as:
@@ -52,7 +50,6 @@ where $\underline{\boldsymbol{b}}$ is the estimate of $\underline{\boldsymbol{\b
     \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{b} + \mathbf{\hat{E}} 
     (\#eq:CLRSystemVectorFinalEstimated)
 \end{equation}
-
 
 ### Ordinary Least Squares
 The criterion of OLS for multiple CLR can be written as:
@@ -148,6 +145,51 @@ where (as a reminder)
 	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime .
 \end{equation*}
 Maximising this likelihood, as discussed in Subsection \@ref(SCLREstimationLikelihood), implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
+
+
+## Assumptions
+Similar to how it is done for the conventional real valued regression, we should discuss what assumptions are imposed on complex linear regression estimated using one of the methods discussed in the previous section. We will split all regression assumptions to three groups:
+
+1. Model is correctly specified;
+2. Residuals are independent and identically distributed (i.i.d.);
+3. Explanatory variables are not correlated with anything but the response variable.
+
+While the first two groups directly relate to the so called "true model", the last one refers to the estimation approaches discussed above: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this section are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail. An interested reader is advised to read Chapter 15 of @SvetunkovSBA. Instead, we will focus on some of the assumptions that are specific for complex-valued models.
+
+### Model is correctly spcified
+This is one of the most general and most important groups of assumptions. It includes the following:
+
+1. Model does not omit any important variables;
+2. Model does not have redundant variables;
+3. Variables are included in the model with appropriate transformations;
+4. Residuals of the model do not contain outliers.
+
+The first assumption implies that we have all the variables that can impact our response variable and that we have included them in the model. However, we always omit a lot of different variables that might impact the response one. Still, if they do not play an important role in regression, they do not tend to cause issues. Formally speaking, the omitted variables should not be correlated with the ones that we include in the model, because otherwise the impact of the latter will be larger than needed causing bias in the estimates of parameters. It is not possible to test this assumption, so it can only be checked based on judgment of an analyst. If we violate this assumption, the estimates of parameters will be biased.
+
+The situation opposite to the first one is (2), which implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e. variances of estimates will be larger than needed).
+
+While the first two groups of assumptions are universal for any statistical model, the third group has some special implications in case of CLR. Transformation of separate parts or the whole variable...
+
+Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event).
+
+
+### Residuals are i.i.d.
+
+1. Residuals are homoscedastic;
+2. No autocorrelation in residuals;
+3. Expectation of residuals is zero (no matter what);
+4. Residuals follow a circular distribution;
+5. The residuals follow an assumed distribution;
+6. The distribution of the residuals does not change over time.
+
+
+### Explanatory variables are not correlated with anything but the response variable
+
+1. No multicollinearity
+
+Two types of situations: linear combination of original and conjugate + direct & direct.
+
+2. No endogeneity
 
 
 ## Inference
