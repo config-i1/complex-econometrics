@@ -156,7 +156,7 @@ Similar to how it is done for the conventional real valued regression, we should
 
 While the first two groups directly relate to the so called "true model", the last one refers to the estimation approaches discussed above: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this section are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail. An interested reader is advised to read Chapter 15 of @SvetunkovSBA. Instead, we will focus on some of the assumptions that are specific for complex-valued models.
 
-### Model is correctly spcified
+### Model is correctly specified
 This is one of the most general and most important groups of assumptions. It includes the following:
 
 1. Model does not omit any important variables;
