@@ -774,7 +774,7 @@ The functions of the Complex Normal distribution are implemented as `dcnorm()`, 
 The Complex Normal distribution can be used for the joint estimation of parameters of a complex-valued model and for generation of prediction intervals from it. However, in some cases it might be more convenient to consider a c.r.v. model as a bivariate vector model based on \@ref(eq:complexFunctionVectors) and thus to revert to the multivariate normal distribution.
 
 
-### Multivariate Normal distribution
+### Multivariate Normal distribution {#MVNorm}
 The same normal distribution for a complex variable can be parametrised via a covariance matrix $\boldsymbol{\Sigma}$ from \@ref(eq:crvMomentSecondVarianceMatrix) instead of the conjugate and direct variances $\sigma^2$ and $\varsigma^2$. In general, the Probability Density Function for a vector of $n$ variables can be written as:
 \begin{equation}
     f(\mathbf{x}) = \frac{1}{(2 \pi)^{\frac{n}{2}} \sqrt{|\boldsymbol{\Sigma}|}} \exp\left(- \frac{1}{2}

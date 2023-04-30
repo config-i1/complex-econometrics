@@ -34,7 +34,7 @@ where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\under
     \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} 
     (\#eq:CLRSystemVectorFinal)
 \end{equation}
-with where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. Formula \@ref(eq:CLRSystemVectorFinal) becomes especially useful for multiple CLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \@ref(eq:CLRSystemVectorFinal) sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
+where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. Formula \@ref(eq:CLRSystemVectorFinal) becomes especially useful for multiple CLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \@ref(eq:CLRSystemVectorFinal) sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
 
 The main difference between the form \@ref(eq:CLRVector) and \@ref(eq:CLRSystemVectorFinal) is that the former contains complex numbers inside each of the matrices and vectors.
 
@@ -174,17 +174,30 @@ While the first two assumptions are universal for any statistical model, the thi
 \end{equation*}
 which is not equivalent to the complex variable $\ln x_r + \ln x_i$. This means that transformations of complex variables should be taken with additional care, and the task of finding the correct ones becomes more complicated than in the case of the conventional real-valued regression.
 
-Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event). Making sure that there are no outliers proived some assurance that there are no important missing variables in the model.
+Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event). Making sure that there are no outliers provides some assurance that there are no important missing variables in the model.
 
 
 ### Residuals are i.i.d.
+The next group of assumptions has 6 elements in it:
 
 1. Residuals are homoscedastic;
 2. No autocorrelation in residuals;
 3. Expectation of residuals is zero (no matter what);
-4. Residuals follow a circular distribution;
-5. The residuals follow an assumed distribution;
-6. The distribution of the residuals does not change over time.
+4. The residuals follow an assumed distribution;
+5. The distribution of the residuals does not change over time;
+*6. Residuals follow a circular distribution*.
+
+The first assumption implies for CLR that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This also means that the covariance matrix of residuals $\Sigma$ stays the same no matter what. This assumption aligns well with a similar assumption of multivariate models, such as VAR or VETS, which will be discussed later in this book.
+
+The second assumption only applies to time series data. In case of the real-valued model, it means that the residuals in the past do not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g. correct transformations are not done or some autoregressive elements are missing). In case of the CLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g. Complex Autoregression, discussed later in this book).
+
+While many other assumptions can be diagnosed in one way or another, the assumption (3) in some cases cannot be. For example, if we use OLS, the unconditional mean of the residuals will be equal to zero by design, which does not provide any useful information about the "true" model. However, this assumption can be analysed conditionally, e.g. conditional on the fitted values. If the conditional mean of the residuals is not constant then we can conclude that some important element was omitted by the model. In a way, the assumption becomes similar to the assumption about the omitted variables and/or autocorrelated residuals.
+
+In the classical real-valued regression, the assumption (4) is not considered to be crucial and if the model is estimated using OLS typically comes to "the residuals follow the Normal distribution". In context of complex variables, the equivalent assumption would be that the complex residuals follow the Complex Normal distribution discussed in Section \@ref(distributionCNorm). If the model is formulated using matrix notations \@ref(eq:CLRSystemVectorFinal), the assumption transforms to "Multivariate Normal" one, discussed in Section \@ref(MVNorm). In anyway, this assumption is complementary to the main ones, even when it does not hold but all the others hold, the estimates of parameters should be unbiased, efficient and consistent. However, it becomes essential when the prediction interval needs to be generated from the model.
+
+Building upon (4), the fifth assumption is applicable to time series models only and states more generally that we deal with one and the same assumption of residuals over time. This assumption is very difficult to test (if at all possible), so it is typically dropped from the discussion.
+
+Finally, in signal processing literature, the assumption (6) means that the covariance between the residuals equals to zero and the variances of the real and the imaginary parts are equal. This implies that the direct variance of residuals is equal to zero. While this might be a suitable assumption in that discipline, there is no good rationale for this to hold universally for all CLR models. So, we will not consider this assumption as an important one in what follows.
 
 
 ### Explanatory variables are not correlated with anything but the response variable
