@@ -245,9 +245,10 @@ where $\ln$ is the natural logarithm. This can then be used to rewrite the expon
     (\#eq:complexNumberExponentialAll)
 \end{equation}
 And this form allows calculating logarithms of a complex number:
-\begin{equation*}
+\begin{equation}
     \ln \underline{z} = \ln \left(e^{\ln r + i \phi} \right) = \ln r + i \phi .
-\end{equation*}
+    (\#eq:complexNumberLogarithm)
+\end{equation}
 This operation will become useful when we discuss transformations of complex-valued functions, but it also shows that a logarithm of a negative real number is a complex number, because in that case $\phi=\pi$. This demonstrates that the field of complex numbers is complete: any mathematical operation of a complex number will give another complex number.
 
 One of the important definitions in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $\underline{z} = x+ iy$ is $\underline{\tilde{z}} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:

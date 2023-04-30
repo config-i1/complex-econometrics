@@ -168,9 +168,13 @@ The first assumption implies that we have all the variables that can impact our 
 
 The situation opposite to the first one is (2), which implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e. variances of estimates will be larger than needed).
 
-While the first two groups of assumptions are universal for any statistical model, the third group has some special implications in case of CLR. Transformation of separate parts or the whole variable...
+While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because even simple transformations (such as taking logarithm of a variable) might lead to highly non-linear results in case of complex variables. Furthermore, transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable $z$ as shown in \@ref(eq:complexNumberLogarithm) is:
+\begin{equation*}
+    \ln \underline{z} = \ln r + i \phi ,
+\end{equation*}
+which is not equivalent to the complex variable $\ln x_r + \ln x_i$. This means that transformations of complex variables should be taken with additional care, and the task of finding the correct ones becomes more complicated than in the case of the conventional real-valued regression.
 
-Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event).
+Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event). Making sure that there are no outliers proived some assurance that there are no important missing variables in the model.
 
 
 ### Residuals are i.i.d.
