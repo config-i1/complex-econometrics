@@ -168,7 +168,7 @@ The first assumption implies that we have all the variables that can impact our 
 
 The situation opposite to the first one is (2), which implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e. variances of estimates will be larger than needed).
 
-While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because even simple transformations (such as taking logarithm of a variable) might lead to highly non-linear results in case of complex variables. Furthermore, transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable $z$ as shown in \@ref(eq:complexNumberLogarithm) is:
+While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because even simple transformations (such as taking logarithm of a variable) might lead to highly non-linear results in case of complex variables. Furthermore, transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable $\underline{z}$ as shown in \@ref(eq:complexNumberLogarithm) is:
 \begin{equation*}
     \ln \underline{z} = \ln r + i \phi ,
 \end{equation*}
@@ -202,11 +202,13 @@ Finally, in signal processing literature, the assumption (6) means that the cova
 
 ### Explanatory variables are not correlated with anything but the response variable
 
-1. No multicollinearity
+1. No endogeneity
+
+2. No multicollinearity
 
 Two types of situations: linear combination of original and conjugate + direct & direct.
 
-2. No endogeneity
+
 
 
 ## Inference
