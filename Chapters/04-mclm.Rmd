@@ -201,14 +201,18 @@ Finally, in signal processing literature, the assumption (6) means that the cova
 
 
 ### Explanatory variables are not correlated with anything but the response variable
+The two assumptions in this group relate to the estimation of model rather than anything else:
 
 1. No endogeneity
-
 2. No multicollinearity
 
-Two types of situations: linear combination of original and conjugate + direct & direct.
+The first assumption comes to the idea that a linear regression model can only capture a one-directional relation, where an explanatory variable impacts the response variable. If the relation in the real life is bi-directional then the estimates of parameters of a regression model will be biased. In that case, the relation needs to be somehow made one-directional, for example by substituting the explanatory variable that causes a problem with something similar that is not impacted by the response variable. In case of the complex linear regression, the situation would be similar to the conventional one. We do not plan to discuss how to solve the problem in case of CLR in this monograph. But we believe that the methods from econometrics of real-valued models should be widely applicable here as well (e.g. using proxies or instrumental variables).
 
+As for the multicollinearity issue, in the real-valued statistics, it arises when least squares or maximum likelihood is used for estimation. It is, in a way, a technical issue: if the explanatory variables are linearly related it becomes difficult to split the impact of each of the explanatory variables on the response variable and thus challenging to correctly capture the relations between the explanatory variables and the response one.
 
+In case of an OLS applied to a conventional real-valued regression model, the issue comes to inverting the matrix $\left( {\mathbf{X}}^\prime {\mathbf{X}} \right)^{-1}$. If some of variables in $\mathbf{X}$ are strongly linearly related, the determinant of the matrix becomes close to zero and thus the inversion becomes challenging. Even if it is still possible to invert the matrix, the estimates of parameters become inefficient because small changes in the related explanatory variables may lead to substantial changes in the inversion.
+
+In case of CLR, the situation is similar, but with some specific features. If the OLS is used for parameters estimation then a potential issue might arise from the inversion of $\left( \underset{\sim}{\mathbf{\tilde{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1}$. In one of the special cases, this comes to the conjugate covariance between variables. If it is too high in comparison to the conjugate variances, then we would face the multicollinearity issue, which would make the estimates of parameters inefficient. More generally speaking, if a complex linear regression between an explanatory variable and other explanatory variables estimated using OLS captures the relations between variables well (i.e. having a high coefficient of determination), then we might be facing a multicollinearity problem. Similar problems might appear in case of CLS, but they come to a slightly different inversion, $\left( \underset{\sim}{\mathbf{X}}^\top \underset{\sim}{\mathbf{X}}\right)^{-1}$ and thus relates to direct covariances rather than the conjugate ones. Finally, when it comes to the likelihood, due to the model formulation, the conventional real-valued relations between explanatory variables should be considered when multicollinearity is suspected. All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
 
 
 ## Inference
