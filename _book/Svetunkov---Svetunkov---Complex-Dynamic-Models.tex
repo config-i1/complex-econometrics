@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-04-30}
+\date{2023-05-08}
 
 \begin{document}
 \maketitle
@@ -595,7 +595,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.29914+99.31724i
+## [1] 51.2667+100.3308i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -668,7 +668,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 120.919+0i
+## 154.311+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -680,8 +680,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -79.70116-5.73287i
+##   Direct variance 
+## -106.9654+10.766i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -707,8 +707,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r        x_i
-## x_r 20.608924  -2.866435
-## x_i -2.866435 100.310087
+## x_r 23.672771   5.382985
+## x_i  5.382985 130.638197
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -720,7 +720,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2059.066
+## [1] 3063.592
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -787,7 +787,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 71.64332-89.35737i
+## 58.01263-98.59205i
 \end{verbatim}
 
 \begin{Shaded}
@@ -800,7 +800,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -18.85413+59.61154i
+## -48.73023+80.17235i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -814,8 +814,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -79.76351+30.93684i -18.85413+59.61154i
-## y -18.85413+59.61154i  29.64262+ 0.96650i
+## x -82.71848- 3.33528i -48.73023+80.17235i
+## y -48.73023+80.17235i  85.30505+68.62807i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1808,7 +1808,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9975385+0i
+## [1] 0.9970846+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1866,7 +1866,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9976056
+## [1,] 0.9976444
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1891,11 +1891,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i        y_r        y_i
-## x_r  1.0000000 -0.1326660  0.7090165  0.5846737
-## x_i -0.1326660  1.0000000 -0.7902918  0.7229778
-## y_r  0.7090165 -0.7902918  1.0000000 -0.1520285
-## y_i  0.5846737  0.7229778 -0.1520285  1.0000000
+##            x_r        x_i         y_r        y_i
+## x_r  1.0000000 -0.2066612  0.78469036 0.64836344
+## x_i -0.2066612  1.0000000 -0.76514094 0.60608592
+## y_r  0.7846904 -0.7651409  1.00000000 0.04302162
+## y_i  0.6483634  0.6060859  0.04302162 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2097,7 +2097,7 @@ The first assumption implies that we have all the variables that can impact our 
 
 The situation opposite to the first one is (2), which implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e.~variances of estimates will be larger than needed).
 
-While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because even simple transformations (such as taking logarithm of a variable) might lead to highly non-linear results in case of complex variables. Furthermore, transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable \(z\) as shown in \eqref{eq:complexNumberLogarithm} is:
+While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because even simple transformations (such as taking logarithm of a variable) might lead to highly non-linear results in case of complex variables. Furthermore, transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable \(\underline{z}\) as shown in \eqref{eq:complexNumberLogarithm} is:
 \begin{equation*}
     \ln \underline{z} = \ln r + i \phi ,
 \end{equation*}
@@ -2141,22 +2141,24 @@ Finally, in signal processing literature, the assumption (6) means that the cova
 \hypertarget{explanatory-variables-are-not-correlated-with-anything-but-the-response-variable}{%
 \subsection{Explanatory variables are not correlated with anything but the response variable}\label{explanatory-variables-are-not-correlated-with-anything-but-the-response-variable}}
 
+The two assumptions in this group relate to the estimation of model rather than anything else:
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
+\item
+  No endogeneity
 \item
   No multicollinearity
 \end{enumerate}
 
-Two types of situations: linear combination of original and conjugate + direct \& direct.
+The first assumption comes to the idea that a linear regression model can only capture a one-directional relation, where an explanatory variable impacts the response variable. If the relation in the real life is bi-directional then the estimates of parameters of a regression model will be biased. In that case, the relation needs to be somehow made one-directional, for example by substituting the explanatory variable that causes a problem with something similar that is not impacted by the response variable. In case of the complex linear regression, the situation would be similar to the conventional one. We do not plan to discuss how to solve the problem in case of CLR in this monograph. But we believe that the methods from econometrics of real-valued models should be widely applicable here as well (e.g.~using proxies or instrumental variables).
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  No endogeneity
-\end{enumerate}
+As for the multicollinearity issue, in the real-valued statistics, it arises when least squares or maximum likelihood is used for estimation. It is, in a way, a technical issue: if the explanatory variables are linearly related it becomes difficult to split the impact of each of the explanatory variables on the response variable and thus challenging to correctly capture the relations between the explanatory variables and the response one.
+
+In case of an OLS applied to a conventional real-valued regression model, the issue comes to inverting the matrix \(\left( {\mathbf{X}}^\prime {\mathbf{X}} \right)^{-1}\). If some of variables in \(\mathbf{X}\) are strongly linearly related, the determinant of the matrix becomes close to zero and thus the inversion becomes challenging. Even if it is still possible to invert the matrix, the estimates of parameters become inefficient because small changes in the related explanatory variables may lead to substantial changes in the inversion.
+
+In case of CLR, the situation is similar, but with some specific features. If the OLS is used for parameters estimation then a potential issue might arise from the inversion of \(\left( \underset{\sim}{\mathbf{\tilde{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1}\). In one of the special cases, this comes to the conjugate covariance between variables. If it is too high in comparison to the conjugate variances, then we would face the multicollinearity issue, which would make the estimates of parameters inefficient. More generally speaking, if a complex linear regression between an explanatory variable and other explanatory variables estimated using OLS captures the relations between variables well (i.e.~having a high coefficient of determination), then we might be facing a multicollinearity problem. Similar problems might appear in case of CLS, but they come to a slightly different inversion, \(\left( \underset{\sim}{\mathbf{X}}^\top \underset{\sim}{\mathbf{X}}\right)^{-1}\) and thus relates to direct covariances rather than the conjugate ones. Finally, when it comes to the likelihood, due to the model formulation, the conventional real-valued relations between explanatory variables should be considered when multicollinearity is suspected. All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
 
 \hypertarget{inference}{%
 \section{Inference}\label{inference}}
