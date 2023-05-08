@@ -301,8 +301,15 @@ Finally, in case of the likelihood estimation, the covariance matrix of paramete
 
 ## Diagnostics
 
+sigma & Sigma
+
+R^2, R^2 - adjusted
+
+Visual analysis
 
 
 ## Forecasting
 
+
 ## Examples of application (Production functions)
+
