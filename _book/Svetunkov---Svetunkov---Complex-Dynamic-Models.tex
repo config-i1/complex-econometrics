@@ -145,7 +145,7 @@
 
 \title{Time Series Analysis and Forecasting with Complex Dynamic Models}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-05-09}
+\date{2023-05-18}
 
 \begin{document}
 \maketitle
@@ -595,7 +595,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.24277+99.43284i
+## [1] 49.01083+99.70338i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -668,7 +668,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 149.1592+0i
+## 122.4473+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -681,7 +681,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -99.61979+9.23625i
+## -61.44304-7.17856i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -706,9 +706,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 24.769712   4.618127
-## x_i  4.618127 124.389503
+##           x_r       x_i
+## x_r 30.502108 -3.589282
+## x_i -3.589282 91.945149
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -720,7 +720,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3059.765
+## [1] 2791.638
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -787,7 +787,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 75.4639-114.4679i
+## 57.04271-89.08112i
 \end{verbatim}
 
 \begin{Shaded}
@@ -800,7 +800,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -39.29702+57.79826i
+## -28.40071+71.99285i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -814,8 +814,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -79.45499-10.01909i -39.29702+57.79826i
-## y -39.29702+57.79826i  41.09238+81.50347i
+## x -91.74861+11.15412i -28.40071+71.99285i
+## y -28.40071+71.99285i  46.35312+49.51224i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1808,7 +1808,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9969646+0i
+## [1] 0.9976231+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1865,8 +1865,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]
-## [1,] -0.9963202
+##           [,1]
+## [1,] 0.9974148
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1891,11 +1891,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i         y_r        y_i
-## x_r  1.00000000 -0.08305526  0.74808766 0.68640208
-## x_i -0.08305526  1.00000000 -0.71925622 0.66336080
-## y_r  0.74808766 -0.71925622  1.00000000 0.03555827
-## y_i  0.68640208  0.66336080  0.03555827 1.00000000
+##            x_r         x_i         y_r        y_i
+## x_r 1.00000000  0.04309404  0.69726010 0.72624767
+## x_i 0.04309404  1.00000000 -0.68247169 0.71494148
+## y_r 0.69726010 -0.68247169  1.00000000 0.01893825
+## y_i 0.72624767  0.71494148  0.01893825 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2057,6 +2057,91 @@ where (as a reminder)
 \end{equation*}
 Maximising this likelihood, as discussed in Subsection \ref{SCLREstimationLikelihood}, implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
 
+\hypertarget{inference}{%
+\section{Inference}\label{inference}}
+
+It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \eqref{eq:MCLROLSEstimate} or \eqref{eq:MCLRCLSEstimate}. In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variance can then be used in hypothesis testing or confidence interval construction. In order to do that, we need to replace the actual value \(\underline{\mathbf{y}}\) with \(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}\) in the OLS formula \eqref{eq:MCLROLSEstimate}:
+\begin{equation}
+    \begin{aligned}
+    \underline{\boldsymbol{b}}^{\text{OLS}} =
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} = \\
+        & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} .
+    \end{aligned}
+    \label{eq:MCLROLSExpansion}
+\end{equation}
+One thing that becomes apparent from this expansion is that the OLS estimates of parameters for a multiple complex linear regression will be unbiased as long as the expectation of the error term \(\underline{\boldsymbol{\epsilon}}\) is zero and it is not correlated with the explanatory variables. It is easy to show that the same holds for the CLS estimates as well based on the following expanded formula:
+\begin{equation}
+    \underline{\boldsymbol{b}}^{\text{CLS}} = \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \underline{\boldsymbol{\epsilon}} .
+    \label{eq:MCLRCLSExpansion}
+\end{equation}
+This is a standard result from the real-valued regression analysis, but it is useful to know that it holds for the both estimation methods in complex-valued regression as well.
+
+Based on \eqref{eq:MCLROLSExpansion}, we can calculate the conjugate variance to get conjugate covariance matrix of parameters:
+\begin{equation}
+    \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \mathrm{V}\left( \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) .
+    \label{eq:MCLROLSVariance01}
+\end{equation}
+In the formula \eqref{eq:MCLROLSVariance01}, the true estimates of parameters \(\underline{\boldsymbol{\beta}}\) will be independent of the explanatory variables and the error term, so the formula can be represented as a sum of variances. Furthermore, the true parameters do not have any uncertainty, i.e.~\(\mathrm{V}\left( \underline{\boldsymbol{\beta}} \right) = 0\), meaning that the formula \eqref{eq:MCLROLSVariance01} can be transformed into:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
+        & \mathrm{V}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) = \\
+        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \widetilde{ \left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}\right)} \right) .
+    \end{aligned}
+    \label{eq:MCLROLSVariance02}
+\end{equation}
+We switch from the variance to the expectation in \eqref{eq:MCLROLSVariance02}, dropping the expectation of the term in the brackets from the formula because it will be equal to zero as long as the explanatory variables and the error term are uncorrelated (one of the classical assumptions of a regression model). The tilde over the second term in \eqref{eq:MCLROLSVariance02} shows that this is the conjugate of the original complex variable. Recalling distributive properties of the conjugation \eqref{eq:complexNumberConjugateDistributive}, the same formula can be rewritten as:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
+        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \left( \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\boldsymbol{\epsilon}}} \right) ,
+    \end{aligned}
+    \label{eq:MCLROLSVariance03}
+\end{equation}
+which uses the property: \(\tilde{\underline{\mathbf{X}}}^\prime = \underline{\mathbf{X}}^\top\)
+The expectation of the product in \eqref{eq:MCLROLSVariance03} can be rewritten as a product of expectations plus a covariance between the terms:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
+        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) \mathrm{E}\left( \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} {\underline{\mathbf{X}}}^\top \tilde{\underline{\boldsymbol{\epsilon}}} \right) + \\
+        & \mathrm{cov}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}, \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} {\underline{\mathbf{X}}}^\top \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \mathrm{cov}\left( \underline{\boldsymbol{\epsilon}}, \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2 ,
+    \end{aligned}
+    \label{eq:MCLROLSConjVar}
+\end{equation}
+where the expectations of each term are equal to zero as long as the classical regression assumptions hold and \(\sigma_{\underline{\epsilon}}^2\) is the conjugate variance of the error term. Using the same logic, it can be shown that the direct variance of parameters can be calculated as:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2 .
+    \end{aligned}
+    \label{eq:MCLROLSDirVar}
+\end{equation}
+Finally, in a similar fashion, conjugate and direct covariance matrices of parameters can be calculated for the CLS:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
+        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\epsilon}}^2 .
+    \end{aligned}
+    \label{eq:MCLRCLSConjVar}
+\end{equation}
+and
+\begin{equation}
+    \begin{aligned}
+        \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
+        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2 .
+    \end{aligned}
+    \label{eq:MCLROLSDirVar}
+\end{equation}
+for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix \({\boldsymbol{\Sigma}}\) and then use it in calculation of Hotelling's T\(^2\) statistics (Subsection \ref{Hotelling}). This step of calculating the covariance matrix \({\boldsymbol{\Sigma}}\) is important because the direct and conjugate variances themselves do not provide information about the individual variability of real and imaginary parts of parameters.
+
+Alternatively, we can use both covariance matrices to derive variances of each individual parameter to then either construct confidence intervals for each of them or test a hypothesis using Student's t-statistics. In general the variances of real and imaginary parts can be extracted from the real parts of the direct and conjugate variances using the formulae \eqref{eq:IndividualVariances}.
+
+Finally, in case of the likelihood estimation, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
+
 \hypertarget{assumptions}{%
 \section{Assumptions}\label{assumptions}}
 
@@ -2160,97 +2245,22 @@ In case of an OLS applied to a conventional real-valued regression model, the is
 
 In case of CLR, the situation is similar, but with some specific features. If the OLS is used for parameters estimation then a potential issue might arise from the inversion of \(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1}\). In one of the special cases, this comes to the conjugate covariance between variables. If it is too high in comparison to the conjugate variances, then we would face the multicollinearity issue, which would make the estimates of parameters inefficient. More generally speaking, if a complex linear regression between an explanatory variable and other explanatory variables estimated using OLS captures the relations between variables well (i.e.~having a high coefficient of determination), then we might be facing a multicollinearity problem. Similar problems might appear in case of CLS, but they come to a slightly different inversion, \(\left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1}\) and thus relates to direct covariances rather than the conjugate ones. Finally, when it comes to the likelihood, due to the model formulation, the conventional real-valued relations between explanatory variables should be considered when multicollinearity is suspected. All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
 
-\hypertarget{inference}{%
-\section{Inference}\label{inference}}
-
-It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \eqref{eq:MCLROLSEstimate} or \eqref{eq:MCLRCLSEstimate}. In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variance can then be used in hypothesis testing or confidence interval construction. In order to do that, we need to replace the actual value \(\underline{\mathbf{y}}\) with \(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}\) in the OLS formula \eqref{eq:MCLROLSEstimate}:
-\begin{equation}
-    \begin{aligned}
-    \underline{\boldsymbol{b}}^{\text{OLS}} =
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} = \\
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}) = \\
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} = \\
-        & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} .
-    \end{aligned}
-    \label{eq:MCLROLSExpansion}
-\end{equation}
-One thing that becomes apparent from this expansion is that the OLS estimates of parameters for a multiple complex linear regression will be unbiased as long as the expectation of the error term \(\underline{\boldsymbol{\epsilon}}\) is zero and it is not correlated with the explanatory variables. It is easy to show that the same holds for the CLS estimates as well based on the following expanded formula:
-\begin{equation}
-    \underline{\boldsymbol{b}}^{\text{CLS}} = \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \underline{\boldsymbol{\epsilon}} .
-    \label{eq:MCLRCLSExpansion}
-\end{equation}
-This is a standard result from the real-valued regression analysis, but it is useful to know that it holds for the both estimation methods in complex-valued regression as well.
-
-Based on \eqref{eq:MCLROLSExpansion}, we can calculate the conjugate variance to get conjugate covariance matrix of parameters:
-\begin{equation}
-    \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \mathrm{V}\left( \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) .
-    \label{eq:MCLROLSVariance01}
-\end{equation}
-In the formula \eqref{eq:MCLROLSVariance01}, the true estimates of parameters \(\underline{\boldsymbol{\beta}}\) will be independent of the explanatory variables and the error term, so the formula can be represented as a sum of variances. Furthermore, the true parameters do not have any uncertainty, i.e.~\(\mathrm{V}\left( \underline{\boldsymbol{\beta}} \right) = 0\), meaning that the formula \eqref{eq:MCLROLSVariance01} can be transformed into:
-\begin{equation}
-    \begin{aligned}
-        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
-        & \mathrm{V}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) = \\
-        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \widetilde{ \left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}\right)} \right) .
-    \end{aligned}
-    \label{eq:MCLROLSVariance02}
-\end{equation}
-We switch from the variance to the expectation in \eqref{eq:MCLROLSVariance02}, dropping the expectation of the term in the brackets from the formula because it will be equal to zero as long as the explanatory variables and the error term are uncorrelated (one of the classical assumptions of a regression model). The tilde over the second term in \eqref{eq:MCLROLSVariance02} shows that this is the conjugate of the original complex variable. Recalling distributive properties of the conjugation \eqref{eq:complexNumberConjugateDistributive}, the same formula can be rewritten as:
-\begin{equation}
-    \begin{aligned}
-        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
-        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \left( \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\boldsymbol{\epsilon}}} \right) ,
-    \end{aligned}
-    \label{eq:MCLROLSVariance03}
-\end{equation}
-which uses the property: \(\tilde{\underline{\mathbf{X}}}^\prime = \underline{\mathbf{X}}^\top\)
-The expectation of the product in \eqref{eq:MCLROLSVariance03} can be rewritten as a product of expectations plus a covariance between the terms:
-\begin{equation}
-    \begin{aligned}
-        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
-        & \mathrm{E}\left( \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) \mathrm{E}\left( \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} {\underline{\mathbf{X}}}^\top \tilde{\underline{\boldsymbol{\epsilon}}} \right) + \\
-        & \mathrm{cov}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}}, \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1} {\underline{\mathbf{X}}}^\top \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \mathrm{cov}\left( \underline{\boldsymbol{\epsilon}}, \tilde{\underline{\boldsymbol{\epsilon}}} \right) = \\
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2 ,
-    \end{aligned}
-    \label{eq:MCLROLSConjVar}
-\end{equation}
-where the expectations of each term are equal to zero as long as the classical regression assumptions hold and \(\sigma_{\underline{\epsilon}}^2\) is the conjugate variance of the error term. Using the same logic, it can be shown that the direct variance of parameters can be calculated as:
-\begin{equation}
-    \begin{aligned}
-        \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2 .
-    \end{aligned}
-    \label{eq:MCLROLSDirVar}
-\end{equation}
-Finally, in a similar fashion, conjugate and direct covariance matrices of parameters can be calculated for the CLS:
-\begin{equation}
-    \begin{aligned}
-        \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
-        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\epsilon}}^2 .
-    \end{aligned}
-    \label{eq:MCLRCLSConjVar}
-\end{equation}
-and
-\begin{equation}
-    \begin{aligned}
-        \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) =
-        & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2 .
-    \end{aligned}
-    \label{eq:MCLROLSDirVar}
-\end{equation}
-for the CLS. Having both direct and conjugate variances for OLS and CLS not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix \({\boldsymbol{\Sigma}}\) and then use it in calculation of Hotelling's T\(^2\) statistics (Subsection \ref{Hotelling}). This step of calculating the covariance matrix \({\boldsymbol{\Sigma}}\) is important because the direct and conjugate variances themselves do not provide information about the individual variability of real and imaginary parts of parameters.
-
-Alternatively, we can use both covariance matrices to derive variances of each individual parameter to then either construct confidence intervals for each of them or test a hypothesis using Student's t-statistics. In general the variances of real and imaginary parts can be extracted from the real parts of the direct and conjugate variances using the formulae \eqref{eq:IndividualVariances}.
-
-Finally, in case of the likelihood estimation, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
-
 \hypertarget{diagnostics}{%
 \section{Diagnostics}\label{diagnostics}}
 
 sigma \& Sigma
 
 R\^{}2, R\^{}2 - adjusted
+R\^{}2 for different parts or for the whole model
+R\^{}2 for covariances? Percentage of explained covariance between variables?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 1{-} cvar(e, method="conj") / cvar(y,method="conj")}
+
+\CommentTok{\# 1{-}covar(e) / covar(y)}
+\end{Highlighting}
+\end{Shaded}
 
 Visual analysis
 

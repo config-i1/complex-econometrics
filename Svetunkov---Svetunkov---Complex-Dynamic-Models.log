@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  9 MAY 2023 22:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.3)  18 MAY 2023 23:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -813,14 +813,14 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 
 [26]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGenerated
-Circle-1.pdf, id=368, 255.95625pt x 217.81375pt>
+Circle-1.pdf, id=368, 258.9675pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGene
 ratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGener
 atedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvGeneratedCircle-1.pdf  used on input line 845.
-(pdftex.def)             Requested size: 255.95561pt x 217.8132pt.
+(pdftex.def)             Requested size: 258.97078pt x 214.80524pt.
 
 Package natbib Warning: Citation `refGoodman' on page 27 undefined on input lin
 e 856.
@@ -1017,14 +1017,14 @@ Package natbib Warning: Citation `refMDS' on page 53 undefined on input line 16
 32.
 
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-otMDS-1.pdf, id=753, 255.95625pt x 212.795pt>
+otMDS-1.pdf, id=753, 257.96375pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplotMDS-1.pdf  used on input line 1652.
-(pdftex.def)             Requested size: 255.95561pt x 212.79446pt.
+(pdftex.def)             Requested size: 257.97884pt x 212.80745pt.
 
 Package natbib Warning: Citation `ref' on page 53 undefined on input line 1661.
 
@@ -1054,14 +1054,14 @@ ANDOM VARIABLES
 
 [56]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ate-1.pdf, id=809, 262.9825pt x 263.98625pt>
+ate-1.pdf, id=809, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugate-1.pdf  used on input line 1799.
-(pdftex.def)             Requested size: 262.99387pt x 263.99767pt.
+(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
 ateMDS-1.pdf, id=811, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
@@ -1072,7 +1072,7 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugateMDS-1.pdf  used on input line 1824.
 (pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
-Underfull \vbox (badness 1939) has occurred while \output is active []
+Underfull \vbox (badness 2221) has occurred while \output is active []
 
 [57 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCor
 Conjugate-1.pdf>]
@@ -1095,8 +1095,11 @@ ANDOM VARIABLES
 Chapter 4.
 [61
 
-] [62] [63] [64] [65] [66] [67] [68] [69] [70] (./Svetunkov---Svetunkov---Compl
-ex-Dynamic-Models.bbl [71] [72
+] [62] [63] [64] [65] [66]
+Underfull \vbox (badness 3019) has occurred while \output is active []
+
+[67] [68] [69] [70] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [71] 
+[72
 
 ])
 
@@ -1135,7 +1138,7 @@ re/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (73 pages,
- 3450389 bytes).
+ 3449902 bytes).
 PDF statistics:
  1298 PDF objects out of 1440 (max. 8388607)
  1098 compressed objects within 11 object streams

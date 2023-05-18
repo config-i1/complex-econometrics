@@ -308,9 +308,9 @@ R^2 for different parts or for the whole model
 R^2 for covariances? Percentage of explained covariance between variables?
 
 ```{r}
-1- cvar(e, method="conj") / cvar(y,method="conj")
+# 1- cvar(e, method="conj") / cvar(y,method="conj")
 
-1-covar(e) / covar(y)
+# 1-covar(e) / covar(y)
 ```
 
 
