@@ -269,7 +269,7 @@ The next group of assumptions has 6 elements in it:
 3. Expectation of residuals is zero (no matter what);
 4. The residuals follow an assumed distribution;
 5. The distribution of the residuals does not change over time;
-*6. Residuals follow a circular distribution*.
+6. Residuals follow a circular distribution.
 
 The first assumption implies for CLR that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This also means that the covariance matrix of residuals $\Sigma$ stays the same no matter what. This assumption aligns well with a similar assumption of multivariate models, such as VAR or VETS, which will be discussed later in this book.
 
