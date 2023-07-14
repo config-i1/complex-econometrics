@@ -1,5 +1,5 @@
 --- 
-title: "Time Series Analysis and Forecasting with Complex Dynamic Models"
+title: "Complex-valued Econometrics"
 author: "Sergey Svetunkov and Ivan Svetunkov"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

@@ -287,7 +287,7 @@ where the symbold $\sim$ below the letter denotes a matrix presentation of a com
 \end{equation*}
 All the mathematical operations done with the vector and matrix representations would correspond to the ones for the conventional complex numbers. Furthermore, the multiplication by the transpose of the original object in both of these cases is equivalent to the multiplication by the conjugate value \@ref(eq:complexNumberConjugateMulti). For the vector:
 \begin{equation}
-    \boldsymbol{z} \boldsymbol{z}^\prime \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
+    \boldsymbol{z} \boldsymbol{z}^\prime = \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
     (\#eq:complexNumberVectorsMulti)
 \end{equation}
 and for the matrix:
