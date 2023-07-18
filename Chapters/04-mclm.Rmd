@@ -242,14 +242,17 @@ In the real-valued regression analysis, dummy variables appear when a feature of
 In case of complex linear regression, it is possible to introduce dummy variables in the same way as in the conventional model, by adding real-valued variables. The model in this case becomes:
 
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\gamma_1} d_{1,j} + \dots + \underline{\gamma_m} d_{m,j} \underline{\epsilon_j},
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\gamma_1} d_{1,j} + \dots + \underline{\gamma_m} d_{m,j} + \underline{\epsilon_j},
     (\#eq:MultipleCLRComplexDummy)
 \end{equation}
 where $\underline{\gamma_i}$ is the complex parameter, $d_{i,j}$ is th $i$-th real-valued dummy variable and $m$ is the number of dummy variables. In this case, each variable $d_{i,j}$ is multiplied by a complex coefficient, capturing the dummy effect of it on each part of the complex response variable. The effect of dummy variables on the response one is exactly the same as in the conventional real-valued regression - the intercept of the model, $\underline{\beta_0}$ will change by the value of $\underline{\gamma_i}$, when the variable $d_{i,j}$ equals to one.
 
+It is also theoretically possible to encode a complex dummy variable, which would have two features in it at the same time, e.g. $colourRed + i \times sizeSmall$, where both `colourRed` and `sizeSmall` are dummy variables. The issue with this is that this encoding assumes very specific dynamic between the features and the response variable. In the example above, the sales of the first product will have $\gamma_{1,j} \times coolourRed_j - \gamma_{2,j} \times sizeSmall_j$, while the sales of the second one will have: $\gamma_{1,j} \times sizeSmall_j + \gamma_{2,j} \times coolourRed_j$. This means that the red colour should have exactly the same impact on sales of product one, as the small size has on the product two, while the effect of small size on product one is opposite to the effect of the red colour on the second product. It is difficult to find situations, where such effects would be meaningful, so we do not recommend that. Still, it is possible to formulate such a model and capture the qualitative features in a parsimonious way (in comparison with a simple introduction of variables to each equation).
 
-However, in addition to that, it is also possible to encode a complex dummy variable, which would have two features in it at the same time, e.g. $colourRed +i \times sizeSmall$, where both `colourRed` and `sizeSmall` would be dummy variables.
-
-
-
+Finally, if an interaction effect is needed (e.g. how the change of price on red product impacts its sales), this can be done in a similar way to the conventional real-valued regression. For example, here how it can be done for a variable $\underline{x}_{1,j}$:
+\begin{equation}
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\gamma_1} \underline{x_{1,j}} d_{1,j} + \underline{\epsilon_j} .
+    (\#eq:MultipleCLRComplexDummyInteraction)
+\end{equation}
+In this case, the specific complex effect of $\underline{x}_{1,j}$ on $\underline{y}_j$ will change when the dummy variable equals to one. The interaction effect between a complex variable $\underline{x}_{1,j}$ and a complex dummy variable $\underline{d}_{1,j}$ is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
 
