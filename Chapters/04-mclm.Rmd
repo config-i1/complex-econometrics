@@ -231,10 +231,24 @@ Alternatively, we can use both covariance matrices to derive variances of each i
 Finally, in case of the likelihood estimation, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
 
 
+## Capturing uncertainty in the multiple CLR
+Confidence intervals for parameters
+
+Prediction intervals
+
 ## Dummy variables
 In the real-valued regression analysis, dummy variables appear when a feature of an object can be measured only in a categorical scale. For example, we might be interested in sales of a red medium size t-shirt vs the sales of a blue small size one. In this case, the colour would be one of such characteristics (measured in the nominal scale), while the size would be the other one (in ordinal scale). In order to include such information in the regression model, a set of dummy variables is typically created. A dummy variable is the variable that equals to one, when the feature exists and zero otherwise. So, in our example, we would create dummy variables `colourRed`, `colourBlue`, and `colourGreen` to denote the first feature and `sizeSmall`, `sizeMedium`, and `sizeLarge` for the second one. These variables would be equal to one for the specific observations (t-shirts) in our data. And for obvious reasons, the t-shirt cannot be both red and blue or small and medium at the same time, so the respective variables will be self-exclusive. If you want to learn more, you can find some information on that in Chapter 13 of @SvetunkovSBA.
 
-In case of complex linear regression, it is possible to introduce the dummy variables in the same way as in the conventional model, by adding real-valued variables. However, in addition to that, it is also possible to encode a complex dummy variable, which would have two features in it at the same time, e.g. $colourRed +i \times sizeSmall$, where both `colourRed` and `sizeSmall` would be dummy variables.
+In case of complex linear regression, it is possible to introduce dummy variables in the same way as in the conventional model, by adding real-valued variables. The model in this case becomes:
+
+\begin{equation}
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\gamma_1} d_{1,j} + \dots + \underline{\gamma_m} d_{m,j} \underline{\epsilon_j},
+    (\#eq:MultipleCLRComplexDummy)
+\end{equation}
+where $\underline{\gamma_i}$ is the complex parameter, $d_{i,j}$ is th $i$-th real-valued dummy variable and $m$ is the number of dummy variables. In this case, each variable $d_{i,j}$ is multiplied by a complex coefficient, capturing the dummy effect of it on each part of the complex response variable. The effect of dummy variables on the response one is exactly the same as in the conventional real-valued regression - the intercept of the model, $\underline{\beta_0}$ will change by the value of $\underline{\gamma_i}$, when the variable $d_{i,j}$ equals to one.
+
+
+However, in addition to that, it is also possible to encode a complex dummy variable, which would have two features in it at the same time, e.g. $colourRed +i \times sizeSmall$, where both `colourRed` and `sizeSmall` would be dummy variables.
 
 
 
