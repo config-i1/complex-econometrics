@@ -232,8 +232,9 @@ for the CLS. Having both direct and conjugate variances for OLS and CLS, we can 
         & \mathrm{V}_{\boldsymbol{b}_{r,i}} = \frac{\mathcal{I}\left(\mathcal{V}\left( \underline{\boldsymbol{b}} \right)\right)}{2}
     \end{aligned},
 \end{equation*}
-where $\mathrm{V}_{\boldsymbol{b}_r}$ is the part of the covariance matrix of real values of parameters, $\mathrm{V}_{\boldsymbol{b}_i}$ is the part of the covariance matrix of imaginary values of parameters and $\mathrm{V}_{\boldsymbol{b}_{r,i}}$ is the part of the covariance matrix between the real and imaginary parts of parameters. The final covariance matrix is formed as:
+where $\mathrm{V}_{\boldsymbol{b}_r}$ is the part of the covariance matrix of real values of parameters, $\mathrm{V}_{\boldsymbol{b}_i}$ is the part of the covariance matrix of imaginary values of parameters and $\mathrm{V}_{\boldsymbol{b}_{r,i}}$ is the part of the covariance matrix between the real and imaginary parts of parameters. The final covariance matrix can be formed as:
 \begin{equation}
+    {\boldsymbol{\Sigma}}_\beta =
     \begin{pmatrix}
         \mathrm{V}_{\boldsymbol{b}_r} & \mathrm{V}_{\boldsymbol{b}_{r,i}} \\
         \mathrm{V}_{\boldsymbol{b}_{r,i}} & \mathrm{V}_{\boldsymbol{b}_i}
@@ -245,7 +246,13 @@ Finally, in case of the likelihood estimation, the covariance matrix of paramete
 
 
 ## Capturing uncertainty in the multiple CLR
-Having both direct and conjugate variances for OLS and CLS
+Having both direct and conjugate variances for OLS and CLS, it is possible to do several things:
+
+1. Construct confidence intervals of parameters;
+2. Test hypothesis about each of parameters;
+3. Test hypothesis for each complex parameter (considering joint distribution);
+4. Produce prediction intervals.
+
 
 
 not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix of parameters ${\boldsymbol{\Sigma}}_\beta$ and then use it in calculation of Hotelling's T$^2$ statistics (Subsection \@ref(Hotelling)). This step of calculating the covariance matrix ${\boldsymbol{\Sigma}}_\beta$ is important because the direct and conjugate variances themselves do not provide information about the individual variability of real and imaginary parts of parameters.
