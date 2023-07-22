@@ -1,0 +1,10 @@
+# Complex Autoregression {#ComplexAR}
+
+
+## Complex ACF/PACF
+
+
+## Complex AR(p)
+
+Properties and what ACF/PACF they generate
+

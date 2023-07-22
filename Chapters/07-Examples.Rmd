@@ -1,0 +1,9 @@
+# Examples of application {#Examples}
+
+
+## Production functions
+
+
+## Forecasting with complex regression models
+
+
