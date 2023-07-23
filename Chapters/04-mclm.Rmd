@@ -39,7 +39,7 @@ where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathb
 The main difference between the form \@ref(eq:CLRVector) and \@ref(eq:CLRSystemVectorFinal) is that the former contains complex numbers inside each of the matrices and vectors.
 
 
-## Estimation
+## Estimation {#mlcrEstimation}
 In order to estimate the parameters of the model \@ref(eq:CLRVector), we can use the same methods as in the Chapter \@ref(simpleCLR): OLS, CLS and Likelihood. We will write the estimated model as:
 \begin{equation}
     \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{b}} + \underline{\mathbf{e}} ,

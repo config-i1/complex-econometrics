@@ -1,11 +1,11 @@
 #  Assumptions for Complex Linear Models
-Similar to how it is done for the conventional real valued regression, we should discuss what assumptions are imposed on complex linear regression estimated using one of the methods discussed in the previous section. We will split all regression assumptions to three groups:
+Similar to how it is done for the conventional real valued regression, we should discuss what assumptions are imposed on complex linear regression estimated using one of the methods discussed in the previous Section \@ref(mlcrEstimation). We will split all regression assumptions to three groups [similar to how it was done by @SvetunkovSBA]:
 
 1. Model is correctly specified;
 2. Residuals are independent and identically distributed (i.i.d.);
 3. Explanatory variables are not correlated with anything but the response variable.
 
-While the first two groups directly relate to the so called "true model", the last one refers to the estimation approaches discussed above: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this section are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail. An interested reader is advised to read Chapter 15 of @SvetunkovSBA. Instead, we will focus on some of the assumptions that are specific for complex-valued models.
+While the first two groups directly relate to the so called "true model", the last one refers to the estimation approaches discussed above: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this Chapter are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail. An interested reader is advised to read Chapter 15 of @SvetunkovSBA. Instead, we will focus on some of the assumptions that are specific for complex-valued models.
 
 
 ## Model is correctly specified
@@ -16,9 +16,16 @@ This is one of the most general and most important groups of assumptions. It inc
 3. Variables are included in the model with appropriate transformations;
 4. Residuals of the model do not contain outliers.
 
-The first assumption implies that we have all the variables that can impact our response variable and that we have included them in the model. However, we always omit a lot of different variables that might impact the response one. Still, if they do not play an important role in regression, they do not tend to cause issues. Formally speaking, the omitted variables should not be correlated with the ones that we include in the model, because otherwise the impact of the latter will be larger than needed causing bias in the estimates of parameters. It is not possible to test this assumption, so it can only be checked based on judgment of an analyst. If we violate this assumption, the estimates of parameters will be biased.
+We briefly discuss them in this section.
 
-The situation opposite to the first one is (2), which implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e. variances of estimates will be larger than needed).
+
+### Model does not omit any important variables
+This assumption implies that we have all the variables that can impact our response variable and that we have included them in the model. However, we always omit a lot of different variables that might impact the response one, but do not have a large effect on it. Still, if they do not play an important role in regression, they do not tend to cause issues. Formally speaking, the omitted variables should not be correlated with the ones that we include in the model, because otherwise the impact of the latter will not be captured correctly, causing bias in the estimates of parameters. It is not possible to test this assumption, so it can only be checked based on judgment of an analyst. If we violate this assumption, the estimates of parameters will typically be biased.
+
+
+### Model does not have redundant variables
+This is the situation opposite to the first one. It implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e. variances of estimates will be larger than needed).
+
 
 While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because even simple transformations (such as taking logarithm of a variable) might lead to highly non-linear results in case of complex variables. Furthermore, transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable $\underline{z}$ as shown in \@ref(eq:complexNumberLogarithm) is:
 \begin{equation*}
