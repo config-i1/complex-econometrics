@@ -595,7 +595,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.49316+99.69645i
+## [1] 50.3716+100.3899i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -668,7 +668,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 161.4691+0i
+## 134.9818+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -680,8 +680,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -112.7965+10.0933i
+##     Direct variance 
+## -88.02777+15.06934i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -707,8 +707,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r        x_i
-## x_r 24.336294   5.046669
-## x_i  5.046669 137.132817
+## x_r 23.477033   7.534672
+## x_i  7.534672 111.504800
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -720,7 +720,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3311.836
+## [1] 2561.031
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -787,7 +787,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 40.88149-67.84244i
+## 62.7611-104.3691i
 \end{verbatim}
 
 \begin{Shaded}
@@ -799,8 +799,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -9.83516+44.78544i
+##   Direct covariance 
+## -53.34019+63.43316i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -813,9 +813,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                  y
-## x -65.08766- 0.61004i -9.83516+44.78544i
-## y  -9.83516+44.78544i 67.28635+24.08675i
+##                     x                   y
+## x -86.92345- 2.47938i -53.34019+63.43316i
+## y -53.34019+63.43316i  -2.26520+99.39897i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1808,7 +1808,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9979024+0i
+## [1] 0.9977177+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1866,7 +1866,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9977135
+## [1,] 0.9982301
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1891,11 +1891,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i         y_r        y_i
-## x_r  1.0000000 -0.1369923  0.76015163 0.65497580
-## x_i -0.1369923  1.0000000 -0.74518459 0.65544963
-## y_r  0.7601516 -0.7451846  1.00000000 0.01027554
-## y_i  0.6549758  0.6554496  0.01027554 1.00000000
+##           x_r        x_i        y_r        y_i
+## x_r 1.0000000  0.3127056  0.5225637  0.7814257
+## x_i 0.3127056  1.0000000 -0.6429651  0.8343665
+## y_r 0.5225637 -0.6429651  1.0000000 -0.1190961
+## y_i 0.7814257  0.8343665 -0.1190961  1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2299,8 +2299,8 @@ While the first two assumptions are universal for any statistical model, the thi
 which is not equivalent to the complex variable \(\ln x_r + i \ln x_i\). In fact, there is no known transformation from \(x_r + x_i\) to \(\ln x_r + i \ln x_i\) except for transforming separately the real and imaginary parts of the variable. Still, logarithms can be used to linearise a non-linear complex model to simplify its estimation. For example, the following multiplicative model:
 \begin{equation*}
     \begin{aligned}
-    y_{r} + i y_{i} = & (\beta_{0,r} + i \beta_{0,i}) (x_{1,r} + i x_{1,i}) ^{\beta_{1,r} + i \beta_{1,i}} \dots \times \\
-                      & (x_{k-1,r} + i x_{k-1,i}) ^{\beta_{k-1,r} + i \beta_{k-1,i}} (\epsilon_{r} + i \epsilon_{i})
+    y_{r} + i y_{i} = & (\beta_{0,r} + i \beta_{0,i}) \times (x_{1,r} + i x_{1,i}) ^{\beta_{1,r} + i \beta_{1,i}} \times \dots \times \\
+                      & (x_{k-1,r} + i x_{k-1,i}) ^{\beta_{k-1,r} + i \beta_{k-1,i}} \times (\epsilon_{r} + i \epsilon_{i})
     \end{aligned}
 \end{equation*}
 can be linearised using natural logarithm to:
@@ -2316,15 +2316,15 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 \begin{Highlighting}[]
 \NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100} \SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\SpecialCharTok{*}\NormalTok{1i}
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{\^{}}\NormalTok{(}\FloatTok{0.5+0.5}\NormalTok{i)}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Re}\NormalTok{(x), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Im}\NormalTok{(x), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Re}\NormalTok{(y), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Im}\NormalTok{(y), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
+\FunctionTok{cplot}\NormalTok{(x, y)}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{figure}
+\centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-chunk-25-1.pdf}
+\caption{\label{fig:unnamed-chunk-25}Non-linear transformation of a complex variable that changes linearly.}
+\end{figure}
 
 Even if the imaginary part of \(\underline{x}\) is zero (and we are dealing with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
 

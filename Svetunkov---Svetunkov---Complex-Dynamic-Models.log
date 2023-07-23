@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  23 JUL 2023 18:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  23 JUL 2023 22:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -988,14 +988,14 @@ Chapter 3.
 
 ]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-ots-1.pdf, id=755, 264.99pt x 262.9825pt>
+ots-1.pdf, id=755, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplots-1.pdf  used on input line 1587.
-(pdftex.def)             Requested size: 265.00146pt x 262.99387pt.
+(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 596.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
@@ -1097,14 +1097,14 @@ Chapter 5.
 
 ] [72]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-chun
-k-25-1.pdf, id=1071, 457.71pt x 315.1775pt>
+k-25-1.pdf, id=1071, 335.2525pt x 336.25626pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed
 -chunk-25-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-
 chunk-25-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
-igure-latex/unnamed-chunk-25-1.pdf  used on input line 2327.
-(pdftex.def)             Requested size: 345.01372pt x 237.57523pt.
+igure-latex/unnamed-chunk-25-1.pdf  used on input line 2325.
+(pdftex.def)             Requested size: 335.25168pt x 336.25543pt.
 [73 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unname
 d-chunk-25-1.pdf>] [74]
 Overfull \hbox (195.23944pt too wide) has occurred while \output is active
@@ -1128,10 +1128,10 @@ Package natbib Warning: There were undefined citations.
 
 [81] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 16653 strings out of 479648
- 274186 string characters out of 5886116
- 598713 words of memory out of 5000000
- 33639 multiletter control sequences out of 15000+600000
+ 16655 strings out of 479648
+ 274218 string characters out of 5886116
+ 598809 words of memory out of 5000000
+ 33640 multiletter control sequences out of 15000+600000
  566763 words of font info for 208 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
  74i,16n,77p,1578b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1157,10 +1157,10 @@ hare/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (81 pages,
- 3471629 bytes).
+ 3503800 bytes).
 PDF statistics:
- 1447 PDF objects out of 1728 (max. 8388607)
- 1232 compressed objects within 13 object streams
- 398 named destinations out of 1000 (max. 500000)
+ 1448 PDF objects out of 1728 (max. 8388607)
+ 1233 compressed objects within 13 object streams
+ 399 named destinations out of 1000 (max. 500000)
  55676 words of extra memory for PDF output out of 61914 (max. 10000000)
 
