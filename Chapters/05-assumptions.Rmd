@@ -1,4 +1,4 @@
-#  Assumptions for Complex Linear Models
+#  Assumptions of Complex Linear Models
 Similar to how it is done for the conventional real valued regression, we should discuss what assumptions are imposed on complex linear regression estimated using one of the methods discussed in the previous Section \@ref(mlcrEstimation). We will split all regression assumptions to three groups [similar to how it was done by @SvetunkovSBA]:
 
 1. Model is correctly specified;
@@ -27,13 +27,36 @@ This assumption implies that we have all the variables that can impact our respo
 This is the situation opposite to the first one. It implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e. variances of estimates will be larger than needed).
 
 
-While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because even simple transformations (such as taking logarithm of a variable) might lead to highly non-linear results in case of complex variables. Furthermore, transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable $\underline{z}$ as shown in \@ref(eq:complexNumberLogarithm) is:
+### Variables transformations
+While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because of the effect they have on the variables: transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable $\underline{z}$ as shown in \@ref(eq:complexNumberLogarithm) is:
 \begin{equation*}
     \ln \underline{z} = \ln r + i \phi ,
 \end{equation*}
-which is not equivalent to the complex variable $\ln x_r + \ln x_i$. This means that transformations of complex variables should be taken with additional care, and the task of finding the correct ones becomes more complicated than in the case of the conventional real-valued regression.
+which is not equivalent to the complex variable $\ln x_r + i \ln x_i$. In fact, there is no known transformation from $x_r + x_i$ to $\ln x_r + i \ln x_i$ except for transforming separately the real and imaginary parts of the variable. Still, logarithms can be used to linearise a non-linear complex model to simplify its estimation. For example, the following multiplicative model:
+\begin{equation*}
+    y_{r} + i y_{i} = (\beta_{0,r} + i \beta_{0,i}) (x_{1,r} + i x_{1,i}) ^{\beta_{1,r} + i \beta_{1,i}} \dots (x_{k-1,r} + i x_{k-1,i}) ^{\beta_{k-1,r} + i \beta_{k-1,i}} (\epsilon_{r} + i \epsilon_{i})
+\end{equation*}
+can be linearised using natural logarithm to:
+\begin{equation*}
+    \ln (y_{r} + i y_{i}) = \ln (\beta_{0,r} + i \beta_{0,i}) + (\beta_{1,r} + i \beta_{1,i}) \ln(x_{1,r} + i x_{1,i}) + \dots + (\beta_{k-1,r} + i \beta_{k-1,i}) \ln (x_{k-1,r} + i x_{k-1,i}) + \ln (\epsilon_{r} + i \epsilon_{i}),
+\end{equation*}
+which can then be estimated using OLS, CLS or likelihood maximisation as discussed in Section \@ref(mlcrEstimation). On its own, the multiplicative models of complex variables have useful features, because they allow modelling highly non-linear processes due to the rotation as discussed in Section \@ref(theoryOfComplexNumbers). For example, here how the linear increase of real and imaginary parts of a complex variable $\underline{x}$ leads to a non-linear transform of a variable $\underline{y}=\underline{x}^{0.5+0.5i}$:
 
-Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event). Making sure that there are no outliers provides some assurance that there are no important missing variables in the model.
+```{r}
+x <- 1:100 + 1:100*1i
+y <- x^(0.5+0.5i)
+par(mfrow=c(2,2), mar=c(2,4,1,1))
+plot(Re(x), type="l")
+plot(Im(x), type="l")
+plot(Re(y), type="l")
+plot(Im(y), type="l")
+```
+
+Even if the imaginary part of $\underline{x}$ is zero (and we are dealing with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
+
+
+### No outliers
+Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event). In that case the estimates of parameters will be biased. Making sure that there are no outliers provides some assurance that there are no important missing variables in the model.
 
 
 ## Residuals are i.i.d.
