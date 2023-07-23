@@ -809,14 +809,14 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 
 [26]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGenerated
-Circle-1.pdf, id=387, 255.95625pt x 214.8025pt>
+Circle-1.pdf, id=387, 255.95625pt x 217.81375pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGene
 ratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGener
 atedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvGeneratedCircle-1.pdf  used on input line 845.
-(pdftex.def)             Requested size: 255.95561pt x 214.80197pt.
+(pdftex.def)             Requested size: 255.95561pt x 217.8132pt.
 
 Package natbib Warning: Citation `refGoodman' on page 27 undefined on input lin
 e 856.
@@ -1097,14 +1097,14 @@ Chapter 5.
 
 ] [72]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-chun
-k-25-1.pdf, id=1071, 335.2525pt x 336.25626pt>
+k-25-1.pdf, id=1071, 262.9825pt x 264.99pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed
 -chunk-25-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-
 chunk-25-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/unnamed-chunk-25-1.pdf  used on input line 2325.
-(pdftex.def)             Requested size: 335.25168pt x 336.25543pt.
+(pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
 [73 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unname
 d-chunk-25-1.pdf>] [74]
 Overfull \hbox (195.23944pt too wide) has occurred while \output is active
@@ -1157,7 +1157,7 @@ hare/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (81 pages,
- 3503800 bytes).
+ 3503424 bytes).
 PDF statistics:
  1448 PDF objects out of 1728 (max. 8388607)
  1233 compressed objects within 13 object streams

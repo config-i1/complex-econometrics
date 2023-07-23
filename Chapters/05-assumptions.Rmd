@@ -48,7 +48,7 @@ can be linearised using natural logarithm to:
 \end{equation*}
 which can then be estimated using OLS, CLS or likelihood maximisation as discussed in Section \@ref(mlcrEstimation). On its own, the multiplicative models of complex variables have useful features, because they allow modelling highly non-linear processes due to the rotation as discussed in Section \@ref(theoryOfComplexNumbers). For example, here how the linear increase of real and imaginary parts of a complex variable $\underline{x}$ leads to a non-linear transform of a variable $\underline{y}=\underline{x}^{0.5+0.5i}$:
 
-```{r fig.width=5, fig.height=5, fig.cap="Non-linear transformation of a complex variable that changes linearly."}
+```{r fig.width=4, fig.height=4, fig.cap="Non-linear transformation of a complex variable that changes linearly."}
 x <- 1:100 + 1:100*1i
 y <- x^(0.5+0.5i)
 cplot(x, y)
