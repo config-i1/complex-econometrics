@@ -784,8 +784,8 @@ The same normal distribution for a complex variable can be parametrised via a co
 \end{equation}
 For the bivariate case of a c.r.v. represented in a form of a vector, $n=2$ and the covariance matrix $\boldsymbol{\Sigma}$ has dimensionality of $2 \times 2$. In that case the PDF will be the same as for the Complex Normal distribution. In fact, it is possible to recreate the covariance matrix based on the values of conjugate and direct variances:
 \begin{equation}
-    \boldsymbol{\Sigma} = \frac{1}{2} \begin{pmatrix} \sigma^2 + \mathcal{R}(\varsigma^2) & \mathcal{I}(\varsigma^2) \\
-                                                      \mathcal{I}(\varsigma^2) & \sigma^2 - \mathcal{R}(\varsigma^2) \end{pmatrix} .
+    \boldsymbol{\Sigma} = \frac{1}{2} \begin{pmatrix} \mathcal{R}(\sigma^2) + \mathcal{R}(\varsigma^2) & \mathcal{I}(\varsigma^2) \\
+                                                      \mathcal{I}(\varsigma^2) & \mathcal{R}(\sigma^2) - \mathcal{R}(\varsigma^2) \end{pmatrix} .
     (\#eq:MultivariateNormalPDFCovariance)
 \end{equation}
 

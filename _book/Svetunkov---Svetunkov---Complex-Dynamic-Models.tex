@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-07-22}
+\date{2023-07-23}
 
 \begin{document}
 \maketitle
@@ -595,7 +595,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.1912+98.33375i
+## [1] 50.4577+100.4825i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -668,7 +668,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 131.1369+0i
+## 140.2166+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -680,8 +680,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -79.02895-3.80562i
+##     Direct variance 
+## -85.42981+12.71735i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -707,8 +707,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r        x_i
-## x_r 26.053969  -1.902812
-## x_i -1.902812 105.082924
+## x_r 27.393377   6.358673
+## x_i  6.358673 112.823189
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -720,7 +720,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2734.207
+## [1] 3050.175
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -787,7 +787,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 73.13482-77.82918i
+## 85.8391-102.1871i
 \end{verbatim}
 
 \begin{Shaded}
@@ -799,8 +799,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -65.59768+54.6843i
+##   Direct covariance 
+## -51.75098+42.06359i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -814,8 +814,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -81.29200- 5.94519i -65.59768+54.68430i
-## y -65.59768+54.68430i   0.69088+85.53701i
+## x -91.36099- 4.20356i -51.75098+42.06359i
+## y -51.75098+42.06359i -13.99938+44.31715i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -904,8 +904,8 @@ The same normal distribution for a complex variable can be parametrised via a co
 \end{equation}
 For the bivariate case of a c.r.v. represented in a form of a vector, \(n=2\) and the covariance matrix \(\boldsymbol{\Sigma}\) has dimensionality of \(2 \times 2\). In that case the PDF will be the same as for the Complex Normal distribution. In fact, it is possible to recreate the covariance matrix based on the values of conjugate and direct variances:
 \begin{equation}
-    \boldsymbol{\Sigma} = \frac{1}{2} \begin{pmatrix} \sigma^2 + \mathcal{R}(\varsigma^2) & \mathcal{I}(\varsigma^2) \\
-                                                      \mathcal{I}(\varsigma^2) & \sigma^2 - \mathcal{R}(\varsigma^2) \end{pmatrix} .
+    \boldsymbol{\Sigma} = \frac{1}{2} \begin{pmatrix} \mathcal{R}(\sigma^2) + \mathcal{R}(\varsigma^2) & \mathcal{I}(\varsigma^2) \\
+                                                      \mathcal{I}(\varsigma^2) & \mathcal{R}(\sigma^2) - \mathcal{R}(\varsigma^2) \end{pmatrix} .
     \label{eq:MultivariateNormalPDFCovariance}
 \end{equation}
 
@@ -1808,7 +1808,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9969913+0i
+## [1] 0.9976208+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1865,8 +1865,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##           [,1]
-## [1,] 0.9909528
+##          [,1]
+## [1,] 0.998109
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1891,11 +1891,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i         y_r         y_i
-## x_r  1.00000000 -0.06879118  0.71851718  0.67101216
-## x_i -0.06879118  1.00000000 -0.73898247  0.68958540
-## y_r  0.71851718 -0.73898247  1.00000000 -0.02703451
-## y_i  0.67101216  0.68958540 -0.02703451  1.00000000
+##           x_r        x_i         y_r         y_i
+## x_r 1.0000000  0.1418154  0.64291575  0.74604708
+## x_i 0.1418154  1.0000000 -0.66317571  0.76210987
+## y_r 0.6429157 -0.6631757  1.00000000 -0.02528153
+## y_i 0.7460471  0.7621099 -0.02528153  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2144,8 +2144,9 @@ for the CLS. Having both direct and conjugate variances for OLS and CLS, we can 
         & \mathrm{V}_{\boldsymbol{b}_{r,i}} = \frac{\mathcal{I}\left(\mathcal{V}\left( \underline{\boldsymbol{b}} \right)\right)}{2}
     \end{aligned},
 \end{equation*}
-where \(\mathrm{V}_{\boldsymbol{b}_r}\) is the part of the covariance matrix of real values of parameters, \(\mathrm{V}_{\boldsymbol{b}_i}\) is the part of the covariance matrix of imaginary values of parameters and \(\mathrm{V}_{\boldsymbol{b}_{r,i}}\) is the part of the covariance matrix between the real and imaginary parts of parameters. The final covariance matrix is formed as:
+where \(\mathrm{V}_{\boldsymbol{b}_r}\) is the part of the covariance matrix of real values of parameters, \(\mathrm{V}_{\boldsymbol{b}_i}\) is the part of the covariance matrix of imaginary values of parameters and \(\mathrm{V}_{\boldsymbol{b}_{r,i}}\) is the part of the covariance matrix between the real and imaginary parts of parameters. The final covariance matrix can be formed as:
 \begin{equation}
+    {\boldsymbol{\Sigma}}_\beta =
     \begin{pmatrix}
         \mathrm{V}_{\boldsymbol{b}_r} & \mathrm{V}_{\boldsymbol{b}_{r,i}} \\
         \mathrm{V}_{\boldsymbol{b}_{r,i}} & \mathrm{V}_{\boldsymbol{b}_i}
@@ -2155,20 +2156,58 @@ where \(\mathrm{V}_{\boldsymbol{b}_r}\) is the part of the covariance matrix of 
 
 Finally, in case of the likelihood estimation, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
 
+\hypertarget{examples-in-r}{%
+\subsection{Examples in R}\label{examples-in-r}}
+
 \hypertarget{capturing-uncertainty-in-the-multiple-clr}{%
 \section{Capturing uncertainty in the multiple CLR}\label{capturing-uncertainty-in-the-multiple-clr}}
 
-Having both direct and conjugate variances for OLS and CLS
+Having both direct and conjugate variances for OLS and CLS, it is possible to do several things:
 
-not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix of parameters \({\boldsymbol{\Sigma}}_\beta\) and then use it in calculation of Hotelling's T\(^2\) statistics (Subsection \ref{Hotelling}). This step of calculating the covariance matrix \({\boldsymbol{\Sigma}}_\beta\) is important because the direct and conjugate variances themselves do not provide information about the individual variability of real and imaginary parts of parameters.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Construct confidence intervals for parameters;
+\item
+  Construct a confidence ellipse for each complex parameter;
+\item
+  Test hypothesis about each of parameters (univariate distribution);
+\item
+  Test hypothesis for each complex parameter (considering joint distribution);
+\item
+  Produce confidence intervals for the conditional expectation from the model (fitted values and point forecasts);
+\item
+  Produce prediction intervals for the actual values.
+\end{enumerate}
 
-Alternatively, we can use both covariance matrices to derive variances of each individual parameter to then either construct confidence intervals for each of them or test a hypothesis using Student's t-statistics. In general the variances of real and imaginary parts can be extracted from the real parts of the direct and conjugate variances using the formulae \eqref{eq:IndividualVariances}.
+The elements (1) and (3) can be done assuming that the Central Limit Theorem works and thus the estimates of parameters follow Normal distribution. This can be done using Student's t-statistics as discussed in Section 6.4 and 8.1 of \citet{SvetunkovSBA}. The elements (2) and (4) rely on a different distribution and can be done using Hotelling's T\(^2\) statistics, discussed in Subsection \ref{Hotelling}. When it comes to elements (5) and (6), we need to impose some assumptions on the complex error term of the model \(\underline{\epsilon_j}\). The most popular assumption in statistics is that \(\underline{\epsilon_j} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}_\epsilon)\), where \(\boldsymbol{0}\) is the two-dimensional vector of zeroes and \(\boldsymbol{\Sigma}_\epsilon\) is the square two-by-two covariance matrix. The estimate of this matrix is typically obtained via the formula:
+\begin{equation*}
+    \hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n-k} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
+\end{equation*}
+where \(k\) is the number of estimated parameters and \(n-k\) is the number of degrees of freedom, division by which reduces the bias in the estimation of the covariance matrix.
 
-Having obtained the covariance matrix of parameters in the complex linear regression, we can use it for several purposes. First is, as discussed in the previous section, the construction of confidence intervals and/or hypothesis testing. Second, is in constructing the prediction interval for the out-of-sample values.
+To calculate prediction intervals, we need to calculate the variance of the conditional mean of a complex linear model. In case of complex variables, we need both direct and conjugate variances conditional on the values of the available explanatory variables to get the full information about the distribution:
+\begin{equation}
+    \begin{aligned}
+    \mathrm{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \mathrm{V}\left(\underline{b_0} + \underline{b_1} \underline{x_{1,j}} + \underline{b_2} \underline{x_{2,j}} + \dots + \underline{b_k} \underline{x_{k,j}} + \underline{\epsilon_j}\right) \\
+    & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \mathrm{V}\left(\underline{\epsilon_j}\right)
+    \end{aligned},
+    \label{eq:MultipleCLRComplexVarianceDir}
+\end{equation}
+where \(\mathrm{cov}(\cdot)\) is the conjugate covariance between the variables and \(\underline{x}_{0,j}=1+i\). Similarly, we can calculate the direct conditional variance:
+\begin{equation}
+    \begin{aligned}
+    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \mathcal{V}\left(\underline{\epsilon_j}\right)
+    \end{aligned},
+    \label{eq:MultipleCLRComplexVarianceConj}
+\end{equation}
+where \({cov}(\cdot)\) is the direct covariance. The formulae \eqref{eq:MultipleCLRComplexVarianceDir} and \eqref{eq:MultipleCLRComplexVarianceDir} can then be used to calculate the conditional variances of real and imaginary parts of the response variable together with a conditional covariance between them. We can then either form a covariance matrix and produce a predictive ellipse using formulae discussed in Subsection \ref{MVNorm} or consider each of the parts independently and create prediction intervals (also discussed in Subsection \ref{MVNorm}). Arguably, the latter is easier to work with than the former.
 
-Confidence intervals for parameters
+Finally, to produce confidence intervals, we can use the formulae \eqref{eq:MultipleCLRComplexVarianceDir} and \eqref{eq:MultipleCLRComplexVarianceDir}, dropping the \(\mathrm{V}\left(\underline{\epsilon_j}\right)\) and \(\mathcal{V}\left(\underline{\epsilon_j}\right)\), which will then give us direct and conjugate conditional variances of the predicted value.
 
-Prediction intervals
+\hypertarget{examples-in-r-1}{%
+\subsection{Examples in R}\label{examples-in-r-1}}
 
 \hypertarget{dummy-variables}{%
 \section{Dummy variables}\label{dummy-variables}}
@@ -2191,6 +2230,9 @@ Finally, if an interaction effect is needed (e.g.~how the change of price on red
     \label{eq:MultipleCLRComplexDummyInteraction}
 \end{equation}
 In this case, the specific complex effect of \(\underline{x}_{1,j}\) on \(\underline{y}_j\) will change when the dummy variable equals to one. The interaction effect between a complex variable \(\underline{x}_{1,j}\) and a complex dummy variable \(\underline{d}_{1,j}\) is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
+
+\hypertarget{examples-in-r-2}{%
+\subsection{Examples in R}\label{examples-in-r-2}}
 
 \hypertarget{assumptions-for-complex-linear-models}{%
 \chapter{Assumptions for Complex Linear Models}\label{assumptions-for-complex-linear-models}}

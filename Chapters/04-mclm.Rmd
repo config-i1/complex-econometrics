@@ -245,28 +245,47 @@ where $\mathrm{V}_{\boldsymbol{b}_r}$ is the part of the covariance matrix of re
 Finally, in case of the likelihood estimation, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
 
 
+### Examples in R
+
+
 ## Capturing uncertainty in the multiple CLR
 Having both direct and conjugate variances for OLS and CLS, it is possible to do several things:
 
-1. Construct confidence intervals of parameters;
-2. Test hypothesis about each of parameters;
-3. Test hypothesis for each complex parameter (considering joint distribution);
-4. Produce prediction intervals.
+1. Construct confidence intervals for parameters;
+2. Construct a confidence ellipse for each complex parameter;
+3. Test hypothesis about each of parameters (univariate distribution);
+4. Test hypothesis for each complex parameter (considering joint distribution);
+5. Produce confidence intervals for the conditional expectation from the model (fitted values and point forecasts);
+6. Produce prediction intervals for the actual values.
+
+The elements (1) and (3) can be done assuming that the Central Limit Theorem works and thus the estimates of parameters follow Normal distribution. This can be done using Student's t-statistics as discussed in Section 6.4 and 8.1 of @SvetunkovSBA. The elements (2) and (4) rely on a different distribution and can be done using Hotelling's T$^2$ statistics, discussed in Subsection \@ref(Hotelling). When it comes to elements (5) and (6), we need to impose some assumptions on the complex error term of the model $\underline{\epsilon_j}$. The most popular assumption in statistics is that $\underline{\epsilon_j} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}_\epsilon)$, where $\boldsymbol{0}$ is the two-dimensional vector of zeroes and $\boldsymbol{\Sigma}_\epsilon$ is the square two-by-two covariance matrix. The estimate of this matrix is typically obtained via the formula:
+\begin{equation*}
+	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n-k} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
+\end{equation*}
+where $k$ is the number of estimated parameters and $n-k$ is the number of degrees of freedom, division by which reduces the bias in the estimation of the covariance matrix.
+
+To calculate prediction intervals, we need to calculate the variance of the conditional mean of a complex linear model. In case of complex variables, we need both direct and conjugate variances conditional on the values of the available explanatory variables to get the full information about the distribution:
+\begin{equation}
+    \begin{aligned}
+    \mathrm{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \mathrm{V}\left(\underline{b_0} + \underline{b_1} \underline{x_{1,j}} + \underline{b_2} \underline{x_{2,j}} + \dots + \underline{b_k} \underline{x_{k,j}} + \underline{\epsilon_j}\right) \\
+    & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \mathrm{V}\left(\underline{\epsilon_j}\right)
+    \end{aligned},
+    (\#eq:MultipleCLRComplexVarianceDir)
+\end{equation}
+where $\mathrm{cov}(\cdot)$ is the conjugate covariance between the variables and $\underline{x}_{0,j}=1+i$. Similarly, we can calculate the direct conditional variance:
+\begin{equation}
+    \begin{aligned}
+    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \mathcal{V}\left(\underline{\epsilon_j}\right)
+    \end{aligned},
+    (\#eq:MultipleCLRComplexVarianceConj)
+\end{equation}
+where ${cov}(\cdot)$ is the direct covariance. The formulae \@ref(eq:MultipleCLRComplexVarianceDir) and \@ref(eq:MultipleCLRComplexVarianceDir) can then be used to calculate the conditional variances of real and imaginary parts of the response variable together with a conditional covariance between them. We can then either form a covariance matrix and produce a predictive ellipse using formulae discussed in Subsection \@ref(MVNorm) or consider each of the parts independently and create prediction intervals (also discussed in Subsection \@ref(MVNorm)). Arguably, the latter is easier to work with than the former.
+
+Finally, to produce confidence intervals, we can use the formulae \@ref(eq:MultipleCLRComplexVarianceDir) and \@ref(eq:MultipleCLRComplexVarianceDir), dropping the $\mathrm{V}\left(\underline{\epsilon_j}\right)$ and $\mathcal{V}\left(\underline{\epsilon_j}\right)$, which will then give us direct and conjugate conditional variances of the predicted value.
 
 
+### Examples in R
 
-not only allows analysing how the estimators will perform and which of them is more efficient, but also allows creating confidence intervals, testing hypotheses about the values of parameters and correctly capturing the uncertainty when constructing prediction interval from the estimated model. To construct the intervals or test hypotheses, we can use both direct and conjugate variances to calculate the covariance matrix of parameters ${\boldsymbol{\Sigma}}_\beta$ and then use it in calculation of Hotelling's T$^2$ statistics (Subsection \@ref(Hotelling)). This step of calculating the covariance matrix ${\boldsymbol{\Sigma}}_\beta$ is important because the direct and conjugate variances themselves do not provide information about the individual variability of real and imaginary parts of parameters.
-
-Alternatively, we can use both covariance matrices to derive variances of each individual parameter to then either construct confidence intervals for each of them or test a hypothesis using Student's t-statistics. In general the variances of real and imaginary parts can be extracted from the real parts of the direct and conjugate variances using the formulae \@ref(eq:IndividualVariances).
-
-
-Having obtained the covariance matrix of parameters in the complex linear regression, we can use it for several purposes. First is, as discussed in the previous section, the construction of confidence intervals and/or hypothesis testing. Second, is in constructing the prediction interval for the out-of-sample values.
-
-
-
-Confidence intervals for parameters
-
-Prediction intervals
 
 ## Dummy variables
 In the real-valued regression analysis, dummy variables appear when a feature of an object can be measured only in a categorical scale. For example, we might be interested in sales of a red medium size t-shirt vs the sales of a blue small size one. In this case, the colour would be one of such characteristics (measured in the nominal scale), while the size would be the other one (in ordinal scale). In order to include such information in the regression model, a set of dummy variables is typically created. A dummy variable is the variable that equals to one, when the feature exists and zero otherwise. So, in our example, we would create dummy variables `colourRed`, `colourBlue`, and `colourGreen` to denote the first feature and `sizeSmall`, `sizeMedium`, and `sizeLarge` for the second one. These variables would be equal to one for the specific observations (t-shirts) in our data. And for obvious reasons, the t-shirt cannot be both red and blue or small and medium at the same time, so the respective variables will be self-exclusive. If you want to learn more, you can find some information on that in Chapter 13 of @SvetunkovSBA.
@@ -288,3 +307,5 @@ Finally, if an interaction effect is needed (e.g. how the change of price on red
 \end{equation}
 In this case, the specific complex effect of $\underline{x}_{1,j}$ on $\underline{y}_j$ will change when the dummy variable equals to one. The interaction effect between a complex variable $\underline{x}_{1,j}$ and a complex dummy variable $\underline{d}_{1,j}$ is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
 
+
+### Examples in R
