@@ -595,7 +595,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.2419+100.621i
+## [1] 50.59017+98.86949i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -668,7 +668,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 111.0078+0i
+## 133.7831+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -681,7 +681,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -63.94587-5.90934i
+## -79.61511-0.81076i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -706,9 +706,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 23.530985 -2.954669
-## x_i -2.954669 87.476851
+##            x_r         x_i
+## x_r 27.0840110  -0.4053785
+## x_i -0.4053785 106.6991180
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -720,7 +720,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2049.686
+## [1] 2889.676
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -787,7 +787,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 68.32603-86.82286i
+## 50.1188-115.1974i
 \end{verbatim}
 
 \begin{Shaded}
@@ -800,7 +800,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -37.92475+53.69223i
+## -25.58773+63.67208i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -814,8 +814,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -74.82743+10.24547i -37.92475+53.69223i
-## y -37.92475+53.69223i -27.75821+75.48124i
+## x -72.26276+ 7.76961i -25.58773+63.67208i
+## y -25.58773+63.67208i  38.79828+61.95183i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1808,7 +1808,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.99652+0i
+## [1] 0.997758+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1866,7 +1866,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9961857
+## [1,] 0.9967759
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1891,11 +1891,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i        y_r        y_i
-## x_r 1.00000000  0.03824691  0.6437910  0.6756722
-## x_i 0.03824691  1.00000000 -0.7358071  0.7574594
-## y_r 0.64379102 -0.73580714  1.0000000 -0.1235575
-## y_i 0.67567217  0.75745939 -0.1235575  1.0000000
+##           x_r        x_i         y_r         y_i
+## x_r 1.0000000  0.0311207  0.68807457  0.70583418
+## x_i 0.0311207  1.0000000 -0.70062557  0.72700034
+## y_r 0.6880746 -0.7006256  1.00000000 -0.02468684
+## y_i 0.7058342  0.7270003 -0.02468684  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -1910,14 +1910,14 @@ We now move to the discussion of the multiple CLR, the model that captures relat
 
 Similarly to how the multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \underline{\beta_2} \underline{x_{2,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\epsilon_j},
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \underline{\beta_2} \underline{x_{2,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\epsilon_j},
     \label{eq:MultipleCLRComplex}
 \end{equation}
-where \(k\) is the number of complex random variables. Similarly to how it was done with SCLR in \eqref{eq:SimpleCLRSystem}, we can expand the formula \eqref{eq:MultipleCLRComplex} as a system of two equations, taking that every parameter and every variable in \eqref{eq:MultipleCLRComplex} is complex:
+where \(k-1\) is the number of complex random variables. Similarly to how it was done with SCLR in \eqref{eq:SimpleCLRSystem}, we can expand the formula \eqref{eq:MultipleCLRComplex} as a system of two equations, taking that every parameter and every variable in \eqref{eq:MultipleCLRComplex} is complex:
 \begin{equation}
     \begin{aligned}
-        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k,r} x_{k,r,j} - \beta_{k,i} x_{k,i,j} + \epsilon_{r,j} \\
-        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{1,i,j} + \beta_{1,i} x_{1,r,j} + \dots + \beta_{k,r} x_{k,i,j} + \beta_{k,i} x_{k,r,j} + \epsilon_{i,j} .
+        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k-1,r} x_{k-1,r,j} - \beta_{k-1,i} x_{k-1,i,j} + \epsilon_{r,j} \\
+        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{1,i,j} + \beta_{1,i} x_{1,r,j} + \dots + \beta_{k-1,r} x_{k-1,i,j} + \beta_{k-1,i} x_{k-1,r,j} + \epsilon_{i,j} .
     \end{aligned}
     \label{eq:MultipleCLRSystem}
 \end{equation}
@@ -1928,14 +1928,14 @@ This system can be represented in a more compact form, similarly to \eqref{eq:Si
     \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
     \label{eq:CLRVector}
 \end{equation}
-where now \(\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_{1,1}} & \dots & \underline{{x}_{k,1}} \\ 1 & \underline{{x}_{1,2}} & \dots & \underline{{x}_{k,2}} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{{x}_{1,n}} & \dots & \underline{{x}_{k,n}} \end{pmatrix}\) and \(\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \\ \vdots \\ \underline{{\beta}_k} \end{pmatrix}\), where each of the elements in the matrices and vectors above is a complex number.
+where now \(\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_{1,1}} & \dots & \underline{{x}_{k-1,1}} \\ 1 & \underline{{x}_{1,2}} & \dots & \underline{{x}_{k-1,2}} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{{x}_{1,n}} & \dots & \underline{{x}_{k-1,n}} \end{pmatrix}\) and \(\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \\ \vdots \\ \underline{{\beta}_{k-1}} \end{pmatrix}\), where each of the elements in the matrices and vectors above is a complex number.
 
 Furthermore, the system \eqref{eq:MultipleCLRSystem} can also be used to represent the multiple CLR in a simple form using vector and matrix notations, avoiding complex numbers:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
     \label{eq:MultipleCLRSystemVector}
 \end{equation}
-where \(\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}_j} = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}\), \(\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}\) and \(\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}\). This can be then represented in the even more compact form, using the same principles as discussed in Section \ref{simpleCLRModel} in formula \eqref{eq:SimpleCLRSystemVectorFinal}:
+where \(\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}_j} = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k-1,r,j} & -x_{k-1,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k-1,i,j} & x_{k-1,r,j} \end{pmatrix}\), \(\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k-1} & \beta_{1,k-1} \end{pmatrix}\) and \(\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}\). This can be then represented in the even more compact form, using the same principles as discussed in Section \ref{simpleCLRModel} in formula \eqref{eq:SimpleCLRSystemVectorFinal}:
 \begin{equation}
     \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} 
     \label{eq:CLRSystemVectorFinal}
@@ -1944,8 +1944,8 @@ where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \math
 
 The main difference between the form \eqref{eq:CLRVector} and \eqref{eq:CLRSystemVectorFinal} is that the former contains complex numbers inside each of the matrices and vectors.
 
-\hypertarget{estimation}{%
-\section{Estimation}\label{estimation}}
+\hypertarget{mlcrEstimation}{%
+\section{Estimation}\label{mlcrEstimation}}
 
 In order to estimate the parameters of the model \eqref{eq:CLRVector}, we can use the same methods as in the Chapter \ref{simpleCLR}: OLS, CLS and Likelihood. We will write the estimated model as:
 \begin{equation}
@@ -2197,15 +2197,15 @@ It can be estimated on one observation and in that case will have zero degrees o
 To calculate prediction intervals, we need to calculate the variance of the conditional mean of a complex linear model. In case of complex variables, we need both direct and conjugate variances conditional on the values of the available explanatory variables to get the full information about the distribution:
 \begin{equation}
     \begin{aligned}
-    \mathrm{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \mathrm{V}\left(\underline{b_0} + \underline{b_1} \underline{x_{1,j}} + \underline{b_2} \underline{x_{2,j}} + \dots + \underline{b_k} \underline{x_{k,j}} + \underline{\epsilon_j}\right) \\
-    & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \sigma_{\underline{\epsilon}}^2
+    \mathrm{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k-1,j} \right) = & \mathrm{V}\left(\underline{b_0} + \underline{b_1} \underline{x_{1,j}} + \underline{b_2} \underline{x_{2,j}} + \dots + \underline{b_{k-1}} \underline{x_{k-1,j}} + \underline{\epsilon_j}\right) \\
+    & \sum_{i=0}^{k-1} \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \sigma_{\underline{\epsilon}}^2
     \end{aligned},
     \label{eq:MultipleCLRComplexVarianceDir}
 \end{equation}
 where \(\mathrm{cov}(\cdot)\) is the conjugate covariance between the variables and \(\underline{x}_{0,j}=1+i\). Similarly, we can calculate the direct conditional variance:
 \begin{equation}
     \begin{aligned}
-    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \varsigma_{\underline{\epsilon}}^2
+    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k-1,j} \right) = & \sum_{i=0}^{k-1} \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \varsigma_{\underline{\epsilon}}^2
     \end{aligned},
     \label{eq:MultipleCLRComplexVarianceConj}
 \end{equation}
@@ -2224,7 +2224,7 @@ In the real-valued regression analysis, dummy variables appear when a feature of
 In case of complex linear regression, it is possible to introduce dummy variables in the same way as in the conventional model, by adding real-valued variables. The model in this case becomes:
 
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\gamma_1} d_{1,j} + \dots + \underline{\gamma_m} d_{m,j} + \underline{\epsilon_j},
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\gamma_1} d_{1,j} + \dots + \underline{\gamma_m} d_{m,j} + \underline{\epsilon_j},
     \label{eq:MultipleCLRComplexDummy}
 \end{equation}
 where \(\underline{\gamma_i}\) is the complex parameter, \(d_{i,j}\) is th \(i\)-th real-valued dummy variable and \(m\) is the number of dummy variables. In this case, each variable \(d_{i,j}\) is multiplied by a complex coefficient, capturing the dummy effect of it on each part of the complex response variable. The effect of dummy variables on the response one is exactly the same as in the conventional real-valued regression - the intercept of the model, \(\underline{\beta_0}\) will change by the value of \(\underline{\gamma_i}\), when the variable \(d_{i,j}\) equals to one.
@@ -2233,7 +2233,7 @@ It is also theoretically possible to encode a complex dummy variable, which woul
 
 Finally, if an interaction effect is needed (e.g.~how the change of price on red product impacts its sales), this can be done in a similar way to the conventional real-valued regression. For example, here how it can be done for a variable \(\underline{x}_{1,j}\):
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\gamma_1} \underline{x_{1,j}} d_{1,j} + \underline{\epsilon_j} .
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\gamma_1} \underline{x_{1,j}} d_{1,j} + \underline{\epsilon_j} .
     \label{eq:MultipleCLRComplexDummyInteraction}
 \end{equation}
 In this case, the specific complex effect of \(\underline{x}_{1,j}\) on \(\underline{y}_j\) will change when the dummy variable equals to one. The interaction effect between a complex variable \(\underline{x}_{1,j}\) and a complex dummy variable \(\underline{d}_{1,j}\) is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
@@ -2241,10 +2241,10 @@ In this case, the specific complex effect of \(\underline{x}_{1,j}\) on \(\under
 \hypertarget{examples-in-r-3}{%
 \subsection{Examples in R}\label{examples-in-r-3}}
 
-\hypertarget{assumptions-for-complex-linear-models}{%
-\chapter{Assumptions for Complex Linear Models}\label{assumptions-for-complex-linear-models}}
+\hypertarget{assumptions-of-complex-linear-models}{%
+\chapter{Assumptions of Complex Linear Models}\label{assumptions-of-complex-linear-models}}
 
-Similar to how it is done for the conventional real valued regression, we should discuss what assumptions are imposed on complex linear regression estimated using one of the methods discussed in the previous section. We will split all regression assumptions to three groups:
+Similar to how it is done for the conventional real valued regression, we should discuss what assumptions are imposed on complex linear regression estimated using one of the methods discussed in the previous Section \ref{mlcrEstimation}. We will split all regression assumptions to three groups \citep[similar to how it was done by][]{SvetunkovSBA}:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2257,7 +2257,7 @@ Similar to how it is done for the conventional real valued regression, we should
   Explanatory variables are not correlated with anything but the response variable.
 \end{enumerate}
 
-While the first two groups directly relate to the so called ``true model'', the last one refers to the estimation approaches discussed above: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this section are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail. An interested reader is advised to read Chapter 15 of \citet{SvetunkovSBA}. Instead, we will focus on some of the assumptions that are specific for complex-valued models.
+While the first two groups directly relate to the so called ``true model'', the last one refers to the estimation approaches discussed above: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this Chapter are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail. An interested reader is advised to read Chapter 15 of \citet{SvetunkovSBA}. Instead, we will focus on some of the assumptions that are specific for complex-valued models.
 
 \hypertarget{model-is-correctly-specified}{%
 \section{Model is correctly specified}\label{model-is-correctly-specified}}
@@ -2277,17 +2277,55 @@ This is one of the most general and most important groups of assumptions. It inc
   Residuals of the model do not contain outliers.
 \end{enumerate}
 
-The first assumption implies that we have all the variables that can impact our response variable and that we have included them in the model. However, we always omit a lot of different variables that might impact the response one. Still, if they do not play an important role in regression, they do not tend to cause issues. Formally speaking, the omitted variables should not be correlated with the ones that we include in the model, because otherwise the impact of the latter will be larger than needed causing bias in the estimates of parameters. It is not possible to test this assumption, so it can only be checked based on judgment of an analyst. If we violate this assumption, the estimates of parameters will be biased.
+We briefly discuss them in this section.
 
-The situation opposite to the first one is (2), which implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e.~variances of estimates will be larger than needed).
+\hypertarget{model-does-not-omit-any-important-variables}{%
+\subsection{Model does not omit any important variables}\label{model-does-not-omit-any-important-variables}}
 
-While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because even simple transformations (such as taking logarithm of a variable) might lead to highly non-linear results in case of complex variables. Furthermore, transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable \(\underline{z}\) as shown in \eqref{eq:complexNumberLogarithm} is:
+This assumption implies that we have all the variables that can impact our response variable and that we have included them in the model. However, we always omit a lot of different variables that might impact the response one, but do not have a large effect on it. Still, if they do not play an important role in regression, they do not tend to cause issues. Formally speaking, the omitted variables should not be correlated with the ones that we include in the model, because otherwise the impact of the latter will not be captured correctly, causing bias in the estimates of parameters. It is not possible to test this assumption, so it can only be checked based on judgment of an analyst. If we violate this assumption, the estimates of parameters will typically be biased.
+
+\hypertarget{model-does-not-have-redundant-variables}{%
+\subsection{Model does not have redundant variables}\label{model-does-not-have-redundant-variables}}
+
+This is the situation opposite to the first one. It implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e.~variances of estimates will be larger than needed).
+
+\hypertarget{variables-transformations}{%
+\subsection{Variables transformations}\label{variables-transformations}}
+
+While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because of the effect they have on the variables: transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable \(\underline{z}\) as shown in \eqref{eq:complexNumberLogarithm} is:
 \begin{equation*}
     \ln \underline{z} = \ln r + i \phi ,
 \end{equation*}
-which is not equivalent to the complex variable \(\ln x_r + \ln x_i\). This means that transformations of complex variables should be taken with additional care, and the task of finding the correct ones becomes more complicated than in the case of the conventional real-valued regression.
+which is not equivalent to the complex variable \(\ln x_r + i \ln x_i\). In fact, there is no known transformation from \(x_r + x_i\) to \(\ln x_r + i \ln x_i\) except for transforming separately the real and imaginary parts of the variable. Still, logarithms can be used to linearise a non-linear complex model to simplify its estimation. For example, the following multiplicative model:
+\begin{equation*}
+    y_{r} + i y_{i} = (\beta_{0,r} + i \beta_{0,i}) (x_{1,r} + i x_{1,i}) ^{\beta_{1,r} + i \beta_{1,i}} \dots (x_{k-1,r} + i x_{k-1,i}) ^{\beta_{k-1,r} + i \beta_{k-1,i}} (\epsilon_{r} + i \epsilon_{i})
+\end{equation*}
+can be linearised using natural logarithm to:
+\begin{equation*}
+    \ln (y_{r} + i y_{i}) = \ln (\beta_{0,r} + i \beta_{0,i}) + (\beta_{1,r} + i \beta_{1,i}) \ln(x_{1,r} + i x_{1,i}) + \dots + (\beta_{k-1,r} + i \beta_{k-1,i}) \ln (x_{k-1,r} + i x_{k-1,i}) + \ln (\epsilon_{r} + i \epsilon_{i}),
+\end{equation*}
+which can then be estimated using OLS, CLS or likelihood maximisation as discussed in Section \ref{mlcrEstimation}. On its own, the multiplicative models of complex variables have useful features, because they allow modelling highly non-linear processes due to the rotation as discussed in Section \ref{theoryOfComplexNumbers}. For example, here how the linear increase of real and imaginary parts of a complex variable \(\underline{x}\) leads to a non-linear transform of a variable \(\underline{y}=\underline{x}^{0.5+0.5i}\):
 
-Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g.~a dummy variable for an external event). Making sure that there are no outliers provides some assurance that there are no important missing variables in the model.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100} \SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\SpecialCharTok{*}\NormalTok{1i}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{\^{}}\NormalTok{(}\FloatTok{0.5+0.5}\NormalTok{i)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{Re}\NormalTok{(x), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{Im}\NormalTok{(x), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{Re}\NormalTok{(y), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{Im}\NormalTok{(y), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+Even if the imaginary part of \(\underline{x}\) is zero (and we are dealing with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
+
+\hypertarget{no-outliers}{%
+\subsection{No outliers}\label{no-outliers}}
+
+Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g.~a dummy variable for an external event). In that case the estimates of parameters will be biased. Making sure that there are no outliers provides some assurance that there are no important missing variables in the model.
 
 \hypertarget{residuals-are-i.i.d.}{%
 \section{Residuals are i.i.d.}\label{residuals-are-i.i.d.}}
