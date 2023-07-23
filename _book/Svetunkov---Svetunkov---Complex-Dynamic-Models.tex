@@ -595,7 +595,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.73187+97.25214i
+## [1] 51.6067+101.5522i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -668,7 +668,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 108.7326+0i
+## 101.3254+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -681,7 +681,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -58.08465-7.94041i
+## -54.67098+2.56366i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -707,8 +707,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 25.323967 -3.970205
-## x_i -3.970205 83.408622
+## x_r 23.327196  1.281828
+## x_i  1.281828 77.998173
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -720,7 +720,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2096.475
+## [1] 1817.836
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -787,7 +787,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 52.96286-99.68353i
+## 65.2119-116.5935i
 \end{verbatim}
 
 \begin{Shaded}
@@ -800,7 +800,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -28.72465+41.52033i
+## -39.95383+82.22088i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -814,8 +814,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -54.03942- 0.30004i -28.72465+41.52033i
-## y -28.72465+41.52033i  14.83615+56.53294i
+## x -97.99193+ 6.71251i -39.95383+82.22088i
+## y -39.95383+82.22088i  46.78544+63.84831i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1808,7 +1808,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9973388+0i
+## [1] 0.9970481+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1866,7 +1866,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9971751
+## [1,] 0.9965166
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1891,11 +1891,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i        y_r       y_i
-## x_r  1.00000000 -0.01529421  0.7567587 0.7447773
-## x_i -0.01529421  1.00000000 -0.6615619 0.6514246
-## y_r  0.75675867 -0.66156191  1.0000000 0.1335756
-## y_i  0.74477729  0.65142465  0.1335756 1.0000000
+##             x_r         x_i         y_r         y_i
+## x_r  1.00000000 -0.05808621  0.72148021  0.67979810
+## x_i -0.05808621  1.00000000 -0.72881857  0.68878711
+## y_r  0.72148021 -0.72881857  1.00000000 -0.01151081
+## y_i  0.67979810  0.68878711 -0.01151081  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2348,22 +2348,40 @@ The next group of assumptions has 6 elements in it:
 \item
   Expectation of residuals is zero (no matter what);
 \item
-  The residuals follow an assumed distribution;
+  Residuals follow an assumed distribution;
 \item
-  The distribution of the residuals does not change over time;
+  Distribution of the residuals is constant (no matter what);
 \item
   Residuals follow a circular distribution.
 \end{enumerate}
 
-The first assumption implies for CLR that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This also means that the covariance matrix of residuals \(\Sigma\) stays the same no matter what. This assumption aligns well with a similar assumption of multivariate models, such as VAR or VETS, which will be discussed later in this book.
+\hypertarget{homoscedastic-residuals}{%
+\subsection{Homoscedastic residuals}\label{homoscedastic-residuals}}
+
+The first assumption implies for CLR that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This also means that the covariance matrix of residuals \(\Sigma_\epsilon\) stays the same no matter what. This assumption aligns well with a similar assumption of conventional multivariate models, such as VAR or VETS.
+
+\hypertarget{no-autocorrelation-in-residuals}{%
+\subsection{No autocorrelation in residuals}\label{no-autocorrelation-in-residuals}}
 
 The second assumption only applies to time series data. In case of the real-valued model, it means that the residuals in the past do not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g.~correct transformations are not done or some autoregressive elements are missing). In case of the CLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g.~Complex Autoregression, discussed later in this book).
 
+\hypertarget{expectation-of-residuals-is-zero}{%
+\subsection{Expectation of residuals is zero}\label{expectation-of-residuals-is-zero}}
+
 While many other assumptions can be diagnosed in one way or another, the assumption (3) in some cases cannot be. For example, if we use OLS, the unconditional mean of the residuals will be equal to zero by design, which does not provide any useful information about the ``true'' model. However, this assumption can be analysed conditionally, e.g.~conditional on the fitted values. If the conditional mean of the residuals is not constant then we can conclude that some important element was omitted by the model. In a way, the assumption becomes similar to the assumption about the omitted variables and/or autocorrelated residuals.
+
+\hypertarget{residuals-follow-an-assumed-distribution}{%
+\subsection{Residuals follow an assumed distribution}\label{residuals-follow-an-assumed-distribution}}
 
 In the classical real-valued regression, the assumption (4) is not considered to be crucial and if the model is estimated using OLS typically comes to ``the residuals follow the Normal distribution''. In context of complex variables, the equivalent assumption would be that the complex residuals follow the Complex Normal distribution discussed in Section \ref{distributionCNorm}. If the model is formulated using matrix notations \eqref{eq:CLRSystemVectorFinal}, the assumption transforms to ``Multivariate Normal'' one, discussed in Section \ref{MVNorm}. In anyway, this assumption is complementary to the main ones, even when it does not hold but all the others hold, the estimates of parameters should be unbiased, efficient and consistent. However, it becomes essential when the prediction interval needs to be generated from the model.
 
+\hypertarget{distribution-of-residuals-us-constant}{%
+\subsection{Distribution of residuals us constant}\label{distribution-of-residuals-us-constant}}
+
 Building upon (4), the fifth assumption is applicable to time series models only and states more generally that we deal with one and the same assumption of residuals over time. This assumption is very difficult to test (if at all possible), so it is typically dropped from the discussion.
+
+\hypertarget{circular-distribution}{%
+\subsection{Circular distribution}\label{circular-distribution}}
 
 Finally, in signal processing literature, the assumption (6) means that the covariance between the residuals equals to zero and the variances of the real and the imaginary parts are equal. This implies that the direct variance of residuals is equal to zero. While this might be a suitable assumption in that discipline, there is no good rationale for this to hold universally for all CLR models. So, we will not consider this assumption as an important one in what follows.
 
