@@ -4,14 +4,14 @@ We now move to the discussion of the multiple CLR, the model that captures relat
 ## Model formulation 
 Similarly to how the multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \underline{\beta_2} \underline{x_{2,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\epsilon_j},
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \underline{\beta_2} \underline{x_{2,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\epsilon_j},
     (\#eq:MultipleCLRComplex)
 \end{equation}
-where $k$ is the number of complex random variables. Similarly to how it was done with SCLR in \@ref(eq:SimpleCLRSystem), we can expand the formula \@ref(eq:MultipleCLRComplex) as a system of two equations, taking that every parameter and every variable in \@ref(eq:MultipleCLRComplex) is complex:
+where $k-1$ is the number of complex random variables. Similarly to how it was done with SCLR in \@ref(eq:SimpleCLRSystem), we can expand the formula \@ref(eq:MultipleCLRComplex) as a system of two equations, taking that every parameter and every variable in \@ref(eq:MultipleCLRComplex) is complex:
 \begin{equation}
     \begin{aligned}
-        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k,r} x_{k,r,j} - \beta_{k,i} x_{k,i,j} + \epsilon_{r,j} \\
-        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{1,i,j} + \beta_{1,i} x_{1,r,j} + \dots + \beta_{k,r} x_{k,i,j} + \beta_{k,i} x_{k,r,j} + \epsilon_{i,j} .
+        y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k-1,r} x_{k-1,r,j} - \beta_{k-1,i} x_{k-1,i,j} + \epsilon_{r,j} \\
+        y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{1,i,j} + \beta_{1,i} x_{1,r,j} + \dots + \beta_{k-1,r} x_{k-1,i,j} + \beta_{k-1,i} x_{k-1,r,j} + \epsilon_{i,j} .
     \end{aligned}
     (\#eq:MultipleCLRSystem)
 \end{equation}
@@ -22,14 +22,14 @@ This system can be represented in a more compact form, similarly to \@ref(eq:Sim
     \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
     (\#eq:CLRVector)
 \end{equation}
-where now $\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_{1,1}} & \dots & \underline{{x}_{k,1}} \\ 1 & \underline{{x}_{1,2}} & \dots & \underline{{x}_{k,2}} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{{x}_{1,n}} & \dots & \underline{{x}_{k,n}} \end{pmatrix}$ and $\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \\ \vdots \\ \underline{{\beta}_k} \end{pmatrix}$, where each of the elements in the matrices and vectors above is a complex number.
+where now $\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_{1,1}} & \dots & \underline{{x}_{k-1,1}} \\ 1 & \underline{{x}_{1,2}} & \dots & \underline{{x}_{k-1,2}} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{{x}_{1,n}} & \dots & \underline{{x}_{k-1,n}} \end{pmatrix}$ and $\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \\ \vdots \\ \underline{{\beta}_{k-1}} \end{pmatrix}$, where each of the elements in the matrices and vectors above is a complex number.
 
 Furthermore, the system \@ref(eq:MultipleCLRSystem) can also be used to represent the multiple CLR in a simple form using vector and matrix notations, avoiding complex numbers:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
     (\#eq:MultipleCLRSystemVector)
 \end{equation}
-where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\underset{\sim}{\mathbf{X}_j} = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k,r,j} & -x_{k,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k,i,j} & x_{k,r,j} \end{pmatrix}$, $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k} & \beta_{1,k} \end{pmatrix}$ and $\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
+where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\underset{\sim}{\mathbf{X}_j} = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k-1,r,j} & -x_{k-1,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k-1,i,j} & x_{k-1,r,j} \end{pmatrix}$, $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k-1} & \beta_{1,k-1} \end{pmatrix}$ and $\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
 \begin{equation}
     \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} 
     (\#eq:CLRSystemVectorFinal)
@@ -281,15 +281,15 @@ It can be estimated on one observation and in that case will have zero degrees o
 To calculate prediction intervals, we need to calculate the variance of the conditional mean of a complex linear model. In case of complex variables, we need both direct and conjugate variances conditional on the values of the available explanatory variables to get the full information about the distribution:
 \begin{equation}
     \begin{aligned}
-    \mathrm{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \mathrm{V}\left(\underline{b_0} + \underline{b_1} \underline{x_{1,j}} + \underline{b_2} \underline{x_{2,j}} + \dots + \underline{b_k} \underline{x_{k,j}} + \underline{\epsilon_j}\right) \\
-    & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \sigma_{\underline{\epsilon}}^2
+    \mathrm{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k-1,j} \right) = & \mathrm{V}\left(\underline{b_0} + \underline{b_1} \underline{x_{1,j}} + \underline{b_2} \underline{x_{2,j}} + \dots + \underline{b_{k-1}} \underline{x_{k-1,j}} + \underline{\epsilon_j}\right) \\
+    & \sum_{i=0}^{k-1} \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \sigma_{\underline{\epsilon}}^2
     \end{aligned},
     (\#eq:MultipleCLRComplexVarianceDir)
 \end{equation}
 where $\mathrm{cov}(\cdot)$ is the conjugate covariance between the variables and $\underline{x}_{0,j}=1+i$. Similarly, we can calculate the direct conditional variance:
 \begin{equation}
     \begin{aligned}
-    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \varsigma_{\underline{\epsilon}}^2
+    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k-1,j} \right) = & \sum_{i=0}^{k-1} \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \varsigma_{\underline{\epsilon}}^2
     \end{aligned},
     (\#eq:MultipleCLRComplexVarianceConj)
 \end{equation}
@@ -307,7 +307,7 @@ In the real-valued regression analysis, dummy variables appear when a feature of
 In case of complex linear regression, it is possible to introduce dummy variables in the same way as in the conventional model, by adding real-valued variables. The model in this case becomes:
 
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\gamma_1} d_{1,j} + \dots + \underline{\gamma_m} d_{m,j} + \underline{\epsilon_j},
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\gamma_1} d_{1,j} + \dots + \underline{\gamma_m} d_{m,j} + \underline{\epsilon_j},
     (\#eq:MultipleCLRComplexDummy)
 \end{equation}
 where $\underline{\gamma_i}$ is the complex parameter, $d_{i,j}$ is th $i$-th real-valued dummy variable and $m$ is the number of dummy variables. In this case, each variable $d_{i,j}$ is multiplied by a complex coefficient, capturing the dummy effect of it on each part of the complex response variable. The effect of dummy variables on the response one is exactly the same as in the conventional real-valued regression - the intercept of the model, $\underline{\beta_0}$ will change by the value of $\underline{\gamma_i}$, when the variable $d_{i,j}$ equals to one.
@@ -316,7 +316,7 @@ It is also theoretically possible to encode a complex dummy variable, which woul
 
 Finally, if an interaction effect is needed (e.g. how the change of price on red product impacts its sales), this can be done in a similar way to the conventional real-valued regression. For example, here how it can be done for a variable $\underline{x}_{1,j}$:
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_k} \underline{x_{k,j}} + \underline{\gamma_1} \underline{x_{1,j}} d_{1,j} + \underline{\epsilon_j} .
+    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\gamma_1} \underline{x_{1,j}} d_{1,j} + \underline{\epsilon_j} .
     (\#eq:MultipleCLRComplexDummyInteraction)
 \end{equation}
 In this case, the specific complex effect of $\underline{x}_{1,j}$ on $\underline{y}_j$ will change when the dummy variable equals to one. The interaction effect between a complex variable $\underline{x}_{1,j}$ and a complex dummy variable $\underline{d}_{1,j}$ is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
