@@ -237,7 +237,7 @@ for the CLS. Having both direct and conjugate variances for OLS and CLS, we can 
 \end{equation*}
 where $\mathrm{V}_{\boldsymbol{b}_r}$ is the part of the covariance matrix of real values of parameters, $\mathrm{V}_{\boldsymbol{b}_i}$ is the part of the covariance matrix of imaginary values of parameters and $\mathrm{V}_{\boldsymbol{b}_{r,i}}$ is the part of the covariance matrix between the real and imaginary parts of parameters. The final covariance matrix can be formed as:
 \begin{equation}
-    {\boldsymbol{\Sigma}}_\beta =
+    \hat{{\boldsymbol{\Sigma}}}_\beta =
     \begin{pmatrix}
         \mathrm{V}_{\boldsymbol{b}_r} & \mathrm{V}_{\boldsymbol{b}_{r,i}} \\
         \mathrm{V}_{\boldsymbol{b}_{r,i}} & \mathrm{V}_{\boldsymbol{b}_i}
@@ -263,22 +263,33 @@ Having both direct and conjugate variances for OLS and CLS, it is possible to do
 
 The elements (1) and (3) can be done assuming that the Central Limit Theorem works and thus the estimates of parameters follow Normal distribution. This can be done using Student's t-statistics as discussed in Section 6.4 and 8.1 of @SvetunkovSBA. The elements (2) and (4) rely on a different distribution and can be done using Hotelling's T$^2$ statistics, discussed in Subsection \@ref(Hotelling). When it comes to elements (5) and (6), we need to impose some assumptions on the complex error term of the model $\underline{\epsilon_j}$. The most popular assumption in statistics is that $\underline{\epsilon_j} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}_\epsilon)$, where $\boldsymbol{0}$ is the two-dimensional vector of zeroes and $\boldsymbol{\Sigma}_\epsilon$ is the square two-by-two covariance matrix. The estimate of this matrix is typically obtained via the formula:
 \begin{equation*}
-	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n-k} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
+	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n-\frac{k}{2}} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
 \end{equation*}
-where $k$ is the number of estimated parameters and $n-k$ is the number of degrees of freedom, division by which reduces the bias in the estimation of the covariance matrix.
+where $k$ is the number of estimated parameters and $n-\frac{k}{2}$ is the number of degrees of freedom per part of the model, division by which reduces the bias in the estimation of the covariance matrix. The division of $k$ by 2 is required to reflect the fact that the complex response variable consists of two parts and the whole complex-valued equation can be represented in a form of a system of two equations, where the same parameters are used in both parts. To make this clearer, consider the following model:
+\begin{equation*}
+	y_{r,1} + i y_{i,1} = (a_{r,1} + i a_{i,1}) (x_{r,1} + i x_{i,1}) + \epsilon_{r,1} + i \epsilon_{i,1} .
+\end{equation*}
+<!-- It can also be represented as a system of two equations: -->
+<!-- \begin{equation*} -->
+<!--     \begin{aligned} -->
+<!-- 	    y_{r,1} = a_{r,1} x_{r,1} - a_{i,1} x_{i,1} + \epsilon_{r,1} \\ -->
+<!-- 	    y_{i,1} = a_{r,1} x_{i,1} + a_{i,1} x_{r,1} + i \epsilon_{i,1}  -->
+<!-- 	\end{aligned}, -->
+<!-- \end{equation*} -->
+It can be estimated on one observation and in that case will have zero degrees of freedom. Another way to look at this problem is to calculate the number of degrees of freedom per series, which in case of complex-valued model comes to two series  resulting in the same $n-\frac{k}{2}$.
 
 To calculate prediction intervals, we need to calculate the variance of the conditional mean of a complex linear model. In case of complex variables, we need both direct and conjugate variances conditional on the values of the available explanatory variables to get the full information about the distribution:
 \begin{equation}
     \begin{aligned}
     \mathrm{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \mathrm{V}\left(\underline{b_0} + \underline{b_1} \underline{x_{1,j}} + \underline{b_2} \underline{x_{2,j}} + \dots + \underline{b_k} \underline{x_{k,j}} + \underline{\epsilon_j}\right) \\
-    & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \mathrm{V}\left(\underline{\epsilon_j}\right)
+    & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \sigma_{\underline{\epsilon}}^2
     \end{aligned},
     (\#eq:MultipleCLRComplexVarianceDir)
 \end{equation}
 where $\mathrm{cov}(\cdot)$ is the conjugate covariance between the variables and $\underline{x}_{0,j}=1+i$. Similarly, we can calculate the direct conditional variance:
 \begin{equation}
     \begin{aligned}
-    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \mathcal{V}\left(\underline{\epsilon_j}\right)
+    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k,j} \right) = & \sum_{i=0}^k \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \varsigma_{\underline{\epsilon}}^2
     \end{aligned},
     (\#eq:MultipleCLRComplexVarianceConj)
 \end{equation}
