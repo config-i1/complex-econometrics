@@ -1,5 +1,5 @@
 --- 
-title: "Complex-valued Econometrics"
+title: "Complex-valued Econometrics with Examples in R"
 author: "Sergey Svetunkov and Ivan Svetunkov"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
