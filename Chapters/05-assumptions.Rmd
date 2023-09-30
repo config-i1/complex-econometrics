@@ -26,16 +26,30 @@ Formally speaking, the omitted variables should not be correlated with the ones 
 
 When it comes to complex-valued models, the relations become much more complicated and potentially non-linear than in the conventional models. The problem becomes then manifolds: we need to include the correct variables in the model, but also they need to be included correctly, because now any variable can be included in the real or in the imaginary part. Furthermore, the correlation in complex-valued models can be measured differently and implies a variety of effects between two variables.
 
+Practically speaking, we consider two situations with omitted variables:
 
-**To do**:
-Derive biases for the following cases:
+1. The model is estimated using OLS;
+2. The model is estimated using CLS.
 
-1. Omitted variables should be included in the real part and is correlated with another real part of a variable;
-2. Omitted variables should be included in the real part and is correlated with the imaginary part of a variable;
-3. Omitted variables should be included in the imaginary part and is correlated with the real part of a variable;
-4. Omitted variables should be included in the imaginary part and is correlated with another imaginary part of a variable;
-5. Omitted variables is complex and is correlated with another complex variable.
+For the both cases, we assume that the true model is of the form:
+\begin{equation}
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}},
+    (\#eq:AssumptionsOmitTrueModel)
+\end{equation}
+where the matrix $\underline{\mathbf{Z}}$ contains the variables omitted in the applied model and the vector $\underline{\boldsymbol{\gamma}}$ is the vector of the parameters for these variables in the true model.
 
+#### Omitted variables in case of OLS estimation
+We refer to the derivations \@ref(eq:MCLROLSExpansion), which given \@ref(eq:AssumptionsOmitTrueModel) can be substituted to:
+\begin{equation}
+    \begin{aligned}
+    \underline{\boldsymbol{b}}^{\text{OLS}} =
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}}) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} = \\
+        & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} .
+    \end{aligned}
+    (\#eq:AssumptionsOmitOLS01)
+\end{equation}
 
 
 ### Model does not have redundant variables
