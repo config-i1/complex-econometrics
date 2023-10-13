@@ -38,18 +38,75 @@ For the both cases, we assume that the true model is of the form:
 \end{equation}
 where the matrix $\underline{\mathbf{Z}}$ contains the variables omitted in the applied model and the vector $\underline{\boldsymbol{\gamma}}$ is the vector of the parameters for these variables in the true model.
 
-#### Omitted variables in case of OLS estimation
-We refer to the derivations \@ref(eq:MCLROLSExpansion), which given \@ref(eq:AssumptionsOmitTrueModel) can be substituted to:
+We start with the effect of the omitted variables on the estimates of parameters using OLS. We refer to the derivations \@ref(eq:MCLROLSExpansion), which given \@ref(eq:AssumptionsOmitTrueModel) can be substituted to:
 \begin{equation}
     \begin{aligned}
     \underline{\boldsymbol{b}}^{\text{OLS}} =
         & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} = \\
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}}) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \left(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}} \right) = \\
         & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} = \\
         & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} .
     \end{aligned}
     (\#eq:AssumptionsOmitOLS01)
 \end{equation}
+
+Taking the expectation of \@ref(eq:AssumptionsOmitOLS01), we get:
+\begin{equation}
+    \mathrm{E}\left(\underline{\boldsymbol{b}}^{\text{OLS}}\right) = \underline{\boldsymbol{\beta}} + \mathrm{E}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} \right) + 0 ,
+    (\#eq:AssumptionsOmitOLS02)
+\end{equation}
+with zero appearing because of the one of fundamental assumptions that the explanatory variables are not correlated with the error term in the true model. The expectation above shows that the estimates of the OLS parameters will be biased in case of omitted variables, and the bias will be proportional to the size of the $\underline{\mathbf{X}}^\prime \underline{\mathbf{Z}}$ matrix, which consists of the covariances between the included and the omitted variables. The higher the correlation between these variables, the higher the bias will be. This agrees with the similar findings in the conventional real-valued econometrics.
+
+When it comes to CLS, the logic is similar to the above. Based on the equations \@ref(eq:MCLRCLSExpansion) and \@ref(eq:AssumptionsOmitTrueModel) we have:
+\begin{equation}
+    \begin{aligned}
+    \underline{\boldsymbol{b}}^{\text{CLS}} =
+    & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{y}} = \\
+    & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \left(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}}\right) = \\
+    & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\boldsymbol{\epsilon}}
+    \end{aligned} ,
+    (\#eq:AssumptionsOmitCLS01)
+\end{equation}
+which simplifies (using similar logic as above) to:
+\begin{equation}
+    \mathrm{E}\left(\underline{\boldsymbol{b}}^{\text{CLS}}\right) = \underline{\boldsymbol{\beta}} + \mathrm{E}\left( \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}}\right) ,
+    (\#eq:AssumptionsOmitCLS02)
+\end{equation}
+Which also shows that the bias will increase with the increase of the values of the matrix $\underline{\mathbf{X}}^\top \underline{\mathbf{Z}}$. The main difference between the real-valued and the complex-valued econometrics is that the aforementioned matrices are complex and the respective covariances in OLS and CLS are respectively conjugate and direct. This means that:
+
+1. if an omitted complex variable has high *direct correlation* with the included one but has the zero *conjugate correlation*, the OLS should give unbiased estimates of parameters, while the CLS would give the biased ones;
+2. if an omitted complex variable has zero *direct correlation* with the included one but has high *conjugate correlation*, the CLS should give unbiased estimates of parameters, while the OLS would give the biased ones.
+
+This property can be used in deciding which of the estimation methods to use if the researcher has some insights about the relation between the included and the omitted complex variables.
+
+Furthermore, we can also see what happens with the direct and conjugate covariance matrices of parameters in case of omitted variables. In the case of the omitted variables the residuals become $\underline{\boldsymbol{\upsilon}} = \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}}$, implying that we estimate the following model instead of \@ref(eq:AssumptionsOmitTrueModel):
+\begin{equation}
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\upsilon}} ,
+    (\#eq:AssumptionsOmitAppliedTrueModel)
+\end{equation}
+which means that we then make inference based on:
+\begin{equation}
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{b}} + \hat{\underline{\boldsymbol{\upsilon}}} .
+    (\#eq:AssumptionsOmitAppliedModel)
+\end{equation}
+
+The covariance matrix of the estimates of the parameter $\underline{\boldsymbol{\beta}}$ in this case comes to formulae discussed in Section \@ref(MCLRInference):
+\begin{equation}
+    \begin{aligned}
+        & \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\upsilon}}^2 \\
+        & \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\upsilon}}^2 \\
+        & \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\upsilon}}^2 \\
+        & \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\upsilon}}^2 ,
+    \end{aligned}
+    (\#eq:MCLROLSCLSVariancesOmitted)
+\end{equation}
+where $\sigma_{\underline{\upsilon}}^2$ is the conjugate and $\varsigma_{\underline{\upsilon}}^2$ is the direct variances of the residuals $\underline{\boldsymbol{\upsilon}}$. Now to better understand the effect of omitted variables on the covariance matrix of parameters, we should consider several situations:
+
+1. Some parts of $\underline{\mathbf{Z}}$ are correlated with $\underline{\mathbf{X}}$, in which case applying the model \@ref(eq:AssumptionsOmitAppliedModel) to the data will lead to the biased estimates of parameters, but would not have a large impact on the residuals of the model. The higher the correlation is, the lower the variances become in \@ref(eq:MCLROLSCLSVariancesOmitted);
+2. $\underline{\mathbf{Z}}$ is uncorrelated with $\underline{\mathbf{X}}$, which means that the effect of the omitted variable is not captured by the model and as a result the variance of the residual $\hat{\underline{\boldsymbol{\upsilon}}}$ will be inflated, increasing the standard errors of the estimates of parameters.
+
+The case (1) corresponds to the classical problem of the omitted variables in econometrics, while the case (2) shows how the uncertainty about the estimates of parameters increases with omitted variables and might lead to the wider confidence intervals for the parameters.
+
 
 
 ### Model does not have redundant variables
