@@ -595,7 +595,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.3535+100.3711i
+## [1] 48.39831+99.54603i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -668,7 +668,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 134.0981+0i
+## 125.3385+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -680,8 +680,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct variance 
-## -76.35433-4.1953i
+##    Direct variance 
+## -72.82357-13.3801i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -706,9 +706,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 28.871878  -2.097651
-## x_i -2.097651 105.226209
+##          x_r      x_i
+## x_r 26.25745 -6.69005
+## x_i -6.69005 99.08101
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -720,7 +720,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3033.678
+## [1] 2556.858
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -787,7 +787,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 56.0368-116.2328i
+## 52.0211-107.3224i
 \end{verbatim}
 
 \begin{Shaded}
@@ -800,7 +800,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -19.05582+63.34351i
+## -46.74714+44.24642i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -814,8 +814,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -80.01600- 2.86658i -19.05582+63.34351i
-## y -19.05582+63.34351i  32.28834- 7.74589i
+## x -64.03898-27.50917i -46.74714+44.24642i
+## y -46.74714+44.24642i  19.54063+61.79021i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1808,7 +1808,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9978978+0i
+## [1] 0.9970684+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1865,8 +1865,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]
-## [1,] -0.9981441
+##           [,1]
+## [1,] 0.9972593
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1891,11 +1891,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i        y_r       y_i
-## x_r  1.00000000 -0.02362551  0.7582791 0.7543609
-## x_i -0.02362551  1.00000000 -0.6662047 0.6355203
-## y_r  0.75827910 -0.66620466  1.0000000 0.1482463
-## y_i  0.75436094  0.63552030  0.1482463 1.0000000
+##             x_r         x_i          y_r          y_i
+## x_r  1.00000000 -0.09525449  0.734538410  0.666087649
+## x_i -0.09525449  1.00000000 -0.741928941  0.674265762
+## y_r  0.73453841 -0.74192894  1.000000000 -0.009895061
+## y_i  0.66608765  0.67426576 -0.009895061  1.000000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2306,10 +2306,7 @@ For the both cases, we assume that the true model is of the form:
 \end{equation}
 where the matrix \(\underline{\mathbf{Z}}\) contains the variables omitted in the applied model and the vector \(\underline{\boldsymbol{\gamma}}\) is the vector of the parameters for these variables in the true model.
 
-\hypertarget{omitted-variables-in-case-of-ols-estimation}{%
-\subsubsection{Omitted variables in case of OLS estimation}\label{omitted-variables-in-case-of-ols-estimation}}
-
-We refer to the derivations \eqref{eq:MCLROLSExpansion}, which given \eqref{eq:AssumptionsOmitTrueModel} can be substituted to:
+We start with the effect of the omitted variables on the estimates of parameters using OLS. We refer to the derivations \eqref{eq:MCLROLSExpansion}, which given \eqref{eq:AssumptionsOmitTrueModel} can be substituted to:
 \begin{equation}
     \begin{aligned}
     \underline{\boldsymbol{b}}^{\text{OLS}} =
