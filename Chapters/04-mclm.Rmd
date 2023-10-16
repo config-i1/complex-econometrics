@@ -150,7 +150,7 @@ Maximising this likelihood, as discussed in Subsection \@ref(SCLREstimationLikel
 ### Examples in R
 
 
-## Inference
+## Inference {#MCLRInference}
 It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variance can then be used in hypothesis testing or confidence interval construction. In order to do that, we need to replace the actual value $\underline{\mathbf{y}}$ with $\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}$ in the OLS formula \@ref(eq:MCLROLSEstimate):
 \begin{equation}
     \begin{aligned}

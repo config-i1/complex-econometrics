@@ -141,7 +141,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-09-30}
+\date{2023-10-16}
 
 \begin{document}
 \maketitle
@@ -591,7 +591,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.5141+101.7482i
+## [1] 51.58297+99.90098i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -664,7 +664,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 118.3351+0i
+## 134.4141+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -677,7 +677,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##   Direct variance 
-## -67.3506+0.19098i
+## -82.7939-9.07698i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -702,9 +702,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i
-## x_r 25.49223394  0.09548853
-## x_i  0.09548853 92.84282945
+##           x_r        x_i
+## x_r 25.810093  -4.538489
+## x_i -4.538489 108.603997
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -716,7 +716,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2366.762
+## [1] 2782.481
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -783,7 +783,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 43.7743-100.6009i
+## 59.32615-87.08823i
 \end{verbatim}
 
 \begin{Shaded}
@@ -796,7 +796,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -28.16197+63.83996i
+## -47.24567+49.42817i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -810,8 +810,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -73.59044+ 0.62837i -28.16197+63.83996i
-## y -28.16197+63.83996i  25.56226+ 3.35798i
+## x -78.97133-12.46118i -47.24567+49.42817i
+## y -47.24567+49.42817i  22.87546+37.19987i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1798,7 +1798,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9974507+0i
+## [1] 0.9976275+0i
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1855,8 +1855,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##           [,1]
-## [1,] -0.996231
+##            [,1]
+## [1,] -0.9978665
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1881,11 +1881,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i         y_r        y_i
-## x_r  1.00000000 -0.06976079  0.74190311 0.69368181
-## x_i -0.06976079  1.00000000 -0.71736766 0.66609364
-## y_r  0.74190311 -0.71736766  1.00000000 0.03700096
-## y_i  0.69368181  0.66609364  0.03700096 1.00000000
+##           x_r        x_i         y_r         y_i
+## x_r 1.0000000  0.1086392  0.63447222  0.70812819
+## x_i 0.1086392  1.0000000 -0.69573172  0.77618914
+## y_r 0.6344722 -0.6957317  1.00000000 -0.09225336
+## y_i 0.7081282  0.7761891 -0.09225336  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2050,8 +2050,8 @@ Maximising this likelihood, as discussed in Subsection \ref{SCLREstimationLikeli
 \hypertarget{examples-in-r}{%
 \subsection{Examples in R}\label{examples-in-r}}
 
-\hypertarget{inference}{%
-\section{Inference}\label{inference}}
+\hypertarget{MCLRInference}{%
+\section{Inference}\label{MCLRInference}}
 
 It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \eqref{eq:MCLROLSEstimate} or \eqref{eq:MCLRCLSEstimate}. In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variance can then be used in hypothesis testing or confidence interval construction. In order to do that, we need to replace the actual value \(\underline{\mathbf{y}}\) with \(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}\) in the OLS formula \eqref{eq:MCLROLSEstimate}:
 \begin{equation}
@@ -2296,20 +2296,86 @@ For the both cases, we assume that the true model is of the form:
 \end{equation}
 where the matrix \(\underline{\mathbf{Z}}\) contains the variables omitted in the applied model and the vector \(\underline{\boldsymbol{\gamma}}\) is the vector of the parameters for these variables in the true model.
 
-\hypertarget{omitted-variables-in-case-of-ols-estimation}{%
-\subsubsection{Omitted variables in case of OLS estimation}\label{omitted-variables-in-case-of-ols-estimation}}
-
-We refer to the derivations \eqref{eq:MCLROLSExpansion}, which given \eqref{eq:AssumptionsOmitTrueModel} can be substituted to:
+We start with the effect of the omitted variables on the estimates of parameters using OLS. We refer to the derivations \eqref{eq:MCLROLSExpansion}, which given \eqref{eq:AssumptionsOmitTrueModel} can be substituted to:
 \begin{equation}
     \begin{aligned}
     \underline{\boldsymbol{b}}^{\text{OLS}} =
         & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} = \\
-        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime (\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}}) = \\
+        & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \left(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}} \right) = \\
         & \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} = \\
         & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} .
     \end{aligned}
     \label{eq:AssumptionsOmitOLS01}
 \end{equation}
+
+Taking the expectation of \eqref{eq:AssumptionsOmitOLS01}, we get:
+\begin{equation}
+    \mathrm{E}\left(\underline{\boldsymbol{b}}^{\text{OLS}}\right) = \underline{\boldsymbol{\beta}} + \mathrm{E}\left(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} \right) + 0 ,
+    \label{eq:AssumptionsOmitOLS02}
+\end{equation}
+with zero appearing because of the one of fundamental assumptions that the explanatory variables are not correlated with the error term in the true model. The expectation above shows that the estimates of the OLS parameters will be biased in case of omitted variables, and the bias will be proportional to the size of the \(\underline{\mathbf{X}}^\prime \underline{\mathbf{Z}}\) matrix, which consists of the covariances between the included and the omitted variables. The higher the correlation between these variables, the higher the bias will be. This agrees with the similar findings in the conventional real-valued econometrics.
+
+When it comes to CLS, the logic is similar to the above. Based on the equations \eqref{eq:MCLRCLSExpansion} and \eqref{eq:AssumptionsOmitTrueModel} we have:
+\begin{equation}
+    \begin{aligned}
+    \underline{\boldsymbol{b}}^{\text{CLS}} =
+    & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{y}} = \\
+    & \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \left(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}}\right) = \\
+    & \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\boldsymbol{\epsilon}}
+    \end{aligned} ,
+    \label{eq:AssumptionsOmitCLS01}
+\end{equation}
+which simplifies (using similar logic as above) to:
+\begin{equation}
+    \mathrm{E}\left(\underline{\boldsymbol{b}}^{\text{CLS}}\right) = \underline{\boldsymbol{\beta}} + \mathrm{E}\left( \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}}\right) ,
+    \label{eq:AssumptionsOmitCLS02}
+\end{equation}
+Which also shows that the bias will increase with the increase of the values of the matrix \(\underline{\mathbf{X}}^\top \underline{\mathbf{Z}}\). The main difference between the real-valued and the complex-valued econometrics is that the aforementioned matrices are complex and the respective covariances in OLS and CLS are respectively conjugate and direct. This means that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  if an omitted complex variable has high \emph{direct correlation} with the included one but has the zero \emph{conjugate correlation}, the OLS should give unbiased estimates of parameters, while the CLS would give the biased ones;
+\item
+  if an omitted complex variable has zero \emph{direct correlation} with the included one but has high \emph{conjugate correlation}, the CLS should give unbiased estimates of parameters, while the OLS would give the biased ones.
+\end{enumerate}
+
+This property can be used in deciding which of the estimation methods to use if the researcher has some insights about the relation between the included and the omitted complex variables.
+
+Furthermore, we can also see what happens with the direct and conjugate covariance matrices of parameters in case of omitted variables. In the case of the omitted variables the residuals become \(\underline{\boldsymbol{\upsilon}} = \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}} + \underline{\boldsymbol{\epsilon}}\), implying that we estimate the following model instead of \eqref{eq:AssumptionsOmitTrueModel}:
+\begin{equation}
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\upsilon}} ,
+    \label{eq:AssumptionsOmitAppliedTrueModel}
+\end{equation}
+which means that we then make inference based on:
+\begin{equation}
+    \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{b}} + \hat{\underline{\boldsymbol{\upsilon}}} .
+    \label{eq:AssumptionsOmitAppliedModel}
+\end{equation}
+
+The covariance matrix of the estimates of the parameter \(\underline{\boldsymbol{\beta}}\) in this case comes to formulae discussed in Section \ref{MCLRInference}:
+\begin{equation}
+    \begin{aligned}
+        & \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\upsilon}}^2 \\
+        & \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\upsilon}}^2 \\
+        & \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\upsilon}}^2 \\
+        & \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\upsilon}}^2 ,
+    \end{aligned}
+    \label{eq:MCLROLSCLSVariancesOmitted}
+\end{equation}
+where \(\sigma_{\underline{\upsilon}}^2\) is the conjugate and \(\varsigma_{\underline{\upsilon}}^2\) is the direct variances of the residuals \(\underline{\boldsymbol{\upsilon}}\). Now to better understand the effect of omitted variables on the covariance matrix of parameters, we should consider several situations:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Some parts of \(\underline{\mathbf{Z}}\) are correlated with \(\underline{\mathbf{X}}\), in which case applying the model \eqref{eq:AssumptionsOmitAppliedModel} to the data will lead to the biased estimates of parameters, but would not have a large impact on the residuals of the model. The higher the correlation is, the lower the variances become in \eqref{eq:MCLROLSCLSVariancesOmitted};
+\item
+  \(\underline{\mathbf{Z}}\) is uncorrelated with \(\underline{\mathbf{X}}\), which means that the effect of the omitted variable is not captured by the model and as a result the variance of the residual \(\hat{\underline{\boldsymbol{\upsilon}}}\) will be inflated, increasing the standard errors of the estimates of parameters.
+\end{enumerate}
+
+The case (1) corresponds to the classical problem of the omitted variables in econometrics, while the case (2) shows how the uncertainty about the estimates of parameters increases with omitted variables and might lead to the wider confidence intervals for the parameters.
 
 \hypertarget{model-does-not-have-redundant-variables}{%
 \subsection{Model does not have redundant variables}\label{model-does-not-have-redundant-variables}}

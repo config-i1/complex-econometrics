@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.5.31)  30 SEP 2023 08:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.5.31)  16 OCT 2023 15:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -832,14 +832,14 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 
 [26]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGenerated
-Circle-1.pdf, id=388, 255.95625pt x 214.8025pt>
+Circle-1.pdf, id=388, 259.97125pt x 215.80624pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGene
 ratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGener
 atedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvGeneratedCircle-1.pdf  used on input line 841.
-(pdftex.def)             Requested size: 255.95561pt x 214.80197pt.
+(pdftex.def)             Requested size: 259.97061pt x 215.80571pt.
 
 Package natbib Warning: Citation `refGoodman' on page 27 undefined on input lin
 e 852.
@@ -1246,48 +1246,51 @@ Chapter 5.
 Package natbib Warning: Citation `econometrics' on page 74 undefined on input l
 ine 2275.
 
-[74]
+[74] [75] [76]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-chun
-k-25-1.pdf, id=1085, 262.9825pt x 264.99pt>
+k-25-1.pdf, id=1113, 262.9825pt x 264.99pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed
 -chunk-25-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-
 chunk-25-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
-igure-latex/unnamed-chunk-25-1.pdf  used on input line 2352.
+igure-latex/unnamed-chunk-25-1.pdf  used on input line 2418.
 (pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
-[75] [76pdfTeX warning (ext4): destination with the same identifier (name{figur
+[77] [78pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.5.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2362 
+l.2455 
         <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/un
-named-chunk-25-1.pdf>] [77] [78] [79] [80]
-Chapter 6.
-[81
+named-chunk-25-1.pdf>]
+Underfull \vbox (badness 2245) has occurred while \output is active []
 
-] [82
+[79] [80] [81] [82
+
+]
+Chapter 6.
+[83] [84
 
 ]
 Chapter 7.
-(./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [83] [84
+(./Svetunkov---Svetunkov---Complex-Dynamic-Models.bbl [85] [86
 
 ])
 
 Package natbib Warning: There were undefined citations.
 
-[85] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
+[87] (./Svetunkov---Svetunkov---Complex-Dynamic-Models.aux) ) 
 Here is how much of TeX's memory you used:
- 16660 strings out of 479648
- 275208 string characters out of 5886115
- 599358 words of memory out of 5000000
- 33618 multiletter control sequences out of 15000+600000
- 566846 words of font info for 209 fonts, out of 8000000 for 9000
+ 16684 strings out of 479648
+ 275523 string characters out of 5886115
+ 599717 words of memory out of 5000000
+ 33625 multiletter control sequences out of 15000+600000
+ 571499 words of font info for 213 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
  74i,16n,77p,1578b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/
-fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit
-.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc
+fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
+}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc
 /dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share
 /texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm
 /lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texm
@@ -1300,17 +1303,17 @@ share/texmf/fonts/type1/public/lm/lmmib7.pfb></usr/share/texmf/fonts/type1/publ
 ic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 r5.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb>
-</usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/fonts/type1
-/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/s
-hare/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/publi
-c/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb>
-Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (85 pages,
- 3517258 bytes).
+/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb>
+</usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type
+1/public/lm/lmsy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/s
+hare/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (87 pages,
+ 3539098 bytes).
 PDF statistics:
- 1491 PDF objects out of 1728 (max. 8388607)
- 1272 compressed objects within 13 object streams
- 422 named destinations out of 1000 (max. 500000)
- 55676 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1520 PDF objects out of 1728 (max. 8388607)
+ 1297 compressed objects within 13 object streams
+ 432 named destinations out of 1000 (max. 500000)
+ 57724 words of extra memory for PDF output out of 61914 (max. 10000000)
 
