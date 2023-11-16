@@ -110,7 +110,54 @@ The case (1) corresponds to the classical problem of the omitted variables in ec
 
 
 ### Model does not have redundant variables
-This is the situation opposite to the first one. It implies that we have included something that should not be there. If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e. variances of estimates will be larger than needed).
+This is the situation opposite to the first one. It implies that we have included something that should not be there. Mathematically it can be represented by two sets of equations, for the true and the applied models:
+\begin{equation}
+    \begin{aligned}
+        & \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} \\
+        & \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{b}} + \underline{\mathbf{X}}_{red} \underline{\boldsymbol{b}}_{red} + \underline{\boldsymbol{e}} ,
+    \end{aligned}
+    (\#eq:AssumptionsRedundantSetting)
+\end{equation}
+where $\underline{\boldsymbol{b}}_{red}$ is the vector of the estimates of parameters for the redundant variables $\underline{\mathbf{X}}_{red}$ on a sample. It will not be zero in sample, because the values of $\underline{\mathbf{X}}_{red}$ can explain some randomness in $\underline{\mathbf{y}}$. The second equation in \@ref(eq:AssumptionsRedundantSetting) can be written in a compact form:
+\begin{equation}
+    \underline{\mathbf{y}} = \underline{\mathbf{Z}} \underline{\boldsymbol{c}}  + \underline{\boldsymbol{e}} ,
+    (\#eq:AssumptionsRedundantAppliedModel)
+\end{equation}
+where $\underline{\mathbf{Z}} = \begin{pmatrix} \underline{\mathbf{X}} & \underline{\mathbf{X}}_{red} \end{pmatrix}$ is the matrix that contains all variables under consideration, and $\underline{\boldsymbol{c}} = \begin{pmatrix} \underline{\boldsymbol{b}} \\ \underline{\boldsymbol{b}}_{red} \end{pmatrix}$. This form helps understanding how the redundant variables affect the estimates of parameters when OLS/CLS is used. We start with OLS:
+\begin{equation}
+    \begin{aligned}
+    \underline{\boldsymbol{c}}^{\text{OLS}} =
+        & \left( \underline{\mathbf{Z}}^\prime \underline{\mathbf{Z}} \right)^{-1} \underline{\mathbf{Z}}^\prime \underline{\mathbf{y}} = \\
+        & \left( \underline{\mathbf{Z}}^\prime \underline{\mathbf{Z}} \right)^{-1} \underline{\mathbf{Z}}^\prime \left(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} \right) = \\
+        & \left( \underline{\mathbf{Z}}^\prime \underline{\mathbf{Z}} \right)^{-1} \left( \underline{\mathbf{Z}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\mathbf{Z}}^\prime \underline{\boldsymbol{\epsilon}} \right) .
+    \end{aligned}
+    (\#eq:AssumptionsRedundantOLS01)
+\end{equation}
+Substituting $\underline{\mathbf{Z}} = \begin{pmatrix} \underline{\mathbf{X}} & \underline{\mathbf{X}}_{red} \end{pmatrix}$ and $\underline{\mathbf{Z}}^\prime = \begin{pmatrix} \underline{\mathbf{X}}^\prime \\ \underline{\mathbf{X}}_{red}^\prime \end{pmatrix}$ in \@ref(eq:AssumptionsRedundantOLS01), we get:
+\begin{equation}
+    \begin{aligned}
+    \underline{\boldsymbol{c}}^{\text{OLS}} =
+        & \left( \begin{pmatrix} \underline{\mathbf{X}}^\prime \\ \underline{\mathbf{X}}_{red}^\prime \end{pmatrix} \begin{pmatrix} \underline{\mathbf{X}} & \underline{\mathbf{X}}_{red} \end{pmatrix} \right)^{-1} \left( \begin{pmatrix} \underline{\mathbf{X}}^\prime \\ \underline{\mathbf{X}}_{red}^\prime \end{pmatrix} \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \begin{pmatrix} \underline{\mathbf{X}}^\prime \\ \underline{\mathbf{X}}_{red}^\prime \end{pmatrix} \underline{\boldsymbol{\epsilon}} \right) = \\
+        & \begin{pmatrix} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} & \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}_{red} \\ \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}} & \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}}_{red} \end{pmatrix}^{-1} \left( \begin{pmatrix} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \\ \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}} \end{pmatrix} \underline{\boldsymbol{\beta}} + \begin{pmatrix} \underline{\mathbf{X}}^\prime \\ \underline{\mathbf{X}}_{red}^\prime \end{pmatrix} \underline{\boldsymbol{\epsilon}} \right)
+    \end{aligned}
+    (\#eq:AssumptionsRedundantOLS02)
+\end{equation}
+
+The inverse block matrix in \@ref(eq:AssumptionsRedundantOLS02) is cumbersome, but each element of the resulting square block matrix can be written as:
+\begin{equation}
+    \begin{pmatrix} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} & \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}_{red} \\ \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}} & \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}}_{red} \end{pmatrix}^{-1} = \begin{pmatrix} \mathbf{A} & \mathbf{B} \\ \mathbf{C} & \mathbf{D} \end{pmatrix} .
+    (\#eq:AssumptionsRedundantOLS03)
+\end{equation}
+The first element of that matrix is:
+\begin{equation}
+    \begin{aligned}
+        A = & \begin{pmatrix} \left(\underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1} + \left(\underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}_{red} \left(\underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}}_{red} - \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}} \left(\underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}_{red} \right)^{-1}  \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}} \left(\underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1} \end{pmatrix} = \\
+        & \begin{pmatrix} \left(\underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1} + \left(\underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}_{red} \left(\underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}}_{red} - \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}} \left(\underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}_{red} \right)^{-1}  \underline{\mathbf{X}}_{red}^\prime \underline{\mathbf{X}} \left(\underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1} \end{pmatrix}
+    \end{aligned}
+    (\#eq:AssumptionsRedundantOLS04)
+\end{equation}
+
+If that happens, the redundant variable will explain the noise and thus our model will overfit the data and lead to inefficient estimates of parameters (i.e. variances of estimates will be larger than needed).
 
 
 ### Variables transformations
