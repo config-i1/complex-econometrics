@@ -33,6 +33,12 @@ this monograph relies heavily on the `complex` package for R. Many of the exampl
 install.packages("complex")
 ```
 
+We will also need several other packages for our analysis, including:
+```{r eval=FALSE}
+library(mvtnorm)
+```
+
+
 ```{r include=FALSE}
 palette("Tableau 10")
 # automatically create a bib database for R packages
