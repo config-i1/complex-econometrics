@@ -247,19 +247,22 @@ Finally, the presence of outliers in the residuals typically implies that either
 The simplest way to detect outliers is to produce a diagnostic plot of fitted vs standardised residuals (similar to the one in Figure \@ref(fig:nonlinearStdResid)) and analyse those values that lie outside of the constructed confidence interval. If the value of an outlier cannot be explained (e.g. this is not a calendar event, this is not a promotion etc) then it can be removed or interpolated. In the latter case, creating a dummy variable (see Section \@ref(multipleCLRDummy)) that equals to one on that specific observation and to zero on all the others is one of the simplest way of dealing with the outlier.
 
 
-## Residuals are i.i.d.
-The next group of assumptions has 6 elements in it:
+## Residuals are i.i.d. {#assumptionsResiduals}
+The next group of assumptions has five elements in it:
 
 1. Residuals are homoscedastic;
 2. No autocorrelation in residuals;
 3. Expectation of residuals is zero (no matter what);
 4. Residuals follow an assumed distribution;
-5. Distribution of the residuals is constant (no matter what);
-6. Residuals follow a circular distribution.
+5. Residuals follow a circular distribution.
+
+Some of these assumptions are universal for statistical models, while the others (e.g. the last one) are specific to CLR.
+
+### Homoscedastic residuals {#assumptionsResidualsHomoscedastic}
+The first assumption implies that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This follows directly from the formulae for the direct and conjugate covariances from Section \@ref(MCLRInference): if either of the covariances is not constant, and we use the formulae for calculating the standard errors of parameters, we will obtain averaged-out values, that would be lower than needed for some observations and higher than needed for the others.
 
 
-### Homoscedastic residuals
-The first assumption implies for CLR that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This also means that the covariance matrix of residuals $\Sigma_\epsilon$ stays the same no matter what. This assumption aligns well with a similar assumption of conventional multivariate models, such as VAR or VETS.
+This also means that the covariance matrix of residuals $\Sigma_\epsilon$ stays the same no matter what. This assumption aligns well with a similar assumption of conventional multivariate models, such as VAR or VETS.
 
 
 
