@@ -275,12 +275,14 @@ plot(complexModel, which=4, main="")
 The plots in Figure \@ref(fig:heteroDiagnostics) show that the variability of residuals (and the local mean) increases with the increase of fitted values. This is a signal of the heteroscedasticity in the data. Some non-linear transformations (e.g. taking logarithm) typically resolve the issue.
 
 
-### No autocorrelation in residuals
+### No autocorrelation in residuals {#assumptionsResidualsAuto}
 This assumption only applies to time series data. In case of the real-valued models, it means that the residuals in the past should not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g. the appropriate transformations are not done, or some autoregressive elements are missing). In case of the CLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g. Complex Autoregression, discussed later in this book).
 
 To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate ACF/PACF (based on the correlations discussed in Chapter \@ref(correlationAnalysis)), giving an analyst four instruments instead of two.
 
 
+
+*Focus here on diagnostics, don't solve the problem*. The solution is in Chapter \@ref(ComplexAR)
 
 
 
