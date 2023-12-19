@@ -220,8 +220,8 @@ complexModel <- clm(y~x, complexData)
 
 The issues of the model can be diagnosed using various plots. For example, here how the standardised residuals vs fitted would look for the model above (see Figure \@ref(fig:nonlinearLinStdResid)):
 ```{r nonlinearLinStdResid, fig.cap="Standardised residuals vs Fitted for the CLR on non-linear data."}
-par(mfcol=c(2,1), mar=c(4,4,2,1))
-plot(complexModel, which=2)
+par(mfcol=c(1,2), mar=c(2,2,3,1))
+plot(complexModel, which=2, main="")
 ```
 
 The plots above demonstrate that there is a slight non-linear pattern in the residuals (especially for the real part of the model) and that their variances might not be constant. These are the indicators of a possible non-linearity in the data. In order to capture it correctly, we would need to transform both response and the explanatory complex variables and estimate the model in logarithms:
@@ -236,8 +236,8 @@ complexModelLogs <- clm(y~x, complexDataLogs)
 After which the same plot will look more reasonable, with residuals not exhibiting the u-shape anymore (see Figure \@ref(fig:nonlinearStdResid)):
 
 ```{r nonlinearStdResid, fig.cap="Standardised residuals vs Fitted for the log-log CLR on non-linear data."}
-par(mfcol=c(2,1), mar=c(4,4,2,1))
-plot(complexModelLogs, which=2)
+par(mfcol=c(1,2), mar=c(2,2,3,1))
+plot(complexModelLogs, which=2, main="")
 ```
 
 
@@ -267,7 +267,7 @@ The homoscedasticity assumption can be typically diagnosed visually by producing
 
 ```{r heteroDiagnostics, fig.cap="Absolute residuals vs fitted"}
 par(mfcol=c(1,2), mar=c(2,2,3,1))
-plot(complexModel, which=4)
+plot(complexModel, which=4, main="")
 ```
 
 The plots in Figure \@ref(fig:heteroDiagnostics) show that the variability of residuals (and the local mean) increases with the increase of fitted values. This is a signal of the heteroscedasticity in the data. Some non-linear transformations (e.g. taking logarithm) typically resolve the issue.
