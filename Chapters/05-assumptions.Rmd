@@ -7,6 +7,8 @@ Similar to how it is done for the conventional real valued regression, we should
 
 While the first two groups directly relate to the so called "true model", the last one refers to the estimation approaches discussed in the previous Chapter: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this Chapter are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail, but rather to focus on their implications to complex-valued models. An reader interested in assumptions for the real-valued models is advised to read Chapter 15 of @SvetunkovSBA.
 
+**Disclaimer**: while in conventional econometrics, statistical tests are often used to check hypotheses of violation of specific assumptions, in this monograph we focus on the visual diagnostics. While tests might give ambiguous results and rely on a selected significance level, the visual inspection comes to expert judgment of an analyst. Yes, in some situations the subjectivity impacts the diagnostics, but at least it is not hidden behind p-values and a variety of outputs that might give contradictory results.
+
 
 ## Model is correctly specified {#assumptionsSpecification}
 This is one of the most general and most important groups of assumptions. It includes the following:
@@ -274,7 +276,12 @@ The plots in Figure \@ref(fig:heteroDiagnostics) show that the variability of re
 
 
 ### No autocorrelation in residuals
-The second assumption only applies to time series data. In case of the real-valued model, it means that the residuals in the past do not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g. correct transformations are not done or some autoregressive elements are missing). In case of the CLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g. Complex Autoregression, discussed later in this book).
+This assumption only applies to time series data. In case of the real-valued models, it means that the residuals in the past should not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g. the appropriate transformations are not done, or some autoregressive elements are missing). In case of the CLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g. Complex Autoregression, discussed later in this book).
+
+To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate ACF/PACF (based on the correlations discussed in Chapter \@ref(correlationAnalysis)), giving an analyst four instruments instead of two.
+
+
+
 
 
 ### Expectation of residuals is zero
