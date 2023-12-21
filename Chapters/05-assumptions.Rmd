@@ -297,7 +297,8 @@ y <- vector("complex", obs)
 # Initial values for the first observation
 y[1] <- 300 + 250i
 for(i in 2:obs){
-    y[i] <- 100 + 200i + (0.5 - 0.25i) * y[i-1] + complex(real=rnorm(1,0,10), imaginary=rnorm(1,0,5))
+    y[i] <- 100 + 200i + (0.5 - 0.25i) * y[i-1] +
+        complex(real=rnorm(1,0,10), imaginary=rnorm(1,0,5))
 }
 ```
 
