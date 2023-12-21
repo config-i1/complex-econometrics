@@ -97,6 +97,8 @@ sqrt(ccov(y,x,method="conj")*ccov(x,y,method="conj")) /
     sqrt((cvar(x,method="conj")*cvar(y,method="conj")))
 ```
 
+This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction.
+
 The formulae \@ref(eq:correlationConventional) and \@ref(eq:correlationPseudo) are derived based on the original definition of Pearson's correlation coefficient [@refPearson]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
@@ -129,13 +131,13 @@ which then leads to the formula \@ref(eq:correlationConventional). Similarly, fo
 which after taking the same geometric means leads to \@ref(eq:correlationPseudo). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
 
 
-## Conjugate correlation
+## Conjugate correlation {#correlationConjugate}
 When it comes to the interpretation of the coefficients, the conjugate one is a real number. It can be written as:
 \begin{equation}
     {\rho}_{x,y} = \frac{\sqrt{(\sigma_{x_r, y_r} + \sigma_{x_i, y_i})^2 + (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})^2}}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
     (\#eq:correlationConventionalExpanded)
 \end{equation}
-As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient is a real number, showing the average strength of linear relation between two complex variables $\underline{x}$ and $\underline{y}$. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables $\underline{x}$ and $\underline{y}$ and when the cross-covariances are equal (i.e. $\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$). A special case of this condition is when all the covariances are equal to zero. On the other hand, it will be close to one by absolute value if the complex relation between variables $\underline{y}$ and $\underline{x}$ is close to the linear, i.e. $\underline{a_1} = \frac{1}{\underline{b_1}}$.
+As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient is a real number, showing the average strength of linear relation between two complex variables $\underline{x}$ and $\underline{y}$. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables $\underline{x}$ and $\underline{y}$ and when the cross-covariances are equal (i.e. $\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$). A special case of this condition is when all the covariances are equal to zero. On the other hand, it will be close to one if the complex relation between variables $\underline{y}$ and $\underline{x}$ is close to the linear, i.e. $\underline{a_1} = \frac{1}{\underline{b_1}}$. However, it does not show the direction of the relation, so it cannot be negative because of the geometric mean in the numerator.
 
 In order to better understand what the conjugate correlation means, we expand the formula \@ref(eq:correlationConventionalEstimate) by substituting $\underline{b_1} = b_{1,r} + i b_{1,i}$ and $\underline{a_1} = a_{1,r} + i a_{1,i}$:
 \begin{equation}
@@ -184,7 +186,7 @@ As can be seen from the plot in Figure \@ref(fig:crvCorConjugateMDS), it seems t
 
 
 
-## Direct correlation
+## Direct correlation {#correlationDirect}
 The direct correlation can be expanded to:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}}.
@@ -260,7 +262,7 @@ Coefficient equal to -1 and to i.
 <!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left(\left(\sigma_{x_r}^2 - \sigma_{x_i}^2\right)^2 + 4 \sigma_{x_r,x_i}^2 \right) \left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
 
 
-## Pearson's correlation
+## Pearson's correlation {#correlationMDSPearson}
 We can also use MDS to analyse the projections of complex variables on x and y axes, similar to how we have done that in Subsection \@ref(correlationVisual). In that case, we can calculate Pearson's correlation coefficient:
 
 ```{r}
