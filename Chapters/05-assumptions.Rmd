@@ -421,15 +421,26 @@ If the OLS is used for parameters estimation then a potential issue might arise 
 
 Similar problems might appear in case of CLS, but they come to a slightly different inversion, $\left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1}$ and thus relates to direct covariances rather than the conjugate ones.
 
-And when it comes to the likelihood, due to the model formulation, the conventional real-valued relations between explanatory variables should be considered when multicollinearity is suspected. All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
+And when it comes to the likelihood, due to the model formulation, the conventional real-valued relations between explanatory variables should be considered when multicollinearity is suspected.
+
+All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
 
 Furthermore, there might be issues related to the calculation of the covariance matrix of parameters (discussed in Section \@ref(MCLRInference)), where we need both direct and conjugate covariance matrices:
 
-- OLS: $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2$ and $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
-- CLS: $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\epsilon}}^2$ and $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
+- OLS:
+    - $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2$
+    - and $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
+- CLS:
+    - $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\epsilon}}^2$
+    - and $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
 - Likelihood: no closed form, comes to calculating Hessian, which relates to the inversion with the matrix of explanatory variables.
 
 In this case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the final covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of the standard errors of the individual parameters, the choice of estimation method would not resolve the multicollinearity issue. We can expect that the standard errors of parameters will be higher than in the situation without the multicollinearity, no matter what estimation method we use.
+
+The diagnostics of the multicollinearity in CLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
+
+
+
 
 Solving the multicollinearity is not a trivial problem on its own. In general, it can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard and we do not discuss them in this monograph.
 
