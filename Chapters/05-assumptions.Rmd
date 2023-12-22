@@ -284,7 +284,7 @@ In general, the idea with direct and conjugate ACF/PACF for complex variables is
 
 When it comes to PACF, the logic is to estimating recursively regression models of the $\underline{y}_{t}$ from all the previous $\underline{y}_{t-j}$ for $j=\{1, \dots, J\}$ for each $J$ from 1 to $T$ and collecting respective estimates of parameters in front of $\underline{y}_{t-J}$. This way, the coefficients are clear of the interim effects and we get a clear correlation between $\underline{y}_{t}$ and $\underline{y}_{t-J}$. In case of the direct complex PACF, we use the CLS, for the conjugate one we use OLS and for the Pearson's, we do MDS and then calculate the conventional PACF (see Chapter \@ref(correlationAnalysis) for discussion of different correlation coefficients).
 
-In R, there are functions `cacf()` and `pcacf()` in the `complex` package that implement respective complex ACF/PACF with a parameter `method` specifying, which of the correlations to calculate. To demonstrate how they work, we generate a data from a complex autoregressive model of order one and apply it to the data (note that for diagnostic purposes, the functions below should be applied to the residuals of the model):
+In R, there are functions `cacf()` and `cpacf()` in the `complex` package that implement respective complex ACF/PACF with a parameter `method` specifying, which of the correlations to calculate. To demonstrate how they work, we generate a data from a complex autoregressive model of order one and apply it to the data (note that for diagnostic purposes, the functions below should be applied to the residuals of the model):
 
 ```{r}
 # Generate complex data with an autocorrelation of order 1
@@ -313,7 +313,7 @@ The plot in Figure \@ref(ig:complexAR1ACFConj) shows that the autocorrelation fo
 In contrast, the conjugate PACF provides more details and shows the specific values for the real and the imaginary parts of the coefficient in the process (see Figure \@ref(fig:complexAR1PACFConj)):
 
 ```{r complexAR1PACFConj, fig.cap="Partial complex conjugate autocorrelation function"}
-pcacf(y, method="conjugate", plot=TRUE, main="")
+cpacf(y, method="conjugate", plot=TRUE, main="")
 ```
 
 Figure \@ref(fig:complexAR1PACFConj) shows three plots: real vs imaginary complex ACF plot at the top and two separate plots for the real and the imaginary parts of the complex PACF at the bottom. As shown in the plots both the real and the imaginary parts of the complex coefficient are statistically different from zero on the 5% significance level for the first lag and not significant for the rest of the lags. This agrees with the data generated process that we used. Furthermore, the real part of the cPACF is close to the true value of 0.5, while the imaginary one is close to the -0.25, which were used in the data generation.
@@ -325,7 +325,7 @@ cacf(y, method="direct", plot=TRUE, main="")
 
 While the dynamics of direct cACF is similar to the one of the conjugate cPACF, they show different things: the latter is clear of the interim relations between variables, while the former shows the specific correlations between the actual value and each of its lags. Similarly to how we did that before, we can also produce the direct cPACF (Figure \@ref(fig:complexAR1PACFDir)):
 ```{r complexAR1PACFDir, fig.cap="Partial complex direct autocorrelation function"}
-pcacf(y, method="direct", plot=TRUE, main="")
+cpacf(y, method="direct", plot=TRUE, main="")
 ```
 
 Because we generated the data from the complex autoregressive model of order one, the cACF and cPACF give us roughly the same message: the lag one is significant on the 5% level, while the rest of values are not. Note however that the direct cACF/cPACF shows that there are other lags that are significantly different from zero. This appears by chance and should be ignored.
@@ -334,7 +334,7 @@ Finally, we can generate ACF/PACF for the variable after its MDS transformation 
 ```{r complexAR1Pearson, fig.cap="ACF and PACF of the complex variable after the MDS."}
 par(mfcol=c(2,1), mar=c(2,2,2,1))
 cacf(y, method="pearson", plot=TRUE)
-pcacf(y, method="pearson", plot=TRUE)
+cpacf(y, method="pearson", plot=TRUE)
 ```
 
 Similarly to the conjugate cACF, the plots in Figure \@ref(fig:complexAR1Pearson) show that there is a significant spike for the lag one, implying that the variable is autocorrelated. However, they do not give any specific information about the value of the parameter (like conjugate and direct pACF do).
@@ -342,7 +342,7 @@ Similarly to the conjugate cACF, the plots in Figure \@ref(fig:complexAR1Pearson
 Finally, there is another presentation for complex ACF/PACF - in the polar coordinates one. In that case instead of plotting separate real and imaginary parts of the function, we produce the magnitude (absolute value) and the angle (argument) of the complex variables. In that presentation, the higher the magnitude is, the higher overall the value of a complex variable is. Figure \@ref(fig:complexAR1Ploar) demonstrates how this looks for the conjugate cPACF:
 
 ```{r complexAR1Ploar, fig.cap="Complex ACF in polar coordinates."}
-pcacf(y, method="conjugate", plot=FALSE) |>
+cpacf(y, method="conjugate", plot=FALSE) |>
     plot(2)
 ```
 
