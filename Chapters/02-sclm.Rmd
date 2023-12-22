@@ -85,7 +85,7 @@ or equivalently in matrix notations:
 where $\underline{b_{l}}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\underline{\beta_l}$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $\underline{e_j}$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
 
 
-### Ordinary Least Squares
+### Ordinary Least Squares {#SCLREstimationOLS}
 We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
     \sum_{j=1}^n (\underline{e_j} \underline{\tilde{e}_j}) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
