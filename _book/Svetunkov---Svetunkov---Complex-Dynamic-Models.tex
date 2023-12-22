@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.4958+100.9575i
+## [1] 48.627+101.9849i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 116.3829+0i
+## 134.5641+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -61.97251-4.06571i
+## Direct variance 
+## -86.58073+1.64i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 27.205213 -2.032857
-## x_i -2.032857 89.177720
+##            x_r         x_i
+## x_r 23.9916735   0.8199988
+## x_i  0.8199988 110.5723997
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2421.966
+## [1] 2652.145
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 69.61733-94.86238i
+## 73.91086-87.88483i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -55.4151+75.08837i
+##   Direct covariance 
+## -36.79234+48.32668i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -91.04753-12.06963i -55.4151+ 75.08837i
-## y -55.41510+75.08837i  64.7755+108.58876i
+## x -58.56383-16.17246i -36.79234+48.32668i
+## y -36.79234+48.32668i  37.38661+69.47169i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1818,7 +1818,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9981867
+## [1] 0.9973822
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1876,7 +1876,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9984055
+## [1,] 0.9974079
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1901,11 +1901,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i        y_r       y_i
-## x_r  1.00000000 -0.04177135  0.7844413 0.7624546
-## x_i -0.04177135  1.00000000 -0.6496289 0.6117124
-## y_r  0.78444134 -0.64962888  1.0000000 0.2003600
-## y_i  0.76245458  0.61171243  0.2003600 1.0000000
+##            x_r        x_i         y_r        y_i
+## x_r  1.0000000 -0.2459854  0.79721398 0.64759721
+## x_i -0.2459854  1.0000000 -0.77808903 0.57479088
+## y_r  0.7972140 -0.7780890  1.00000000 0.06130389
+## y_i  0.6475972  0.5747909  0.06130389 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2802,11 +2802,39 @@ As for the multicollinearity issue, in the real-valued statistics, it arises whe
 
 In case of an OLS applied to a conventional real-valued regression model, the issue comes to inverting the matrix \(\left( {\mathbf{X}}^\prime {\mathbf{X}} \right)^{-1}\). If some of variables in \(\mathbf{X}\) are strongly linearly related, the determinant of the matrix becomes close to zero and thus the inversion becomes challenging. Even if it is still possible to invert the matrix, the estimates of parameters become inefficient because small changes in the related explanatory variables may lead to substantial changes in the inversion.
 
-In case of CLR, the situation is similar, but with some specific features. If the OLS is used for parameters estimation then a potential issue might arise from the inversion of \(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1}\). In one of the special cases, this comes to the conjugate covariance between variables. If it is too high in comparison to the conjugate variances, then we would face the multicollinearity issue, which would make the estimates of parameters inefficient. More generally speaking, if a complex linear regression between an explanatory variable and other explanatory variables estimated using OLS captures the relations between variables well (i.e.~having a high coefficient of determination), then we might be facing a multicollinearity problem. Similar problems might appear in case of CLS, but they come to a slightly different inversion, \(\left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1}\) and thus relates to direct covariances rather than the conjugate ones. Finally, when it comes to the likelihood, due to the model formulation, the conventional real-valued relations between explanatory variables should be considered when multicollinearity is suspected. All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
+In case of CLR, the situation is similar, but with some specific features. First, it comes to the estimation methods, with the following options (as discussed in Section \ref{mlcrEstimation}):
 
-Finally, the same issues as discussed in the paragraph above apply to the calculation of the covariance matrix of parameters (discussed in Section \ref{MCLRInference}). In that case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of standard errors of individual parameters, the choice of estimation method would not resolve the multicollinearity issue.
+\begin{itemize}
+\tightlist
+\item
+  OLS: \(\underline{\boldsymbol{b}}^{OLS} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}}\);
+\item
+  CLS: \(\underline{\boldsymbol{b}}^{CLS} = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{y}}\);
+\item
+  Likelihood: no analytical solution, comes to the minimisation of the Generalised Variance \(|\hat{\boldsymbol{\Sigma}}_\epsilon|\).
+\end{itemize}
 
-Solving the multicollinearity is not a trivial problem. In general, it can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard and we do not discuss them in this monograph.
+If the OLS is used for parameters estimation then a potential issue might arise from the inversion of \(\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1}\). In one of the special cases, this comes to the conjugate covariance between variables. If it is too high in comparison to the conjugate variances, then we would face the multicollinearity issue, which would make the estimates of parameters inefficient. More generally speaking, if a complex linear regression between an explanatory variable and other explanatory variables estimated using OLS captures the relations between variables well (i.e.~having a high coefficient of determination), then we might be facing a multicollinearity problem.
+
+Similar problems might appear in case of CLS, but they come to a slightly different inversion, \(\left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1}\) and thus relates to direct covariances rather than the conjugate ones.
+
+And when it comes to the likelihood, due to the model formulation, the conventional real-valued relations between explanatory variables should be considered when multicollinearity is suspected. All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
+
+Furthermore, there might be issues related to the calculation of the covariance matrix of parameters (discussed in Section \ref{MCLRInference}), where we need both direct and conjugate covariance matrices:
+
+\begin{itemize}
+\tightlist
+\item
+  OLS: \(\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime} \sigma_{\underline{\epsilon}}^2\) and \(\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2\);
+\item
+  CLS: \(\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top} \sigma_{\underline{\epsilon}}^2\) and \(\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2\);
+\item
+  Likelihood: no closed form, comes to calculating Hessian, which relates to the inversion with the matrix of explanatory variables.
+\end{itemize}
+
+In this case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the final covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of the standard errors of the individual parameters, the choice of estimation method would not resolve the multicollinearity issue. We can expect that the standard errors of parameters will be higher than in the situation without the multicollinearity, no matter what estimation method we use.
+
+Solving the multicollinearity is not a trivial problem on its own. In general, it can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard and we do not discuss them in this monograph.
 
 \hypertarget{Examples}{%
 \chapter{Examples of application}\label{Examples}}
