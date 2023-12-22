@@ -428,18 +428,60 @@ All of this means that a choice of an estimator can be dictated by the strength 
 Furthermore, there might be issues related to the calculation of the covariance matrix of parameters (discussed in Section \@ref(MCLRInference)), where we need both direct and conjugate covariance matrices:
 
 - OLS:
-    - $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2$
-    - and $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
+    - Conjugate covariance matrix: $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2$
+    - Direct covariance matrix: $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
 - CLS:
-    - $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\epsilon}}^2$
-    - and $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
-- Likelihood: no closed form, comes to calculating Hessian, which relates to the inversion with the matrix of explanatory variables.
+    - Conjugate covariance matrix: $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\epsilon}}^2$
+    - Direct covariance matrix:  $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
+- Likelihood: no closed form, comes to calculating Hessian, which involves the inversion of a matrix based on the matrix of explanatory variables.
 
 In this case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the final covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of the standard errors of the individual parameters, the choice of estimation method would not resolve the multicollinearity issue. We can expect that the standard errors of parameters will be higher than in the situation without the multicollinearity, no matter what estimation method we use.
 
 The diagnostics of the multicollinearity in CLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
 
 
+```{r}
+set.seed(41)
+# Sample size
+obs <- 100
+# Create the explanatory variables
+x1 <- complex(real=rnorm(obs,100,10), imaginary=rnorm(obs,50,5))
+x2 <- complex(real=Im(x1)*1.5 + rnorm(obs,0,1), imaginary=Re(x1)*2.5 + rnorm(obs,0,1))
+# Generate parameters
+b0 <- 100 - 150i
+b1 <- 2.5 + 1.5i
+b2 <- 1.5 - 0.75i
+# Generate error term from the complex normal distribution
+e <- complex(real=rnorm(obs, 0, 20), imaginary=rnorm(obs, 0, 30))
+# Generate the response variable
+y <- b0 + b1 * x1 + b2 * x2 + e
+# Form data frame with the variables
+xreg <- data.frame(y=y,x1=x1,x2=x2)
+```
+
+
+Diagnostic based on correlation matrices
+
+```{r}
+ccor(xreg,method="conjugate")
+ccor(xreg,method="direct")
+ccor(xreg,method="pearson")
+covar(xreg) |> cov2cor()
+```
+
+
+Fit CLR using different estimation methods
+
+```{r}
+clm(y~., xreg, loss="OLS") |>
+    summary()
+
+clm(y~., xreg, loss="CLS") |>
+    summary()
+
+clm(y~., xreg, loss="like") |>
+    summary()
+```
 
 
 Solving the multicollinearity is not a trivial problem on its own. In general, it can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard and we do not discuss them in this monograph.

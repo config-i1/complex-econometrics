@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.368+100.7554i
+## [1] 50.4663+100.8501i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 123.4027+0i
+## 108.771+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -62.53492-0.27333i
+##     Direct variance 
+## -63.69681+10.45891i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r        x_i
-## x_r 30.4338690 -0.1366666
-## x_i -0.1366666 92.9687931
+##           x_r       x_i
+## x_r 22.537097  5.229454
+## x_i  5.229454 86.233909
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2829.381
+## [1] 1916.115
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 68.48133-97.36091i
+## 64.11753-57.48008i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##  Direct covariance 
-## -61.91628+62.9566i
+## -45.64823+42.0283i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -89.13140-12.81193i -61.91628+62.95660i
-## y -61.91628+62.95660i  26.84457+78.33146i
+## x -61.49841- 5.50747i -45.64823+42.02830i
+## y -45.64823+42.02830i -19.69605+51.96152i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1818,7 +1818,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9979355
+## [1] 0.9972616
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1876,7 +1876,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9979374
+## [1,] 0.9971717
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1901,11 +1901,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i        y_r       y_i
-## x_r 1.0000000  0.1037393  0.7063210 0.7742693
-## x_i 0.1037393  1.0000000 -0.6278618 0.7065572
-## y_r 0.7063210 -0.6278618  1.0000000 0.1034921
-## y_i 0.7742693  0.7065572  0.1034921 1.0000000
+##           x_r        x_i         y_r         y_i
+## x_r 1.0000000  0.1644873  0.62072799  0.75340202
+## x_i 0.1644873  1.0000000 -0.66740562  0.76877451
+## y_r 0.6207280 -0.6674056  1.00000000 -0.04212291
+## y_i 0.7534020  0.7687745 -0.04212291  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2832,9 +2832,9 @@ Furthermore, there might be issues related to the calculation of the covariance 
   \begin{itemize}
   \tightlist
   \item
-    \(\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime} \sigma_{\underline{\epsilon}}^2\)
+    Conjugate covariance matrix: \(\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime} \sigma_{\underline{\epsilon}}^2\)
   \item
-    and \(\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2\);
+    Direct covariance matrix: \(\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2\);
   \end{itemize}
 \item
   CLS:
@@ -2842,17 +2842,194 @@ Furthermore, there might be issues related to the calculation of the covariance 
   \begin{itemize}
   \tightlist
   \item
-    \(\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top} \sigma_{\underline{\epsilon}}^2\)
+    Conjugate covariance matrix: \(\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top} \sigma_{\underline{\epsilon}}^2\)
   \item
-    and \(\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2\);
+    Direct covariance matrix: \(\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2\);
   \end{itemize}
 \item
-  Likelihood: no closed form, comes to calculating Hessian, which relates to the inversion with the matrix of explanatory variables.
+  Likelihood: no closed form, comes to calculating Hessian, which involves the inversion of a matrix based on the matrix of explanatory variables.
 \end{itemize}
 
 In this case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the final covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of the standard errors of the individual parameters, the choice of estimation method would not resolve the multicollinearity issue. We can expect that the standard errors of parameters will be higher than in the situation without the multicollinearity, no matter what estimation method we use.
 
 The diagnostics of the multicollinearity in CLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\CommentTok{\# Sample size}
+\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{100}
+\CommentTok{\# Create the explanatory variables}
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{Im}\NormalTok{(x1)}\SpecialCharTok{*}\FloatTok{1.5} \SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{Re}\NormalTok{(x1)}\SpecialCharTok{*}\FloatTok{2.5} \SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\CommentTok{\# Generate parameters}
+\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100} \SpecialCharTok{{-}}\NormalTok{ 150i}
+\NormalTok{b1 }\OtherTok{\textless{}{-}} \FloatTok{2.5} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
+\NormalTok{b2 }\OtherTok{\textless{}{-}} \FloatTok{1.5} \SpecialCharTok{{-}} \FloatTok{0.75}\NormalTok{i}
+\CommentTok{\# Generate error term from the complex normal distribution}
+\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DecValTok{30}\NormalTok{))}
+\CommentTok{\# Generate the response variable}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
+\CommentTok{\# Form data frame with the variables}
+\NormalTok{xreg }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x1=}\NormalTok{x1,}\AttributeTok{x2=}\NormalTok{x2)}
+\end{Highlighting}
+\end{Shaded}
+
+Diagnostic based on correlation matrices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ccor}\NormalTok{(xreg,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            y        x1        x2
+## y  1.0000000 0.8228126 0.8572564
+## x1 0.8228126 1.0000000 0.7671853
+## x2 0.8572564 0.7671853 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ccor}\NormalTok{(xreg,}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      y                 x1                  x2
+## y  -1.000000+0.000000i 1.074216+0.007260i -1.012863+0.073839i
+## x1  1.074216+0.007260i 1.000000+0.000000i  1.312030+0.013922i
+## x2 -1.012863+0.073839i 1.312030+0.013922i -1.000000+0.000000i
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ccor}\NormalTok{(xreg,}\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             y                         x1
+## y   1.00000000000000000000000 -0.00000000000000001682260
+## x1 -0.00000000000000001682260  1.00000000000000000000000
+## x2  0.00000000000000001672479 -0.00000000000000005076893
+##                            x2
+## y   0.00000000000000001672479
+## x1 -0.00000000000000005076893
+## x2  1.00000000000000000000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{covar}\NormalTok{(xreg) }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov2cor}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             y_r        y_i        x1_r        x1_i        x2_r        x2_i
+## y_r  1.00000000 0.83977321  0.92176975  0.01363040  0.01417034  0.92135701
+## y_i  0.83977321 1.00000000  0.87546190  0.05523320  0.04359793  0.87757009
+## x1_r 0.92176975 0.87546190  1.00000000 -0.05950187 -0.06185004  0.99914162
+## x1_i 0.01363040 0.05523320 -0.05950187  1.00000000  0.98892512 -0.05318074
+## x2_r 0.01417034 0.04359793 -0.06185004  0.98892512  1.00000000 -0.05661347
+## x2_i 0.92135701 0.87757009  0.99914162 -0.05318074 -0.05661347  1.00000000
+\end{verbatim}
+
+Fit CLR using different estimation methods
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., xreg, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: OLS
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r  109.8449    27.7373    54.7941    164.8957 *
+## (Intercept)_i -144.5184    43.3637  -230.5834    -58.4535 *
+## x1_r             2.4667     0.2555     1.9597      2.9737 *
+## x1_i             1.5535     0.3994     0.7608      2.3462 *
+## x2_r             1.4715     0.1082     1.2567      1.6863 *
+## x2_i            -0.7395     0.1692    -1.0754     -0.4037 *
+## 
+## Error covariance matrix:
+##          e_r      e_i
+## e_r 338.6123  79.0614
+## e_i  79.0614 827.6144
+## 
+## Sample size: 100
+## Number of estimated parameters: 3
+## Number of degrees of freedom: 97
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., xreg, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: CLS
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r  113.1617    27.9232    57.7420    168.5815 *
+## (Intercept)_i -143.9751    43.5352  -230.3804    -57.5698 *
+## x1_r             2.4535     0.3931     1.6732      3.2337 *
+## x1_i             1.5788     0.2701     1.0428      2.1149 *
+## x2_r             1.4619     0.1222     1.2193      1.7044 *
+## x2_i            -0.7396     0.1608    -1.0588     -0.4205 *
+## 
+## Error covariance matrix:
+##          e_r      e_i
+## e_r 338.6168  79.0514
+## e_i  79.0514 827.6653
+## 
+## Sample size: 100
+## Number of estimated parameters: 3
+## Number of degrees of freedom: 97
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., xreg, }\AttributeTok{loss=}\StringTok{"like"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: likelihood
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r   54.8797    27.9541    -0.6125    110.3720  
+## (Intercept)_i -129.5050    43.7030  -216.2606    -42.7493 *
+## x1_r             2.4648     0.2575     1.9537      2.9759 *
+## x1_i             1.5535     0.4025     0.7545      2.3525 *
+## x2_r             1.4708     0.1091     1.2543      1.6874 *
+## x2_i            -0.7395     0.1705    -1.0781     -0.4010 *
+## 
+## Error covariance matrix:
+##          e_r      e_i
+## e_r 343.9281  80.2997
+## e_i  80.2997 840.6171
+## 
+## Sample size: 100
+## Number of estimated parameters: 4.5
+## Number of degrees of freedom: 95.5
+## Information criteria:
+##      AIC     AICc      BIC     BICc 
+## 1822.568 1823.092 1834.291 1835.497
+\end{verbatim}
 
 Solving the multicollinearity is not a trivial problem on its own. In general, it can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard and we do not discuss them in this monograph.
 
