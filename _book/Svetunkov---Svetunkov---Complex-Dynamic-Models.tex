@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.99735+99.67358i
+## [1] 48.9695+101.0889i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 133.1293+0i
+## 116.9067+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct variance 
-## -74.26161+5.4161i
+##  Direct variance 
+## -73.041+1.14038i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 29.433846   2.708049
-## x_i  2.708049 103.695458
+##            x_r        x_i
+## x_r 21.9328637  0.5701894
+## x_i  0.5701894 94.9738601
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3044.823
+## [1] 2082.724
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 58.77876-95.22466i
+## 68.9653-100.3239i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -47.70523+44.1034i
+##   Direct covariance 
+## -34.07691+43.42736i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -63.70333+ 0.85716i -47.70523+44.10340i
-## y -47.70523+44.10340i  -5.87433+88.20838i
+## x -69.57598-13.70906i -34.07691+43.42736i
+## y -34.07691+43.42736i  29.51411+74.31390i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1043,8 +1043,8 @@ or equivalently in matrix notations:
 \end{equation}
 where \(\underline{b_{l}}\), \(b_{l,r}+ib_{l,i}\) and \(\boldsymbol{b}\) are the estimates of respective \(\underline{\beta_l}\), \(\beta_{l,r} + i \beta_{l,i}\) and \(\boldsymbol{\beta}\) and \(\underline{e_j}\), \(e_{r,j} + i e_{i,j}\) and \(\boldsymbol{e}_j\) are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
 
-\hypertarget{ordinary-least-squares}{%
-\subsection{Ordinary Least Squares}\label{ordinary-least-squares}}
+\hypertarget{SCLREstimationOLS}{%
+\subsection{Ordinary Least Squares}\label{SCLREstimationOLS}}
 
 We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
@@ -1818,7 +1818,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.997557
+## [1] 0.9973599
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1876,7 +1876,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9940217
+## [1,] 0.9974783
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1901,11 +1901,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##              x_r          x_i         y_r         y_i
-## x_r  1.000000000 -0.008073986  0.69488822  0.67778094
-## x_i -0.008073986  1.000000000 -0.72174065  0.72620878
-## y_r  0.694888223 -0.721740652  1.00000000 -0.05303347
-## y_i  0.677780942  0.726208784 -0.05303347  1.00000000
+##             x_r         x_i        y_r       y_i
+## x_r  1.00000000 -0.04929256  0.7541941 0.7333344
+## x_i -0.04929256  1.00000000 -0.6895072 0.6385149
+## y_r  0.75419411 -0.68950719  1.0000000 0.1124897
+## y_i  0.73333441  0.63851492  0.1124897 1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -1968,8 +1968,8 @@ where \(\underline{\boldsymbol{b}}\) is the estimate of \(\underline{\boldsymbol
     \label{eq:CLRSystemVectorFinalEstimated}
 \end{equation}
 
-\hypertarget{ordinary-least-squares-1}{%
-\subsection{Ordinary Least Squares}\label{ordinary-least-squares-1}}
+\hypertarget{ordinary-least-squares}{%
+\subsection{Ordinary Least Squares}\label{ordinary-least-squares}}
 
 The criterion of OLS for multiple CLR can be written as:
 \begin{equation}
@@ -2695,7 +2695,7 @@ Finally, we can generate ACF/PACF for the variable after its MDS transformation 
 
 Similarly to the conjugate cACF, the plots in Figure \ref{fig:complexAR1Pearson} show that there is a significant spike for the lag one, implying that the variable is autocorrelated. However, they do not give any specific information about the value of the parameter (like conjugate and direct pACF do).
 
-Finally, there is another presentation for complex ACF/PACF - in the polar coordinates one. In that case instead of plotting separate real and imaginary parts of the function, we produce the magnitude (absolute value) and the angle (argument) of the complex variables. In that presentation, the higher the magnitude is, the higher overall the value of a complex variable is. Figure \ref{fig:complexAR1Ploar} demonstrates how this looks for the conjugate cPACF:
+Furthermore, there is another presentation for complex ACF/PACF - in the polar coordinates one. In that case instead of plotting separate real and imaginary parts of the function, we produce the magnitude (absolute value) and the angle (argument) of the complex variables. In that presentation, the higher the magnitude is, the higher overall the value of a complex variable is. Figure \ref{fig:complexAR1Ploar} demonstrates how this looks for the conjugate cPACF:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2712,27 +2712,75 @@ Finally, there is another presentation for complex ACF/PACF - in the polar coord
 
 The distribution of the absolute value of a bivariate normal complex variable follows Hoyt's distribution, which can be used for the confidence interval construction for the plot above. However, the derivations become complicated and we do not provide them here (we might provide them in the future editions of this monograph).
 
+Finally, one can analyse the ACF/PACF of the separate real and imaginary parts of the residuals, thus ignoring the potential dynamics between them. The analysis in this case becomes trivial and has been discussed in many textbooks and monographs \citep[for example, see][]{SvetunkovAdam}. In R, if a model is estimated using the \texttt{clm()} function from the \texttt{complex} package, the \texttt{plot()} method supports producing ACF/PACF for each separate variable. For example, for the same model from the Subsection \ref{assumptionsSpecificationTransformation}, we have (see Figure \ref{fig:complexAR1Ploar}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(complexModel,}\AttributeTok{which=}\FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexARDiagnosticsACFPACF-1.pdf}
+\caption{\label{fig:complexARDiagnosticsACFPACF}ACF/PACF for the real (Series 1) and imaginary (Series 2) parts of the complex residuals.}
+\end{figure}
+
+The residuals of this model show that there are no important lags on the 5\% significance level. The fact that there are some correlations with values lying outside of the non-rejection region can be explained by random chance. We should take such cases with a pinch of salt not to overcomplicate a model.
+
+In addition, we can do more thorough diagnostics based on the complex ACF/PACF (as discussed above) for any complex-valued model. In that case we need to extract residuals and then apply \texttt{cacf()} or \texttt{cpacf()} functions. For example, using this code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{residuals}\NormalTok{(complexModel) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{cacf}\NormalTok{(}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 After doing the diagnostics of the residuals of a CLR, we can change its form by introducing complex AR (autoregression) or MA (moving average) elements, depending on what lags seem significant on the selected level. The complex AR/MA model is discussed in Chapter \ref{ComplexAR}.
 
 \hypertarget{expectation-of-residuals-is-zero}{%
 \subsection{Expectation of residuals is zero}\label{expectation-of-residuals-is-zero}}
 
-While many other assumptions can be diagnosed in one way or another, the assumption (3) in some cases cannot be. For example, if we use OLS, the unconditional mean of the residuals will be equal to zero by design, which does not provide any useful information about the ``true'' model. However, this assumption can be analysed conditionally, e.g.~conditional on the fitted values. If the conditional mean of the residuals is not constant then we can conclude that some important element was omitted by the model. In a way, the assumption becomes similar to the assumption about the omitted variables and/or autocorrelated residuals.
+While many other assumptions can be diagnosed in one way or another, this assumption in many cases cannot be. For example, if we use OLS, the unconditional mean of the residuals will be equal to zero by design, which does not provide any useful information about the ``true'' model. However, this assumption can be analysed conditionally, e.g.~conditional on the fitted values:
+
+\begin{equation}
+    \mathrm{E}(\underline{e}_j | \underline{\mathbf{x}}_j)=0 ,
+    \label{eq:residsExpectation}
+\end{equation}
+meaning that the expectation of complex residual conditional on the values of explanatory variables should be equal to zero. If the conditional mean is not constant and not zero, then we can conclude that some important elements were omitted in the model. In a way, the assumption becomes similar to the assumption about the omitted variables, wrong transformations, and/or autocorrelated residuals. To that extent, we do not discuss it in more detail here.
 
 \hypertarget{residuals-follow-an-assumed-distribution}{%
 \subsection{Residuals follow an assumed distribution}\label{residuals-follow-an-assumed-distribution}}
 
-In the classical real-valued regression, the assumption (4) is not considered to be crucial and if the model is estimated using OLS typically comes to ``the residuals follow the Normal distribution''. In context of complex variables, the equivalent assumption would be that the complex residuals follow the Complex Normal distribution discussed in Section \ref{distributionCNorm}. If the model is formulated using matrix notations \eqref{eq:CLRSystemVectorFinal}, the assumption transforms to ``Multivariate Normal'' one, discussed in Section \ref{MVNorm}. In anyway, this assumption is complementary to the main ones, even when it does not hold but all the others hold, the estimates of parameters should be unbiased, efficient and consistent. However, it becomes essential when the prediction interval needs to be generated from the model.
+In the classical real-valued regression, this assumption is not considered to be crucial, and if a model is estimated using OLS, it typically comes to the ``residuals follow the Normal distribution''. In context of complex variables, the equivalent assumption would be that the complex residuals follow the Complex Normal distribution discussed in Subsection \ref{distributionCNorm}. If the model is formulated using matrix notations \eqref{eq:CLRSystemVectorFinal}, the assumption transforms to ``Multivariate Normal'' one, discussed in Section \ref{MVNorm}. In statistics, this assumption is typically considered as not critical in comparison with the others. This is because it can be shown that in case of OLS/CLS even when it does not hold, but all the others do, the estimates of parameters should be unbiased, efficient and consistent. However, this assumption becomes essential when prediction interval needs to be generated from the model. In that case we want to capture the uncertainty about the data correctly, and if the residuals do not follow the Normal distribution, the prediction interval will be miscalibrated.
 
-\hypertarget{distribution-of-residuals-us-constant}{%
-\subsection{Distribution of residuals us constant}\label{distribution-of-residuals-us-constant}}
+One of the simplest ways of checking the assumption is by producing QQ-plots for each part of the complex residuals. This approach ignores the multivariate nature of the residuals (e.g.~then can be correlated), but given that each part of the c.r.v. following Complex Normal distribution is Normal as well, this should suffice for diagnostic purposes.
 
-Building upon (4), the fifth assumption is applicable to time series models only and states more generally that we deal with one and the same assumption of residuals over time. This assumption is very difficult to test (if at all possible), so it is typically dropped from the discussion.
+In R, this can be done using the following command (for the model discussed in Subsection \ref{assumptionsSpecificationTransformation}, see Figure \ref{fig:complexNormDiagnostics}):
 
-\hypertarget{circular-distribution}{%
-\subsection{Circular distribution}\label{circular-distribution}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(complexModelLogs,}\AttributeTok{which=}\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Finally, in signal processing literature, the assumption (6) means that the covariance between the residuals equals to zero and the variances of the real and the imaginary parts are equal. This implies that the direct variance of residuals is equal to zero. While this might be a suitable assumption in that discipline, there is no good rationale for this to hold universally for all CLR models. So, we will not consider this assumption as an important one in what follows.
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexNormDiagnostics-1.pdf}
+\caption{\label{fig:complexNormDiagnostics}QQ-plots for the real (Series 1) and imaginary (Series 2) parts of the residuals.}
+\end{figure}
+
+Similarly to the conventional diagnostics related to distributional assumptions, the QQ-plots in Figure \ref{fig:complexNormDiagnostics} can be interpreted as follows. If all the points (empirical quantiles) lie on or close to the lines (theoretical quantiles) then the empirical distribuion looks similar to the theoretical one. In the example in Figure \ref{fig:complexNormDiagnostics}, we see that the points are indeed close to the lines for both real (called ``Series 1'') and imaginary (called ``Series 2'' in the plot) parts of the residuals. There is a slight deviation in the right tail of the imaginary part, but it is not substantial. Based on this diagnostics we can conclude that the residuals look Normal or at least very close to it.
+
+\hypertarget{residuals-follow-a-circular-distribution}{%
+\subsection{Residuals follow a circular distribution}\label{residuals-follow-a-circular-distribution}}
+
+Finally, in signal processing literature, there is an assumption that residuals follow so called ``circular distribution''. This means that the covariance between the residuals equals to zero and that the variance of the real part is equal to the variance of the imaginary one. This also implies that the direct variance of residuals is equal to zero. While this might be a suitable assumption in signal processing, there is no good rationale for this to hold universally for all CLR models. In fact, the power of the CLR comes from different variances and potentially non-zero covariance between the residuals, because in that case the model can capture a complex dynamics between the parts of the complex variable. So, we suggest ignoring this assumption, especially given that it does not effect estimates of parameters of the forecasts from the model.
+
+However, it is important to note that the used estimation methods might imply some parts of this assumption. For example, OLS minimises the sum of squared residuals of the real and imaginary parts, completely neglecting the covariance between them (see Subsection \ref{SCLREstimationOLS}). At the same time, the CLS (Subsection \ref{SCLREstimationCLS}) ignores the specific sizes of the squared residuals and focuses on making their squares equal, minimising at the same time the covariance between them. If we believe that the residuals might have a more complicated distribution (elliptic Normal) then MLE (Subsection \ref{SCLREstimationLikelihood}) might be the best option for the model estimation.
 
 \hypertarget{explanatory-variables-are-not-correlated-with-anything-but-the-response-variable}{%
 \section{Explanatory variables are not correlated with anything but the response variable}\label{explanatory-variables-are-not-correlated-with-anything-but-the-response-variable}}
