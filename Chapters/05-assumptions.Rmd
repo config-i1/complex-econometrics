@@ -337,12 +337,18 @@ cacf(y, method="pearson", plot=TRUE)
 pcacf(y, method="pearson", plot=TRUE)
 ```
 
-Similarly to the conjugate cACF, the plots in Figure \@ref(fig:complexAR1Pearson) show that there is a significant spike for the lag one, implying that the variable is autocorrelated.
+Similarly to the conjugate cACF, the plots in Figure \@ref(fig:complexAR1Pearson) show that there is a significant spike for the lag one, implying that the variable is autocorrelated. However, they do not give any specific information about the value of the parameter (like conjugate and direct pACF do).
 
-Last but not least, polar coordinates...
+Finally, there is another presentation for complex ACF/PACF - in the polar coordinates one. In that case instead of plotting separate real and imaginary parts of the function, we produce the magnitude (absolute value) and the angle (argument) of the complex variables. In that presentation, the higher the magnitude is, the higher overall the value of a complex variable is. Figure \@ref(fig:complexAR1Ploar) demonstrates how this looks for the conjugate cPACF:
 
+```{r complexAR1Ploar, fig.cap="Complex ACF in polar coordinates."}
+pcacf(y, method="conjugate", plot=FALSE) |>
+    plot(2)
+```
 
-*Focus here on diagnostics, don't solve the problem*. The solution is in Chapter \@ref(ComplexAR)
+The distribution of the absolute value of a bivariate normal complex variable follows Hoyt's distribution, which can be used for the confidence interval construction for the plot above. However, the derivations become complicated and we do not provide them here (we might provide them in the future editions of this monograph).
+
+After doing the diagnostics of the residuals of a CLR, we can change its form by introducing complex AR (autoregression) or MA (moving average) elements, depending on what lags seem significant on the selected level. The complex AR/MA model is discussed in Chapter \@ref(ComplexAR).
 
 
 
