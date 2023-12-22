@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.0464+101.0165i
+## [1] 48.63387+99.4135i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 119.474+0i
+## 135.3784+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -689,7 +689,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -70.38282+2.58501i
+## -81.79008+0.96359i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 24.545600  1.292507
-## x_i  1.292507 94.928415
+##            x_r         x_i
+## x_r 26.7941828   0.4817954
+## x_i  0.4817954 108.5842616
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2328.404
+## [1] 2909.194
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 64.7854-94.54087i
+## 52.7423-121.5966i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -40.03192+54.28545i
+## -47.46808+57.86685i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -79.74510+ 8.96227i -40.03192+54.28545i
-## y -40.03192+54.28545i  20.55733+60.35639i
+## x -78.10363- 3.70928i -47.46808+57.86685i
+## y -47.46808+57.86685i  17.83509+72.00047i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1818,7 +1818,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.997412
+## [1] 0.996991
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1876,7 +1876,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9971584
+## [1,] 0.9973059
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1901,11 +1901,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i          y_r         y_i
-## x_r 1.0000000  0.0483137  0.686470352 0.726061647
-## x_i 0.0483137  1.0000000 -0.689989572 0.717776026
-## y_r 0.6864704 -0.6899896  1.000000000 0.003708686
-## y_i 0.7260616  0.7177760  0.003708686 1.000000000
+##             x_r         x_i        y_r       y_i
+## x_r  1.00000000 -0.09875504  0.7714394 0.7117795
+## x_i -0.09875504  1.00000000 -0.7057263 0.6232558
+## y_r  0.77143944 -0.70572631  1.0000000 0.1086977
+## y_i  0.71177946  0.62325575  0.1086977 1.0000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2807,25 +2807,6 @@ In case of CLR, the situation is similar, but with some specific features. If th
 Finally, the same issues as discussed in the paragraph above apply to the calculation of the covariance matrix of parameters (discussed in Section \ref{MCLRInference}). In that case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of standard errors of individual parameters, the choice of estimation method would not resolve the multicollinearity issue.
 
 Solving the multicollinearity is not a trivial problem. In general, it can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard and we do not discuss them in this monograph.
-
-\hypertarget{diagnostics}{%
-\section{Diagnostics}\label{diagnostics}}
-
-sigma \& Sigma
-
-R\^{}2, R\^{}2 - adjusted
-R\^{}2 for different parts or for the whole model
-R\^{}2 for covariances? Percentage of explained covariance between variables?
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# 1{-} cvar(e, method="conj") / cvar(y,method="conj")}
-
-\CommentTok{\# 1{-}covar(e) / covar(y)}
-\end{Highlighting}
-\end{Shaded}
-
-Visual analysis
 
 \hypertarget{ComplexAR}{%
 \chapter{Complex Autoregression}\label{ComplexAR}}
