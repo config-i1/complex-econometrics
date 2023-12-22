@@ -1,10 +1,10 @@
-# Complex Autoregression {#ComplexAR}
+<!-- # Complex Autoregression {#ComplexAR} -->
 
 
-## Complex ACF/PACF
+<!-- ## Complex ACF/PACF -->
+<!-- How cACF/cPACF behaves for different types of processes (BJ style). -->
 
 
-## Complex AR(p)
-
-Properties and what ACF/PACF they generate
+<!-- ## Complex AR(p) -->
+<!-- Properties and what ACF/PACF they generate -->
 
