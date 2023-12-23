@@ -443,7 +443,11 @@ The diagnostics of the multicollinearity in CLR can be done by calculating the c
 
 
 ### Demonstration in R
-For demonstration purposes we generate data from a model $\underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1} + \underline{\beta}_2 \underline{x}_{2} + \underline{\epsilon}$ for several scenarios:
+For demonstration purposes we generate data from a model:
+\begin{equation*}
+    \underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1} + \underline{\beta}_2 \underline{x}_{2} + \underline{\epsilon}
+\end{equation*}
+for several scenarios:
 
 1. $\underline{x}_{1}$ is strongly correlated with $\underline{x}_{2}$;
 2. $\mathcal{R}\left(\underline{x}_{1}\right)$ is strongly correlated with $\mathcal{R}\left(\underline{x}_{2}\right)$;
