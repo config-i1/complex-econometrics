@@ -147,9 +147,6 @@ where (as a reminder)
 Maximising this likelihood, as discussed in Subsection \@ref(SCLREstimationLikelihood), implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
 
 
-### Examples in R
-
-
 ## Inference {#MCLRInference}
 It is possible to calculate the variance of estimates of parameters, using the same approach as used in conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variance can then be used in hypothesis testing or confidence interval construction. In order to do that, we need to replace the actual value $\underline{\mathbf{y}}$ with $\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}$ in the OLS formula \@ref(eq:MCLROLSEstimate):
 \begin{equation}
@@ -249,6 +246,46 @@ Finally, in case of the likelihood estimation, the covariance matrix of paramete
 
 
 ### Examples in R
+In R, the estimation of the CLR can be done using the `clm()` function from the `complex` package. The specific estimation method can be selected using the `loss` parameter. For demonstration purposes, we will create an artificial data and see how the estimators work.
+
+```{r}
+set.seed(41)
+# Sample size
+obs <- 100
+# Generate parameters
+b0 <- 100 - 150i
+b1 <- 2.5 + 1.5i
+b2 <- 1.5 - 0.75i
+# Create the explanatory variables
+x1 <- rcnorm(obs, mu=100+150i, sigma2=20)
+# Create the explanatory variables
+x2 <- rcnorm(obs, mu=150+100i, sigma2=20, varsigma2=5)
+# Generate error term from the complex normal distribution
+e <- rcnorm(obs, mu=0, sigma2=10, varsigma2=4+3i)
+# Generate the response variable
+y <- b0 + b1 * x1 + b2 * x2 + e
+# Form a data frame with the variables
+dataArtificial <- data.frame(y=y, x1=x1, x2=x2)
+```
+
+The data generated using the code above will have the same variances of the real and imaginary parts of `x1` and the different ones for the `x2`. Furthermore, it will have residuals with correlated real and imaginary parts. We expect that in this situation the likelihood would be more appropriate than either OLS, or CLS.
+
+We start by estimating the model using OLS:
+
+```{r}
+clm(y~., dataArtificial, loss="OLS") |>
+    summary()
+```
+
+```{r}
+clm(y~., dataArtificial, loss="CLS") |>
+    summary()
+```
+
+```{r}
+clm(y~., dataArtificial, loss="likelihood") |>
+    summary()
+```
 
 
 ## Capturing uncertainty in the multiple CLR

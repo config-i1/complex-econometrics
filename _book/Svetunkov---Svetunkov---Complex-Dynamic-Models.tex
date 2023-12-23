@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.29772+99.55378i
+## [1] 49.76125+99.39047i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 112.3483+0i
+## 130.8651+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -71.31392-10.50029i
+##  Direct variance 
+## -65.584-6.50114i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -715,8 +715,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 20.517179 -5.250147
-## x_i -5.250147 91.831096
+## x_r 32.640537 -3.250569
+## x_i -3.250569 98.224538
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1856.551
+## [1] 3195.535
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 75.51853-79.52923i
+## 47.47597-84.84255i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -40.36578+54.5843i
+## Direct covariance 
+## -29.6504+55.9507i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -68.71802- 1.82857i -40.36578+54.58430i
-## y -40.36578+54.58430i   2.89061+91.23769i
+## x -88.58611+15.14307i -29.65040+55.95070i
+## y -29.65040+55.95070i  24.19633+48.92478i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.997866
+## [1] 0.9980207
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1886,8 +1886,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##           [,1]
-## [1,] 0.9919858
+##            [,1]
+## [1,] -0.9970189
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##        x_r    x_i    y_r   y_i
-## x_r  1.000 -0.025  0.728 0.715
-## x_i -0.025  1.000 -0.700 0.678
-## y_r  0.728 -0.700  1.000 0.045
-## y_i  0.715  0.678  0.045 1.000
+##       x_r    x_i    y_r   y_i
+## x_r 1.000  0.059  0.725 0.753
+## x_i 0.059  1.000 -0.642 0.699
+## y_r 0.725 -0.642  1.000 0.096
+## y_i 0.753  0.699  0.096 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2078,9 +2078,6 @@ where (as a reminder)
 \end{equation*}
 Maximising this likelihood, as discussed in Subsection \ref{SCLREstimationLikelihood}, implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
 
-\hypertarget{examples-in-r}{%
-\subsection{Examples in R}\label{examples-in-r}}
-
 \hypertarget{MCLRInference}{%
 \section{Inference}\label{MCLRInference}}
 
@@ -2180,8 +2177,129 @@ where \(\mathrm{V}_{\boldsymbol{b}_r}\) is the part of the covariance matrix of 
 
 Finally, in case of the likelihood estimation, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
 
-\hypertarget{examples-in-r-1}{%
-\subsection{Examples in R}\label{examples-in-r-1}}
+\hypertarget{examples-in-r}{%
+\subsection{Examples in R}\label{examples-in-r}}
+
+In R, the estimation of the CLR can be done using the \texttt{clm()} function from the \texttt{complex} package. The specific estimation method can be selected using the \texttt{loss} parameter. For demonstration purposes, we will create an artificial data and see how the estimators work.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\CommentTok{\# Sample size}
+\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{100}
+\CommentTok{\# Generate parameters}
+\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100} \SpecialCharTok{{-}}\NormalTok{ 150i}
+\NormalTok{b1 }\OtherTok{\textless{}{-}} \FloatTok{2.5} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
+\NormalTok{b2 }\OtherTok{\textless{}{-}} \FloatTok{1.5} \SpecialCharTok{{-}} \FloatTok{0.75}\NormalTok{i}
+\CommentTok{\# Create the explanatory variables}
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{100}\SpecialCharTok{+}\NormalTok{150i, }\AttributeTok{sigma2=}\DecValTok{20}\NormalTok{)}
+\CommentTok{\# Create the explanatory variables}
+\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{150}\SpecialCharTok{+}\NormalTok{100i, }\AttributeTok{sigma2=}\DecValTok{20}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{5}\NormalTok{)}
+\CommentTok{\# Generate error term from the complex normal distribution}
+\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{10}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{4}\SpecialCharTok{+}\NormalTok{3i)}
+\CommentTok{\# Generate the response variable}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
+\CommentTok{\# Form a data frame with the variables}
+\NormalTok{dataArtificial }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y, }\AttributeTok{x1=}\NormalTok{x1, }\AttributeTok{x2=}\NormalTok{x2)}
+\end{Highlighting}
+\end{Shaded}
+
+The data generated using the code above will have the same variances of the real and imaginary parts of \texttt{x1} and the different ones for the \texttt{x2}. Furthermore, it will have residuals with correlated real and imaginary parts. We expect that in this situation the likelihood would be more appropriate than either OLS, or CLS.
+
+We start by estimating the model using OLS:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: OLS
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r  105.8922    11.9307    82.2130    129.5714 *
+## (Intercept)_i -154.3177     9.3678  -172.9101   -135.7253 *
+## x1_r             2.4651     0.0504     2.3650      2.5652 *
+## x1_i             1.5159     0.0396     1.4374      1.5945 *
+## x2_r             1.5251     0.0459     1.4339      1.6163 *
+## x2_i            -0.7137     0.0361    -0.7853     -0.6421 *
+## 
+## Error covariance matrix:
+##        e_r    e_i
+## e_r 4.8611 0.7548
+## e_i 0.7548 2.9969
+## 
+## Sample size: 100
+## Number of estimated parameters: 3
+## Number of degrees of freedom: 97
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: CLS
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r  119.2748   158.2896  -194.8863    433.4360  
+## (Intercept)_i -310.5547   157.1924  -622.5380      1.4286  
+## x1_r             3.1496     1.0032     1.1586      5.1407 *
+## x1_i             2.1949     1.0101     0.1901      4.1998 *
+## x2_r             1.5713     0.2676     1.0403      2.1024 *
+## x2_i            -0.8424     0.2623    -1.3630     -0.3218 *
+## 
+## Error covariance matrix:
+##         e_r     e_i
+## e_r 13.8499  1.4317
+## e_i  1.4317 12.5650
+## 
+## Sample size: 100
+## Number of estimated parameters: 3
+## Number of degrees of freedom: 97
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: likelihood
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r  105.8916    12.0241    82.0224    129.7608 *
+## (Intercept)_i -154.3177     9.4410  -173.0593   -135.5761 *
+## x1_r             2.4651     0.0508     2.3642      2.5660 *
+## x1_i             1.5159     0.0399     1.4367      1.5952 *
+## x2_r             1.5251     0.0463     1.4331      1.6170 *
+## x2_i            -0.7137     0.0364    -0.7858     -0.6415 *
+## 
+## Error covariance matrix:
+##        e_r    e_i
+## e_r 4.9375 0.7667
+## e_i 0.7667 3.0440
+## 
+## Sample size: 100
+## Number of estimated parameters: 4.5
+## Number of degrees of freedom: 95.5
+## Information criteria:
+##      AIC     AICc      BIC     BICc 
+## 834.3789 834.9027 846.1021 847.3082
+\end{verbatim}
 
 \hypertarget{capturing-uncertainty-in-the-multiple-clr}{%
 \section{Capturing uncertainty in the multiple CLR}\label{capturing-uncertainty-in-the-multiple-clr}}
@@ -2234,8 +2352,8 @@ where \({cov}(\cdot)\) is the direct covariance. The formulae \eqref{eq:Multiple
 
 Finally, to produce confidence intervals, we can use the formulae \eqref{eq:MultipleCLRComplexVarianceDir} and \eqref{eq:MultipleCLRComplexVarianceDir}, dropping the \(\mathrm{V}\left(\underline{\epsilon_j}\right)\) and \(\mathcal{V}\left(\underline{\epsilon_j}\right)\), which will then give us direct and conjugate conditional variances of the predicted value.
 
-\hypertarget{examples-in-r-2}{%
-\subsection{Examples in R}\label{examples-in-r-2}}
+\hypertarget{examples-in-r-1}{%
+\subsection{Examples in R}\label{examples-in-r-1}}
 
 \hypertarget{multipleCLRDummy}{%
 \section{Dummy variables}\label{multipleCLRDummy}}
@@ -2259,8 +2377,8 @@ Finally, if an interaction effect is needed (e.g.~how the change of price on red
 \end{equation}
 In this case, the specific complex effect of \(\underline{x}_{1,j}\) on \(\underline{y}_j\) will change when the dummy variable equals to one. The interaction effect between a complex variable \(\underline{x}_{1,j}\) and a complex dummy variable \(\underline{d}_{1,j}\) is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
 
-\hypertarget{examples-in-r-3}{%
-\subsection{Examples in R}\label{examples-in-r-3}}
+\hypertarget{examples-in-r-2}{%
+\subsection{Examples in R}\label{examples-in-r-2}}
 
 \hypertarget{assumptions}{%
 \chapter{Assumptions of Complex Linear Models}\label{assumptions}}
@@ -2463,8 +2581,8 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 \begin{figure}
 \centering
-\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-chunk-26-1.pdf}
-\caption{\label{fig:unnamed-chunk-26}Non-linear transformation of a complex variable that changes linearly.}
+\includegraphics{Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-chunk-30-1.pdf}
+\caption{\label{fig:unnamed-chunk-30}Non-linear transformation of a complex variable that changes linearly.}
 \end{figure}
 
 Even if the imaginary part of \(\underline{x}\) is zero (and as a result we deal with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
@@ -3091,25 +3209,25 @@ Finally, we estimate the model using likelihood:
 ## Response variable: y
 ## Loss function used in estimation: likelihood
 ## Coefficients:
-##               Estimate Std. Error Lower 2.5% Upper 97.5% 
-## (Intercept)_r -24.9713    22.1178   -68.8778     18.9351 
-## (Intercept)_i  19.6815    32.9707   -45.7691     85.1321 
-## x1_r            1.2954     4.7680    -8.1697     10.7605 
-## x1_i            3.4833     7.1076   -10.6261     17.5927 
-## x2_r            1.0057     2.4013    -3.7612      5.7726 
-## x2_i           -2.0108     3.5796    -9.1167      5.0951 
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r   74.3405    22.1671    30.3363    118.3447 *
+## (Intercept)_i -121.8535    32.9013  -187.1664    -56.5405 *
+## x1_r             1.2660     4.7786    -8.2201     10.7522  
+## x1_i             3.4843     7.0927   -10.5954     17.5641  
+## x2_r             1.0635     2.4067    -3.7139      5.8410  
+## x2_i            -2.0121     3.5721    -9.1031      5.0788  
 ## 
 ## Error covariance matrix:
-##           e_r      e_i
-## e_r  473.9587 -114.968
-## e_i -114.9680 1053.200
+##           e_r       e_i
+## e_r  476.0707 -112.9427
+## e_i -112.9427 1048.7737
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 4.5
 ## Number of degrees of freedom: 95.5
 ## Information criteria:
 ##      AIC     AICc      BIC     BICc 
-## 1876.754 1877.278 1888.477 1889.683
+## 1876.874 1877.398 1888.597 1889.803
 \end{verbatim}
 
 Because we generated the data with the uncorrelated errors, the output of the likelihood is very similar to the one from the OLS. In the other situation it might have produced different estimates of parameters.
