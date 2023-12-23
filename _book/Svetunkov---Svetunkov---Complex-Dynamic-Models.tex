@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-12-22}
+\date{2023-12-23}
 
 \begin{document}
 \maketitle
@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.4663+100.8501i
+## [1] 51.4123+100.011i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 108.771+0i
+## 112.2483+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -63.69681+10.45891i
+##    Direct variance 
+## -53.22192+6.27401i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -715,8 +715,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 22.537097  5.229454
-## x_i  5.229454 86.233909
+## x_r 29.513211  3.137003
+## x_i  3.137003 82.735136
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1916.115
+## [1] 2431.939
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 64.11753-57.48008i
+## 77.1576-104.7532i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -45.64823+42.0283i
+##   Direct covariance 
+## -41.34412+81.26085i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -61.49841- 5.50747i -45.64823+42.02830i
-## y -45.64823+42.02830i -19.69605+51.96152i
+## x -85.93555+ 4.96589i -41.34412+81.26085i
+## y -41.34412+81.26085i  47.71299+90.60795i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1818,7 +1818,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9972616
+## [1] 0.9980906
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1876,7 +1876,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9971717
+## [1,] 0.9975499
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1901,11 +1901,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i         y_r         y_i
-## x_r 1.0000000  0.1644873  0.62072799  0.75340202
-## x_i 0.1644873  1.0000000 -0.66740562  0.76877451
-## y_r 0.6207280 -0.6674056  1.00000000 -0.04212291
-## y_i 0.7534020  0.7687745 -0.04212291  1.00000000
+##            x_r         x_i         y_r        y_i
+## x_r 1.00000000  0.04807782  0.72731322 0.75013007
+## x_i 0.04807782  1.00000000 -0.64774291 0.69376421
+## y_r 0.72731322 -0.64774291  1.00000000 0.09487125
+## y_i 0.75013007  0.69376421  0.09487125 1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2822,7 +2822,7 @@ And when it comes to the likelihood, due to the model formulation, the conventio
 
 All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
 
-Furthermore, there might be issues related to the calculation of the covariance matrix of parameters (discussed in Section \ref{MCLRInference}), where we need both direct and conjugate covariance matrices:
+In addition to the estimation issues, there might be some related to the calculation of the covariance matrix of parameters (discussed in Section \ref{MCLRInference}), where we need both direct and conjugate covariance matrices:
 
 \begin{itemize}
 \tightlist
@@ -2852,95 +2852,153 @@ Furthermore, there might be issues related to the calculation of the covariance 
 
 In this case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the final covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of the standard errors of the individual parameters, the choice of estimation method would not resolve the multicollinearity issue. We can expect that the standard errors of parameters will be higher than in the situation without the multicollinearity, no matter what estimation method we use.
 
+Note that the standard issues that arise in conventional regression analysis due to linear relation between variables, might not apply to the CLR. For example, if a real part of one variable is strongly correlated with either a real or an imaginary part of the other one, the model might still be estimable and would not suffer from multicollinearity. The effect of multicollinearity in CLR is much more pronounced, when the complex variables are linearly related, rather than their separate parts.
+
 The diagnostics of the multicollinearity in CLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
+
+\hypertarget{demonstration-in-r}{%
+\subsection{Demonstration in R}\label{demonstration-in-r}}
+
+For demonstration purposes we generate data from a model \(\underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1} + \underline{\beta}_2 \underline{x}_{2} + \underline{\epsilon}\) for several scenarios:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\underline{x}_{1}\) is strongly correlated with \(\underline{x}_{2}\);
+\item
+  \(\mathcal{R}\left(\underline{x}_{1}\right)\) is strongly correlated with \(\mathcal{R}\left(\underline{x}_{2}\right)\);
+\item
+  \(\mathcal{R}\left(\underline{x}_{1}\right)\) is strongly correlated with \(\mathcal{I}\left(\underline{x}_{2}\right)\).
+\end{enumerate}
+
+These three cases should cover the main possible issues in the model, and we will see what different estimators give in terms of parameters and their standard errors. We do not conduct a proper simulation experiment, but instead focus on a demonstration for one data series.
+
+The R code below creates three datasets for the three respective scenarios (the coefficients have been selected arbitrarily):
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Sample size}
 \NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{100}
-\CommentTok{\# Create the explanatory variables}
-\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
-\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{Im}\NormalTok{(x1)}\SpecialCharTok{*}\FloatTok{1.5} \SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{Re}\NormalTok{(x1)}\SpecialCharTok{*}\FloatTok{2.5} \SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \CommentTok{\# Generate parameters}
 \NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100} \SpecialCharTok{{-}}\NormalTok{ 150i}
 \NormalTok{b1 }\OtherTok{\textless{}{-}} \FloatTok{2.5} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
 \NormalTok{b2 }\OtherTok{\textless{}{-}} \FloatTok{1.5} \SpecialCharTok{{-}} \FloatTok{0.75}\NormalTok{i}
+\NormalTok{a1 }\OtherTok{\textless{}{-}} \FloatTok{1.3} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
+\CommentTok{\# Create the explanatory variables}
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
 \CommentTok{\# Generate error term from the complex normal distribution}
 \NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DecValTok{30}\NormalTok{))}
+\CommentTok{\# The second variable}
+
+\DocumentationTok{\#\# Scenario 1}
+\NormalTok{x2 }\OtherTok{\textless{}{-}}\NormalTok{ a1}\SpecialCharTok{*}\NormalTok{x1 }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 \CommentTok{\# Generate the response variable}
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
-\CommentTok{\# Form data frame with the variables}
-\NormalTok{xreg }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x1=}\NormalTok{x1,}\AttributeTok{x2=}\NormalTok{x2)}
+\CommentTok{\# Form a data frame with the variables}
+\NormalTok{data1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x1=}\NormalTok{x1,}\AttributeTok{x2=}\NormalTok{x2)}
+
+\DocumentationTok{\#\# Scenario 2}
+\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{Re}\NormalTok{(x1)}\SpecialCharTok{*}\FunctionTok{Re}\NormalTok{(a1) }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+              \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\CommentTok{\# Generate the response variable}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
+\CommentTok{\# Form a data frame with the variables}
+\NormalTok{data2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x1=}\NormalTok{x1,}\AttributeTok{x2=}\NormalTok{x2)}
+
+\DocumentationTok{\#\# Scenario 3}
+\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{5}\NormalTok{),}
+              \AttributeTok{imaginary=}\FunctionTok{Re}\NormalTok{(x1)}\SpecialCharTok{*}\FunctionTok{Re}\NormalTok{(a1) }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\CommentTok{\# Generate the response variable}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
+\CommentTok{\# Form a data frame with the variables}
+\NormalTok{data3 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x1=}\NormalTok{x1,}\AttributeTok{x2=}\NormalTok{x2)}
 \end{Highlighting}
 \end{Shaded}
 
-Diagnostic based on correlation matrices
+\hypertarget{scenario-1}{%
+\subsubsection*{Scenario 1}\label{scenario-1}}
+\addcontentsline{toc}{subsubsection}{Scenario 1}
+
+First, we do diagnostics based on correlation matrices that we discussed earlier in this section, including conjugate, direct and MDS-based correlations and the conventional covariance matrix of parameters.
+
+We start with the conjugate complex correlation matrix:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(xreg,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##            y        x1        x2
-## y  1.0000000 0.8228126 0.8572564
-## x1 0.8228126 1.0000000 0.7671853
-## x2 0.8572564 0.7671853 1.0000000
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(xreg,}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                      y                 x1                  x2
-## y  -1.000000+0.000000i 1.074216+0.007260i -1.012863+0.073839i
-## x1  1.074216+0.007260i 1.000000+0.000000i  1.312030+0.013922i
-## x2 -1.012863+0.073839i 1.312030+0.013922i -1.000000+0.000000i
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(xreg,}\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{)}
+\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##                             y                         x1
-## y   1.00000000000000000000000 -0.00000000000000001682260
-## x1 -0.00000000000000001682260  1.00000000000000000000000
-## x2  0.00000000000000001672479 -0.00000000000000005076893
-##                            x2
-## y   0.00000000000000001672479
-## x1 -0.00000000000000005076893
-## x2  1.00000000000000000000000
+##        y    x1    x2
+## y  1.000 0.878 0.878
+## x1 0.878 1.000 0.999
+## x2 0.878 0.999 1.000
 \end{verbatim}
+
+The output above shows that \(\underline{x}_{1}\) is strongly correlated with \(\underline{x}_{2}\) - the correlation coefficient between them is 0.999. This agrees with how we generated the data, and we can expect issues when estimating the model and/or generating the standard errors of parameters.
+
+The second output is for the direct complex correlation matrix:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{covar}\NormalTok{(xreg) }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov2cor}\NormalTok{()}
+\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##             y_r        y_i        x1_r        x1_i        x2_r        x2_i
-## y_r  1.00000000 0.83977321  0.92176975  0.01363040  0.01417034  0.92135701
-## y_i  0.83977321 1.00000000  0.87546190  0.05523320  0.04359793  0.87757009
-## x1_r 0.92176975 0.87546190  1.00000000 -0.05950187 -0.06185004  0.99914162
-## x1_i 0.01363040 0.05523320 -0.05950187  1.00000000  0.98892512 -0.05318074
-## x2_r 0.01417034 0.04359793 -0.06185004  0.98892512  1.00000000 -0.05661347
-## x2_i 0.92135701 0.87757009  0.99914162 -0.05318074 -0.05661347  1.00000000
+##               y         x1            x2
+## y  1.000+0.000i 1.1-0.068i  1.099-0.068i
+## x1 1.100-0.068i 1.0+0.000i  1.000+0.001i
+## x2 1.099-0.068i 1.0+0.001i -1.000+0.000i
 \end{verbatim}
 
-Fit CLR using different estimation methods
+While some correlation coefficients in the output above are hard to interpret (because some of them are above one), the real part of the one between the explanatory variables equals to one (after rounding), which also indicates a strong relation between them.
+
+We also calculate Pearson's correlation matrix for the MDS-transformed complex variables to get another look at the problem:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., xreg, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        y    x1    x2
+## y  1.000 0.939 0.938
+## x1 0.939 1.000 1.000
+## x2 0.938 1.000 1.000
+\end{verbatim}
+
+And as we can see from the output above, the explanatory variables \(\underline{x}_{1}\) and \(\underline{x}_{2}\) are indeed strongly linearly related.
+
+Finally, we calculate the covariance matrix of parameters between individual variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{covar}\NormalTok{(data1) }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov2cor}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         y_r   y_i   x1_r   x1_i   x2_r  x2_i
+## y_r   1.000 0.315  0.924 -0.220  0.898 0.796
+## y_i   0.315 1.000  0.489  0.579  0.158 0.681
+## x1_r  0.924 0.489  1.000 -0.060  0.890 0.928
+## x1_i -0.220 0.579 -0.060  1.000 -0.505 0.316
+## x2_r  0.898 0.158  0.890 -0.505  1.000 0.657
+## x2_i  0.796 0.681  0.928  0.316  0.657 1.000
+\end{verbatim}
+
+If shows that there is a strong correlation between \(\mathcal{R}\left(\underline{x}_{1}\right)\) and \(\mathcal{R}\left(\underline{x}_{2}\right)\) and \(\mathcal{I}\left(\underline{x}_{2}\right)\), while the correlation between the imaginary part of \(\underline{x}_{1}\) with the other variables is not as strong.
+
+All of the outputs above tell us that if we want to fit the CLR, we will face difficulties due to the strong multicollinearity caused by the strong correlation between the explanatory variables. We estimate the model using the three different methods and produce their summary outputs. We start with OLS:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data1, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -2951,26 +3009,30 @@ Fit CLR using different estimation methods
 ## Loss function used in estimation: OLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  109.8449    27.7373    54.7941    164.8957 *
-## (Intercept)_i -144.5184    43.3637  -230.5834    -58.4535 *
-## x1_r             2.4667     0.2555     1.9597      2.9737 *
-## x1_i             1.5535     0.3994     0.7608      2.3462 *
-## x2_r             1.4715     0.1082     1.2567      1.6863 *
-## x2_i            -0.7395     0.1692    -1.0754     -0.4037 *
+## (Intercept)_r   71.5012    22.0345    27.7689    115.2335 *
+## (Intercept)_i -126.3063    32.6150  -191.0380    -61.5747 *
+## x1_r             1.2877     4.7501    -8.1399     10.7152  
+## x1_i             3.4833     7.0309   -10.4712     17.4377  
+## x2_r             1.0787     2.3923    -3.6692      5.8267  
+## x2_i            -2.0108     3.5410    -9.0387      5.0170  
 ## 
 ## Error covariance matrix:
-##          e_r      e_i
-## e_r 338.6123  79.0614
-## e_i  79.0614 827.6144
+##           e_r       e_i
+## e_r  470.3931 -110.8792
+## e_i -110.8792 1030.5972
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
 ## Number of degrees of freedom: 97
 \end{verbatim}
 
+The output above shows that the estimates of parameters are wrong: the complex parameter for the first variable should be \(2.5 + 1.5i\), while for the second one should be \(1.5 - 0.75i\). Furthermore, the standard errors of parameters are high, leading to the high uncertainty about the parameters, so that we cannot be sure whether the true effect is positive or negative for the estimated model.
+
+The CLS gives a very similar picture:
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., xreg, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data1, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -2981,26 +3043,30 @@ Fit CLR using different estimation methods
 ## Loss function used in estimation: CLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  113.1617    27.9232    57.7420    168.5815 *
-## (Intercept)_i -143.9751    43.5352  -230.3804    -57.5698 *
-## x1_r             2.4535     0.3931     1.6732      3.2337 *
-## x1_i             1.5788     0.2701     1.0428      2.1149 *
-## x2_r             1.4619     0.1222     1.2193      1.7044 *
-## x2_i            -0.7396     0.1608    -1.0588     -0.4205 *
+## (Intercept)_r  125.4156    40.9986    44.0448    206.7864 *
+## (Intercept)_i -115.6256    43.7340  -202.4254    -28.8258 *
+## x1_r             1.0558     6.6146   -12.0724     14.1839  
+## x1_i             3.9269     5.4656    -6.9208     14.7745  
+## x2_r             0.8794     2.4126    -3.9089      5.6678  
+## x2_i            -2.0261     3.5830    -9.1374      5.0852  
 ## 
 ## Error covariance matrix:
-##          e_r      e_i
-## e_r 338.6168  79.0514
-## e_i  79.0514 827.6653
+##           e_r      e_i
+## e_r  477.2509 -105.279
+## e_i -105.2790 1054.208
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
 ## Number of degrees of freedom: 97
 \end{verbatim}
 
+However, we should note that the standard errors of parameters are in some cases higher than in the OLS, but not everywhere. For example, the parameter for \(\mathcal{I}\left(\underline{x}_{1}\right)\) estimated using CLS has a lower standard error than in the case of OLS. Nonetheless, the estimates of parameters are clearly biased and not efficient.
+
+Finally, we estimate the model using likelihood:
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., xreg, }\AttributeTok{loss=}\StringTok{"like"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data1, }\AttributeTok{loss=}\StringTok{"like"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -3010,28 +3076,261 @@ Fit CLR using different estimation methods
 ## Response variable: y
 ## Loss function used in estimation: likelihood
 ## Coefficients:
-##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   54.8797    27.9541    -0.6125    110.3720  
-## (Intercept)_i -129.5050    43.7030  -216.2606    -42.7493 *
-## x1_r             2.4648     0.2575     1.9537      2.9759 *
-## x1_i             1.5535     0.4025     0.7545      2.3525 *
-## x2_r             1.4708     0.1091     1.2543      1.6874 *
-## x2_i            -0.7395     0.1705    -1.0781     -0.4010 *
+##               Estimate Std. Error Lower 2.5% Upper 97.5% 
+## (Intercept)_r -24.9713    22.1178   -68.8778     18.9351 
+## (Intercept)_i  19.6815    32.9707   -45.7691     85.1321 
+## x1_r            1.2954     4.7680    -8.1697     10.7605 
+## x1_i            3.4833     7.1076   -10.6261     17.5927 
+## x2_r            1.0057     2.4013    -3.7612      5.7726 
+## x2_i           -2.0108     3.5796    -9.1167      5.0951 
 ## 
 ## Error covariance matrix:
-##          e_r      e_i
-## e_r 343.9281  80.2997
-## e_i  80.2997 840.6171
+##           e_r      e_i
+## e_r  473.9587 -114.968
+## e_i -114.9680 1053.200
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 4.5
 ## Number of degrees of freedom: 95.5
 ## Information criteria:
 ##      AIC     AICc      BIC     BICc 
-## 1822.568 1823.092 1834.291 1835.497
+## 1876.754 1877.278 1888.477 1889.683
 \end{verbatim}
 
-Solving the multicollinearity is not a trivial problem on its own. In general, it can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard and we do not discuss them in this monograph.
+Because we generated the data with the uncorrelated errors, the output of the likelihood is very similar to the one from the OLS. In the other situation it might have produced different estimates of parameters.
+
+All of the above happened because of the strong multicollinearity in the data: the complex variables \(\underline{x}_{1}\) and \(\underline{x}_{2}\) were strongly correlated by design, which caused the aforementioned issues.
+
+The Scenario 1 demonstrates the behaviour of estimators as expected: we would not expect to estimate the models successfully, when the complex variables are so strongly correlated.
+
+As a side note, in this scenario, we would not be able to get efficient and unbiased estimates of parameters for the individual real-valued models for \(\mathcal{R}\left(\underline{y}\right)\) and \(\mathcal{I}\left(\underline{y}\right)\) with this data, because the covariance matrix with individual variables demonstrated a high correlation between \(\mathcal{R}\left(\underline{x}_1\right)\) and \(\mathcal{I}\left(\underline{x}_2\right)\).
+
+\hypertarget{scenario-2}{%
+\subsection*{Scenario 2}\label{scenario-2}}
+\addcontentsline{toc}{subsection}{Scenario 2}
+
+In this scenario, we have strong correlation between real parts of explanatory variables, but not between the complex ones. We would expect the real-valued regression to fail in this case, but the CLR might still be estimable. We start the demonstration with the same set of outputs as before:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        y    x1    x2
+## y  1.000 0.782 0.725
+## x1 0.782 1.000 0.857
+## x2 0.725 0.857 1.000
+\end{verbatim}
+
+The conjugate correlation above shows that there is a linear relation between \(\underline{x}_{1}\) and \(\underline{x}_{2}\), but it is not sever, so we should be able to estimate the model and get reasonable estimates of parameters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               y           x1           x2
+## y  1.000+0.000i 1.208+0.065i 1.302+0.157i
+## x1 1.208+0.065i 1.000+0.000i 1.197+0.009i
+## x2 1.302+0.157i 1.197+0.009i 1.000+0.000i
+\end{verbatim}
+
+The direct correlation agrees with the conjugate one in general, but the fact that the correlation between \(\underline{x}_{1}\) and \(\underline{x}_{2}\) has the real part above one, implies that the relation between the variables is stronger than expected by the previous output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        y    x1    x2
+## y  1.000 0.901 0.897
+## x1 0.901 1.000 0.997
+## x2 0.897 0.997 1.000
+\end{verbatim}
+
+Pearson's correlations on the MDS variables shows that there is a very strong relation between \(\underline{x}_{1}\) and \(\underline{x}_{2}\), although we cannot say for sure what causes it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{covar}\NormalTok{(data2) }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov2cor}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         y_r    y_i   x1_r   x1_i   x2_r  x2_i
+## y_r   1.000 -0.022  0.902 -0.137  0.899 0.086
+## y_i  -0.022  1.000  0.073  0.453  0.074 0.190
+## x1_r  0.902  0.073  1.000 -0.060  0.997 0.034
+## x1_i -0.137  0.453 -0.060  1.000 -0.059 0.020
+## x2_r  0.899  0.074  0.997 -0.059  1.000 0.028
+## x2_i  0.086  0.190  0.034  0.020  0.028 1.000
+\end{verbatim}
+
+Finally, as expected, the correlations between the specific parts of variables shows that \(\mathcal{R}\left(\underline{x}_1\right)\) and \(\mathcal{R}\left(\underline{x}_2\right)\) have almost functional relation. This might mean that we could face difficulties estimating the model.
+
+The model estimated using OLS produces the following output:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data2, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: OLS
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r   73.2762    27.0508    19.5880    126.9645 *
+## (Intercept)_i -160.6063    40.0563  -240.1069    -81.1057 *
+## x1_r             3.2671     0.3720     2.5289      4.0053 *
+## x1_i             0.9657     0.5508    -0.1275      2.0588  
+## x2_r             0.9244     0.2943     0.3403      1.5085 *
+## x2_i            -0.4967     0.4358    -1.3617      0.3682  
+## 
+## Error covariance matrix:
+##           e_r       e_i
+## e_r  463.7618 -113.0148
+## e_i -113.0148 1016.8977
+## 
+## Sample size: 100
+## Number of estimated parameters: 3
+## Number of degrees of freedom: 97
+\end{verbatim}
+
+The parameters seem to be less efficient than they would have been without the strong correlation between parts of explanatory variables, but notably all signs are correct and the specific values are not too far from the ones used in the data generation (\(\underline{\beta}_1=2.5+1.5i\), \(\underline{\beta}_2=1.5-0.75i\)). But it would be interesting to compare the output from OLS with the one from the CLS:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data2, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: CLS
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r   91.3839    33.1621    25.5664    157.2014 *
+## (Intercept)_i -158.1041    43.5358  -244.5105    -71.6977 *
+## x1_r             3.1602     0.5611     2.0465      4.2739 *
+## x1_i             1.0456     0.4027     0.2464      1.8448 *
+## x2_r             0.8972     0.4414     0.0212      1.7732 *
+## x2_i            -0.5347     0.3303    -1.1902      0.1208  
+## 
+## Error covariance matrix:
+##           e_r       e_i
+## e_r  464.1529 -112.6807
+## e_i -112.6807 1019.1710
+## 
+## Sample size: 100
+## Number of estimated parameters: 3
+## Number of degrees of freedom: 97
+\end{verbatim}
+
+The estimates of parameters in CLS are similar to the OLS, but there are several interesting observations:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The standard errors for the real parts of parameters in CLS are higher than the similar estimates in OLS;
+\item
+  The standard errors for the imaginary parts of parameters in CLS are lower than the respective ones in OLS;
+\item
+  The imaginary parts of the parameters are closer to the true ones for the CLS, while the real ones are closer to the true ones in OLS.
+\end{enumerate}
+
+But overall, both methods produce biased, potentially not too efficient, but reasonable estimates of parameters. This was not the case for the Scenario 1.
+
+We skip the likelihood estimation, because for our DGP, it would produce estimates similar to the ones from OLS due to the zero correlation between the real and imaginary parts of the error term.
+
+Finally, we should note that the conventional real-valued regression would not be estimable in this situation due to the high correlation between some parts of the variables. This demonstrates the difference between the CLR and the LR.
+
+\hypertarget{scenario-3}{%
+\subsection{Scenario 3}\label{scenario-3}}
+
+As a reminder, in the Scenario 3 the real part of \(\underline{x}_{1}\) is strongly correlated with the imaginary one of \(\underline{x}_{2}\). We skip the correlation coefficients because arguably they will provide the information similar to the one from Scenario 2, but showing the strong correlation between \(\mathcal{R}\left(\underline{x}_{1}\right)\) and \(\mathcal{I}\left(\underline{x}_{2}\right)\) as intended.
+
+The OLS estimate of the model gives:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data3, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: OLS
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r   79.9056    31.5267    17.3338    142.4773 *
+## (Intercept)_i -129.0633    46.8310  -222.0099    -36.1167 *
+## x1_r             2.7000     0.3798     1.9462      3.4537 *
+## x1_i             1.3239     0.5641     0.2043      2.4436 *
+## x2_r             1.4046     0.2995     0.8102      1.9990 *
+## x2_i            -0.6829     0.4449    -1.5659      0.2001  
+## 
+## Error covariance matrix:
+##           e_r       e_i
+## e_r  468.3421 -110.6171
+## e_i -110.6171 1033.4129
+## 
+## Sample size: 100
+## Number of estimated parameters: 3
+## Number of degrees of freedom: 97
+\end{verbatim}
+
+While the CLS one is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data3, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: CLS
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r  135.0530    37.8927    59.8465    210.2596 *
+## (Intercept)_i -136.4550    51.9941  -239.6490    -33.2610 *
+## x1_r             2.4171     0.5796     1.2667      3.5675 *
+## x1_i             1.5748     0.4205     0.7402      2.4093 *
+## x2_r             1.3666     0.3395     0.6928      2.0404 *
+## x2_i            -0.5815     0.4567    -1.4879      0.3249  
+## 
+## Error covariance matrix:
+##           e_r       e_i
+## e_r  475.0296 -103.1247
+## e_i -103.1247 1052.5370
+## 
+## Sample size: 100
+## Number of estimated parameters: 3
+## Number of degrees of freedom: 97
+\end{verbatim}
+
+And again, we see similar picture to the Scenario 2: the real parts of parameters have lower standard errors in the model estimate using OLS than in the model estimated with CLS, while the imaginary parts have them the other way around. And similarly to the Scenario 2, we would expect the conventional real-valued regression to fail due to high correlation between some parts of variables.
+
+While these three scenarios were supposed to show how different types of correlations impact the estimates of parameters, they are here for demonstration purposes only. They show that multicollinearity in the CLR is a different beast than the one in the conventional real-valued model. In real life, we would not have variables that have close to functional relation (with correlation close to one), instead they might have strong relation and depending on the specific situation, different estimators will give different result.
+
+In general, getting rid of the multicollinearity is not a trivial task on its own. It can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard, they lie outside of the scope of this monograph, and we do not discuss them here.
 
 \hypertarget{Examples}{%
 \chapter{Examples of application}\label{Examples}}
