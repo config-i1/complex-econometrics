@@ -364,7 +364,8 @@ residuals(complexModel) |>
     cacf(method="direct")
 ```
 
-After doing the diagnostics of the residuals of a CLR, we can change its form by introducing complex AR (autoregression) or MA (moving average) elements, depending on what lags seem significant on the selected level. The complex AR/MA model is discussed in Chapter \@ref(ComplexAR).
+After doing the diagnostics of the residuals of a CLR, we can change its form by introducing complex AR (autoregression) or MA (moving average) elements, depending on what lags seem significant on the selected level. The complex AR/MA models are outside of the scope of this monograph and are not discussed in detail here. It suffices to say that in order to construct the complex AR, one needs to generate lagged response variable and add it to the matrix with the explanatory variables. The estimation of such model should be trivial.
+<!-- The complex AR/MA model is discussed in Chapter \@ref(ComplexAR). -->
 
 
 ### Expectation of residuals is zero
@@ -616,7 +617,7 @@ Finally, we should note that the conventional real-valued regression would not b
 
 
 ### Scenario 3 {-}
-As a reminder, in the Scenario 3 the real part of $\underline{x}_{1}$ is strongly correlated with the imaginary one of $\underline{x}_{2}$. We skip the correlation coefficients because arguably they will provide the information similar to the one from Scenario 2, but showing the strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$ as intended.
+As a reminder, in the Scenario 3 the real part of $\underline{x}_{1}$ is strongly correlated with the imaginary one of $\underline{x}_{2}$. We skip the correlation coefficients because arguably they will provide the information similar to the one from Scenario 2, showing the strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$ as intended.
 
 The OLS estimate of the model gives:
 
