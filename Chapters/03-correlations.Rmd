@@ -95,6 +95,8 @@ ccov(x,y,method="conj") /
 # Variant 3 (correct conjugate correlation)
 sqrt(ccov(y,x,method="conj")*ccov(x,y,method="conj")) /
     sqrt((cvar(x,method="conj")*cvar(y,method="conj")))
+# Same thing using the ccor() function
+ccor(x,y,method="conjugate")
 ```
 
 This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction.
@@ -276,7 +278,7 @@ cor(xScaled,yScaled)
 Or using the `ccor()` function with `method="pearson"`, which does exactly the same thing in one line of code:
 
 ```{r, eval=FALSE}
-ccor(x, y, method="pearson")
+ccor(x, y, method="pearson") |> round(3)
 ```
 
 The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it can reach the local optimum and not being able to get to the global one. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the long series. This means that in some cases it might take plenty of time before we get the Pearson's correlation value. Nonetheless, this is an additional way of analysing relations between complex variables.
@@ -286,6 +288,6 @@ The interpretation of the coefficient is straightforward and follows the convent
 Finally, as discussed in Subsection \@ref(crvSecondMoment), it is possible to calculate the covariance matrix between two c.r.v. Based on that matrix, we can calculate the correlation matrix, which will summarise all the relations between the real and imaginary parts of $\underline{x}$ and $\underline{y}$. This is done by dividing each element of the covariance matrix by geometric means of variances of the variables under consideration. In R, this can be done using `covar()` function from the `complex` package and `cov2cor()` function from the `stats` package:
 
 ```{r}
-cov2cor(covar(cbind(x,y)))
+cbind(x,y) |> covar() |> cov2cor() |> round(3)
 ```
 This matrix will not tell us how the variables $\underline{x}$ and $\underline{y}$ are related overall, but it will contain information about each of their individual elements.
