@@ -425,7 +425,7 @@ And when it comes to the likelihood, due to the model formulation, the conventio
 
 All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
 
-Furthermore, there might be issues related to the calculation of the covariance matrix of parameters (discussed in Section \@ref(MCLRInference)), where we need both direct and conjugate covariance matrices:
+In addition to the estimation issues, there might be some related to the calculation of the covariance matrix of parameters (discussed in Section \@ref(MCLRInference)), where we need both direct and conjugate covariance matrices:
 
 - OLS:
     - Conjugate covariance matrix: $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2$
@@ -437,54 +437,202 @@ Furthermore, there might be issues related to the calculation of the covariance 
 
 In this case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the final covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of the standard errors of the individual parameters, the choice of estimation method would not resolve the multicollinearity issue. We can expect that the standard errors of parameters will be higher than in the situation without the multicollinearity, no matter what estimation method we use.
 
+Note that the standard issues that arise in conventional regression analysis due to linear relation between variables, might not apply to the CLR. For example, if a real part of one variable is strongly correlated with either a real or an imaginary part of the other one, the model might still be estimable and would not suffer from multicollinearity. The effect of multicollinearity in CLR is much more pronounced, when the complex variables are linearly related, rather than their separate parts.
+
 The diagnostics of the multicollinearity in CLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
 
+
+### Demonstration in R
+For demonstration purposes we generate data from a model $\underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1} + \underline{\beta}_2 \underline{x}_{2} + \underline{\epsilon}$ for several scenarios:
+
+1. $\underline{x}_{1}$ is strongly correlated with $\underline{x}_{2}$;
+2. $\mathcal{R}\left(\underline{x}_{1}\right)$ is strongly correlated with $\mathcal{R}\left(\underline{x}_{2}\right)$;
+3. $\mathcal{R}\left(\underline{x}_{1}\right)$ is strongly correlated with $\mathcal{I}\left(\underline{x}_{2}\right)$.
+
+These three cases should cover the main possible issues in the model, and we will see what different estimators give in terms of parameters and their standard errors. We do not conduct a proper simulation experiment, but instead focus on a demonstration for one data series.
+
+The R code below creates three datasets for the three respective scenarios (the coefficients have been selected arbitrarily):
 
 ```{r}
 set.seed(41)
 # Sample size
 obs <- 100
-# Create the explanatory variables
-x1 <- complex(real=rnorm(obs,100,10), imaginary=rnorm(obs,50,5))
-x2 <- complex(real=Im(x1)*1.5 + rnorm(obs,0,1), imaginary=Re(x1)*2.5 + rnorm(obs,0,1))
 # Generate parameters
 b0 <- 100 - 150i
 b1 <- 2.5 + 1.5i
 b2 <- 1.5 - 0.75i
+a1 <- 1.3 + 1.5i
+# Create the explanatory variables
+x1 <- complex(real=rnorm(obs,100,10), imaginary=rnorm(obs,50,5))
 # Generate error term from the complex normal distribution
 e <- complex(real=rnorm(obs, 0, 20), imaginary=rnorm(obs, 0, 30))
+# The second variable
+
+## Scenario 1
+x2 <- a1*x1 + rnorm(obs,0,1)
 # Generate the response variable
 y <- b0 + b1 * x1 + b2 * x2 + e
-# Form data frame with the variables
-xreg <- data.frame(y=y,x1=x1,x2=x2)
+# Form a data frame with the variables
+data1 <- data.frame(y=y,x1=x1,x2=x2)
+
+## Scenario 2
+x2 <- complex(real=Re(x1)*Re(a1) + rnorm(obs,0,1),
+              imaginary=rnorm(obs,10,5))
+# Generate the response variable
+y <- b0 + b1 * x1 + b2 * x2 + e
+# Form a data frame with the variables
+data2 <- data.frame(y=y,x1=x1,x2=x2)
+
+## Scenario 3
+x2 <- complex(real=rnorm(obs,10,5),
+              imaginary=Re(x1)*Re(a1) + rnorm(obs,0,1))
+# Generate the response variable
+y <- b0 + b1 * x1 + b2 * x2 + e
+# Form a data frame with the variables
+data3 <- data.frame(y=y,x1=x1,x2=x2)
 ```
 
 
-Diagnostic based on correlation matrices
+#### Scenario 1 {-}
+First, we do diagnostics based on correlation matrices that we discussed earlier in this section, including conjugate, direct and MDS-based correlations and the conventional covariance matrix of parameters.
+
+We start with the conjugate complex correlation matrix:
+```{r}
+ccor(data1,method="conjugate") |> round(3)
+```
+
+The output above shows that $\underline{x}_{1}$ is strongly correlated with $\underline{x}_{2}$ - the correlation coefficient between them is 0.999. This agrees with how we generated the data, and we can expect issues when estimating the model and/or generating the standard errors of parameters.
+
+The second output is for the direct complex correlation matrix:
+```{r}
+ccor(data1,method="direct") |> round(3)
+```
+
+While some correlation coefficients in the output above are hard to interpret (because some of them are above one), the real part of the one between the explanatory variables equals to one (after rounding), which also indicates a strong relation between them.
+
+We also calculate Pearson's correlation matrix for the MDS-transformed complex variables to get another look at the problem:
 
 ```{r}
-ccor(xreg,method="conjugate")
-ccor(xreg,method="direct")
-ccor(xreg,method="pearson")
-covar(xreg) |> cov2cor()
+ccor(data1,method="pearson") |> round(3)
 ```
 
+And as we can see from the output above, the explanatory variables $\underline{x}_{1}$ and $\underline{x}_{2}$ are indeed strongly linearly related.
 
-Fit CLR using different estimation methods
+Finally, we calculate the covariance matrix of parameters between individual variables:
 
 ```{r}
-clm(y~., xreg, loss="OLS") |>
-    summary()
+covar(data1) |> cov2cor() |> round(3)
+```
 
-clm(y~., xreg, loss="CLS") |>
-    summary()
+If shows that there is a strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{R}\left(\underline{x}_{2}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$, while the correlation between the imaginary part of $\underline{x}_{1}$ with the other variables is not as strong.
 
-clm(y~., xreg, loss="like") |>
+All of the outputs above tell us that if we want to fit the CLR, we will face difficulties due to the strong multicollinearity caused by the strong correlation between the explanatory variables. We estimate the model using the three different methods and produce their summary outputs. We start with OLS:
+
+```{r}
+clm(y~., data1, loss="OLS") |>
     summary()
 ```
 
+The output above shows that the estimates of parameters are wrong: the complex parameter for the first variable should be $2.5 + 1.5i$, while for the second one should be $1.5 - 0.75i$. Furthermore, the standard errors of parameters are high, leading to the high uncertainty about the parameters, so that we cannot be sure whether the true effect is positive or negative for the estimated model.
 
-Solving the multicollinearity is not a trivial problem on its own. In general, it can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard and we do not discuss them in this monograph.
+The CLS gives a very similar picture:
+
+```{r}
+clm(y~., data1, loss="CLS") |>
+    summary()
+```
+
+However, we should note that the standard errors of parameters are in some cases higher than in the OLS, but not everywhere. For example, the parameter for $\mathcal{I}\left(\underline{x}_{1}\right)$ estimated using CLS has a lower standard error than in the case of OLS. Nonetheless, the estimates of parameters are clearly biased and not efficient.
+
+Finally, we estimate the model using likelihood:
+
+```{r}
+clm(y~., data1, loss="like") |>
+    summary()
+```
+
+Because we generated the data with the uncorrelated errors, the output of the likelihood is very similar to the one from the OLS. In the other situation it might have produced different estimates of parameters.
+
+All of the above happened because of the strong multicollinearity in the data: the complex variables $\underline{x}_{1}$ and $\underline{x}_{2}$ were strongly correlated by design, which caused the aforementioned issues.
+
+The Scenario 1 demonstrates the behaviour of estimators as expected: we would not expect to estimate the models successfully, when the complex variables are so strongly correlated.
+
+As a side note, in this scenario, we would not be able to get efficient and unbiased estimates of parameters for the individual real-valued models for $\mathcal{R}\left(\underline{y}\right)$ and $\mathcal{I}\left(\underline{y}\right)$ with this data, because the covariance matrix with individual variables demonstrated a high correlation between $\mathcal{R}\left(\underline{x}_1\right)$ and $\mathcal{I}\left(\underline{x}_2\right)$.
+
+
+### Scenario 2 {-}
+In this scenario, we have strong correlation between real parts of explanatory variables, but not between the complex ones. We would expect the real-valued regression to fail in this case, but the CLR might still be estimable. We start the demonstration with the same set of outputs as before:
+
+```{r}
+ccor(data2,method="conjugate") |> round(3)
+```
+The conjugate correlation above shows that there is a linear relation between $\underline{x}_{1}$ and $\underline{x}_{2}$, but it is not sever, so we should be able to estimate the model and get reasonable estimates of parameters.
+
+
+```{r}
+ccor(data2,method="direct") |> round(3)
+```
+The direct correlation agrees with the conjugate one in general, but the fact that the correlation between $\underline{x}_{1}$ and $\underline{x}_{2}$ has the real part above one, implies that the relation between the variables is stronger than expected by the previous output.
+
+```{r}
+ccor(data2,method="pearson") |> round(3)
+```
+Pearson's correlations on the MDS variables shows that there is a very strong relation between $\underline{x}_{1}$ and $\underline{x}_{2}$, although we cannot say for sure what causes it.
+
+```{r}
+covar(data2) |> cov2cor() |> round(3)
+```
+Finally, as expected, the correlations between the specific parts of variables shows that $\mathcal{R}\left(\underline{x}_1\right)$ and $\mathcal{R}\left(\underline{x}_2\right)$ have almost functional relation. This might mean that we could face difficulties estimating the model.
+
+The model estimated using OLS produces the following output:
+
+```{r}
+clm(y~., data2, loss="OLS") |>
+    summary()
+```
+
+The parameters seem to be less efficient than they would have been without the strong correlation between parts of explanatory variables, but notably all signs are correct and the specific values are not too far from the ones used in the data generation ($\underline{\beta}_1=2.5+1.5i$, $\underline{\beta}_2=1.5-0.75i$). But it would be interesting to compare the output from OLS with the one from the CLS:
+
+```{r}
+clm(y~., data2, loss="CLS") |>
+    summary()
+```
+
+The estimates of parameters in CLS are similar to the OLS, but there are several interesting observations:
+
+1. The standard errors for the real parts of parameters in CLS are higher than the similar estimates in OLS;
+2. The standard errors for the imaginary parts of parameters in CLS are lower than the respective ones in OLS;
+3. The imaginary parts of the parameters are closer to the true ones for the CLS, while the real ones are closer to the true ones in OLS.
+
+But overall, both methods produce biased, potentially not too efficient, but reasonable estimates of parameters. This was not the case for the Scenario 1.
+
+We skip the likelihood estimation, because for our DGP, it would produce estimates similar to the ones from OLS due to the zero correlation between the real and imaginary parts of the error term.
+
+Finally, we should note that the conventional real-valued regression would not be estimable in this situation due to the high correlation between some parts of the variables. This demonstrates the difference between the CLR and the LR.
+
+
+### Scenario 3
+As a reminder, in the Scenario 3 the real part of $\underline{x}_{1}$ is strongly correlated with the imaginary one of $\underline{x}_{2}$. We skip the correlation coefficients because arguably they will provide the information similar to the one from Scenario 2, but showing the strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$ as intended.
+
+The OLS estimate of the model gives:
+
+```{r}
+clm(y~., data3, loss="OLS") |>
+    summary()
+```
+
+While the CLS one is:
+
+```{r}
+clm(y~., data3, loss="CLS") |>
+    summary()
+```
+
+And again, we see similar picture to the Scenario 2: the real parts of parameters have lower standard errors in the model estimate using OLS than in the model estimated with CLS, while the imaginary parts have them the other way around. And similarly to the Scenario 2, we would expect the conventional real-valued regression to fail due to high correlation between some parts of variables.
+
+While these three scenarios were supposed to show how different types of correlations impact the estimates of parameters, they are here for demonstration purposes only. They show that multicollinearity in the CLR is a different beast than the one in the conventional real-valued model. In real life, we would not have variables that have close to functional relation (with correlation close to one), instead they might have strong relation and depending on the specific situation, different estimators will give different result.
+
+In general, getting rid of the multicollinearity is not a trivial task on its own. It can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard, they lie outside of the scope of this monograph, and we do not discuss them here.
 
 
 <!-- ## Goodness of fit -->
