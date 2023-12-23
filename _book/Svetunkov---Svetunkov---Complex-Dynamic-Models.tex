@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.76125+99.39047i
+## [1] 48.6931+100.9948i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 130.8651+0i
+## 127.9156+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct variance 
-## -65.584-6.50114i
+##    Direct variance 
+## -74.25224-6.26256i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 32.640537 -3.250569
-## x_i -3.250569 98.224538
+##           x_r        x_i
+## x_r 26.831658  -3.131281
+## x_i -3.131281 101.083901
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3195.535
+## [1] 2702.444
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 47.47597-84.84255i
+## 84.2979-110.5063i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-## Direct covariance 
-## -29.6504+55.9507i
+##   Direct covariance 
+## -32.17985+60.81693i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -88.58611+15.14307i -29.65040+55.95070i
-## y -29.65040+55.95070i  24.19633+48.92478i
+## x -68.11650+10.87831i -32.17985+60.81693i
+## y -32.17985+60.81693i  52.70734+60.53776i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9980207
+## [1] 0.9978031
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1886,8 +1886,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]
-## [1,] -0.9970189
+##           [,1]
+## [1,] 0.9979048
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r   y_i
-## x_r 1.000  0.059  0.725 0.753
-## x_i 0.059  1.000 -0.642 0.699
-## y_r 0.725 -0.642  1.000 0.096
-## y_i 0.753  0.699  0.096 1.000
+##        x_r    x_i    y_r    y_i
+## x_r  1.000 -0.215  0.749  0.577
+## x_i -0.215  1.000 -0.805  0.671
+## y_r  0.749 -0.805  1.000 -0.103
+## y_i  0.577  0.671 -0.103  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2196,7 +2196,7 @@ In R, the estimation of the CLR can be done using the \texttt{clm()} function fr
 \CommentTok{\# Create the explanatory variables}
 \NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{150}\SpecialCharTok{+}\NormalTok{100i, }\AttributeTok{sigma2=}\DecValTok{20}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{5}\NormalTok{)}
 \CommentTok{\# Generate error term from the complex normal distribution}
-\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{10}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{4}\SpecialCharTok{+}\NormalTok{3i)}
+\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{10}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{8}\SpecialCharTok{+}\NormalTok{5i)}
 \CommentTok{\# Generate the response variable}
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
 \CommentTok{\# Form a data frame with the variables}
@@ -2221,17 +2221,17 @@ We start by estimating the model using OLS:
 ## Loss function used in estimation: OLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  105.8922    11.9307    82.2130    129.5714 *
-## (Intercept)_i -154.3177     9.3678  -172.9101   -135.7253 *
-## x1_r             2.4651     0.0504     2.3650      2.5652 *
-## x1_i             1.5159     0.0396     1.4374      1.5945 *
-## x2_r             1.5251     0.0459     1.4339      1.6163 *
-## x2_i            -0.7137     0.0361    -0.7853     -0.6421 *
+## (Intercept)_r  105.8255    13.4099    79.2105    132.4405 *
+## (Intercept)_i -152.0522     4.9475  -161.8716   -142.2328 *
+## x1_r             2.4508     0.0567     2.3383      2.5633 *
+## x1_i             1.5291     0.0209     1.4876      1.5706 *
+## x2_r             1.5368     0.0516     1.4343      1.6393 *
+## x2_i            -0.7309     0.0191    -0.7687     -0.6931 *
 ## 
 ## Error covariance matrix:
 ##        e_r    e_i
-## e_r 4.8611 0.7548
-## e_i 0.7548 2.9969
+## e_r 6.1412 1.6502
+## e_i 1.6502 0.8359
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
@@ -2251,17 +2251,17 @@ We start by estimating the model using OLS:
 ## Loss function used in estimation: CLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  119.2748   158.2896  -194.8863    433.4360  
-## (Intercept)_i -310.5547   157.1924  -622.5380      1.4286  
-## x1_r             3.1496     1.0032     1.1586      5.1407 *
-## x1_i             2.1949     1.0101     0.1901      4.1998 *
-## x2_r             1.5713     0.2676     1.0403      2.1024 *
-## x2_i            -0.8424     0.2623    -1.3630     -0.3218 *
+## (Intercept)_r  103.2425   150.5863  -195.6296    402.1146  
+## (Intercept)_i -296.1699   148.5077  -590.9166     -1.4233 *
+## x1_r             3.1544     0.9439     1.2810      5.0278 *
+## x1_i             2.1119     0.9648     0.1972      4.0267 *
+## x2_r             1.5650     0.2584     1.0523      2.0778 *
+## x2_i            -0.8831     0.2438    -1.3669     -0.3992 *
 ## 
 ## Error covariance matrix:
-##         e_r     e_i
-## e_r 13.8499  1.4317
-## e_i  1.4317 12.5650
+##         e_r    e_i
+## e_r 14.3697 2.3138
+## e_i  2.3138 9.3729
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
@@ -2281,25 +2281,27 @@ We start by estimating the model using OLS:
 ## Loss function used in estimation: likelihood
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  105.8916    12.0241    82.0224    129.7608 *
-## (Intercept)_i -154.3177     9.4410  -173.0593   -135.5761 *
-## x1_r             2.4651     0.0508     2.3642      2.5660 *
-## x1_i             1.5159     0.0399     1.4367      1.5952 *
-## x2_r             1.5251     0.0463     1.4331      1.6170 *
-## x2_i            -0.7137     0.0364    -0.7858     -0.6415 *
+## (Intercept)_r  105.7571    13.5160    78.9262    132.5880 *
+## (Intercept)_i -152.0258     4.9830  -161.9176   -142.1340 *
+## x1_r             2.4513     0.0571     2.3379      2.5647 *
+## x1_i             1.5287     0.0211     1.4869      1.5705 *
+## x2_r             1.5364     0.0521     1.4331      1.6397 *
+## x2_i            -0.7310     0.0192    -0.7691     -0.6929 *
 ## 
 ## Error covariance matrix:
 ##        e_r    e_i
-## e_r 4.9375 0.7667
-## e_i 0.7667 3.0440
+## e_r 6.2388 1.6767
+## e_i 1.6767 0.8480
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 4.5
 ## Number of degrees of freedom: 95.5
 ## Information criteria:
 ##      AIC     AICc      BIC     BICc 
-## 834.3789 834.9027 846.1021 847.3082
+## 658.1565 658.6803 669.8797 671.0858
 \end{verbatim}
+
+Likelihood coincides with OLS\ldots{} why?!
 
 \hypertarget{capturing-uncertainty-in-the-multiple-clr}{%
 \section{Capturing uncertainty in the multiple CLR}\label{capturing-uncertainty-in-the-multiple-clr}}
@@ -3020,9 +3022,9 @@ The R code below creates three datasets for the three respective scenarios (the 
 \NormalTok{b2 }\OtherTok{\textless{}{-}} \FloatTok{1.5} \SpecialCharTok{{-}} \FloatTok{0.75}\NormalTok{i}
 \NormalTok{a1 }\OtherTok{\textless{}{-}} \FloatTok{1.3} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
 \CommentTok{\# Create the explanatory variables}
-\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{100}\SpecialCharTok{+}\NormalTok{50i, }\AttributeTok{sigma2=}\DecValTok{125}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{75}\NormalTok{)}
 \CommentTok{\# Generate error term from the complex normal distribution}
-\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DecValTok{30}\NormalTok{))}
+\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{40}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{, }\AttributeTok{varsigma2=}\SpecialCharTok{{-}}\DecValTok{500}\NormalTok{)}
 \CommentTok{\# The second variable}
 
 \DocumentationTok{\#\# Scenario 1}
@@ -3066,9 +3068,9 @@ We start with the conjugate complex correlation matrix:
 
 \begin{verbatim}
 ##        y    x1    x2
-## y  1.000 0.878 0.878
-## x1 0.878 1.000 0.999
-## x2 0.878 0.999 1.000
+## y  1.000 0.855 0.853
+## x1 0.855 1.000 0.999
+## x2 0.853 0.999 1.000
 \end{verbatim}
 
 The output above shows that \(\underline{x}_{1}\) is strongly correlated with \(\underline{x}_{2}\) - the correlation coefficient between them is 0.999. This agrees with how we generated the data, and we can expect issues when estimating the model and/or generating the standard errors of parameters.
@@ -3082,10 +3084,10 @@ The second output is for the direct complex correlation matrix:
 \end{Shaded}
 
 \begin{verbatim}
-##               y         x1            x2
-## y  1.000+0.000i 1.1-0.068i  1.099-0.068i
-## x1 1.100-0.068i 1.0+0.000i  1.000+0.001i
-## x2 1.099-0.068i 1.0+0.001i -1.000+0.000i
+##               y           x1            x2
+## y  1.000+0.000i 1.001-0.081i  0.998-0.078i
+## x1 1.001-0.081i 1.000+0.000i  1.000+0.002i
+## x2 0.998-0.078i 1.000+0.002i -1.000+0.000i
 \end{verbatim}
 
 While some correlation coefficients in the output above are hard to interpret (because some of them are above one), the real part of the one between the explanatory variables equals to one (after rounding), which also indicates a strong relation between them.
@@ -3100,9 +3102,9 @@ We also calculate Pearson's correlation matrix for the MDS-transformed complex v
 
 \begin{verbatim}
 ##        y    x1    x2
-## y  1.000 0.939 0.938
-## x1 0.939 1.000 1.000
-## x2 0.938 1.000 1.000
+## y  1.000 0.897 0.895
+## x1 0.897 1.000 0.999
+## x2 0.895 0.999 1.000
 \end{verbatim}
 
 And as we can see from the output above, the explanatory variables \(\underline{x}_{1}\) and \(\underline{x}_{2}\) are indeed strongly linearly related.
@@ -3117,12 +3119,12 @@ Finally, we calculate the covariance matrix of parameters between individual var
 
 \begin{verbatim}
 ##         y_r   y_i   x1_r   x1_i   x2_r  x2_i
-## y_r   1.000 0.315  0.924 -0.220  0.898 0.796
-## y_i   0.315 1.000  0.489  0.579  0.158 0.681
-## x1_r  0.924 0.489  1.000 -0.060  0.890 0.928
-## x1_i -0.220 0.579 -0.060  1.000 -0.505 0.316
-## x2_r  0.898 0.158  0.890 -0.505  1.000 0.657
-## x2_i  0.796 0.681  0.928  0.316  0.657 1.000
+## y_r   1.000 0.389  0.888 -0.211  0.856 0.719
+## y_i   0.389 1.000  0.524  0.553  0.149 0.713
+## x1_r  0.888 0.524  1.000 -0.017  0.850 0.905
+## x1_i -0.211 0.553 -0.017  1.000 -0.537 0.411
+## x2_r  0.856 0.149  0.850 -0.537  1.000 0.547
+## x2_i  0.719 0.713  0.905  0.411  0.547 1.000
 \end{verbatim}
 
 If shows that there is a strong correlation between \(\mathcal{R}\left(\underline{x}_{1}\right)\) and \(\mathcal{R}\left(\underline{x}_{2}\right)\) and \(\mathcal{I}\left(\underline{x}_{2}\right)\), while the correlation between the imaginary part of \(\underline{x}_{1}\) with the other variables is not as strong.
@@ -3142,17 +3144,17 @@ All of the outputs above tell us that if we want to fit the CLR, we will face di
 ## Loss function used in estimation: OLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   71.5012    22.0345    27.7689    115.2335 *
-## (Intercept)_i -126.3063    32.6150  -191.0380    -61.5747 *
-## x1_r             1.2877     4.7501    -8.1399     10.7152  
-## x1_i             3.4833     7.0309   -10.4712     17.4377  
-## x2_r             1.0787     2.3923    -3.6692      5.8267  
-## x2_i            -2.0108     3.5410    -9.0387      5.0170  
+## (Intercept)_r   81.2499    27.8800    25.9158    136.5840 *
+## (Intercept)_i -162.3298    35.2247  -232.2410    -92.4185 *
+## x1_r             4.2390     5.7400    -7.1532     15.6313  
+## x1_i             8.9223     7.2521    -5.4712     23.3157  
+## x2_r            -1.8366     2.8949    -7.5822      3.9091  
+## x2_i            -2.6157     3.6576    -9.8750      4.6436  
 ## 
 ## Error covariance matrix:
-##           e_r       e_i
-## e_r  470.3931 -110.8792
-## e_i -110.8792 1030.5972
+##          e_r       e_i
+## e_r 687.7480  108.1091
+## e_i 108.1091 1097.8374
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
@@ -3176,17 +3178,17 @@ The CLS gives a very similar picture:
 ## Loss function used in estimation: CLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  125.4156    40.9986    44.0448    206.7864 *
-## (Intercept)_i -115.6256    43.7340  -202.4254    -28.8258 *
-## x1_r             1.0558     6.6146   -12.0724     14.1839  
-## x1_i             3.9269     5.4656    -6.9208     14.7745  
-## x2_r             0.8794     2.4126    -3.9089      5.6678  
-## x2_i            -2.0261     3.5830    -9.1374      5.0852  
+## (Intercept)_r   89.0089    54.0839   -18.3327    196.3505  
+## (Intercept)_i -198.3455    61.3562  -320.1206    -76.5704 *
+## x1_r             4.3945     6.2816    -8.0728     16.8617  
+## x1_i             8.8479     6.8397    -4.7271     22.4228  
+## x2_r            -1.7130     2.9266    -7.5214      4.0955  
+## x2_i            -2.4582     3.6720    -9.7461      4.8297  
 ## 
 ## Error covariance matrix:
-##           e_r      e_i
-## e_r  477.2509 -105.279
-## e_i -105.2790 1054.208
+##          e_r       e_i
+## e_r 696.9762  106.4108
+## e_i 106.4108 1101.1012
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
@@ -3199,7 +3201,7 @@ Finally, we estimate the model using likelihood:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data1, }\AttributeTok{loss=}\StringTok{"like"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data1, }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -3210,24 +3212,24 @@ Finally, we estimate the model using likelihood:
 ## Loss function used in estimation: likelihood
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   74.3405    22.1671    30.3363    118.3447 *
-## (Intercept)_i -121.8535    32.9013  -187.1664    -56.5405 *
-## x1_r             1.2660     4.7786    -8.2201     10.7522  
-## x1_i             3.4843     7.0927   -10.5954     17.5641  
-## x2_r             1.0635     2.4067    -3.7139      5.8410  
-## x2_i            -2.0121     3.5721    -9.1031      5.0788  
+## (Intercept)_r   81.3851    28.0969    25.6093    137.1608 *
+## (Intercept)_i -161.8085    35.5012  -232.2825    -91.3344 *
+## x1_r             4.2391     5.7846    -7.2441     15.7223  
+## x1_i             8.9223     7.3090    -5.5870     23.4315  
+## x2_r            -1.8391     2.9175    -7.6306      3.9525  
+## x2_i            -2.6157     3.6863    -9.9334      4.7021  
 ## 
 ## Error covariance matrix:
-##           e_r       e_i
-## e_r  476.0707 -112.9427
-## e_i -112.9427 1048.7737
+##          e_r       e_i
+## e_r 698.4928  109.8954
+## e_i 109.8954 1115.1415
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 4.5
 ## Number of degrees of freedom: 95.5
 ## Information criteria:
 ##      AIC     AICc      BIC     BICc 
-## 1876.874 1877.398 1888.597 1889.803
+## 1922.370 1922.894 1934.093 1935.300
 \end{verbatim}
 
 Because we generated the data with the uncorrelated errors, the output of the likelihood is very similar to the one from the OLS. In the other situation it might have produced different estimates of parameters.
@@ -3239,8 +3241,8 @@ The Scenario 1 demonstrates the behaviour of estimators as expected: we would no
 As a side note, in this scenario, we would not be able to get efficient and unbiased estimates of parameters for the individual real-valued models for \(\mathcal{R}\left(\underline{y}\right)\) and \(\mathcal{I}\left(\underline{y}\right)\) with this data, because the covariance matrix with individual variables demonstrated a high correlation between \(\mathcal{R}\left(\underline{x}_1\right)\) and \(\mathcal{I}\left(\underline{x}_2\right)\).
 
 \hypertarget{scenario-2}{%
-\subsection*{Scenario 2}\label{scenario-2}}
-\addcontentsline{toc}{subsection}{Scenario 2}
+\subsubsection*{Scenario 2}\label{scenario-2}}
+\addcontentsline{toc}{subsubsection}{Scenario 2}
 
 In this scenario, we have strong correlation between real parts of explanatory variables, but not between the complex ones. We would expect the real-valued regression to fail in this case, but the CLR might still be estimable. We start the demonstration with the same set of outputs as before:
 
@@ -3252,9 +3254,9 @@ In this scenario, we have strong correlation between real parts of explanatory v
 
 \begin{verbatim}
 ##        y    x1    x2
-## y  1.000 0.782 0.725
-## x1 0.782 1.000 0.857
-## x2 0.725 0.857 1.000
+## y  1.000 0.723 0.687
+## x1 0.723 1.000 0.791
+## x2 0.687 0.791 1.000
 \end{verbatim}
 
 The conjugate correlation above shows that there is a linear relation between \(\underline{x}_{1}\) and \(\underline{x}_{2}\), but it is not sever, so we should be able to estimate the model and get reasonable estimates of parameters.
@@ -3267,9 +3269,9 @@ The conjugate correlation above shows that there is a linear relation between \(
 
 \begin{verbatim}
 ##               y           x1           x2
-## y  1.000+0.000i 1.208+0.065i 1.302+0.157i
-## x1 1.208+0.065i 1.000+0.000i 1.197+0.009i
-## x2 1.302+0.157i 1.197+0.009i 1.000+0.000i
+## y  1.000+0.000i 1.152-0.146i 1.219-0.062i
+## x1 1.152-0.146i 1.000+0.000i 1.330+0.012i
+## x2 1.219-0.062i 1.330+0.012i 1.000+0.000i
 \end{verbatim}
 
 The direct correlation agrees with the conjugate one in general, but the fact that the correlation between \(\underline{x}_{1}\) and \(\underline{x}_{2}\) has the real part above one, implies that the relation between the variables is stronger than expected by the previous output.
@@ -3282,9 +3284,9 @@ The direct correlation agrees with the conjugate one in general, but the fact th
 
 \begin{verbatim}
 ##        y    x1    x2
-## y  1.000 0.901 0.897
-## x1 0.901 1.000 0.997
-## x2 0.897 0.997 1.000
+## y  1.000 0.854 0.858
+## x1 0.854 1.000 0.997
+## x2 0.858 0.997 1.000
 \end{verbatim}
 
 Pearson's correlations on the MDS variables shows that there is a very strong relation between \(\underline{x}_{1}\) and \(\underline{x}_{2}\), although we cannot say for sure what causes it.
@@ -3296,13 +3298,13 @@ Pearson's correlations on the MDS variables shows that there is a very strong re
 \end{Shaded}
 
 \begin{verbatim}
-##         y_r    y_i   x1_r   x1_i   x2_r  x2_i
-## y_r   1.000 -0.022  0.902 -0.137  0.899 0.086
-## y_i  -0.022  1.000  0.073  0.453  0.074 0.190
-## x1_r  0.902  0.073  1.000 -0.060  0.997 0.034
-## x1_i -0.137  0.453 -0.060  1.000 -0.059 0.020
-## x2_r  0.899  0.074  0.997 -0.059  1.000 0.028
-## x2_i  0.086  0.190  0.034  0.020  0.028 1.000
+##         y_r   y_i   x1_r   x1_i   x2_r   x2_i
+## y_r   1.000 0.151  0.857 -0.135  0.861 -0.012
+## y_i   0.151 1.000  0.161  0.337  0.163  0.112
+## x1_r  0.857 0.161  1.000 -0.017  0.997 -0.016
+## x1_i -0.135 0.337 -0.017  1.000 -0.015 -0.136
+## x2_r  0.861 0.163  0.997 -0.015  1.000 -0.022
+## x2_i -0.012 0.112 -0.016 -0.136 -0.022  1.000
 \end{verbatim}
 
 Finally, as expected, the correlations between the specific parts of variables shows that \(\mathcal{R}\left(\underline{x}_1\right)\) and \(\mathcal{R}\left(\underline{x}_2\right)\) have almost functional relation. This might mean that we could face difficulties estimating the model.
@@ -3322,17 +3324,17 @@ The model estimated using OLS produces the following output:
 ## Loss function used in estimation: OLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   73.2762    27.0508    19.5880    126.9645 *
-## (Intercept)_i -160.6063    40.0563  -240.1069    -81.1057 *
-## x1_r             3.2671     0.3720     2.5289      4.0053 *
-## x1_i             0.9657     0.5508    -0.1275      2.0588  
-## x2_r             0.9244     0.2943     0.3403      1.5085 *
-## x2_i            -0.4967     0.4358    -1.3617      0.3682  
+## (Intercept)_r   58.7490    32.3010    -5.3596    122.8575  
+## (Intercept)_i -182.8910    41.0770  -264.4174   -101.3646 *
+## x1_r             2.7010     0.3975     1.9121      3.4900 *
+## x1_i             0.9558     0.5055    -0.0475      1.9591  
+## x2_r             1.5106     0.3245     0.8666      2.1546 *
+## x2_i            -0.1824     0.4126    -1.0014      0.6365  
 ## 
 ## Error covariance matrix:
-##           e_r       e_i
-## e_r  463.7618 -113.0148
-## e_i -113.0148 1016.8977
+##          e_r       e_i
+## e_r 678.7893  108.4556
+## e_i 108.4556 1097.7400
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
@@ -3354,17 +3356,17 @@ The parameters seem to be less efficient than they would have been without the s
 ## Loss function used in estimation: CLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   91.3839    33.1621    25.5664    157.2014 *
-## (Intercept)_i -158.1041    43.5358  -244.5105    -71.6977 *
-## x1_r             3.1602     0.5611     2.0465      4.2739 *
-## x1_i             1.0456     0.4027     0.2464      1.8448 *
-## x2_r             0.8972     0.4414     0.0212      1.7732 *
-## x2_i            -0.5347     0.3303    -1.1902      0.1208  
+## (Intercept)_r   46.5476    37.5007   -27.8808    120.9760  
+## (Intercept)_i -175.9491    47.1085  -269.4465    -82.4518 *
+## x1_r             2.8511     0.5146     1.8299      3.8724 *
+## x1_i             0.9655     0.4235     0.1250      1.8059 *
+## x2_r             1.4826     0.4179     0.6531      2.3120 *
+## x2_i            -0.2975     0.3625    -1.0170      0.4221  
 ## 
 ## Error covariance matrix:
-##           e_r       e_i
-## e_r  464.1529 -112.6807
-## e_i -112.6807 1019.1710
+##          e_r       e_i
+## e_r 681.2265  110.0717
+## e_i 110.0717 1099.2501
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
@@ -3391,8 +3393,8 @@ We skip the likelihood estimation, because for our DGP, it would produce estimat
 Finally, we should note that the conventional real-valued regression would not be estimable in this situation due to the high correlation between some parts of the variables. This demonstrates the difference between the CLR and the LR.
 
 \hypertarget{scenario-3}{%
-\subsection*{Scenario 3}\label{scenario-3}}
-\addcontentsline{toc}{subsection}{Scenario 3}
+\subsubsection*{Scenario 3}\label{scenario-3}}
+\addcontentsline{toc}{subsubsection}{Scenario 3}
 
 As a reminder, in the Scenario 3 the real part of \(\underline{x}_{1}\) is strongly correlated with the imaginary one of \(\underline{x}_{2}\). We skip the correlation coefficients because arguably they will provide the information similar to the one from Scenario 2, showing the strong correlation between \(\mathcal{R}\left(\underline{x}_{1}\right)\) and \(\mathcal{I}\left(\underline{x}_{2}\right)\) as intended.
 
@@ -3411,17 +3413,17 @@ The OLS estimate of the model gives:
 ## Loss function used in estimation: OLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   79.9056    31.5267    17.3338    142.4773 *
-## (Intercept)_i -129.0633    46.8310  -222.0099    -36.1167 *
-## x1_r             2.7000     0.3798     1.9462      3.4537 *
-## x1_i             1.3239     0.5641     0.2043      2.4436 *
-## x2_r             1.4046     0.2995     0.8102      1.9990 *
-## x2_i            -0.6829     0.4449    -1.5659      0.2001  
+## (Intercept)_r   51.9756    36.0017   -19.4778    123.4290  
+## (Intercept)_i -174.5119    45.5491  -264.9143    -84.1095 *
+## x1_r             2.6536     0.3928     1.8740      3.4331 *
+## x1_i             1.0941     0.4969     0.1078      2.0803 *
+## x2_r             1.9229     0.3179     1.2921      2.5538 *
+## x2_i            -0.8264     0.4022    -1.6246     -0.0282 *
 ## 
 ## Error covariance matrix:
-##           e_r       e_i
-## e_r  468.3421 -110.6171
-## e_i -110.6171 1033.4129
+##          e_r      e_i
+## e_r 686.3546  114.530
+## e_i 114.5300 1098.659
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
@@ -3443,17 +3445,17 @@ While the CLS one is:
 ## Loss function used in estimation: CLS
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  135.0530    37.8927    59.8465    210.2596 *
-## (Intercept)_i -136.4550    51.9941  -239.6490    -33.2610 *
-## x1_r             2.4171     0.5796     1.2667      3.5675 *
-## x1_i             1.5748     0.4205     0.7402      2.4093 *
-## x2_r             1.3666     0.3395     0.6928      2.0404 *
-## x2_i            -0.5815     0.4567    -1.4879      0.3249  
+## (Intercept)_r   49.5640    41.2109   -32.2282    131.3562  
+## (Intercept)_i -168.4209    51.4915  -270.6172    -66.2247 *
+## x1_r             2.6548     0.5073     1.6479      3.6616 *
+## x1_i             1.0889     0.4179     0.2595      1.9184 *
+## x2_r             1.8815     0.3543     1.1783      2.5847 *
+## x2_i            -0.8449     0.4079    -1.6544     -0.0354 *
 ## 
 ## Error covariance matrix:
-##           e_r       e_i
-## e_r  475.0296 -103.1247
-## e_i -103.1247 1052.5370
+##          e_r       e_i
+## e_r 686.6725  114.6494
+## e_i 114.6494 1098.7677
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 3
