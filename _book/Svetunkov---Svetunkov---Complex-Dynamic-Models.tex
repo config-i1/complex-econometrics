@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.10227+99.23857i
+## [1] 50.44922+99.38089i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 129.279+0i
+## 163.8472+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -70.48116-21.16798i
+##   Direct variance 
+## -101.8573+13.933i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r  29.39894 -10.58399
-## x_i -10.58399  99.88009
+##          x_r       x_i
+## x_r 30.99496   6.96648
+## x_i  6.96648 132.85228
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2824.348
+## [1] 4069.219
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 72.4081-106.2469i
+## 60.1195-112.4248i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -43.63934+77.65018i
+## -29.81471+80.10948i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -95.08624- 3.17204i -43.63934+77.65018i
-## y -43.63934+77.65018i  43.76363+97.55004i
+## x -80.88085+ 5.31027i -29.81471+80.10948i
+## y -29.81471+80.10948i  71.05559+68.30067i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1818,7 +1818,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9978622
+## [1] 0.9977808
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1876,7 +1876,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9977972
+## [1,] 0.9981588
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1901,11 +1901,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##             x_r         x_i         y_r        y_i
-## x_r  1.00000000 -0.06510454  0.75087516 0.70853553
-## x_i -0.06510454  1.00000000 -0.70506536 0.65464172
-## y_r  0.75087516 -0.70506536  1.00000000 0.06992247
-## y_i  0.70853553  0.65464172  0.06992247 1.00000000
+##             x_r         x_i         y_r         y_i
+## x_r  1.00000000 -0.02224686  0.69588069  0.67923428
+## x_i -0.02224686  1.00000000 -0.73058740  0.71537926
+## y_r  0.69588069 -0.73058740  1.00000000 -0.04945456
+## y_i  0.67923428  0.71537926 -0.04945456  1.00000000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -3262,7 +3262,8 @@ We skip the likelihood estimation, because for our DGP, it would produce estimat
 Finally, we should note that the conventional real-valued regression would not be estimable in this situation due to the high correlation between some parts of the variables. This demonstrates the difference between the CLR and the LR.
 
 \hypertarget{scenario-3}{%
-\subsection{Scenario 3}\label{scenario-3}}
+\subsection*{Scenario 3}\label{scenario-3}}
+\addcontentsline{toc}{subsection}{Scenario 3}
 
 As a reminder, in the Scenario 3 the real part of \(\underline{x}_{1}\) is strongly correlated with the imaginary one of \(\underline{x}_{2}\). We skip the correlation coefficients because arguably they will provide the information similar to the one from Scenario 2, but showing the strong correlation between \(\mathcal{R}\left(\underline{x}_{1}\right)\) and \(\mathcal{I}\left(\underline{x}_{2}\right)\) as intended.
 

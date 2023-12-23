@@ -615,7 +615,7 @@ We skip the likelihood estimation, because for our DGP, it would produce estimat
 Finally, we should note that the conventional real-valued regression would not be estimable in this situation due to the high correlation between some parts of the variables. This demonstrates the difference between the CLR and the LR.
 
 
-### Scenario 3
+### Scenario 3 {-}
 As a reminder, in the Scenario 3 the real part of $\underline{x}_{1}$ is strongly correlated with the imaginary one of $\underline{x}_{2}$. We skip the correlation coefficients because arguably they will provide the information similar to the one from Scenario 2, but showing the strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$ as intended.
 
 The OLS estimate of the model gives:
