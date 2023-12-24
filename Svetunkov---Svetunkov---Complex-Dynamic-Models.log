@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  23 DEC 2023 23:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  24 DEC 2023 10:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -809,14 +809,14 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 
 [26]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGenerated
-Circle-1.pdf, id=430, 255.95625pt x 214.8025pt>
+Circle-1.pdf, id=430, 257.96375pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGene
 ratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvGener
 atedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvGeneratedCircle-1.pdf  used on input line 853.
-(pdftex.def)             Requested size: 255.95561pt x 214.80197pt.
+(pdftex.def)             Requested size: 257.96703pt x 214.80524pt.
 
 Package natbib Warning: Citation `refGoodman' on page 27 undefined on input lin
 e 864.
@@ -891,7 +891,7 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1270.
 [40]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/clsScatter-1
-.pdf, id=613, 436.63126pt x 250.9375pt>
+.pdf, id=615, 436.63126pt x 250.9375pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/clsScat
 ter-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/clsScatt
@@ -899,18 +899,22 @@ er-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/clsScatter-1.pdf  used on input line 1314.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
-[41 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/clsSca
-tter-1.pdf>]
 
-Package natbib Warning: Citation `Gower' on page 42 undefined on input line 132
+Package natbib Warning: Citation `Gower' on page 41 undefined on input line 132
 0.
 
-<images/CLSPlot.png, id=630, 1508.63625pt x 939.51pt>
+[41]
+Underfull \vbox (badness 2547) detected at line 1361
+ []
+
+[42 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/clsSca
+tter-1.pdf>]
+<images/CLSPlot.png, id=636, 1508.63625pt x 939.51pt>
 File: images/CLSPlot.png Graphic file (type png)
 <use images/CLSPlot.png>
 Package pdftex.def Info: images/CLSPlot.png  used on input line 1365.
 (pdftex.def)             Requested size: 344.99933pt x 214.84987pt.
-[42] [43 <./images/CLSPlot.png>]
+[43 <./images/CLSPlot.png>]
 
 Package natbib Warning: Citation `Snyder2017' on page 44 undefined on input lin
 e 1391.
@@ -922,7 +926,7 @@ d on input line 1419.
 
 [45]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/parametersUC
-DV-1.pdf, id=678, 568.1225pt x 186.6975pt>
+DV-1.pdf, id=680, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramet
 ersUCDV-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramete
@@ -931,7 +935,7 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/parametersUCDV-1.pdf  used on input line 1496.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/parametersPC
--1.pdf, id=680, 568.1225pt x 186.6975pt>
+-1.pdf, id=682, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramet
 ersPC-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramete
@@ -939,8 +943,14 @@ rsPC-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/parametersPC-1.pdf  used on input line 1504.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
+
+Underfull \vbox (badness 7907) has occurred while \output is active []
+
+[46] [47 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/p
+arametersUCDV-1.pdf> <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/fi
+gure-latex/parametersPC-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/parametersUC
-SV-1.pdf, id=682, 568.1225pt x 186.6975pt>
+SV-1.pdf, id=714, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramet
 ersUCSV-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramete
@@ -948,12 +958,8 @@ rsUCSV-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/parametersUCSV-1.pdf  used on input line 1514.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
-[46] [47 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/p
-arametersUCDV-1.pdf> <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/fi
-gure-latex/parametersPC-1.pdf> <./Svetunkov---Svetunkov---Complex-Dynamic-Model
-s_files/figure-latex/parametersUCSV-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/parametersFR
--1.pdf, id=726, 568.1225pt x 186.6975pt>
+-1.pdf, id=717, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramet
 ersFR-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramete
@@ -962,7 +968,7 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/parametersFR-1.pdf  used on input line 1524.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/parametersCo
-rError-1.pdf, id=728, 568.1225pt x 186.6975pt>
+rError-1.pdf, id=719, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramet
 ersCorError-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramete
@@ -971,7 +977,7 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/parametersCorError-1.pdf  used on input line 1532.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/parametersHV
-Error-1.pdf, id=730, 568.1225pt x 186.6975pt>
+Error-1.pdf, id=721, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramet
 ersHVError-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/paramete
@@ -980,15 +986,16 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/parametersHVError-1.pdf  used on input line 1542.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 [48 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/parame
-tersFR-1.pdf>] [49 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figu
-re-latex/parametersCorError-1.pdf> <./Svetunkov---Svetunkov---Complex-Dynamic-M
-odels_files/figure-latex/parametersHVError-1.pdf>] [50]
+tersUCSV-1.pdf>] [49 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/fi
+gure-latex/parametersFR-1.pdf> <./Svetunkov---Svetunkov---Complex-Dynamic-Model
+s_files/figure-latex/parametersCorError-1.pdf> <./Svetunkov---Svetunkov---Compl
+ex-Dynamic-Models_files/figure-latex/parametersHVError-1.pdf>] [50]
 Chapter 3.
 [51
 
 ]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-ots-1.pdf, id=792, 262.9825pt x 262.9825pt>
+ots-1.pdf, id=794, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
@@ -1013,14 +1020,14 @@ Package natbib Warning: Citation `refMDS' on page 53 undefined on input line 16
 40.
 
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatterpl
-otMDS-1.pdf, id=809, 257.96375pt x 212.795pt>
+otMDS-1.pdf, id=811, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScat
 terplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvScatt
 erplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvScatterplotMDS-1.pdf  used on input line 1660.
-(pdftex.def)             Requested size: 257.97884pt x 212.80745pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Package natbib Warning: Citation `ref' on page 53 undefined on input line 1669.
 
@@ -1050,25 +1057,25 @@ ANDOM VARIABLES
 
 [56]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ate-1.pdf, id=863, 262.9825pt x 262.9825pt>
+ate-1.pdf, id=865, 262.9825pt x 264.99pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugate-1.pdf  used on input line 1820.
-(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
+(pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
 [57 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCor
 Conjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorConjug
-ateMDS-1.pdf, id=877, 255.95625pt x 212.795pt>
+ateMDS-1.pdf, id=879, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorC
 onjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/crvCorCo
 njugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/crvCorConjugateMDS-1.pdf  used on input line 1845.
-(pdftex.def)             Requested size: 255.95561pt x 212.79446pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 58 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1097,7 +1104,7 @@ ine 2428.
 
 [74] [75] [76] [77]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-chun
-k-30-1.pdf, id=1146, 262.9825pt x 264.99pt>
+k-30-1.pdf, id=1148, 262.9825pt x 264.99pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed
 -chunk-30-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unnamed-
@@ -1108,7 +1115,7 @@ igure-latex/unnamed-chunk-30-1.pdf  used on input line 2586.
 [78 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/unname
 d-chunk-30-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/nonlinearLin
-StdResid-1.pdf, id=1160, 453.695pt x 281.05pt>
+StdResid-1.pdf, id=1162, 453.695pt x 281.05pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/nonline
 arLinStdResid-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/nonlinea
@@ -1117,7 +1124,7 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/nonlinearLinStdResid-1.pdf  used on input line 2635.
 (pdftex.def)             Requested size: 344.9987pt x 213.71599pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/nonlinearStd
-Resid-1.pdf, id=1162, 453.695pt x 281.05pt>
+Resid-1.pdf, id=1164, 453.695pt x 281.05pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/nonline
 arStdResid-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/nonlinea
@@ -1141,7 +1148,7 @@ line 2699.
 
 [81]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/heteroDiagno
-stics-1.pdf, id=1206, 453.695pt x 281.05pt>
+stics-1.pdf, id=1208, 453.695pt x 281.05pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/heteroD
 iagnostics-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/heteroDi
@@ -1152,7 +1159,7 @@ igure-latex/heteroDiagnostics-1.pdf  used on input line 2712.
 [82 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/hetero
 Diagnostics-1.pdf>] [83]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexAR1AC
-FConj-1.pdf, id=1232, 436.63126pt x 250.9375pt>
+FConj-1.pdf, id=1234, 436.63126pt x 250.9375pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complex
 AR1ACFConj-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexA
@@ -1161,7 +1168,7 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/complexAR1ACFConj-1.pdf  used on input line 2759.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexAR1PA
-CFConj-1.pdf, id=1235, 444.66125pt x 280.04625pt>
+CFConj-1.pdf, id=1237, 444.66125pt x 280.04625pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complex
 AR1PACFConj-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexA
@@ -1172,7 +1179,7 @@ igure-latex/complexAR1PACFConj-1.pdf  used on input line 2775.
 [84 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/comple
 xAR1ACFConj-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexAR1AC
-FDir-1.pdf, id=1252, 444.66125pt x 280.04625pt>
+FDir-1.pdf, id=1254, 444.66125pt x 280.04625pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complex
 AR1ACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexA
@@ -1181,7 +1188,7 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/complexAR1ACFDir-1.pdf  used on input line 2791.
 (pdftex.def)             Requested size: 345.00243pt x 217.28142pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexAR1PA
-CFDir-1.pdf, id=1254, 444.66125pt x 280.04625pt>
+CFDir-1.pdf, id=1256, 444.66125pt x 280.04625pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complex
 AR1PACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexA
@@ -1190,7 +1197,7 @@ Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/complexAR1PACFDir-1.pdf  used on input line 2805.
 (pdftex.def)             Requested size: 345.00243pt x 217.28142pt.
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexAR1Pe
-arson-1.pdf, id=1256, 453.695pt x 314.17375pt>
+arson-1.pdf, id=1258, 453.695pt x 314.17375pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complex
 AR1Pearson-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexA
@@ -1206,7 +1213,7 @@ xAR1PACFConj-1.pdf>] [86 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_file
 s/figure-latex/complexAR1ACFDir-1.pdf> <./Svetunkov---Svetunkov---Complex-Dynam
 ic-Models_files/figure-latex/complexAR1PACFDir-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexAR1Pl
-oar-1.pdf, id=1292, 444.66125pt x 306.14375pt>
+oar-1.pdf, id=1294, 444.66125pt x 306.14375pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complex
 AR1Ploar-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexA
@@ -1217,7 +1224,7 @@ igure-latex/complexAR1Ploar-1.pdf  used on input line 2840.
 [87 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/comple
 xAR1Pearson-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexARDia
-gnosticsACFPACF-1.pdf, id=1310, 469.755pt x 293.095pt>
+gnosticsACFPACF-1.pdf, id=1312, 469.755pt x 293.095pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complex
 ARDiagnosticsACFPACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexA
@@ -1229,7 +1236,7 @@ igure-latex/complexARDiagnosticsACFPACF-1.pdf  used on input line 2857.
 xAR1Ploar-1.pdf>] [89 <./Svetunkov---Svetunkov---Complex-Dynamic-Models_files/f
 igure-latex/complexARDiagnosticsACFPACF-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexNormD
-iagnostics-1.pdf, id=1344, 468.75125pt x 283.0575pt>
+iagnostics-1.pdf, id=1346, 468.75125pt x 283.0575pt>
 File: Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complex
 NormDiagnostics-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Dynamic-Models_files/figure-latex/complexN
@@ -1340,10 +1347,10 @@ ic/lm/lmtko10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/shar
 e/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Dynamic-Models.pdf (107 pages
-, 4188485 bytes).
+, 4188820 bytes).
 PDF statistics:
- 1857 PDF objects out of 2073 (max. 8388607)
- 1576 compressed objects within 16 object streams
+ 1859 PDF objects out of 2073 (max. 8388607)
+ 1578 compressed objects within 16 object streams
  467 named destinations out of 1000 (max. 500000)
  57963 words of extra memory for PDF output out of 61914 (max. 10000000)
 

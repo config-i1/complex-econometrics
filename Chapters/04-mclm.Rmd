@@ -261,7 +261,7 @@ x1 <- rcnorm(obs, mu=100+150i, sigma2=20)
 # Create the explanatory variables
 x2 <- rcnorm(obs, mu=150+100i, sigma2=20, varsigma2=5)
 # Generate error term from the complex normal distribution
-e <- rcnorm(obs, mu=0, sigma2=10, varsigma2=8+5i)
+e <- rcnorm(obs, mu=0, sigma2=200, varsigma2=80+150i)
 # Generate the response variable
 y <- b0 + b1 * x1 + b2 * x2 + e
 # Form a data frame with the variables
