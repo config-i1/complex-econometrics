@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2023-12-24}
+\date{2023-12-25}
 
 \begin{document}
 \maketitle
@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.10298+99.73133i
+## [1] 50.3129+101.3043i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 120.7563+0i
+## 132.8507+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -689,7 +689,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -75.87087-5.73365i
+## -83.37363+3.09498i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 22.442698 -2.866824
-## x_i -2.866824 98.313569
+##           x_r        x_i
+## x_r 24.738523   1.547491
+## x_i  1.547491 108.112150
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2198.203
+## [1] 2672.14
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 80.283-116.1425i
+## 55.47448-91.19907i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -66.16865+86.53832i
+## -22.24788+53.81079i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -821,9 +821,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                    y
-## x -94.79949+ 0.90034i -66.16865+ 86.53832i
-## y -66.16865+86.53832i  31.12061+102.77334i
+##                     x                   y
+## x -71.35424+ 1.25257i -22.24788+53.81079i
+## y -22.24788+53.81079i  69.77770+32.43251i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9973449
+## [1] 0.9973337
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1887,7 +1887,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.8431589
+## [1,] 0.9973251
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##        x_r    x_i    y_r   y_i
-## x_r  1.000 -0.005  0.712 0.706
-## x_i -0.005  1.000 -0.701 0.701
-## y_r  0.712 -0.701  1.000 0.012
-## y_i  0.706  0.701  0.012 1.000
+##       x_r    x_i    y_r   y_i
+## x_r 1.000  0.079  0.732 0.780
+## x_i 0.079  1.000 -0.617 0.682
+## y_r 0.732 -0.617  1.000 0.151
+## y_i 0.780  0.682  0.151 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2382,12 +2382,20 @@ After estimating the model, we produce forecasts with a 95\% prediction interval
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# par(mfcol=c(1,2), mar=c(2,2,3,1))}
-\CommentTok{\# predict(CLRArtificial, tail(dataArtificial,20),}
-        \CommentTok{\# interval="prediction") |\textgreater{}}
-    \CommentTok{\# plot()}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{predict}\NormalTok{(CLRArtificial, }\FunctionTok{tail}\NormalTok{(dataArtificial,}\DecValTok{20}\NormalTok{),}
+        \AttributeTok{interval=}\StringTok{"prediction"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{plot}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/CLRArtificialForecast-1.pdf}
+\caption{\label{fig:CLRArtificialForecast}Forecasts from CLR for the artificial data, given the values of explanatory variables in the holdout set.}
+\end{figure}
+
+If the confidence interval for the conditional mean is needed, then this is regulated with \texttt{interval="confidence"} parameter.
 
 \hypertarget{multipleCLRDummy}{%
 \section{Dummy variables}\label{multipleCLRDummy}}
@@ -2411,8 +2419,66 @@ Finally, if an interaction effect is needed (e.g.~how the change of price on red
 \end{equation}
 In this case, the specific complex effect of \(\underline{x}_{1,j}\) on \(\underline{y}_j\) will change when the dummy variable equals to one. The interaction effect between a complex variable \(\underline{x}_{1,j}\) and a complex dummy variable \(\underline{d}_{1,j}\) is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
 
-\hypertarget{examples-in-r}{%
-\subsection{Examples in R}\label{examples-in-r}}
+\hypertarget{demonstration-in-r-2}{%
+\subsection{Demonstration in R}\label{demonstration-in-r-2}}
+
+The \texttt{clm()} function in the \texttt{complex} package in R supports categorical variables in a form of either a character vector, or a factor. Here is an example based on the same artificial data we used in Section \ref{MCLRInference}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\CommentTok{\# Create an artificial categorical variable}
+\NormalTok{x3 }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(obs, }\DecValTok{2}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+\NormalTok{colour }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"character"}\NormalTok{, obs)}
+\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"red"}\NormalTok{;}
+\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"green"}\NormalTok{;}
+\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"blue"}\NormalTok{;}
+\CommentTok{\# Add it to the data frame}
+\CommentTok{\# Note that it does not need to be factor()}
+\NormalTok{dataArtificial }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y, }\AttributeTok{x1=}\NormalTok{x1, }\AttributeTok{x2=}\NormalTok{x2, }\AttributeTok{colour=}\NormalTok{colour)}
+\end{Highlighting}
+\end{Shaded}
+
+We can then estimate the model using the same command as before:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x1}\SpecialCharTok{+}\NormalTok{x2}\SpecialCharTok{+}\NormalTok{colour, dataArtificial, }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: likelihood
+## Coefficients:
+##                Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r  103.5241    17.1825    69.4054    137.6428 *
+## (Intercept)_i -157.6706    12.5372  -182.5653   -132.7759 *
+## x1_r             2.4187     0.0729     2.2738      2.5635 *
+## x1_i             1.5015     0.0532     1.3958      1.6072 *
+## x2_r             1.5735     0.0642     1.4459      1.7011 *
+## x2_i            -0.6787     0.0469    -0.7718     -0.5856 *
+## colourgreen_r    3.0170     2.4185    -1.7854      7.8194  
+## colourgreen_i    2.5965     1.7647    -0.9076      6.1005  
+## colourred_r     -0.1795     2.7959    -5.7312      5.3723  
+## colourred_i      1.9728     2.0400    -2.0780      6.0237  
+## 
+## Error covariance matrix:
+##         e_r     e_i
+## e_r 96.7961 52.6044
+## e_i 52.6044 51.5332
+## 
+## Sample size: 100
+## Number of estimated parameters: 6.5
+## Number of degrees of freedom: 93.5
+## Information criteria:
+##      AIC     AICc      BIC     BICc 
+## 1337.708 1338.762 1354.642 1357.069
+\end{verbatim}
+
+The output above shows that R expanded the colour into a set of dummy variables and dropped one of them (``blue''). The complex coefficients for the dummy variables are all not significant on the 5\% level, which in our case means that we cannot detect any strong relation between them and the response variable. This is because we did not use the variable in the data generation.
 
 \hypertarget{assumptions}{%
 \chapter{Assumptions of Complex Linear Models}\label{assumptions}}
@@ -2615,8 +2681,8 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 \begin{figure}
 \centering
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-31-1.pdf}
-\caption{\label{fig:unnamed-chunk-31}Non-linear transformation of a complex variable that changes linearly.}
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-33-1.pdf}
+\caption{\label{fig:unnamed-chunk-33}Non-linear transformation of a complex variable that changes linearly.}
 \end{figure}
 
 Even if the imaginary part of \(\underline{x}\) is zero (and as a result we deal with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
@@ -3019,8 +3085,8 @@ Note that the standard issues that arise in conventional regression analysis due
 
 The diagnostics of the multicollinearity in CLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
 
-\hypertarget{demonstration-in-r-2}{%
-\subsection{Demonstration in R}\label{demonstration-in-r-2}}
+\hypertarget{demonstration-in-r-3}{%
+\subsection{Demonstration in R}\label{demonstration-in-r-3}}
 
 For demonstration purposes we generate data from a model:
 \begin{equation*}
