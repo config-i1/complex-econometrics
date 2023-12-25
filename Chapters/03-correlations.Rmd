@@ -104,29 +104,29 @@ This also means that the conjugate correlation coefficient is always positive, o
 The formulae \@ref(eq:correlationConventional) and \@ref(eq:correlationPseudo) are derived based on the original definition of Pearson's correlation coefficient [@refPearson]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
-        &\underline{y} = \underline{\beta_0} + \underline{\beta_1} \underline{x} + \underline{\epsilon} \\
-        &\underline{x} = \underline{\alpha_0} + \underline{\alpha_1} \underline{y} + \underline{\upsilon} ,
+        &\underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x} + \underline{\epsilon} \\
+        &\underline{x} = \underline{\alpha}_0 + \underline{\alpha}_1 \underline{y} + \underline{\upsilon} ,
     \end{aligned}
     (\#eq:twoRegressions)
 \end{equation}
-where $\underline{\alpha_0}$ and $\underline{\beta_0}$ are the intercepts, $\underline{\alpha_1}$ and $\underline{\beta_1}$ are the slopes of the regression lines and $\underline{\epsilon}$ and $\underline{\upsilon}$ are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \@ref(simpleCLR), the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares (discussed in Subsection \@ref(SCLREstimation)). For the OLS, the formulae for the slopes are:
+where $\underline{\alpha}_0$ and $\underline{\beta}_0$ are the intercepts, $\underline{\alpha}_1$ and $\underline{\beta}_1$ are the slopes of the regression lines and $\underline{\epsilon}$ and $\underline{\upsilon}$ are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \@ref(simpleCLR), the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares (discussed in Subsection \@ref(SCLREstimation)). For the OLS, the formulae for the slopes are:
 \begin{equation}
     \begin{aligned}
-        &\underline{b_1} = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
-        &\underline{a_1} = \frac{\hat{\sigma}_{y,x}}{\hat{\sigma}_y} .
+        &\underline{b}_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
+        &\underline{a}_1 = \frac{\hat{\sigma}_{y,x}}{\hat{\sigma}_y} .
     \end{aligned}
     (\#eq:twoRegressionsOLS)
 \end{equation}
 Taking their geometric means leads to:
 \begin{equation}
-    \hat{\rho}_{x,y} = \sqrt{\underline{a_1} \underline{b_1}},
+    \hat{\rho}_{x,y} = \sqrt{\underline{a}_1 \underline{b}_1},
     (\#eq:correlationConventionalEstimate)
 \end{equation}
 which then leads to the formula \@ref(eq:correlationConventional). Similarly, for CLS estimated regressions, we have:
 \begin{equation}
     \begin{aligned}
-        &\underline{b_1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x} \\
-        &\underline{a_1} = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_y} ,
+        &\underline{b}_1 = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x} \\
+        &\underline{a}_1 = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_y} ,
     \end{aligned}
     (\#eq:twoRegressionsCLS)
 \end{equation}
@@ -139,9 +139,9 @@ When it comes to the interpretation of the coefficients, the conjugate one is a 
     {\rho}_{x,y} = \frac{\sqrt{(\sigma_{x_r, y_r} + \sigma_{x_i, y_i})^2 + (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})^2}}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
     (\#eq:correlationConventionalExpanded)
 \end{equation}
-As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient is a real number, showing the average strength of linear relation between two complex variables $\underline{x}$ and $\underline{y}$. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables $\underline{x}$ and $\underline{y}$ and when the cross-covariances are equal (i.e. $\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$). A special case of this condition is when all the covariances are equal to zero. On the other hand, it will be close to one if the complex relation between variables $\underline{y}$ and $\underline{x}$ is close to the linear, i.e. $\underline{a_1} = \frac{1}{\underline{b_1}}$. However, it does not show the direction of the relation, so it cannot be negative because of the geometric mean in the numerator.
+As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient is a real number, showing the average strength of linear relation between two complex variables $\underline{x}$ and $\underline{y}$. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables $\underline{x}$ and $\underline{y}$ and when the cross-covariances are equal (i.e. $\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$). A special case of this condition is when all the covariances are equal to zero. On the other hand, it will be close to one if the complex relation between variables $\underline{y}$ and $\underline{x}$ is close to the linear, i.e. $\underline{a}_1 = \frac{1}{\underline{b}_1}$. However, it does not show the direction of the relation, so it cannot be negative because of the geometric mean in the numerator.
 
-In order to better understand what the conjugate correlation means, we expand the formula \@ref(eq:correlationConventionalEstimate) by substituting $\underline{b_1} = b_{1,r} + i b_{1,i}$ and $\underline{a_1} = a_{1,r} + i a_{1,i}$:
+In order to better understand what the conjugate correlation means, we expand the formula \@ref(eq:correlationConventionalEstimate) by substituting $\underline{b}_1 = b_{1,r} + i b_{1,i}$ and $\underline{a}_1 = a_{1,r} + i a_{1,i}$:
 \begin{equation}
     \begin{aligned}
         \hat{\rho}_{x,y} = & \sqrt{(a_{1,r} + i a_{1,i}) (b_{1,r}+ib_{1,i})} = \\
@@ -198,7 +198,7 @@ Given that it contains a complex number in the denominator, it is more complicat
 
 1. The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all cross-covariances between the real and imaginary parts of $\underline{x}$ and $\underline{y}$ are equal to zero.
 
-2. When the complex variables $\underline{x}$ and $\underline{y}$ have functional relation between them, so that $\underline{a_1} = \frac{1}{\underline{b_1}}$, the coefficient will be equal to one.
+2. When the complex variables $\underline{x}$ and $\underline{y}$ have functional relation between them, so that $\underline{a}_1 = \frac{1}{\underline{b}_1}$, the coefficient will be equal to one.
 
 Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables $\underline{x}$ and/or $\underline{y}$.
 
