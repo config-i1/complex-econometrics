@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.3129+101.3043i
+## [1] 50.494+101.0352i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 132.8507+0i
+## 111.7995+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -83.37363+3.09498i
+##   Direct variance 
+## -64.1207-9.30207i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 24.738523   1.547491
-## x_i  1.547491 108.112150
+##           x_r       x_i
+## x_r 23.839391 -4.651037
+## x_i -4.651037 87.960096
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2672.14
+## [1] 2075.283
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 55.47448-91.19907i
+## 51.1989-101.5472i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -22.24788+53.81079i
+## -19.81647+62.39034i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -71.35424+ 1.25257i -22.24788+53.81079i
-## y -22.24788+53.81079i  69.77770+32.43251i
+## x -92.94726- 3.44654i -19.81647+62.39034i
+## y -19.81647+62.39034i  69.65277+38.23423i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9973337
+## [1] 0.9976888
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1887,7 +1887,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9973251
+## [1,] 0.9974811
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r   y_i
-## x_r 1.000  0.079  0.732 0.780
-## x_i 0.079  1.000 -0.617 0.682
-## y_r 0.732 -0.617  1.000 0.151
-## y_i 0.780  0.682  0.151 1.000
+##        x_r    x_i    y_r    y_i
+## x_r  1.000 -0.034  0.714  0.688
+## x_i -0.034  1.000 -0.722  0.698
+## y_r  0.714 -0.722  1.000 -0.013
+## y_i  0.688  0.698 -0.013  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -1931,7 +1931,7 @@ We now move to the discussion of the multiple CLR, the model that captures relat
 
 Similarly to how the multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \underline{\beta_2} \underline{x_{2,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\epsilon_j},
+    \underline{y}_j = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,j} + \underline{\beta}_2 \underline{x}_{2,j} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,j} + \underline{\epsilon}_j,
     \label{eq:MultipleCLRComplex}
 \end{equation}
 where \(k-1\) is the number of complex random variables. Similarly to how it was done with SCLR in \eqref{eq:SimpleCLRSystem}, we can expand the formula \eqref{eq:MultipleCLRComplex} as a system of two equations, taking that every parameter and every variable in \eqref{eq:MultipleCLRComplex} is complex:
@@ -1949,7 +1949,7 @@ This system can be represented in a more compact form, similarly to \eqref{eq:Si
     \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
     \label{eq:CLRVector}
 \end{equation}
-where now \(\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{{x}_{1,1}} & \dots & \underline{{x}_{k-1,1}} \\ 1 & \underline{{x}_{1,2}} & \dots & \underline{{x}_{k-1,2}} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{{x}_{1,n}} & \dots & \underline{{x}_{k-1,n}} \end{pmatrix}\) and \(\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{{\beta}_0} \\ \underline{{\beta}_1} \\ \vdots \\ \underline{{\beta}_{k-1}} \end{pmatrix}\), where each of the elements in the matrices and vectors above is a complex number.
+where now \(\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{x}_{1,1} & \dots & \underline{x}_{k-1,1} \\ 1 & \underline{x}_{1,2} & \dots & \underline{x}_{k-1,2} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{x}_{1,n} & \dots & \underline{x}_{k-1,n} \end{pmatrix}\) and \(\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{\beta}_0 \\ \underline{\beta}_1 \\ \vdots \\ \underline{\beta}_{k-1} \end{pmatrix}\), where each of the elements in the matrices and vectors above is a complex number.
 
 Furthermore, the system \eqref{eq:MultipleCLRSystem} can also be used to represent the multiple CLR in a simple form using vector and matrix notations, avoiding complex numbers:
 \begin{equation}
@@ -2337,7 +2337,7 @@ Having both direct and conjugate variances for OLS and CLS, it is possible to do
   Produce prediction intervals for the actual values.
 \end{enumerate}
 
-The elements (1) and (3) can be done assuming that the Central Limit Theorem works and thus the estimates of parameters follow Normal distribution. This can be done using Student's t-statistics as discussed in Section 6.4 and 8.1 of \citet{SvetunkovSBA}. The elements (2) and (4) rely on a different distribution and can be done using Hotelling's T\(^2\) statistics, discussed in Subsection \ref{Hotelling}. When it comes to elements (5) and (6), we need to impose some assumptions on the complex error term of the model \(\underline{\epsilon_j}\). The most popular assumption in statistics is that \(\underline{\epsilon_j} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}_\epsilon)\), where \(\boldsymbol{0}\) is the two-dimensional vector of zeroes and \(\boldsymbol{\Sigma}_\epsilon\) is the square two-by-two covariance matrix. The estimate of this matrix is typically obtained via the formula:
+The elements (1) and (3) can be done assuming that the Central Limit Theorem works and thus the estimates of parameters follow Normal distribution. This can be done using Student's t-statistics as discussed in Section 6.4 and 8.1 of \citet{SvetunkovSBA}. The elements (2) and (4) rely on a different distribution and can be done using Hotelling's T\(^2\) statistics, discussed in Subsection \ref{Hotelling}. When it comes to elements (5) and (6), we need to impose some assumptions on the complex error term of the model \(\underline{\epsilon}_j\). The most popular assumption in statistics is that \(\underline{\epsilon}_j \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}_\epsilon)\), where \(\boldsymbol{0}\) is the two-dimensional vector of zeroes and \(\boldsymbol{\Sigma}_\epsilon\) is the square two-by-two covariance matrix. The estimate of this matrix is typically obtained via the formula:
 \begin{equation*}
     \hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n-\frac{k}{2}} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
 \end{equation*}
@@ -2350,21 +2350,21 @@ It can be estimated on one observation and in that case will have zero degrees o
 To calculate prediction intervals, we need to calculate the variance of the conditional mean of a complex linear model. In case of complex variables, we need both direct and conjugate variances conditional on the values of the available explanatory variables to get the full information about the distribution:
 \begin{equation}
     \begin{aligned}
-    \mathrm{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k-1,j} \right) = & \mathrm{V}\left(\underline{b_0} + \underline{b_1} \underline{x_{1,j}} + \underline{b_2} \underline{x_{2,j}} + \dots + \underline{b_{k-1}} \underline{x_{k-1,j}} + \underline{\epsilon_j}\right) \\
-    & \sum_{i=0}^{k-1} \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathrm{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} \mathrm{cov}\left(\underline{b_i}, \underline{b_l} \right) + \sigma_{\underline{\epsilon}}^2
+    \mathrm{V}\left(\underline{y}_j | \underline{x}_{1,j}, \dots, \underline{x}_{k-1,j} \right) = & \mathrm{V}\left(\underline{b}_0 + \underline{b}_1 \underline{x}_{1,j} + \underline{b}_2 \underline{x}_{2,j} + \dots + \underline{b}_{k-1} \underline{x}_{k-1,j} + \underline{\epsilon}_j\right) \\
+    & \sum_{i=0}^{k-1} \underline{x}_{i,j}\underline{\tilde{x}}_{i,j} \mathrm{V}\left(\underline{b}_i \right) + 2 \sum_{i\neq l} \underline{x}_{i,j}\underline{\tilde{x}}_{l,j} \mathrm{cov}\left(\underline{b}_i, \underline{b}_l \right) + \sigma_{\underline{\epsilon}}^2
     \end{aligned},
     \label{eq:MultipleCLRComplexVarianceDir}
 \end{equation}
 where \(\mathrm{cov}(\cdot)\) is the conjugate covariance between the variables and \(\underline{x}_{0,j}=1+i\). Similarly, we can calculate the direct conditional variance:
 \begin{equation}
     \begin{aligned}
-    \mathcal{V}\left(\underline{y_j} | x_{1,j}, \dots, x_{k-1,j} \right) = & \sum_{i=0}^{k-1} \underline{x_{i,j}}\underline{\tilde{x}_{i,j}} \mathcal{V}\left(\underline{b_i} \right) + 2 \sum_{i\neq l} \underline{x_{i,j}}\underline{\tilde{x}_{l,j}} {cov}\left(\underline{b_i}, \underline{b_l} \right) + \varsigma_{\underline{\epsilon}}^2
+    \mathcal{V}\left(\underline{y}_j | \underline{x}_{1,j}, \dots, \underline{x}_{k-1,j} \right) = & \sum_{i=0}^{k-1} \underline{x}_{i,j}\underline{\tilde{x}}_{i,j} \mathcal{V}\left(\underline{b}_i \right) + 2 \sum_{i\neq l} \underline{x}_{i,j}\underline{\tilde{x}}_{l,j} {cov}\left(\underline{b}_i, \underline{b}_l \right) + \varsigma_{\underline{\epsilon}}^2
     \end{aligned},
     \label{eq:MultipleCLRComplexVarianceConj}
 \end{equation}
 where \({cov}(\cdot)\) is the direct covariance. The formulae \eqref{eq:MultipleCLRComplexVarianceDir} and \eqref{eq:MultipleCLRComplexVarianceDir} can then be used to calculate the conditional variances of real and imaginary parts of the response variable together with a conditional covariance between them. We can then either form a covariance matrix and produce a predictive ellipse using formulae discussed in Subsection \ref{MVNorm} or consider each of the parts independently and create prediction intervals (also discussed in Subsection \ref{MVNorm}). Arguably, the latter is easier to work with than the former.
 
-Finally, to produce confidence intervals, we can use the formulae \eqref{eq:MultipleCLRComplexVarianceDir} and \eqref{eq:MultipleCLRComplexVarianceDir}, dropping the \(\mathrm{V}\left(\underline{\epsilon_j}\right)\) and \(\mathcal{V}\left(\underline{\epsilon_j}\right)\), which will then give us direct and conjugate conditional variances of the predicted value.
+Finally, to produce confidence intervals, we can use the formulae \eqref{eq:MultipleCLRComplexVarianceDir} and \eqref{eq:MultipleCLRComplexVarianceDir}, dropping the \(\mathrm{V}\left(\underline{\epsilon}_j\right)\) and \(\mathcal{V}\left(\underline{\epsilon}_j\right)\), which will then give us direct and conjugate conditional variances of the predicted value.
 
 \hypertarget{demonstration-in-r-1}{%
 \subsection{Demonstration in R}\label{demonstration-in-r-1}}
@@ -2405,16 +2405,16 @@ In the real-valued regression analysis, dummy variables appear when a feature of
 In case of complex linear regression, it is possible to introduce dummy variables in the same way as in the conventional model, by adding real-valued variables. The model in this case becomes:
 
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\gamma_1} d_{1,j} + \dots + \underline{\gamma_m} d_{m,j} + \underline{\epsilon_j},
+    \underline{y}_j = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,j} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,j} + \underline{\gamma}_1 d_{1,j} + \dots + \underline{\gamma}_m d_{m,j} + \underline{\epsilon}_j,
     \label{eq:MultipleCLRComplexDummy}
 \end{equation}
-where \(\underline{\gamma_i}\) is the complex parameter, \(d_{i,j}\) is th \(i\)-th real-valued dummy variable and \(m\) is the number of dummy variables. In this case, each variable \(d_{i,j}\) is multiplied by a complex coefficient, capturing the dummy effect of it on each part of the complex response variable. The effect of dummy variables on the response one is exactly the same as in the conventional real-valued regression - the intercept of the model, \(\underline{\beta_0}\) will change by the value of \(\underline{\gamma_i}\), when the variable \(d_{i,j}\) equals to one.
+where \(\underline{\gamma}_i\) is the complex parameter, \(d_{i,j}\) is th \(i\)-th real-valued dummy variable and \(m\) is the number of dummy variables. In this case, each variable \(d_{i,j}\) is multiplied by a complex coefficient, capturing the dummy effect of it on each part of the complex response variable. The effect of dummy variables on the response one is exactly the same as in the conventional real-valued regression - the intercept of the model, \(\underline{\beta}_0\) will change by the value of \(\underline{\gamma}_i\), when the variable \(d_{i,j}\) equals to one.
 
 It is also theoretically possible to encode a complex dummy variable, which would have two features in it at the same time, e.g.~\(colourRed + i \times sizeSmall\), where both \texttt{colourRed} and \texttt{sizeSmall} are dummy variables. The issue with this is that this encoding assumes very specific dynamic between the features and the response variable. In the example above, the sales of the first product will have \(\gamma_{1,j} \times coolourRed_j - \gamma_{2,j} \times sizeSmall_j\), while the sales of the second one will have: \(\gamma_{1,j} \times sizeSmall_j + \gamma_{2,j} \times coolourRed_j\). This means that the red colour should have exactly the same impact on sales of product one, as the small size has on the product two, while the effect of small size on product one is opposite to the effect of the red colour on the second product. It is difficult to find situations, where such effects would be meaningful, so we do not recommend that. Still, it is possible to formulate such a model and capture the qualitative features in a parsimonious way (in comparison with a simple introduction of variables to each equation).
 
 Finally, if an interaction effect is needed (e.g.~how the change of price on red product impacts its sales), this can be done in a similar way to the conventional real-valued regression. For example, here how it can be done for a variable \(\underline{x}_{1,j}\):
 \begin{equation}
-    \underline{y_j} = \underline{\beta_0} + \underline{\beta_1} \underline{x_{1,j}} + \dots + \underline{\beta_{k-1}} \underline{x_{k-1,j}} + \underline{\gamma_1} \underline{x_{1,j}} d_{1,j} + \underline{\epsilon_j} .
+    \underline{y}_j = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,j} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,j} + \underline{\gamma}_1 \underline{x}_{1,j} d_{1,j} + \underline{\epsilon}_j .
     \label{eq:MultipleCLRComplexDummyInteraction}
 \end{equation}
 In this case, the specific complex effect of \(\underline{x}_{1,j}\) on \(\underline{y}_j\) will change when the dummy variable equals to one. The interaction effect between a complex variable \(\underline{x}_{1,j}\) and a complex dummy variable \(\underline{d}_{1,j}\) is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
@@ -2430,9 +2430,9 @@ The \texttt{clm()} function in the \texttt{complex} package in R supports catego
 \CommentTok{\# Create an artificial categorical variable}
 \NormalTok{x3 }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(obs, }\DecValTok{2}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
 \NormalTok{colour }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"character"}\NormalTok{, obs)}
-\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"red"}\NormalTok{;}
-\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"green"}\NormalTok{;}
-\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"blue"}\NormalTok{;}
+\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Red"}\NormalTok{;}
+\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Green"}\NormalTok{;}
+\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Blue"}\NormalTok{;}
 \CommentTok{\# Add it to the data frame}
 \CommentTok{\# Note that it does not need to be factor()}
 \NormalTok{dataArtificial }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y, }\AttributeTok{x1=}\NormalTok{x1, }\AttributeTok{x2=}\NormalTok{x2, }\AttributeTok{colour=}\NormalTok{colour)}
@@ -2460,10 +2460,10 @@ We can then estimate the model using the same command as before:
 ## x1_i             1.5015     0.0532     1.3958      1.6072 *
 ## x2_r             1.5735     0.0642     1.4459      1.7011 *
 ## x2_i            -0.6787     0.0469    -0.7718     -0.5856 *
-## colourgreen_r    3.0170     2.4185    -1.7854      7.8194  
-## colourgreen_i    2.5965     1.7647    -0.9076      6.1005  
-## colourred_r     -0.1795     2.7959    -5.7312      5.3723  
-## colourred_i      1.9728     2.0400    -2.0780      6.0237  
+## colourGreen_r    3.0170     2.4185    -1.7854      7.8194  
+## colourGreen_i    2.5965     1.7647    -0.9076      6.1005  
+## colourRed_r     -0.1795     2.7959    -5.7312      5.3723  
+## colourRed_i      1.9728     2.0400    -2.0780      6.0237  
 ## 
 ## Error covariance matrix:
 ##         e_r     e_i
