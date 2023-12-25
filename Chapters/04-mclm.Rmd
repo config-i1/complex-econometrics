@@ -397,9 +397,9 @@ set.seed(42)
 # Create an artificial categorical variable
 x3 <- rbinom(obs, 2, 0.5)
 colour <- vector("character", obs)
-colour[x3==0] <- "red";
-colour[x3==1] <- "green";
-colour[x3==2] <- "blue";
+colour[x3==0] <- "Red";
+colour[x3==1] <- "Green";
+colour[x3==2] <- "Blue";
 # Add it to the data frame
 # Note that it does not need to be factor()
 dataArtificial <- data.frame(y=y, x1=x1, x2=x2, colour=colour)
