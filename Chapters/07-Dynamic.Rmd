@@ -10,9 +10,13 @@ One of the simplest ways to introduce dynamics in a complex linear model is to i
     {y}_t = {\beta}_0 + {\beta}_1 {x}_{1,t} + {\beta}_2 {x}_{2,t} + \dots + {\beta}_{k-1} {x}_{k-1,t} + \gamma t + {\epsilon}_t,
     (\#eq:trendInRealModel)
 \end{equation}
-where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases indefinitely. In case of the complex-valued models, there are different ways how it can be included in the model.
+where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases indefinitely. 
 
+Linear
 
+Log-model
+
+Trend in the response variable
 
 This is from 2.12 "CTAR"
 
