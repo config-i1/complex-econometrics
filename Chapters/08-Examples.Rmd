@@ -1,7 +1,11 @@
 # Examples of application {#Examples}
+In this chapter we consider examples of application for CLR and the complex ARMA models.
 
 
 ## Production functions
+
+
+## Dynamic models
 
 
 ## Forecasting with complex regression models

@@ -1,0 +1,32 @@
+# Complex Dynamic Models {#Dynamic}
+In this chapter we consider the application of the complex linear model to time series data. There are different ways how to do that, and we only discuss a few of the straight forward options of how to construct dynamic models. We start with a model with a trend, which has its own features, then discuss complex Autoregression (cAR), then move to the complex Moving Average (cMA) and complex Autoregression with Moving Average (cARMA) and then finish the discussion with the model applied to differences of the data, cARIMA.
+
+In this chapter, we will use index $t$ instead of $j$ to denote that we are applying the model to time series, not to the cross-sectional data.
+
+## CLR with a trend {#DynamicTrend}
+One of the simplest ways to introduce dynamics in a complex linear model is to include a trend. In the real-valued domain this means adding an explanatory variable with the index of the observation:
+
+\begin{equation}
+    {y}_t = {\beta}_0 + {\beta}_1 {x}_{1,t} + {\beta}_2 {x}_{2,t} + \dots + {\beta}_{k-1} {x}_{k-1,t} + \gamma t + {\epsilon}_t,
+    (\#eq:trendInRealModel)
+\end{equation}
+where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases indefinitely. In case of the complex-valued models, there are different ways how it can be included in the model.
+
+
+
+This is from 2.12 "CTAR"
+
+
+## Complex AR
+This is from 2.3 and 2.5
+
+<!-- Properties and what ACF/PACF they generate -->
+
+## Complex MA
+New thing. Base it on ADAM ARIMA discussion
+
+<!-- Properties and what ACF/PACF they generate -->
+
+## Complex ARMA
+From 2.4
+
