@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2023.12.19)  28 DEC 2023 12:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2023.12.19)  28 DEC 2023 12:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -822,14 +822,14 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 
 [26]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvGene
-ratedCircle-1.pdf, id=443, 255.95625pt x 218.8175pt>
+ratedCircle-1.pdf, id=443, 255.95625pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vGeneratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 GeneratedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvGeneratedCircle-1.pdf  used on input line 856.
-(pdftex.def)             Requested size: 255.95561pt x 218.81696pt.
+(pdftex.def)             Requested size: 255.95561pt x 214.80197pt.
 
 Package natbib Warning: Citation `refGoodman' on page 27 undefined on input lin
 e 867.
@@ -1006,14 +1006,14 @@ Chapter 3.
 
 ]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
-terplots-1.pdf, id=806, 262.9825pt x 264.99pt>
+terplots-1.pdf, id=806, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vScatterplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 Scatterplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvScatterplots-1.pdf  used on input line 1598.
-(pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
+(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 607.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
@@ -1031,20 +1031,17 @@ Package natbib Warning: Citation `refMDS' on page 53 undefined on input line 16
 43.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
-terplotMDS-1.pdf, id=823, 253.94875pt x 220.825pt>
+terplotMDS-1.pdf, id=823, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vScatterplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 ScatterplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvScatterplotMDS-1.pdf  used on input line 1663.
-(pdftex.def)             Requested size: 253.95586pt x 220.83118pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Package natbib Warning: Citation `ref' on page 53 undefined on input line 1672.
 
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [53]
 
@@ -1082,14 +1079,14 @@ les/figure-latex/crvCorConjugate-1.pdf  used on input line 1823.
 [57 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 rvCorConjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugateMDS-1.pdf, id=891, 253.94875pt x 212.795pt>
+onjugateMDS-1.pdf, id=891, 255.95625pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1848.
-(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
+(pdftex.def)             Requested size: 255.95561pt x 212.79446pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 58 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1342,28 +1339,46 @@ T THE RESPONSE VARIABLE \T1/lmr/m/n/10 107
 
 ]
 Chapter 6.
-[109] [110]
-Chapter 7.
-(./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [111
+[109]
 
-] [112
+LaTeX Warning: Reference `fig:trendTrajectories' on page 110 undefined on input
+ line 3603.
+
+<Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/trendTr
+ajectories-1.pdf, id=1497, 461.725pt x 320.19624pt>
+File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/tr
+endTrajectories-1.pdf Graphic file (type pdf)
+<use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/tre
+ndTrajectories-1.pdf>
+Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
+les/figure-latex/trendTrajectories-1.pdf  used on input line 3605.
+(pdftex.def)             Requested size: 345.0036pt x 239.25247pt.
+[110 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
+trendTrajectories-1.pdf>] [111] [112
+
+]
+Chapter 7.
+(./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [113] [114
 
 ])
 
 Package natbib Warning: There were undefined citations.
 
-[113] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.aux)
+[115] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.aux)
  ***********
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
  ***********
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 16978 strings out of 477695
- 284185 string characters out of 5831647
+ 16998 strings out of 477695
+ 285103 string characters out of 5831647
  1875759 words of memory out of 5000000
- 36416 multiletter control sequences out of 15000+600000
- 616981 words of font info for 224 fonts, out of 8000000 for 9000
+ 36428 multiletter control sequences out of 15000+600000
+ 617064 words of font info for 225 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  77i,16n,81p,1353b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/ty
@@ -1384,11 +1399,11 @@ f/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk1
 ts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b>
-Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (113 
-pages, 4217222 bytes).
+Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (115 
+pages, 4231342 bytes).
 PDF statistics:
- 1940 PDF objects out of 2073 (max. 8388607)
- 1649 compressed objects within 17 object streams
- 487 named destinations out of 1000 (max. 500000)
- 58016 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1966 PDF objects out of 2073 (max. 8388607)
+ 1670 compressed objects within 17 object streams
+ 493 named destinations out of 1000 (max. 500000)
+ 58021 words of extra memory for PDF output out of 61914 (max. 10000000)
 
