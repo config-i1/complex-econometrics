@@ -48,10 +48,17 @@ As we can see, the non-linear transformation gives the CLR flexibility in captur
 
 To better understand how the CLR model with the trend works, we can represent it in the exponential form:
 \begin{equation}
-    t^{\underline{\gamma}} = \exp (\underline{\gamma} \ln t) = \exp (\gamma_r \ln t) \exp (i \gamma_i \ln t),
+    t^{\underline{\gamma}} = \exp (\underline{\gamma} \ln t) = t^{\gamma_r} \exp (i \gamma_i \ln t),
     (\#eq:trendExp)
 \end{equation}
 where $\underline{\gamma}=\gamma_r + i \gamma_i$. The form \@ref(eq:trendExp) shows that the real part of the parameter $\underline{\gamma}$ controls the magnitude of the resulting complex variable, while the imaginary one controls how fast the argument (angle) changes. So, the more stable trajectories (closer to the linear ones) will be obtained with $\gamma_i$ close to zero, while the speed of the change in the trajectory is regulated by $\gamma_r$.
+
+Another way to look at the complex-valued trend is to use the trigonometric form of complex variable:
+\begin{equation}
+    t^{\underline{\gamma}} = t^{\gamma_r} \left(\cos (\gamma_i \ln t) + i \sin (\gamma_i \ln t) \right) .
+    (\#eq:trendTrig)
+\end{equation}
+This form tells us that fundamentally any trajectory from the complex-valued trend is trigonometric, but $\gamma_i$ regulates the strength of the cosine/sine waves for the respective real and imaginary parts of the complex response variable.
 
 
 

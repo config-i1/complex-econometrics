@@ -606,7 +606,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.0038+101.163i
+## [1] 50.1403+99.23707i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -679,7 +679,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 141.3845+0i
+## 132.9438+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -691,8 +691,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -91.97504+12.21441i
+##    Direct variance 
+## -95.18597+1.68543i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -717,9 +717,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 24.704724   6.107203
-## x_i  6.107203 116.679760
+##            x_r         x_i
+## x_r 18.8789210   0.8427174
+## x_i  0.8427174 114.0648894
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -731,7 +731,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2845.243
+## [1] 2152.712
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -798,7 +798,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 54.00108-86.09137i
+## 34.86143-91.56542i
 \end{verbatim}
 
 \begin{Shaded}
@@ -810,8 +810,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -23.00167+58.98828i
+## Direct covariance 
+## 0.26727+68.00055i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -824,9 +824,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -80.28436+ 1.57939i -23.00167+58.98828i
-## y -23.00167+58.98828i  41.07806+39.96565i
+##                     x                  y
+## x -79.49028+16.75457i  0.26727+68.00055i
+## y   0.26727+68.00055i 63.97486+ 2.06214i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1832,7 +1832,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9976434
+## [1] 0.9975679
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1890,7 +1890,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9974335
+## [1,] 0.9903716
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1915,11 +1915,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r    y_i
-## x_r 1.000  0.025  0.628  0.651
-## x_i 0.025  1.000 -0.760  0.772
-## y_r 0.628 -0.760  1.000 -0.177
-## y_i 0.651  0.772 -0.177  1.000
+##        x_r    x_i    y_r    y_i
+## x_r  1.000 -0.084  0.724  0.671
+## x_i -0.084  1.000 -0.746  0.679
+## y_r  0.724 -0.746  1.000 -0.021
+## y_i  0.671  0.679 -0.021  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -3612,10 +3612,17 @@ As we can see, the non-linear transformation gives the CLR flexibility in captur
 
 To better understand how the CLR model with the trend works, we can represent it in the exponential form:
 \begin{equation}
-    t^{\underline{\gamma}} = \exp (\underline{\gamma} \ln t) = \exp (\gamma_r \ln t) \exp (i \gamma_i \ln t),
+    t^{\underline{\gamma}} = \exp (\underline{\gamma} \ln t) = t^{\gamma_r} \exp (i \gamma_i \ln t),
     \label{eq:trendExp}
 \end{equation}
 where \(\underline{\gamma}=\gamma_r + i \gamma_i\). The form \eqref{eq:trendExp} shows that the real part of the parameter \(\underline{\gamma}\) controls the magnitude of the resulting complex variable, while the imaginary one controls how fast the argument (angle) changes. So, the more stable trajectories (closer to the linear ones) will be obtained with \(\gamma_i\) close to zero, while the speed of the change in the trajectory is regulated by \(\gamma_r\).
+
+Another way to look at the complex-valued trend is to use the trigonometric form of complex variable:
+\begin{equation}
+    t^{\underline{\gamma}} = t^{\gamma_r} \left(\cos (\gamma_i \ln t) + i \sin (\gamma_i \ln t) \right) .
+    \label{eq:trendTrig}
+\end{equation}
+This form tells us that fundamentally any trajectory from the complex-valued trend is trigonometric, but \(\gamma_i\) regulates the strength of the cosine/sine waves for the respective real and imaginary parts of the complex response variable.
 
 Trend in the response variable
 
