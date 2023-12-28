@@ -27,7 +27,7 @@ which is equivalent to:
 \end{equation}
 The trend in \@ref(eq:trendInCLRNonlinear) is now non-linear and depending on the specific values of the complex parameter $\underline{\gamma}$ can exhibit exponential, trigonometric or inverse trajectories. Figure \@ref(fig:trendTrajectories) shows several trajectories of the real and the imaginary parts of the response variable with different values of the parameter $\underline{\gamma}$.
 
-```{r trendTrajectories, fic.cap="Different trajectories of trend with different values of the parameter $\\underline{\\gamma}$: 0.5-1.5i, 1.5-0.5i, and 0.5+0.2i.", echo=FALSE}
+```{r trendTrajectories, fig.cap="Different trajectories of trend with different values of the parameter $\\underline{\\gamma}$: 0.5-1.5i, 1.5-0.5i, and 0.5+0.2i.", echo=FALSE}
 t <- c(1:100)
 par(mfcol=c(2,3), mar=c(2,4,2,1))
 t1 <- t^{0.5-1.5i}

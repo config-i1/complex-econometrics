@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2023.12.19)  28 DEC 2023 12:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2023.12.19)  28 DEC 2023 12:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -822,14 +822,14 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 
 [26]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvGene
-ratedCircle-1.pdf, id=443, 255.95625pt x 214.8025pt>
+ratedCircle-1.pdf, id=443, 256.96pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vGeneratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 GeneratedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvGeneratedCircle-1.pdf  used on input line 856.
-(pdftex.def)             Requested size: 255.95561pt x 214.80197pt.
+(pdftex.def)             Requested size: 256.96327pt x 214.80524pt.
 
 Package natbib Warning: Citation `refGoodman' on page 27 undefined on input lin
 e 867.
@@ -1068,25 +1068,25 @@ ANDOM VARIABLES
 
 [56]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugate-1.pdf, id=877, 262.9825pt x 262.9825pt>
+onjugate-1.pdf, id=877, 263.98625pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvCorConjugate-1.pdf  used on input line 1823.
-(pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
+(pdftex.def)             Requested size: 263.99767pt x 262.99387pt.
 [57 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 rvCorConjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugateMDS-1.pdf, id=891, 255.95625pt x 212.795pt>
+onjugateMDS-1.pdf, id=891, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1848.
-(pdftex.def)             Requested size: 255.95561pt x 212.79446pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 58 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1340,18 +1340,14 @@ T THE RESPONSE VARIABLE \T1/lmr/m/n/10 107
 ]
 Chapter 6.
 [109]
-
-LaTeX Warning: Reference `fig:trendTrajectories' on page 110 undefined on input
- line 3603.
-
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/trendTr
-ajectories-1.pdf, id=1497, 461.725pt x 320.19624pt>
+ajectories-1.pdf, id=1498, 461.725pt x 320.19624pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/tr
 endTrajectories-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/tre
 ndTrajectories-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/trendTrajectories-1.pdf  used on input line 3605.
+les/figure-latex/trendTrajectories-1.pdf  used on input line 3607.
 (pdftex.def)             Requested size: 345.0036pt x 239.25247pt.
 [110 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 trendTrajectories-1.pdf>] [111] [112
@@ -1369,13 +1365,10 @@ Package natbib Warning: There were undefined citations.
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
  ***********
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 16998 strings out of 477695
- 285103 string characters out of 5831647
+ 16999 strings out of 477695
+ 285113 string characters out of 5831647
  1875759 words of memory out of 5000000
  36428 multiletter control sequences out of 15000+600000
  617064 words of font info for 225 fonts, out of 8000000 for 9000
@@ -1400,10 +1393,10 @@ ts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b>
 Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (115 
-pages, 4231342 bytes).
+pages, 4231949 bytes).
 PDF statistics:
- 1966 PDF objects out of 2073 (max. 8388607)
- 1670 compressed objects within 17 object streams
- 493 named destinations out of 1000 (max. 500000)
+ 1968 PDF objects out of 2073 (max. 8388607)
+ 1672 compressed objects within 17 object streams
+ 494 named destinations out of 1000 (max. 500000)
  58021 words of extra memory for PDF output out of 61914 (max. 10000000)
 
