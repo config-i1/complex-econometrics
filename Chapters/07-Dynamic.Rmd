@@ -10,11 +10,50 @@ One of the simplest ways to introduce dynamics in a complex linear model is to i
     {y}_t = {\beta}_0 + {\beta}_1 {x}_{1,t} + {\beta}_2 {x}_{2,t} + \dots + {\beta}_{k-1} {x}_{k-1,t} + \gamma t + {\epsilon}_t,
     (\#eq:trendInRealModel)
 \end{equation}
-where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases indefinitely. 
+where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases (depending on the value of the parameter $\gamma$) indefinitely. Adding such trend to the model allows capturing the deterministic trend and neglecting its effect on the values of other parameters in the model. In CLR, the addition of the trend in the additive model is similar and has the same meaning - it will increase linearly indefinitely. Mathematically, CLR with trend can be written as:
+\begin{equation}
+    \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t} + \underline{\gamma} t + \underline{\epsilon}_t .
+    (\#eq:trendInCLR)
+\end{equation}
+The more interesting case arises when a multiplicative CLR is considered, i.e. the model with logarithmic transform (as discussed in Section \@ref(assumptionsSpecificationTransformation)):
+\begin{equation}
+    \ln \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \ln \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \ln \underline{x}_{k-1,t} + \underline{\gamma} \ln t + \underline{\epsilon}_t ,
+    (\#eq:trendInCLRLogs)
+\end{equation}
+which is equivalent to:
+\begin{equation}
+    \underline{y}_t = \exp \underline{\beta}_0 \times \underline{x}_{1,t}^{\underline{\beta}_1} \times \dots \times \underline{x}_{k-1,t}^{\underline{\beta}_{k-1}} \times t^{\underline{\gamma}} \times \exp \underline{\epsilon}_t .
+    (\#eq:trendInCLRNonlinear)
+\end{equation}
+The trend in \@ref(eq:trendInCLRNonlinear) is now non-linear and depending on the specific values of the complex parameter $\underline{\gamma}$ can exhibit exponential, trigonometric or inverse trajectories. Figure \@ref(fig:trendTrajectories) shows several trajectories of the real and the imaginary parts of the response variable with different values of the parameter $\underline{\gamma}$.
 
-Linear
+```{r trendTrajectories, fic.cap="Different trajectories of trend with different values of the parameter $\\underline{\\gamma}$: 0.5-1.5i, 1.5-0.5i, and 0.5+0.2i.", echo=FALSE}
+t <- c(1:100)
+par(mfcol=c(2,3), mar=c(2,4,2,1))
+t1 <- t^{0.5-1.5i}
+plot(Re(t1),main="",type="l",ylab="Re(y)")
+title(main=TeX("$\\underline\\gamma=0.5-1.5i$"))
+plot(Im(t1),main="",type="l",ylab="Im(y)")
+t1 <- t^{1.5-0.5i}
+plot(Re(t1),main="",type="l",ylab="Re(y)")
+title(main=TeX("$\\underline\\gamma=1.5-0.5i$"))
+plot(Im(t1),main="",type="l",ylab="Im(y)")
+t1 <- t^{0.5+0.2i}
+plot(Re(t1),main="",type="l",ylab="Re(y)")
+title(main=TeX("$\\underline\\gamma=0.5+0.2i$"))
+plot(Im(t1),main="",type="l",ylab="Im(y)")
+```
 
-Log-model
+As we can see, the non-linear transformation gives the CLR flexibility in capturing various types of trends in the data, making it a much more flexible instrument for modelling than the real-valued regressions. Furthermore, this flexibility in the trend can be used in the real-valued models as well, if we substitute all the complex variables and parameters (except for $\underline{\gamma}$) by their real-valued counterparts. The model will then produce a complex response variable, the imaginary part of which can be dropped.
+
+To better understand how the CLR model with the trend works, we can represent it in the exponential form:
+\begin{equation}
+    t^{\underline{\gamma}} = \exp (\underline{\gamma} \ln t) = \exp (\gamma_r \ln t) \exp (i \gamma_i \ln t),
+    (\#eq:trendExp)
+\end{equation}
+where $\underline{\gamma}=\gamma_r + i \gamma_i$. The form \@ref(eq:trendExp) shows that the real part of the parameter $\underline{\gamma}$ controls the magnitude of the resulting complex variable, while the imaginary one controls how fast the argument (angle) changes. So, the more stable trajectories (closer to the linear ones) will be obtained with $\gamma_i$ close to zero, while the speed of the change in the trajectory is regulated by $\gamma_r$.
+
+
 
 Trend in the response variable
 
