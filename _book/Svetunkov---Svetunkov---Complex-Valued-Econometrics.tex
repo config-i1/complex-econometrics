@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.74404+99.56019i
+## [1] 50.391+100.4755i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 116.5507+0i
+## 121.2481+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -76.24621-22.47702i
+##    Direct variance 
+## -77.5475+12.03038i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -715,8 +715,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r  20.15227 -11.23851
-## x_i -11.23851  96.39848
+## x_r 21.850318  6.015189
+## x_i  6.015189 99.397816
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1816.344
+## [1] 2135.691
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 50.1087-105.594i
+## 74.50599-98.78984i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -41.0065+63.17267i
+##   Direct covariance 
+## -54.21461+58.44738i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -96.86733-21.33799i -41.00650+63.17267i
-## y -41.00650+63.17267i  66.63844+39.33996i
+## x -80.95724-13.48887i -54.21461+58.44738i
+## y -54.21461+58.44738i  -2.53502+80.97201i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -960,7 +960,7 @@ However, from practical point of view, testing the joint hypothesis \eqref{eq:hy
 \hypertarget{simpleCLR}{%
 \chapter{Simple Complex Linear Regression}\label{simpleCLR}}
 
-We start with the simplest Complex Linear Regression (CLR), which we call ``simple'', because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
+We start with the simplest Complex Linear Regression (cLR), which we call ``simple'', because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
 
 \hypertarget{simpleCLRModel}{%
 \section{Model formulation}\label{simpleCLRModel}}
@@ -1018,7 +1018,7 @@ where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \math
 \hypertarget{SCLREstimation}{%
 \section{Estimation}\label{SCLREstimation}}
 
-Whenever we estimate a model, we substitute the ``true'' parameters by their sample estimates. So, for the CLR, the model applied to the data should be written as:
+Whenever we estimate a model, we substitute the ``true'' parameters by their sample estimates. So, for the cLR, the model applied to the data should be written as:
 \begin{equation}
     \underline{y}_j = \underline{b}_0 + \underline{b}_1 \underline{x}_j + \underline{e}_j,
     \label{eq:SimpleCLRComplexEstimated}
@@ -1046,7 +1046,7 @@ where \(\underline{b_{l}}\), \(b_{l,r}+ib_{l,i}\) and \(\boldsymbol{b}\) are the
 \hypertarget{SCLREstimationOLS}{%
 \subsection{Ordinary Least Squares}\label{SCLREstimationOLS}}
 
-We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
+We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple cLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
     \sum_{j=1}^n (\underline{e}_j \underline{\tilde{e}}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     \label{eq:SimpleCLROLSLoss}
@@ -1373,7 +1373,7 @@ So, we can see that despite being counter-intuitive, the CLS produces the estima
 \hypertarget{SCLREstimationLikelihood}{%
 \subsection{Likelihood}\label{SCLREstimationLikelihood}}
 
-Finally, another way of estimating the simple CLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
+Finally, another way of estimating the simple cLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
 \begin{equation}
     \boldsymbol{\Sigma}_\epsilon = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
     \label{eq:SimpleCLRLikelihoodSigma}
@@ -1422,7 +1422,7 @@ In terms of consistency, in one specific situation, when \(\hat{\sigma}_{x_r}^2 
 
 Similar analysis can be done for the coefficient \(b_{1,i}\), with the conclusions similar to the above, so we skip this discussion.
 
-In order to do a more thorough comparison of the three estimators, we set up an experiment based on the following simple CLR:
+In order to do a more thorough comparison of the three estimators, we set up an experiment based on the following simple cLR:
 \begin{equation*}
     y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)
 \end{equation*}
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9971247
+## [1] 0.9974853
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1886,8 +1886,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##          [,1]
-## [1,] 0.996686
+##           [,1]
+## [1,] 0.9974486
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##        x_r    x_i    y_r    y_i
-## x_r  1.000 -0.095  0.735  0.661
-## x_i -0.095  1.000 -0.741  0.680
-## y_r  0.735 -0.741  1.000 -0.019
-## y_i  0.661  0.680 -0.019  1.000
+##       x_r    x_i    y_r    y_i
+## x_r 1.000  0.104  0.670  0.722
+## x_i 0.104  1.000 -0.665  0.759
+## y_r 0.670 -0.665  1.000 -0.025
+## y_i 0.722  0.759 -0.025  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -1924,7 +1924,7 @@ This matrix will not tell us how the variables \(\underline{x}\) and \(\underlin
 \hypertarget{multipleCLR}{%
 \chapter{Multiple Complex Linear Regression}\label{multipleCLR}}
 
-We now move to the discussion of the multiple CLR, the model that captures relations between one complex random variable, \(y_r + i y_i\) and a set of explanatory complex random variables.
+We now move to the discussion of the multiple cLR, the model that captures relations between one complex random variable, \(y_r + i y_i\) and a set of explanatory complex random variables.
 
 \hypertarget{model-formulation}{%
 \section{Model formulation}\label{model-formulation}}
@@ -1942,7 +1942,7 @@ where \(k-1\) is the number of complex random variables. Similarly to how it was
     \end{aligned}
     \label{eq:MultipleCLRSystem}
 \end{equation}
-As can be seen from \eqref{eq:MultipleCLRSystem}, the multiple CLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework.
+As can be seen from \eqref{eq:MultipleCLRSystem}, the multiple cLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework.
 
 This system can be represented in a more compact form, similarly to \eqref{eq:SimpleCLRVector}:
 \begin{equation}
@@ -1951,7 +1951,7 @@ This system can be represented in a more compact form, similarly to \eqref{eq:Si
 \end{equation}
 where now \(\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{x}_{1,1} & \dots & \underline{x}_{k-1,1} \\ 1 & \underline{x}_{1,2} & \dots & \underline{x}_{k-1,2} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{x}_{1,n} & \dots & \underline{x}_{k-1,n} \end{pmatrix}\) and \(\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{\beta}_0 \\ \underline{\beta}_1 \\ \vdots \\ \underline{\beta}_{k-1} \end{pmatrix}\), where each of the elements in the matrices and vectors above is a complex number.
 
-Furthermore, the system \eqref{eq:MultipleCLRSystem} can also be used to represent the multiple CLR in a simple form using vector and matrix notations, avoiding complex numbers:
+Furthermore, the system \eqref{eq:MultipleCLRSystem} can also be used to represent the multiple cLR in a simple form using vector and matrix notations, avoiding complex numbers:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
     \label{eq:MultipleCLRSystemVector}
@@ -1961,7 +1961,7 @@ where \(\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}\), \(\un
     \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} 
     \label{eq:CLRSystemVectorFinal}
 \end{equation}
-where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}\) and \(\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}\). Formula \eqref{eq:CLRSystemVectorFinal} becomes especially useful for multiple CLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \eqref{eq:CLRSystemVectorFinal} sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
+where \(\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}\), \(\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}\) and \(\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}\). Formula \eqref{eq:CLRSystemVectorFinal} becomes especially useful for multiple cLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \eqref{eq:CLRSystemVectorFinal} sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
 
 The main difference between the form \eqref{eq:CLRVector} and \eqref{eq:CLRSystemVectorFinal} is that the former contains complex numbers inside each of the matrices and vectors.
 
@@ -1982,7 +1982,7 @@ where \(\underline{\boldsymbol{b}}\) is the estimate of \(\underline{\boldsymbol
 \hypertarget{ordinary-least-squares}{%
 \subsection{Ordinary Least Squares}\label{ordinary-least-squares}}
 
-The criterion of OLS for multiple CLR can be written as:
+The criterion of OLS for multiple cLR can be written as:
 \begin{equation}
     \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right),
     \label{eq:CLROLSCriterion}
@@ -2005,7 +2005,7 @@ which gives the classical formula for the estimation of parameters of the model 
     \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}}
     \label{eq:MCLROLSEstimate}
 \end{equation}
-Given that \eqref{eq:MCLROLSEstimate} corresponds to the classical OLS, it will maintain all of its conventional properties, i.e.~its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \ref{complexVariable}, the operator \(\prime\) denotes conjugate transposition, which means that for the special case of simple CLR, the formula \eqref{eq:MCLROLSEstimate} will become \eqref{eq:SimpleCLROLSLossParametersMoments}.
+Given that \eqref{eq:MCLROLSEstimate} corresponds to the classical OLS, it will maintain all of its conventional properties, i.e.~its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \ref{complexVariable}, the operator \(\prime\) denotes conjugate transposition, which means that for the special case of simple cLR, the formula \eqref{eq:MCLROLSEstimate} will become \eqref{eq:SimpleCLROLSLossParametersMoments}.
 
 Finally, using the same principles, we can show that the estimates of parameters can be obtained if we use the form \eqref{eq:CLRSystemVectorFinalEstimated} instead of the vectors of complex variables:
 \begin{equation}
@@ -2017,7 +2017,7 @@ The form \eqref{eq:MCLROLSEstimateComplex} becomes especially useful for futher 
 \hypertarget{complex-least-squares}{%
 \subsection{Complex Least Squares}\label{complex-least-squares}}
 
-As discussed in Section \ref{SCLREstimation}, there is also an alternative approach to estimation of CLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \eqref{eq:CLRVector}, i.e.~minimise the criterion (which is the same as the one discussed in Subsection \ref{SCLREstimationCLS}):
+As discussed in Section \ref{SCLREstimation}, there is also an alternative approach to estimation of cLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \eqref{eq:CLRVector}, i.e.~minimise the criterion (which is the same as the one discussed in Subsection \ref{SCLREstimationCLS}):
 \begin{equation}
     \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right).
     \label{eq:CLRCLSCriterion}
@@ -2032,7 +2032,7 @@ which then results in the following formula for the CLS estimate of parameters:
     \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{y}} .
     \label{eq:MCLRCLSEstimate}
 \end{equation}
-For the simple CLR, the formula \eqref{eq:MCLRCLSEstimate} becomes equivalent to \eqref{eq:SimpleCLRCLSLossParameters}. The main difference between \eqref{eq:MCLRCLSEstimate} and \eqref{eq:MCLROLSEstimateComplex}, as we can see, is that in the CLS, the transposition is done without the conjugation.
+For the simple cLR, the formula \eqref{eq:MCLRCLSEstimate} becomes equivalent to \eqref{eq:SimpleCLRCLSLossParameters}. The main difference between \eqref{eq:MCLRCLSEstimate} and \eqref{eq:MCLROLSEstimateComplex}, as we can see, is that in the CLS, the transposition is done without the conjugation.
 
 Finally, based on the form \eqref{eq:CLRSystemVectorFinalEstimated}, it can be shown that the same estimates (but in a form of real-valued vector) can be obtained via:
 \begin{equation}
@@ -2063,12 +2063,12 @@ In order to take the individual variances and the covariance into account, we ne
 \hypertarget{likelihood}{%
 \subsection{Likelihood}\label{likelihood}}
 
-Similarly to how it was done in Subsection \ref{SCLREstimationLikelihood}, we can make an assumption about the distribution of the error term of the CLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \eqref{eq:MultipleCLRSystemVector} then after being estimated it becomes:
+Similarly to how it was done in Subsection \ref{SCLREstimationLikelihood}, we can make an assumption about the distribution of the error term of the cLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \eqref{eq:MultipleCLRSystemVector} then after being estimated it becomes:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{b} + \boldsymbol{e}_j .
     \label{eq:MultipleCLRSystemVectorEstimated}
 \end{equation}
-The concentrated log-likelihood for the complex regression model \eqref{eq:MultipleCLRSystemVectorEstimated} will be exactly the same as for the simple CLR:
+The concentrated log-likelihood for the complex regression model \eqref{eq:MultipleCLRSystemVectorEstimated} will be exactly the same as for the simple cLR:
 \begin{equation*}
     \ell^*(\boldsymbol{\theta}, \hat{\boldsymbol{\Sigma}}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi e) + \log | \hat{\boldsymbol{\Sigma}}_\epsilon | \right) ,
 \end{equation*}
@@ -2182,7 +2182,7 @@ Finally, in case of the likelihood estimation, the covariance matrix of paramete
 \hypertarget{demonstration-in-r}{%
 \subsection{Demonstration in R}\label{demonstration-in-r}}
 
-In R, the estimation of the CLR can be done using the \texttt{clm()} function from the \texttt{complex} package. The specific estimation method can be selected using the \texttt{loss} parameter. For demonstration purposes, we will create an artificial data and see how the estimators work.
+In R, the estimation of the cLR can be done using the \texttt{clm()} function from the \texttt{complex} package. The specific estimation method can be selected using the \texttt{loss} parameter. For demonstration purposes, we will create an artificial data and see how the estimators work.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2313,10 +2313,10 @@ The CLS, on the other hand, will give other estimates of parameters:
 
 The estimates of parameters in the output above are less efficient than the ones from OLS/likelihood (as expected), but they are still not far from the true values of parameters. Notably, the CLS produced the lowest covariance between the real and imaginary parts of the complex residuals, which makes sense given how the CLS loss is formulated.
 
-This demonstration shows how simple it is to estimate a CLR on data and how its outputs can be read. As one can see, the outputs do not differ substantially from the ones of the real values models.
+This demonstration shows how simple it is to estimate a cLR on data and how its outputs can be read. As one can see, the outputs do not differ substantially from the ones of the real values models.
 
 \hypertarget{capturing-uncertainty-in-the-multiple-clr}{%
-\section{Capturing uncertainty in the multiple CLR}\label{capturing-uncertainty-in-the-multiple-clr}}
+\section{Capturing uncertainty in the multiple cLR}\label{capturing-uncertainty-in-the-multiple-clr}}
 
 Having both direct and conjugate variances for OLS and CLS, it is possible to do several things:
 
@@ -2369,7 +2369,7 @@ Finally, to produce confidence intervals, we can use the formulae \eqref{eq:Mult
 \hypertarget{demonstration-in-r-1}{%
 \subsection{Demonstration in R}\label{demonstration-in-r-1}}
 
-Building on the same example of artificial data from the previous section, we will see how predictions from the CLR can be made. To that extent, we will use the first 80 observations to estimate CLR using likelihood and then use the last 20 for prediction:
+Building on the same example of artificial data from the previous section, we will see how predictions from the cLR can be made. To that extent, we will use the first 80 observations to estimate cLR using likelihood and then use the last 20 for prediction:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2392,7 +2392,7 @@ After estimating the model, we produce forecasts with a 95\% prediction interval
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/CLRArtificialForecast-1.pdf}
-\caption{\label{fig:CLRArtificialForecast}Forecasts from CLR for the artificial data, given the values of explanatory variables in the holdout set.}
+\caption{\label{fig:CLRArtificialForecast}Forecasts from cLR for the artificial data, given the values of explanatory variables in the holdout set.}
 \end{figure}
 
 If the confidence interval for the conditional mean is needed, then this is regulated with \texttt{interval="confidence"} parameter.
@@ -2651,7 +2651,7 @@ where \(\underline{\mathbf{Z}} = \begin{pmatrix} \underline{\mathbf{X}} & \under
 \hypertarget{assumptionsSpecificationTransformation}{%
 \subsection{Variables transformations}\label{assumptionsSpecificationTransformation}}
 
-While the first two assumptions are universal for any statistical model, the third one has some special implications in case of CLR. This is because of the effect they have on the variables: transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable \(\underline{z}\) as shown in \eqref{eq:complexNumberLogarithm} is:
+While the first two assumptions are universal for any statistical model, the third one has some special implications in case of cLR. This is because of the effect they have on the variables: transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable \(\underline{z}\) as shown in \eqref{eq:complexNumberLogarithm} is:
 \begin{equation*}
     \ln \underline{z} = \ln r + i \phi ,
 \end{equation*}
@@ -2687,7 +2687,7 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 Even if the imaginary part of \(\underline{x}\) is zero (and as a result we deal with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
 
-The diagnostics of correct transformations in CLR is challenging, but can be done by analysing the residuals. Consider the following example in R (using functions from the \texttt{complex} package in R):
+The diagnostics of correct transformations in cLR is challenging, but can be done by analysing the residuals. Consider the following example in R (using functions from the \texttt{complex} package in R):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2730,7 +2730,7 @@ The issues of the model can be diagnosed using various plots. For example, here 
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/nonlinearLinStdResid-1.pdf}
-\caption{\label{fig:nonlinearLinStdResid}Standardised residuals vs Fitted for the CLR on non-linear data.}
+\caption{\label{fig:nonlinearLinStdResid}Standardised residuals vs Fitted for the cLR on non-linear data.}
 \end{figure}
 
 The plots above demonstrate that there is a slight non-linear pattern in the residuals (especially for the real part of the model) and that their variances might not be constant. These are the indicators of a possible non-linearity in the data. In order to capture it correctly, we would need to transform both response and the explanatory complex variables and estimate the model in logarithms:
@@ -2754,7 +2754,7 @@ After which the same plot will look more reasonable, with residuals not exhibiti
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/nonlinearStdResid-1.pdf}
-\caption{\label{fig:nonlinearStdResid}Standardised residuals vs Fitted for the log-log CLR on non-linear data.}
+\caption{\label{fig:nonlinearStdResid}Standardised residuals vs Fitted for the log-log cLR on non-linear data.}
 \end{figure}
 
 \hypertarget{assumptionsSpecificationOutlier}{%
@@ -2784,16 +2784,16 @@ The next group of assumptions has five elements in it:
   Residuals follow a circular distribution.
 \end{enumerate}
 
-Some of these assumptions are universal for statistical models, while the others (e.g.~the last one) are specific to CLR.
+Some of these assumptions are universal for statistical models, while the others (e.g.~the last one) are specific to cLR.
 
 \hypertarget{assumptionsResidualsHomoscedastic}{%
 \subsection{Homoscedastic residuals}\label{assumptionsResidualsHomoscedastic}}
 
 The first assumption implies that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This follows directly from the formulae for the direct and conjugate covariances from Section \ref{MCLRInference}: if either of the covariances is not constant, and we use the formulae for calculating the standard errors of parameters, we will obtain averaged-out values, that would be lower than needed for some observations and higher than needed for the others.
 
-In case of the formulation of CLR as a vector model and the likelihood estimation, the assumption implies that the covariance matrix of residuals \(\Sigma_\epsilon\) stays the same no matter what. This assumption aligns well with a similar assumption of conventional multivariate models, such as VAR \citep{Lutkepohl} or VETS \citep{SvetunkovVETS}.
+In case of the formulation of cLR as a vector model and the likelihood estimation, the assumption implies that the covariance matrix of residuals \(\Sigma_\epsilon\) stays the same no matter what. This assumption aligns well with a similar assumption of conventional multivariate models, such as VAR \citep{Lutkepohl} or VETS \citep{SvetunkovVETS}.
 
-The homoscedasticity assumption can be typically diagnosed visually by producing the plot of absolute residuals vs fitted. In case of the CLR, this can be modified to producing plots for each part of the complex residuals. Figure \ref{fig:heteroDiagnostics} shows how the residuals of the linear model applied to the non-linear data (example from Subsection \ref{assumptionsSpecificationTransformation}) look:
+The homoscedasticity assumption can be typically diagnosed visually by producing the plot of absolute residuals vs fitted. In case of the cLR, this can be modified to producing plots for each part of the complex residuals. Figure \ref{fig:heteroDiagnostics} shows how the residuals of the linear model applied to the non-linear data (example from Subsection \ref{assumptionsSpecificationTransformation}) look:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2813,7 +2813,7 @@ The plots in Figure \ref{fig:heteroDiagnostics} show that the variability of res
 \hypertarget{assumptionsResidualsAuto}{%
 \subsection{No autocorrelation in residuals}\label{assumptionsResidualsAuto}}
 
-This assumption only applies to time series data. In case of the real-valued models, it means that the residuals in the past should not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g.~the appropriate transformations are not done, or some autoregressive elements are missing). In case of the CLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g.~complex autoregression, discussed later in this book).
+This assumption only applies to time series data. In case of the real-valued models, it means that the residuals in the past should not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g.~the appropriate transformations are not done, or some autoregressive elements are missing). In case of the cLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g.~complex autoregression, discussed later in this book).
 
 To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate complex ACF/PACF (or cACF/cPACF, based on the correlations discussed in Chapter \ref{correlationAnalysis}), giving an analyst four instruments instead of two. Furthermore, using the idea with correlation on MDS (see Section \ref{correlationMDSPearson}), we can calculate ACF/PACF based on Pearson's correlation between the complex variables reduced to real ones.
 
@@ -2964,7 +2964,7 @@ In addition, we can do more thorough diagnostics based on the complex ACF/PACF (
 \end{Highlighting}
 \end{Shaded}
 
-After doing the diagnostics of the residuals of a CLR, we can change its form by introducing complex AR (autoregression) or MA (moving average) elements, depending on what lags seem significant on the selected level. The complex AR/MA models are outside of the scope of this monograph and are not discussed in detail here. It suffices to say that in order to construct the complex AR, one needs to generate lagged response variable and add it to the matrix with the explanatory variables. The estimation of such model should be trivial.
+After doing the diagnostics of the residuals of a cLR, we can change its form by introducing complex AR (autoregression) or MA (moving average) elements, depending on what lags seem significant on the selected level. The complex AR/MA models are outside of the scope of this monograph and are not discussed in detail here. It suffices to say that in order to construct the complex AR, one needs to generate lagged response variable and add it to the matrix with the explanatory variables. The estimation of such model should be trivial.
 
 \hypertarget{expectation-of-residuals-is-zero}{%
 \subsection{Expectation of residuals is zero}\label{expectation-of-residuals-is-zero}}
@@ -3004,7 +3004,7 @@ Similarly to the conventional diagnostics related to distributional assumptions,
 \hypertarget{residuals-follow-a-circular-distribution}{%
 \subsection{Residuals follow a circular distribution}\label{residuals-follow-a-circular-distribution}}
 
-Finally, in signal processing literature, there is an assumption that residuals follow so called ``circular distribution''. This means that the covariance between the residuals equals to zero and that the variance of the real part is equal to the variance of the imaginary one. This also implies that the direct variance of residuals is equal to zero. While this might be a suitable assumption in signal processing, there is no good rationale for this to hold universally for all CLR models. In fact, the power of the CLR comes from different variances and potentially non-zero covariance between the residuals, because in that case the model can capture a complex dynamics between the parts of the complex variable. So, we suggest ignoring this assumption, especially given that it does not effect estimates of parameters of the forecasts from the model.
+Finally, in signal processing literature, there is an assumption that residuals follow so called ``circular distribution''. This means that the covariance between the residuals equals to zero and that the variance of the real part is equal to the variance of the imaginary one. This also implies that the direct variance of residuals is equal to zero. While this might be a suitable assumption in signal processing, there is no good rationale for this to hold universally for all cLR models. In fact, the power of the cLR comes from different variances and potentially non-zero covariance between the residuals, because in that case the model can capture a complex dynamics between the parts of the complex variable. So, we suggest ignoring this assumption, especially given that it does not effect estimates of parameters of the forecasts from the model.
 
 However, it is important to note that the used estimation methods might imply some parts of this assumption. For example, OLS minimises the sum of squared residuals of the real and imaginary parts, completely neglecting the covariance between them (see Subsection \ref{SCLREstimationOLS}). At the same time, the CLS (Subsection \ref{SCLREstimationCLS}) ignores the specific sizes of the squared residuals and focuses on making their squares equal, minimising at the same time the covariance between them. If we believe that the residuals might have a more complicated distribution (elliptic Normal) then MLE (Subsection \ref{SCLREstimationLikelihood}) might be the best option for the model estimation.
 
@@ -3022,13 +3022,13 @@ The two assumptions in this group relate to the estimation of model rather than 
   No multicollinearity
 \end{enumerate}
 
-The first assumption comes to the idea that a linear regression model can only capture a one-directional relation, where an explanatory variable impacts the response variable. If the relation in the real life is bi-directional then the estimates of parameters of a regression model will be biased. In that case, the relation needs to be somehow made one-directional, for example by substituting the explanatory variable that causes a problem with something similar that is not impacted by the response variable. In case of the complex linear regression, the situation would be similar to the conventional one. We do not plan to discuss how to solve the problem in case of CLR in this monograph. But we believe that the methods from econometrics of real-valued models should be widely applicable here as well (e.g.~using proxies or instrumental variables).
+The first assumption comes to the idea that a linear regression model can only capture a one-directional relation, where an explanatory variable impacts the response variable. If the relation in the real life is bi-directional then the estimates of parameters of a regression model will be biased. In that case, the relation needs to be somehow made one-directional, for example by substituting the explanatory variable that causes a problem with something similar that is not impacted by the response variable. In case of the complex linear regression, the situation would be similar to the conventional one. We do not plan to discuss how to solve the problem in case of cLR in this monograph. But we believe that the methods from econometrics of real-valued models should be widely applicable here as well (e.g.~using proxies or instrumental variables).
 
 As for the multicollinearity issue, in the real-valued statistics, it arises when least squares or maximum likelihood is used for estimation. It is, in a way, a technical issue: if the explanatory variables are linearly related it becomes difficult to split the impact of each of the explanatory variables on the response variable and thus challenging to correctly capture the relations between the explanatory variables and the response one.
 
 In case of an OLS applied to a conventional real-valued regression model, the issue comes to inverting the matrix \(\left( {\mathbf{X}}^\prime {\mathbf{X}} \right)^{-1}\). If some of variables in \(\mathbf{X}\) are strongly linearly related, the determinant of the matrix becomes close to zero and thus the inversion becomes challenging. Even if it is still possible to invert the matrix, the estimates of parameters become inefficient because small changes in the related explanatory variables may lead to substantial changes in the inversion.
 
-In case of CLR, the situation is similar, but with some specific features. First, it comes to the estimation methods, with the following options (as discussed in Section \ref{mlcrEstimation}):
+In case of cLR, the situation is similar, but with some specific features. First, it comes to the estimation methods, with the following options (as discussed in Section \ref{mlcrEstimation}):
 
 \begin{itemize}
 \tightlist
@@ -3078,9 +3078,9 @@ In addition to the estimation issues, there might be some related to the calcula
 
 In this case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the final covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of the standard errors of the individual parameters, the choice of estimation method would not resolve the multicollinearity issue. We can expect that the standard errors of parameters will be higher than in the situation without the multicollinearity, no matter what estimation method we use.
 
-Note that the standard issues that arise in conventional regression analysis due to linear relation between variables, might not apply to the CLR. For example, if a real part of one variable is strongly correlated with either a real or an imaginary part of the other one, the model might still be estimable and would not suffer from multicollinearity. The effect of multicollinearity in CLR is much more pronounced, when the complex variables are linearly related, rather than their separate parts.
+Note that the standard issues that arise in conventional regression analysis due to linear relation between variables, might not apply to the cLR. For example, if a real part of one variable is strongly correlated with either a real or an imaginary part of the other one, the model might still be estimable and would not suffer from multicollinearity. The effect of multicollinearity in cLR is much more pronounced, when the complex variables are linearly related, rather than their separate parts.
 
-The diagnostics of the multicollinearity in CLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
+The diagnostics of the multicollinearity in cLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
 
 \hypertarget{demonstration-in-r-3}{%
 \subsection{Demonstration in R}\label{demonstration-in-r-3}}
@@ -3224,7 +3224,7 @@ Finally, we calculate the covariance matrix of parameters between individual var
 
 If shows that there is a strong correlation between \(\mathcal{R}\left(\underline{x}_{1}\right)\) and \(\mathcal{R}\left(\underline{x}_{2}\right)\) and \(\mathcal{I}\left(\underline{x}_{2}\right)\), while the correlation between the imaginary part of \(\underline{x}_{1}\) with the other variables is not as strong.
 
-All of the outputs above tell us that if we want to fit the CLR, we will face difficulties due to the strong multicollinearity caused by the strong correlation between the explanatory variables. We estimate the model using the three different methods and produce their summary outputs. We start with OLS:
+All of the outputs above tell us that if we want to fit the cLR, we will face difficulties due to the strong multicollinearity caused by the strong correlation between the explanatory variables. We estimate the model using the three different methods and produce their summary outputs. We start with OLS:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3339,7 +3339,7 @@ As a side note, in this scenario, we would not be able to get efficient and unbi
 \subsubsection*{Scenario 2}\label{scenario-2}}
 \addcontentsline{toc}{subsubsection}{Scenario 2}
 
-In this scenario, we have strong correlation between real parts of explanatory variables, but not between the complex ones. We would expect the real-valued regression to fail in this case, but the CLR might still be estimable. We start the demonstration with the same set of outputs as before:
+In this scenario, we have strong correlation between real parts of explanatory variables, but not between the complex ones. We would expect the real-valued regression to fail in this case, but the cLR might still be estimable. We start the demonstration with the same set of outputs as before:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3485,7 +3485,7 @@ But overall, both methods produce biased, potentially not too efficient, but rea
 
 We skip the likelihood estimation, because for our DGP, it would produce estimates similar to the ones from OLS due to the zero correlation between the real and imaginary parts of the error term.
 
-Finally, we should note that the conventional real-valued regression would not be estimable in this situation due to the high correlation between some parts of the variables. This demonstrates the difference between the CLR and the LR.
+Finally, we should note that the conventional real-valued regression would not be estimable in this situation due to the high correlation between some parts of the variables. This demonstrates the difference between the cLR and the LR.
 
 \hypertarget{scenario-3}{%
 \subsubsection*{Scenario 3}\label{scenario-3}}
@@ -3559,7 +3559,7 @@ While the CLS one is:
 
 And again, we see similar picture to the Scenario 2: the real parts of parameters have lower standard errors in the model estimate using OLS than in the model estimated with CLS, while the imaginary parts have them the other way around. And similarly to the Scenario 2, we would expect the conventional real-valued regression to fail due to high correlation between some parts of variables.
 
-While these three scenarios were supposed to show how different types of correlations impact the estimates of parameters, they are here for demonstration purposes only. They show that multicollinearity in the CLR is a different beast than the one in the conventional real-valued model. In real life, we would not have variables that have close to functional relation (with correlation close to one), instead they might have strong relation and depending on the specific situation, different estimators will give different result.
+While these three scenarios were supposed to show how different types of correlations impact the estimates of parameters, they are here for demonstration purposes only. They show that multicollinearity in the cLR is a different beast than the one in the conventional real-valued model. In real life, we would not have variables that have close to functional relation (with correlation close to one), instead they might have strong relation and depending on the specific situation, different estimators will give different result.
 
 In general, getting rid of the multicollinearity is not a trivial task on its own. It can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard, they lie outside of the scope of this monograph, and we do not discuss them here.
 
@@ -3571,20 +3571,20 @@ In this chapter we consider the application of the complex linear model to time 
 In this chapter, we will use index \(t\) instead of \(j\) to denote that we are applying the model to time series, not to the cross-sectional data.
 
 \hypertarget{DynamicTrend}{%
-\section{CLR with a trend}\label{DynamicTrend}}
+\section{Complex model with trend}\label{DynamicTrend}}
 
-One of the simplest ways to introduce dynamics in a complex linear model is to include a trend. In the real-valued domain this means adding an explanatory variable with the index of the observation:
+One of the simplest ways to introduce dynamics in a complex model is to include a trend. In the real-valued domain this means adding an explanatory variable with the index of the observation:
 
 \begin{equation}
     {y}_t = {\beta}_0 + {\beta}_1 {x}_{1,t} + {\beta}_2 {x}_{2,t} + \dots + {\beta}_{k-1} {x}_{k-1,t} + \gamma t + {\epsilon}_t,
     \label{eq:trendInRealModel}
 \end{equation}
-where \(\gamma\) is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases (depending on the value of the parameter \(\gamma\)) indefinitely. Adding such trend to the model allows capturing the deterministic trend and neglecting its effect on the values of other parameters in the model. In CLR, the addition of the trend in the additive model is similar and has the same meaning - it will increase linearly indefinitely. Mathematically, CLR with trend can be written as:
+where \(\gamma\) is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases (depending on the value of the parameter \(\gamma\)) indefinitely. Adding such trend to the model allows capturing the deterministic trend and neglecting its effect on the values of other parameters in the model. In cLR, the addition of the trend in the additive model is similar and has the same meaning - it will increase linearly indefinitely. Mathematically, cLR with trend can be written as:
 \begin{equation}
     \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t} + \underline{\gamma} t + \underline{\epsilon}_t .
     \label{eq:trendInCLR}
 \end{equation}
-The more interesting case arises when a multiplicative CLR is considered, i.e.~the model with logarithmic transform (as discussed in Section \ref{assumptionsSpecificationTransformation}):
+The more interesting case arises when a multiplicative cLR is considered, i.e.~the model with logarithmic transform (as discussed in Section \ref{assumptionsSpecificationTransformation}):
 \begin{equation}
     \ln \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \ln \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \ln \underline{x}_{k-1,t} + \underline{\gamma} \ln t + \underline{\epsilon}_t ,
     \label{eq:trendInCLRLogs}
@@ -3602,9 +3602,9 @@ The trend in \eqref{eq:trendInCLRNonlinear} is now non-linear and depending on t
 \caption{\label{fig:trendTrajectories}Different trajectories of trend with different values of the parameter \(\underline{\gamma}\): 0.5-1.5i, 1.5-0.5i, and 0.5+0.2i.}
 \end{figure}
 
-As we can see, the non-linear transformation gives the CLR flexibility in capturing various types of trends in the data, making it a much more flexible instrument for modelling than the real-valued regressions. Furthermore, this flexibility in the trend can be used in the real-valued models as well, if we substitute all the complex variables and parameters (except for \(\underline{\gamma}\)) by their real-valued counterparts. The model will then produce a complex response variable, the imaginary part of which can be dropped.
+As we can see, the non-linear transformation gives the cLR flexibility in capturing various types of trends in the data, making it a much more flexible instrument for modelling than the real-valued regressions. Furthermore, this flexibility in the trend can be used in the real-valued models as well, if we substitute all the complex variables and parameters (except for \(\underline{\gamma}\)) by their real-valued counterparts. The model will then produce a complex response variable, the imaginary part of which can be dropped.
 
-To better understand how the CLR model with the trend works, we can represent it in the exponential form:
+To better understand how the cLR model with the trend works, we can represent it in the exponential form:
 \begin{equation}
     t^{\underline{\gamma}} = \exp (\underline{\gamma} \ln t) = t^{\gamma_r} \exp (i \gamma_i \ln t),
     \label{eq:trendExp}
@@ -3714,13 +3714,24 @@ The resulting model fit and the forecast for the next 20 observations are shown 
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/dataWithTrendForecast-1.pdf}
-\caption{\label{fig:dataWithTrendForecast}CLR applied to the generated data with a trend.}
+\caption{\label{fig:dataWithTrendForecast}cLR applied to the generated data with a trend.}
 \end{figure}
 
 As we can see, this example shows how a non-linear trend can be estimated and then used for forecasting using a complex linear regression model.
 
 \hypertarget{complex-ar}{%
 \section{Complex AR}\label{complex-ar}}
+
+One of the possible ways of modelling dynamics is by saying that future values of the variable depend on its past ones. \citet{Box1976}, who have developed a theory and methodology of so called ``AutoRegressive Integrated Moving Average'' (or ARIMA), provide an example of a series of CO\(_2\) output by a furnace with variable gas rate. In that situation the future amount of carbon dioxide will depend on the amount the furnace produced on the previous observations. This is one of example of an AR process. An interested reader is directed to Chapter 8 of \citet{SvetunkovAdam}, where the ARIMA model is discussed in more detail.
+
+cLR can also be extended by the inclusion of the past values of the response variable. In that case, mathematically the model looks more similar to vector AR rather than the univariate one. However, in our case the model is restricted with just two time series and can still be represented using complex variables:
+\begin{equation}
+    \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
+    \label{eq:ComplexAR}
+\end{equation}
+where \(\phi_j\) is the \(j\)-th parameter of the autoregression and \(p\) is the order of the model, complex autoregression, cAR(p).
+
+If we add the already discussed static elements in \eqref{eq:ComplexAR}, namely \(\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}\), then the model will transform into cARX(p), combining the properties of the cLR and cAR.
 
 This is from 2.3 and 2.5
 
@@ -3745,7 +3756,7 @@ Other stuff from the original monograph
 \hypertarget{Examples}{%
 \chapter{Examples of application}\label{Examples}}
 
-In this chapter we consider examples of application for CLR and the complex ARMA models.
+In this chapter we consider examples of application for cLR and the complex ARIMA models.
 
 \hypertarget{production-functions}{%
 \section{Production functions}\label{production-functions}}
