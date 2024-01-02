@@ -1,5 +1,5 @@
 # Multiple Complex Linear Regression {#multipleCLR}
-We now move to the discussion of the multiple CLR, the model that captures relations between one complex random variable, $y_r + i y_i$ and a set of explanatory complex random variables.
+We now move to the discussion of the multiple cLR, the model that captures relations between one complex random variable, $y_r + i y_i$ and a set of explanatory complex random variables.
 
 ## Model formulation 
 Similarly to how the multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
@@ -15,7 +15,7 @@ where $k-1$ is the number of complex random variables. Similarly to how it was d
     \end{aligned}
     (\#eq:MultipleCLRSystem)
 \end{equation}
-As can be seen from \@ref(eq:MultipleCLRSystem), the multiple CLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework.
+As can be seen from \@ref(eq:MultipleCLRSystem), the multiple cLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework.
 
 This system can be represented in a more compact form, similarly to \@ref(eq:SimpleCLRVector):
 \begin{equation}
@@ -24,7 +24,7 @@ This system can be represented in a more compact form, similarly to \@ref(eq:Sim
 \end{equation}
 where now $\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{x}_{1,1} & \dots & \underline{x}_{k-1,1} \\ 1 & \underline{x}_{1,2} & \dots & \underline{x}_{k-1,2} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{x}_{1,n} & \dots & \underline{x}_{k-1,n} \end{pmatrix}$ and $\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{\beta}_0 \\ \underline{\beta}_1 \\ \vdots \\ \underline{\beta}_{k-1} \end{pmatrix}$, where each of the elements in the matrices and vectors above is a complex number.
 
-Furthermore, the system \@ref(eq:MultipleCLRSystem) can also be used to represent the multiple CLR in a simple form using vector and matrix notations, avoiding complex numbers:
+Furthermore, the system \@ref(eq:MultipleCLRSystem) can also be used to represent the multiple cLR in a simple form using vector and matrix notations, avoiding complex numbers:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
     (\#eq:MultipleCLRSystemVector)
@@ -34,7 +34,7 @@ where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\under
     \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} 
     (\#eq:CLRSystemVectorFinal)
 \end{equation}
-where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. Formula \@ref(eq:CLRSystemVectorFinal) becomes especially useful for multiple CLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \@ref(eq:CLRSystemVectorFinal) sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
+where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. Formula \@ref(eq:CLRSystemVectorFinal) becomes especially useful for multiple cLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \@ref(eq:CLRSystemVectorFinal) sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
 
 The main difference between the form \@ref(eq:CLRVector) and \@ref(eq:CLRSystemVectorFinal) is that the former contains complex numbers inside each of the matrices and vectors.
 
@@ -52,7 +52,7 @@ where $\underline{\boldsymbol{b}}$ is the estimate of $\underline{\boldsymbol{\b
 \end{equation}
 
 ### Ordinary Least Squares
-The criterion of OLS for multiple CLR can be written as:
+The criterion of OLS for multiple cLR can be written as:
 \begin{equation}
     \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right),
     (\#eq:CLROLSCriterion)
@@ -75,7 +75,7 @@ which gives the classical formula for the estimation of parameters of the model 
     \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}}
     (\#eq:MCLROLSEstimate)
 \end{equation}
-Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operator $\prime$ denotes conjugate transposition, which means that for the special case of simple CLR, the formula \@ref(eq:MCLROLSEstimate) will become \@ref(eq:SimpleCLROLSLossParametersMoments).
+Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operator $\prime$ denotes conjugate transposition, which means that for the special case of simple cLR, the formula \@ref(eq:MCLROLSEstimate) will become \@ref(eq:SimpleCLROLSLossParametersMoments).
 
 Finally, using the same principles, we can show that the estimates of parameters can be obtained if we use the form \@ref(eq:CLRSystemVectorFinalEstimated) instead of the vectors of complex variables:
 \begin{equation}
@@ -87,7 +87,7 @@ The form \@ref(eq:MCLROLSEstimateComplex) becomes especially useful for futher i
 
 
 ### Complex Least Squares
-As discussed in Section \@ref(SCLREstimation), there is also an alternative approach to estimation of CLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \@ref(eq:CLRVector), i.e. minimise the criterion (which is the same as the one discussed in Subsection \@ref(SCLREstimationCLS)):
+As discussed in Section \@ref(SCLREstimation), there is also an alternative approach to estimation of cLR, the Complex Least Squares. In order to get the estimates based on it, we need to apply the same principles as with OLS, but directly to the form \@ref(eq:CLRVector), i.e. minimise the criterion (which is the same as the one discussed in Subsection \@ref(SCLREstimationCLS)):
 \begin{equation}
     \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right).
     (\#eq:CLRCLSCriterion)
@@ -102,7 +102,7 @@ which then results in the following formula for the CLS estimate of parameters:
     \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{y}} .
     (\#eq:MCLRCLSEstimate)
 \end{equation}
-For the simple CLR, the formula \@ref(eq:MCLRCLSEstimate) becomes equivalent to \@ref(eq:SimpleCLRCLSLossParameters). The main difference between \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLROLSEstimateComplex), as we can see, is that in the CLS, the transposition is done without the conjugation.
+For the simple cLR, the formula \@ref(eq:MCLRCLSEstimate) becomes equivalent to \@ref(eq:SimpleCLRCLSLossParameters). The main difference between \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLROLSEstimateComplex), as we can see, is that in the CLS, the transposition is done without the conjugation.
 
 Finally, based on the form \@ref(eq:CLRSystemVectorFinalEstimated), it can be shown that the same estimates (but in a form of real-valued vector) can be obtained via:
 \begin{equation}
@@ -131,12 +131,12 @@ In order to take the individual variances and the covariance into account, we ne
 
 
 ### Likelihood
-Similarly to how it was done in Subsection \@ref(SCLREstimationLikelihood), we can make an assumption about the distribution of the error term of the CLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \@ref(eq:MultipleCLRSystemVector) then after being estimated it becomes:
+Similarly to how it was done in Subsection \@ref(SCLREstimationLikelihood), we can make an assumption about the distribution of the error term of the cLR. The conventional one is that it follows a normal distribution. If we formulate the model in the vector form \@ref(eq:MultipleCLRSystemVector) then after being estimated it becomes:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{b} + \boldsymbol{e}_j .
     (\#eq:MultipleCLRSystemVectorEstimated)
 \end{equation}
-The concentrated log-likelihood for the complex regression model \@ref(eq:MultipleCLRSystemVectorEstimated) will be exactly the same as for the simple CLR:
+The concentrated log-likelihood for the complex regression model \@ref(eq:MultipleCLRSystemVectorEstimated) will be exactly the same as for the simple cLR:
 \begin{equation*}
 	\ell^*(\boldsymbol{\theta}, \hat{\boldsymbol{\Sigma}}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi e) + \log | \hat{\boldsymbol{\Sigma}}_\epsilon | \right) ,
 \end{equation*}
@@ -248,7 +248,7 @@ Finally, in case of the likelihood estimation, the covariance matrix of paramete
 
 
 ### Demonstration in R
-In R, the estimation of the CLR can be done using the `clm()` function from the `complex` package. The specific estimation method can be selected using the `loss` parameter. For demonstration purposes, we will create an artificial data and see how the estimators work.
+In R, the estimation of the cLR can be done using the `clm()` function from the `complex` package. The specific estimation method can be selected using the `loss` parameter. For demonstration purposes, we will create an artificial data and see how the estimators work.
 
 ```{r}
 set.seed(41)
@@ -298,10 +298,10 @@ clm(y~., dataArtificial, loss="CLS") |>
 
 The estimates of parameters in the output above are less efficient than the ones from OLS/likelihood (as expected), but they are still not far from the true values of parameters. Notably, the CLS produced the lowest covariance between the real and imaginary parts of the complex residuals, which makes sense given how the CLS loss is formulated.
 
-This demonstration shows how simple it is to estimate a CLR on data and how its outputs can be read. As one can see, the outputs do not differ substantially from the ones of the real values models.
+This demonstration shows how simple it is to estimate a cLR on data and how its outputs can be read. As one can see, the outputs do not differ substantially from the ones of the real values models.
 
 
-## Capturing uncertainty in the multiple CLR
+## Capturing uncertainty in the multiple cLR
 Having both direct and conjugate variances for OLS and CLS, it is possible to do several things:
 
 1. Construct confidence intervals for parameters;
@@ -349,7 +349,7 @@ Finally, to produce confidence intervals, we can use the formulae \@ref(eq:Multi
 
 
 ### Demonstration in R
-Building on the same example of artificial data from the previous section, we will see how predictions from the CLR can be made. To that extent, we will use the first 80 observations to estimate CLR using likelihood and then use the last 20 for prediction:
+Building on the same example of artificial data from the previous section, we will see how predictions from the cLR can be made. To that extent, we will use the first 80 observations to estimate cLR using likelihood and then use the last 20 for prediction:
 
 ```{r}
 CLRArtificial <- clm(y~., dataArtificial,
@@ -358,7 +358,7 @@ CLRArtificial <- clm(y~., dataArtificial,
 
 After estimating the model, we produce forecasts with a 95% prediction interval (see Figure \@ref(fig:CLRArtificialForecast)):
 
-```{r CLRArtificialForecast, fig.cap="Forecasts from CLR for the artificial data, given the values of explanatory variables in the holdout set."}
+```{r CLRArtificialForecast, fig.cap="Forecasts from cLR for the artificial data, given the values of explanatory variables in the holdout set."}
 par(mfcol=c(2,1), mar=c(2,2,3,1))
 predict(CLRArtificial, tail(dataArtificial,20),
         interval="prediction") |>

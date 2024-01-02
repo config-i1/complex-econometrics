@@ -1,5 +1,5 @@
 # Examples of application {#Examples}
-In this chapter we consider examples of application for CLR and the complex ARMA models.
+In this chapter we consider examples of application for cLR and the complex ARIMA models.
 
 
 ## Production functions

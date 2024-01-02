@@ -4,7 +4,7 @@
 options(scipen = 100)
 ```
 
-We start with the simplest Complex Linear Regression (CLR), which we call "simple", because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
+We start with the simplest Complex Linear Regression (cLR), which we call "simple", because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real numbers domain.
 
 ## Model formulation {#simpleCLRModel}
 The simple Complex Linear Regression can be written as:
@@ -59,7 +59,7 @@ where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathb
 
 
 ## Estimation {#SCLREstimation}
-Whenever we estimate a model, we substitute the "true" parameters by their sample estimates. So, for the CLR, the model applied to the data should be written as:
+Whenever we estimate a model, we substitute the "true" parameters by their sample estimates. So, for the cLR, the model applied to the data should be written as:
 \begin{equation}
     \underline{y}_j = \underline{b}_0 + \underline{b}_1 \underline{x}_j + \underline{e}_j,
     (\#eq:SimpleCLRComplexEstimated)
@@ -86,7 +86,7 @@ where $\underline{b_{l}}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estim
 
 
 ### Ordinary Least Squares {#SCLREstimationOLS}
-We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple CLR, it comes to minimising the following loss based on the residuals:
+We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple cLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
     \sum_{j=1}^n (\underline{e}_j \underline{\tilde{e}}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     (\#eq:SimpleCLROLSLoss)
@@ -399,7 +399,7 @@ So, we can see that despite being counter-intuitive, the CLS produces the estima
 
 
 ### Likelihood {#SCLREstimationLikelihood}
-Finally, another way of estimating the simple CLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
+Finally, another way of estimating the simple cLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
 \begin{equation}
     \boldsymbol{\Sigma}_\epsilon = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
     (\#eq:SimpleCLRLikelihoodSigma)
@@ -451,7 +451,7 @@ Similar analysis can be done for the coefficient $b_{1,i}$, with the conclusions
 load("./data/clmExperimentsParameters.Rdata")
 ```
 
-In order to do a more thorough comparison of the three estimators, we set up an experiment based on the following simple CLR:
+In order to do a more thorough comparison of the three estimators, we set up an experiment based on the following simple cLR:
 \begin{equation*}
     y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)
 \end{equation*}
