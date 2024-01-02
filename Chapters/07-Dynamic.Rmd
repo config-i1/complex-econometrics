@@ -3,19 +3,19 @@ In this chapter we consider the application of the complex linear model to time 
 
 In this chapter, we will use index $t$ instead of $j$ to denote that we are applying the model to time series, not to the cross-sectional data.
 
-## CLR with a trend {#DynamicTrend}
-One of the simplest ways to introduce dynamics in a complex linear model is to include a trend. In the real-valued domain this means adding an explanatory variable with the index of the observation:
+## Complex model with trend {#DynamicTrend}
+One of the simplest ways to introduce dynamics in a complex model is to include a trend. In the real-valued domain this means adding an explanatory variable with the index of the observation:
 
 \begin{equation}
     {y}_t = {\beta}_0 + {\beta}_1 {x}_{1,t} + {\beta}_2 {x}_{2,t} + \dots + {\beta}_{k-1} {x}_{k-1,t} + \gamma t + {\epsilon}_t,
     (\#eq:trendInRealModel)
 \end{equation}
-where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases (depending on the value of the parameter $\gamma$) indefinitely. Adding such trend to the model allows capturing the deterministic trend and neglecting its effect on the values of other parameters in the model. In CLR, the addition of the trend in the additive model is similar and has the same meaning - it will increase linearly indefinitely. Mathematically, CLR with trend can be written as:
+where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases (depending on the value of the parameter $\gamma$) indefinitely. Adding such trend to the model allows capturing the deterministic trend and neglecting its effect on the values of other parameters in the model. In cLR, the addition of the trend in the additive model is similar and has the same meaning - it will increase linearly indefinitely. Mathematically, cLR with trend can be written as:
 \begin{equation}
     \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t} + \underline{\gamma} t + \underline{\epsilon}_t .
     (\#eq:trendInCLR)
 \end{equation}
-The more interesting case arises when a multiplicative CLR is considered, i.e. the model with logarithmic transform (as discussed in Section \@ref(assumptionsSpecificationTransformation)):
+The more interesting case arises when a multiplicative cLR is considered, i.e. the model with logarithmic transform (as discussed in Section \@ref(assumptionsSpecificationTransformation)):
 \begin{equation}
     \ln \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \ln \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \ln \underline{x}_{k-1,t} + \underline{\gamma} \ln t + \underline{\epsilon}_t ,
     (\#eq:trendInCLRLogs)
@@ -44,9 +44,9 @@ title(main=TeX("$\\underline\\gamma=0.5+0.2i$"))
 plot(Im(t1),main="",type="l",ylab="Im(y)")
 ```
 
-As we can see, the non-linear transformation gives the CLR flexibility in capturing various types of trends in the data, making it a much more flexible instrument for modelling than the real-valued regressions. Furthermore, this flexibility in the trend can be used in the real-valued models as well, if we substitute all the complex variables and parameters (except for $\underline{\gamma}$) by their real-valued counterparts. The model will then produce a complex response variable, the imaginary part of which can be dropped.
+As we can see, the non-linear transformation gives the cLR flexibility in capturing various types of trends in the data, making it a much more flexible instrument for modelling than the real-valued regressions. Furthermore, this flexibility in the trend can be used in the real-valued models as well, if we substitute all the complex variables and parameters (except for $\underline{\gamma}$) by their real-valued counterparts. The model will then produce a complex response variable, the imaginary part of which can be dropped.
 
-To better understand how the CLR model with the trend works, we can represent it in the exponential form:
+To better understand how the cLR model with the trend works, we can represent it in the exponential form:
 \begin{equation}
     t^{\underline{\gamma}} = \exp (\underline{\gamma} \ln t) = t^{\gamma_r} \exp (i \gamma_i \ln t),
     (\#eq:trendExp)
@@ -101,7 +101,7 @@ summary(clrModel)
 
 The resulting model fit and the forecast for the next 20 observations are shown in Figure \@ref(fig:dataWithTrendForecast):
 
-```{r dataWithTrendForecast, fig.cap="CLR applied to the generated data with a trend."}
+```{r dataWithTrendForecast, fig.cap="cLR applied to the generated data with a trend."}
 # Extract fitted values and transform to the original scale
 fitted(clrModel) |> exp() -> yFitted
 yForecast <- predict(clrModel, newdata=tail(complexData, 20))
@@ -127,6 +127,19 @@ As we can see, this example shows how a non-linear trend can be estimated and th
 
 
 ## Complex AR
+One of the possible ways of modelling dynamics is by saying that future values of the variable depend on its past ones. @Box1976, who have developed a theory and methodology of so called "AutoRegressive Integrated Moving Average" (or ARIMA), provide an example of a series of CO$_2$ output by a furnace with variable gas rate. In that situation the future amount of carbon dioxide will depend on the amount the furnace produced on the previous observations. This is one of example of an AR process. An interested reader is directed to Chapter 8 of @SvetunkovAdam, where the ARIMA model is discussed in more detail.
+
+cLR can also be extended by the inclusion of the past values of the response variable. In that case, mathematically the model looks more similar to vector AR rather than the univariate one. However, in our case the model is restricted with just two time series and can still be represented using complex variables:
+\begin{equation}
+    \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
+    (\#eq:ComplexAR)
+\end{equation}
+where $\phi_j$ is the $j$-th parameter of the autoregression and $p$ is the order of the model, complex autoregression, cAR(p).
+
+
+
+If we add the already discussed static elements in \@ref(eq:ComplexAR), namely $\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}$, then the model will transform into cARX(p), combining the properties of the cLR and cAR.
+
 This is from 2.3 and 2.5
 
 <!-- Properties and what ACF/PACF they generate -->
