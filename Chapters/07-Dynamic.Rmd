@@ -60,11 +60,70 @@ Another way to look at the complex-valued trend is to use the trigonometric form
 \end{equation}
 This form tells us that fundamentally any trajectory from the complex-valued trend is trigonometric, but $\gamma_i$ regulates the strength of the cosine/sine waves for the respective real and imaginary parts of the complex response variable.
 
+### Example in R
+In R, the trend is supported in the `clm()` function from the `complex` package via the formula. Here is an example:
+```{r}
+# Set random seed for reproducibility
+set.seed(41)
+# Sample size
+obs <- 100
+# Create an explanatory variable
+x <- complex(real=rnorm(obs,100,10), imaginary=rnorm(obs,50,5))
+# Generate parameters
+b0 <- 2 + 1.5i
+b1 <- 0.8 - 0.4i
+b2 <- 0.5 + 0.2i
+# Generate error term from the complex normal distribution
+e <- rcnorm(obs, 0, sigma2=0.25, varsigma2=0.16+0.09i)
+# Generate the data using non-linear model
+y <- exp(b0 + b1 * log(x) + b2 * log(c(1:obs)) + e)
+# Merge it to the matrix
+complexData <- data.frame(y=y,x=x)
+```
 
+The code above will generate data with a slowly increasing trend (similar to the one shown in Figure \@ref(fig:trendTrajectories)), which is shown in Figure \@ref(fig:dataWithTrend)
 
-Trend in the response variable
+```{r dataWithTrend, fig.cap="Generated time series with a trend.", echo=FALSE}
+par(mfcol=c(2,1), mar=c(4,4,1,1))
+plot(Re(complexData$y), typ="l", main="",
+     xlab="Time", ylab="Real part")
+plot(Im(complexData$y), typ="l", main="",
+     xlab="Time", ylab="Imaginary part")
+```
 
-This is from 2.12 "CTAR"
+Applying a complex linear regression to the data with the same formula as in the DGP gives us the following estimates of parameters:
+
+```{r}
+# Apply a model with the trend in logarithms
+clrModel <- clm(log(y)~log(x)+log(trend), complexData, subset=1:80)
+summary(clrModel)
+```
+
+The resulting model fit and the forecast for the next 20 observations are shown in Figure \@ref(fig:dataWithTrendForecast):
+
+```{r dataWithTrendForecast, fig.cap="CLR applied to the generated data with a trend."}
+# Extract fitted values and transform to the original scale
+fitted(clrModel) |> exp() -> yFitted
+yForecast <- predict(clrModel, newdata=tail(complexData, 20))
+
+# Setup the canvas
+par(mfcol=c(2,1), mar=c(4,4,1,1))
+# Plot the real part
+plot(Re(complexData$y), type="l",
+     xlab="Time", ylab="Real part")
+lines(Re(yFitted), col="purple", lwd=2, lty=2)
+exp(yForecast$mean) |> Re() |>
+    lines(x=c(81:100), col="blue", lwd=2, lty=2)
+
+# Plot the imaginary part
+plot(Im(complexData$y), type="l",
+     xlab="Time", ylab="Imaginary part")
+lines(Im(yFitted), col="purple", lwd=2, lty=2)
+exp(yForecast$mean) |> Im() |>
+    lines(x=c(81:100), col="blue", lwd=2, lty=2)
+```
+
+As we can see, this example shows how a non-linear trend can be estimated and then used for forecasting using a complex linear regression model.
 
 
 ## Complex AR

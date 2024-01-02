@@ -206,12 +206,11 @@ x <- complex(real=rnorm(obs,100,10), imaginary=rnorm(obs,50,5))
 b0 <- 1 - 1.5i
 b1 <- 2.5 + 1.5i
 # Generate error term from the complex normal distribution
-e <- complex(real=rnorm(obs, 0, 0.1), imaginary=rnorm(obs, 0, 0.2))
-# e <- rcnorm(obs, 0, sigma2=0.25, varsigma2=0.16+0.09i)
+e <- rcnorm(obs, 0, sigma2=0.25, varsigma2=0.16+0.09i)
 # Generate the data using non-linear model
 y <- exp(b0 + b1 * log(x) + e)
 # Merge it to the matrix
-complexData <- cbind(y=y,x=x)
+complexData <- data.frame(y=y,x=x)
 ```
 
 For demonstration purposes, we will first use a complex linear regression model on the data that was generated using a non-linear one:
