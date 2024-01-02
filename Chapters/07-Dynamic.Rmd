@@ -1,5 +1,5 @@
 # Complex Dynamic Models {#Dynamic}
-In this chapter we consider the application of the complex linear model to time series data. There are different ways how to do that, and we only discuss a few of the straight forward options of how to construct dynamic models. We start with a model with a trend, which has its own features, then discuss complex Autoregression (cAR), then move to the complex Moving Average (cMA) and complex Autoregression with Moving Average (cARMA) and then finish the discussion with the model applied to differences of the data, cARIMA.
+In this chapter we consider the application of the complex linear model to time series data. There are different ways how to do that, and we only discuss a few of the straight forward options of how to construct dynamic models. We start with a model with a trend, which has its own features, then discuss complex Autoregression (cAR), then move to the complex Moving Average (cMA) and complex Autoregression with Moving Average (cARMA) and then finish the discussion with the model applied to differences of the data, cARIMA. cARIMA and its sub-models have a lot in common with the vector ARIMA models applied to two time series. The main difference between them is in the matrix of the parameters: in case of the vector models, it is estimated in full (four parameters for two time series), while in case of the complex ARIMA, it contains two times fewer parameters to estimate. Many of the properties of the vector models can be transferred to cARIMA, and many of them have been explained in detail by @Lutkepohl. Still, there are some of them that are specific for the complex models.
 
 In this chapter, we will use index $t$ instead of $j$ to denote that we are applying the model to time series, not to the cross-sectional data.
 
@@ -134,7 +134,7 @@ cLR can also be extended by the inclusion of the past values of the response var
     \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
     (\#eq:ComplexAR)
 \end{equation}
-where $\phi_j$ is the $j$-th parameter of the autoregression and $p$ is the order of the model, complex autoregression, cAR(p).
+where $\phi_j$ is the $j$-th parameter, and $p$ is the order of the model, complex autoregression, cAR(p).
 
 
 
