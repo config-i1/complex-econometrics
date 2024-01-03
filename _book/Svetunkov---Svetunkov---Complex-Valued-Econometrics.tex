@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-01-02}
+\date{2024-01-03}
 
 \begin{document}
 \maketitle
@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.391+100.4755i
+## [1] 52.77892+99.99892i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 121.2481+0i
+## 141.3318+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -77.5475+12.03038i
+##     Direct variance 
+## -85.52155-10.56068i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 21.850318  6.015189
-## x_i  6.015189 99.397816
+##           x_r        x_i
+## x_r 27.905147  -5.280342
+## x_i -5.280342 113.426697
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2135.691
+## [1] 3137.307
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 74.50599-98.78984i
+## 74.34471-64.71939i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -54.21461+58.44738i
+##  Direct covariance 
+## -29.70563+35.9981i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -821,9 +821,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -80.95724-13.48887i -54.21461+58.44738i
-## y -54.21461+58.44738i  -2.53502+80.97201i
+##                     x                  y
+## x -63.40234- 7.06004i -29.70563+35.9981i
+## y -29.70563+35.99810i  33.04781+44.4145i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1663,8 +1663,8 @@ The same code is implemented in \texttt{cplot()} function from \texttt{complex} 
 
 The plot in Figure \ref{fig:crvScatterplotMDS} is much easier to read than the collection of scatterplots in Figure \ref{fig:crvScatterplots}, and in our example, we can conclude that the two complex variables exhibit strong linear relation.
 
-\hypertarget{types-of-correlation-coefficients}{%
-\section{Types of correlation coefficients}\label{types-of-correlation-coefficients}}
+\hypertarget{correlationTypes}{%
+\section{Types of correlation coefficients}\label{correlationTypes}}
 
 The literature knows two correlation coefficients for complex variables \citep{ref}: the conjugate and the direct correlation (the latter is known in the literature as ``pseudo-correlation''). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \ref{crvSecondMoment}):
 
@@ -1674,13 +1674,13 @@ The literature knows two correlation coefficients for complex variables \citep{r
   Conjugate correlation
   \begin{equation}
    \rho_{x,y} = \frac{\sqrt{\sigma_{x,y} \sigma_{y,x}}}{\sigma_x \sigma_y},
-   \label{eq:correlationConventional}
+   \label{eq:correlationConjugate}
   \end{equation}
 \item
   Direct correlation
   \begin{equation}
    \varrho_{x,y} = \frac{\varsigma_{x,y}}{\varsigma_x \varsigma_y}.
-   \label{eq:correlationPseudo}
+   \label{eq:correlationDirect}
   \end{equation}
 \end{enumerate}
 
@@ -1737,7 +1737,7 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 
 This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction.
 
-The formulae \eqref{eq:correlationConventional} and \eqref{eq:correlationPseudo} are derived based on the original definition of Pearson's correlation coefficient \citep{refPearson}. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
+The formulae \eqref{eq:correlationConjugate} and \eqref{eq:correlationDirect} are derived based on the original definition of Pearson's correlation coefficient \citep{refPearson}. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
         &\underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x} + \underline{\epsilon} \\
@@ -1758,7 +1758,7 @@ Taking their geometric means leads to:
     \hat{\rho}_{x,y} = \sqrt{\underline{a}_1 \underline{b}_1},
     \label{eq:correlationConventionalEstimate}
 \end{equation}
-which then leads to the formula \eqref{eq:correlationConventional}. Similarly, for CLS estimated regressions, we have:
+which then leads to the formula \eqref{eq:correlationConjugate}. Similarly, for CLS estimated regressions, we have:
 \begin{equation}
     \begin{aligned}
         &\underline{b}_1 = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x} \\
@@ -1766,7 +1766,7 @@ which then leads to the formula \eqref{eq:correlationConventional}. Similarly, f
     \end{aligned}
     \label{eq:twoRegressionsCLS}
 \end{equation}
-which after taking the same geometric means leads to \eqref{eq:correlationPseudo}. Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
+which after taking the same geometric means leads to \eqref{eq:correlationDirect}. Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
 
 \hypertarget{correlationConjugate}{%
 \section{Conjugate correlation}\label{correlationConjugate}}
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9974853
+## [1] 0.9976463
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1887,7 +1887,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9974486
+## [1,] 0.9814835
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r    y_i
-## x_r 1.000  0.104  0.670  0.722
-## x_i 0.104  1.000 -0.665  0.759
-## y_r 0.670 -0.665  1.000 -0.025
-## y_i 0.722  0.759 -0.025  1.000
+##       x_r    x_i    y_r   y_i
+## x_r 1.000  0.016  0.713 0.727
+## x_i 0.016  1.000 -0.686 0.695
+## y_r 0.713 -0.686  1.000 0.042
+## y_i 0.727  0.695  0.042 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2815,7 +2815,7 @@ The plots in Figure \ref{fig:heteroDiagnostics} show that the variability of res
 
 This assumption only applies to time series data. In case of the real-valued models, it means that the residuals in the past should not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g.~the appropriate transformations are not done, or some autoregressive elements are missing). In case of the cLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g.~complex autoregression, discussed later in this book).
 
-To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate complex ACF/PACF (or cACF/cPACF, based on the correlations discussed in Chapter \ref{correlationAnalysis}), giving an analyst four instruments instead of two. Furthermore, using the idea with correlation on MDS (see Section \ref{correlationMDSPearson}), we can calculate ACF/PACF based on Pearson's correlation between the complex variables reduced to real ones.
+To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate complex ACF/PACF (or cACF/cPACF, based on the correlations discussed in Chapter \ref{correlationAnalysis}), giving an analyst four instruments instead of two \citep{ACFPACFReferences}. Furthermore, using the idea with correlation on MDS (see Section \ref{correlationMDSPearson}), we can calculate ACF/PACF based on Pearson's correlation between the complex variables reduced to real ones.
 
 In general, the idea with direct and conjugate ACF/PACF for complex variables is similar to the one for the conventional ACF/PACF for the real ones. The complex ACF measures the correlations between the variable on observation \(t\) and the one with lag \(\tau=\{1, \dots, T\}\), where \(T\) is the maximum lag we calculate the correlation for. If we calculate the conjugate correlations, we obtain a vector of values \(\rho_{1}, \dots, \rho_{T}\) (specific formulae are discussed in Section \ref{correlationConjugate}). In case of the direct one (see Section \ref{correlationDirect}), we get a vector \(\varrho_{1}, \dots, \varrho_{T}\). In both cases the index \(j\) in subscription refers to the specific lag, so, for example, \(\rho_{1}\) will measure the conjugate autocorrelation for lag 1, i.e.~conjugate correlation between \(\underline{y}_{t}\) and \(\underline{y}_{t-1}\).
 
@@ -3566,7 +3566,7 @@ In general, getting rid of the multicollinearity is not a trivial task on its ow
 \hypertarget{Dynamic}{%
 \chapter{Complex Dynamic Models}\label{Dynamic}}
 
-In this chapter we consider the application of the complex linear model to time series data. There are different ways how to do that, and we only discuss a few of the straight forward options of how to construct dynamic models. We start with a model with a trend, which has its own features, then discuss complex Autoregression (cAR), then move to the complex Moving Average (cMA) and complex Autoregression with Moving Average (cARMA) and then finish the discussion with the model applied to differences of the data, cARIMA.
+In this chapter we consider the application of the complex linear model to time series data. There are different ways how to do that, and we only discuss a few of the straight forward options of how to construct dynamic models. We start with a model with a trend, which has its own features, then discuss complex Autoregression (cAR), then move to the complex Moving Average (cMA) and complex Autoregression with Moving Average (cARMA) and then finish the discussion with the model applied to differences of the data, cARIMA. cARIMA and its sub-models have a lot in common with the vector ARIMA models applied to two time series. The main difference between them is in the matrix of the parameters: in case of the vector models, it is estimated in full (four parameters for two time series), while in case of the complex ARIMA, it contains two times fewer parameters to estimate. Many of the properties of the vector models can be transferred to cARIMA, and many of them have been explained in detail by \citet{Lutkepohl}. Still, there are some of them that are specific for the complex models.
 
 In this chapter, we will use index \(t\) instead of \(j\) to denote that we are applying the model to time series, not to the cross-sectional data.
 
@@ -3729,11 +3729,85 @@ cLR can also be extended by the inclusion of the past values of the response var
     \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
     \label{eq:ComplexAR}
 \end{equation}
-where \(\phi_j\) is the \(j\)-th parameter of the autoregression and \(p\) is the order of the model, complex autoregression, cAR(p).
+where \(\phi_j\) is the \(j\)-th parameter, and \(p\) is the order of the model, complex autoregression, cAR(p).
 
-If we add the already discussed static elements in \eqref{eq:ComplexAR}, namely \(\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}\), then the model will transform into cARX(p), combining the properties of the cLR and cAR.
+Similarly to the conventional AR, it can be shown how complex ACF/PACF (discussed in Subsection \ref{assumptionsResidualsAuto}) behave for different orders of cAR. In this monograph, for simplicity, we only provide an example of cAR(1) without an intercept, noting that the logic for the higher orders is similar \citep[ has similar derivations for the real-valued AR(p) in Section 8.3]{SvetunkovAdam}.
 
-This is from 2.3 and 2.5
+The cAR(1) model is defined as:
+\begin{equation}
+    \underline{y}_t = \underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t .
+    \label{eq:ComplexAR1Step1}
+\end{equation}
+The covariance between the most recent and the previous observations can then be calculated as (note here that we provide the formula for the conjugate covariance, but the calculations for the direct one will be similar):
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \mathrm{cov} \left(\underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t, \underline{y}_{t-1} \right) ,
+    \label{eq:ComplexAR1Step2}
+\end{equation}
+which given the basic assumptions of models (Section \ref{assumptionsResiduals}) equals to:
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \mathrm{cov} \left( \underline{y}_{t-1}, \underline{y}_{t-1} \right) .
+    \label{eq:ComplexAR1Step3}
+\end{equation}
+Now, depending on the type of covariance we need, we get:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  For the conjugate one:
+  \begin{equation}
+   \sigma_{\left(\underline{y}_t, \underline{y}_{t-1} \right)} = \underline{\phi}_1 \sigma^2_{y_t} ;
+   \label{eq:ComplexAR1ConjCov}
+  \end{equation}
+\item
+  For the direct one:
+  \begin{equation}
+   \varsigma_{\left(\underline{y}_t, \underline{y}_{t-1} \right)} = \underline{\phi}_1 \varsigma^2_{y_t} .
+   \label{eq:ComplexAR1DirCov}
+  \end{equation}
+  If we now insert \eqref{eq:ComplexAR1ConjCov} and \eqref{eq:ComplexAR1DirCov} into the respective formulae for the conjugate and direct correlations (Section \ref{correlationTypes}, equations \eqref{eq:correlationConjugate} and \eqref{eq:correlationDirect}), we will get the values of the cACF for the first lag according to:
+\item
+  Conjugate correlation:
+  \begin{equation}
+   \rho(1) = \frac{\sqrt{\underline{\phi}_1 \sigma^2_{y_t} \underline{\phi}_1 \sigma^2_{y_t}}}{\sigma_{y_t}^2} = | \underline{\phi}_1 |;
+   \label{eq:ComplexAR1ConjCor}
+  \end{equation}
+\item
+  Direct correlation:
+  \begin{equation}
+   \varrho(1) = \frac{\underline{\phi}_1 \varsigma^2_{y_t}}{\varsigma^2_{y_t}} = \underline{\phi}_1.
+   \label{eq:ComplexAR1DirCor}
+  \end{equation}
+\end{enumerate}
+
+As we can see from the formula \eqref{eq:ComplexAR1ConjCor}, the specific value of the cAR(1) parameter is lost because of the geometric mean in the formula: we end up with a magnitude of the complex variable instead of it real and imaginary parts. On the other hand, the direct cACF \eqref{eq:ComplexAR1DirCor} keeps the information about the cAR(1) parameter. However, the two formulae above are calculated in terms of expectations and their sample estimates might be slightly different. Specifically, the direct correlation \eqref{eq:ComplexAR1DirCor} relies on the sample estimate of the direct variance of the response variable \(y_t\), which might become equal to zero if the variances of the real and the imaginary parts of the complex variable are similar (as discussed in Section \ref{correlationDirect}). This means that in some situations the values of the direct cACF might become greater than one, leading to potential losses in information. But this also means that both conjugate and direct cACFs should be used for the analysis of complex time series: each of them has issues, but both of them give much clearer information about the potential process.
+
+If we calculate the covariance for the cAR(1) between the values \(y_{t}\) and \(y_{t-2}\), we will get the following (the reader is encouraged to do the calculations manually to check the correctness of the final result):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Conjugate correlation:
+  \begin{equation}
+   \rho(2) = | \underline{\phi}_1^2 |;
+   \label{eq:ComplexAR1ConjCor}
+  \end{equation}
+\item
+  Direct correlation:
+  \begin{equation}
+   \varrho(2) =  \underline{\phi}_1^2.
+   \label{eq:ComplexAR1DirCor}
+  \end{equation}
+\end{enumerate}
+
+In principles, it can be shown that the main properties of real-valued AR discussed by \citet{Box1976} hold widely for the cAR processes: cACF will decline exponentially starting from the lag p.
+
+The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF. This function
+
+Stationarity condition is similar to the AR/VAR: the absolute value of the complex number should be below one for cAR(1). For the other ones\ldots{} it should be unit roots thingy.
+
+What trajectories cAR generates.
+
+If we add the already discussed static elements to \eqref{eq:ComplexAR}, namely \(\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}\), then the model will transform into cARX(p), combining the properties of the cLR and cAR.
 
 \hypertarget{complex-ma}{%
 \section{Complex MA}\label{complex-ma}}

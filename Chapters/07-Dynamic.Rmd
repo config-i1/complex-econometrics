@@ -143,26 +143,26 @@ The cAR(1) model is defined as:
     \underline{y}_t = \underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t .
     (\#eq:ComplexAR1Step1)
 \end{equation}
-The covariance between the most recent and the previous observations can then be calculated as:
+The covariance between the most recent and the previous observations can then be calculated as (note here that we provide the formula for the conjugate covariance, but the calculations for the direct one will be similar):
 \begin{equation}
-    \cov \left(\underline{y}_t, \underline{y}_{t-1} \right) = \cov \left(\underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t, \underline{y}_{t-1} \right) ,
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \mathrm{cov} \left(\underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t, \underline{y}_{t-1} \right) ,
     (\#eq:ComplexAR1Step2)
 \end{equation}
 which given the basic assumptions of models (Section \@ref(assumptionsResiduals)) equals to:
 \begin{equation}
-    \cov \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \cov \left( \underline{y}_{t-1}, \underline{y}_{t-1} \right) .
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \mathrm{cov} \left( \underline{y}_{t-1}, \underline{y}_{t-1} \right) .
     (\#eq:ComplexAR1Step3)
 \end{equation}
 Now, depending on the type of covariance we need, we get:
 
 1. For the conjugate one:
 \begin{equation}
-    \sigma_\left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \sigma^2_{y_t} ;
+    \sigma_{\left(\underline{y}_t, \underline{y}_{t-1} \right)} = \underline{\phi}_1 \sigma^2_{y_t} ;
     (\#eq:ComplexAR1ConjCov)
 \end{equation}
 2. For the direct one:
 \begin{equation}
-    \varsigma_\left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \varsigma^2_{y_t} .
+    \varsigma_{\left(\underline{y}_t, \underline{y}_{t-1} \right)} = \underline{\phi}_1 \varsigma^2_{y_t} .
     (\#eq:ComplexAR1DirCov)
 \end{equation}
 If we now insert \@ref(eq:ComplexAR1ConjCov) and \@ref(eq:ComplexAR1DirCov) into the respective formulae for the conjugate and direct correlations (Section \@ref(correlationTypes), equations \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect)), we will get the values of the cACF for the first lag according to:
@@ -197,7 +197,7 @@ If we calculate the covariance for the cAR(1) between the values $y_{t}$ and $y_
 
 In principles, it can be shown that the main properties of real-valued AR discussed by @Box1976 hold widely for the cAR processes: cACF will decline exponentially starting from the lag p.
 
-The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF.
+The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF. This function
 
 
 
