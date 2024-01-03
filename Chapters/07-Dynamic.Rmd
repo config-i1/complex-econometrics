@@ -136,18 +136,83 @@ cLR can also be extended by the inclusion of the past values of the response var
 \end{equation}
 where $\phi_j$ is the $j$-th parameter, and $p$ is the order of the model, complex autoregression, cAR(p).
 
+Similarly to the conventional AR, it can be shown how complex ACF/PACF (discussed in Subsection \@ref(assumptionsResidualsAuto)) behave for different orders of cAR. In this monograph, for simplicity, we only provide an example of cAR(1) without an intercept, noting that the logic for the higher orders is similar [@SvetunkovAdam has similar derivations for the real-valued AR(p) in Section 8.3].
+
+The cAR(1) model is defined as:
+\begin{equation}
+    \underline{y}_t = \underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t .
+    (\#eq:ComplexAR1Step1)
+\end{equation}
+The covariance between the most recent and the previous observations can then be calculated as:
+\begin{equation}
+    \cov \left(\underline{y}_t, \underline{y}_{t-1} \right) = \cov \left(\underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t, \underline{y}_{t-1} \right) ,
+    (\#eq:ComplexAR1Step2)
+\end{equation}
+which given the basic assumptions of models (Section \@ref(assumptionsResiduals)) equals to:
+\begin{equation}
+    \cov \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \cov \left( \underline{y}_{t-1}, \underline{y}_{t-1} \right) .
+    (\#eq:ComplexAR1Step3)
+\end{equation}
+Now, depending on the type of covariance we need, we get:
+
+1. For the conjugate one:
+\begin{equation}
+    \sigma_\left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \sigma^2_{y_t} ;
+    (\#eq:ComplexAR1ConjCov)
+\end{equation}
+2. For the direct one:
+\begin{equation}
+    \varsigma_\left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \varsigma^2_{y_t} .
+    (\#eq:ComplexAR1DirCov)
+\end{equation}
+If we now insert \@ref(eq:ComplexAR1ConjCov) and \@ref(eq:ComplexAR1DirCov) into the respective formulae for the conjugate and direct correlations (Section \@ref(correlationTypes), equations \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect)), we will get the values of the cACF for the first lag according to:
+
+1. Conjugate correlation:
+\begin{equation}
+    \rho(1) = \frac{\sqrt{\underline{\phi}_1 \sigma^2_{y_t} \underline{\phi}_1 \sigma^2_{y_t}}}{\sigma_{y_t}^2} = | \underline{\phi}_1 |;
+    (\#eq:ComplexAR1ConjCor)
+\end{equation}
+
+2. Direct correlation:
+\begin{equation}
+    \varrho(1) = \frac{\underline{\phi}_1 \varsigma^2_{y_t}}{\varsigma^2_{y_t}} = \underline{\phi}_1.
+    (\#eq:ComplexAR1DirCor)
+\end{equation}
+
+As we can see from the formula \@ref(eq:ComplexAR1ConjCor), the specific value of the cAR(1) parameter is lost because of the geometric mean in the formula: we end up with a magnitude of the complex variable instead of it real and imaginary parts. On the other hand, the direct cACF \@ref(eq:ComplexAR1DirCor) keeps the information about the cAR(1) parameter. However, the two formulae above are calculated in terms of expectations and their sample estimates might be slightly different. Specifically, the direct correlation \@ref(eq:ComplexAR1DirCor) relies on the sample estimate of the direct variance of the response variable $y_t$, which might become equal to zero if the variances of the real and the imaginary parts of the complex variable are similar (as discussed in Section \@ref(correlationDirect)). This means that in some situations the values of the direct cACF might become greater than one, leading to potential losses in information. But this also means that both conjugate and direct cACFs should be used for the analysis of complex time series: each of them has issues, but both of them give much clearer information about the potential process.
+
+If we calculate the covariance for the cAR(1) between the values $y_{t}$ and $y_{t-2}$, we will get the following (the reader is encouraged to do the calculations manually to check the correctness of the final result):
+
+1. Conjugate correlation:
+\begin{equation}
+    \rho(2) = | \underline{\phi}_1^2 |;
+    (\#eq:ComplexAR1ConjCor)
+\end{equation}
+
+2. Direct correlation:
+\begin{equation}
+    \varrho(2) =  \underline{\phi}_1^2.
+    (\#eq:ComplexAR1DirCor)
+\end{equation}
+
+In principles, it can be shown that the main properties of real-valued AR discussed by @Box1976 hold widely for the cAR processes: cACF will decline exponentially starting from the lag p.
+
+The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF.
 
 
-If we add the already discussed static elements in \@ref(eq:ComplexAR), namely $\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}$, then the model will transform into cARX(p), combining the properties of the cLR and cAR.
 
-This is from 2.3 and 2.5
+Stationarity condition is similar to the AR/VAR: the absolute value of the complex number should be below one for cAR(1). For the other ones... it should be unit roots thingy.
 
-<!-- Properties and what ACF/PACF they generate -->
+What trajectories cAR generates.
+
+
+
+If we add the already discussed static elements to \@ref(eq:ComplexAR), namely $\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}$, then the model will transform into cARX(p), combining the properties of the cLR and cAR.
+
 
 ## Complex MA
 New thing. Base it on ADAM ARIMA discussion
 
-<!-- Properties and what ACF/PACF they generate -->
 
 ## Complex ARMA and ARIMA
 From 2.4

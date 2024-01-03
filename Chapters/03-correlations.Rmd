@@ -66,19 +66,19 @@ The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the 
 <!-- The only thing to note is that due to the nature of MDS, the direction of the relation and the strength of the relationship might be lost during scaling. -->
 
 
-## Types of correlation coefficients
+## Types of correlation coefficients {#correlationTypes}
 The literature knows two correlation coefficients for complex variables [@ref]: the conjugate and the direct correlation (the latter is known in the literature as "pseudo-correlation"). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
 
 1. Conjugate correlation
 \begin{equation}
     \rho_{x,y} = \frac{\sqrt{\sigma_{x,y} \sigma_{y,x}}}{\sigma_x \sigma_y},
-    (\#eq:correlationConventional)
+    (\#eq:correlationConjugate)
 \end{equation}
 
 2. Direct correlation
 \begin{equation}
     \varrho_{x,y} = \frac{\varsigma_{x,y}}{\varsigma_x \varsigma_y}.
-    (\#eq:correlationPseudo)
+    (\#eq:correlationDirect)
 \end{equation}
 
 Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances [as done, for example, by @Panchev1971] then the value of correlation coefficient will be ambiguous, implying that the correlation between $\underline{x}$ and $\underline{y}$ differs from the correlation between $\underline{y}$ and $\underline{x}$. Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between $\underline{x}$ and $\underline{y}$, the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
@@ -101,7 +101,7 @@ ccor(x,y,method="conjugate")
 
 This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction.
 
-The formulae \@ref(eq:correlationConventional) and \@ref(eq:correlationPseudo) are derived based on the original definition of Pearson's correlation coefficient [@refPearson]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
+The formulae \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect) are derived based on the original definition of Pearson's correlation coefficient [@refPearson]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
         &\underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x} + \underline{\epsilon} \\
@@ -122,7 +122,7 @@ Taking their geometric means leads to:
     \hat{\rho}_{x,y} = \sqrt{\underline{a}_1 \underline{b}_1},
     (\#eq:correlationConventionalEstimate)
 \end{equation}
-which then leads to the formula \@ref(eq:correlationConventional). Similarly, for CLS estimated regressions, we have:
+which then leads to the formula \@ref(eq:correlationConjugate). Similarly, for CLS estimated regressions, we have:
 \begin{equation}
     \begin{aligned}
         &\underline{b}_1 = \frac{\hat{\varsigma}_{x,y}}{\hat{\varsigma}_x} \\
@@ -130,7 +130,7 @@ which then leads to the formula \@ref(eq:correlationConventional). Similarly, fo
     \end{aligned}
     (\#eq:twoRegressionsCLS)
 \end{equation}
-which after taking the same geometric means leads to \@ref(eq:correlationPseudo). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
+which after taking the same geometric means leads to \@ref(eq:correlationDirect). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
 
 
 ## Conjugate correlation {#correlationConjugate}
