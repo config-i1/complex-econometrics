@@ -157,12 +157,12 @@ Now, depending on the type of covariance we need, we get:
 
 1. For the conjugate one:
 \begin{equation}
-    \sigma_{\left(\underline{y}_t, \underline{y}_{t-1} \right)} = \underline{\phi}_1 \sigma^2_{y_t} ;
+    \mathrm{cov}\left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \sigma^2_{y_t} ;
     (\#eq:ComplexAR1ConjCov)
 \end{equation}
 2. For the direct one:
 \begin{equation}
-    \varsigma_{\left(\underline{y}_t, \underline{y}_{t-1} \right)} = \underline{\phi}_1 \varsigma^2_{y_t} .
+    cov \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \varsigma^2_{y_t} .
     (\#eq:ComplexAR1DirCov)
 \end{equation}
 If we now insert \@ref(eq:ComplexAR1ConjCov) and \@ref(eq:ComplexAR1DirCov) into the respective formulae for the conjugate and direct correlations (Section \@ref(correlationTypes), equations \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect)), we will get the values of the cACF for the first lag according to:

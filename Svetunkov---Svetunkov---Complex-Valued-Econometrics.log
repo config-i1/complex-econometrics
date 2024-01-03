@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  3 JAN 2024 22:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  3 JAN 2024 22:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -816,14 +816,14 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 
 [26]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvGene
-ratedCircle-1.pdf, id=448, 255.95625pt x 215.80624pt>
+ratedCircle-1.pdf, id=448, 256.96pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vGeneratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 GeneratedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvGeneratedCircle-1.pdf  used on input line 853.
-(pdftex.def)             Requested size: 255.95561pt x 215.80571pt.
+(pdftex.def)             Requested size: 256.96327pt x 214.80524pt.
 
 Package natbib Warning: Citation `refGoodman' on page 27 undefined on input lin
 e 864.
@@ -1028,14 +1028,14 @@ Package natbib Warning: Citation `refMDS' on page 53 undefined on input line 16
 40.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
-terplotMDS-1.pdf, id=829, 254.9525pt x 212.795pt>
+terplotMDS-1.pdf, id=829, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vScatterplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 ScatterplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvScatterplotMDS-1.pdf  used on input line 1660.
-(pdftex.def)             Requested size: 254.96352pt x 212.8042pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Package natbib Warning: Citation `ref' on page 53 undefined on input line 1669.
 
@@ -1076,14 +1076,14 @@ les/figure-latex/crvCorConjugate-1.pdf  used on input line 1820.
 [57 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 rvCorConjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugateMDS-1.pdf, id=897, 253.94875pt x 214.8025pt>
+onjugateMDS-1.pdf, id=897, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1845.
-(pdftex.def)             Requested size: 253.95198pt x 214.80524pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 58 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1374,12 +1374,12 @@ Package natbib Warning: Citation `Box1976' on page 111 undefined on input line
 3725.
 
 [111] [112 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
-latex/dataWithTrendForecast-1.pdf>]
+latex/dataWithTrendForecast-1.pdf>] [113]
 
-Package natbib Warning: Citation `Box1976' on page 113 undefined on input line 
+Package natbib Warning: Citation `Box1976' on page 114 undefined on input line 
 3802.
 
-[113] [114]
+[114]
 Chapter 7.
 (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [115
 
@@ -1424,7 +1424,7 @@ mf/fonts/type1/public/lm/lmtko10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 tt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (117 
-pages, 4245749 bytes).
+pages, 4247397 bytes).
 PDF statistics:
  2054 PDF objects out of 2073 (max. 8388607)
  1749 compressed objects within 18 object streams
