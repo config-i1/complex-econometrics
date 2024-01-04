@@ -267,6 +267,56 @@ plot(Re(y), type="l", xlab="Time", main="")
 plot(Im(y), type="l", xlab="Time", main="")
 ```
 
+When it comes to applying a model and to forecasting, the same `clm()` function from the `complex` package in R can be used:
+
+```{r}
+# Shift the response variable to create the lagged explanatory variable
+complexData <- xregExpander(complex2vec(y), lags=-1)
+# Form the complex data frame
+complexData <- data.frame(y=vec2complex(complexData[,c(1,3)]),
+                          yLag1=vec2complex(complexData[,c(1,3)+1]))
+colnames(complexData) <- c("y","yLag1")
+# Fit the model
+cAR1Model <- clm(y~., complexData, subset=c(1:80))
+# Generate the summary
+summary(cAR1Model)
+```
+
+The output above shows the estimates of parameters of the model, demonstrating that the OLS produced estimates close to the true values of parameters (as expected). After that we can generate forecast for the next 20 observations:
+
+```{r}
+# Vector of forecasts
+yForecast <- vector("complex", 20)
+# The data frame for the future values
+complexData20 <- tail(complexData,20)
+complexData20$y[] <- NA
+complexData20$yLag1[2:20] <- NA
+
+# Iteative loop to produce one-step-ahead forecasts
+for(i in 1:20){
+    cAR1ModelForecast <- predict(cAR1Model, newdata=complexData20[i,])
+    yForecast[i] <- cAR1ModelForecast$mean
+    if(i<20){
+        # Write down the forecast as the new lagged value
+        complexData20$yLag1[i+1] <- cAR1ModelForecast$mean
+    }
+}
+```
+
+Unfortunately, the process of forecast generation is not yet automated in the functions of the `complex` package, so the code above demonstrates how this can be done manually in an iterative fashion, making sure that there is no holdout values leackage in the process. The forecasts are shown in Figure \@ref(fig:complexAR1Forecast).
+
+```{r complexAR1Forecast, fig.cap="Forecasts for the cAR(1) process."}
+
+# Produce the plot of the data and the forecasts
+par(mfcol=c(2,1),mar=c(4,4,1,1))
+plot(Re(y), type="l", xlab="Time", main="")
+lines(81:100, Re(yForecast), col="blue", lwd=2)
+plot(Im(y), type="l", xlab="Time", main="")
+lines(81:100, Im(yForecast), col="blue", lwd=2)
+```
+
+As we can see, the forecast trajectory from the cAR(1) model corresponds to the dampening line, which is a behaviour similar to the conventional real-valued AR(1) model [e.g. discussed in Subsection 8.1.1 of @SvetunkovAdam].
+
 
 ## Complex MA
 New thing. Base it on ADAM ARIMA discussion
