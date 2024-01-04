@@ -129,14 +129,14 @@ As we can see, this example shows how a non-linear trend can be estimated and th
 ## Complex AR
 One of the possible ways of modelling dynamics is by saying that future values of the variable depend on its past ones. @Box1976, who have developed a theory and methodology of so called "AutoRegressive Integrated Moving Average" (or ARIMA), provide an example of a series of CO$_2$ output by a furnace with variable gas rate. In that situation the future amount of carbon dioxide will depend on the amount the furnace produced on the previous observations. This is one of example of an AR process. An interested reader is directed to Chapter 8 of @SvetunkovAdam, where the ARIMA model is discussed in more detail.
 
-cLR can also be extended by the inclusion of the past values of the response variable. In that case, mathematically the model looks more similar to vector AR rather than the univariate one. However, in our case the model is restricted with just two time series and can still be represented using complex variables:
+Mathematically the cAR model can be represented in a vector form, which will make it look more similar to vector AR rather than to the univariate one. However, the cAR model is restricted with just two time series and thus can be represented using complex variables:
 \begin{equation}
     \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
     (\#eq:ComplexAR)
 \end{equation}
 where $\phi_j$ is the $j$-th parameter, and $p$ is the order of the model, complex autoregression, cAR(p). The same model can be rewritten in the conventional polynomial form using a backshift operator $B$:
 \begin{equation}
-    \left(1 - \underline{\phi}_1 B + \dots + \underline{\phi}_p B^p \right) \underline{y}_t  = \underline{\beta}_0 + \underline{\epsilon}_t .
+    \left(1 - \underline{\phi}_1 B - \dots - \underline{\phi}_p B^p \right) \underline{y}_t  = \underline{\beta}_0 + \underline{\epsilon}_t .
     (\#eq:ComplexARPolynomial)
 \end{equation}
 This form is convenient for what follows, e.g. for the discussion of unit roots calculation. But also, if we add the already discussed static elements to the right-hand side of \@ref(eq:ComplexAR) or \@ref(eq:ComplexARPolynomial), namely $\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}$, then the model will transform into cARX(p), combining the properties of the cLR and cAR.
@@ -320,7 +320,35 @@ As we can see, the forecast trajectory from the cAR(1) model corresponds to the 
 
 
 ## Complex MA
-New thing. Base it on ADAM ARIMA discussion
+Another type of the dynamic model discussed by @Box1976, is called "Moving Average". In case of complex variables, it can be formulated as:
+\begin{equation}
+    \underline{y}_t = \underline{\beta}_0 + \underline{\theta}_1 \underline{\epsilon}_{t-1} + \dots + \underline{\theta}_q \underline{\epsilon}_{t-q} + \underline{\epsilon}_t ,
+    (\#eq:ComplexMA)
+\end{equation}
+where $\theta_j$ is the $j$-th parameter, and $q$ is the order of the model complex MA(q) model. Similar to the cAR, it can be written via polynomials:
+\begin{equation}
+    \underline{y}_t  = \underline{\beta}_0 + \left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t .
+    (\#eq:ComplexMAPolynomial)
+\end{equation}
+The idea of this model is that the new actual observation is formed as a linear combination of the past white noise. @Box1976 continue the example with a CO$_2$ output, showing that some random disturbances in the system in the past can impact the volume of the carbon dioxide at the current moment. 
+
+Using similar logic as in case of cAR, we will show how cACF and cPACF behave for cMA(1) without intercept, and then we will generalise their behaviour for cMA(q).
+
+The cMA(1) model can be defined as:
+\begin{equation}
+    \underline{y}_t = \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t .
+    (\#eq:ComplexMA1)
+\end{equation}
+For the cACF, we need to calculate the covariance between the values on observations $t$ and $t-1$. Again, the formulae for the conjugate and the direct covariances will be similar at this stage:
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \mathrm{cov}\left( \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t, \underline{\theta}_1 \underline{\epsilon}_{t-2} + \underline{\epsilon}_{t-1} \right).
+    (\#eq:ComplexMA1Step1)
+\end{equation}
+Given that the basic assumptions discussed in Section \@ref() hold for the "true model", the covariance is simplified to:
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \mathrm{cov}\left( \underline{\epsilon}_{t-1}, \underline{\epsilon}_{t-1} \right).
+    (\#eq:ComplexMA1Step1)
+\end{equation}
 
 
 ## Complex ARMA and ARIMA
