@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  4 JAN 2024 11:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  4 JAN 2024 11:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1003,14 +1003,14 @@ Chapter 3.
 
 ]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
-terplots-1.pdf, id=814, 262.9825pt x 263.98625pt>
+terplots-1.pdf, id=814, 263.98625pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vScatterplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 Scatterplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvScatterplots-1.pdf  used on input line 1595.
-(pdftex.def)             Requested size: 262.99387pt x 263.99767pt.
+(pdftex.def)             Requested size: 263.99767pt x 262.99387pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 604.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
@@ -1028,14 +1028,14 @@ Package natbib Warning: Citation `refMDS' on page 53 undefined on input line 16
 40.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
-terplotMDS-1.pdf, id=831, 253.94875pt x 212.795pt>
+terplotMDS-1.pdf, id=831, 253.94875pt x 213.79875pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vScatterplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 ScatterplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvScatterplotMDS-1.pdf  used on input line 1660.
-(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
+(pdftex.def)             Requested size: 253.94812pt x 213.79822pt.
 
 Package natbib Warning: Citation `ref' on page 53 undefined on input line 1669.
 
@@ -1076,14 +1076,14 @@ les/figure-latex/crvCorConjugate-1.pdf  used on input line 1820.
 [57 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 rvCorConjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugateMDS-1.pdf, id=899, 255.95625pt x 212.795pt>
+onjugateMDS-1.pdf, id=899, 258.9675pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1845.
-(pdftex.def)             Requested size: 255.95561pt x 212.79446pt.
+(pdftex.def)             Requested size: 258.97078pt x 214.80524pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 58 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1414,26 +1414,40 @@ les/figure-latex/complexAR1Plot-1.pdf  used on input line 3888.
 [115] [116 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
 latex/complexAR1cACF-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometr
 ics_files/figure-latex/complexAR1cPACF-1.pdf>] [117 <./Svetunkov---Svetunkov---
-Complex-Valued-Econometrics_files/figure-latex/complexAR1Plot-1.pdf>] [118
+Complex-Valued-Econometrics_files/figure-latex/complexAR1Plot-1.pdf>]
+<Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
+AR1Forecast-1.pdf, id=1651, 453.695pt x 315.1775pt>
+File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/co
+mplexAR1Forecast-1.pdf Graphic file (type pdf)
+<use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
+plexAR1Forecast-1.pdf>
+Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
+les/figure-latex/complexAR1Forecast-1.pdf  used on input line 3968.
+(pdftex.def)             Requested size: 344.9987pt x 239.66724pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[118] [119 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
+latex/complexAR1Forecast-1.pdf>] [120
 
 ]
 Chapter 7.
-(./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [119] [120
+(./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [121] [122
 
 ])
 
 Package natbib Warning: There were undefined citations.
 
-[121] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.aux)
+[123] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17038 strings out of 479648
- 290041 string characters out of 5886116
- 602893 words of memory out of 5000000
- 33849 multiletter control sequences out of 15000+600000
+ 17049 strings out of 479648
+ 290740 string characters out of 5886116
+ 602953 words of memory out of 5000000
+ 33856 multiletter control sequences out of 15000+600000
  572350 words of font info for 220 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
  74i,16n,77p,1353b,519s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1458,11 +1472,11 @@ lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/tex
 mf/fonts/type1/public/lm/lmtko10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 tt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (121 
-pages, 4277191 bytes).
+Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (123 
+pages, 4287483 bytes).
 PDF statistics:
- 2118 PDF objects out of 2487 (max. 8388607)
- 1800 compressed objects within 18 object streams
- 533 named destinations out of 1000 (max. 500000)
- 58078 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 2140 PDF objects out of 2487 (max. 8388607)
+ 1816 compressed objects within 19 object streams
+ 536 named destinations out of 1000 (max. 500000)
+ 58083 words of extra memory for PDF output out of 61914 (max. 10000000)
 
