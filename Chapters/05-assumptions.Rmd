@@ -305,7 +305,7 @@ The conjugate ACF (due to its nature) is represented by a set of real values (Fi
 cacf(y, method="conjugate", plot=TRUE, main="")
 ```
 
-The plot in Figure \@ref(fig:complexAR1ACFConj) shows that the autocorrelation for lag one is statistically different from zero on the 5% significance level (the latter is regulated by `level` parameter in the function). The non-rejection region on the plot is costructed based on the t-statistics and helps testing the null hypothesis that autocorrelation coefficient for each lag equals to zero (with the alternative being not equal). The value of the coefficient itself does not provide any specific information about the autoregressive relation in the data, but merely shows that the correlation between variables is mediocre.
+The plot in Figure \@ref(fig:complexAR1ACFConj) shows that the autocorrelation for lag one is statistically different from zero on the 5% significance level (the latter is regulated by `level` parameter in the function). The non-rejection region on the plot is costructed based on the Folded t-distribution (which is an approximation of the square root of convolution of two Fisher distributions) and helps testing the null hypothesis that autocorrelation coefficient for each lag equals to zero (with the alternative being not equal). The value of the coefficient itself does not provide any specific information about the autoregressive relation in the data, but merely shows that the correlation between variables is mediocre.
 
 In contrast, the conjugate PACF provides more details and shows the specific values for the real and the imaginary parts of the coefficient in the process (see Figure \@ref(fig:complexAR1PACFConj)):
 

@@ -170,6 +170,7 @@ Now, depending on the type of covariance we need, we get:
     cov \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \varsigma^2_{y_t} .
     (\#eq:ComplexAR1DirCov)
 \end{equation}
+
 If we now insert \@ref(eq:ComplexAR1ConjCov) and \@ref(eq:ComplexAR1DirCov) into the respective formulae for the conjugate and direct correlations (Section \@ref(correlationTypes), equations \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect)), we will get the values of the cACF for the first lag according to:
 
 1. Conjugate correlation:
@@ -232,12 +233,13 @@ obs <- 110
 b0 <- 100+50i
 phi1 <- 0.5 + 0.2i
 # Complex white noise
-y <- rcnorm(obs, 0, sigma2=25, varsigma2=16+9i)
+e <- rcnorm(obs, 0, sigma2=25, varsigma2=16+9i)
+y <- vector("complex", obs)
 # Initial value
-y[1] <- b0 + y[1]
+y[1] <- b0 + e[1]
 # The cAR(1)
 for(i in 2:obs){
-    y[i] <- phi1 * y[i-1] + y[i] + b0
+    y[i] <- phi1 * y[i-1] + b0 + e[i]
 }
 # Drop the first 10 observations as a burn-in period
 y <- y[-c(1:10)]
@@ -257,7 +259,20 @@ cpacf(y, method="conjugate")
 
 The cPACF in Figure \@ref(fig:complexAR1cPACF) demonstrates that both the real and the imaginary values drop to zero after the first observation, as expected for the AR(1) process. Notably, the value of the first cPACF is `r round(cpacf(y, method="conjugate", plot=FALSE)$acf[1],3)`, which is close to the true value of the parameter.
 
-Finally, the plot in Figure \@ref(fig:complexAR1Plot) shows the generated data on the complex plane and the dynamics of obth the real and the imaginary parts.
+The direct cACF and cPACF are shown in Figures \@ref(fig:complexAR1cACFDir) and \@ref(fig:complexAR1cpACFDir), roughly giving the same information as their conjugate counterparts. We should note however that the direct cACF has the more detailed information about the dynamic relations in the data than the conjugate one.
+```{r complexAR1cACFDir, fig.cap="Direct cACF of the complex AR(1).", echo=FALSE}
+cacf(y, method="direct")
+```
+
+Although, both plots contain values outside of the 95% non-rejection region, these could be considered as happening at random and can be neglected.
+
+```{r complexAR1cpACFDir, fig.cap="Direct cPACF of the complex AR(1).", echo=FALSE}
+cpacf(y, method="direct")
+```
+
+It is worth noting that in both Figures \@ref(fig:complexAR1cACFDir) and \@ref(fig:complexAR1cpACFDir) the first values of the cACF/cPACF are close to the true value of $0.5+0.2i$.
+
+Finally, the plot in Figure \@ref(fig:complexAR1Plot) shows the generated data on the complex plane and the dynamics of both the real and the imaginary parts.
 
 ```{r complexAR1Plot, fig.cap="Visualisation of the cAR(1) process.", echo=FALSE}
 layout(matrix(c(1,2,1,3),2,2))
@@ -344,11 +359,124 @@ For the cACF, we need to calculate the covariance between the values on observat
     \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \mathrm{cov}\left( \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t, \underline{\theta}_1 \underline{\epsilon}_{t-2} + \underline{\epsilon}_{t-1} \right).
     (\#eq:ComplexMA1Step1)
 \end{equation}
-Given that the basic assumptions discussed in Section \@ref() hold for the "true model", the covariance is simplified to:
+Given that the basic assumptions discussed in Chapter \@ref(assumptions) hold for the "true model", the covariance is simplified to:
 \begin{equation}
     \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \mathrm{cov}\left( \underline{\epsilon}_{t-1}, \underline{\epsilon}_{t-1} \right).
-    (\#eq:ComplexMA1Step1)
+    (\#eq:ComplexMA1Step2)
 \end{equation}
+
+Based on this, the conjugate and the direct covariances will be equal to respectively:
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \sigma^2_{y_t}.
+    (\#eq:ComplexMA1ConjCov)
+\end{equation}
+and
+\begin{equation}
+    {cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \varsigma^2_{y_t}.
+    (\#eq:ComplexMA1DirCov)
+\end{equation}
+Note that in the formulae above, we use the fact that the variance of the error term will coincide with the variance of the response variable $\underline{y}_t$, which becomes apparent from the original model formulation \@ref(eq:ComplexMA1), assuming that the error term has a zero expectation. Inserting \@ref(eq:ComplexMA1ConjCov) and \@ref(eq:ComplexMA1DirCov) in the formulae for the conugate and direct correlations, we get that for the cMA(1), the first lag of the cACF equals to:
+
+1. Conjugate correlation:
+\begin{equation}
+    \rho(1) = | \underline{\theta}_1 |;
+    (\#eq:ComplexMA1ConjCor)
+\end{equation}
+
+2. Direct correlation:
+\begin{equation}
+    \varrho(1) =  \underline{\theta}_1.
+    (\#eq:ComplexMA1DirCor)
+\end{equation}
+
+Similarly to how it was with the cAR(1) process, we see that the conjugate cACF is based on the magnitude of the complex parameter, while the direct one has the value itself in it. This comes with the same in-sample limitations as above with the direct correlation being sensitive to the similarity of the variances of the real and the imaginary parts of the response variable.
+
+However, when it comes to the second lag of the cACF, the situation differs from the one with the cAR(1):
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-2} \right) = \mathrm{cov}\left( \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t, \underline{\theta}_1 \underline{\epsilon}_{t-3} + \underline{\epsilon}_{t-2} \right) = 0 .
+    (\#eq:ComplexMA1Lag2)
+\end{equation}
+This agrees with the behaviour of the cACF in case of the conventional real-valued MA(q) processes [@Box1976]: it falls to zero abruptly right after the lag q.
+
+When it comes to the cPACF of cMA(1), its behaviour becomes similar to the behaviour of cACF for AR(1). This is because the model \@ref(eq:ComplexMA1) can be represented as an infinite cAR:
+\begin{equation}
+    \underline{y}_t = \sum_{j=1}^\infty -1^{j-1} \underline{\theta}_1^j \underline{y}_{t-j} + \underline{\epsilon}_t ,
+    (\#eq:ComplexMA1Infinite)
+\end{equation}
+which is based on the fact that $\underline{\epsilon}_t = \underline{y}_t - \underline{\theta}_1 \underline{\epsilon}_{t-1}$. In this situation, both conjugate and direct cPACF will decline exponentially, which ones again agrees with the behaviour of the conventional PACF in case of the real-valued MA(q) process.
+
+As we see, the behaviour of both cACF and cPACF in case of cMA(q) model agrees with their behaviour in the real-valued model. Still, similarly to the cAR(p) process, both conjugate and direct cPACF should be used for time series analysis.
+
+Continuing the similarities between the complex and the real-valued models, it can be shown that the property of the invertibility is easily transferable to the cMA(q) model from the conventional MA(q). The model will be invertible if all the roots of the following polynomial equation lie outside of the unit circle:
+\begin{equation}
+    1 + \underline{\theta}_1 x + \underline{\theta}_2 x^2 + \dots + \underline{\theta}_p x^p = 0 .
+    (\#eq:ComplexMAPolyRoots)
+\end{equation}
+
+
+### Exmaple in R
+Similarly to the cAR(p), we consider an R example, analysing how the cACF and cPACF behave in a special case of cMA(1) with an intercept:
+```{r}
+# Sample size
+set.seed(41)
+# Number of observations
+obs <- 110
+# Parameters
+b0 <- 100+50i
+theta1 <- 0.5 + 0.2i
+# Complex white noise
+e <- rcnorm(obs, 0, sigma2=25, varsigma2=16+9i)
+y <- vector("complex", obs)
+# Initial value
+y[1] <- b0 + e[1]
+# The cAR(1)
+for(i in 2:obs){
+    y[i] <- theta1 * e[i-1] + b0 + e[i]
+}
+# Drop the first 10 observations as a burn-in period
+y <- y[-c(1:10)]
+```
+
+Because we use the same random seed value as before and the same value of the parameter as in case of cAR(1), we get time series, which look similar to the one generated from cAR(1) (see Figure \@ref(fig:complexMA1Plot), compared to Figure \@ref(fig:complexAR1Plot)).
+
+```{r complexMA1Plot, fig.cap="Visualisation of the cMA(1) process.", echo=FALSE}
+layout(matrix(c(1,2,1,3),2,2))
+par(mar=c(4,4,1,1))
+plot(y, type="b", main="")
+plot(Re(y), type="l", xlab="Time", main="")
+plot(Im(y), type="l", xlab="Time", main="")
+```
+
+However, when we analyse cACF of the time series, we will spot an important difference - its values drop to zero abruptly right after the first lag.
+
+```{r complexMA1cACF, fig.cap="Conjugate cACF of the complex MA(1)."}
+cacf(y, method="conjugate")
+```
+
+As we see from Figure \@ref(fig:complexMA1cACF), the only statistically significant lag (on 5%) is the first one, all the others lie in the non-rejection region. We observe a similar behaviour in case of the direct cACF (Figure \@ref(fig:complexMA1cACFDir)), although it is worth noting that the imaginary part of the direct cACF has all lags lying in the non-rejection region.
+
+```{r complexMA1cACFDir, fig.cap="Direct cACF of the complex MA(1).", echo=FALSE}
+cacf(y, method="direct")
+```
+
+**Not clear, what's happening with cPACFs!**
+
+
+
+<!-- On the other hand, the conjugate and direct cPACF will decline exponentially, as discussed earlier. Figure \@ref(fig:) -->
+
+
+<!-- Although, both plots contain values outside of the 95% non-rejection region, these could be considered as happening at random and can be neglected. -->
+
+```{r complexMA1cpACFDir, fig.cap="Direct cPACF of the complex AR(1).", echo=FALSE}
+cpacf(y, method="direct")
+```
+
+
+```{r complexMA1cPACF, fig.cap="Conjugate cPACF of the complex MA(1)."}
+cpacf(y, method="conjugate")
+```
+
 
 
 ## Complex ARMA and ARIMA
