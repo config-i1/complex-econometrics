@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.5398+100.4515i
+## [1] 50.7688+100.5023i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 103.4273+0i
+## 114.4841+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -50.31386+4.81833i
+##     Direct variance 
+## -68.42517+10.35448i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -715,8 +715,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 26.556727  2.409164
-## x_i  2.409164 76.870589
+## x_r 23.029460  5.177241
+## x_i  5.177241 91.454629
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2035.627
+## [1] 2079.347
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 94.1711-106.4143i
+## 63.30431-81.95208i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -57.53713+88.34695i
+## -51.54681+40.05824i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -821,9 +821,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                    y
-## x -90.88857+ 4.96234i -57.53713+ 88.34695i
-## y -57.53713+88.34695i  35.98917+105.05408i
+##                     x                   y
+## x -55.04338- 4.60502i -51.54681+40.05824i
+## y -51.54681+40.05824i   3.62932+72.15798i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.997222
+## [1] 0.997985
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1886,8 +1886,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##           [,1]
-## [1,] 0.9969729
+##          [,1]
+## [1,] 0.997904
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r    y_i
-## x_r 1.000  0.032  0.648  0.674
-## x_i 0.032  1.000 -0.737  0.756
-## y_r 0.648 -0.737  1.000 -0.122
-## y_i 0.674  0.756 -0.122  1.000
+##        x_r    x_i    y_r   y_i
+## x_r  1.000 -0.060  0.735 0.699
+## x_i -0.060  1.000 -0.718 0.670
+## y_r  0.735 -0.718  1.000 0.032
+## y_i  0.699  0.670  0.032 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -3724,14 +3724,14 @@ As we can see, this example shows how a non-linear trend can be estimated and th
 
 One of the possible ways of modelling dynamics is by saying that future values of the variable depend on its past ones. \citet{Box1976}, who have developed a theory and methodology of so called ``AutoRegressive Integrated Moving Average'' (or ARIMA), provide an example of a series of CO\(_2\) output by a furnace with variable gas rate. In that situation the future amount of carbon dioxide will depend on the amount the furnace produced on the previous observations. This is one of example of an AR process. An interested reader is directed to Chapter 8 of \citet{SvetunkovAdam}, where the ARIMA model is discussed in more detail.
 
-cLR can also be extended by the inclusion of the past values of the response variable. In that case, mathematically the model looks more similar to vector AR rather than the univariate one. However, in our case the model is restricted with just two time series and can still be represented using complex variables:
+Mathematically the cAR model can be represented in a vector form, which will make it look more similar to vector AR rather than to the univariate one. However, the cAR model is restricted with just two time series and thus can be represented using complex variables:
 \begin{equation}
     \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
     \label{eq:ComplexAR}
 \end{equation}
 where \(\phi_j\) is the \(j\)-th parameter, and \(p\) is the order of the model, complex autoregression, cAR(p). The same model can be rewritten in the conventional polynomial form using a backshift operator \(B\):
 \begin{equation}
-    \left(1 - \underline{\phi}_1 B + \dots + \underline{\phi}_p B^p \right) \underline{y}_t  = \underline{\beta}_0 + \underline{\epsilon}_t .
+    \left(1 - \underline{\phi}_1 B - \dots - \underline{\phi}_p B^p \right) \underline{y}_t  = \underline{\beta}_0 + \underline{\epsilon}_t .
     \label{eq:ComplexARPolynomial}
 \end{equation}
 This form is convenient for what follows, e.g.~for the discussion of unit roots calculation. But also, if we add the already discussed static elements to the right-hand side of \eqref{eq:ComplexAR} or \eqref{eq:ComplexARPolynomial}, namely \(\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}\), then the model will transform into cARX(p), combining the properties of the cLR and cAR.
@@ -3975,7 +3975,35 @@ As we can see, the forecast trajectory from the cAR(1) model corresponds to the 
 \hypertarget{complex-ma}{%
 \section{Complex MA}\label{complex-ma}}
 
-New thing. Base it on ADAM ARIMA discussion
+Another type of the dynamic model discussed by \citet{Box1976}, is called ``Moving Average''. In case of complex variables, it can be formulated as:
+\begin{equation}
+    \underline{y}_t = \underline{\beta}_0 + \underline{\theta}_1 \underline{\epsilon}_{t-1} + \dots + \underline{\theta}_q \underline{\epsilon}_{t-q} + \underline{\epsilon}_t ,
+    \label{eq:ComplexMA}
+\end{equation}
+where \(\theta_j\) is the \(j\)-th parameter, and \(q\) is the order of the model complex MA(q) model. Similar to the cAR, it can be written via polynomials:
+\begin{equation}
+    \underline{y}_t  = \underline{\beta}_0 + \left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t .
+    \label{eq:ComplexMAPolynomial}
+\end{equation}
+The idea of this model is that the new actual observation is formed as a linear combination of the past white noise. \citet{Box1976} continue the example with a CO\(_2\) output, showing that some random disturbances in the system in the past can impact the volume of the carbon dioxide at the current moment.
+
+Using similar logic as in case of cAR, we will show how cACF and cPACF behave for cMA(1) without intercept, and then we will generalise their behaviour for cMA(q).
+
+The cMA(1) model can be defined as:
+\begin{equation}
+    \underline{y}_t = \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t .
+    \label{eq:ComplexMA1}
+\end{equation}
+For the cACF, we need to calculate the covariance between the values on observations \(t\) and \(t-1\). Again, the formulae for the conjugate and the direct covariances will be similar at this stage:
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \mathrm{cov}\left( \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t, \underline{\theta}_1 \underline{\epsilon}_{t-2} + \underline{\epsilon}_{t-1} \right).
+    \label{eq:ComplexMA1Step1}
+\end{equation}
+Given that the basic assumptions discussed in Section @ref() hold for the ``true model'', the covariance is simplified to:
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \mathrm{cov}\left( \underline{\epsilon}_{t-1}, \underline{\epsilon}_{t-1} \right).
+    \label{eq:ComplexMA1Step1}
+\end{equation}
 
 \hypertarget{complex-arma-and-arima}{%
 \section{Complex ARMA and ARIMA}\label{complex-arma-and-arima}}
