@@ -327,8 +327,6 @@ New thing. Base it on ADAM ARIMA discussion
 From 2.4
 
 
-## Non-linear cARIMA
-
-
 ## Other possible models
 Other stuff from the original monograph
+
