@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-01-03}
+\date{2024-01-04}
 
 \begin{document}
 \maketitle
@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.94626+99.22494i
+## [1] 50.41101+98.67846i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 104.6192+0i
+## 123.9098+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct variance 
-## -61.2026+5.37503i
+##     Direct variance 
+## -55.45228+14.44744i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -715,8 +715,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 21.708305  2.687517
-## x_i  2.687517 82.910906
+## x_r 34.228757  7.223718
+## x_i  7.223718 89.681037
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1792.632
+## [1] 3017.488
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 49.281-100.9914i
+## 49.89268-82.90396i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -6.85644+50.02996i
+##   Direct covariance 
+## -39.27974+41.12288i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -821,9 +821,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                  y
-## x -73.36094+ 7.04913i -6.85644+50.02996i
-## y  -6.85644+50.02996i 32.04199+16.98975i
+##                     x                   y
+## x -62.82961- 2.15010i -39.27974+41.12288i
+## y -39.27974+41.12288i  -0.88842+69.02021i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9975806
+## [1] 0.997418
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1886,8 +1886,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]
-## [1,] -0.9977395
+##           [,1]
+## [1,] 0.9977681
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r   y_i
-## x_r 1.000  0.148  0.681 0.782
-## x_i 0.148  1.000 -0.619 0.729
-## y_r 0.681 -0.619  1.000 0.081
-## y_i 0.782  0.729  0.081 1.000
+##       x_r    x_i    y_r    y_i
+## x_r 1.000  0.176  0.583  0.727
+## x_i 0.176  1.000 -0.693  0.801
+## y_r 0.583 -0.693  1.000 -0.130
+## y_i 0.727  0.801 -0.130  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -3729,7 +3729,12 @@ cLR can also be extended by the inclusion of the past values of the response var
     \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
     \label{eq:ComplexAR}
 \end{equation}
-where \(\phi_j\) is the \(j\)-th parameter, and \(p\) is the order of the model, complex autoregression, cAR(p).
+where \(\phi_j\) is the \(j\)-th parameter, and \(p\) is the order of the model, complex autoregression, cAR(p). The same model can be rewritten in the conventional polynomial form using a backshift operator \(B\):
+\begin{equation}
+    \left(1 - \underline{\phi}_1 B + \dots + \underline{\phi}_p B^p \right) \underline{y}_t  = \underline{\beta}_0 + \underline{\epsilon}_t .
+    \label{eq:ComplexARPolynomial}
+\end{equation}
+This form is convenient for what follows, e.g.~for the discussion of unit roots calculation. But also, if we add the already discussed static elements to the right-hand side of \eqref{eq:ComplexAR} or \eqref{eq:ComplexARPolynomial}, namely \(\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}\), then the model will transform into cARX(p), combining the properties of the cLR and cAR.
 
 Similarly to the conventional AR, it can be shown how complex ACF/PACF (discussed in Subsection \ref{assumptionsResidualsAuto}) behave for different orders of cAR. In this monograph, for simplicity, we only provide an example of cAR(1) without an intercept, noting that the logic for the higher orders is similar \citep[ has similar derivations for the real-valued AR(p) in Section 8.3]{SvetunkovAdam}.
 
@@ -3801,13 +3806,88 @@ If we calculate the covariance for the cAR(1) between the values \(y_{t}\) and \
 
 In principles, it can be shown that the main properties of real-valued AR discussed by \citet{Box1976} hold widely for the cAR processes: cACF will decline exponentially starting from the lag p.
 
-The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF. This function
+The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF. This function shows the relations between specific lags without the effect of all the interim lags, i.e.~cleaned from the autocorrelations between the neighbouring lags. One of ways of calculating the cPACF for a lag \(\tau\) is to estimate the following model:
+\begin{equation}
+    \underline{y}_t = \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_\tau \underline{y}_{t-\tau} + \underline{\epsilon}_t
+    \label{eq:cPACFModel}
+\end{equation}
+and getting the coefficient \(\underline{\phi}_\tau\). Repeating this procedure for all lags of interest, we get a cPACF. The model \eqref{eq:cPACFModel} can be estimated using OLS or CLS, which will result in respective conjugate and direct cPACF.
 
-Stationarity condition is similar to the AR/VAR: the absolute value of the complex number should be below one for cAR(1). For the other ones\ldots{} it should be unit roots thingy.
+It can be shown that for the cAR(p) process, both conjugate and direct cPACF will drop to zero abruptly after the lag p and that both of them will produce complex numbers, reflecting the respective parts of the coefficients of the cAR(p) model. However, the direct cPACF might have issues similar to the ones the direct cACF has if the variances of the real and the imaginary parts of the response variable are close to each other.
 
-What trajectories cAR generates.
+As we see, the complex AR(p) has similar properties to the real-valued one, but it should be analysed using both conjugate and direct cACF/cPACF.
 
-If we add the already discussed static elements to \eqref{eq:ComplexAR}, namely \(\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}\), then the model will transform into cARX(p), combining the properties of the cLR and cAR.
+Finally, in Box-Jenkins methodology, it is important for the AR(p) processes to be stationary, otherwise they become explosive and cannot be efficiently identified at the model building stage. The stationarity condition for AR(p) in \citet{Box1976} is that the roots of the polynomial formed from the parameters of the AR model should all lie outside the unit circle. For AR(1) this simplifies to \(|\phi_1|<1\). The same conditions hold for the cAR(p) processes, meaning that the magnitudes of the complex parameters are considered. For the cAR(1), the stationarity condition is \(|\underline{\phi}_1|<1\). But more widely, for cAR(p), it is that the roots of the following polynomial:
+\begin{equation}
+    1 - \underline{\phi}_1 x - \underline{\phi}_2 x^2 - \dots - \underline{\phi}_p x^p = 0
+    \label{eq:ComplexARPolyRoots}
+\end{equation}
+should all lie outside the unit circle (be greater than one by absolute value).
+
+\hypertarget{example-in-r-1}{%
+\subsection{Example in R}\label{example-in-r-1}}
+
+For demonstration purposes we consider the cAR(1) process to see how cACF/cPACF and the data will look
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sample size}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\CommentTok{\# Number of observations}
+\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{110}
+\CommentTok{\# Parameters}
+\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{+}\NormalTok{50i}
+\NormalTok{phi1 }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{+} \FloatTok{0.2}\NormalTok{i}
+\CommentTok{\# Complex white noise}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{25}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{16}\SpecialCharTok{+}\NormalTok{9i)}
+\CommentTok{\# Initial value}
+\NormalTok{y[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ y[}\DecValTok{1}\NormalTok{]}
+\CommentTok{\# The cAR(1)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{obs)\{}
+\NormalTok{    y[i] }\OtherTok{\textless{}{-}}\NormalTok{ phi1 }\SpecialCharTok{*}\NormalTok{ y[i}\DecValTok{{-}1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ y[i] }\SpecialCharTok{+}\NormalTok{ b0}
+\NormalTok{\}}
+\CommentTok{\# Drop the first 10 observations as a burn{-}in period}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ y[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+The conjugate cACF/cPACF are shown in Figures \ref{fig:complexAR1cACF} and \ref{fig:complexAR1cPACF}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1cACF-1.pdf}
+\caption{\label{fig:complexAR1cACF}Conjugate cACF of the complex AR(1).}
+\end{figure}
+
+As we see from Figure \ref{fig:complexAR1cACF}, the cACF declines after the lag 1. Notably, the cACF for lag one equals to 0.546, which is close to the true value of the magnitude of the parameter \(\phi_1=0.5+0.2i\) is 0.5385165.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cpacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1cPACF-1.pdf}
+\caption{\label{fig:complexAR1cPACF}Conjugate cPACF of the complex AR(1).}
+\end{figure}
+
+The cPACF in Figure \ref{fig:complexAR1cPACF} demonstrates that both the real and the imaginary values drop to zero after the first observation, as expected for the AR(1) process. Notably, the value of the first cPACF is 0.495+0.236i, which is close to the true value of the parameter.
+
+Finally, the plot in Figure \ref{fig:complexAR1Plot} shows the generated data on the complex plane and the dynamics of obth the real and the imaginary parts.
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1Plot-1.pdf}
+\caption{\label{fig:complexAR1Plot}Visualisation of the cAR(1) process.}
+\end{figure}
 
 \hypertarget{complex-ma}{%
 \section{Complex MA}\label{complex-ma}}
