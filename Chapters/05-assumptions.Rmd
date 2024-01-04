@@ -301,7 +301,7 @@ for(i in 2:obs){
 
 The conjugate ACF (due to its nature) is represented by a set of real values (Figure \@ref(fig:complexAR1ACFConj)):
 
-```{r complexAR1ACFConj, fig.cap="Complex conjugate autocorrelation function"}
+```{r complexAR1ACFConj, fig.cap="Conjugate complex autocorrelation function"}
 cacf(y, method="conjugate", plot=TRUE, main="")
 ```
 
@@ -309,19 +309,19 @@ The plot in Figure \@ref(fig:complexAR1ACFConj) shows that the autocorrelation f
 
 In contrast, the conjugate PACF provides more details and shows the specific values for the real and the imaginary parts of the coefficient in the process (see Figure \@ref(fig:complexAR1PACFConj)):
 
-```{r complexAR1PACFConj, fig.cap="Partial complex conjugate autocorrelation function"}
+```{r complexAR1PACFConj, fig.cap="Conjugate complex partial autocorrelation function"}
 cpacf(y, method="conjugate", plot=TRUE, main="")
 ```
 
 Figure \@ref(fig:complexAR1PACFConj) shows three plots: real vs imaginary complex ACF plot at the top and two separate plots for the real and the imaginary parts of the complex PACF at the bottom. As shown in the plots both the real and the imaginary parts of the complex coefficient are statistically different from zero on the 5% significance level for the first lag and not significant for the rest of the lags. This agrees with the data generated process that we used. Furthermore, the real part of the cPACF is close to the true value of 0.5, while the imaginary one is close to the -0.25, which were used in the data generation.
 
-Similarly, we can analyse the complex direct ACF of a variable, which will generate a plot similar to the ones in Figure \@ref(fig:complexAR1PACFConj) (see Figure \@ref(fig:complexAR1PACFDir)):
-```{r complexAR1ACFDir, fig.cap="Complex direct autocorrelation function"}
+Similarly, we can analyse the direct complex ACF of a variable, which will generate a plot similar to the ones in Figure \@ref(fig:complexAR1PACFConj) (see Figure \@ref(fig:complexAR1PACFDir)):
+```{r complexAR1ACFDir, fig.cap="Direct complex autocorrelation function"}
 cacf(y, method="direct", plot=TRUE, main="")
 ```
 
 While the dynamics of direct cACF is similar to the one of the conjugate cPACF, they show different things: the latter is clear of the interim relations between variables, while the former shows the specific correlations between the actual value and each of its lags. Similarly to how we did that before, we can also produce the direct cPACF (Figure \@ref(fig:complexAR1PACFDir)):
-```{r complexAR1PACFDir, fig.cap="Partial complex direct autocorrelation function"}
+```{r complexAR1PACFDir, fig.cap="Direct complex partial autocorrelation function"}
 cpacf(y, method="direct", plot=TRUE, main="")
 ```
 

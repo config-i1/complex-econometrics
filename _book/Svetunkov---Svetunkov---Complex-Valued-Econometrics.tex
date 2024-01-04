@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.92747+99.21981i
+## [1] 50.5398+100.4515i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 120.0078+0i
+## 103.4273+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct variance 
-## -63.04138+7.3385i
+##    Direct variance 
+## -50.31386+4.81833i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -715,8 +715,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 28.483200  3.669249
-## x_i  3.669249 91.524576
+## x_r 26.556727  2.409164
+## x_i  2.409164 76.870589
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2593.449
+## [1] 2035.627
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 65.41673-91.49298i
+## 94.1711-106.4143i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -70.25085+58.04694i
+## -57.53713+88.34695i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -821,9 +821,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -78.41597-11.96556i -70.25085+58.04694i
-## y -70.25085+58.04694i  19.94215+85.91896i
+##                     x                    y
+## x -90.88857+ 4.96234i -57.53713+ 88.34695i
+## y -57.53713+88.34695i  35.98917+105.05408i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9972965
+## [1] 0.997222
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1887,7 +1887,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9978337
+## [1,] 0.9969729
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r   y_i
-## x_r 1.000  0.005  0.746 0.760
-## x_i 0.005  1.000 -0.659 0.649
-## y_r 0.746 -0.659  1.000 0.138
-## y_i 0.760  0.649  0.138 1.000
+##       x_r    x_i    y_r    y_i
+## x_r 1.000  0.032  0.648  0.674
+## x_i 0.032  1.000 -0.737  0.756
+## y_r 0.648 -0.737  1.000 -0.122
+## y_i 0.674  0.756 -0.122  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2852,7 +2852,7 @@ The conjugate ACF (due to its nature) is represented by a set of real values (Fi
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1ACFConj-1.pdf}
-\caption{\label{fig:complexAR1ACFConj}Complex conjugate autocorrelation function}
+\caption{\label{fig:complexAR1ACFConj}Conjugate complex autocorrelation function}
 \end{figure}
 
 The plot in Figure \ref{fig:complexAR1ACFConj} shows that the autocorrelation for lag one is statistically different from zero on the 5\% significance level (the latter is regulated by \texttt{level} parameter in the function). The non-rejection region on the plot is costructed based on the t-statistics and helps testing the null hypothesis that autocorrelation coefficient for each lag equals to zero (with the alternative being not equal). The value of the coefficient itself does not provide any specific information about the autoregressive relation in the data, but merely shows that the correlation between variables is mediocre.
@@ -2868,12 +2868,12 @@ In contrast, the conjugate PACF provides more details and shows the specific val
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1PACFConj-1.pdf}
-\caption{\label{fig:complexAR1PACFConj}Partial complex conjugate autocorrelation function}
+\caption{\label{fig:complexAR1PACFConj}Conjugate complex partial autocorrelation function}
 \end{figure}
 
 Figure \ref{fig:complexAR1PACFConj} shows three plots: real vs imaginary complex ACF plot at the top and two separate plots for the real and the imaginary parts of the complex PACF at the bottom. As shown in the plots both the real and the imaginary parts of the complex coefficient are statistically different from zero on the 5\% significance level for the first lag and not significant for the rest of the lags. This agrees with the data generated process that we used. Furthermore, the real part of the cPACF is close to the true value of 0.5, while the imaginary one is close to the -0.25, which were used in the data generation.
 
-Similarly, we can analyse the complex direct ACF of a variable, which will generate a plot similar to the ones in Figure \ref{fig:complexAR1PACFConj} (see Figure \ref{fig:complexAR1PACFDir}):
+Similarly, we can analyse the direct complex ACF of a variable, which will generate a plot similar to the ones in Figure \ref{fig:complexAR1PACFConj} (see Figure \ref{fig:complexAR1PACFDir}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2884,7 +2884,7 @@ Similarly, we can analyse the complex direct ACF of a variable, which will gener
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1ACFDir-1.pdf}
-\caption{\label{fig:complexAR1ACFDir}Complex direct autocorrelation function}
+\caption{\label{fig:complexAR1ACFDir}Direct complex autocorrelation function}
 \end{figure}
 
 While the dynamics of direct cACF is similar to the one of the conjugate cPACF, they show different things: the latter is clear of the interim relations between variables, while the former shows the specific correlations between the actual value and each of its lags. Similarly to how we did that before, we can also produce the direct cPACF (Figure \ref{fig:complexAR1PACFDir}):
@@ -2898,7 +2898,7 @@ While the dynamics of direct cACF is similar to the one of the conjugate cPACF, 
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1PACFDir-1.pdf}
-\caption{\label{fig:complexAR1PACFDir}Partial complex direct autocorrelation function}
+\caption{\label{fig:complexAR1PACFDir}Direct complex partial autocorrelation function}
 \end{figure}
 
 Because we generated the data from the complex autoregressive model of order one, the cACF and cPACF give us roughly the same message: the lag one is significant on the 5\% level, while the rest of values are not. Note however that the direct cACF/cPACF shows that there are other lags that are significantly different from zero. This appears by chance and should be ignored.
