@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.7688+100.5023i
+## [1] 50.2552+101.2072i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 114.4841+0i
+## 117.037+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -68.42517+10.35448i
+##    Direct variance 
+## -64.57389-0.26405i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 23.029460  5.177241
-## x_i  5.177241 91.454629
+##            x_r        x_i
+## x_r 26.2315425 -0.1320246
+## x_i -0.1320246 90.8054308
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2079.347
+## [1] 2381.949
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 63.30431-81.95208i
+## 78.0302-124.6261i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -51.54681+40.05824i
+## -45.34954+76.80365i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -821,9 +821,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -55.04338- 4.60502i -51.54681+40.05824i
-## y -51.54681+40.05824i   3.62932+72.15798i
+##                      x                   y
+## x -116.36770- 6.07000i -45.34954+76.80365i
+## y  -45.34954+76.80365i  49.07402+62.77086i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.997985
+## [1] 0.9974858
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1886,8 +1886,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##          [,1]
-## [1,] 0.997904
+##           [,1]
+## [1,] 0.9666042
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1913,10 +1913,10 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 
 \begin{verbatim}
 ##        x_r    x_i    y_r   y_i
-## x_r  1.000 -0.060  0.735 0.699
-## x_i -0.060  1.000 -0.718 0.670
-## y_r  0.735 -0.718  1.000 0.032
-## y_i  0.699  0.670  0.032 1.000
+## x_r  1.000 -0.011  0.716 0.698
+## x_i -0.011  1.000 -0.702 0.705
+## y_r  0.716 -0.702  1.000 0.005
+## y_i  0.698  0.705  0.005 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2855,7 +2855,7 @@ The conjugate ACF (due to its nature) is represented by a set of real values (Fi
 \caption{\label{fig:complexAR1ACFConj}Conjugate complex autocorrelation function}
 \end{figure}
 
-The plot in Figure \ref{fig:complexAR1ACFConj} shows that the autocorrelation for lag one is statistically different from zero on the 5\% significance level (the latter is regulated by \texttt{level} parameter in the function). The non-rejection region on the plot is costructed based on the t-statistics and helps testing the null hypothesis that autocorrelation coefficient for each lag equals to zero (with the alternative being not equal). The value of the coefficient itself does not provide any specific information about the autoregressive relation in the data, but merely shows that the correlation between variables is mediocre.
+The plot in Figure \ref{fig:complexAR1ACFConj} shows that the autocorrelation for lag one is statistically different from zero on the 5\% significance level (the latter is regulated by \texttt{level} parameter in the function). The non-rejection region on the plot is costructed based on the Folded t-distribution (which is an approximation of the square root of convolution of two Fisher distributions) and helps testing the null hypothesis that autocorrelation coefficient for each lag equals to zero (with the alternative being not equal). The value of the coefficient itself does not provide any specific information about the autoregressive relation in the data, but merely shows that the correlation between variables is mediocre.
 
 In contrast, the conjugate PACF provides more details and shows the specific values for the real and the imaginary parts of the coefficient in the process (see Figure \ref{fig:complexAR1PACFConj}):
 
@@ -3757,6 +3757,7 @@ Now, depending on the type of covariance we need, we get:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   For the conjugate one:
   \begin{equation}
@@ -3769,7 +3770,12 @@ Now, depending on the type of covariance we need, we get:
    cov \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\phi}_1 \varsigma^2_{y_t} .
    \label{eq:ComplexAR1DirCov}
   \end{equation}
-  If we now insert \eqref{eq:ComplexAR1ConjCov} and \eqref{eq:ComplexAR1DirCov} into the respective formulae for the conjugate and direct correlations (Section \ref{correlationTypes}, equations \eqref{eq:correlationConjugate} and \eqref{eq:correlationDirect}), we will get the values of the cACF for the first lag according to:
+\end{enumerate}
+
+If we now insert \eqref{eq:ComplexAR1ConjCov} and \eqref{eq:ComplexAR1DirCov} into the respective formulae for the conjugate and direct correlations (Section \ref{correlationTypes}, equations \eqref{eq:correlationConjugate} and \eqref{eq:correlationDirect}), we will get the values of the cACF for the first lag according to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Conjugate correlation:
   \begin{equation}
@@ -3839,12 +3845,13 @@ For demonstration purposes we consider the cAR(1) process to see how cACF/cPACF 
 \NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{+}\NormalTok{50i}
 \NormalTok{phi1 }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{+} \FloatTok{0.2}\NormalTok{i}
 \CommentTok{\# Complex white noise}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{25}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{16}\SpecialCharTok{+}\NormalTok{9i)}
+\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{25}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{16}\SpecialCharTok{+}\NormalTok{9i)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"complex"}\NormalTok{, obs)}
 \CommentTok{\# Initial value}
-\NormalTok{y[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ y[}\DecValTok{1}\NormalTok{]}
+\NormalTok{y[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ e[}\DecValTok{1}\NormalTok{]}
 \CommentTok{\# The cAR(1)}
 \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{obs)\{}
-\NormalTok{    y[i] }\OtherTok{\textless{}{-}}\NormalTok{ phi1 }\SpecialCharTok{*}\NormalTok{ y[i}\DecValTok{{-}1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ y[i] }\SpecialCharTok{+}\NormalTok{ b0}
+\NormalTok{    y[i] }\OtherTok{\textless{}{-}}\NormalTok{ phi1 }\SpecialCharTok{*}\NormalTok{ y[i}\DecValTok{{-}1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ e[i]}
 \NormalTok{\}}
 \CommentTok{\# Drop the first 10 observations as a burn{-}in period}
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ y[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)]}
@@ -3881,7 +3888,20 @@ As we see from Figure \ref{fig:complexAR1cACF}, the cACF declines after the lag 
 
 The cPACF in Figure \ref{fig:complexAR1cPACF} demonstrates that both the real and the imaginary values drop to zero after the first observation, as expected for the AR(1) process. Notably, the value of the first cPACF is 0.495+0.236i, which is close to the true value of the parameter.
 
-Finally, the plot in Figure \ref{fig:complexAR1Plot} shows the generated data on the complex plane and the dynamics of obth the real and the imaginary parts.
+The direct cACF and cPACF are shown in Figures \ref{fig:complexAR1cACFDir} and \ref{fig:complexAR1cpACFDir}, roughly giving the same information as their conjugate counterparts. We should note however that the direct cACF has the more detailed information about the dynamic relations in the data than the conjugate one.
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1cACFDir-1.pdf}
+
+Although, both plots contain values outside of the 95\% non-rejection region, these could be considered as happening at random and can be neglected.
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1cpACFDir-1.pdf}
+\caption{\label{fig:complexAR1cpACFDir}Direct cPACF of the complex AR(1).}
+\end{figure}
+
+It is worth noting that in both Figures \ref{fig:complexAR1cACFDir} and \ref{fig:complexAR1cpACFDir} the first values of the cACF/cPACF are close to the true value of \(0.5+0.2i\).
+
+Finally, the plot in Figure \ref{fig:complexAR1Plot} shows the generated data on the complex plane and the dynamics of both the real and the imaginary parts.
 
 \begin{figure}
 \centering
@@ -3999,11 +4019,141 @@ For the cACF, we need to calculate the covariance between the values on observat
     \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \mathrm{cov}\left( \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t, \underline{\theta}_1 \underline{\epsilon}_{t-2} + \underline{\epsilon}_{t-1} \right).
     \label{eq:ComplexMA1Step1}
 \end{equation}
-Given that the basic assumptions discussed in Section @ref() hold for the ``true model'', the covariance is simplified to:
+Given that the basic assumptions discussed in Chapter \ref{assumptions} hold for the ``true model'', the covariance is simplified to:
 \begin{equation}
     \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \mathrm{cov}\left( \underline{\epsilon}_{t-1}, \underline{\epsilon}_{t-1} \right).
-    \label{eq:ComplexMA1Step1}
+    \label{eq:ComplexMA1Step2}
 \end{equation}
+
+Based on this, the conjugate and the direct covariances will be equal to respectively:
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \sigma^2_{y_t}.
+    \label{eq:ComplexMA1ConjCov}
+\end{equation}
+and
+\begin{equation}
+    {cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \varsigma^2_{y_t}.
+    \label{eq:ComplexMA1DirCov}
+\end{equation}
+Note that in the formulae above, we use the fact that the variance of the error term will coincide with the variance of the response variable \(\underline{y}_t\), which becomes apparent from the original model formulation \eqref{eq:ComplexMA1}, assuming that the error term has a zero expectation. Inserting \eqref{eq:ComplexMA1ConjCov} and \eqref{eq:ComplexMA1DirCov} in the formulae for the conugate and direct correlations, we get that for the cMA(1), the first lag of the cACF equals to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Conjugate correlation:
+  \begin{equation}
+   \rho(1) = | \underline{\theta}_1 |;
+   \label{eq:ComplexMA1ConjCor}
+  \end{equation}
+\item
+  Direct correlation:
+  \begin{equation}
+   \varrho(1) =  \underline{\theta}_1.
+   \label{eq:ComplexMA1DirCor}
+  \end{equation}
+\end{enumerate}
+
+Similarly to how it was with the cAR(1) process, we see that the conjugate cACF is based on the magnitude of the complex parameter, while the direct one has the value itself in it. This comes with the same in-sample limitations as above with the direct correlation being sensitive to the similarity of the variances of the real and the imaginary parts of the response variable.
+
+However, when it comes to the second lag of the cACF, the situation differs from the one with the cAR(1):
+\begin{equation}
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-2} \right) = \mathrm{cov}\left( \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t, \underline{\theta}_1 \underline{\epsilon}_{t-3} + \underline{\epsilon}_{t-2} \right) = 0 .
+    \label{eq:ComplexMA1Lag2}
+\end{equation}
+This agrees with the behaviour of the cACF in case of the conventional real-valued MA(q) processes \citep{Box1976}: it falls to zero abruptly right after the lag q.
+
+When it comes to the cPACF of cMA(1), its behaviour becomes similar to the behaviour of cACF for AR(1). This is because the model \eqref{eq:ComplexMA1} can be represented as an infinite cAR:
+\begin{equation}
+    \underline{y}_t = \sum_{j=1}^\infty -1^{j-1} \underline{\theta}_1^j \underline{y}_{t-j} + \underline{\epsilon}_t ,
+    \label{eq:ComplexMA1Infinite}
+\end{equation}
+which is based on the fact that \(\underline{\epsilon}_t = \underline{y}_t - \underline{\theta}_1 \underline{\epsilon}_{t-1}\). In this situation, both conjugate and direct cPACF will decline exponentially, which ones again agrees with the behaviour of the conventional PACF in case of the real-valued MA(q) process.
+
+As we see, the behaviour of both cACF and cPACF in case of cMA(q) model agrees with their behaviour in the real-valued model. Still, similarly to the cAR(p) process, both conjugate and direct cPACF should be used for time series analysis.
+
+Continuing the similarities between the complex and the real-valued models, it can be shown that the property of the invertibility is easily transferable to the cMA(q) model from the conventional MA(q). The model will be invertible if all the roots of the following polynomial equation lie outside of the unit circle:
+\begin{equation}
+    1 + \underline{\theta}_1 x + \underline{\theta}_2 x^2 + \dots + \underline{\theta}_p x^p = 0 .
+    \label{eq:ComplexMAPolyRoots}
+\end{equation}
+
+\hypertarget{exmaple-in-r}{%
+\subsection{Exmaple in R}\label{exmaple-in-r}}
+
+Similarly to the cAR(p), we consider an R example, analysing how the cACF and cPACF behave in a special case of cMA(1) with an intercept:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sample size}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\CommentTok{\# Number of observations}
+\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{110}
+\CommentTok{\# Parameters}
+\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{+}\NormalTok{50i}
+\NormalTok{theta1 }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{+} \FloatTok{0.2}\NormalTok{i}
+\CommentTok{\# Complex white noise}
+\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{25}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{16}\SpecialCharTok{+}\NormalTok{9i)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"complex"}\NormalTok{, obs)}
+\CommentTok{\# Initial value}
+\NormalTok{y[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ e[}\DecValTok{1}\NormalTok{]}
+\CommentTok{\# The cAR(1)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{obs)\{}
+\NormalTok{    y[i] }\OtherTok{\textless{}{-}}\NormalTok{ theta1 }\SpecialCharTok{*}\NormalTok{ e[i}\DecValTok{{-}1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ e[i]}
+\NormalTok{\}}
+\CommentTok{\# Drop the first 10 observations as a burn{-}in period}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ y[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+Because we use the same random seed value as before and the same value of the parameter as in case of cAR(1), we get time series, which look similar to the one generated from cAR(1) (see Figure \ref{fig:complexMA1Plot}, compared to Figure \ref{fig:complexAR1Plot}).
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexMA1Plot-1.pdf}
+\caption{\label{fig:complexMA1Plot}Visualisation of the cMA(1) process.}
+\end{figure}
+
+However, when we analyse cACF of the time series, we will spot an important difference - its values drop to zero abruptly right after the first lag.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexMA1cACF-1.pdf}
+\caption{\label{fig:complexMA1cACF}Conjugate cACF of the complex MA(1).}
+\end{figure}
+
+As we see from Figure \ref{fig:complexMA1cACF}, the only statistically significant lag (on 5\%) is the first one, all the others lie in the non-rejection region. We observe a similar behaviour in case of the direct cACF (Figure \ref{fig:complexMA1cACFDir}), although it is worth noting that the imaginary part of the direct cACF has all lags lying in the non-rejection region.
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexMA1cACFDir-1.pdf}
+\caption{\label{fig:complexMA1cACFDir}Direct cACF of the complex MA(1).}
+\end{figure}
+
+\textbf{Not clear, what's happening with cPACFs!}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexMA1cpACFDir-1.pdf}
+\caption{\label{fig:complexMA1cpACFDir}Direct cPACF of the complex AR(1).}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cpacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexMA1cPACF-1.pdf}
+\caption{\label{fig:complexMA1cPACF}Conjugate cPACF of the complex MA(1).}
+\end{figure}
 
 \hypertarget{complex-arma-and-arima}{%
 \section{Complex ARMA and ARIMA}\label{complex-arma-and-arima}}
