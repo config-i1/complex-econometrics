@@ -134,7 +134,12 @@ cLR can also be extended by the inclusion of the past values of the response var
     \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
     (\#eq:ComplexAR)
 \end{equation}
-where $\phi_j$ is the $j$-th parameter, and $p$ is the order of the model, complex autoregression, cAR(p).
+where $\phi_j$ is the $j$-th parameter, and $p$ is the order of the model, complex autoregression, cAR(p). The same model can be rewritten in the conventional polynomial form using a backshift operator $B$:
+\begin{equation}
+    \left(1 - \underline{\phi}_1 B + \dots + \underline{\phi}_p B^p \right) \underline{y}_t  = \underline{\beta}_0 + \underline{\epsilon}_t .
+    (\#eq:ComplexARPolynomial)
+\end{equation}
+This form is convenient for what follows, e.g. for the discussion of unit roots calculation. But also, if we add the already discussed static elements to the right-hand side of \@ref(eq:ComplexAR) or \@ref(eq:ComplexARPolynomial), namely $\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}$, then the model will transform into cARX(p), combining the properties of the cLR and cAR.
 
 Similarly to the conventional AR, it can be shown how complex ACF/PACF (discussed in Subsection \@ref(assumptionsResidualsAuto)) behave for different orders of cAR. In this monograph, for simplicity, we only provide an example of cAR(1) without an intercept, noting that the logic for the higher orders is similar [@SvetunkovAdam has similar derivations for the real-valued AR(p) in Section 8.3].
 
@@ -197,17 +202,70 @@ If we calculate the covariance for the cAR(1) between the values $y_{t}$ and $y_
 
 In principles, it can be shown that the main properties of real-valued AR discussed by @Box1976 hold widely for the cAR processes: cACF will decline exponentially starting from the lag p.
 
-The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF. This function
+The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF. This function shows the relations between specific lags without the effect of all the interim lags, i.e. cleaned from the autocorrelations between the neighbouring lags. One of ways of calculating the cPACF for a lag $\tau$ is to estimate the following model:
+\begin{equation}
+    \underline{y}_t = \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_\tau \underline{y}_{t-\tau} + \underline{\epsilon}_t
+    (\#eq:cPACFModel)
+\end{equation}
+and getting the coefficient $\underline{\phi}_\tau$. Repeating this procedure for all lags of interest, we get a cPACF. The model \@ref(eq:cPACFModel) can be estimated using OLS or CLS, which will result in respective conjugate and direct cPACF.
+
+It can be shown that for the cAR(p) process, both conjugate and direct cPACF will drop to zero abruptly after the lag p and that both of them will produce complex numbers, reflecting the respective parts of the coefficients of the cAR(p) model. However, the direct cPACF might have issues similar to the ones the direct cACF has if the variances of the real and the imaginary parts of the response variable are close to each other.
+
+As we see, the complex AR(p) has similar properties to the real-valued one, but it should be analysed using both conjugate and direct cACF/cPACF.
+
+Finally, in Box-Jenkins methodology, it is important for the AR(p) processes to be stationary, otherwise they become explosive and cannot be efficiently identified at the model building stage. The stationarity condition for AR(p) in @Box1976 is that the roots of the polynomial formed from the parameters of the AR model should all lie outside the unit circle. For AR(1) this simplifies to $|\phi_1|<1$. The same conditions hold for the cAR(p) processes, meaning that the magnitudes of the complex parameters are considered. For the cAR(1), the stationarity condition is $|\underline{\phi}_1|<1$. But more widely, for cAR(p), it is that the roots of the following polynomial:
+\begin{equation}
+    1 - \underline{\phi}_1 x - \underline{\phi}_2 x^2 - \dots - \underline{\phi}_p x^p = 0
+    (\#eq:ComplexARPolyRoots)
+\end{equation}
+should all lie outside the unit circle (be greater than one by absolute value).
 
 
+### Example in R
+For demonstration purposes we consider the cAR(1) process to see how cACF/cPACF and the data will look
+```{r}
+# Sample size
+set.seed(41)
+# Number of observations
+obs <- 110
+# Parameters
+b0 <- 100+50i
+phi1 <- 0.5 + 0.2i
+# Complex white noise
+y <- rcnorm(obs, 0, sigma2=25, varsigma2=16+9i)
+# Initial value
+y[1] <- b0 + y[1]
+# The cAR(1)
+for(i in 2:obs){
+    y[i] <- phi1 * y[i-1] + y[i] + b0
+}
+# Drop the first 10 observations as a burn-in period
+y <- y[-c(1:10)]
+```
 
-Stationarity condition is similar to the AR/VAR: the absolute value of the complex number should be below one for cAR(1). For the other ones... it should be unit roots thingy.
+The conjugate cACF/cPACF are shown in Figures \@ref(fig:complexAR1cACF) and \@ref(fig:complexAR1cPACF):
 
-What trajectories cAR generates.
+```{r complexAR1cACF, fig.cap="Conjugate cACF of the complex AR(1)."}
+cacf(y, method="conjugate")
+```
 
+As we see from Figure \@ref(fig:complexAR1cACF), the cACF declines after the lag 1. Notably, the cACF for lag one equals to `r round(cacf(y, method="conjugate", plot=FALSE)$acf[1],3)`, which is close to the true value of the magnitude of the parameter $\phi_1=0.5+0.2i$ is `r abs(phi1)`.
 
+```{r complexAR1cPACF, fig.cap="Conjugate cPACF of the complex AR(1)."}
+cpacf(y, method="conjugate")
+```
 
-If we add the already discussed static elements to \@ref(eq:ComplexAR), namely $\underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t}$, then the model will transform into cARX(p), combining the properties of the cLR and cAR.
+The cPACF in Figure \@ref(fig:complexAR1cPACF) demonstrates that both the real and the imaginary values drop to zero after the first observation, as expected for the AR(1) process. Notably, the value of the first cPACF is `r round(cpacf(y, method="conjugate", plot=FALSE)$acf[1],3)`, which is close to the true value of the parameter.
+
+Finally, the plot in Figure \@ref(fig:complexAR1Plot) shows the generated data on the complex plane and the dynamics of obth the real and the imaginary parts.
+
+```{r complexAR1Plot, fig.cap="Visualisation of the cAR(1) process.", echo=FALSE}
+layout(matrix(c(1,2,1,3),2,2))
+par(mar=c(4,4,1,1))
+plot(y, type="b", main="")
+plot(Re(y), type="l", xlab="Time", main="")
+plot(Im(y), type="l", xlab="Time", main="")
+```
 
 
 ## Complex MA
