@@ -248,26 +248,26 @@ y <- y[-c(1:10)]
 The conjugate cACF/cPACF are shown in Figures \@ref(fig:complexAR1cACF) and \@ref(fig:complexAR1cPACF):
 
 ```{r complexAR1cACF, fig.cap="Conjugate cACF of the complex AR(1)."}
-cacf(y, method="conjugate")
+cacf(y, method="conjugate", main="")
 ```
 
 As we see from Figure \@ref(fig:complexAR1cACF), the cACF declines after the lag 1. Notably, the cACF for lag one equals to `r round(cacf(y, method="conjugate", plot=FALSE)$acf[1],3)`, which is close to the true value of the magnitude of the parameter $\phi_1=0.5+0.2i$ is `r abs(phi1)`.
 
 ```{r complexAR1cPACF, fig.cap="Conjugate cPACF of the complex AR(1)."}
-cpacf(y, method="conjugate")
+cpacf(y, method="conjugate", main="")
 ```
 
 The cPACF in Figure \@ref(fig:complexAR1cPACF) demonstrates that both the real and the imaginary values drop to zero after the first observation, as expected for the AR(1) process. Notably, the value of the first cPACF is `r round(cpacf(y, method="conjugate", plot=FALSE)$acf[1],3)`, which is close to the true value of the parameter.
 
 The direct cACF and cPACF are shown in Figures \@ref(fig:complexAR1cACFDir) and \@ref(fig:complexAR1cpACFDir), roughly giving the same information as their conjugate counterparts. We should note however that the direct cACF has the more detailed information about the dynamic relations in the data than the conjugate one.
 ```{r complexAR1cACFDir, fig.cap="Direct cACF of the complex AR(1).", echo=FALSE}
-cacf(y, method="direct")
+cacf(y, method="direct", main="")
 ```
 
 Although, both plots contain values outside of the 95% non-rejection region, these could be considered as happening at random and can be neglected.
 
 ```{r complexAR1cpACFDir, fig.cap="Direct cPACF of the complex AR(1).", echo=FALSE}
-cpacf(y, method="direct")
+cpacf(y, method="direct", main="")
 ```
 
 It is worth noting that in both Figures \@ref(fig:complexAR1cACFDir) and \@ref(fig:complexAR1cpACFDir) the first values of the cACF/cPACF are close to the true value of $0.5+0.2i$.
@@ -450,13 +450,13 @@ plot(Im(y), type="l", xlab="Time", main="")
 However, when we analyse cACF of the time series, we will spot an important difference - its values drop to zero abruptly right after the first lag.
 
 ```{r complexMA1cACF, fig.cap="Conjugate cACF of the complex MA(1)."}
-cacf(y, method="conjugate")
+cacf(y, method="conjugate", main="")
 ```
 
 As we see from Figure \@ref(fig:complexMA1cACF), the only statistically significant lag (on 5%) is the first one, all the others lie in the non-rejection region. We observe a similar behaviour in case of the direct cACF (Figure \@ref(fig:complexMA1cACFDir)), although it is worth noting that the imaginary part of the direct cACF has all lags lying in the non-rejection region.
 
 ```{r complexMA1cACFDir, fig.cap="Direct cACF of the complex MA(1).", echo=FALSE}
-cacf(y, method="direct")
+cacf(y, method="direct", main="")
 ```
 
 **Not clear, what's happening with cPACFs!**
@@ -469,12 +469,12 @@ cacf(y, method="direct")
 <!-- Although, both plots contain values outside of the 95% non-rejection region, these could be considered as happening at random and can be neglected. -->
 
 ```{r complexMA1cpACFDir, fig.cap="Direct cPACF of the complex AR(1).", echo=FALSE}
-cpacf(y, method="direct")
+cpacf(y, method="direct", main="")
 ```
 
 
 ```{r complexMA1cPACF, fig.cap="Conjugate cPACF of the complex MA(1)."}
-cpacf(y, method="conjugate")
+cpacf(y, method="conjugate", main="")
 ```
 
 
