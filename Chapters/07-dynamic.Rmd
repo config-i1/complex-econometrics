@@ -201,7 +201,7 @@ If we calculate the covariance for the cAR(1) between the values $y_{t}$ and $y_
     (\#eq:ComplexAR1DirCor)
 \end{equation}
 
-In principles, it can be shown that the main properties of real-valued AR discussed by @Box1976 hold widely for the cAR processes: cACF will decline exponentially starting from the lag p.
+In principles, it can be shown that the main properties of real-valued AR discussed by @Box1976 hold widely for the cAR processes: cACF will decline exponentially starting from the lag p. Note however that the direct cACF involves the power of a complex number, which means that in some situations, for some values of the complex parameter $\underline{\phi}_1$, the cACF will decline harmonically rather than exponentially.
 
 The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF. This function shows the relations between specific lags without the effect of all the interim lags, i.e. cleaned from the autocorrelations between the neighbouring lags. One of ways of calculating the cPACF for a lag $\tau$ is to estimate the following model:
 \begin{equation}
@@ -403,7 +403,7 @@ When it comes to the cPACF of cMA(1), its behaviour becomes similar to the behav
     \underline{y}_t = \sum_{j=1}^\infty -1^{j-1} \underline{\theta}_1^j \underline{y}_{t-j} + \underline{\epsilon}_t ,
     (\#eq:ComplexMA1Infinite)
 \end{equation}
-which is based on the fact that $\underline{\epsilon}_t = \underline{y}_t - \underline{\theta}_1 \underline{\epsilon}_{t-1}$. In this situation, both conjugate and direct cPACF will decline exponentially, which ones again agrees with the behaviour of the conventional PACF in case of the real-valued MA(q) process.
+which is based on the fact that $\underline{\epsilon}_t = \underline{y}_t - \underline{\theta}_1 \underline{\epsilon}_{t-1}$. In this situation, both conjugate and direct cPACF will decline either exponentially or harmonically, depending on the specific value of the complex parameter. In general, this ones again agrees with the behaviour of the conventional PACF in case of the real-valued MA(q) process.
 
 As we see, the behaviour of both cACF and cPACF in case of cMA(q) model agrees with their behaviour in the real-valued model. Still, similarly to the cAR(p) process, both conjugate and direct cPACF should be used for time series analysis.
 
@@ -414,7 +414,7 @@ Continuing the similarities between the complex and the real-valued models, it c
 \end{equation}
 
 
-### Exmaple in R
+### Example in R
 Similarly to the cAR(p), we consider an R example, analysing how the cACF and cPACF behave in a special case of cMA(1) with an intercept:
 ```{r}
 # Sample size
@@ -423,7 +423,7 @@ set.seed(41)
 obs <- 110
 # Parameters
 b0 <- 100+50i
-theta1 <- 0.5 + 0.2i
+theta1 <- -0.8 + 0.2i
 # Complex white noise
 e <- rcnorm(obs, 0, sigma2=25, varsigma2=16+9i)
 y <- vector("complex", obs)
@@ -459,16 +459,11 @@ As we see from Figure \@ref(fig:complexMA1cACF), the only statistically signific
 cacf(y, method="direct", main="")
 ```
 
-**Not clear, what's happening with cPACFs!**
+On the other hand, the conjugate and direct cPACF will decline exponentially, as discussed earlier. Figure \@ref(fig:complexMA1cpACFDir) shows how the Direct cPACF looks for the complex MA(1), while Figure \@ref(fig:complexMA1cPACF) shows the conjugate one. While the specific values are different for the two functions, they give roughly the same message: the cPACFs decline over time.
 
+There are also some values outside of the 95% non-rejection region on the direct cPACF. However, they can be considered as happening at random (we expect them to lie outside in 5% cases anyway) and can be neglected.
 
-
-<!-- On the other hand, the conjugate and direct cPACF will decline exponentially, as discussed earlier. Figure \@ref(fig:) -->
-
-
-<!-- Although, both plots contain values outside of the 95% non-rejection region, these could be considered as happening at random and can be neglected. -->
-
-```{r complexMA1cpACFDir, fig.cap="Direct cPACF of the complex AR(1).", echo=FALSE}
+```{r complexMA1cpACFDir, fig.cap="Direct cPACF of the complex MA(1).", echo=FALSE}
 cpacf(y, method="direct", main="")
 ```
 
@@ -479,7 +474,11 @@ cpacf(y, method="conjugate", main="")
 
 
 
+
 ## Complex ARMA and ARIMA
+Selection of orders based on cACF/cPACF is extremely difficult, because of all the possibilities for their behaviour depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. Their combination might produce really puzzling cACF/cPACF, which might become useless for the order selection. As a result, we recommend using other principles for the selection of the appropriate p and q. 
+
+
 From 2.4
 
 
