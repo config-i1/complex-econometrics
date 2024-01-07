@@ -285,14 +285,8 @@ plot(Im(y), type="l", xlab="Time", main="")
 When it comes to applying a model and to forecasting, the same `clm()` function from the `complex` package in R can be used:
 
 ```{r}
-# Shift the variable to create the lagged explanatory one
-complexData <- xregExpander(complex2vec(y), lags=-1)
-# Form the complex data frame
-complexData <- data.frame(y=vec2complex(complexData[,c(1,3)]),
-                          yLag1=vec2complex(complexData[,c(1,3)+1]))
-colnames(complexData) <- c("y","yLag1")
-# Fit the model
-cAR1Model <- clm(y~., complexData, subset=c(1:80))
+# Fit the model with intercept and AR(1)
+cAR1Model <- clm(y~1, orders=c(1,0,0), subset=c(1:80))
 # Generate the summary
 summary(cAR1Model)
 ```
@@ -300,23 +294,10 @@ summary(cAR1Model)
 The output above shows the estimates of parameters of the model, demonstrating that the OLS produced estimates close to the true values of parameters (as expected). After that we can generate forecast for the next 20 observations:
 
 ```{r}
-# Vector of forecasts
-yForecast <- vector("complex", 20)
-# The data frame for the future values
-complexData20 <- tail(complexData,20)
-complexData20$y[] <- NA
-complexData20$yLag1[2:20] <- NA
-
-# Iteative loop to produce one-step-ahead forecasts
-for(i in 1:20){
-    cAR1ModelForecast <- predict(cAR1Model,
-                                 newdata=complexData20[i,])
-    yForecast[i] <- cAR1ModelForecast$mean
-    if(i<20){
-        # Write down the forecast as the new lagged value
-        complexData20$yLag1[i+1] <- cAR1ModelForecast$mean
-    }
-}
+# Dummy data. 20 rows tells the function what the horizon is
+complexData20 <- matrix(rep(1,20),20,1)
+# Produce forecasts for the next 20 steps
+yForecast <- predict(cAR1Model, newdata=complexData20)$mean
 ```
 
 Unfortunately, the process of forecast generation is not yet automated in the functions of the `complex` package, so the code above demonstrates how this can be done manually in an iterative fashion, making sure that there is no holdout values leackage in the process. The forecasts are shown in Figure \@ref(fig:complexAR1Forecast).
@@ -461,8 +442,6 @@ cacf(y, method="direct", main="")
 
 On the other hand, the conjugate and direct cPACF will decline exponentially, as discussed earlier. Figure \@ref(fig:complexMA1cpACFDir) shows how the Direct cPACF looks for the complex MA(1), while Figure \@ref(fig:complexMA1cPACF) shows the conjugate one. While the specific values are different for the two functions, they give roughly the same message: the cPACFs decline over time.
 
-There are also some values outside of the 95% non-rejection region on the direct cPACF. However, they can be considered as happening at random (we expect them to lie outside in 5% cases anyway) and can be neglected.
-
 ```{r complexMA1cpACFDir, fig.cap="Direct cPACF of the complex MA(1).", echo=FALSE}
 cpacf(y, method="direct", main="")
 ```
@@ -471,6 +450,8 @@ cpacf(y, method="direct", main="")
 ```{r complexMA1cPACF, fig.cap="Conjugate cPACF of the complex MA(1)."}
 cpacf(y, method="conjugate", main="")
 ```
+
+There are also some values outside of the 95% non-rejection region on the direct cPACF. However, they can be considered as happening at random (we expect them to lie outside in 5% cases anyway) and can be neglected.
 
 
 
