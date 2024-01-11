@@ -300,7 +300,7 @@ complexData20 <- matrix(rep(1,20),20,1)
 yForecast <- predict(cAR1Model, newdata=complexData20)
 ```
 
-Unfortunately, the process of forecast generation is not yet automated in the functions of the `complex` package, so the code above demonstrates how this can be done manually in an iterative fashion, making sure that there is no holdout values leackage in the process. The forecasts are shown in Figure \@ref(fig:complexAR1Forecast).
+The only catch in the code above is to create a dummy `newdata` with the number of rows equal to the forecast horizon. This is a fix, needed because the `clm()` function focuses on explanatory variables. The forecasts from the function are shown in Figure \@ref(fig:complexAR1Forecast).
 
 ```{r complexAR1Forecast, fig.cap="Forecasts for the cAR(1) process."}
 # Produce the plot of the data and the forecasts
@@ -390,6 +390,8 @@ Continuing the similarities between the complex and the real-valued models, it c
     (\#eq:ComplexMAPolyRoots)
 \end{equation}
 
+When it comes to estimating the model on a sample of data, we face several restrictions: the cMA part needs to be constructed recursively, because the new error from observation $t$ is used on the next observations. This means that the analytical solutions according to OLS or CLS cannot be applied anymore, and we need to revert to the numeric optimisation. To that extent, CLS can no longer be used, because the standard solvers require the real-valued loss function, while the one from CLS is a complex one. So, when estimating cMA(q) model, we have to use either OLS or likelihood.
+
 
 ### Example in R
 Similarly to the cAR(p), we consider an R example, analysing how the cACF and cPACF behave in a special case of cMA(1) with an intercept:
@@ -449,7 +451,35 @@ cpacf(y, method="conjugate", main="")
 
 There are also some values outside of the 95% non-rejection region on the direct cPACF. However, they can be considered as happening at random (we expect them to lie outside in 5% cases anyway) and can be neglected.
 
+Finally, we can apply the model to the data:
+```{r}
+# Fit the model with intercept and MA(1)
+cMA1Model <- clm(y~1, orders=c(0,0,1),
+                 subset=c(1:80), loss="likelihood")
+# Generate the summary
+summary(cMA1Model)
+```
 
+In the code above, we specify the `loss="likelihood"` because the parameters of cMA(q) cannot be estimated analytically, and likelihood, having good statistical properties (efficiency and consistency), is appropriate. Note that the estimates of parameters for the complex moving average are far from the true ones, which is due to the sample size and the specific random sample we selected. Asymptotically, the estimator should give parameters closer to the "true" ones.
+
+Similarly to how we did it with cAR(1), we can produce forecasts from the model using the dummy data:
+
+```{r}
+# Dummy data. 20 rows tells the function what the horizon is
+complexData20 <- matrix(1,20,1)
+# Produce forecasts for the next 20 steps
+yForecast <- predict(cMA1Model, newdata=complexData20)
+```
+
+These forecasts are shown in Figure \@ref(fig:complexMA1Forecast).
+
+```{r complexMA1Forecast, fig.cap="Forecasts for the cMA(1) process."}
+# Produce the plot of the data and the forecasts
+par(mfcol=c(2,1),mar=c(4,4,1,1))
+plot(yForecast)
+```
+
+As expected, the forecasts from the cMA(1) converge to the intercept value abruptly right after the $h=1$.
 
 
 ## Complex ARMA and ARIMA
@@ -457,6 +487,8 @@ Selection of orders based on cACF/cPACF is extremely difficult, because of all t
 
 
 From 2.4
+
+What taking differences means, how it is implemented in `complex`
 
 
 ## Other possible models

@@ -146,7 +146,7 @@ where (as a reminder)
 \end{equation*}
 Maximising this likelihood, as discussed in Subsection \@ref(SCLREstimationLikelihood), implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
 
-However, @Lutkepohl2005 shows for multivariate models that the maximum of the likelihood gives the same estimates of parameters as the OLS as long as the Multivariate Normal distribution is assumed for the error term. The results will differ for the other distributions.
+However, @Lutkepohl2005 shows for multivariate models that the maximum of the likelihood gives the same estimates of parameters as the OLS as long as the Multivariate Normal distribution with zero covariance is assumed for the error term. The results might differ for the other distributions or for the case, when the covariance in $\hat{\boldsymbol{\Sigma}}_\epsilon$ is not zero.
 
 
 ## Inference {#MCLRInference}
