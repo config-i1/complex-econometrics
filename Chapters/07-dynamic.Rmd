@@ -483,14 +483,40 @@ As expected, the forecasts from the cMA(1) converge to the intercept value abrup
 
 
 ## Complex ARMA and ARIMA
-Selection of orders based on cACF/cPACF is extremely difficult, because of all the possibilities for their behaviour depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. Their combination might produce really puzzling cACF/cPACF, which might become useless for the order selection. As a result, we recommend using other principles for the selection of the appropriate p and q. 
+Uniting the cAR(p) with cMA(q) gives us the CARMA(p,q) model, which can be written as (in the polynomial form):
+\begin{equation}
+    \left(1 - \underline{\phi}_1 B - \dots - \underline{\phi}_p B^p \right) \underline{y}_t  = \underline{\beta}_0 + \left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t .
+    (\#eq:ComplexARMAPolynomial)
+\end{equation}
+This model combines the properties of the both models, making it even more flexible. However, the cACF/cPACF become even more complicated than before for some cARMA models, because they show complex interactions between the cAR and cMA. We do not discuss specific examples here and leave them as a home task for an interested reader.
+
+Furthermore, in order for cARMA model to be identifiable, we need to apply it to the stationary data - all the examples of cAR and cMA above assumed that implicitly. There are several ways of achieving this, including the addition of trend component as in Section \@ref(DynamicTrend) and taking differences of the original data. The latter implies the introduction of the difference polynomial giving us cARIMA(p,d,q), which is analogous to the real-valued ARIMA:
+\begin{equation}
+    \left(1 - \underline{\phi}_1 B - \dots - \underline{\phi}_p B^p \right) \left(1 - B \right)^d \underline{y}_t  = \underline{\beta}_0 + \left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t .
+    (\#eq:ComplexARIMAPolynomial)
+\end{equation}
+There are several ways how to construct such a model. First one is to take the differences of the original data and then apply cARMA. But this implies that we estimate the following model:
+\begin{equation}
+    \Delta_{\underline{y}_t} = \left(1 - B \right)^d \underline{y}_t  = \underline{\beta}_0 + \left(\underline{\phi}_1 B + \dots + \underline{\phi}_p B^p \right) \Delta_{\underline{y}_t} + \left(\underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t + \underline{\epsilon}_t .
+    (\#eq:ComplexARIMADiffs)
+\end{equation}
+But working with this model might be challenging because in order to produce forecasts from it, one needs to take the inverse of differences to get back to the original units. Instead, we argue that the following form (in principle) is easier to implement and use:
+\begin{equation}
+    \underline{y}_t  = \underline{\beta}_0^\prime + \frac{\left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right)}{\left(1 - \underline{\phi}_1 B - \dots - \underline{\phi}_p B^p \right) \left(1 - B \right)^d} \underline{\epsilon}_t ,
+    (\#eq:ComplexARIMADiffsCorrect)
+\end{equation}
+where we now can produce future $\hat{\underline{y}}_t$ directly instead of $\hat{\Delta}_{\underline{y}_t}$.
 
 
-From 2.4
+
+When it comes to the selection of orders, using cACF/cPACF for this purpose becomes extremely difficult, because of all the possibilities for their behaviour depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. Their combination might produce really puzzling cACF/cPACF, which might become useless for the order selection. Furthermore, as discuss in Section 8.3 of @SvetunkovAdam, the fact that some specific orders of cARMA(p,q) generate some specific shapes of cACF/cPACF does not mean that if we observe that shape then the data is generated from that specific model. After all, there can be many reasons why we observe the specific cACF/cPACF, and conclusions about the order of the appropriate cARMA model just based on them become unreliable. As a result, we recommend using other principles for the selection of the appropriate p and q. One of those is to do that based on the information criteria, such as AIC [@Akaike1974] or BIC [@Schwarz1978]. But in order to be able to do that, one needs to use likelihood for the model estimation.
+
 
 What taking differences means, how it is implemented in `complex`
 
 
 ## Other possible models
+log cARIMA
+
 Other stuff from the original monograph
 
