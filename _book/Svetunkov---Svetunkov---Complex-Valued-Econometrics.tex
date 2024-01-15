@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-01-07}
+\date{2024-01-15}
 
 \begin{document}
 \maketitle
@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.90205+99.31129i
+## [1] 49.5052+101.6947i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 131.4271+0i
+## 121.2806+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -689,7 +689,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -74.15928-1.19557i
+## -68.61161-3.28861i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i
-## x_r 28.6339323  -0.5977872
-## x_i -0.5977872 102.7932158
+##           x_r       x_i
+## x_r 26.334509 -1.644307
+## x_i -1.644307 94.946117
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2943.017
+## [1] 2497.656
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 56.05717-84.91731i
+## 52.36949-65.27509i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -19.84854+45.25686i
+##  Direct covariance 
+## -39.73585+46.6955i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -56.61293+12.03508i -19.84854+45.25686i
-## y -19.84854+45.25686i  28.85099+11.92831i
+## x -47.52819+ 3.81445i -39.73585+46.69550i
+## y -39.73585+46.69550i -21.09560+43.33339i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9970646
+## [1] 0.9967275
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1886,8 +1886,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##          [,1]
-## [1,] 0.997731
+##           [,1]
+## [1,] 0.9967472
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r    y_i
-## x_r 1.000  0.175  0.632  0.758
-## x_i 0.175  1.000 -0.647  0.771
-## y_r 0.632 -0.647  1.000 -0.020
-## y_i 0.758  0.771 -0.020  1.000
+##        x_r    x_i    y_r   y_i
+## x_r  1.000 -0.138  0.773 0.688
+## x_i -0.138  1.000 -0.730 0.620
+## y_r  0.773 -0.730  1.000 0.078
+## y_i  0.688  0.620  0.078 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2078,7 +2078,7 @@ where (as a reminder)
 \end{equation*}
 Maximising this likelihood, as discussed in Subsection \ref{SCLREstimationLikelihood}, implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
 
-However, \citet{Lutkepohl2005} shows for multivariate models that the maximum of the likelihood gives the same estimates of parameters as the OLS as long as the Multivariate Normal distribution is assumed for the error term. The results will differ for the other distributions.
+However, \citet{Lutkepohl2005} shows for multivariate models that the maximum of the likelihood gives the same estimates of parameters as the OLS as long as the Multivariate Normal distribution with zero covariance is assumed for the error term. The results might differ for the other distributions or for the case, when the covariance in \(\hat{\boldsymbol{\Sigma}}_\epsilon\) is not zero.
 
 \hypertarget{MCLRInference}{%
 \section{Inference}\label{MCLRInference}}
@@ -2257,24 +2257,24 @@ Keeping in mind that the MLE should give similar (if not the same) estimates of 
 ## Loss function used in estimation: likelihood
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  103.5476    16.8859    70.0271    137.0680 *
-## (Intercept)_i -151.3386    12.2558  -175.6678   -127.0095 *
-## x1_r             2.4194     0.0729     2.2746      2.5642 *
-## x1_i             1.4880     0.0529     1.3830      1.5931 *
+## (Intercept)_r  103.7631    16.8860    70.2424    137.2838 *
+## (Intercept)_i -151.3386    12.2552  -175.6666   -127.0107 *
+## x1_r             2.4169     0.0729     2.2721      2.5616 *
+## x1_i             1.4877     0.0529     1.3826      1.5927 *
 ## x2_r             1.5625     0.0637     1.4361      1.6889 *
-## x2_i            -0.6919     0.0462    -0.7836     -0.6001 *
+## x2_i            -0.6895     0.0462    -0.7812     -0.5977 *
 ## 
 ## Error covariance matrix:
 ##         e_r     e_i
-## e_r 97.6542 52.9167
-## e_i 52.9167 51.4429
+## e_r 97.6559 52.8591
+## e_i 52.8591 51.4379
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 4.5
 ## Number of degrees of freedom: 95.5
 ## Information criteria:
 ##      AIC     AICc      BIC     BICc 
-## 1338.134 1338.658 1349.858 1351.064
+## 1338.345 1338.869 1350.069 1351.275
 \end{verbatim}
 
 While the estimates of parameters are not exactly the same, they are very similar. The difference arises from the estimation routine in the two methods: the OLS has analytical formulae for the estimates of parameters, while the likelihood has to rely on a numerical optimisation. Note that the error covariance matrix estimated using likelihood is slightly different than the one from OLS. One of the reasons for this is because the maximisation of the likelihood implies in addition to the minimisation of variances also the maximisation of the covariance between the real and imaginary parts of the complex residuals. Note however that the difference is not substantial, both methods produced very similar results.
@@ -2454,28 +2454,28 @@ We can then estimate the model using the same command as before:
 ## Loss function used in estimation: likelihood
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  103.5241    17.1825    69.4054    137.6428 *
-## (Intercept)_i -157.6706    12.5372  -182.5653   -132.7759 *
-## x1_r             2.4187     0.0729     2.2738      2.5635 *
-## x1_i             1.5015     0.0532     1.3958      1.6072 *
-## x2_r             1.5735     0.0642     1.4459      1.7011 *
-## x2_i            -0.6787     0.0469    -0.7718     -0.5856 *
-## colourGreen_r    3.0170     2.4185    -1.7854      7.8194  
-## colourGreen_i    2.5965     1.7647    -0.9076      6.1005  
-## colourRed_r     -0.1795     2.7959    -5.7312      5.3723  
-## colourRed_i      1.9728     2.0400    -2.0780      6.0237  
+## (Intercept)_r  103.5161    17.1840    69.3946    137.6377 *
+## (Intercept)_i -157.3312    12.5342  -182.2198   -132.4425 *
+## x1_r             2.4141     0.0729     2.2693      2.5590 *
+## x1_i             1.4995     0.0532     1.3939      1.6052 *
+## x2_r             1.5754     0.0643     1.4478      1.7030 *
+## x2_i            -0.6765     0.0469    -0.7695     -0.5834 *
+## colourGreen_r    3.2016     2.4187    -1.6012      8.0044  
+## colourGreen_i    2.7011     1.7642    -0.8021      6.2043  
+## colourRed_r     -0.1795     2.7961    -5.7317      5.3727  
+## colourRed_i      1.9735     2.0395    -2.0763      6.0234  
 ## 
 ## Error covariance matrix:
 ##         e_r     e_i
-## e_r 96.7961 52.6044
-## e_i 52.6044 51.5332
+## e_r 96.8123 52.4929
+## e_i 52.4929 51.5081
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 6.5
 ## Number of degrees of freedom: 93.5
 ## Information criteria:
 ##      AIC     AICc      BIC     BICc 
-## 1337.708 1338.762 1354.642 1357.069
+## 1338.163 1339.217 1355.097 1357.524
 \end{verbatim}
 
 The output above shows that R expanded the colour into a set of dummy variables and dropped one of them (``blue''). The complex coefficients for the dummy variables are all not significant on the 5\% level, which in our case means that we cannot detect any strong relation between them and the response variable. This is because we did not use the variable in the data generation.
@@ -3307,24 +3307,24 @@ Finally, we estimate the model using likelihood:
 ## Loss function used in estimation: likelihood
 ## Coefficients:
 ##                Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   81.3851    28.0969    25.6093    137.1608 *
-## (Intercept)_i -161.8085    35.5012  -232.2825    -91.3344 *
-## x1_r             4.2391     5.7846    -7.2441     15.7223  
-## x1_i             8.9223     7.3090    -5.5870     23.4315  
-## x2_r            -1.8391     2.9175    -7.6306      3.9525  
-## x2_i            -2.6157     3.6863    -9.9334      4.7021  
+## (Intercept)_r   81.2499    28.0973    25.4734    137.0263 *
+## (Intercept)_i -161.9716    35.5009  -232.4450    -91.4981 *
+## x1_r             4.2390     5.7847    -7.2443     15.7224  
+## x1_i             8.9223     7.3090    -5.5869     23.4314  
+## x2_r            -1.8383     2.9175    -7.6299      3.9533  
+## x2_i            -2.6157     3.6863    -9.9334      4.7020  
 ## 
 ## Error covariance matrix:
 ##          e_r       e_i
-## e_r 698.4928  109.8954
-## e_i 109.8954 1115.1415
+## e_r 698.5102  109.8689
+## e_i 109.8689 1115.1225
 ## 
 ## Sample size: 100
 ## Number of estimated parameters: 4.5
 ## Number of degrees of freedom: 95.5
 ## Information criteria:
 ##      AIC     AICc      BIC     BICc 
-## 1922.370 1922.894 1934.093 1935.300
+## 1922.373 1922.897 1934.096 1935.303
 \end{verbatim}
 
 Because we generated the data with the uncorrelated errors, the output of the likelihood is very similar to the one from the OLS. In the other situation it might have produced different estimates of parameters.
@@ -3665,24 +3665,27 @@ Applying a complex linear regression to the data with the same formula as in the
 \begin{verbatim}
 ## Complex Linear Regression estimated via clm()
 ## Response variable: logy
-## Loss function used in estimation: OLS
+## Loss function used in estimation: likelihood
 ## Coefficients:
 ##               Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   3.8248     2.6920    -1.5357      9.1853  
-## (Intercept)_i   5.6307     1.3459     2.9508      8.3107 *
-## log(x)_r        0.3240     0.5630    -0.7970      1.4450  
-## log(x)_i       -1.2207     0.2814    -1.7811     -0.6602 *
-## log(trend)_r    0.5124     0.0598     0.3934      0.6315 *
-## log(trend)_i    0.1837     0.0299     0.1241      0.2432 *
+## (Intercept)_r   3.8248     2.7186    -1.5904      9.2400  
+## (Intercept)_i   5.6307     1.3591     2.9235      8.3380 *
+## log(x)_r        0.3237     0.5685    -0.8087      1.4561  
+## log(x)_i       -1.2205     0.2842    -1.7867     -0.6544 *
+## log(trend)_r    0.5124     0.0604     0.3921      0.6327 *
+## log(trend)_i    0.1836     0.0302     0.1235      0.2437 *
 ## 
 ## Error covariance matrix:
 ##        e_r    e_i
-## e_r 0.2369 0.0721
-## e_i 0.0721 0.0592
+## e_r 0.2416 0.0735
+## e_i 0.0735 0.0604
 ## 
 ## Sample size: 80
-## Number of estimated parameters: 3
-## Number of degrees of freedom: 77
+## Number of estimated parameters: 4.5
+## Number of degrees of freedom: 75.5
+## Information criteria:
+##     AIC    AICc     BIC    BICc 
+## 78.6004 79.2649 89.3195 90.7753
 \end{verbatim}
 
 The resulting model fit and the forecast for the next 20 observations are shown in Figure \ref{fig:dataWithTrendForecast}:
@@ -3923,22 +3926,25 @@ When it comes to applying a model and to forecasting, the same \texttt{clm()} fu
 \begin{verbatim}
 ## Complex Linear Regression estimated via clm()
 ## Response variable: y
-## Loss function used in estimation: OLS
+## Loss function used in estimation: likelihood
 ## Coefficients:
 ##               Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r 104.0038    17.6658    68.8338    139.1737 *
-## (Intercept)_i  51.6885     9.0951    33.5814     69.7955 *
-## yLag1_r         0.4825     0.0847     0.3139      0.6512 *
-## yLag1_i         0.2075     0.0436     0.1206      0.2943 *
+## (Intercept)_r 104.0038    17.8382    68.4797    139.5278 *
+## (Intercept)_i  51.6885     9.1839    33.3991     69.9778 *
+## yLag1_r         0.4825     0.0856     0.3122      0.6529 *
+## yLag1_i         0.2075     0.0440     0.1198      0.2952 *
 ## 
 ## Error covariance matrix:
 ##         e_r    e_i
-## e_r 17.1374 4.0977
-## e_i  4.0977 4.5425
+## e_r 17.4734 4.1781
+## e_i  4.1781 4.6316
 ## 
 ## Sample size: 80
-## Number of estimated parameters: 2
-## Number of degrees of freedom: 78
+## Number of estimated parameters: 3.5
+## Number of degrees of freedom: 76.5
+## Information criteria:
+##      AIC     AICc      BIC     BICc 
+## 785.9517 786.3689 794.2888 795.2029
 \end{verbatim}
 
 The output above shows the estimates of parameters of the model, demonstrating that the OLS produced estimates close to the true values of parameters (as expected). After that we can generate forecast for the next 20 observations:
@@ -3948,20 +3954,17 @@ The output above shows the estimates of parameters of the model, demonstrating t
 \CommentTok{\# Dummy data. 20 rows tells the function what the horizon is}
 \NormalTok{complexData20 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{20}\NormalTok{),}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 \CommentTok{\# Produce forecasts for the next 20 steps}
-\NormalTok{yForecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cAR1Model, }\AttributeTok{newdata=}\NormalTok{complexData20)}\SpecialCharTok{$}\NormalTok{mean}
+\NormalTok{yForecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cAR1Model, }\AttributeTok{newdata=}\NormalTok{complexData20)}
 \end{Highlighting}
 \end{Shaded}
 
-Unfortunately, the process of forecast generation is not yet automated in the functions of the \texttt{complex} package, so the code above demonstrates how this can be done manually in an iterative fashion, making sure that there is no holdout values leackage in the process. The forecasts are shown in Figure \ref{fig:complexAR1Forecast}.
+The only catch in the code above is to create a dummy \texttt{newdata} with the number of rows equal to the forecast horizon. This is a fix, needed because the \texttt{clm()} function focuses on explanatory variables. The forecasts from the function are shown in Figure \ref{fig:complexAR1Forecast}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Produce the plot of the data and the forecasts}
 \FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Re}\NormalTok{(y), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Time"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\DecValTok{81}\SpecialCharTok{:}\DecValTok{100}\NormalTok{, }\FunctionTok{Re}\NormalTok{(yForecast), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Im}\NormalTok{(y), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Time"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\DecValTok{81}\SpecialCharTok{:}\DecValTok{100}\NormalTok{, }\FunctionTok{Im}\NormalTok{(yForecast), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(yForecast)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4058,6 +4061,8 @@ Continuing the similarities between the complex and the real-valued models, it c
     \label{eq:ComplexMAPolyRoots}
 \end{equation}
 
+When it comes to estimating the model on a sample of data, we face several restrictions: the cMA part needs to be constructed recursively, because the new error from observation \(t\) is used on the next observations. This means that the analytical solutions according to OLS or CLS cannot be applied anymore, and we need to revert to the numeric optimisation. To that extent, CLS can no longer be used, because the standard solvers require the real-valued loss function, while the one from CLS is a complex one. So, when estimating cMA(q) model, we have to use either OLS or likelihood.
+
 \hypertarget{example-in-r-2}{%
 \subsection{Example in R}\label{example-in-r-2}}
 
@@ -4138,12 +4143,81 @@ On the other hand, the conjugate and direct cPACF will decline exponentially, as
 
 There are also some values outside of the 95\% non-rejection region on the direct cPACF. However, they can be considered as happening at random (we expect them to lie outside in 5\% cases anyway) and can be neglected.
 
+Finally, we can apply the model to the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fit the model with intercept and MA(1)}
+\NormalTok{cMA1Model }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\DecValTok{1}\NormalTok{, }\AttributeTok{orders=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+                 \AttributeTok{subset=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{80}\NormalTok{), }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{)}
+\CommentTok{\# Generate the summary}
+\FunctionTok{summary}\NormalTok{(cMA1Model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: y
+## Loss function used in estimation: likelihood
+## Coefficients:
+##               Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r 100.0041     0.4064    99.1947    100.8134 *
+## (Intercept)_i  50.0262     0.2210    49.5862     50.4663 *
+## eLag1_r        -0.2597     0.0418    -0.3429     -0.1764 *
+## eLag1_i        -0.1278     0.0427    -0.2127     -0.0428 *
+## 
+## Error covariance matrix:
+##         e_r    e_i
+## e_r 27.0792 3.0137
+## e_i  3.0137 6.0300
+## 
+## Sample size: 80
+## Number of estimated parameters: 3.5
+## Number of degrees of freedom: 76.5
+## Information criteria:
+##      AIC     AICc      BIC     BICc 
+## 856.9714 857.3886 865.3085 866.2226
+\end{verbatim}
+
+In the code above, we specify the \texttt{loss="likelihood"} because the parameters of cMA(q) cannot be estimated analytically, and likelihood, having good statistical properties (efficiency and consistency), is appropriate. Note that the estimates of parameters for the complex moving average are far from the true ones, which is due to the sample size and the specific random sample we selected. Asymptotically, the estimator should give parameters closer to the ``true'' ones.
+
+Similarly to how we did it with cAR(1), we can produce forecasts from the model using the dummy data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dummy data. 20 rows tells the function what the horizon is}
+\NormalTok{complexData20 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\CommentTok{\# Produce forecasts for the next 20 steps}
+\NormalTok{yForecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cMA1Model, }\AttributeTok{newdata=}\NormalTok{complexData20)}
+\end{Highlighting}
+\end{Shaded}
+
+These forecasts are shown in Figure \ref{fig:complexMA1Forecast}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Produce the plot of the data and the forecasts}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(yForecast)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexMA1Forecast-1.pdf}
+\caption{\label{fig:complexMA1Forecast}Forecasts for the cMA(1) process.}
+\end{figure}
+
+As expected, the forecasts from the cMA(1) converge to the intercept value abruptly right after the \(h=1\).
+
 \hypertarget{complex-arma-and-arima}{%
 \section{Complex ARMA and ARIMA}\label{complex-arma-and-arima}}
 
 Selection of orders based on cACF/cPACF is extremely difficult, because of all the possibilities for their behaviour depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. Their combination might produce really puzzling cACF/cPACF, which might become useless for the order selection. As a result, we recommend using other principles for the selection of the appropriate p and q.
 
 From 2.4
+
+What taking differences means, how it is implemented in \texttt{complex}
 
 \hypertarget{other-possible-models}{%
 \section{Other possible models}\label{other-possible-models}}
