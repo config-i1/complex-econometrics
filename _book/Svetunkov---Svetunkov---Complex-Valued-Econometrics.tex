@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.8898+100.1498i
+## [1] 51.1691+100.05i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 116.4848+0i
+## 140.3126+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -689,7 +689,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##     Direct variance 
-## -69.10048+10.46027i
+## -98.32223+10.72401i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r       x_i
-## x_r 23.692159  5.230133
-## x_i  5.230133 92.792635
+##           x_r        x_i
+## x_r 20.995183   5.362004
+## x_i  5.362004 119.317411
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2171.104
+## [1] 2476.34
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 44.64479-88.88373i
+## 57.2609-108.2232i
 \end{verbatim}
 
 \begin{Shaded}
@@ -808,7 +808,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -37.95743+31.36756i
+## -24.55622+62.80317i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -62.18318-10.04859i -37.95743+31.36756i
-## y -37.95743+31.36756i -38.02096+25.85687i
+## x -62.02827+ 9.68893i -24.55622+62.80317i
+## y -24.55622+62.80317i   0.79207+62.19199i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1829,7 +1829,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9976899
+## [1] 0.9974269
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1886,8 +1886,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##           [,1]
-## [1,] 0.9980807
+##            [,1]
+## [1,] -0.9981349
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1912,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##        x_r    x_i    y_r    y_i
-## x_r  1.000 -0.115  0.735  0.651
-## x_i -0.115  1.000 -0.755  0.676
-## y_r  0.735 -0.755  1.000 -0.032
-## y_i  0.651  0.676 -0.032  1.000
+##        x_r    x_i    y_r   y_i
+## x_r  1.000 -0.059  0.788 0.756
+## x_i -0.059  1.000 -0.658 0.605
+## y_r  0.788 -0.658  1.000 0.196
+## y_i  0.756  0.605  0.196 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -3924,7 +3924,7 @@ When it comes to applying a model and to forecasting, the same \texttt{clm()} fu
 \end{Shaded}
 
 \begin{verbatim}
-## Complex Linear Regression estimated via clm()
+## cARIMA(1,0,0) estimated via clm()
 ## Response variable: y
 ## Loss function used in estimation: likelihood
 ## Coefficients:
@@ -4156,7 +4156,7 @@ Finally, we can apply the model to the data:
 \end{Shaded}
 
 \begin{verbatim}
-## Complex Linear Regression estimated via clm()
+## cARIMA(0,0,1) estimated via clm()
 ## Response variable: y
 ## Loss function used in estimation: likelihood
 ## Coefficients:
@@ -4237,7 +4237,199 @@ But working with this model might be challenging because in order to produce for
 \end{equation}
 where we now can produce future \(\hat{\underline{y}}_t\) directly instead of \(\hat{\Delta}_{\underline{y}_t}\). This formulation is implemented and used in the \texttt{clm()} function from the \texttt{complex} package in R via the \texttt{orders} parameter.
 
-When it comes to the selection of orders, using cACF/cPACF for this purpose becomes extremely difficult, because of all the possibilities for their behaviour depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. Their combination might produce really puzzling cACF/cPACF, which might become useless for the order selection. Furthermore, as discuss in Section 8.3 of \citet{SvetunkovAdam}, the fact that some specific orders of cARMA(p,q) generate some specific shapes of cACF/cPACF does not mean that if we observe that shape then the data is generated from that specific model. After all, there can be many reasons why we observe the specific cACF/cPACF, and conclusions about the order of the appropriate cARMA model just based on them become unreliable. As a result, we recommend using other principles for the selection of the appropriate p and q. One of those is to do that based on the information criteria, such as AIC \citep{Akaike1974} or BIC \citep{Schwarz1978}. But in order to be able to do that, one needs to use likelihood for the model estimation.
+When it comes to deciding whether to take the differences of the time series or not, the standard ADF \citep{Dickey1979} and KPSS \citep{Kwiatkowski1992} tests can be applied independently to the real and imaginary parts to see whether they are stationary or not. This approach assumes that both parts contain variables that have similar dynamics in principle. But there might be some situations, when one part is stationary, while the other is not. In that case, the decision about the order of differencing d might not be straight forward. A solution in this case is to take differences, although this might lead to the overdifferencing one of the parts of the complex variable. The alternative approach is to apply the test to the two parts jointly and a relatively simple solution in this case is to use the MDS to scale the complex variable into the real-valued one. After that the conventional ADF/KPSS can be applied to determine whether the differences are needed to make the variable stationary ``overall''.
+
+When it comes to the selection of orders of cARIMA(p,d,q), using cACF/cPACF for this purpose becomes extremely difficult, because of all the possibilities for the behaviour of these functions depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. The combination of cAR and cMA might produce really puzzling cACF/cPACF, which might become useless for diagnostics or order selection. Furthermore, as discuss in Section 8.3 of \citet{SvetunkovAdam}, the fact that some specific orders of cARMA(p,q) generate some specific shapes of cACF/cPACF does not mean that if we observe that shape then the data is generated from that specific model. After all, there can be many reasons why we observe the specific cACF/cPACF, and conclusions about the order of the appropriate cARMA model just based on them become unreliable. As a result, we recommend using other principles for the selection of the appropriate p and q. One of those is to do that based on the information criteria, such as AIC \citep{Akaike1974} or BIC \citep{Schwarz1978}. But in order to be able to do that, one needs to use likelihood for the model estimation.
+
+\hypertarget{example-in-r-3}{%
+\subsection{Example in R}\label{example-in-r-3}}
+
+In this example, we consider the Box-Jenkins Sales data with a leading indicator. While typically the indicator is treated as an explanatory variable, we will treat the two as one joint complex variable. Separately, they have the dynamics shown in Figure \ref{fig:BJSales}.
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJSales-1.pdf}
+\caption{\label{fig:BJSales}Box-Jenkins Sales data with a leading indicator.}
+\end{figure}
+
+As we can see they seem to change over time similarly, which is probably because the indicator drives the sales. But if we unite the two in one complex variable and plot their joint dynamics we will see that not only the values change over time, but also the relation between the variables (see Figure \ref{fig:BJSalesComplex}).
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJSalesComplex-1.pdf}
+\caption{\label{fig:BJSalesComplex}Box-Jenkins Sales data. Complex dynamics. The red circle depicts the first observation, while the blue trianle is the last one.}
+\end{figure}
+
+While judgmentally we can conclude that both parts of this complex variable are non-stationary, we will conduct ADF and KPSS tests using \texttt{adf.test()} and \texttt{kpss.test()} functions from the \texttt{tseries} package after applying MDS to it. We will use 1\% significance level in the hypotheses testing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{BJsales, }\AttributeTok{imaginary=}\NormalTok{BJsales.lead)}
+\CommentTok{\# Scale the complex variable into the real{-}valued one}
+\NormalTok{yScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(y)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\CommentTok{\# Apply ADF test}
+\NormalTok{tseries}\SpecialCharTok{::}\FunctionTok{adf.test}\NormalTok{(yScaled)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Augmented Dickey-Fuller Test
+## 
+## data:  yScaled
+## Dickey-Fuller = -2.1166, Lag order = 5, p-value = 0.5278
+## alternative hypothesis: stationary
+\end{verbatim}
+
+The output above shows that on 1\% level we fail to reject the null hypothesis that the data is not stationary according to the ADF test. With KPSS, the final message is similar, because we reject the null hypothesis on the 1\% significance level:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tseries}\SpecialCharTok{::}\FunctionTok{kpss.test}\NormalTok{(yScaled)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in tseries::kpss.test(yScaled): p-value smaller than printed p-value
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  KPSS Test for Level Stationarity
+## 
+## data:  yScaled
+## KPSS Level = 2.6246, Truncation lag parameter = 4, p-value = 0.01
+\end{verbatim}
+
+If we take the first differences, the conclusions become contradictory:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{diff}\NormalTok{(yScaled) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    tseries}\SpecialCharTok{::}\FunctionTok{adf.test}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Augmented Dickey-Fuller Test
+## 
+## data:  diff(yScaled)
+## Dickey-Fuller = -3.3412, Lag order = 5, p-value = 0.06707
+## alternative hypothesis: stationary
+\end{verbatim}
+
+In the ADF test, we still fail to reject the null hypothesis on the 1\% level (see output above), while in the KPSS test, we now fail to reject the null as well. This means that the ADF detects non-stationarity in the data, while the KPSS does not.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{diff}\NormalTok{(yScaled) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    tseries}\SpecialCharTok{::}\FunctionTok{kpss.test}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in tseries::kpss.test(diff(yScaled)): p-value greater than printed
+## p-value
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  KPSS Test for Level Stationarity
+## 
+## data:  diff(yScaled)
+## KPSS Level = 0.13477, Truncation lag parameter = 4, p-value = 0.1
+\end{verbatim}
+
+Given this contradiction, we plot the differences of the scaled data to make the conclusion judgmentally (Figure \ref{fig:BJSalesComplexDiffs}):
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJSalesComplexDiffs-1.pdf}
+\caption{\label{fig:BJSalesComplexDiffs}First differences of the MDS of the complex variable of the Box-Jenkins Sales data.}
+\end{figure}
+
+Analysing the series in Figure \ref{fig:BJSalesComplexDiffs}, it might be the case that the data contains a strong AR component or that it is non-stationary. Using this information, we will construct two models: cARIMA(p,2,q) and cARIMA(p,1,q) - and see, which of them performs better. Note that while in general the models are not comparable if different orders d are applied due to the loss of the number of in-sample observations, the \texttt{clm()} function takes care of potential missing values and extrapolates them back, making the models comparable.
+
+Now we apply the cARIMA model to the newly constructed complex variable. We will try several special cases of cARIMA and choose the one that has the lowest information criterion. The code below shows how the process can be automated:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create all combinations of cARIMA orders to consider}
+\CommentTok{\# Here, we set d=\{1, 2\} based on the earlier data exploration}
+\FunctionTok{expand.grid}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{3}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{as.matrix}\NormalTok{() }\OtherTok{{-}\textgreater{}}\NormalTok{ orders}
+\FunctionTok{colnames}\NormalTok{(orders) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"cAR"}\NormalTok{,}\StringTok{"cI"}\NormalTok{,}\StringTok{"cMA"}\NormalTok{)}
+\NormalTok{nModels }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(orders)}
+\CommentTok{\# Prepare the list of all models under consideration}
+\NormalTok{cARIMABJ }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"list"}\NormalTok{,nModels)}
+\FunctionTok{names}\NormalTok{(cARIMABJ) }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"cARIMA("}\NormalTok{,orders[,}\DecValTok{1}\NormalTok{],}\StringTok{","}\NormalTok{,orders[,}\DecValTok{2}\NormalTok{],}\StringTok{","}\NormalTok{,orders[,}\DecValTok{3}\NormalTok{],}\StringTok{")"}\NormalTok{);}
+
+\CommentTok{\# Construct models}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nModels)\{}
+\NormalTok{    cARIMABJ[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\DecValTok{1}\NormalTok{, }\AttributeTok{orders=}\NormalTok{orders[i,], }\AttributeTok{subset=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{130}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The script above will produce 32 cARIMA models of different orders. To choose the best one based on an information criterion, we will use the \texttt{AICc()} function from the \texttt{greybox} package in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extract AICc values}
+\NormalTok{cARIMABJAICc }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(cARIMABJ, AICc)}
+\CommentTok{\# Fix names. Sometimes R makes silly things...}
+\FunctionTok{names}\NormalTok{(cARIMABJAICc) }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(cARIMABJ)}
+\CommentTok{\# Record the index of the model with the lowest AICc}
+\NormalTok{i }\OtherTok{\textless{}{-}} \FunctionTok{which.min}\NormalTok{(cARIMABJAICc)}
+\end{Highlighting}
+\end{Shaded}
+
+The summary of the best performing model is shown below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(cARIMABJ[[i]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## cARIMA(3,1,0) estimated via clm()
+## Response variable: y
+## Loss function used in estimation: likelihood
+## Coefficients:
+##               Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r   0.3040     0.1369     0.0330      0.5750 *
+## (Intercept)_i   0.0036     0.0304    -0.0565      0.0637  
+## yLag1_r        -0.0878     0.0694    -0.2251      0.0496  
+## yLag1_i         0.0644     0.0274     0.0102      0.1186 *
+## yLag2_r         0.1457     0.0683     0.0105      0.2808 *
+## yLag2_i        -0.0258     0.0202    -0.0657      0.0142  
+## yLag3_r         0.2606     0.0938     0.0749      0.4463 *
+## yLag3_i        -0.0168     0.0215    -0.0593      0.0257  
+## 
+## Error covariance matrix:
+##         e_r     e_i
+## e_r  2.2117 -0.0820
+## e_i -0.0820  0.1052
+## 
+## Sample size: 130
+## Number of estimated parameters: 5.5
+## Number of degrees of freedom: 124.5
+## Information criteria:
+##      AIC     AICc      BIC     BICc 
+## 544.1991 544.7781 559.9705 561.3796
+\end{verbatim}
+
+The output above shows the name of the model and the standard statistics we have already seen before. The forecast from this model for the next 20 observations is shown in Figure \ref{fig:BJSalesComplexForecast}.
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJSalesComplexForecast-1.pdf}
+\caption{\label{fig:BJSalesComplexForecast}Forecast for the Box-Jenkins series.}
+\end{figure}
+
+As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts.
 
 \hypertarget{other-possible-models}{%
 \section{Other possible models}\label{other-possible-models}}

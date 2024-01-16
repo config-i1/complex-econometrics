@@ -43,7 +43,7 @@ library(mvtnorm)
 palette("Tableau 10")
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'greybox', 'complex', 'plotrix', 'plotly', 'mvtnorm'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'greybox', 'complex', 'plotrix', 'plotly', 'mvtnorm', 'tseries'
 ), 'packages.bib')
 # Load the necessary packages
 library("plotly")
@@ -55,4 +55,5 @@ library("greybox")
 library("plotrix")
 library("complex")
 library("mvtnorm")
+library("tseries")
 ```
