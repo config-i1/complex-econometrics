@@ -505,14 +505,13 @@ But working with this model might be challenging because in order to produce for
     \underline{y}_t  = \underline{\beta}_0^\prime + \frac{\left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right)}{\left(1 - \underline{\phi}_1 B - \dots - \underline{\phi}_p B^p \right) \left(1 - B \right)^d} \underline{\epsilon}_t ,
     (\#eq:ComplexARIMADiffsCorrect)
 \end{equation}
-where we now can produce future $\hat{\underline{y}}_t$ directly instead of $\hat{\Delta}_{\underline{y}_t}$.
+where we now can produce future $\hat{\underline{y}}_t$ directly instead of $\hat{\Delta}_{\underline{y}_t}$. This formulation is implemented and used in the `clm()` function from the `complex` package in R via the `orders` parameter.
 
 
 
 When it comes to the selection of orders, using cACF/cPACF for this purpose becomes extremely difficult, because of all the possibilities for their behaviour depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. Their combination might produce really puzzling cACF/cPACF, which might become useless for the order selection. Furthermore, as discuss in Section 8.3 of @SvetunkovAdam, the fact that some specific orders of cARMA(p,q) generate some specific shapes of cACF/cPACF does not mean that if we observe that shape then the data is generated from that specific model. After all, there can be many reasons why we observe the specific cACF/cPACF, and conclusions about the order of the appropriate cARMA model just based on them become unreliable. As a result, we recommend using other principles for the selection of the appropriate p and q. One of those is to do that based on the information criteria, such as AIC [@Akaike1974] or BIC [@Schwarz1978]. But in order to be able to do that, one needs to use likelihood for the model estimation.
 
 
-What taking differences means, how it is implemented in `complex`
 
 
 ## Other possible models
