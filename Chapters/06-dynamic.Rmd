@@ -579,7 +579,8 @@ colnames(orders) <- c("cAR","cI","cMA")
 nModels <- nrow(orders)
 # Prepare the list of all models under consideration
 cARIMABJ <- vector("list",nModels)
-names(cARIMABJ) <- paste0("cARIMA(",orders[,1],",",orders[,2],",",orders[,3],")");
+names(cARIMABJ) <- paste0("cARIMA(",orders[,1],",",
+                          orders[,2],",",orders[,3],")");
 
 # Construct models
 for(i in 1:nModels){
@@ -615,7 +616,7 @@ predict(cARIMABJ[[i]], newdata=matrix(NA,20,1)) |>
     plot()
 ```
 
-As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts.
+As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts for both parts.
 
 
 ## Other possible models
