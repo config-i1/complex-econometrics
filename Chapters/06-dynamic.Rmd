@@ -482,7 +482,7 @@ plot(yForecast)
 As expected, the forecasts from the cMA(1) converge to the intercept value abruptly right after the $h=1$.
 
 
-## Complex ARMA and ARIMA
+## Complex ARMA and ARIMA {#DynamicARIMA}
 Uniting the cAR(p) with cMA(q) gives us the CARMA(p,q) model, which can be written as (in the polynomial form):
 \begin{equation}
     \left(1 - \underline{\phi}_1 B - \dots - \underline{\phi}_p B^p \right) \underline{y}_t  = \underline{\beta}_0 + \left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t .
@@ -533,9 +533,16 @@ points(tail(y,1), pch=17, col="blue")
 While judgmentally we can conclude that both parts of this complex variable are non-stationary, we will conduct ADF and KPSS tests using `adf.test()` and `kpss.test()` functions from the `tseries` package after applying MDS to it. We will use 1% significance level in the hypotheses testing.
 
 ```{r}
-y <- complex(real=BJsales, imaginary=BJsales.lead)
+# Normalise the variables
+complex(real=BJsales, imaginary=BJsales.lead) |>
+    cscale(scaling="norm") -> y
 # Scale the complex variable into the real-valued one
 yScaled <- cmdscale(dist(complex2vec(y)), k=1)
+```
+
+In the code above we use the `cscale()` function from the `complex` package to scale both parts of the complex variable. We can then conduct the ADF test:
+
+```{r}
 # Apply ADF test
 tseries::adf.test(yScaled)
 ```
@@ -616,7 +623,15 @@ predict(cARIMABJ[[i]], newdata=matrix(NA,20,1)) |>
     plot()
 ```
 
-As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts for both parts.
+As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts for both parts. If we want to return to the original scale, we can use the `cdescale()` function from the `complex` package:
+
+```{r}
+yForecast <- predict(cARIMABJ[[i]],
+                     newdata=matrix(NA,20,1))
+cdescale(yForecast$mean,
+         complex(real=BJsales, imaginary=BJsales.lead),
+         scaling="norm")
+```
 
 
 ## Other possible models
