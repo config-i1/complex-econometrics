@@ -829,8 +829,43 @@ or equivalently:
 However, from practical point of view, testing the joint hypothesis \@ref(eq:hypothesisSecond) might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution for each part of c.r.v. might provide more detailed information, i.e. whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \@ref(eq:hypothesisSecond), rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
 
 
-## Modelling with complex variables
-Now that we have discussed basics of complex variables theory, we can discuss the modelling aspects of complex-valued models. This includes what can be included in the real and the imaginary parts of the complex variable in what form and how this can be modelled.
+## Complex-valued Modelling
+Now that we have discussed basics of complex variables theory, we can discuss the modelling aspects: it might not look straightforward, what should be included in the real and the imaginary part of a complex variable. There are two philosophical views on complex-valued modelling:
 
-What can be included and how. Examples
+1. You need to find processes, where complex variables arise naturally;
+2. You can model anything with complex variables as long as you follow some rules.
+
+If you follow the former view you need to find some variables that form two parts of the whole that work together. An example of this case is the wind power and direction forecasting. The two variables in this case will be naturally represented in the exponential form:
+\begin{equation*}
+    \underline{y} = r \mathrm{e}^{i \phi} ,
+\end{equation*}
+where $r$ is the power of wind and $\phi$ is its direction. In this formulation, we can then model, for example, how the two characteristics of wind on some observation $t$ depend on the previous values and some external information:
+\begin{equation*}
+    \underline{y}_t = f(\underline{y}_{t-1}, \underline{y}_{t-2}, \dots, \underline{y}_{t-p}, \underline{\mathbf{x}}_t, \underline{\epsilon}_t),
+\end{equation*}
+where $t$ is the index of the observation, $p$ is the order of the model, $\underline{\mathbf{x}}_t$ is the vector of all explanatory complex variables under consideration and $\underline{\epsilon}_t$ is the error term. Some aspects of such a model are discussed in the Chapter \@ref(multipleCLR) of this book, while the others are covered in Chapter \@ref(Dynamic).
+
+However, it might be hard to find examples like the one with the wind above in economics and business domains. Trying to find something analogous (power + i direction) might lead us into a dead end. This is why the second philosophical view exists. @Svetunkov2012 argues that any two variables can be united in a complex variable (in the arithmetic form) as long as:
+
+1. They reflect two sides of a process/phenomenon;
+2. They have the same scale.
+
+The second condition implies that some sort of scaling is required if the variables have different scales. If this condition is not satisfied then the operations with complex variables might lead to meaningless results. For example, if we consider a variable of sales quantity and product price, $q + ip$ and multiply it by a complex parameter $a_r + i a_i$, we get a complex variable that has a strange combination in it:
+\begin{equation}
+    \underline{z} = (q + ip) (a_r + i a_i) = q a_r - p a_i + i(q a_i + p a_r).
+    (\#eq:noScalingExample)
+\end{equation}
+In the equation \@ref(eq:noScalingExample), the resulting real part includes the multiplication of the number of units sold times the parameter $a_r$, while the imaginary part has the price (e.g. in U.S. dollars) times the same parameter $a_r$. If the both parts of the variable were scaled the parameter $a_r$ would act as a transformer from one value to another. But if the both parts are not scaled then in one case it acts as a scaler of units, while the in the other one as a scaler of U.S. dollars, which does not make much sense. This example shows why the condition (2) above is important in complex-valued modelling.
+
+The scaling itself can be done using one of the conventional ways:
+
+a. Normalisation: subtract the minimum value from all the values and then divide by the range. This way the normalised variable will lie between 0 and 1;
+b. Standardisation: subtract the mean and divide the variable by its standard deviation. This way we centre the variable and get rid of scale;
+c. Any other form of scaling, where the division is done by the value of the variable, thus making it unitless.
+
+If we deal with time series data, an additional operation might be important - taking differences to make the data stationary (this is discussed in Section \@ref(DynamicARIMA)). If we do not do that, the new values of the variable might lie outside of the range defined by the scaling.
+
+Incidentally, the example with the wind power above abides to these two conditions, because the variable itself is represented in the exponential form, thus the condition will be satisfied automatically when we use formula \@ref(eq:complexNumberTrigonometric) to move to the arithmetic one. This variable does not require any additional transformations and can be treated as is.
+
+Furthermore, based on the discussion in Subsection \@ref(vectorComplexVariables), we can note that the complex-valued models share some structural similarities with vector models, such as Vector Autoregression, when they are applied to two variables. From this angle, the complex-valued models can be considered as special cases of the vector ones, when some restrictions are imposed on the matrix of parameters. This important property gives the complex-valued models their power: they need fewer parameters to estimate in comparison with their vector counterparts.
 
