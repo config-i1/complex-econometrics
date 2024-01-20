@@ -512,7 +512,7 @@ When it comes to deciding whether to take the differences of the time series or 
 When it comes to the selection of orders of cARIMA(p,d,q), using cACF/cPACF for this purpose becomes extremely difficult, because of all the possibilities for the behaviour of these functions depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. The combination of cAR and cMA might produce really puzzling cACF/cPACF, which might become useless for diagnostics or order selection. Furthermore, as discuss in Section 8.3 of @SvetunkovAdam, the fact that some specific orders of cARMA(p,q) generate some specific shapes of cACF/cPACF does not mean that if we observe that shape then the data is generated from that specific model. After all, there can be many reasons why we observe the specific cACF/cPACF, and conclusions about the order of the appropriate cARMA model just based on them become unreliable. As a result, we recommend using other principles for the selection of the appropriate p and q. One of those is to do that based on the information criteria, such as AIC [@Akaike1974] or BIC [@Schwarz1978]. But in order to be able to do that, one needs to use likelihood for the model estimation.
 
 
-### Example in R
+## Example of application of cARIMA
 In this example, we consider the Box-Jenkins Sales data with a leading indicator. While typically the indicator is treated as an explanatory variable, we will treat the two as one joint complex variable. Separately, they have the dynamics shown in Figure \@ref(fig:BJSales).
 
 ```{r BJSales, fig.cap="Box-Jenkins Sales data with a leading indicator.", echo=FALSE}
