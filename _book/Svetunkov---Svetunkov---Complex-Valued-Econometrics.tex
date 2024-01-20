@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-01-16}
+\date{2024-01-20}
 
 \begin{document}
 \maketitle
@@ -603,7 +603,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.87199+98.79888i
+## [1] 52.3209+99.90816i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -676,7 +676,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 136.0332+0i
+## 119.6992+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -688,8 +688,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -75.98298-1.65495i
+##   Direct variance 
+## -67.096-17.34501i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -714,9 +714,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i
-## x_r 30.0251073  -0.8274747
-## x_i -0.8274747 106.0080908
+##           x_r       x_i
+## x_r 26.301609 -8.672507
+## x_i -8.672507 93.397609
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -728,7 +728,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3182.22
+## [1] 2381.295
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -795,7 +795,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 55.06644-70.33482i
+## 52.0301-116.8382i
 \end{verbatim}
 
 \begin{Shaded}
@@ -807,8 +807,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##  Direct covariance 
-## -23.7972+25.61755i
+##   Direct covariance 
+## -25.96776+74.21723i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -822,8 +822,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -50.61573+ 1.97536i -23.79720+25.61755i
-## y -23.79720+25.61755i  -0.35842+31.33862i
+## x -82.59721+ 8.91907i -25.96776+74.21723i
+## y -25.96776+74.21723i  32.04476+62.30192i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -956,6 +956,67 @@ or equivalently:
     \label{eq:hypothesisSecond}
 \end{equation}
 However, from practical point of view, testing the joint hypothesis \eqref{eq:hypothesisSecond} might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution for each part of c.r.v. might provide more detailed information, i.e.~whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \eqref{eq:hypothesisSecond}, rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
+
+\hypertarget{complex-valued-modelling}{%
+\section{Complex-valued Modelling}\label{complex-valued-modelling}}
+
+Now that we have discussed basics of complex variables theory, we can discuss the modelling aspects: it might not look straightforward, what should be included in the real and the imaginary part of a complex variable. There are two philosophical views on complex-valued modelling:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You need to find processes, where complex variables arise naturally;
+\item
+  You can model anything with complex variables as long as you follow some rules.
+\end{enumerate}
+
+If you follow the former view you need to find some variables that form two parts of the whole that work together. An example of this case is the wind power and direction forecasting. The two variables in this case will be naturally represented in the exponential form:
+\begin{equation*}
+    \underline{y} = r \mathrm{e}^{i \phi} ,
+\end{equation*}
+where \(r\) is the power of wind and \(\phi\) is its direction. In this formulation, we can then model, for example, how the two characteristics of wind on some observation \(t\) depend on the previous values and some external information:
+\begin{equation*}
+    \underline{y}_t = f(\underline{y}_{t-1}, \underline{y}_{t-2}, \dots, \underline{y}_{t-p}, \underline{\mathbf{x}}_t, \underline{\epsilon}_t),
+\end{equation*}
+where \(t\) is the index of the observation, \(p\) is the order of the model, \(\underline{\mathbf{x}}_t\) is the vector of all explanatory complex variables under consideration and \(\underline{\epsilon}_t\) is the error term. Some aspects of such a model are discussed in the Chapter \ref{multipleCLR} of this book, while the others are covered in Chapter \ref{Dynamic}.
+
+However, it might be hard to find examples like the one with the wind above in economics and business domains. Trying to find something analogous (power + i direction) might lead us into a dead end. This is why the second philosophical view exists. \citet{Svetunkov2012} argues that any two variables can be united in a complex variable (in the arithmetic form) as long as:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  They reflect two sides of a process/phenomenon;
+\item
+  They have the same scale.
+\end{enumerate}
+
+The second condition implies that some sort of scaling is required if the variables have different scales. If this condition is not satisfied then the operations with complex variables might lead to meaningless results. For example, if we consider a variable of sales quantity and product price, \(q + ip\) and multiply it by a complex parameter \(a_r + i a_i\), we get a complex variable that has a strange combination in it:
+\begin{equation}
+    \underline{z} = (q + ip) (a_r + i a_i) = q a_r - p a_i + i(q a_i + p a_r).
+    \label{eq:noScalingExample}
+\end{equation}
+In the equation \eqref{eq:noScalingExample}, the resulting real part includes the multiplication of the number of units sold times the parameter \(a_r\), while the imaginary part has the price (e.g.~in U.S. dollars) times the same parameter \(a_r\). If the both parts of the variable were scaled the parameter \(a_r\) would act as a transformer from one value to another. But if the both parts are not scaled then in one case it acts as a scaler of units, while the in the other one as a scaler of U.S. dollars, which does not make much sense. This example shows why the condition (2) above is important in complex-valued modelling.
+
+The scaling itself can be done using one of the conventional ways:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Normalisation: subtract the minimum value from all the values and then divide by the range. This way the normalised variable will lie between 0 and 1;
+\item
+  Standardisation: subtract the mean and divide the variable by its standard deviation. This way we centre the variable and get rid of scale;
+\item
+  Any other form of scaling, where the division is done by the value of the variable, thus making it unitless.
+\end{enumerate}
+
+If we deal with time series data, an additional operation might be important - taking differences to make the data stationary (this is discussed in Section \ref{DynamicARIMA}). If we do not do that, the new values of the variable might lie outside of the range defined by the scaling.
+
+Incidentally, the example with the wind power above abides to these two conditions, because the variable itself is represented in the exponential form, thus the condition will be satisfied automatically when we use formula \eqref{eq:complexNumberTrigonometric} to move to the arithmetic one. This variable does not require any additional transformations and can be treated as is.
+
+Furthermore, based on the discussion in Subsection \ref{vectorComplexVariables}, we can note that the complex-valued models share some structural similarities with vector models, such as Vector Autoregression, when they are applied to two variables. From this angle, the complex-valued models can be considered as special cases of the vector ones, when some restrictions are imposed on the matrix of parameters. This important property gives the complex-valued models their power: they need fewer parameters to estimate in comparison with their vector counterparts.
 
 \hypertarget{simpleCLR}{%
 \chapter{Simple Complex Linear Regression}\label{simpleCLR}}
@@ -1829,7 +1890,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9973204
+## [1] 0.9967639
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1887,7 +1948,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9974191
+## [1,] 0.9972425
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -1912,11 +1973,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r   y_i
-## x_r 1.000  0.037  0.720 0.739
-## x_i 0.037  1.000 -0.662 0.698
-## y_r 0.720 -0.662  1.000 0.070
-## y_i 0.739  0.698  0.070 1.000
+##        x_r    x_i    y_r    y_i
+## x_r  1.000 -0.214  0.764  0.592
+## x_i -0.214  1.000 -0.790  0.656
+## y_r  0.764 -0.790  1.000 -0.062
+## y_i  0.592  0.656 -0.062  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -4210,8 +4271,8 @@ These forecasts are shown in Figure \ref{fig:complexMA1Forecast}.
 
 As expected, the forecasts from the cMA(1) converge to the intercept value abruptly right after the \(h=1\).
 
-\hypertarget{complex-arma-and-arima}{%
-\section{Complex ARMA and ARIMA}\label{complex-arma-and-arima}}
+\hypertarget{DynamicARIMA}{%
+\section{Complex ARMA and ARIMA}\label{DynamicARIMA}}
 
 Uniting the cAR(p) with cMA(q) gives us the CARMA(p,q) model, which can be written as (in the polynomial form):
 \begin{equation}
@@ -4264,9 +4325,18 @@ While judgmentally we can conclude that both parts of this complex variable are 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{BJsales, }\AttributeTok{imaginary=}\NormalTok{BJsales.lead)}
+\CommentTok{\# Normalise the variables}
+\FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{BJsales, }\AttributeTok{imaginary=}\NormalTok{BJsales.lead) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{cscale}\NormalTok{(}\AttributeTok{scaling=}\StringTok{"norm"}\NormalTok{) }\OtherTok{{-}\textgreater{}}\NormalTok{ y}
 \CommentTok{\# Scale the complex variable into the real{-}valued one}
 \NormalTok{yScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(y)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+In the code above we use the \texttt{cscale()} function from the \texttt{complex} package to scale both parts of the complex variable. We can then conduct the ADF test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Apply ADF test}
 \NormalTok{tseries}\SpecialCharTok{::}\FunctionTok{adf.test}\NormalTok{(yScaled)}
 \end{Highlighting}
@@ -4277,7 +4347,7 @@ While judgmentally we can conclude that both parts of this complex variable are 
 ##  Augmented Dickey-Fuller Test
 ## 
 ## data:  yScaled
-## Dickey-Fuller = -2.1166, Lag order = 5, p-value = 0.5278
+## Dickey-Fuller = -2.1558, Lag order = 5, p-value = 0.5115
 ## alternative hypothesis: stationary
 \end{verbatim}
 
@@ -4298,7 +4368,7 @@ The output above shows that on 1\% level we fail to reject the null hypothesis t
 ##  KPSS Test for Level Stationarity
 ## 
 ## data:  yScaled
-## KPSS Level = 2.6246, Truncation lag parameter = 4, p-value = 0.01
+## KPSS Level = 2.6339, Truncation lag parameter = 4, p-value = 0.01
 \end{verbatim}
 
 If we take the first differences, the conclusions become contradictory:
@@ -4315,7 +4385,7 @@ If we take the first differences, the conclusions become contradictory:
 ##  Augmented Dickey-Fuller Test
 ## 
 ## data:  diff(yScaled)
-## Dickey-Fuller = -3.3412, Lag order = 5, p-value = 0.06707
+## Dickey-Fuller = -2.5661, Lag order = 5, p-value = 0.3406
 ## alternative hypothesis: stationary
 \end{verbatim}
 
@@ -4338,7 +4408,7 @@ In the ADF test, we still fail to reject the null hypothesis on the 1\% level (s
 ##  KPSS Test for Level Stationarity
 ## 
 ## data:  diff(yScaled)
-## KPSS Level = 0.13477, Truncation lag parameter = 4, p-value = 0.1
+## KPSS Level = 0.13191, Truncation lag parameter = 4, p-value = 0.1
 \end{verbatim}
 
 Given this contradiction, we plot the differences of the scaled data to make the conclusion judgmentally (Figure \ref{fig:BJSalesComplexDiffs}):
@@ -4395,31 +4465,33 @@ The summary of the best performing model is shown below:
 \end{Shaded}
 
 \begin{verbatim}
-## cARIMA(3,1,0) estimated via clm()
+## cARIMA(3,1,1) estimated via clm()
 ## Response variable: y
 ## Loss function used in estimation: likelihood
 ## Coefficients:
 ##               Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r   0.3040     0.1369     0.0330      0.5750 *
-## (Intercept)_i   0.0036     0.0304    -0.0565      0.0637  
-## yLag1_r        -0.0878     0.0694    -0.2251      0.0496  
-## yLag1_i         0.0644     0.0274     0.0102      0.1186 *
-## yLag2_r         0.1457     0.0683     0.0105      0.2808 *
-## yLag2_i        -0.0258     0.0202    -0.0657      0.0142  
-## yLag3_r         0.2606     0.0938     0.0749      0.4463 *
-## yLag3_i        -0.0168     0.0215    -0.0593      0.0257  
+## (Intercept)_r   0.0014     0.0026    -0.0038      0.0066  
+## (Intercept)_i   0.0047     0.0052    -0.0055      0.0149  
+## yLag1_r         0.3009     0.1564    -0.0087      0.6104  
+## yLag1_i        -0.1360     0.1925    -0.5171      0.2451  
+## yLag2_r         0.0989     0.2409    -0.3779      0.5757  
+## yLag2_i         0.0057     0.2198    -0.4293      0.4407  
+## yLag3_r         0.0823     0.0333     0.0163      0.1483 *
+## yLag3_i        -0.2276     0.0688    -0.3638     -0.0913 *
+## eLag1_r        -0.3726     0.0831    -0.5371     -0.2080 *
+## eLag1_i         0.0946     0.0489    -0.0022      0.1914  
 ## 
 ## Error covariance matrix:
-##         e_r     e_i
-## e_r  2.2117 -0.0820
-## e_i -0.0820  0.1052
+##        e_r    e_i
+## e_r 0.0005 0.0006
+## e_i 0.0006 0.0070
 ## 
 ## Sample size: 130
-## Number of estimated parameters: 5.5
-## Number of degrees of freedom: 124.5
+## Number of estimated parameters: 6.5
+## Number of degrees of freedom: 123.5
 ## Information criteria:
-##      AIC     AICc      BIC     BICc 
-## 544.1991 544.7781 559.9705 561.3796
+##       AIC      AICc       BIC      BICc 
+## -901.0591 -900.2632 -882.4202 -880.4831
 \end{verbatim}
 
 The output above shows the name of the model and the standard statistics we have already seen before. The forecast from this model for the next 20 observations is shown in Figure \ref{fig:BJSalesComplexForecast}.
@@ -4430,7 +4502,25 @@ The output above shows the name of the model and the standard statistics we have
 \caption{\label{fig:BJSalesComplexForecast}Forecast for the Box-Jenkins series.}
 \end{figure}
 
-As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts for both parts.
+As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts for both parts. If we want to return to the original scale, we can use the \texttt{cdescale()} function from the \texttt{complex} package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yForecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cARIMABJ[[i]],}
+                     \AttributeTok{newdata=}\FunctionTok{matrix}\NormalTok{(}\ConstantTok{NA}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{cdescale}\NormalTok{(yForecast}\SpecialCharTok{$}\NormalTok{mean,}
+         \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{BJsales, }\AttributeTok{imaginary=}\NormalTok{BJsales.lead),}
+         \AttributeTok{scaling=}\StringTok{"norm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 257.6162+13.1087i 258.7371+13.1270i 257.4338+13.1111i 257.5523+13.1418i
+##  [5] 257.7756+13.1524i 257.8027+13.1935i 258.1313+13.2268i 258.4488+13.2549i
+##  [9] 258.8752+13.2862i 259.3374+13.3120i 259.7896+13.3359i 260.2593+13.3575i
+## [13] 260.7118+13.3771i 261.1492+13.3960i 261.5722+13.4142i 261.9793+13.4323i
+## [17] 262.3764+13.4506i 262.7655+13.4691i 263.1503+13.4881i 263.5336+13.5074i
+\end{verbatim}
 
 \hypertarget{other-possible-models}{%
 \section{Other possible models}\label{other-possible-models}}
