@@ -635,6 +635,11 @@ cdescale(yForecast$mean,
 
 
 ## Other possible models
+There are many possibilities how complex dynamic model can be expanded. In this section we briefly discuss some of them pointing out their advantages and limitations.
+
+### cARIMA in logarithms
+The first and relatively simple one is applying cARIMA to the complex variables after the logarithmic transformation. As discussed in Section \@ref(assumptionsSpecificationTransformation), this leads to modelling complex non-linear dynamic relations. This might become especially useful on long time series, for example, in energy domain.
+
 log cARIMA
 
 Other stuff from the original monograph

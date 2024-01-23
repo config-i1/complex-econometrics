@@ -413,3 +413,6 @@ clm(y~x1+x2+colour, dataArtificial, loss="likelihood") |>
 
 The output above shows that R expanded the colour into a set of dummy variables and dropped one of them ("blue"). The complex coefficients for the dummy variables are all not significant on the 5% level, which in our case means that we cannot detect any strong relation between them and the response variable. This is because we did not use the variable in the data generation.
 
+
+## Example of application of CLM
+
