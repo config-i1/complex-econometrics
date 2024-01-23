@@ -28,14 +28,16 @@ This work was partially supported by the Russian Foundation for Basic Research (
 
 The authors are grateful to those young scientists of St. Petersburg Polytechnic University of Peter the Great, who participated in this study, patiently testing the author's hypotheses. They helped forming the theory behind the models discussed in this monograph. We are pleased to mention their names: Evgeny Goltsev, Nikolai Pitukhin, Victoria Matskevich, Yulia Selivanova, Galina Siruk and Nazira Shaikhleeva.
  
-this monograph relies heavily on the `complex` package for R. Many of the examples in R will use functions from this package, so make sure to install it before running any R code [@R-complex]:
+This monograph relies heavily on the `complex` package for R. Many of the examples in R will use functions from this package, so make sure to install it before running any R code [@R-complex]:
 ```{r eval=FALSE}
 install.packages("complex")
 ```
 
-We will also need several other packages for our analysis, including:
+We will also need several other packages for our analysis, including the following:
 ```{r eval=FALSE}
 library(mvtnorm)
+library(tseries)
+library(greybox)
 ```
 
 
