@@ -1,0 +1,13 @@
+<!-- # Examples of application {#Examples} -->
+<!-- In this chapter we consider examples of application for cLR and the complex ARIMA models. -->
+
+
+<!-- ## Production functions -->
+
+
+<!-- ## Dynamic models -->
+
+
+<!-- ## Forecasting with complex regression models -->
+
+
