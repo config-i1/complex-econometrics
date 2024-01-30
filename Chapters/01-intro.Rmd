@@ -370,13 +370,43 @@ The representations \@ref(eq:complexFunction), \@ref(eq:complexFunctionSystem), 
 
 Finally, in terms of definitions, the function \@ref(eq:complexFunction) is often referred to as a "complex-valued" function. It maps a certain values of the input variable $x_r + i x_i$ with a specific value of the output variable $y_r +i y_i$. If there is only a one-to-one relation between the input and output variables then such function is called "univalent". When several different values of the input variable leads to one and the same value of the output variable then the function is called "multivalent". An example of the former is the linear function:
 \begin{equation*}
-    y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i}),
+    y_r + i y_i = (a_{r} + i a_{i}) (x_{r} + i x_{i}),
 \end{equation*}
 while for the latter, an example is
 \begin{equation*}
-    y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i})^2, 
+    y_r + i y_i = (a_{r} + i a_{i}) (x_{r} + i x_{i})^2, 
 \end{equation*}
-where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed in the previous Subsection.
+where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed in the previous subsection.
+
+Another important function of complex variables that will be useful in what follows is the power function of the form:
+\begin{equation}
+    y_r + i y_i = (x_{r} + i x_{i}) ^{a_{r} + i a_{i}} .
+    (\#eq:complexPower)
+\end{equation}
+In this function, the complex variable $x_{1,r} + i x_{1,i}$ is transformed non-linearly by taking the complex power of it.
+<!-- To better understand what this implies, we can first expand the power into two multiplicants: -->
+<!-- \begin{equation} -->
+<!--     y_r + i y_i = (x_{r} + i x_{i})^{a_{r}} (x_{r} + i x_{i}) ^{i a_{i}} . -->
+<!--     (\#eq:complexPower2) -->
+<!-- \end{equation} -->
+<!-- Then, consider the exponential form of complex variables in \@ref(eq:complexPower2): -->
+<!-- \begin{equation} -->
+<!--     \left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} e^{i \mathrm{Arg}(y_r + i y_i)} = \left({x_r^2 + x_i^2}\right)^{\frac{a_{r}}{2}} e^{i \mathrm{Arg}(x_r + i x_i) a_{r}} \left({x_r^2 + x_i^2}\right)^{\frac{i a_{i}}{2}} e^{i \mathrm{Arg}(x_r + i x_i) i a_{i}}  , -->
+<!--     (\#eq:complexPowerExp) -->
+<!-- \end{equation} -->
+<!-- which can be further simplified to: -->
+<!-- $\left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} e^{i \mathrm{Arg}(y_r + i y_i)} = \left({x_r^2 + x_i^2}\right)^{\frac{a_{r}}{2}} e^{- a_{i} \mathrm{Arg}(x_r + i x_i) } e^{\frac{i a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right)} e^{i \mathrm{Arg}(x_r + i x_i) a_{r}} $ -->
+
+$\ln (y_r + i y_i) = (a_{r} + i a_{i}) \ln (x_{r} + i x_{i})$
+$\left(\frac{1}{2} \ln \left({y_r^2 + y_i^2}\right) + {i \mathrm{Arg}(y_r + i y_i)})\right) = (a_{r} + i a_{i}) \left(\frac{1}{2} \ln \left({x_r^2 + x_i^2}\right) + {i \mathrm{Arg}(x_r + i x_i)})\right)$
+
+
+The function \@ref(eq:complexPower) can also be linearised to get:
+\begin{equation*}
+    \ln (y_r + i y_i) = (a_{r} + i a_{i}) \ln (x_{r} + i x_{i}) .
+\end{equation*}
+this linearisation will be useful when we will need to estimate models like this on real data.
+
 
 
 ### Vectors of complex variables {#vectorComplexVariables}
