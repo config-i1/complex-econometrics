@@ -50,8 +50,8 @@ We think that this visualisation is useful when analysing relations between two 
 As an alternative to the plot above, it is also possible to use some dimensionality reduction techniques to plot complex variables on a two dimensional plot. For example, we can use Multidimensional Scaling for this [MDS, @refMDS] to create a project of one complex variable on x-axis and another one on the y-axis. In R, we can use the `cmdscale()` function from `stats` package for this (in the example below, we use euclidean distance for the dissimilarities matrix via `dist()` function from `stats`, and we use the `complex2vec()` function from `complex` package to transform complex variable to a collection of vectors):
 
 ```{r, eval=FALSE}
-xScaled <- cmdscale(dist(complex2vec(x)), k=1)
-yScaled <- cmdscale(dist(complex2vec(y)), k=1)
+complex2vec(x) |> dist() |> cmdscale(k=1) -> xScaled
+complex2vec(y) |> dist() |> cmdscale(k=1) -> yScaled
 plot(xScaled,yScaled)
 ```
 
@@ -269,8 +269,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 ```{r}
 # Create projections of two complex variables onto axes
-xScaled <- cmdscale(dist(complex2vec(x)), k=1)
-yScaled <- cmdscale(dist(complex2vec(y)), k=1)
+complex2vec(x) |> dist() |> cmdscale(k=1) -> xScaled
+complex2vec(y) |> dist() |> cmdscale(k=1) -> yScaled
 # Calculate the correlation coefficient
 cor(xScaled,yScaled)
 ```
