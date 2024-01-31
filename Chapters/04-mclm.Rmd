@@ -452,9 +452,12 @@ As we see, all variables exhibit strong trends (the first column of the plot) an
 
 As discussed in Section \@ref(complexModelling), the variables need to be scaled in some way, we will use the standardisation:
 ```{r}
-EnglandComplex <- data.frame(y=complex(real=EnglandPF$GDP, imaginary=EnglandPF$DDP),
-                             x=complex(real=EnglandPF$Capital, imaginary=EnglandPF$Labour))
-sapply(EnglandComplex, cscale, scaling="standardisation") -> EnglandComplexScaled
+EnglandComplex <- data.frame(y=complex(real=EnglandPF$GDP,
+                                       imaginary=EnglandPF$DDP),
+                             x=complex(real=EnglandPF$Capital,
+                                       imaginary=EnglandPF$Labour))
+EnglandComplexScaled <- sapply(EnglandComplex, cscale,
+                               scaling="standardisation")
 ```
 
 Furthermore, in order to estimate the model \@ref(eq:EnglandGDP), we will linearise it by taking logarithms of the both sides of the equation. All of this comes to the following R command:
