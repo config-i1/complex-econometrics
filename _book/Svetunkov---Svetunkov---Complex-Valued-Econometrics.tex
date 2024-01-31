@@ -536,12 +536,22 @@ In the set of equations \eqref{eq:complexPowerLogs}, we see that the parameter \
 \item
   \(a_r\) shows the percentage change of the magnitude of \(\underline{y}\) with the increase of the magnitude of \(\underline{x}\) by 1\%;
 \item
-  \(a_r\) at the same time shows by how many radians the argument of \(\underline{y}\) changes with the increase of the argument of \(\underline{x}\) by one radiant;
+  \(a_r\) at the same time shows by how many radians the argument of \(\underline{y}\) changes with the increase of the argument of \(\underline{x}\) by one radiant, i.e.~it reflects how fast the rotation of the vector happens (the angle increases);
 \item
   The magnitude of \(\underline{y}\) changes roughly by \(a_i \times 100\) percent with the increase of the argument of \(\underline{x}\) by one radiant (this interpretation implies that \(a_i\) is close to zero);
 \item
   The argument of \(\underline{y}\) will change approximately by \(\frac{a_i}{100}\) radians with the increase of the magnitude of \(\underline{x}\) by 1\% (this interpretation also relies on the assumption that \(a_i\) is close to zero).
 \end{enumerate}
+
+If the explanatory variable \(\underline{x}\) was a real positive rather than complex, the set of equations \eqref{eq:complexPowerLogs} would simplify to:
+\begin{equation}
+    \begin{aligned}
+        & \left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} = \left(x\right)^{\frac{a_{r}}{2}} \\
+        & \mathrm{Arg}(y_r + i y_i) = \frac{a_{i}}{2} \ln \left(x\right)
+    \end{aligned} .
+    \label{eq:complexPowerLogsReal}
+\end{equation}
+In this case, the \(a_r\) has only the interpretation (1) (substituting the magnitude increase by the percentage increase of \(x\)), while the \(a_i\) maintains the interpretation (4), which simplifies the whole interpretation substantially.
 
 While there are many other potential non-linear transformations of complex variables, we only discuss the ones above which are typically important in econometrics.
 
@@ -651,7 +661,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 49.9174+100.0197i
+## [1] 48.5706+99.79307i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -724,7 +734,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 131.9823+0i
+## 139.5768+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -736,8 +746,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##     Direct variance 
-## -69.75585+18.61974i
+##    Direct variance 
+## -84.0011+32.25441i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -762,9 +772,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 31.113225   9.309868
-## x_i  9.309868 100.869073
+##          x_r       x_i
+## x_r 27.78787  16.12721
+## x_i 16.12721 111.78896
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -776,7 +786,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3051.689
+## [1] 2846.29
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -843,7 +853,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 56.42646-99.25206i
+## 55.29714-81.05743i
 \end{verbatim}
 
 \begin{Shaded}
@@ -855,8 +865,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -46.42363+51.39835i
+## Direct covariance 
+## -25.5207+46.7708i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -870,8 +880,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -76.95002-24.03646i -46.42363+51.39835i
-## y -46.42363+51.39835i  37.85597+42.72473i
+## x -57.81611- 7.74905i -25.52070+46.77080i
+## y -25.52070+46.77080i  15.47123+30.17412i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1005,8 +1015,8 @@ or equivalently:
 \end{equation}
 However, from practical point of view, testing the joint hypothesis \eqref{eq:hypothesisSecond} might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution for each part of c.r.v. might provide more detailed information, i.e.~whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \eqref{eq:hypothesisSecond}, rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
 
-\hypertarget{complex-valued-modelling}{%
-\section{Complex-valued Modelling}\label{complex-valued-modelling}}
+\hypertarget{complexModelling}{%
+\section{Complex-valued Modelling}\label{complexModelling}}
 
 Now that we have discussed basics of complex variables theory, we can discuss the modelling aspects: it might not look straightforward, what should be included in the real and the imaginary part of a complex variable. There are two philosophical views on complex-valued modelling:
 
@@ -1938,7 +1948,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9970834
+## [1] 0.9979664
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1996,7 +2006,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9956408
+## [1,] 0.9983699
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -2021,11 +2031,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r    y_i
-## x_r 1.000  0.020  0.658  0.671
-## x_i 0.020  1.000 -0.737  0.750
-## y_r 0.658 -0.737  1.000 -0.112
-## y_i 0.671  0.750 -0.112  1.000
+##        x_r    x_i    y_r   y_i
+## x_r  1.000 -0.017  0.760 0.750
+## x_i -0.017  1.000 -0.659 0.646
+## y_r  0.760 -0.659  1.000 0.144
+## y_i  0.750  0.646  0.144 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2592,6 +2602,145 @@ The output above shows that R expanded the colour into a set of dummy variables 
 \hypertarget{example-of-application-of-complex-linear-regression}{%
 \section{Example of Application of Complex Linear Regression}\label{example-of-application-of-complex-linear-regression}}
 
+As a case study for the application of the cLR, we consider the macroeconomic data based on the Office for National Statistics (ONS) of the UK that has published information about several variables of interest:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capital - gross capital formation;
+\item
+  Labour - compensation of employees;
+\item
+  GDP - Gross Domestic Product;
+\item
+  NDP - Net Domestic Product;
+\item
+  DDP - Differences between GDP and NDP.
+\end{enumerate}
+
+We have collected the data for the period from 1990 to 2011 and our aim is to model is using cLR. To do that we use the principles discussed in Section \ref{complexModelling} and the production function model proposed by \citet{Svetunkov2014}, which can be written mathematically as:
+\begin{equation}
+    GDP + i DDP = (b_{0,r} + i b_{0,i}) \left(Capital + i Labour \right) ^{b_{1,r} + i b_{1,i}} \times (\epsilon_r + i \epsilon_i) .
+    \label{eq:EnglandGDP}
+\end{equation}
+
+The data is available in the \texttt{complex} package in R under name \texttt{EnglandPF}. The data is shown in Figure \ref{fig:EnglandPF}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl, }\DataTypeTok{lib.loc =} \StringTok{"/usr/lib/R/library"}\NormalTok{)}
+\NormalTok{EnglandPF \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\StringTok{"./data/England.xlsx"}\NormalTok{,}
+                      \DataTypeTok{sheet=}\StringTok{"data"}\NormalTok{, }\DataTypeTok{range =} \StringTok{"A1:G23"}\NormalTok{)}
+\NormalTok{EnglandPF \textless{}{-}}\StringTok{ }\NormalTok{EnglandPF[,}\OperatorTok{{-}}\DecValTok{2}\NormalTok{]}
+\NormalTok{EnglandPF \textless{}{-}}\StringTok{ }\NormalTok{EnglandPF[,}\OperatorTok{{-}}\DecValTok{6}\NormalTok{]}
+\KeywordTok{colnames}\NormalTok{(EnglandPF) \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{,}\StringTok{"Capital"}\NormalTok{,}\StringTok{"Labour"}\NormalTok{,}\StringTok{"GDP"}\NormalTok{,}\StringTok{"NDP"}\NormalTok{)}
+\CommentTok{\# DDP {-} Difference of Domestic products}
+\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{DDP \textless{}{-}}\StringTok{ }\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{GDP }\OperatorTok{{-}}\StringTok{ }\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{NDP}
+\CommentTok{\# Make everything in millions pounds}
+\NormalTok{EnglandPF[,}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{EnglandPF[,}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}\OperatorTok{/}\FloatTok{1e+6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(EnglandPF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/EnglandPF-1.pdf}
+\caption{\label{fig:EnglandPF}Dynamics of the macroeconomic variables from the ONS.}
+\end{figure}
+
+As we see, all variables exhibit strong trends (the first column of the plot) and thus have a strong linear relation between each other. To capture the trend in the data, we will introduce it explicitly as a real-valued variable in the model (this is discussed in Section \ref{DynamicTrend}), although taking differences is another possible solution (see Section \ref{DynamicARIMA}).
+
+As discussed in Section \ref{complexModelling}, the variables need to be scaled in some way, we will use the standardisation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{EnglandComplex \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{GDP, }\DataTypeTok{imaginary=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{DDP),}
+                             \DataTypeTok{x=}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{Capital, }\DataTypeTok{imaginary=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{Labour))}
+\KeywordTok{sapply}\NormalTok{(EnglandComplex, cscale, }\DataTypeTok{scaling=}\StringTok{"standardisation"}\NormalTok{) {-}\textgreater{}}\StringTok{ }\NormalTok{EnglandComplexScaled}
+\end{Highlighting}
+\end{Shaded}
+
+Furthermore, in order to estimate the model \eqref{eq:EnglandGDP}, we will linearise it by taking logarithms of the both sides of the equation. All of this comes to the following R command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{EnglandcLR \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(}\KeywordTok{log}\NormalTok{(y)}\OperatorTok{\textasciitilde{}}\KeywordTok{log}\NormalTok{(x)}\OperatorTok{+}\NormalTok{trend, EnglandComplexScaled)}
+\end{Highlighting}
+\end{Shaded}
+
+The summary of the resulting model can be produced using the \texttt{summary()} command in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(EnglandcLR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: logy
+## Loss function used in estimation: likelihood
+## Coefficients:
+##               Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r  -1.3377     0.3826    -2.1432     -0.5322 *
+## (Intercept)_i   0.1196     0.3483    -0.6136      0.8529  
+## log(x)_r        1.0723     0.0987     0.8645      1.2801 *
+## log(x)_i        0.3812     0.0898     0.1921      0.5704 *
+## trend_r         0.0876     0.0269     0.0310      0.1442 *
+## trend_i        -0.0188     0.0245    -0.0703      0.0327  
+## 
+## Error covariance matrix:
+##        e_r    e_i
+## e_r 0.2334 0.1669
+## e_i 0.1669 0.1934
+## 
+## Sample size: 22
+## Number of estimated parameters: 4.5
+## Number of degrees of freedom: 17.5
+## Information criteria:
+##     AIC    AICc     BIC    BICc 
+## 34.4926 37.4926 39.4023 44.0388
+\end{verbatim}
+
+The output above can be interpreted based on what was discussed in Subsection \ref{complexVariable}: the coefficient \texttt{log(x)\_r} acts as the magnitude elasticity coefficient, showing that with the increase of the magnitude of the explanatory variable by 1\%, the resulting magnitude of the variable increases on average by 1.072\%. It also shows at the same time that the increase of the argument of the explanatory variable by 1 radiant leads to the increase of the response variable by 1.072 radians. In our case this means that with the increase of the proportion \(\frac{Labour}{Capital}\) the proportion \(\frac{DDP}{GDP}\) would tend to increase as well, i.e.~the decrease in the capital investments would imply the decrease in GDP and increase in DDP. This is enhanced by the parameter \texttt{log(x)\_i}, which increases the argument further, but at the same time decreasing the magnitude. Moreover, the parameter for the trend tells us that over time the magnitude tends to increase (both GDP and DDP increase), roughly by 8.8\% per year, while the argument of the response variable tends to decrease slowly, meaning that the GDP tends to increase faster than the DDP.
+
+Finally, we can visualise the original data and the fitted model to see how the dynamics was captured, using the code below (Figure \ref{fig:EnglandPFFitted}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extract the fitted values and return them to the original scale}
+\KeywordTok{fitted}\NormalTok{(EnglandcLR) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{exp}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{cdescale}\NormalTok{(EnglandComplex}\OperatorTok{$}\NormalTok{y,}
+             \DataTypeTok{scaling=}\StringTok{"standardisation"}\NormalTok{) {-}\textgreater{}}
+\StringTok{    }\NormalTok{yFitted}
+
+\CommentTok{\# Produce the plots}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+\KeywordTok{plot}\NormalTok{(EnglandPF}\OperatorTok{$}\NormalTok{GDP,}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"GDP"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Time"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{Re}\NormalTok{(yFitted), }\DataTypeTok{col=}\StringTok{"purple"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(EnglandPF}\OperatorTok{$}\NormalTok{NDP,}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"NDP"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Time"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{Re}\NormalTok{(yFitted)}\OperatorTok{{-}}\KeywordTok{Im}\NormalTok{(yFitted), }\DataTypeTok{col=}\StringTok{"purple"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/EnglandPFFitted-1.pdf}
+\caption{\label{fig:EnglandPFFitted}GDP and NDP with the fitted values from the cLR.}
+\end{figure}
+
+As we see, although the model fit is not perfect, it reflects the dynamics of GDP and NDP well with the fitted values following the actual values.
+
+The estimated model can be used in the analysis of scenarios, e.g.~testing what will happen with GDP/NDP in case of the increase of the gross capital formation or the compensation of employees and for forecasting if the future values of the explanatory variables can be obtained or predicted.
+
 \hypertarget{assumptions}{%
 \chapter{Assumptions of Complex Linear Models}\label{assumptions}}
 
@@ -2793,8 +2942,8 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 \begin{figure}
 \centering
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-33-1.pdf}
-\caption{\label{fig:unnamed-chunk-33}Non-linear transformation of a complex variable that changes linearly.}
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-37-1.pdf}
+\caption{\label{fig:unnamed-chunk-37}Non-linear transformation of a complex variable that changes linearly.}
 \end{figure}
 
 Even if the imaginary part of \(\underline{x}\) is zero (and as a result we deal with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.

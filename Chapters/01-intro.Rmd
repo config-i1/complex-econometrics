@@ -409,9 +409,19 @@ This equation can be represented as a set of two equations, showing how the magn
 In the set of equations \@ref(eq:complexPowerLogs), we see that the parameter $a_r$ connects directly the magnitude and the argument of $\underline{x}$ with the magnitude and the argument of $\underline{y}$: the magnitude is increased in the power of $a_r$, while the argument is rotated by the same value. On the other hand, $a_i$ captures the cross-connections between the variables: the higher it is, the lower the impact of the argument of $\underline{x}$ on the magnitude of $\underline{y}$ and the higher is the impact of the magnitude of $\underline{x}$ on the argument of $\underline{y}$. The two parts of the complex parameter $a_r + i a_i$ have some similarities with the coefficient of elasticity and with marginal effect, where:
 
 1. $a_r$ shows the percentage change of the magnitude of $\underline{y}$ with the increase of the magnitude of $\underline{x}$ by 1%;
-2. $a_r$ at the same time shows by how many radians the argument of $\underline{y}$ changes with the increase of the argument of $\underline{x}$ by one radiant;
+2. $a_r$ at the same time shows by how many radians the argument of $\underline{y}$ changes with the increase of the argument of $\underline{x}$ by one radiant, i.e. it reflects how fast the rotation of the vector happens (the angle increases);
 3. The magnitude of $\underline{y}$ changes roughly by $a_i \times 100$ percent with the increase of the argument of $\underline{x}$ by one radiant (this interpretation implies that $a_i$ is close to zero);
 4. The argument of $\underline{y}$ will change approximately by $\frac{a_i}{100}$ radians with the increase of the magnitude of $\underline{x}$ by 1% (this interpretation also relies on the assumption that $a_i$ is close to zero).
+
+If the explanatory variable $\underline{x}$ was a real positive rather than complex, the set of equations \@ref(eq:complexPowerLogs) would simplify to:
+\begin{equation}
+    \begin{aligned}
+        & \left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} = \left(x\right)^{\frac{a_{r}}{2}} \\
+        & \mathrm{Arg}(y_r + i y_i) = \frac{a_{i}}{2} \ln \left(x\right)
+    \end{aligned} .
+    (\#eq:complexPowerLogsReal)
+\end{equation}
+In this case, the $a_r$ has only the interpretation (1) (substituting the magnitude increase by the percentage increase of $x$), while the $a_i$ maintains the interpretation (4), which simplifies the whole interpretation substantially.
 
 While there are many other potential non-linear transformations of complex variables, we only discuss the ones above which are typically important in econometrics.
 
@@ -866,7 +876,7 @@ or equivalently:
 However, from practical point of view, testing the joint hypothesis \@ref(eq:hypothesisSecond) might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution for each part of c.r.v. might provide more detailed information, i.e. whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \@ref(eq:hypothesisSecond), rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
 
 
-## Complex-valued Modelling
+## Complex-valued Modelling {#complexModelling}
 Now that we have discussed basics of complex variables theory, we can discuss the modelling aspects: it might not look straightforward, what should be included in the real and the imaginary part of a complex variable. There are two philosophical views on complex-valued modelling:
 
 1. You need to find processes, where complex variables arise naturally;
