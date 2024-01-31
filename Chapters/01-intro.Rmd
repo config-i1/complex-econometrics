@@ -393,7 +393,10 @@ which can then be represented in logarithms of exponential form:
 \end{equation*}
 Opening the brackets on the right hand side, we finally get:
 \begin{equation*}
-    \frac{1}{2} \ln \left({y_r^2 + y_i^2}\right) + {i \mathrm{Arg}(y_r + i y_i)} = \frac{a_{r}}{2} \ln \left({x_r^2 + x_i^2}\right) - a_{i} \mathrm{Arg}(x_r + i x_i) + i \left(\frac{a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right) + a_r \mathrm{Arg}(x_r + i x_i)  \right) .
+    \begin{aligned}
+    & \frac{1}{2} \ln \left({y_r^2 + y_i^2}\right) + {i \mathrm{Arg}(y_r + i y_i)} = \frac{a_{r}}{2} \ln \left({x_r^2 + x_i^2}\right) - a_{i} \mathrm{Arg}(x_r + i x_i) + \\
+    & i \left(\frac{a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right) + a_r \mathrm{Arg}(x_r + i x_i)  \right) 
+    \end{aligned} .
 \end{equation*}
 This equation can be represented as a set of two equations, showing how the magnitude and how the argument of the response complex variable are formed:
 \begin{equation}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  31 JAN 2024 20:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  31 JAN 2024 20:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -763,13 +763,6 @@ Package natbib Warning: Citation `Svetunkov2014' on page 19 undefined on input
 line 478.
 
 [19]
-Overfull \hbox (108.84207pt too wide) detected at line 519
-[] [] [] \OT1/lmr/m/n/10 + [] = [] [] [] \OMS/lmsy/m/n/10 ^^@ \OML/lmm/m/it/10 
-a[][]\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 x[] \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 i
-x[]\OT1/lmr/m/n/10 ) + \OML/lmm/m/it/10 i [] :
- []
-
-
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 20 \T1/lmr/m/sl/10 CHAPTER 1.  INTRODUCTION TO THEORY OF COMPLEX
  VARIABLES
@@ -784,7 +777,7 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 [22]
 
 Package natbib Warning: Citation `reference' on page 23 undefined on input line
- 657.
+ 660.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvMome
 ntSecondVariance-1.pdf, id=406, 256.96pt x 217.81375pt>
@@ -793,24 +786,24 @@ vMomentSecondVariance-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 MomentSecondVariance-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvMomentSecondVariance-1.pdf  used on input line 675.
+les/figure-latex/crvMomentSecondVariance-1.pdf  used on input line 678.
 (pdftex.def)             Requested size: 256.95937pt x 217.8132pt.
 
 Package natbib Warning: Citation `Picinbono' on page 23 undefined on input line
- 681.
+ 684.
 
 
 Package natbib Warning: Citation `reference' on page 23 undefined on input line
- 681.
+ 684.
 
 [23]
 
 Package natbib Warning: Citation `reference' on page 24 undefined on input line
- 694.
+ 697.
 
 
 Package natbib Warning: Citation `reference' on page 24 undefined on input line
- 694.
+ 697.
 
 
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
@@ -822,16 +815,16 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.697 
+l.700 
        <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-late
 x/crvMomentSecondVariance-1.pdf>] [25]
 
 Package natbib Warning: Citation `referenceSBA' on page 26 undefined on input l
-ine 779.
+ine 782.
 
 
 Package natbib Warning: Citation `Picinbono' on page 26 undefined on input line
- 790.
+ 793.
 
 
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
@@ -842,21 +835,21 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 [26]
 
 Package natbib Warning: Citation `reference' on page 27 undefined on input line
- 807.
+ 810.
 
 [27]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvGene
-ratedCircle-1.pdf, id=471, 259.97125pt x 215.80624pt>
+ratedCircle-1.pdf, id=471, 255.95625pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vGeneratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 GeneratedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvGeneratedCircle-1.pdf  used on input line 898.
-(pdftex.def)             Requested size: 259.97061pt x 215.80571pt.
+les/figure-latex/crvGeneratedCircle-1.pdf  used on input line 901.
+(pdftex.def)             Requested size: 255.95561pt x 214.80197pt.
 
 Package natbib Warning: Citation `refGoodman' on page 28 undefined on input lin
-e 909.
+e 912.
 
 
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
@@ -872,29 +865,29 @@ vNormalMoments-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 NormalMoments-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvNormalMoments-1.pdf  used on input line 922.
+les/figure-latex/crvNormalMoments-1.pdf  used on input line 925.
 (pdftex.def)             Requested size: 256.95937pt x 217.8132pt.
 [29pdfTeX warning (ext4): destination with the same identifier (name{figure.1.7
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.927 
+l.930 
        <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-late
 x/crvGeneratedCircle-1.pdf>]
 <./images/plotlyCNormal.png, id=500, 1927.2pt x 1016.79875pt>
 File: ./images/plotlyCNormal.png Graphic file (type png)
 <use ./images/plotlyCNormal.png>
-Package pdftex.def Info: ./images/plotlyCNormal.png  used on input line 932.
+Package pdftex.def Info: ./images/plotlyCNormal.png  used on input line 935.
 (pdftex.def)             Requested size: 344.99901pt x 182.0229pt.
 <./images/plotlyCNormalHeatmap.png, id=502, 1927.2pt x 1016.79875pt>
 File: ./images/plotlyCNormalHeatmap.png Graphic file (type png)
 <use ./images/plotlyCNormalHeatmap.png>
 Package pdftex.def Info: ./images/plotlyCNormalHeatmap.png  used on input line 
-938.
+941.
 (pdftex.def)             Requested size: 344.99901pt x 182.0229pt.
 
 Package natbib Warning: Citation `referenceHere' on page 30 undefined on input 
-line 942.
+line 945.
 
 
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
@@ -906,19 +899,19 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.952 \begin{equation}
+l.955 \begin{equation}
                        <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_f
 iles/figure-latex/crvNormalMoments-1.pdf>] [31pdfTeX warning (ext4): destinatio
 n with the same identifier (name{figure.1.9}) has been already used, duplicate 
 ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.952 \begin{equation}
+l.955 \begin{equation}
                       pdfTeX warning (ext4): destination with the same identifi
 er (name{figure.1.10}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.952 \begin{equation}
+l.955 \begin{equation}
                        <./images/plotlyCNormal.png> <./images/plotlyCNormalHeat
 map.png>]
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
@@ -943,7 +936,7 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 ]
 Chapter 2.
 [37] [38]
-Overfull \hbox (7.03354pt too wide) detected at line 1169
+Overfull \hbox (7.03354pt too wide) detected at line 1172
 [][][] [] \OML/lmm/m/it/10 :
  []
 
@@ -955,42 +948,42 @@ sScatter-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cls
 Scatter-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/clsScatter-1.pdf  used on input line 1420.
+les/figure-latex/clsScatter-1.pdf  used on input line 1423.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 
 Package natbib Warning: Citation `Gower' on page 45 undefined on input line 142
-6.
+9.
 
 [45]
-Underfull \vbox (badness 4072) detected at line 1467
+Underfull \vbox (badness 4072) detected at line 1470
  []
 
 [46pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1467 \end{Shaded}
+l.1470 \end{Shaded}
                     <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_file
 s/figure-latex/clsScatter-1.pdf>]
 <images/CLSPlot.png, id=711, 1508.63625pt x 939.51pt>
 File: images/CLSPlot.png Graphic file (type png)
 <use images/CLSPlot.png>
-Package pdftex.def Info: images/CLSPlot.png  used on input line 1471.
+Package pdftex.def Info: images/CLSPlot.png  used on input line 1474.
 (pdftex.def)             Requested size: 344.99933pt x 214.84987pt.
 [47pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1486 \end{equation}
+l.1489 \end{equation}
                       <./images/CLSPlot.png>]
 
 Package natbib Warning: Citation `Snyder2017' on page 48 undefined on input lin
-e 1497.
+e 1500.
 
 [48]
 
 Package natbib Warning: Citation `referenceLikelihoodPaper' on page 49 undefine
-d on input line 1525.
+d on input line 1528.
 
 [49]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -999,7 +992,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1599 
+l.1602 
        ]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
 ersUCDV-1.pdf, id=758, 568.1225pt x 186.6975pt>
@@ -1008,7 +1001,7 @@ rametersUCDV-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersUCDV-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersUCDV-1.pdf  used on input line 1602.
+les/figure-latex/parametersUCDV-1.pdf  used on input line 1605.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
 ersPC-1.pdf, id=760, 568.1225pt x 186.6975pt>
@@ -1017,7 +1010,7 @@ rametersPC-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersPC-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersPC-1.pdf  used on input line 1610.
+les/figure-latex/parametersPC-1.pdf  used on input line 1613.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
 ersUCSV-1.pdf, id=762, 568.1225pt x 186.6975pt>
@@ -1026,18 +1019,18 @@ rametersUCSV-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersUCSV-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersUCSV-1.pdf  used on input line 1620.
+les/figure-latex/parametersUCSV-1.pdf  used on input line 1623.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 [51pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1625 
+l.1628 
        pdfTeX warning (ext4): destination with the same identifier (name{figure
 .2.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1625 
+l.1628 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/parametersUCDV-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometrics
 _files/figure-latex/parametersPC-1.pdf>]
@@ -1048,18 +1041,18 @@ rametersFR-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersFR-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersFR-1.pdf  used on input line 1630.
+les/figure-latex/parametersFR-1.pdf  used on input line 1633.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 [52pdfTeX warning (ext4): destination with the same identifier (name{figure.2.5
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1635 
+l.1638 
        pdfTeX warning (ext4): destination with the same identifier (name{figure
 .2.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1635 
+l.1638 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/parametersUCSV-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometrics
 _files/figure-latex/parametersFR-1.pdf>]
@@ -1070,7 +1063,7 @@ rametersCorError-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersCorError-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersCorError-1.pdf  used on input line 1638.
+les/figure-latex/parametersCorError-1.pdf  used on input line 1641.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
 ersHVError-1.pdf, id=822, 568.1225pt x 186.6975pt>
@@ -1079,18 +1072,18 @@ rametersHVError-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersHVError-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersHVError-1.pdf  used on input line 1648.
+les/figure-latex/parametersHVError-1.pdf  used on input line 1651.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 [53pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1655 
+l.1658 
        pdfTeX warning (ext4): destination with the same identifier (name{figure
 .2.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1655 
+l.1658 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/parametersCorError-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Economet
 rics_files/figure-latex/parametersHVError-1.pdf>] [54]
@@ -1105,10 +1098,10 @@ vScatterplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 Scatterplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvScatterplots-1.pdf  used on input line 1701.
+les/figure-latex/crvScatterplots-1.pdf  used on input line 1704.
 (pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-710.
+713.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1121,12 +1114,12 @@ ANDOM VARIABLES
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1726 \end{enumerate}
+l.1729 \end{enumerate}
                        <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_f
 iles/figure-latex/crvScatterplots-1.pdf>]
 
 Package natbib Warning: Citation `refMDS' on page 57 undefined on input line 17
-46.
+49.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
 terplotMDS-1.pdf, id=885, 253.94875pt x 212.795pt>
@@ -1135,16 +1128,16 @@ vScatterplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 ScatterplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvScatterplotMDS-1.pdf  used on input line 1766.
+les/figure-latex/crvScatterplotMDS-1.pdf  used on input line 1769.
 (pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
-Package natbib Warning: Citation `ref' on page 57 undefined on input line 1775.
+Package natbib Warning: Citation `ref' on page 57 undefined on input line 1778.
 
 
 [57]
 
 Package natbib Warning: Citation `Panchev1971' on page 58 undefined on input li
-ne 1793.
+ne 1796.
 
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
@@ -1156,12 +1149,12 @@ ANDOM VARIABLES
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1803 \end{Shaded}
+l.1806 \end{Shaded}
                     <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_file
 s/figure-latex/crvScatterplotMDS-1.pdf>]
 
 Package natbib Warning: Citation `refPearson' on page 59 undefined on input lin
-e 1846.
+e 1849.
 
 [59]
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
@@ -1177,24 +1170,24 @@ vCorConjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvCorConjugate-1.pdf  used on input line 1926.
+les/figure-latex/crvCorConjugate-1.pdf  used on input line 1929.
 (pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 [61pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1942 
+l.1945 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/crvCorConjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugateMDS-1.pdf, id=954, 253.94875pt x 212.795pt>
+onjugateMDS-1.pdf, id=954, 253.94875pt x 214.8025pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1951.
-(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
+les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1954.
+(pdftex.def)             Requested size: 253.95198pt x 214.80524pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 62 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1205,7 +1198,7 @@ ANDOM VARIABLES
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1973 \end{enumerate}
+l.1976 \end{enumerate}
                        <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_f
 iles/figure-latex/crvCorConjugateMDS-1.pdf>] [63]
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
@@ -1220,7 +1213,7 @@ Chapter 4.
 ] [66] [67] [68]
 
 Package natbib Warning: Citation `Lutkepohl2005' on page 69 undefined on input 
-line 2187.
+line 2190.
 
 [69] [70] [71] [72] [73] [74] [75]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/CLRArti
@@ -1230,7 +1223,7 @@ RArtificialForecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/CLR
 ArtificialForecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/CLRArtificialForecast-1.pdf  used on input line 2500.
+les/figure-latex/CLRArtificialForecast-1.pdf  used on input line 2503.
 (pdftex.def)             Requested size: 344.9987pt x 233.56105pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1239,7 +1232,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2510 
+l.2513 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/CLRArtificialForecast-1.pdf>] [77] [78]
 Overfull \hbox (7.33093pt too wide) has occurred while \output is active
@@ -1254,7 +1247,7 @@ Chapter 5.
 [81]
 
 Package natbib Warning: Citation `econometrics' on page 82 undefined on input l
-ine 2635.
+ine 2638.
 
 [82] [83] [84] [85]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed
@@ -1264,13 +1257,13 @@ named-chunk-33-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unn
 amed-chunk-33-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/unnamed-chunk-33-1.pdf  used on input line 2793.
+les/figure-latex/unnamed-chunk-33-1.pdf  used on input line 2796.
 (pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
 [86pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2819 \end{Shaded}
+l.2822 \end{Shaded}
                     <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_file
 s/figure-latex/unnamed-chunk-33-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/nonline
@@ -1280,7 +1273,7 @@ nlinearLinStdResid-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/non
 linearLinStdResid-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/nonlinearLinStdResid-1.pdf  used on input line 2841.
+les/figure-latex/nonlinearLinStdResid-1.pdf  used on input line 2844.
 (pdftex.def)             Requested size: 344.9987pt x 213.71599pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/nonline
 arStdResid-1.pdf, id=1270, 453.695pt x 283.0575pt>
@@ -1289,28 +1282,28 @@ nlinearStdResid-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/non
 linearStdResid-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/nonlinearStdResid-1.pdf  used on input line 2865.
+les/figure-latex/nonlinearStdResid-1.pdf  used on input line 2868.
 (pdftex.def)             Requested size: 344.9987pt x 215.24254pt.
 [87] [88pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.5.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2873 
+l.2876 
        pdfTeX warning (ext4): destination with the same identifier (name{figure
 .5.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2873 
+l.2876 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/nonlinearLinStdResid-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econom
 etrics_files/figure-latex/nonlinearStdResid-1.pdf>]
 
 Package natbib Warning: Citation `Lutkepohl' on page 89 undefined on input line
- 2903.
+ 2906.
 
 
 Package natbib Warning: Citation `SvetunkovVETS' on page 89 undefined on input 
-line 2903.
+line 2906.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/heteroD
 iagnostics-1.pdf, id=1302, 453.695pt x 281.05pt>
@@ -1319,18 +1312,18 @@ teroDiagnostics-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/het
 eroDiagnostics-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/heteroDiagnostics-1.pdf  used on input line 2916.
+les/figure-latex/heteroDiagnostics-1.pdf  used on input line 2919.
 (pdftex.def)             Requested size: 344.9987pt x 213.71599pt.
 [89]
 
 Package natbib Warning: Citation `ACFPACFReferences' on page 90 undefined on in
-put line 2927.
+put line 2930.
 
 [90pdfTeX warning (ext4): destination with the same identifier (name{figure.5.4
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2930 
+l.2933 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/heteroDiagnostics-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1340,7 +1333,7 @@ mplexAR1ACFConj-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1ACFConj-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1ACFConj-1.pdf  used on input line 2963.
+les/figure-latex/complexAR1ACFConj-1.pdf  used on input line 2966.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 [91]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1350,13 +1343,13 @@ mplexAR1PACFConj-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1PACFConj-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1PACFConj-1.pdf  used on input line 2979.
+les/figure-latex/complexAR1PACFConj-1.pdf  used on input line 2982.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 [92pdfTeX warning (ext4): destination with the same identifier (name{figure.5.5
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2987 \begin{Shaded}
+l.2990 \begin{Shaded}
                       <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/complexAR1ACFConj-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1366,7 +1359,7 @@ mplexAR1ACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1ACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1ACFDir-1.pdf  used on input line 2995.
+les/figure-latex/complexAR1ACFDir-1.pdf  used on input line 2998.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1PACFDir-1.pdf, id=1363, 444.66125pt x 282.05376pt>
@@ -1375,7 +1368,7 @@ mplexAR1PACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1PACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1PACFDir-1.pdf  used on input line 3009.
+les/figure-latex/complexAR1PACFDir-1.pdf  used on input line 3012.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1Pearson-1.pdf, id=1365, 453.695pt x 314.17375pt>
@@ -1384,24 +1377,24 @@ mplexAR1Pearson-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1Pearson-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1Pearson-1.pdf  used on input line 3027.
+les/figure-latex/complexAR1Pearson-1.pdf  used on input line 3030.
 (pdftex.def)             Requested size: 344.9987pt x 238.90396pt.
 [93pdfTeX warning (ext4): destination with the same identifier (name{figure.5.6
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3032 
+l.3035 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexAR1PACFConj-1.pdf>] [94pdfTeX warning (ext4): destination with the sa
 me identifier (name{figure.5.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3032 
+l.3035 
        pdfTeX warning (ext4): destination with the same identifier (name{figure
 .5.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3032 
+l.3035 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexAR1ACFDir-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometri
 cs_files/figure-latex/complexAR1PACFDir-1.pdf>]
@@ -1412,13 +1405,13 @@ mplexAR1Ploar-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1Ploar-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1Ploar-1.pdf  used on input line 3044.
+les/figure-latex/complexAR1Ploar-1.pdf  used on input line 3047.
 (pdftex.def)             Requested size: 345.00243pt x 237.52988pt.
 [95pdfTeX warning (ext4): destination with the same identifier (name{figure.5.9
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3051 
+l.3054 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexAR1Pearson-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1428,19 +1421,19 @@ mplexARDiagnosticsACFPACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexARDiagnosticsACFPACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexARDiagnosticsACFPACF-1.pdf  used on input line 3061.
+les/figure-latex/complexARDiagnosticsACFPACF-1.pdf  used on input line 3064.
 (pdftex.def)             Requested size: 344.997pt x 215.25452pt.
 [96pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1
 0}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3077 
+l.3080 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexAR1Ploar-1.pdf>] [97pdfTeX warning (ext4): destination with the same 
 identifier (name{figure.5.11}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3090 ...siduals-follow-an-assumed-distribution}}
+l.3093 ...siduals-follow-an-assumed-distribution}}
                                                    <./Svetunkov---Svetunkov---C
 omplex-Valued-Econometrics_files/figure-latex/complexARDiagnosticsACFPACF-1.pdf
 >]
@@ -1451,7 +1444,7 @@ mplexNormDiagnostics-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexNormDiagnostics-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexNormDiagnostics-1.pdf  used on input line 3107.
+les/figure-latex/complexNormDiagnostics-1.pdf  used on input line 3110.
 (pdftex.def)             Requested size: 344.9965pt x 208.32765pt.
 [98]
 Overfull \hbox (195.23944pt too wide) has occurred while \output is active
@@ -1463,16 +1456,16 @@ T THE RESPONSE VARIABLE \T1/lmr/m/n/10 99
 2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3131   N
+l.3134   N
           o multicollinearity <./Svetunkov---Svetunkov---Complex-Valued-Econome
 trics_files/figure-latex/complexNormDiagnostics-1.pdf>] [100]
-Overfull \hbox (10.00224pt too wide) in paragraph at lines 3170--3172
+Overfull \hbox (10.00224pt too wide) in paragraph at lines 3173--3175
 []\T1/lmr/m/n/10 (-20) Conjugate co-vari-ance ma-trix: $\OT1/lmr/m/n/10 (-20) V
  [] = [][] [][][] [][] \OML/lmm/m/it/10 ^^[[]$ 
  []
 
 
-Overfull \hbox (17.46065pt too wide) in paragraph at lines 3180--3182
+Overfull \hbox (17.46065pt too wide) in paragraph at lines 3183--3185
 []\T1/lmr/m/n/10 (-20) Conjugate co-vari-ance ma-trix: $\OT1/lmr/m/n/10 (-20) V
  [] = [][] [][][] [][] \OML/lmm/m/it/10 ^^[[]$ 
  []
@@ -1522,7 +1515,7 @@ T THE RESPONSE VARIABLE \T1/lmr/m/n/10 111
 Chapter 6.
 
 Package natbib Warning: Citation `Lutkepohl' on page 113 undefined on input lin
-e 3678.
+e 3681.
 
 [113]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/trendTr
@@ -1532,13 +1525,13 @@ endTrajectories-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/tre
 ndTrajectories-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/trendTrajectories-1.pdf  used on input line 3710.
+les/figure-latex/trendTrajectories-1.pdf  used on input line 3713.
 (pdftex.def)             Requested size: 345.0036pt x 239.25247pt.
 [114pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3715 
+l.3718 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/trendTrajectories-1.pdf>] [115]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/dataWit
@@ -1548,13 +1541,13 @@ taWithTrend-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/dat
 aWithTrend-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/dataWithTrend-1.pdf  used on input line 3760.
+les/figure-latex/dataWithTrend-1.pdf  used on input line 3763.
 (pdftex.def)             Requested size: 344.9987pt x 240.4305pt.
 [116pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3798 \end{verbatim}
+l.3801 \end{verbatim}
                       <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/dataWithTrend-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/dataWit
@@ -1564,28 +1557,28 @@ taWithTrendForecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/dat
 aWithTrendForecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/dataWithTrendForecast-1.pdf  used on input line 3828.
+les/figure-latex/dataWithTrendForecast-1.pdf  used on input line 3831.
 (pdftex.def)             Requested size: 344.9987pt x 240.4305pt.
 
 Package natbib Warning: Citation `Box1976' on page 117 undefined on input line 
-3837.
+3840.
 
 [117] [118pdfTeX warning (ext4): destination with the same identifier (name{fig
 ure.6.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3839 M
+l.3842 M
         athematically the cAR model can be represented in a vector form, whi...
  <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/data
 WithTrendForecast-1.pdf>] [119]
 
 Package natbib Warning: Citation `Box1976' on page 120 undefined on input line 
-3925.
+3928.
 
 [120]
 
 Package natbib Warning: Citation `Box1976' on page 121 undefined on input line 
-3938.
+3941.
 
 [121]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1595,7 +1588,7 @@ mplexAR1cACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1cACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1cACF-1.pdf  used on input line 3983.
+les/figure-latex/complexAR1cACF-1.pdf  used on input line 3986.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1cPACF-1.pdf, id=1676, 444.66125pt x 282.05376pt>
@@ -1604,11 +1597,11 @@ mplexAR1cPACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1cPACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1cPACF-1.pdf  used on input line 3997.
+les/figure-latex/complexAR1cPACF-1.pdf  used on input line 4000.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 
 LaTeX Warning: Reference `fig:complexAR1cACFDir' on page 122 undefined on input
- line 4003.
+ line 4006.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1cACFDir-1.pdf, id=1679, 444.66125pt x 282.05376pt>
@@ -1617,10 +1610,10 @@ mplexAR1cACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1cACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1cACFDir-1.pdf  used on input line 4004.
+les/figure-latex/complexAR1cACFDir-1.pdf  used on input line 4007.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 
-Underfull \hbox (badness 2707) in paragraph at lines 4003--4005
+Underfull \hbox (badness 2707) in paragraph at lines 4006--4008
 \T1/lmr/m/n/10 (+20) note how-ever that the di-rect cACF has the more de-tailed
  in-for-ma-
  []
@@ -1629,7 +1622,7 @@ Underfull \hbox (badness 2707) in paragraph at lines 4003--4005
 4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4005 
+l.4008 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexAR1cACF-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1639,17 +1632,17 @@ mplexAR1cpACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1cpACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1cpACFDir-1.pdf  used on input line 4010.
+les/figure-latex/complexAR1cpACFDir-1.pdf  used on input line 4013.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 
 LaTeX Warning: Reference `fig:complexAR1cACFDir' on page 123 undefined on input
- line 4014.
+ line 4017.
 
 [123pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4015 
+l.4018 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexAR1cPACF-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometric
 s_files/figure-latex/complexAR1cACFDir-1.pdf>]
@@ -1660,20 +1653,20 @@ mplexAR1Plot-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1Plot-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1Plot-1.pdf  used on input line 4020.
+les/figure-latex/complexAR1Plot-1.pdf  used on input line 4023.
 (pdftex.def)             Requested size: 345.01372pt x 235.30539pt.
 [124pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4057 \end{verbatim}
+l.4060 \end{verbatim}
                       <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/complexAR1cpACFDir-1.pdf>] [125pdfTeX warning (ext4): destinat
 ion with the same identifier (name{figure.6.7}) has been already used, duplicat
 e ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4071 
+l.4074 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexAR1Plot-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1683,26 +1676,26 @@ mplexAR1Forecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1Forecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1Forecast-1.pdf  used on input line 4082.
+les/figure-latex/complexAR1Forecast-1.pdf  used on input line 4085.
 (pdftex.def)             Requested size: 345.01434pt x 238.16592pt.
 
 Package natbib Warning: Citation `Box1976' on page 126 undefined on input line 
-4091.
+4094.
 
 
 Package natbib Warning: Citation `Box1976' on page 126 undefined on input line 
-4101.
+4104.
 
 [126pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4102 
+l.4105 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexAR1Forecast-1.pdf>] [127]
 
 Package natbib Warning: Citation `Box1976' on page 128 undefined on input line 
-4156.
+4159.
 
 [128]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1712,7 +1705,7 @@ mplexMA1Plot-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1Plot-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1Plot-1.pdf  used on input line 4207.
+les/figure-latex/complexMA1Plot-1.pdf  used on input line 4210.
 (pdftex.def)             Requested size: 345.01372pt x 235.30539pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 MA1cACF-1.pdf, id=1790, 436.63126pt x 250.9375pt>
@@ -1721,7 +1714,7 @@ mplexMA1cACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1cACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1cACF-1.pdf  used on input line 4221.
+les/figure-latex/complexMA1cACF-1.pdf  used on input line 4224.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 MA1cACFDir-1.pdf, id=1793, 444.66125pt x 282.05376pt>
@@ -1730,7 +1723,7 @@ mplexMA1cACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1cACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1cACFDir-1.pdf  used on input line 4229.
+les/figure-latex/complexMA1cACFDir-1.pdf  used on input line 4232.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 MA1cpACFDir-1.pdf, id=1796, 444.66125pt x 282.05376pt>
@@ -1739,7 +1732,7 @@ mplexMA1cpACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1cpACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1cpACFDir-1.pdf  used on input line 4237.
+les/figure-latex/complexMA1cpACFDir-1.pdf  used on input line 4240.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 MA1cPACF-1.pdf, id=1797, 444.66125pt x 282.05376pt>
@@ -1748,18 +1741,18 @@ mplexMA1cPACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1cPACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1cPACF-1.pdf  used on input line 4249.
+les/figure-latex/complexMA1cPACF-1.pdf  used on input line 4252.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 [129] [130pdfTeX warning (ext4): destination with the same identifier (name{fig
 ure.6.9}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4257 \begin{Shaded}
+l.4260 \begin{Shaded}
                      pdfTeX warning (ext4): destination with the same identifie
 r (name{figure.6.10}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4257 \begin{Shaded}
+l.4260 \begin{Shaded}
                       <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/complexMA1Plot-1.pdf> <./Svetunkov---Svetunkov---Complex-Value
 d-Econometrics_files/figure-latex/complexMA1cACF-1.pdf>] [131pdfTeX warning (ex
@@ -1767,12 +1760,12 @@ t4): destination with the same identifier (name{figure.6.11}) has been already
 used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4257 \begin{Shaded}
+l.4260 \begin{Shaded}
                      pdfTeX warning (ext4): destination with the same identifie
 r (name{figure.6.12}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4257 \begin{Shaded}
+l.4260 \begin{Shaded}
                       <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/complexMA1cACFDir-1.pdf> <./Svetunkov---Svetunkov---Complex-Va
 lued-Econometrics_files/figure-latex/complexMA1cpACFDir-1.pdf>]
@@ -1782,7 +1775,7 @@ Underfull \vbox (badness 1360) has occurred while \output is active []
 13}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4289 \end{verbatim}
+l.4292 \end{verbatim}
                       <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/complexMA1cPACF-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1792,31 +1785,31 @@ mplexMA1Forecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1Forecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1Forecast-1.pdf  used on input line 4316.
+les/figure-latex/complexMA1Forecast-1.pdf  used on input line 4319.
 (pdftex.def)             Requested size: 345.01434pt x 238.16592pt.
 [133]
 
 Package natbib Warning: Citation `Dickey1979' on page 134 undefined on input li
-ne 4349.
+ne 4352.
 
 
 Package natbib Warning: Citation `Kwiatkowski1992' on page 134 undefined on inp
-ut line 4349.
+ut line 4352.
 
 [134pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 14}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4350 
+l.4353 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/complexMA1Forecast-1.pdf>]
 
 Package natbib Warning: Citation `Akaike1974' on page 135 undefined on input li
-ne 4351.
+ne 4354.
 
 
 Package natbib Warning: Citation `Schwarz1978' on page 135 undefined on input l
-ine 4351.
+ine 4354.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJSales
 -1.pdf, id=1884, 453.695pt x 295.1025pt>
@@ -1825,7 +1818,7 @@ Sales-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJS
 ales-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/BJSales-1.pdf  used on input line 4360.
+les/figure-latex/BJSales-1.pdf  used on input line 4363.
 (pdftex.def)             Requested size: 344.9987pt x 224.4018pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJSales
 Complex-1.pdf, id=1886, 436.63126pt x 254.9525pt>
@@ -1834,40 +1827,40 @@ SalesComplex-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJS
 alesComplex-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/BJSalesComplex-1.pdf  used on input line 4368.
+les/figure-latex/BJSalesComplex-1.pdf  used on input line 4371.
 (pdftex.def)             Requested size: 345.00154pt x 201.44916pt.
 [135] [136pdfTeX warning (ext4): destination with the same identifier (name{fig
 ure.6.15}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4374 \begin{Shaded}
+l.4377 \begin{Shaded}
                      pdfTeX warning (ext4): destination with the same identifie
 r (name{figure.6.16}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4374 \begin{Shaded}
+l.4377 \begin{Shaded}
                       <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/BJSales-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econo
 metrics_files/figure-latex/BJSalesComplex-1.pdf>]
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4412--4412
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4415--4415
 []\T1/lmtt/m/n/10 ## Warning in tseries::kpss.test(yScaled): p-value smaller th
 an printed p-value[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 4420--4420
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 4423--4423
 []\T1/lmtt/m/n/10 ## KPSS Level = 2.6339, Truncation lag parameter = 4, p-value
  = 0.01[] 
  []
 
 [137]
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 4452--4452
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 4455--4455
 []\T1/lmtt/m/n/10 ## Warning in tseries::kpss.test(diff(yScaled)): p-value grea
 ter than printed[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 4460--4460
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 4463--4463
 []\T1/lmtt/m/n/10 ## KPSS Level = 0.13191, Truncation lag parameter = 4, p-valu
 e = 0.1[] 
  []
@@ -1879,13 +1872,13 @@ SalesComplexDiffs-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJS
 alesComplexDiffs-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/BJSalesComplexDiffs-1.pdf  used on input line 4466.
+les/figure-latex/BJSalesComplexDiffs-1.pdf  used on input line 4469.
 (pdftex.def)             Requested size: 345.00154pt x 202.24226pt.
 [138pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 17}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4473 
+l.4476 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/BJSalesComplexDiffs-1.pdf>] [139]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJSales
@@ -1895,40 +1888,40 @@ SalesComplexForecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJS
 alesComplexForecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/BJSalesComplexForecast-1.pdf  used on input line 4549.
+les/figure-latex/BJSalesComplexForecast-1.pdf  used on input line 4552.
 (pdftex.def)             Requested size: 345.01434pt x 255.2943pt.
 [140pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 18}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4554 
+l.4557 
         <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-lat
 ex/BJSalesComplexForecast-1.pdf>]
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4571--4571
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4574--4574
 []\T1/lmtt/m/n/10 ##  [1] 257.6162+13.1087i 258.7371+13.1270i 257.4338+13.1111i
  257.5523+13.1418i[] 
  []
 
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4571--4571
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4574--4574
 []\T1/lmtt/m/n/10 ##  [5] 257.7756+13.1524i 257.8027+13.1935i 258.1313+13.2268i
  258.4488+13.2549i[] 
  []
 
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4571--4571
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4574--4574
 []\T1/lmtt/m/n/10 ##  [9] 258.8752+13.2862i 259.3374+13.3120i 259.7896+13.3359i
  260.2593+13.3575i[] 
  []
 
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4571--4571
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4574--4574
 []\T1/lmtt/m/n/10 ## [13] 260.7118+13.3771i 261.1492+13.3960i 261.5722+13.4142i
  261.9793+13.4323i[] 
  []
 
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4571--4571
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4574--4574
 []\T1/lmtt/m/n/10 ## [17] 262.3764+13.4506i 262.7655+13.4691i 263.1503+13.4881i
  263.5336+13.5074i[] 
  []
@@ -1981,7 +1974,7 @@ mf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmt
 ti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
 m10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (145 
-pages, 4405604 bytes).
+pages, 4406663 bytes).
 PDF statistics:
  2428 PDF objects out of 2487 (max. 8388607)
  2046 compressed objects within 21 object streams
