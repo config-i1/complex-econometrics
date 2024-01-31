@@ -15,7 +15,7 @@ where $\gamma$ is the parameter for the trend and the rest of the equation is ju
     \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t} + \underline{\gamma} t + \underline{\epsilon}_t .
     (\#eq:trendInCLR)
 \end{equation}
-The more interesting case arises when a multiplicative cLR is considered, i.e. the model with logarithmic transform (as discussed in Section \@ref(assumptionsSpecificationTransformation)):
+The more interesting case arises when a multiplicative cLR is considered, i.e. the model with logarithmic transform (as discussed in Subsection \@ref(complexVariable) and Section \@ref(assumptionsSpecificationTransformation)):
 \begin{equation}
     \ln \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \ln \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \ln \underline{x}_{k-1,t} + \underline{\gamma} \ln t + \underline{\epsilon}_t ,
     (\#eq:trendInCLRLogs)

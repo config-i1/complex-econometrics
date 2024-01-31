@@ -169,7 +169,7 @@ While the first two assumptions are universal for any statistical model, the thi
 \begin{equation*}
     \ln \underline{z} = \ln r + i \phi ,
 \end{equation*}
-which is not equivalent to the complex variable $\ln x_r + i \ln x_i$. In fact, there is no known transformation from $x_r + x_i$ to $\ln x_r + i \ln x_i$ except for transforming separately the real and imaginary parts of the variable. Still, logarithms can be used to linearise a non-linear complex model to simplify its estimation. For example, the following multiplicative model:
+which is not equivalent to the complex variable $\ln x_r + i \ln x_i$. In fact, there is no known transformation from $x_r + x_i$ to $\ln x_r + i \ln x_i$ except for transforming separately the real and imaginary parts of the variable. Still, logarithms can be used to linearise a non-linear complex model to simplify its estimation. For example, the following multiplicative model (based on discussion in Subsection \@ref(complexVariable)):
 \begin{equation*}
     \begin{aligned}
     y_{r} + i y_{i} = & (\beta_{0,r} + i \beta_{0,i}) \times (x_{1,r} + i x_{1,i}) ^{\beta_{1,r} + i \beta_{1,i}} \times \dots \times \\
