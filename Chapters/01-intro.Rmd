@@ -383,30 +383,34 @@ Another important function of complex variables that will be useful in what foll
     y_r + i y_i = (x_{r} + i x_{i}) ^{a_{r} + i a_{i}} .
     (\#eq:complexPower)
 \end{equation}
-In this function, the complex variable $x_{1,r} + i x_{1,i}$ is transformed non-linearly by taking the complex power of it.
-<!-- To better understand what this implies, we can first expand the power into two multiplicants: -->
-<!-- \begin{equation} -->
-<!--     y_r + i y_i = (x_{r} + i x_{i})^{a_{r}} (x_{r} + i x_{i}) ^{i a_{i}} . -->
-<!--     (\#eq:complexPower2) -->
-<!-- \end{equation} -->
-<!-- Then, consider the exponential form of complex variables in \@ref(eq:complexPower2): -->
-<!-- \begin{equation} -->
-<!--     \left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} e^{i \mathrm{Arg}(y_r + i y_i)} = \left({x_r^2 + x_i^2}\right)^{\frac{a_{r}}{2}} e^{i \mathrm{Arg}(x_r + i x_i) a_{r}} \left({x_r^2 + x_i^2}\right)^{\frac{i a_{i}}{2}} e^{i \mathrm{Arg}(x_r + i x_i) i a_{i}}  , -->
-<!--     (\#eq:complexPowerExp) -->
-<!-- \end{equation} -->
-<!-- which can be further simplified to: -->
-<!-- $\left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} e^{i \mathrm{Arg}(y_r + i y_i)} = \left({x_r^2 + x_i^2}\right)^{\frac{a_{r}}{2}} e^{- a_{i} \mathrm{Arg}(x_r + i x_i) } e^{\frac{i a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right)} e^{i \mathrm{Arg}(x_r + i x_i) a_{r}} $ -->
-
-$\ln (y_r + i y_i) = (a_{r} + i a_{i}) \ln (x_{r} + i x_{i})$
-$\left(\frac{1}{2} \ln \left({y_r^2 + y_i^2}\right) + {i \mathrm{Arg}(y_r + i y_i)})\right) = (a_{r} + i a_{i}) \left(\frac{1}{2} \ln \left({x_r^2 + x_i^2}\right) + {i \mathrm{Arg}(x_r + i x_i)})\right)$
-
-
-The function \@ref(eq:complexPower) can also be linearised to get:
+In this function, the complex variable $x_{1,r} + i x_{1,i}$ is transformed non-linearly by taking the complex power of it. To better understand how the response variable is connected with the input one, the function \@ref(eq:complexPower) can be linearised:
 \begin{equation*}
-    \ln (y_r + i y_i) = (a_{r} + i a_{i}) \ln (x_{r} + i x_{i}) .
+    \ln (y_r + i y_i) = (a_{r} + i a_{i}) \ln (x_{r} + i x_{i}) ,
 \end{equation*}
-this linearisation will be useful when we will need to estimate models like this on real data.
+which can then be represented in logarithms of exponential form:
+\begin{equation*}
+    \frac{1}{2} \ln \left({y_r^2 + y_i^2}\right) + {i \mathrm{Arg}(y_r + i y_i)}) = (a_{r} + i a_{i}) \left(\frac{1}{2} \ln \left({x_r^2 + x_i^2}\right) + {i \mathrm{Arg}(x_r + i x_i)})\right) .
+\end{equation*}
+Opening the brackets on the right hand side, we finally get:
+\begin{equation*}
+    \frac{1}{2} \ln \left({y_r^2 + y_i^2}\right) + {i \mathrm{Arg}(y_r + i y_i)} = \frac{a_{r}}{2} \ln \left({x_r^2 + x_i^2}\right) - a_{i} \mathrm{Arg}(x_r + i x_i) + i \left(\frac{a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right) + a_r \mathrm{Arg}(x_r + i x_i)  \right) .
+\end{equation*}
+This equation can be represented as a set of two equations, showing how the magnitude and how the argument of the response complex variable are formed:
+\begin{equation}
+    \begin{aligned}
+        & \left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} = \left({x_r^2 + x_i^2}\right)^{\frac{a_{r}}{2}} e^{- a_{i} \mathrm{Arg}(x_r + i x_i)} \\
+        & \mathrm{Arg}(y_r + i y_i) = \frac{a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right) + a_r \mathrm{Arg}(x_r + i x_i)
+    \end{aligned} .
+    (\#eq:complexPowerLogs)
+\end{equation}
+In the set of equations \@ref(eq:complexPowerLogs), we see that the parameter $a_r$ connects directly the magnitude and the argument of $\underline{x}$ with the magnitude and the argument of $\underline{y}$: the magnitude is increased in the power of $a_r$, while the argument is rotated by the same value. On the other hand, $a_i$ captures the cross-connections between the variables: the higher it is, the lower the impact of the argument of $\underline{x}$ on the magnitude of $\underline{y}$ and the higher is the impact of the magnitude of $\underline{x}$ on the argument of $\underline{y}$. The two parts of the complex parameter $a_r + i a_i$ have some similarities with the coefficient of elasticity and with marginal effect, where:
 
+1. $a_r$ shows the percentage change of the magnitude of $\underline{y}$ with the increase of the magnitude of $\underline{x}$ by 1%;
+2. $a_r$ at the same time shows by how many radians the argument of $\underline{y}$ changes with the increase of the argument of $\underline{x}$ by one radiant;
+3. The magnitude of $\underline{y}$ changes roughly by $a_i \times 100$ percent with the increase of the argument of $\underline{x}$ by one radiant (this interpretation implies that $a_i$ is close to zero);
+4. The argument of $\underline{y}$ will change approximately by $\frac{a_i}{100}$ radians with the increase of the magnitude of $\underline{x}$ by 1% (this interpretation also relies on the assumption that $a_i$ is close to zero).
+
+While there are many other potential non-linear transformations of complex variables, we only discuss the ones above which are typically important in econometrics.
 
 
 ### Vectors of complex variables {#vectorComplexVariables}
