@@ -4,10 +4,10 @@
 %
 \documentclass[
 ]{book}
-\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -33,6 +33,14 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Complex-valued Econometrics with Examples in R},
+  pdfauthor={Sergey Svetunkov and Ivan Svetunkov},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -73,8 +81,7 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
+\usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -129,23 +136,12 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage[]{natbib}
 \bibliographystyle{elsarticle-harv}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Complex-valued Econometrics with Examples in R},
-  pdfauthor={Sergey Svetunkov and Ivan Svetunkov},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-01-23}
+\date{2024-01-31}
 
 \begin{document}
 \maketitle
@@ -177,7 +173,7 @@ This monograph relies heavily on the \texttt{complex} package for R. Many of the
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"complex"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"complex"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -185,9 +181,9 @@ We will also need several other packages for our analysis, including the followi
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(mvtnorm)}
-\FunctionTok{library}\NormalTok{(tseries)}
-\FunctionTok{library}\NormalTok{(greybox)}
+\KeywordTok{library}\NormalTok{(mvtnorm)}
+\KeywordTok{library}\NormalTok{(tseries)}
+\KeywordTok{library}\NormalTok{(greybox)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -496,13 +492,55 @@ The representations \eqref{eq:complexFunction}, \eqref{eq:complexFunctionSystem}
 
 Finally, in terms of definitions, the function \eqref{eq:complexFunction} is often referred to as a ``complex-valued'' function. It maps a certain values of the input variable \(x_r + i x_i\) with a specific value of the output variable \(y_r +i y_i\). If there is only a one-to-one relation between the input and output variables then such function is called ``univalent''. When several different values of the input variable leads to one and the same value of the output variable then the function is called ``multivalent''. An example of the former is the linear function:
 \begin{equation*}
-    y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i}),
+    y_r + i y_i = (a_{r} + i a_{i}) (x_{r} + i x_{i}),
 \end{equation*}
 while for the latter, an example is
 \begin{equation*}
-    y_r + i y_i = (a_{1,r} + i a_{1,i}) (x_{1,r} + i x_{1,i})^2, 
+    y_r + i y_i = (a_{r} + i a_{i}) (x_{r} + i x_{i})^2, 
 \end{equation*}
-where two different input complex numbers (for example \(0 + i\) and \(0-i\)) correspond to the same output number (\(-1 + i0\)). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed in the previous Subsection.
+where two different input complex numbers (for example \(0 + i\) and \(0-i\)) correspond to the same output number (\(-1 + i0\)). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed in the previous subsection.
+
+Another important function of complex variables that will be useful in what follows is the power function of the form:
+\begin{equation}
+    y_r + i y_i = (x_{r} + i x_{i}) ^{a_{r} + i a_{i}} .
+    \label{eq:complexPower}
+\end{equation}
+In this function, the complex variable \(x_{1,r} + i x_{1,i}\) is transformed non-linearly by taking the complex power of it. To better understand how the response variable is connected with the input one, the function \eqref{eq:complexPower} can be linearised:
+\begin{equation*}
+    \ln (y_r + i y_i) = (a_{r} + i a_{i}) \ln (x_{r} + i x_{i}) ,
+\end{equation*}
+which can then be represented in logarithms of exponential form:
+\begin{equation*}
+    \frac{1}{2} \ln \left({y_r^2 + y_i^2}\right) + {i \mathrm{Arg}(y_r + i y_i)}) = (a_{r} + i a_{i}) \left(\frac{1}{2} \ln \left({x_r^2 + x_i^2}\right) + {i \mathrm{Arg}(x_r + i x_i)})\right) .
+\end{equation*}
+Opening the brackets on the right hand side, we finally get:
+\begin{equation*}
+    \frac{1}{2} \ln \left({y_r^2 + y_i^2}\right) + {i \mathrm{Arg}(y_r + i y_i)} = \frac{a_{r}}{2} \ln \left({x_r^2 + x_i^2}\right) - a_{i} \mathrm{Arg}(x_r + i x_i) + i \left(\frac{a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right) + a_r \mathrm{Arg}(x_r + i x_i)  \right) .
+\end{equation*}
+This equation can be represented as a set of two equations, showing how the magnitude and how the argument of the response complex variable are formed:
+\begin{equation}
+    \begin{aligned}
+        & \left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} = \left({x_r^2 + x_i^2}\right)^{\frac{a_{r}}{2}} e^{- a_{i} \mathrm{Arg}(x_r + i x_i)} \\
+        & \mathrm{Arg}(y_r + i y_i) = \frac{a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right) + a_r \mathrm{Arg}(x_r + i x_i)
+    \end{aligned} .
+    \label{eq:complexPowerLogs}
+\end{equation}
+In the set of equations \eqref{eq:complexPowerLogs}, we see that the parameter \(a_r\) connects directly the magnitude and the argument of \(\underline{x}\) with the magnitude and the argument of \(\underline{y}\): the magnitude is increased in the power of \(a_r\), while the argument is rotated by the same value. On the other hand, \(a_i\) captures the cross-connections between the variables: the higher it is, the lower the impact of the argument of \(\underline{x}\) on the magnitude of \(\underline{y}\) and the higher is the impact of the magnitude of \(\underline{x}\) on the argument of \(\underline{y}\). The two parts of the complex parameter \(a_r + i a_i\) have some similarities with the coefficient of elasticity and with marginal effect, where:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(a_r\) shows the percentage change of the magnitude of \(\underline{y}\) with the increase of the magnitude of \(\underline{x}\) by 1\%;
+\item
+  \(a_r\) at the same time shows by how many radians the argument of \(\underline{y}\) changes with the increase of the argument of \(\underline{x}\) by one radiant;
+\item
+  The magnitude of \(\underline{y}\) changes roughly by \(a_i \times 100\) percent with the increase of the argument of \(\underline{x}\) by one radiant (this interpretation implies that \(a_i\) is close to zero);
+\item
+  The argument of \(\underline{y}\) will change approximately by \(\frac{a_i}{100}\) radians with the increase of the magnitude of \(\underline{x}\) by 1\% (this interpretation also relies on the assumption that \(a_i\) is close to zero).
+\end{enumerate}
+
+While there are many other potential non-linear transformations of complex variables, we only discuss the ones above which are typically important in econometrics.
 
 \hypertarget{vectorComplexVariables}{%
 \subsection{Vectors of complex variables}\label{vectorComplexVariables}}
@@ -602,15 +640,15 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Create a random variable}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{),}
-             \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{50}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{10}\NormalTok{),}
+             \DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Calculate the first moment}
-\FunctionTok{mean}\NormalTok{(x)}
+\KeywordTok{mean}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.2956+100.6907i
+## [1] 50.2671+100.6742i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -673,30 +711,30 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Create a random variable}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{5}\NormalTok{),}
-             \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{50}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{5}\NormalTok{),}
+             \DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Calculate the conjugate variance}
-\FunctionTok{cvar}\NormalTok{(x, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{setNames}\NormalTok{(}\StringTok{"Conjugate variance"}\NormalTok{)}
+\KeywordTok{cvar}\NormalTok{(x, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{setNames}\NormalTok{(}\StringTok{"Conjugate variance"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## Conjugate variance 
-## 119.1298+0i
+## 124.4856+0i
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Calculate the direct variance}
-\FunctionTok{cvar}\NormalTok{(x, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{setNames}\NormalTok{(}\StringTok{"Direct variance"}\NormalTok{)}
+\KeywordTok{cvar}\NormalTok{(x, }\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{setNames}\NormalTok{(}\StringTok{"Direct variance"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##    Direct variance 
-## -74.88129-0.51557i
+## -65.43409-0.36622i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -716,26 +754,26 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{covar}\NormalTok{(x)}
+\KeywordTok{covar}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##            x_r        x_i
-## x_r 22.1242633 -0.2577866
-## x_i -0.2577866 97.0055538
+## x_r 29.5257721 -0.1831099
+## x_i -0.1831099 94.9598668
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{covar}\NormalTok{(x) }\SpecialCharTok{|\textgreater{}} \FunctionTok{det}\NormalTok{()}
+\KeywordTok{covar}\NormalTok{(x) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{det}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2146.11
+## [1] 2803.73
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -788,49 +826,49 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Create a random variable x}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{5}\NormalTok{),}
-             \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{50}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{5}\NormalTok{),}
+             \DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Create a random variable y}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\FloatTok{1.5} \SpecialCharTok{+}\NormalTok{ 3i) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{0.5} \SpecialCharTok{{-}} \FloatTok{0.75}\NormalTok{i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
-            \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{),}
-                    \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{(}\FloatTok{1.5} \OperatorTok{+}\StringTok{ }\NormalTok{3i) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\FloatTok{0.5} \OperatorTok{{-}}\StringTok{ }\FloatTok{0.75}\NormalTok{i) }\OperatorTok{*}\StringTok{ }\NormalTok{x }\OperatorTok{+}
+\StringTok{            }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{0}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{10}\NormalTok{),}
+                    \DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{0}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Calculate the conjugate variance}
-\FunctionTok{ccov}\NormalTok{(x, y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{setNames}\NormalTok{(}\StringTok{"Conjugate covariance"}\NormalTok{)}
+\KeywordTok{ccov}\NormalTok{(x, y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{setNames}\NormalTok{(}\StringTok{"Conjugate covariance"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 58.0089-113.7516i
+## 51.84177-86.09134i
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Calculate the direct variance}
-\FunctionTok{ccov}\NormalTok{(x, y, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{setNames}\NormalTok{(}\StringTok{"Direct covariance"}\NormalTok{)}
+\KeywordTok{ccov}\NormalTok{(x, y, }\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{setNames}\NormalTok{(}\StringTok{"Direct covariance"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -45.76943+64.88309i
+##  Direct covariance 
+## -22.74265+65.0729i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ourData }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(x,y)}
-\FunctionTok{cvar}\NormalTok{(ourData, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{)}
+\NormalTok{ourData \textless{}{-}}\StringTok{ }\KeywordTok{cbind}\NormalTok{(x,y)}
+\KeywordTok{cvar}\NormalTok{(ourData, }\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##                     x                   y
-## x -76.13954- 6.11248i -45.76943+64.88309i
-## y -45.76943+64.88309i   5.08447+97.84281i
+## x -69.84973+10.50506i -22.74265+65.07290i
+## y -22.74265+65.07290i  77.55069+29.75532i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -845,13 +883,13 @@ In general, it is reasonable to assume that a c.r.v. has a distribution of a sha
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Generate magnitudes from the uniform distribution}
-\NormalTok{R }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{R \textless{}{-}}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
 \CommentTok{\# Generate angles from the uniform distribution}
-\NormalTok{phi }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\SpecialCharTok{{-}}\NormalTok{pi,pi)}
+\NormalTok{phi \textless{}{-}}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\OperatorTok{{-}}\NormalTok{pi,pi)}
 \CommentTok{\# Create c.r.v in exponential form}
-\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ R }\SpecialCharTok{*} \FunctionTok{exp}\NormalTok{(}\FunctionTok{complex}\NormalTok{(}\AttributeTok{imaginary=}\NormalTok{phi))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\NormalTok{R }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{imaginary=}\NormalTok{phi))}
 \CommentTok{\# Plot the variable}
-\FunctionTok{plot}\NormalTok{(x)}
+\KeywordTok{plot}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1321,47 +1359,47 @@ In order to better understand what is specifically minimised, when the formulae 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Create real part of a c.r.v. x}
-\NormalTok{xr }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{xr \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
 \CommentTok{\# Create a c.r.v. x}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{xr, }\AttributeTok{imaginary=}\FloatTok{1.5}\SpecialCharTok{*}\NormalTok{xr}\SpecialCharTok{+}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{xr, }\DataTypeTok{imaginary=}\FloatTok{1.5}\OperatorTok{*}\NormalTok{xr}\OperatorTok{+}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Create a c.r.v. y}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\FloatTok{1.5} \SpecialCharTok{+} \FloatTok{1.2}\NormalTok{i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
-    \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{(}\FloatTok{1.5} \OperatorTok{+}\StringTok{ }\FloatTok{1.2}\NormalTok{i) }\OperatorTok{*}\StringTok{ }\NormalTok{x }\OperatorTok{+}
+\StringTok{    }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
 
 \CommentTok{\# Define number of iterations and the matrix with the values}
-\NormalTok{nsim }\OtherTok{\textless{}{-}} \DecValTok{10000}
-\NormalTok{clsValues }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\ConstantTok{NA}\NormalTok{, nsim, }\DecValTok{4}\NormalTok{,}
-                    \AttributeTok{dimnames=}\FunctionTok{list}\NormalTok{(}\ConstantTok{NULL}\NormalTok{,}
-                                  \FunctionTok{c}\NormalTok{(}\StringTok{"b1r"}\NormalTok{,}\StringTok{"b1i"}\NormalTok{,}\StringTok{"CLSr"}\NormalTok{,}\StringTok{"CLSi"}\NormalTok{)))}
+\NormalTok{nsim \textless{}{-}}\StringTok{ }\DecValTok{10000}
+\NormalTok{clsValues \textless{}{-}}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, nsim, }\DecValTok{4}\NormalTok{,}
+                    \DataTypeTok{dimnames=}\KeywordTok{list}\NormalTok{(}\OtherTok{NULL}\NormalTok{,}
+                                  \KeywordTok{c}\NormalTok{(}\StringTok{"b1r"}\NormalTok{,}\StringTok{"b1i"}\NormalTok{,}\StringTok{"CLSr"}\NormalTok{,}\StringTok{"CLSi"}\NormalTok{)))}
 
 \CommentTok{\# CLS loss function}
-\NormalTok{clsLoss }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(y, yHat)\{}
-    \FunctionTok{return}\NormalTok{(}\FunctionTok{sum}\NormalTok{((y }\SpecialCharTok{{-}}\NormalTok{ yHat)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{clsLoss \textless{}{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(y, yHat)\{}
+    \KeywordTok{return}\NormalTok{(}\KeywordTok{sum}\NormalTok{((y }\OperatorTok{{-}}\StringTok{ }\NormalTok{yHat)}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
 \NormalTok{\}}
 
 \CommentTok{\# Loop for values of b1r from 0.52 to 2.5 and}
 \CommentTok{\# for b1i from 0.22 to 2.2}
-\NormalTok{l }\OtherTok{\textless{}{-}} \DecValTok{1}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{(nsim}\SpecialCharTok{/}\DecValTok{100}\NormalTok{))\{}
-    \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{(nsim}\SpecialCharTok{/}\DecValTok{100}\NormalTok{))\{}
-\NormalTok{        b }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{i}\SpecialCharTok{/}\DecValTok{100}\SpecialCharTok{*}\DecValTok{2}\FloatTok{+0.5}\NormalTok{, }\AttributeTok{imaginary=}\NormalTok{j}\SpecialCharTok{/}\DecValTok{100}\SpecialCharTok{*}\DecValTok{2}\FloatTok{+0.2}\NormalTok{)}
-\NormalTok{        yHat }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ b }\SpecialCharTok{*}\NormalTok{ x}
-\NormalTok{        clsResult }\OtherTok{\textless{}{-}} \FunctionTok{clsLoss}\NormalTok{(y, yHat)}
-\NormalTok{        clsValues[l,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{Re}\NormalTok{(b);}
-\NormalTok{        clsValues[l,}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{Im}\NormalTok{(b);}
-\NormalTok{        clsValues[l,}\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{Re}\NormalTok{(clsResult);}
-\NormalTok{        clsValues[l,}\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{Im}\NormalTok{(clsResult);}
-\NormalTok{        l }\OtherTok{\textless{}{-}}\NormalTok{ l}\SpecialCharTok{+}\DecValTok{1}\NormalTok{;}
+\NormalTok{l \textless{}{-}}\StringTok{ }\DecValTok{1}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(nsim}\OperatorTok{/}\DecValTok{100}\NormalTok{))\{}
+    \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(nsim}\OperatorTok{/}\DecValTok{100}\NormalTok{))\{}
+\NormalTok{        b \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{i}\OperatorTok{/}\DecValTok{100}\OperatorTok{*}\DecValTok{2}\FloatTok{+0.5}\NormalTok{, }\DataTypeTok{imaginary=}\NormalTok{j}\OperatorTok{/}\DecValTok{100}\OperatorTok{*}\DecValTok{2}\FloatTok{+0.2}\NormalTok{)}
+\NormalTok{        yHat \textless{}{-}}\StringTok{ }\NormalTok{(}\DecValTok{10} \OperatorTok{+}\StringTok{ }\NormalTok{15i) }\OperatorTok{+}\StringTok{ }\NormalTok{b }\OperatorTok{*}\StringTok{ }\NormalTok{x}
+\NormalTok{        clsResult \textless{}{-}}\StringTok{ }\KeywordTok{clsLoss}\NormalTok{(y, yHat)}
+\NormalTok{        clsValues[l,}\DecValTok{1}\NormalTok{] \textless{}{-}}\StringTok{ }\KeywordTok{Re}\NormalTok{(b);}
+\NormalTok{        clsValues[l,}\DecValTok{2}\NormalTok{] \textless{}{-}}\StringTok{ }\KeywordTok{Im}\NormalTok{(b);}
+\NormalTok{        clsValues[l,}\DecValTok{3}\NormalTok{] \textless{}{-}}\StringTok{ }\KeywordTok{Re}\NormalTok{(clsResult);}
+\NormalTok{        clsValues[l,}\DecValTok{4}\NormalTok{] \textless{}{-}}\StringTok{ }\KeywordTok{Im}\NormalTok{(clsResult);}
+\NormalTok{        l \textless{}{-}}\StringTok{ }\NormalTok{l}\OperatorTok{+}\DecValTok{1}\NormalTok{;}
 \NormalTok{    \}}
 \NormalTok{\}}
 
 \CommentTok{\# Estimate b1 using CLS}
-\NormalTok{bOptimal }\OtherTok{\textless{}{-}} \FunctionTok{ccov}\NormalTok{(x, y, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{/}
-            \FunctionTok{cvar}\NormalTok{(x, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{)}
+\NormalTok{bOptimal \textless{}{-}}\StringTok{ }\KeywordTok{ccov}\NormalTok{(x, y, }\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{) }\OperatorTok{/}
+\StringTok{            }\KeywordTok{cvar}\NormalTok{(x, }\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{)}
 \CommentTok{\# Produce fitted values}
-\NormalTok{yHat }\OtherTok{\textless{}{-}}\NormalTok{ bOptimal }\SpecialCharTok{*}\NormalTok{ x}
+\NormalTok{yHat \textless{}{-}}\StringTok{ }\NormalTok{bOptimal }\OperatorTok{*}\StringTok{ }\NormalTok{x}
 \CommentTok{\# Calculate the loss}
-\NormalTok{clsResult }\OtherTok{\textless{}{-}} \FunctionTok{clsLoss}\NormalTok{(y, yHat)}
+\NormalTok{clsResult \textless{}{-}}\StringTok{ }\KeywordTok{clsLoss}\NormalTok{(y, yHat)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1369,11 +1407,11 @@ In this experiment we generate complex variables \(x\) and \(y\) and then calcul
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(clsValues[,}\DecValTok{3}\SpecialCharTok{:}\DecValTok{4}\NormalTok{], }\AttributeTok{type=}\StringTok{"p"}\NormalTok{,}
-     \AttributeTok{xlab=}\StringTok{"Re(CLS loss)"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Im(CLS loss)"}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{0}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{v=}\DecValTok{0}\NormalTok{, }\AttributeTok{col=}\StringTok{"grey"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{points}\NormalTok{(}\FunctionTok{Re}\NormalTok{(clsResult), }\FunctionTok{Im}\NormalTok{(clsResult), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{pch=}\DecValTok{19}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(clsValues[,}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{], }\DataTypeTok{type=}\StringTok{"p"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Re(CLS loss)"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Im(CLS loss)"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\DecValTok{0}\NormalTok{, }\DataTypeTok{col=}\StringTok{"grey"}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\DecValTok{0}\NormalTok{, }\DataTypeTok{col=}\StringTok{"grey"}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(}\KeywordTok{Re}\NormalTok{(clsResult), }\KeywordTok{Im}\NormalTok{(clsResult), }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1391,40 +1429,40 @@ Another way of looking at how CLS works is to reduce its dimensionality via the 
 \begin{Highlighting}[]
 \CommentTok{\# Calculate distance matrix for all losses}
 \CommentTok{\# (including the CLS point)}
-\NormalTok{clsMDSDistance }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(clsValues[,}\DecValTok{3}\SpecialCharTok{:}\DecValTok{4}\NormalTok{],}
-                             \FunctionTok{c}\NormalTok{(}\FunctionTok{Re}\NormalTok{(clsResult),}\FunctionTok{Im}\NormalTok{(clsResult))))}
+\NormalTok{clsMDSDistance \textless{}{-}}\StringTok{ }\KeywordTok{dist}\NormalTok{(}\KeywordTok{rbind}\NormalTok{(clsValues[,}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{],}
+                             \KeywordTok{c}\NormalTok{(}\KeywordTok{Re}\NormalTok{(clsResult),}\KeywordTok{Im}\NormalTok{(clsResult))))}
 
 \CommentTok{\# Do Multidimensional scaling}
-\NormalTok{clsMDS }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(clsMDSDistance, }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\NormalTok{clsMDS \textless{}{-}}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(clsMDSDistance, }\DataTypeTok{k=}\DecValTok{1}\NormalTok{)}
 
 \CommentTok{\# Create a data frame with the coordinates}
-\NormalTok{clsMDSValues }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{z=}\NormalTok{clsMDS,}
-                           \AttributeTok{x=}\FunctionTok{c}\NormalTok{(clsValues[,}\DecValTok{1}\NormalTok{],}\FunctionTok{Re}\NormalTok{(bOptimal)),}
-                           \AttributeTok{y=}\FunctionTok{c}\NormalTok{(clsValues[,}\DecValTok{2}\NormalTok{],}\FunctionTok{Im}\NormalTok{(bOptimal)))}
+\NormalTok{clsMDSValues \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{z=}\NormalTok{clsMDS,}
+                           \DataTypeTok{x=}\KeywordTok{c}\NormalTok{(clsValues[,}\DecValTok{1}\NormalTok{],}\KeywordTok{Re}\NormalTok{(bOptimal)),}
+                           \DataTypeTok{y=}\KeywordTok{c}\NormalTok{(clsValues[,}\DecValTok{2}\NormalTok{],}\KeywordTok{Im}\NormalTok{(bOptimal)))}
 
 \CommentTok{\# Create a matrix with loss values for 3d plotting}
-\NormalTok{clsMDSValuesZ }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(clsMDSValues}\SpecialCharTok{$}\NormalTok{z[}\SpecialCharTok{{-}}\DecValTok{10001}\NormalTok{], }\DecValTok{100}\NormalTok{, }\DecValTok{100}\NormalTok{)}
+\NormalTok{clsMDSValuesZ \textless{}{-}}\StringTok{ }\KeywordTok{matrix}\NormalTok{(clsMDSValues}\OperatorTok{$}\NormalTok{z[}\OperatorTok{{-}}\DecValTok{10001}\NormalTok{], }\DecValTok{100}\NormalTok{, }\DecValTok{100}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Then, to produce the 3d surface on the plane of ``loss - \(b_{1,r}\) - \(b_{1,i}\), we can use functions from the \texttt{plotly} package in R as shown in the code below:
+Then, to produce the 3d surface on the plane of "loss - \(b_{1,r}\) - \(b_{1,i}\), we can use functions from the \texttt{plotly} package in R as shown in the code below:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot\_ly}\NormalTok{(}\AttributeTok{z=}\NormalTok{clsMDSValuesZ,}
-        \AttributeTok{x=}\FunctionTok{unique}\NormalTok{(clsMDSValues}\SpecialCharTok{$}\NormalTok{x[}\SpecialCharTok{{-}}\DecValTok{10001}\NormalTok{]),}
-        \AttributeTok{y=}\FunctionTok{unique}\NormalTok{(clsMDSValues}\SpecialCharTok{$}\NormalTok{y[}\SpecialCharTok{{-}}\DecValTok{10001}\NormalTok{])) }\SpecialCharTok{|\textgreater{}}
-\NormalTok{    plotly}\SpecialCharTok{::}\FunctionTok{layout}\NormalTok{(}\AttributeTok{scene=}\FunctionTok{list}\NormalTok{(}\AttributeTok{xaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"Re(b1)"}\NormalTok{),}
-                      \AttributeTok{yaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"Im(b1)"}\NormalTok{),}
-                      \AttributeTok{zaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"MDS of CLS loss"}\NormalTok{))) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{add\_surface}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{add\_trace}\NormalTok{(}\AttributeTok{data =} \FunctionTok{tail}\NormalTok{(clsMDSValues,}\DecValTok{1}\NormalTok{),}
-              \AttributeTok{x =} \SpecialCharTok{\textasciitilde{}}\NormalTok{x,}
-              \AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{y,}
-              \AttributeTok{z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{z,}
-              \AttributeTok{mode =} \StringTok{"markers"}\NormalTok{,}
-              \AttributeTok{type =} \StringTok{"scatter3d"}\NormalTok{,}
-              \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{size =} \DecValTok{10}\NormalTok{))}
+\KeywordTok{plot\_ly}\NormalTok{(}\DataTypeTok{z=}\NormalTok{clsMDSValuesZ,}
+        \DataTypeTok{x=}\KeywordTok{unique}\NormalTok{(clsMDSValues}\OperatorTok{$}\NormalTok{x[}\OperatorTok{{-}}\DecValTok{10001}\NormalTok{]),}
+        \DataTypeTok{y=}\KeywordTok{unique}\NormalTok{(clsMDSValues}\OperatorTok{$}\NormalTok{y[}\OperatorTok{{-}}\DecValTok{10001}\NormalTok{])) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\NormalTok{plotly}\OperatorTok{::}\KeywordTok{layout}\NormalTok{(}\DataTypeTok{scene=}\KeywordTok{list}\NormalTok{(}\DataTypeTok{xaxis =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Re(b1)"}\NormalTok{),}
+                      \DataTypeTok{yaxis =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Im(b1)"}\NormalTok{),}
+                      \DataTypeTok{zaxis =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{title =} \StringTok{"MDS of CLS loss"}\NormalTok{))) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{add\_surface}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{add\_trace}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{tail}\NormalTok{(clsMDSValues,}\DecValTok{1}\NormalTok{),}
+              \DataTypeTok{x =} \OperatorTok{\textasciitilde{}}\NormalTok{x,}
+              \DataTypeTok{y =} \OperatorTok{\textasciitilde{}}\NormalTok{y,}
+              \DataTypeTok{z =} \OperatorTok{\textasciitilde{}}\NormalTok{z,}
+              \DataTypeTok{mode =} \StringTok{"markers"}\NormalTok{,}
+              \DataTypeTok{type =} \StringTok{"scatter3d"}\NormalTok{,}
+              \DataTypeTok{marker =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{size =} \DecValTok{10}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1525,34 +1563,34 @@ These six scenarios in Table \ref{tab:scenariosEstimators} cover different theor
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{10000}
-\NormalTok{x0 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{10}\NormalTok{)}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{x0,}\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{20}\NormalTok{))}
+\NormalTok{obs \textless{}{-}}\StringTok{ }\DecValTok{10000}
+\NormalTok{x0 \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{x0,}\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{20}\NormalTok{))}
 
-\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i}
-\NormalTok{b1 }\OtherTok{\textless{}{-}} \DecValTok{2}\FloatTok{{-}1.5}\NormalTok{i}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+} \FloatTok{1.5}\SpecialCharTok{*}\FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
-                               \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{b0 \textless{}{-}}\StringTok{ }\DecValTok{10} \OperatorTok{+}\StringTok{ }\NormalTok{15i}
+\NormalTok{b1 \textless{}{-}}\StringTok{ }\DecValTok{2}\FloatTok{{-}1.5}\NormalTok{i}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\FloatTok{1.5}\OperatorTok{*}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+                               \DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 
-\NormalTok{complexData }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(y,x)}
+\NormalTok{complexData \textless{}{-}}\StringTok{ }\KeywordTok{cbind}\NormalTok{(y,x)}
 
-\NormalTok{nsim }\OtherTok{\textless{}{-}} \DecValTok{9980}
-\NormalTok{parametersValues }\OtherTok{\textless{}{-}}
-    \FunctionTok{array}\NormalTok{(}\ConstantTok{NA}\NormalTok{, }\FunctionTok{c}\NormalTok{(nsim,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{),}
-          \AttributeTok{dimnames=}\FunctionTok{list}\NormalTok{(}\ConstantTok{NULL}\NormalTok{,}
-                        \FunctionTok{c}\NormalTok{(}\StringTok{"CLS"}\NormalTok{,}\StringTok{"OLS"}\NormalTok{,}\StringTok{"Likelihood"}\NormalTok{),}
-                        \FunctionTok{c}\NormalTok{(}\StringTok{"b0"}\NormalTok{,}\StringTok{"b1"}\NormalTok{)))}
+\NormalTok{nsim \textless{}{-}}\StringTok{ }\DecValTok{9980}
+\NormalTok{parametersValues \textless{}{-}}
+\StringTok{    }\KeywordTok{array}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\KeywordTok{c}\NormalTok{(nsim,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{),}
+          \DataTypeTok{dimnames=}\KeywordTok{list}\NormalTok{(}\OtherTok{NULL}\NormalTok{,}
+                        \KeywordTok{c}\NormalTok{(}\StringTok{"CLS"}\NormalTok{,}\StringTok{"OLS"}\NormalTok{,}\StringTok{"Likelihood"}\NormalTok{),}
+                        \KeywordTok{c}\NormalTok{(}\StringTok{"b0"}\NormalTok{,}\StringTok{"b1"}\NormalTok{)))}
 
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nsim)\{}
-\NormalTok{    test }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x, complexData, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{,}
-                \AttributeTok{subset=}\FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{obs),}\DecValTok{20}\SpecialCharTok{+}\NormalTok{i))}
-\NormalTok{    parametersValues[i,}\DecValTok{1}\NormalTok{,] }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(test)}
-\NormalTok{    test }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x, complexData, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{,}
-                \AttributeTok{subset=}\FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{obs),}\DecValTok{20}\SpecialCharTok{+}\NormalTok{i))}
-\NormalTok{    parametersValues[i,}\DecValTok{2}\NormalTok{,] }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(test)}
-\NormalTok{    test }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x, complexData, }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{,}
-                \AttributeTok{subset=}\FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{obs),}\DecValTok{20}\SpecialCharTok{+}\NormalTok{i))}
-\NormalTok{    parametersValues[i,}\DecValTok{3}\NormalTok{,] }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(test)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nsim)\{}
+\NormalTok{    test \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{x, complexData, }\DataTypeTok{loss=}\StringTok{"CLS"}\NormalTok{,}
+                \DataTypeTok{subset=}\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{obs),}\DecValTok{20}\OperatorTok{+}\NormalTok{i))}
+\NormalTok{    parametersValues[i,}\DecValTok{1}\NormalTok{,] \textless{}{-}}\StringTok{ }\KeywordTok{coef}\NormalTok{(test)}
+\NormalTok{    test \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{x, complexData, }\DataTypeTok{loss=}\StringTok{"OLS"}\NormalTok{,}
+                \DataTypeTok{subset=}\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{obs),}\DecValTok{20}\OperatorTok{+}\NormalTok{i))}
+\NormalTok{    parametersValues[i,}\DecValTok{2}\NormalTok{,] \textless{}{-}}\StringTok{ }\KeywordTok{coef}\NormalTok{(test)}
+\NormalTok{    test \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{x, complexData, }\DataTypeTok{loss=}\StringTok{"likelihood"}\NormalTok{,}
+                \DataTypeTok{subset=}\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{obs),}\DecValTok{20}\OperatorTok{+}\NormalTok{i))}
+\NormalTok{    parametersValues[i,}\DecValTok{3}\NormalTok{,] \textless{}{-}}\StringTok{ }\KeywordTok{coef}\NormalTok{(test)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -1647,14 +1685,14 @@ In order to better understand what correlations between c.r.v. imply, we need to
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Create real part of a c.r.v. x}
-\NormalTok{xr }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{xr \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
 \CommentTok{\# Create a c.r.v. x}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{xr, }\AttributeTok{imaginary=}\FloatTok{1.5}\SpecialCharTok{*}\NormalTok{xr}\SpecialCharTok{+}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{xr, }\DataTypeTok{imaginary=}\FloatTok{1.5}\OperatorTok{*}\NormalTok{xr}\OperatorTok{+}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Create a c.r.v. y}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{1.5} \SpecialCharTok{+} \FloatTok{1.2}\NormalTok{i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
-    \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{(}\DecValTok{10} \OperatorTok{+}\StringTok{ }\NormalTok{15i) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\FloatTok{1.5} \OperatorTok{+}\StringTok{ }\FloatTok{1.2}\NormalTok{i) }\OperatorTok{*}\StringTok{ }\NormalTok{x }\OperatorTok{+}
+\StringTok{    }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Produce the plot}
-\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{1}\NormalTok{)}
+\KeywordTok{cplot}\NormalTok{(x, y, }\DataTypeTok{which=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1709,9 +1747,9 @@ As an alternative to the plot above, it is also possible to use some dimensional
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{xScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(x)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
-\NormalTok{yScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(y)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(xScaled,yScaled)}
+\KeywordTok{complex2vec}\NormalTok{(x) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{dist}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(}\DataTypeTok{k=}\DecValTok{1}\NormalTok{) {-}\textgreater{}}\StringTok{ }\NormalTok{xScaled}
+\KeywordTok{complex2vec}\NormalTok{(y) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{dist}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(}\DataTypeTok{k=}\DecValTok{1}\NormalTok{) {-}\textgreater{}}\StringTok{ }\NormalTok{yScaled}
+\KeywordTok{plot}\NormalTok{(xScaled,yScaled)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1719,7 +1757,7 @@ The same code is implemented in \texttt{cplot()} function from \texttt{complex} 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{2}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cplot}\NormalTok{(x, y, }\DataTypeTok{which=}\DecValTok{2}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1756,11 +1794,11 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ 1i) }\SpecialCharTok{*}\NormalTok{ x}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{(}\DecValTok{10} \OperatorTok{+}\StringTok{ }\NormalTok{15i) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{1i) }\OperatorTok{*}\StringTok{ }\NormalTok{x}
 \CommentTok{\# Variant 1}
-\FunctionTok{ccov}\NormalTok{(y,x,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{) }\SpecialCharTok{/}
-    \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{cvar}\NormalTok{(x,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{cvar}\NormalTok{(y,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{))}
+\KeywordTok{ccov}\NormalTok{(y,x,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{) }\OperatorTok{/}
+\StringTok{    }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{cvar}\NormalTok{(x,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{)}\OperatorTok{*}\KeywordTok{cvar}\NormalTok{(y,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1771,8 +1809,8 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Variant 2}
-\FunctionTok{ccov}\NormalTok{(x,y,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{) }\SpecialCharTok{/}
-    \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{cvar}\NormalTok{(x,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{cvar}\NormalTok{(y,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{))}
+\KeywordTok{ccov}\NormalTok{(x,y,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{) }\OperatorTok{/}
+\StringTok{    }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{cvar}\NormalTok{(x,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{)}\OperatorTok{*}\KeywordTok{cvar}\NormalTok{(y,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1783,8 +1821,8 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Variant 3 (correct conjugate correlation)}
-\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{ccov}\NormalTok{(y,x,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{ccov}\NormalTok{(x,y,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{)) }\SpecialCharTok{/}
-    \FunctionTok{sqrt}\NormalTok{((}\FunctionTok{cvar}\NormalTok{(x,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{cvar}\NormalTok{(y,}\AttributeTok{method=}\StringTok{"conj"}\NormalTok{)))}
+\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{ccov}\NormalTok{(y,x,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{)}\OperatorTok{*}\KeywordTok{ccov}\NormalTok{(x,y,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{)) }\OperatorTok{/}
+\StringTok{    }\KeywordTok{sqrt}\NormalTok{((}\KeywordTok{cvar}\NormalTok{(x,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{)}\OperatorTok{*}\KeywordTok{cvar}\NormalTok{(y,}\DataTypeTok{method=}\StringTok{"conj"}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1795,7 +1833,7 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Same thing using the ccor() function}
-\FunctionTok{ccor}\NormalTok{(x,y,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(x,y,}\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1874,12 +1912,12 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Create a c.r.v. x}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
 \CommentTok{\# Create a c.r.v. y}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ 1i) }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}
-    \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{(}\DecValTok{10} \OperatorTok{+}\StringTok{ }\NormalTok{15i) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{1i) }\OperatorTok{*}\StringTok{ }\NormalTok{x }\OperatorTok{+}
+\StringTok{    }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \CommentTok{\# Produce the plot}
-\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cplot}\NormalTok{(x, y, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1892,19 +1930,19 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Conjugate correlation}
-\FunctionTok{ccor}\NormalTok{(x, y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(x, y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9976529
+## [1] 0.99732
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cplot}\NormalTok{(x, y, }\AttributeTok{which=}\DecValTok{2}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cplot}\NormalTok{(x, y, }\DataTypeTok{which=}\DecValTok{2}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1946,23 +1984,23 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Create projections of two complex variables onto axes}
-\NormalTok{xScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(x)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
-\NormalTok{yScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(y)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\KeywordTok{complex2vec}\NormalTok{(x) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{dist}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(}\DataTypeTok{k=}\DecValTok{1}\NormalTok{) {-}\textgreater{}}\StringTok{ }\NormalTok{xScaled}
+\KeywordTok{complex2vec}\NormalTok{(y) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{dist}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(}\DataTypeTok{k=}\DecValTok{1}\NormalTok{) {-}\textgreater{}}\StringTok{ }\NormalTok{yScaled}
 \CommentTok{\# Calculate the correlation coefficient}
-\FunctionTok{cor}\NormalTok{(xScaled,yScaled)}
+\KeywordTok{cor}\NormalTok{(xScaled,yScaled)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9970413
+## [1,] 0.9978966
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(x, y, }\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(x, y, }\DataTypeTok{method=}\StringTok{"pearson"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1975,16 +2013,16 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cbind}\NormalTok{(x,y) }\SpecialCharTok{|\textgreater{}} \FunctionTok{covar}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov2cor}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{cbind}\NormalTok{(x,y) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{covar}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{cov2cor}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r    y_i
-## x_r 1.000  0.056  0.644  0.692
-## x_i 0.056  1.000 -0.725  0.757
-## y_r 0.644 -0.725  1.000 -0.103
-## y_i 0.692  0.757 -0.103  1.000
+##       x_r    x_i    y_r   y_i
+## x_r 1.000  0.074  0.748 0.789
+## x_i 0.074  1.000 -0.603 0.666
+## y_r 0.748 -0.603  1.000 0.187
+## y_i 0.789  0.666  0.187 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2254,23 +2292,23 @@ In R, the estimation of the cLR can be done using the \texttt{clm()} function fr
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Sample size}
-\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{obs \textless{}{-}}\StringTok{ }\DecValTok{100}
 \CommentTok{\# Generate parameters}
-\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100} \SpecialCharTok{{-}}\NormalTok{ 150i}
-\NormalTok{b1 }\OtherTok{\textless{}{-}} \FloatTok{2.5} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
-\NormalTok{b2 }\OtherTok{\textless{}{-}} \FloatTok{1.5} \SpecialCharTok{{-}} \FloatTok{0.75}\NormalTok{i}
+\NormalTok{b0 \textless{}{-}}\StringTok{ }\DecValTok{100} \OperatorTok{{-}}\StringTok{ }\NormalTok{150i}
+\NormalTok{b1 \textless{}{-}}\StringTok{ }\FloatTok{2.5} \OperatorTok{+}\StringTok{ }\FloatTok{1.5}\NormalTok{i}
+\NormalTok{b2 \textless{}{-}}\StringTok{ }\FloatTok{1.5} \OperatorTok{{-}}\StringTok{ }\FloatTok{0.75}\NormalTok{i}
 \CommentTok{\# Create the explanatory variables}
-\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{100}\SpecialCharTok{+}\NormalTok{150i, }\AttributeTok{sigma2=}\DecValTok{200}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{100}\NormalTok{)}
+\NormalTok{x1 \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DataTypeTok{mu=}\DecValTok{100}\OperatorTok{+}\NormalTok{150i, }\DataTypeTok{sigma2=}\DecValTok{200}\NormalTok{, }\DataTypeTok{varsigma2=}\DecValTok{100}\NormalTok{)}
 \CommentTok{\# Create the explanatory variables}
-\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{150}\SpecialCharTok{+}\NormalTok{100i, }\AttributeTok{sigma2=}\DecValTok{200}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{150}\NormalTok{)}
+\NormalTok{x2 \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DataTypeTok{mu=}\DecValTok{150}\OperatorTok{+}\NormalTok{100i, }\DataTypeTok{sigma2=}\DecValTok{200}\NormalTok{, }\DataTypeTok{varsigma2=}\DecValTok{150}\NormalTok{)}
 \CommentTok{\# Generate error term from the complex normal distribution}
-\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{200}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{80}\SpecialCharTok{+}\NormalTok{150i)}
+\NormalTok{e \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DataTypeTok{mu=}\DecValTok{0}\NormalTok{, }\DataTypeTok{sigma2=}\DecValTok{200}\NormalTok{, }\DataTypeTok{varsigma2=}\DecValTok{80}\OperatorTok{+}\NormalTok{150i)}
 \CommentTok{\# Generate the response variable}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\NormalTok{x1 }\OperatorTok{+}\StringTok{ }\NormalTok{b2 }\OperatorTok{*}\StringTok{ }\NormalTok{x2 }\OperatorTok{+}\StringTok{ }\NormalTok{e}
 \CommentTok{\# Form a data frame with the variables}
-\NormalTok{dataArtificial }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y, }\AttributeTok{x1=}\NormalTok{x1, }\AttributeTok{x2=}\NormalTok{x2)}
+\NormalTok{dataArtificial \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\NormalTok{y, }\DataTypeTok{x1=}\NormalTok{x1, }\DataTypeTok{x2=}\NormalTok{x2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2280,8 +2318,8 @@ We start by estimating the model using OLS:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\DataTypeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2314,8 +2352,8 @@ Keeping in mind that the MLE should give similar (if not the same) estimates of 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\DataTypeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2351,8 +2389,8 @@ The CLS, on the other hand, will give other estimates of parameters:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., dataArtificial, }\DataTypeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2441,8 +2479,8 @@ Building on the same example of artificial data from the previous section, we wi
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{CLRArtificial }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., dataArtificial,}
-                     \AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{, }\AttributeTok{subset=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{80}\NormalTok{))}
+\NormalTok{CLRArtificial \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., dataArtificial,}
+                     \DataTypeTok{loss=}\StringTok{"likelihood"}\NormalTok{, }\DataTypeTok{subset=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{80}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2450,10 +2488,10 @@ After estimating the model, we produce forecasts with a 95\% prediction interval
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{predict}\NormalTok{(CLRArtificial, }\FunctionTok{tail}\NormalTok{(dataArtificial,}\DecValTok{20}\NormalTok{),}
-        \AttributeTok{interval=}\StringTok{"prediction"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{plot}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{predict}\NormalTok{(CLRArtificial, }\KeywordTok{tail}\NormalTok{(dataArtificial,}\DecValTok{20}\NormalTok{),}
+        \DataTypeTok{interval=}\StringTok{"prediction"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{plot}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2494,16 +2532,16 @@ The \texttt{clm()} function in the \texttt{complex} package in R supports catego
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
 \CommentTok{\# Create an artificial categorical variable}
-\NormalTok{x3 }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(obs, }\DecValTok{2}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
-\NormalTok{colour }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"character"}\NormalTok{, obs)}
-\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Red"}\NormalTok{;}
-\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Green"}\NormalTok{;}
-\NormalTok{colour[x3}\SpecialCharTok{==}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Blue"}\NormalTok{;}
+\NormalTok{x3 \textless{}{-}}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(obs, }\DecValTok{2}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+\NormalTok{colour \textless{}{-}}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\StringTok{"character"}\NormalTok{, obs)}
+\NormalTok{colour[x3}\OperatorTok{==}\DecValTok{0}\NormalTok{] \textless{}{-}}\StringTok{ "Red"}\NormalTok{;}
+\NormalTok{colour[x3}\OperatorTok{==}\DecValTok{1}\NormalTok{] \textless{}{-}}\StringTok{ "Green"}\NormalTok{;}
+\NormalTok{colour[x3}\OperatorTok{==}\DecValTok{2}\NormalTok{] \textless{}{-}}\StringTok{ "Blue"}\NormalTok{;}
 \CommentTok{\# Add it to the data frame}
 \CommentTok{\# Note that it does not need to be factor()}
-\NormalTok{dataArtificial }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y, }\AttributeTok{x1=}\NormalTok{x1, }\AttributeTok{x2=}\NormalTok{x2, }\AttributeTok{colour=}\NormalTok{colour)}
+\NormalTok{dataArtificial \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\NormalTok{y, }\DataTypeTok{x1=}\NormalTok{x1, }\DataTypeTok{x2=}\NormalTok{x2, }\DataTypeTok{colour=}\NormalTok{colour)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2511,8 +2549,8 @@ We can then estimate the model using the same command as before:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x1}\SpecialCharTok{+}\NormalTok{x2}\SpecialCharTok{+}\NormalTok{colour, dataArtificial, }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{x1}\OperatorTok{+}\NormalTok{x2}\OperatorTok{+}\NormalTok{colour, dataArtificial, }\DataTypeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2726,7 +2764,7 @@ While the first two assumptions are universal for any statistical model, the thi
 \begin{equation*}
     \ln \underline{z} = \ln r + i \phi ,
 \end{equation*}
-which is not equivalent to the complex variable \(\ln x_r + i \ln x_i\). In fact, there is no known transformation from \(x_r + x_i\) to \(\ln x_r + i \ln x_i\) except for transforming separately the real and imaginary parts of the variable. Still, logarithms can be used to linearise a non-linear complex model to simplify its estimation. For example, the following multiplicative model:
+which is not equivalent to the complex variable \(\ln x_r + i \ln x_i\). In fact, there is no known transformation from \(x_r + x_i\) to \(\ln x_r + i \ln x_i\) except for transforming separately the real and imaginary parts of the variable. Still, logarithms can be used to linearise a non-linear complex model to simplify its estimation. For example, the following multiplicative model (based on discussion in Subsection \ref{complexVariable}):
 \begin{equation*}
     \begin{aligned}
     y_{r} + i y_{i} = & (\beta_{0,r} + i \beta_{0,i}) \times (x_{1,r} + i x_{1,i}) ^{\beta_{1,r} + i \beta_{1,i}} \times \dots \times \\
@@ -2744,9 +2782,9 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100} \SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\SpecialCharTok{*}\NormalTok{1i}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{\^{}}\NormalTok{(}\FloatTok{0.5+0.5}\NormalTok{i)}
-\FunctionTok{cplot}\NormalTok{(x, y)}
+\NormalTok{x \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{100} \OperatorTok{+}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{100}\OperatorTok{*}\NormalTok{1i}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{x}\OperatorTok{\^{}}\NormalTok{(}\FloatTok{0.5+0.5}\NormalTok{i)}
+\KeywordTok{cplot}\NormalTok{(x, y)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2763,20 +2801,20 @@ The diagnostics of correct transformations in cLR is challenging, but can be don
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Set random seed for reproducibility}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Sample size}
-\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{1000}
+\NormalTok{obs \textless{}{-}}\StringTok{ }\DecValTok{1000}
 \CommentTok{\# Create the explanatory variable}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
 \CommentTok{\# Generate parameters}
-\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FloatTok{1.5}\NormalTok{i}
-\NormalTok{b1 }\OtherTok{\textless{}{-}} \FloatTok{2.5} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
+\NormalTok{b0 \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\FloatTok{1.5}\NormalTok{i}
+\NormalTok{b1 \textless{}{-}}\StringTok{ }\FloatTok{2.5} \OperatorTok{+}\StringTok{ }\FloatTok{1.5}\NormalTok{i}
 \CommentTok{\# Generate error term from the complex normal distribution}
-\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\FloatTok{0.25}\NormalTok{, }\AttributeTok{varsigma2=}\FloatTok{0.16+0.09}\NormalTok{i)}
+\NormalTok{e \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DataTypeTok{sigma2=}\FloatTok{0.25}\NormalTok{, }\DataTypeTok{varsigma2=}\FloatTok{0.16+0.09}\NormalTok{i)}
 \CommentTok{\# Generate the data using non{-}linear model}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(x) }\SpecialCharTok{+}\NormalTok{ e)}
+\NormalTok{y \textless{}{-}}\StringTok{ }\KeywordTok{exp}\NormalTok{(b0 }\OperatorTok{+}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(x) }\OperatorTok{+}\StringTok{ }\NormalTok{e)}
 \CommentTok{\# Merge it to the matrix}
-\NormalTok{complexData }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x=}\NormalTok{x)}
+\NormalTok{complexData \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\NormalTok{y,}\DataTypeTok{x=}\NormalTok{x)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2785,7 +2823,7 @@ For demonstration purposes, we will first use a complex linear regression model 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Apply a linear model}
-\NormalTok{complexModel }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x, complexData)}
+\NormalTok{complexModel \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{x, complexData)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2793,8 +2831,8 @@ The issues of the model can be diagnosed using various plots. For example, here 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(complexModel, }\AttributeTok{which=}\DecValTok{2}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(complexModel, }\DataTypeTok{which=}\DecValTok{2}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2809,7 +2847,7 @@ The plots above demonstrate that there is a slight non-linear pattern in the res
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Apply a model to log data}
-\NormalTok{complexModelLogs }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(}\FunctionTok{log}\NormalTok{(y)}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(x), complexData)}
+\NormalTok{complexModelLogs \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(}\KeywordTok{log}\NormalTok{(y)}\OperatorTok{\textasciitilde{}}\KeywordTok{log}\NormalTok{(x), complexData)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2817,8 +2855,8 @@ After which the same plot will look more reasonable, with residuals not exhibiti
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(complexModelLogs, }\AttributeTok{which=}\DecValTok{2}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(complexModelLogs, }\DataTypeTok{which=}\DecValTok{2}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2868,8 +2906,8 @@ The homoscedasticity assumption can be typically diagnosed visually by producing
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(complexModel, }\AttributeTok{which=}\DecValTok{4}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(complexModel, }\DataTypeTok{which=}\DecValTok{4}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2898,16 +2936,16 @@ In R, there are functions \texttt{cacf()} and \texttt{cpacf()} in the \texttt{co
 \begin{Highlighting}[]
 \CommentTok{\# Generate complex data with an autocorrelation of order 1}
 \CommentTok{\# For reproducibility, fix random seed}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Number of observations}
-\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{obs \textless{}{-}}\StringTok{ }\DecValTok{100}
 \CommentTok{\# Vector of the final variable}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"complex"}\NormalTok{, obs)}
+\NormalTok{y \textless{}{-}}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\StringTok{"complex"}\NormalTok{, obs)}
 \CommentTok{\# Initial values for the first observation}
-\NormalTok{y[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{300} \SpecialCharTok{+}\NormalTok{ 250i}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{obs)\{}
-\NormalTok{    y[i] }\OtherTok{\textless{}{-}} \DecValTok{100} \SpecialCharTok{+}\NormalTok{ 200i }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{0.5} \SpecialCharTok{{-}} \FloatTok{0.25}\NormalTok{i) }\SpecialCharTok{*}\NormalTok{ y[i}\DecValTok{{-}1}\NormalTok{] }\SpecialCharTok{+}
-        \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{y[}\DecValTok{1}\NormalTok{] \textless{}{-}}\StringTok{ }\DecValTok{300} \OperatorTok{+}\StringTok{ }\NormalTok{250i}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{obs)\{}
+\NormalTok{    y[i] \textless{}{-}}\StringTok{ }\DecValTok{100} \OperatorTok{+}\StringTok{ }\NormalTok{200i }\OperatorTok{+}\StringTok{ }\NormalTok{(}\FloatTok{0.5} \OperatorTok{{-}}\StringTok{ }\FloatTok{0.25}\NormalTok{i) }\OperatorTok{*}\StringTok{ }\NormalTok{y[i}\DecValTok{{-}1}\NormalTok{] }\OperatorTok{+}
+\StringTok{        }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -2916,7 +2954,7 @@ The conjugate ACF (due to its nature) is represented by a set of real values (Fi
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\DataTypeTok{plot=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2932,7 +2970,7 @@ In contrast, the conjugate PACF provides more details and shows the specific val
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cpacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cpacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\DataTypeTok{plot=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2948,7 +2986,7 @@ Similarly, we can analyse the direct complex ACF of a variable, which will gener
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{, }\DataTypeTok{plot=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2962,7 +3000,7 @@ While the dynamics of direct cACF is similar to the one of the conjugate cPACF, 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cpacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cpacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{, }\DataTypeTok{plot=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2978,9 +3016,9 @@ Finally, we can generate ACF/PACF for the variable after its MDS transformation 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{cacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{TRUE}\NormalTok{)}
-\FunctionTok{cpacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{TRUE}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{cacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"pearson"}\NormalTok{, }\DataTypeTok{plot=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{cpacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"pearson"}\NormalTok{, }\DataTypeTok{plot=}\OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2996,8 +3034,8 @@ Furthermore, there is another presentation for complex ACF/PACF - in the polar c
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cpacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{plot}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\KeywordTok{cpacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\DataTypeTok{plot=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{plot}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3013,8 +3051,8 @@ Finally, one can analyse the ACF/PACF of the separate real and imaginary parts o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(complexModel,}\AttributeTok{which=}\FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{))}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(complexModel,}\DataTypeTok{which=}\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3030,8 +3068,8 @@ In addition, we can do more thorough diagnostics based on the complex ACF/PACF (
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{residuals}\NormalTok{(complexModel) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{cacf}\NormalTok{(}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{)}
+\KeywordTok{residuals}\NormalTok{(complexModel) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{cacf}\NormalTok{(}\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3059,8 +3097,8 @@ In R, this can be done using the following command (for the model discussed in S
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(complexModelLogs,}\AttributeTok{which=}\DecValTok{6}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(complexModelLogs,}\DataTypeTok{which=}\DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3179,42 +3217,42 @@ The R code below creates three datasets for the three respective scenarios (the 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Sample size}
-\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{obs \textless{}{-}}\StringTok{ }\DecValTok{100}
 \CommentTok{\# Generate parameters}
-\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100} \SpecialCharTok{{-}}\NormalTok{ 150i}
-\NormalTok{b1 }\OtherTok{\textless{}{-}} \FloatTok{2.5} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
-\NormalTok{b2 }\OtherTok{\textless{}{-}} \FloatTok{1.5} \SpecialCharTok{{-}} \FloatTok{0.75}\NormalTok{i}
-\NormalTok{a1 }\OtherTok{\textless{}{-}} \FloatTok{1.3} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
+\NormalTok{b0 \textless{}{-}}\StringTok{ }\DecValTok{100} \OperatorTok{{-}}\StringTok{ }\NormalTok{150i}
+\NormalTok{b1 \textless{}{-}}\StringTok{ }\FloatTok{2.5} \OperatorTok{+}\StringTok{ }\FloatTok{1.5}\NormalTok{i}
+\NormalTok{b2 \textless{}{-}}\StringTok{ }\FloatTok{1.5} \OperatorTok{{-}}\StringTok{ }\FloatTok{0.75}\NormalTok{i}
+\NormalTok{a1 \textless{}{-}}\StringTok{ }\FloatTok{1.3} \OperatorTok{+}\StringTok{ }\FloatTok{1.5}\NormalTok{i}
 \CommentTok{\# Create the explanatory variables}
-\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{100}\SpecialCharTok{+}\NormalTok{50i, }\AttributeTok{sigma2=}\DecValTok{125}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{75}\NormalTok{)}
+\NormalTok{x1 \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DataTypeTok{mu=}\DecValTok{100}\OperatorTok{+}\NormalTok{50i, }\DataTypeTok{sigma2=}\DecValTok{125}\NormalTok{, }\DataTypeTok{varsigma2=}\DecValTok{75}\NormalTok{)}
 \CommentTok{\# Generate error term from the complex normal distribution}
-\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{40}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{, }\AttributeTok{varsigma2=}\SpecialCharTok{{-}}\DecValTok{500}\NormalTok{)}
+\NormalTok{e \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DataTypeTok{mu=}\DecValTok{0}\NormalTok{, }\DataTypeTok{sigma2=}\DecValTok{40}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{, }\DataTypeTok{varsigma2=}\OperatorTok{{-}}\DecValTok{500}\NormalTok{)}
 \CommentTok{\# The second variable}
 
-\DocumentationTok{\#\# Scenario 1}
-\NormalTok{x2 }\OtherTok{\textless{}{-}}\NormalTok{ a1}\SpecialCharTok{*}\NormalTok{x1 }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\CommentTok{\#\# Scenario 1}
+\NormalTok{x2 \textless{}{-}}\StringTok{ }\NormalTok{a1}\OperatorTok{*}\NormalTok{x1 }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 \CommentTok{\# Generate the response variable}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\NormalTok{x1 }\OperatorTok{+}\StringTok{ }\NormalTok{b2 }\OperatorTok{*}\StringTok{ }\NormalTok{x2 }\OperatorTok{+}\StringTok{ }\NormalTok{e}
 \CommentTok{\# Form a data frame with the variables}
-\NormalTok{data1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x1=}\NormalTok{x1,}\AttributeTok{x2=}\NormalTok{x2)}
+\NormalTok{data1 \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\NormalTok{y,}\DataTypeTok{x1=}\NormalTok{x1,}\DataTypeTok{x2=}\NormalTok{x2)}
 
-\DocumentationTok{\#\# Scenario 2}
-\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{Re}\NormalTok{(x1)}\SpecialCharTok{*}\FunctionTok{Re}\NormalTok{(a1) }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
-              \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\CommentTok{\#\# Scenario 2}
+\NormalTok{x2 \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{Re}\NormalTok{(x1)}\OperatorTok{*}\KeywordTok{Re}\NormalTok{(a1) }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+              \DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{5}\NormalTok{))}
 \CommentTok{\# Generate the response variable}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\NormalTok{x1 }\OperatorTok{+}\StringTok{ }\NormalTok{b2 }\OperatorTok{*}\StringTok{ }\NormalTok{x2 }\OperatorTok{+}\StringTok{ }\NormalTok{e}
 \CommentTok{\# Form a data frame with the variables}
-\NormalTok{data2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x1=}\NormalTok{x1,}\AttributeTok{x2=}\NormalTok{x2)}
+\NormalTok{data2 \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\NormalTok{y,}\DataTypeTok{x1=}\NormalTok{x1,}\DataTypeTok{x2=}\NormalTok{x2)}
 
-\DocumentationTok{\#\# Scenario 3}
-\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{5}\NormalTok{),}
-              \AttributeTok{imaginary=}\FunctionTok{Re}\NormalTok{(x1)}\SpecialCharTok{*}\FunctionTok{Re}\NormalTok{(a1) }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\CommentTok{\#\# Scenario 3}
+\NormalTok{x2 \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{5}\NormalTok{),}
+              \DataTypeTok{imaginary=}\KeywordTok{Re}\NormalTok{(x1)}\OperatorTok{*}\KeywordTok{Re}\NormalTok{(a1) }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \CommentTok{\# Generate the response variable}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ e}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\NormalTok{x1 }\OperatorTok{+}\StringTok{ }\NormalTok{b2 }\OperatorTok{*}\StringTok{ }\NormalTok{x2 }\OperatorTok{+}\StringTok{ }\NormalTok{e}
 \CommentTok{\# Form a data frame with the variables}
-\NormalTok{data3 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x1=}\NormalTok{x1,}\AttributeTok{x2=}\NormalTok{x2)}
+\NormalTok{data3 \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\NormalTok{y,}\DataTypeTok{x1=}\NormalTok{x1,}\DataTypeTok{x2=}\NormalTok{x2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3228,7 +3266,7 @@ We start with the conjugate complex correlation matrix:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(data1,}\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3245,7 +3283,7 @@ The second output is for the direct complex correlation matrix:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(data1,}\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3262,7 +3300,7 @@ We also calculate Pearson's correlation matrix for the MDS-transformed complex v
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(data1,}\DataTypeTok{method=}\StringTok{"pearson"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3279,7 +3317,7 @@ Finally, we calculate the covariance matrix of parameters between individual var
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{covar}\NormalTok{(data1) }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov2cor}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{covar}\NormalTok{(data1) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{cov2cor}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3299,8 +3337,8 @@ All of the outputs above tell us that if we want to fit the cLR, we will face di
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data1, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., data1, }\DataTypeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3333,8 +3371,8 @@ The CLS gives a very similar picture:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data1, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., data1, }\DataTypeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3367,8 +3405,8 @@ Finally, we estimate the model using likelihood:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data1, }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., data1, }\DataTypeTok{loss=}\StringTok{"likelihood"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3414,7 +3452,7 @@ In this scenario, we have strong correlation between real parts of explanatory v
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(data2,}\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3429,7 +3467,7 @@ The conjugate correlation above shows that there is a linear relation between \(
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(data2,}\DataTypeTok{method=}\StringTok{"direct"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3444,7 +3482,7 @@ The direct correlation agrees with the conjugate one in general, but the fact th
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{ccor}\NormalTok{(data2,}\DataTypeTok{method=}\StringTok{"pearson"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3459,7 +3497,7 @@ Pearson's correlations on the MDS variables shows that there is a very strong re
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{covar}\NormalTok{(data2) }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov2cor}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{covar}\NormalTok{(data2) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{cov2cor}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3479,8 +3517,8 @@ The model estimated using OLS produces the following output:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data2, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., data2, }\DataTypeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3511,8 +3549,8 @@ The parameters seem to be less efficient than they would have been without the s
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data2, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., data2, }\DataTypeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3568,8 +3606,8 @@ The OLS estimate of the model gives:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data3, }\AttributeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., data3, }\DataTypeTok{loss=}\StringTok{"OLS"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3600,8 +3638,8 @@ While the CLS one is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{., data3, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{summary}\NormalTok{()}
+\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\NormalTok{., data3, }\DataTypeTok{loss=}\StringTok{"CLS"}\NormalTok{) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{summary}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3655,7 +3693,7 @@ where \(\gamma\) is the parameter for the trend and the rest of the equation is 
     \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t} + \underline{\gamma} t + \underline{\epsilon}_t .
     \label{eq:trendInCLR}
 \end{equation}
-The more interesting case arises when a multiplicative cLR is considered, i.e.~the model with logarithmic transform (as discussed in Section \ref{assumptionsSpecificationTransformation}):
+The more interesting case arises when a multiplicative cLR is considered, i.e.~the model with logarithmic transform (as discussed in Subsection \ref{complexVariable} and Section \ref{assumptionsSpecificationTransformation}):
 \begin{equation}
     \ln \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \ln \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \ln \underline{x}_{k-1,t} + \underline{\gamma} \ln t + \underline{\epsilon}_t ,
     \label{eq:trendInCLRLogs}
@@ -3697,21 +3735,21 @@ In R, the trend is supported in the \texttt{clm()} function from the \texttt{com
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Set random seed for reproducibility}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Sample size}
-\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{obs \textless{}{-}}\StringTok{ }\DecValTok{100}
 \CommentTok{\# Create an explanatory variable}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{imaginary=}\KeywordTok{rnorm}\NormalTok{(obs,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
 \CommentTok{\# Generate parameters}
-\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{+} \FloatTok{1.5}\NormalTok{i}
-\NormalTok{b1 }\OtherTok{\textless{}{-}} \FloatTok{0.8} \SpecialCharTok{{-}} \FloatTok{0.4}\NormalTok{i}
-\NormalTok{b2 }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{+} \FloatTok{0.2}\NormalTok{i}
+\NormalTok{b0 \textless{}{-}}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\FloatTok{1.5}\NormalTok{i}
+\NormalTok{b1 \textless{}{-}}\StringTok{ }\FloatTok{0.8} \OperatorTok{{-}}\StringTok{ }\FloatTok{0.4}\NormalTok{i}
+\NormalTok{b2 \textless{}{-}}\StringTok{ }\FloatTok{0.5} \OperatorTok{+}\StringTok{ }\FloatTok{0.2}\NormalTok{i}
 \CommentTok{\# Generate error term from the complex normal distribution}
-\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\FloatTok{0.25}\NormalTok{, }\AttributeTok{varsigma2=}\FloatTok{0.16+0.09}\NormalTok{i)}
+\NormalTok{e \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DataTypeTok{sigma2=}\FloatTok{0.25}\NormalTok{, }\DataTypeTok{varsigma2=}\FloatTok{0.16+0.09}\NormalTok{i)}
 \CommentTok{\# Generate the data using non{-}linear model}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(x) }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{obs)) }\SpecialCharTok{+}\NormalTok{ e)}
+\NormalTok{y \textless{}{-}}\StringTok{ }\KeywordTok{exp}\NormalTok{(b0 }\OperatorTok{+}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(x) }\OperatorTok{+}\StringTok{ }\NormalTok{b2 }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{obs)) }\OperatorTok{+}\StringTok{ }\NormalTok{e)}
 \CommentTok{\# Merge it to the matrix}
-\NormalTok{complexData }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\NormalTok{y,}\AttributeTok{x=}\NormalTok{x)}
+\NormalTok{complexData \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\NormalTok{y,}\DataTypeTok{x=}\NormalTok{x)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3728,8 +3766,8 @@ Applying a complex linear regression to the data with the same formula as in the
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Apply a model with the trend in logarithms}
-\NormalTok{clrModel }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(}\FunctionTok{log}\NormalTok{(y)}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(x)}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(trend), complexData, }\AttributeTok{subset=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{80}\NormalTok{)}
-\FunctionTok{summary}\NormalTok{(clrModel)}
+\NormalTok{clrModel \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(}\KeywordTok{log}\NormalTok{(y)}\OperatorTok{\textasciitilde{}}\KeywordTok{log}\NormalTok{(x)}\OperatorTok{+}\KeywordTok{log}\NormalTok{(trend), complexData, }\DataTypeTok{subset=}\DecValTok{1}\OperatorTok{:}\DecValTok{80}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(clrModel)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3764,24 +3802,24 @@ The resulting model fit and the forecast for the next 20 observations are shown 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Extract fitted values and transform to the original scale}
-\FunctionTok{fitted}\NormalTok{(clrModel) }\SpecialCharTok{|\textgreater{}} \FunctionTok{exp}\NormalTok{() }\OtherTok{{-}\textgreater{}}\NormalTok{ yFitted}
-\NormalTok{yForecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(clrModel, }\AttributeTok{newdata=}\FunctionTok{tail}\NormalTok{(complexData, }\DecValTok{20}\NormalTok{))}
+\KeywordTok{fitted}\NormalTok{(clrModel) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{exp}\NormalTok{() {-}\textgreater{}}\StringTok{ }\NormalTok{yFitted}
+\NormalTok{yForecast \textless{}{-}}\StringTok{ }\KeywordTok{predict}\NormalTok{(clrModel, }\DataTypeTok{newdata=}\KeywordTok{tail}\NormalTok{(complexData, }\DecValTok{20}\NormalTok{))}
 
 \CommentTok{\# Setup the canvas}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \CommentTok{\# Plot the real part}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Re}\NormalTok{(complexData}\SpecialCharTok{$}\NormalTok{y), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}
-     \AttributeTok{xlab=}\StringTok{"Time"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Real part"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\FunctionTok{Re}\NormalTok{(yFitted), }\AttributeTok{col=}\StringTok{"purple"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{exp}\NormalTok{(yForecast}\SpecialCharTok{$}\NormalTok{mean) }\SpecialCharTok{|\textgreater{}} \FunctionTok{Re}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{lines}\NormalTok{(}\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{81}\SpecialCharTok{:}\DecValTok{100}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{Re}\NormalTok{(complexData}\OperatorTok{$}\NormalTok{y), }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Time"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Real part"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{Re}\NormalTok{(yFitted), }\DataTypeTok{col=}\StringTok{"purple"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{exp}\NormalTok{(yForecast}\OperatorTok{$}\NormalTok{mean) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{Re}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{c}\NormalTok{(}\DecValTok{81}\OperatorTok{:}\DecValTok{100}\NormalTok{), }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
 
 \CommentTok{\# Plot the imaginary part}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Im}\NormalTok{(complexData}\SpecialCharTok{$}\NormalTok{y), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}
-     \AttributeTok{xlab=}\StringTok{"Time"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Imaginary part"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\FunctionTok{Im}\NormalTok{(yFitted), }\AttributeTok{col=}\StringTok{"purple"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
-\FunctionTok{exp}\NormalTok{(yForecast}\SpecialCharTok{$}\NormalTok{mean) }\SpecialCharTok{|\textgreater{}} \FunctionTok{Im}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{lines}\NormalTok{(}\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{81}\SpecialCharTok{:}\DecValTok{100}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{Im}\NormalTok{(complexData}\OperatorTok{$}\NormalTok{y), }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"Time"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Imaginary part"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{Im}\NormalTok{(yFitted), }\DataTypeTok{col=}\StringTok{"purple"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{exp}\NormalTok{(yForecast}\OperatorTok{$}\NormalTok{mean) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{Im}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{c}\NormalTok{(}\DecValTok{81}\OperatorTok{:}\DecValTok{100}\NormalTok{), }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3912,23 +3950,23 @@ For demonstration purposes we consider the cAR(1) process to see how cACF/cPACF 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Sample size}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Number of observations}
-\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{110}
+\NormalTok{obs \textless{}{-}}\StringTok{ }\DecValTok{110}
 \CommentTok{\# Parameters}
-\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{+}\NormalTok{50i}
-\NormalTok{phi1 }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{+} \FloatTok{0.2}\NormalTok{i}
+\NormalTok{b0 \textless{}{-}}\StringTok{ }\DecValTok{100}\OperatorTok{+}\NormalTok{50i}
+\NormalTok{phi1 \textless{}{-}}\StringTok{ }\FloatTok{0.5} \OperatorTok{+}\StringTok{ }\FloatTok{0.2}\NormalTok{i}
 \CommentTok{\# Complex white noise}
-\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{25}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{16}\SpecialCharTok{+}\NormalTok{9i)}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"complex"}\NormalTok{, obs)}
+\NormalTok{e \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DataTypeTok{sigma2=}\DecValTok{25}\NormalTok{, }\DataTypeTok{varsigma2=}\DecValTok{16}\OperatorTok{+}\NormalTok{9i)}
+\NormalTok{y \textless{}{-}}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\StringTok{"complex"}\NormalTok{, obs)}
 \CommentTok{\# Initial value}
-\NormalTok{y[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ e[}\DecValTok{1}\NormalTok{]}
+\NormalTok{y[}\DecValTok{1}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{e[}\DecValTok{1}\NormalTok{]}
 \CommentTok{\# The cAR(1)}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{obs)\{}
-\NormalTok{    y[i] }\OtherTok{\textless{}{-}}\NormalTok{ phi1 }\SpecialCharTok{*}\NormalTok{ y[i}\DecValTok{{-}1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ e[i]}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{obs)\{}
+\NormalTok{    y[i] \textless{}{-}}\StringTok{ }\NormalTok{phi1 }\OperatorTok{*}\StringTok{ }\NormalTok{y[i}\DecValTok{{-}1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{e[i]}
 \NormalTok{\}}
 \CommentTok{\# Drop the first 10 observations as a burn{-}in period}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ y[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)]}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{y[}\OperatorTok{{-}}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3936,7 +3974,7 @@ The conjugate cACF/cPACF are shown in Figures \ref{fig:complexAR1cACF} and \ref{
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3950,7 +3988,7 @@ As we see from Figure \ref{fig:complexAR1cACF}, the cACF declines after the lag 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cpacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cpacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3988,9 +4026,9 @@ When it comes to applying a model and to forecasting, the same \texttt{clm()} fu
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Fit the model with intercept and AR(1)}
-\NormalTok{cAR1Model }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\DecValTok{1}\NormalTok{, }\AttributeTok{orders=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\AttributeTok{subset=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{80}\NormalTok{))}
+\NormalTok{cAR1Model \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\DecValTok{1}\NormalTok{, }\DataTypeTok{orders=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\DataTypeTok{subset=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{80}\NormalTok{))}
 \CommentTok{\# Generate the summary}
-\FunctionTok{summary}\NormalTok{(cAR1Model)}
+\KeywordTok{summary}\NormalTok{(cAR1Model)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4023,9 +4061,9 @@ The output above shows the estimates of parameters of the model, demonstrating t
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Dummy data. 20 rows tells the function what the horizon is}
-\NormalTok{complexData20 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{20}\NormalTok{),}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{complexData20 \textless{}{-}}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{20}\NormalTok{),}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 \CommentTok{\# Produce forecasts for the next 20 steps}
-\NormalTok{yForecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cAR1Model, }\AttributeTok{newdata=}\NormalTok{complexData20)}
+\NormalTok{yForecast \textless{}{-}}\StringTok{ }\KeywordTok{predict}\NormalTok{(cAR1Model, }\DataTypeTok{newdata=}\NormalTok{complexData20)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4034,8 +4072,8 @@ The only catch in the code above is to create a dummy \texttt{newdata} with the 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Produce the plot of the data and the forecasts}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(yForecast)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(yForecast)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4142,23 +4180,23 @@ Similarly to the cAR(p), we consider an R example, analysing how the cACF and cP
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Sample size}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Number of observations}
-\NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{110}
+\NormalTok{obs \textless{}{-}}\StringTok{ }\DecValTok{110}
 \CommentTok{\# Parameters}
-\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{+}\NormalTok{50i}
-\NormalTok{theta1 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FloatTok{0.8} \SpecialCharTok{+} \FloatTok{0.2}\NormalTok{i}
+\NormalTok{b0 \textless{}{-}}\StringTok{ }\DecValTok{100}\OperatorTok{+}\NormalTok{50i}
+\NormalTok{theta1 \textless{}{-}}\StringTok{ }\FloatTok{{-}0.8} \OperatorTok{+}\StringTok{ }\FloatTok{0.2}\NormalTok{i}
 \CommentTok{\# Complex white noise}
-\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{25}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{16}\SpecialCharTok{+}\NormalTok{9i)}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"complex"}\NormalTok{, obs)}
+\NormalTok{e \textless{}{-}}\StringTok{ }\KeywordTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\DataTypeTok{sigma2=}\DecValTok{25}\NormalTok{, }\DataTypeTok{varsigma2=}\DecValTok{16}\OperatorTok{+}\NormalTok{9i)}
+\NormalTok{y \textless{}{-}}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\StringTok{"complex"}\NormalTok{, obs)}
 \CommentTok{\# Initial value}
-\NormalTok{y[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ e[}\DecValTok{1}\NormalTok{]}
+\NormalTok{y[}\DecValTok{1}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{e[}\DecValTok{1}\NormalTok{]}
 \CommentTok{\# The cAR(1)}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{obs)\{}
-\NormalTok{    y[i] }\OtherTok{\textless{}{-}}\NormalTok{ theta1 }\SpecialCharTok{*}\NormalTok{ e[i}\DecValTok{{-}1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ e[i]}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{obs)\{}
+\NormalTok{    y[i] \textless{}{-}}\StringTok{ }\NormalTok{theta1 }\OperatorTok{*}\StringTok{ }\NormalTok{e[i}\DecValTok{{-}1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{b0 }\OperatorTok{+}\StringTok{ }\NormalTok{e[i]}
 \NormalTok{\}}
 \CommentTok{\# Drop the first 10 observations as a burn{-}in period}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ y[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)]}
+\NormalTok{y \textless{}{-}}\StringTok{ }\NormalTok{y[}\OperatorTok{{-}}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4174,7 +4212,7 @@ However, when we analyse cACF of the time series, we will spot an important diff
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4202,7 +4240,7 @@ On the other hand, the conjugate and direct cPACF will decline exponentially, as
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cpacf}\NormalTok{(y, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{cpacf}\NormalTok{(y, }\DataTypeTok{method=}\StringTok{"conjugate"}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4219,10 +4257,10 @@ Finally, we can apply the model to the data:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Fit the model with intercept and MA(1)}
-\NormalTok{cMA1Model }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\DecValTok{1}\NormalTok{, }\AttributeTok{orders=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
-                 \AttributeTok{subset=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{80}\NormalTok{), }\AttributeTok{loss=}\StringTok{"likelihood"}\NormalTok{)}
+\NormalTok{cMA1Model \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\DecValTok{1}\NormalTok{, }\DataTypeTok{orders=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+                 \DataTypeTok{subset=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{80}\NormalTok{), }\DataTypeTok{loss=}\StringTok{"likelihood"}\NormalTok{)}
 \CommentTok{\# Generate the summary}
-\FunctionTok{summary}\NormalTok{(cMA1Model)}
+\KeywordTok{summary}\NormalTok{(cMA1Model)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4257,9 +4295,9 @@ Similarly to how we did it with cAR(1), we can produce forecasts from the model 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Dummy data. 20 rows tells the function what the horizon is}
-\NormalTok{complexData20 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{complexData20 \textless{}{-}}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 \CommentTok{\# Produce forecasts for the next 20 steps}
-\NormalTok{yForecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cMA1Model, }\AttributeTok{newdata=}\NormalTok{complexData20)}
+\NormalTok{yForecast \textless{}{-}}\StringTok{ }\KeywordTok{predict}\NormalTok{(cMA1Model, }\DataTypeTok{newdata=}\NormalTok{complexData20)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4268,8 +4306,8 @@ These forecasts are shown in Figure \ref{fig:complexMA1Forecast}.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Produce the plot of the data and the forecasts}
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(yForecast)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(yForecast)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4336,10 +4374,10 @@ While judgmentally we can conclude that both parts of this complex variable are 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Normalise the variables}
-\FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{BJsales, }\AttributeTok{imaginary=}\NormalTok{BJsales.lead) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{cscale}\NormalTok{(}\AttributeTok{scaling=}\StringTok{"norm"}\NormalTok{) }\OtherTok{{-}\textgreater{}}\NormalTok{ y}
+\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{BJsales, }\DataTypeTok{imaginary=}\NormalTok{BJsales.lead) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{cscale}\NormalTok{(}\DataTypeTok{scaling=}\StringTok{"norm"}\NormalTok{) {-}\textgreater{}}\StringTok{ }\NormalTok{y}
 \CommentTok{\# Scale the complex variable into the real{-}valued one}
-\NormalTok{yScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(y)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\NormalTok{yScaled \textless{}{-}}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(}\KeywordTok{dist}\NormalTok{(}\KeywordTok{complex2vec}\NormalTok{(y)), }\DataTypeTok{k=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4348,7 +4386,7 @@ In the code above we use the \texttt{cscale()} function from the \texttt{complex
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Apply ADF test}
-\NormalTok{tseries}\SpecialCharTok{::}\FunctionTok{adf.test}\NormalTok{(yScaled)}
+\NormalTok{tseries}\OperatorTok{::}\KeywordTok{adf.test}\NormalTok{(yScaled)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4365,7 +4403,7 @@ The output above shows that on 1\% level we fail to reject the null hypothesis t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tseries}\SpecialCharTok{::}\FunctionTok{kpss.test}\NormalTok{(yScaled)}
+\NormalTok{tseries}\OperatorTok{::}\KeywordTok{kpss.test}\NormalTok{(yScaled)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4385,8 +4423,8 @@ If we take the first differences, the conclusions become contradictory:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{diff}\NormalTok{(yScaled) }\SpecialCharTok{|\textgreater{}}
-\NormalTok{    tseries}\SpecialCharTok{::}\FunctionTok{adf.test}\NormalTok{()}
+\KeywordTok{diff}\NormalTok{(yScaled) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\NormalTok{tseries}\OperatorTok{::}\KeywordTok{adf.test}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4403,8 +4441,8 @@ In the ADF test, we still fail to reject the null hypothesis on the 1\% level (s
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{diff}\NormalTok{(yScaled) }\SpecialCharTok{|\textgreater{}}
-\NormalTok{    tseries}\SpecialCharTok{::}\FunctionTok{kpss.test}\NormalTok{()}
+\KeywordTok{diff}\NormalTok{(yScaled) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\NormalTok{tseries}\OperatorTok{::}\KeywordTok{kpss.test}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4437,18 +4475,18 @@ Now we apply the cARIMA model to the newly constructed complex variable. We will
 \begin{Highlighting}[]
 \CommentTok{\# Create all combinations of cARIMA orders to consider}
 \CommentTok{\# Here, we set d=\{1, 2\} based on the earlier data exploration}
-\FunctionTok{expand.grid}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{3}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{as.matrix}\NormalTok{() }\OtherTok{{-}\textgreater{}}\NormalTok{ orders}
-\FunctionTok{colnames}\NormalTok{(orders) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"cAR"}\NormalTok{,}\StringTok{"cI"}\NormalTok{,}\StringTok{"cMA"}\NormalTok{)}
-\NormalTok{nModels }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(orders)}
+\KeywordTok{expand.grid}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{3}\NormalTok{),}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{),}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{3}\NormalTok{)) }\OperatorTok{|}\ErrorTok{\textgreater{}}
+\StringTok{    }\KeywordTok{as.matrix}\NormalTok{() {-}\textgreater{}}\StringTok{ }\NormalTok{orders}
+\KeywordTok{colnames}\NormalTok{(orders) \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"cAR"}\NormalTok{,}\StringTok{"cI"}\NormalTok{,}\StringTok{"cMA"}\NormalTok{)}
+\NormalTok{nModels \textless{}{-}}\StringTok{ }\KeywordTok{nrow}\NormalTok{(orders)}
 \CommentTok{\# Prepare the list of all models under consideration}
-\NormalTok{cARIMABJ }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"list"}\NormalTok{,nModels)}
-\FunctionTok{names}\NormalTok{(cARIMABJ) }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"cARIMA("}\NormalTok{,orders[,}\DecValTok{1}\NormalTok{],}\StringTok{","}\NormalTok{,}
+\NormalTok{cARIMABJ \textless{}{-}}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\StringTok{"list"}\NormalTok{,nModels)}
+\KeywordTok{names}\NormalTok{(cARIMABJ) \textless{}{-}}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\StringTok{"cARIMA("}\NormalTok{,orders[,}\DecValTok{1}\NormalTok{],}\StringTok{","}\NormalTok{,}
 \NormalTok{                          orders[,}\DecValTok{2}\NormalTok{],}\StringTok{","}\NormalTok{,orders[,}\DecValTok{3}\NormalTok{],}\StringTok{")"}\NormalTok{);}
 
 \CommentTok{\# Construct models}
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nModels)\{}
-\NormalTok{    cARIMABJ[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\DecValTok{1}\NormalTok{, }\AttributeTok{orders=}\NormalTok{orders[i,], }\AttributeTok{subset=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{130}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nModels)\{}
+\NormalTok{    cARIMABJ[[i]] \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(y}\OperatorTok{\textasciitilde{}}\DecValTok{1}\NormalTok{, }\DataTypeTok{orders=}\NormalTok{orders[i,], }\DataTypeTok{subset=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{130}\NormalTok{))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -4458,11 +4496,11 @@ The script above will produce 32 cARIMA models of different orders. To choose th
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Extract AICc values}
-\NormalTok{cARIMABJAICc }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(cARIMABJ, AICc)}
+\NormalTok{cARIMABJAICc \textless{}{-}}\StringTok{ }\KeywordTok{sapply}\NormalTok{(cARIMABJ, AICc)}
 \CommentTok{\# Fix names. Sometimes R makes silly things...}
-\FunctionTok{names}\NormalTok{(cARIMABJAICc) }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(cARIMABJ)}
+\KeywordTok{names}\NormalTok{(cARIMABJAICc) \textless{}{-}}\StringTok{ }\KeywordTok{names}\NormalTok{(cARIMABJ)}
 \CommentTok{\# Record the index of the model with the lowest AICc}
-\NormalTok{i }\OtherTok{\textless{}{-}} \FunctionTok{which.min}\NormalTok{(cARIMABJAICc)}
+\NormalTok{i \textless{}{-}}\StringTok{ }\KeywordTok{which.min}\NormalTok{(cARIMABJAICc)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4470,7 +4508,7 @@ The summary of the best performing model is shown below:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(cARIMABJ[[i]])}
+\KeywordTok{summary}\NormalTok{(cARIMABJ[[i]])}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4516,11 +4554,11 @@ As we see, the model managed to capture the dynamics of the original data well, 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{yForecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cARIMABJ[[i]],}
-                     \AttributeTok{newdata=}\FunctionTok{matrix}\NormalTok{(}\ConstantTok{NA}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{cdescale}\NormalTok{(yForecast}\SpecialCharTok{$}\NormalTok{mean,}
-         \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{BJsales, }\AttributeTok{imaginary=}\NormalTok{BJsales.lead),}
-         \AttributeTok{scaling=}\StringTok{"norm"}\NormalTok{)}
+\NormalTok{yForecast \textless{}{-}}\StringTok{ }\KeywordTok{predict}\NormalTok{(cARIMABJ[[i]],}
+                     \DataTypeTok{newdata=}\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{cdescale}\NormalTok{(yForecast}\OperatorTok{$}\NormalTok{mean,}
+         \KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{BJsales, }\DataTypeTok{imaginary=}\NormalTok{BJsales.lead),}
+         \DataTypeTok{scaling=}\StringTok{"norm"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
