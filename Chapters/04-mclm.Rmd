@@ -452,11 +452,14 @@ As we see, all variables exhibit strong trends (the first column of the plot) an
 
 As discussed in Section \@ref(complexModelling), the variables need to be scaled in some way, we will use the standardisation:
 ```{r}
+# Create a data frame of complex variables
 EnglandComplex <-
     data.frame(y=complex(real=EnglandPF$GDP,
                          imaginary=EnglandPF$DDP),
                x=complex(real=EnglandPF$Capital,
                          imaginary=EnglandPF$Labour))
+
+# Standardise the complex variables
 EnglandComplexScaled <-
     sapply(EnglandComplex, cscale, scaling="standardisation")
 ```

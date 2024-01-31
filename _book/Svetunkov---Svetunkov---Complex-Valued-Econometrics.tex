@@ -661,7 +661,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.46428+99.3516i
+## [1] 50.8899+100.3054i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -734,7 +734,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 142.7138+0i
+## 133.1791+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -747,7 +747,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -90.13818+23.2914i
+## -86.09531+8.43144i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -772,9 +772,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##          x_r      x_i
-## x_r 26.28781  11.6457
-## x_i 11.64570 116.4260
+##           x_r        x_i
+## x_r 23.541914   4.215722
+## x_i  4.215722 109.637224
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -786,7 +786,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2924.961
+## [1] 2563.298
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -853,7 +853,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 50.15074-98.84486i
+## 41.1105-107.0509i
 \end{verbatim}
 
 \begin{Shaded}
@@ -866,7 +866,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -11.89737+50.01898i
+## -22.86722+64.19287i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -880,8 +880,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -54.14872+19.94009i -11.89737+50.01898i
-## y -11.89737+50.01898i  41.99535+55.26309i
+## x -84.47425+ 1.62613i -22.86722+64.19287i
+## y -22.86722+64.19287i  54.28555- 5.38777i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1948,7 +1948,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9975102
+## [1] 0.9975691
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -2006,7 +2006,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9975239
+## [1,] -0.997186
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -2032,10 +2032,10 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 
 \begin{verbatim}
 ##       x_r    x_i    y_r   y_i
-## x_r 1.000  0.112  0.796 0.842
-## x_i 0.112  1.000 -0.508 0.625
-## y_r 0.796 -0.508  1.000 0.350
-## y_i 0.842  0.625  0.350 1.000
+## x_r 1.000  0.056  0.703 0.743
+## x_i 0.056  1.000 -0.667 0.707
+## y_r 0.703 -0.667  1.000 0.050
+## y_i 0.743  0.707  0.050 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2660,11 +2660,14 @@ As discussed in Section \ref{complexModelling}, the variables need to be scaled 
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Create a data frame of complex variables}
 \NormalTok{EnglandComplex \textless{}{-}}
 \StringTok{    }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{GDP,}
                          \DataTypeTok{imaginary=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{DDP),}
                \DataTypeTok{x=}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{Capital,}
                          \DataTypeTok{imaginary=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{Labour))}
+
+\CommentTok{\# Standardise the complex variables}
 \NormalTok{EnglandComplexScaled \textless{}{-}}
 \StringTok{    }\KeywordTok{sapply}\NormalTok{(EnglandComplex, cscale, }\DataTypeTok{scaling=}\StringTok{"standardisation"}\NormalTok{)}
 \end{Highlighting}
