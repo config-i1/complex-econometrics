@@ -1,11 +1,169 @@
-<!-- # Examples of application {#Examples} -->
-<!-- In this chapter we consider examples of application for cLR and the complex ARIMA models. -->
+# Examples of application {#Examples}
+In this chapter we consider examples of application for cLR and the complex ARIMA models.
 
 
-<!-- ## Production functions -->
+## cARIMA applied to Box-Jenkins Sales data
+In this example, we consider the Box-Jenkins Sales data with a leading indicator. While typically the indicator is treated as an explanatory variable, we will treat the two as one joint complex variable. Separately, they have the dynamics shown in Figure \@ref(fig:BJSales).
+
+```{r BJSales, fig.cap="Box-Jenkins Sales data with a leading indicator.", echo=FALSE}
+par(mfcol=c(2,1), mar=c(2,4,2,1))
+plot(BJsales)
+plot(BJsales.lead)
+```
+
+As we can see they seem to change over time similarly, which is probably because the indicator drives the sales. But if we unite the two in one complex variable and plot their joint dynamics we will see that not only the values change over time, but also the relation between the variables (see Figure \@ref(fig:BJSalesComplex)).
+
+```{r BJSalesComplex, fig.cap="Box-Jenkins Sales data. Complex dynamics. The red circle depicts the first observation, while the blue trianle is the last one.", echo=FALSE}
+y <- complex(real=BJsales, imaginary=BJsales.lead)
+plot(y, type="l")
+points(head(y,1), pch=16, col="red")
+points(tail(y,1), pch=17, col="blue")
+```
+
+While judgmentally we can conclude that both parts of this complex variable are non-stationary, we will conduct ADF and KPSS tests using `adf.test()` and `kpss.test()` functions from the `tseries` package after applying MDS to it. We will use 1% significance level in the hypotheses testing.
+
+```{r}
+# Normalise the variables
+complex(real=BJsales, imaginary=BJsales.lead) |>
+    cscale(scaling="norm") -> y
+# Scale the complex variable into the real-valued one
+yScaled <- cmdscale(dist(complex2vec(y)), k=1)
+```
+
+In the code above we use the `cscale()` function from the `complex` package to scale both parts of the complex variable. We can then conduct the ADF test:
+
+```{r}
+# Apply ADF test
+tseries::adf.test(yScaled)
+```
+
+The output above shows that on 1% level we fail to reject the null hypothesis that the data is not stationary according to the ADF test. With KPSS, the final message is similar, because we reject the null hypothesis on the 1% significance level:
+
+```{r}
+tseries::kpss.test(yScaled)
+```
+
+If we take the first differences, the conclusions become contradictory:
+```{r}
+diff(yScaled) |>
+    tseries::adf.test()
+```
+
+In the ADF test, we still fail to reject the null hypothesis on the 1% level (see output above), while in the KPSS test, we now fail to reject the null as well. This means that the ADF detects non-stationarity in the data, while the KPSS does not.
+
+```{r}
+diff(yScaled) |>
+    tseries::kpss.test()
+```
+
+Given this contradiction, we plot the differences of the scaled data to make the conclusion judgmentally (Figure \@ref(fig:BJSalesComplexDiffs)):
+
+```{r BJSalesComplexDiffs, fig.cap="First differences of the MDS of the complex variable of the Box-Jenkins Sales data.", echo=FALSE}
+diff(yScaled) |>
+    plot(type="l")
+```
+
+Analysing the series in Figure \@ref(fig:BJSalesComplexDiffs), it might be the case that the data contains a strong AR component or that it is non-stationary. Using this information, we will construct two models: cARIMA(p,2,q) and cARIMA(p,1,q) - and see, which of them performs better. Note that while in general the models are not comparable if different orders d are applied due to the loss of the number of in-sample observations, the `clm()` function takes care of potential missing values and extrapolates them back, making the models comparable.
+
+Now we apply the cARIMA model to the newly constructed complex variable. We will try several special cases of cARIMA and choose the one that has the lowest information criterion. The code below shows how the process can be automated:
+
+```{r eval=FALSE}
+# Create all combinations of cARIMA orders to consider
+# Here, we set d={1, 2} based on the earlier data exploration
+expand.grid(c(0:3),c(1:2),c(0:3)) |>
+    as.matrix() -> orders
+colnames(orders) <- c("cAR","cI","cMA")
+nModels <- nrow(orders)
+# Prepare the list of all models under consideration
+cARIMABJ <- vector("list",nModels)
+names(cARIMABJ) <- paste0("cARIMA(",orders[,1],",",
+                          orders[,2],",",orders[,3],")");
+
+# Construct models
+for(i in 1:nModels){
+    cARIMABJ[[i]] <- clm(y~1, orders=orders[i,], subset=c(1:130))
+}
+```
+
+```{r echo=FALSE}
+load("./data/cARIMABJ.Rdata")
+```
+
+The script above will produce 32 cARIMA models of different orders. To choose the best one based on an information criterion, we will use the `AICc()` function from the `greybox` package in R:
+
+```{r}
+# Extract AICc values
+cARIMABJAICc <- sapply(cARIMABJ, AICc)
+# Fix names. Sometimes R makes silly things...
+names(cARIMABJAICc) <- names(cARIMABJ)
+# Record the index of the model with the lowest AICc
+i <- which.min(cARIMABJAICc)
+```
+
+The summary of the best performing model is shown below:
+```{r}
+summary(cARIMABJ[[i]])
+```
+
+The output above shows the name of the model and the standard statistics we have already seen before. The forecast from this model for the next 20 observations is shown in Figure \@ref(fig:BJSalesComplexForecast).
+
+```{r BJSalesComplexForecast, fig.cap="Forecast for the Box-Jenkins series.", echo=FALSE}
+par(mfcol=c(2,1), mar=c(2,4,2,1))
+predict(cARIMABJ[[i]], newdata=matrix(NA,20,1)) |>
+    plot()
+```
+
+As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts for both parts. If we want to return to the original scale, we can use the `cdescale()` function from the `complex` package:
+
+```{r}
+yForecast <- predict(cARIMABJ[[i]],
+                     newdata=matrix(NA,20,1))
+cdescale(yForecast$mean,
+         complex(real=BJsales, imaginary=BJsales.lead),
+         scaling="norm")
+```
 
 
-<!-- ## Dynamic models -->
+## Seatbels law in the UK
+
+```{r}
+SeatbeltsData <- data.frame(killed=Seatbelts[,"DriversKilled"],
+                            injured=Seatbelts[,"drivers"]-Seatbelts[,"DriversKilled"],
+                            kms=Seatbelts[,"kms"],
+                            PetrolPrice=Seatbelts[,"PetrolPrice"],
+                            law=Seatbelts[,"law"])
+head(SeatbeltsData)
+
+SeatbeltsComplex <- data.frame(y=complex(real=SeatbeltsData$killed, imaginary=SeatbeltsData$injured),
+                               kms=SeatbeltsData$kms, PetrolPrice=SeatbeltsData$PetrolPrice, law=SeatbeltsData$law)
+SeatbeltsComplex$yCLog <- clog(SeatbeltsComplex$y)
+
+SeatbeltsComplexScaled <- as.data.frame(sapply(SeatbeltsComplex,cscale,scaling="standardisation"))
+SeatbeltsComplexScaled$seasonal <- temporaldummy(SeatbeltsComplexScaled[,1], type="month", of="year", factors=TRUE)
+
+test <- clm(yCLog~log(kms)+log(PetrolPrice)+law+seasonal, SeatbeltsComplexScaled)
+
+test <- clm(yCLog~log(kms)+log(PetrolPrice)+law+seasonal, SeatbeltsComplexScaled, orders=c(0,1,1))
+
+test <- clm(yCLog~log(kms)+log(PetrolPrice)+law+seasonal, SeatbeltsComplexScaled, orders=c(1,0,0))
+summary(test)
+
+plot(test,7)
+
+
+yFitted <- fitted(test)
+yFitted <- cexp(cdescale(yFitted, SeatbeltsComplex$yCLog, scaling="standardisation"))
+
+
+par(mfcol=c(2,1),mar=c(4,4,1,1))
+plot(Re(SeatbeltsComplex$y),type="l", ylab="killed", xlab="Time")
+lines(Re(yFitted), col="purple", lwd=2, lty=2)
+
+plot(Im(SeatbeltsComplex$y),type="l", ylab="injured", xlab="Time")
+lines(Im(yFitted), col="purple", lwd=2, lty=2)
+```
+
+
 
 
 <!-- ## Forecasting with complex regression models -->

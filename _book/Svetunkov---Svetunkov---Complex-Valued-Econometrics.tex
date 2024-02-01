@@ -141,7 +141,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-01-31}
+\date{2024-02-01}
 
 \begin{document}
 \maketitle
@@ -661,7 +661,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.8899+100.3054i
+## [1] 49.5752+100.9236i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -734,7 +734,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 133.1791+0i
+## 133.6192+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -747,7 +747,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -86.09531+8.43144i
+## -85.72743-2.83662i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -772,9 +772,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 23.541914   4.215722
-## x_i  4.215722 109.637224
+##          x_r       x_i
+## x_r 23.94586  -1.41831
+## x_i -1.41831 109.67329
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -786,7 +786,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2563.298
+## [1] 2624.21
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -853,7 +853,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 41.1105-107.0509i
+## 37.58554-75.32948i
 \end{verbatim}
 
 \begin{Shaded}
@@ -866,7 +866,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -22.86722+64.19287i
+## -30.50113+47.54553i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -880,8 +880,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -84.47425+ 1.62613i -22.86722+64.19287i
-## y -22.86722+64.19287i  54.28555- 5.38777i
+## x -66.80506-12.92721i -30.50113+47.54553i
+## y -30.50113+47.54553i  51.46525+64.22216i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1948,7 +1948,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9975691
+## [1] 0.9972904
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -2006,7 +2006,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] -0.997186
+## [1,] 0.9719212
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -2032,10 +2032,10 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 
 \begin{verbatim}
 ##       x_r    x_i    y_r   y_i
-## x_r 1.000  0.056  0.703 0.743
-## x_i 0.056  1.000 -0.667 0.707
-## y_r 0.703 -0.667  1.000 0.050
-## y_i 0.743  0.707  0.050 1.000
+## x_r 1.000  0.036  0.707 0.722
+## x_i 0.036  1.000 -0.678 0.713
+## y_r 0.707 -0.678  1.000 0.027
+## y_i 0.722  0.713  0.027 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -2599,155 +2599,6 @@ We can then estimate the model using the same command as before:
 
 The output above shows that R expanded the colour into a set of dummy variables and dropped one of them (``blue''). The complex coefficients for the dummy variables are all not significant on the 5\% level, which in our case means that we cannot detect any strong relation between them and the response variable. This is because we did not use the variable in the data generation.
 
-\hypertarget{example-of-application-of-complex-linear-regression}{%
-\section{Example of Application of Complex Linear Regression}\label{example-of-application-of-complex-linear-regression}}
-
-As a case study for the application of the cLR, we consider the macroeconomic data based on the Office for National Statistics (ONS) of the UK that has published information about several variables of interest:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Capital - gross capital formation;
-\item
-  Labour - compensation of employees;
-\item
-  GDP - Gross Domestic Product;
-\item
-  NDP - Net Domestic Product;
-\item
-  DDP - Differences between GDP and NDP.
-\end{enumerate}
-
-We have collected the data for the period from 1990 to 2011 and our aim is to model is using cLR. To do that we use the principles discussed in Section \ref{complexModelling} and the production function model proposed by \citet{Svetunkov2014}, which can be written mathematically as:
-\begin{equation}
-    GDP + i DDP = (b_{0,r} + i b_{0,i}) \left(Capital + i Labour \right) ^{b_{1,r} + i b_{1,i}} \times (\epsilon_r + i \epsilon_i) .
-    \label{eq:EnglandGDP}
-\end{equation}
-
-The data is available in the \texttt{complex} package in R under name \texttt{EnglandPF}. The data is shown in Figure \ref{fig:EnglandPF}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(readxl, }\DataTypeTok{lib.loc =} \StringTok{"/usr/lib/R/library"}\NormalTok{)}
-\NormalTok{EnglandPF \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\StringTok{"./data/England.xlsx"}\NormalTok{,}
-                      \DataTypeTok{sheet=}\StringTok{"data"}\NormalTok{, }\DataTypeTok{range =} \StringTok{"A1:G23"}\NormalTok{)}
-\NormalTok{EnglandPF \textless{}{-}}\StringTok{ }\NormalTok{EnglandPF[,}\OperatorTok{{-}}\DecValTok{2}\NormalTok{]}
-\NormalTok{EnglandPF \textless{}{-}}\StringTok{ }\NormalTok{EnglandPF[,}\OperatorTok{{-}}\DecValTok{6}\NormalTok{]}
-\KeywordTok{colnames}\NormalTok{(EnglandPF) \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{,}\StringTok{"Capital"}\NormalTok{,}\StringTok{"Labour"}\NormalTok{,}\StringTok{"GDP"}\NormalTok{,}\StringTok{"NDP"}\NormalTok{)}
-\CommentTok{\# DDP {-} Difference of Domestic products}
-\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{DDP \textless{}{-}}\StringTok{ }\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{GDP }\OperatorTok{{-}}\StringTok{ }\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{NDP}
-\CommentTok{\# Make everything in millions pounds}
-\NormalTok{EnglandPF[,}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{EnglandPF[,}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}\OperatorTok{/}\FloatTok{1e+6}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(EnglandPF)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/EnglandPF-1.pdf}
-\caption{\label{fig:EnglandPF}Dynamics of the macroeconomic variables from the ONS.}
-\end{figure}
-
-As we see, all variables exhibit strong trends (the first column of the plot) and thus have a strong linear relation between each other. To capture the trend in the data, we will introduce it explicitly as a real-valued variable in the model (this is discussed in Section \ref{DynamicTrend}), although taking differences is another possible solution (see Section \ref{DynamicARIMA}).
-
-As discussed in Section \ref{complexModelling}, the variables need to be scaled in some way, we will use the standardisation:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Create a data frame of complex variables}
-\NormalTok{EnglandComplex \textless{}{-}}
-\StringTok{    }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{GDP,}
-                         \DataTypeTok{imaginary=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{DDP),}
-               \DataTypeTok{x=}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{Capital,}
-                         \DataTypeTok{imaginary=}\NormalTok{EnglandPF}\OperatorTok{$}\NormalTok{Labour))}
-
-\CommentTok{\# Standardise the complex variables}
-\NormalTok{EnglandComplexScaled \textless{}{-}}
-\StringTok{    }\KeywordTok{sapply}\NormalTok{(EnglandComplex, cscale, }\DataTypeTok{scaling=}\StringTok{"standardisation"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Furthermore, in order to estimate the model \eqref{eq:EnglandGDP}, we will linearise it by taking logarithms of the both sides of the equation. All of this comes to the following R command:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{EnglandcLR \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(}\KeywordTok{log}\NormalTok{(y)}\OperatorTok{\textasciitilde{}}\KeywordTok{log}\NormalTok{(x)}\OperatorTok{+}\NormalTok{trend, EnglandComplexScaled)}
-\end{Highlighting}
-\end{Shaded}
-
-The summary of the resulting model can be produced using the \texttt{summary()} command in R:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(EnglandcLR)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Complex Linear Regression estimated via clm()
-## Response variable: logy
-## Loss function used in estimation: likelihood
-## Coefficients:
-##               Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r  -1.3377     0.3826    -2.1432     -0.5322 *
-## (Intercept)_i   0.1196     0.3483    -0.6136      0.8529  
-## log(x)_r        1.0723     0.0987     0.8645      1.2801 *
-## log(x)_i        0.3812     0.0898     0.1921      0.5704 *
-## trend_r         0.0876     0.0269     0.0310      0.1442 *
-## trend_i        -0.0188     0.0245    -0.0703      0.0327  
-## 
-## Error covariance matrix:
-##        e_r    e_i
-## e_r 0.2334 0.1669
-## e_i 0.1669 0.1934
-## 
-## Sample size: 22
-## Number of estimated parameters: 4.5
-## Number of degrees of freedom: 17.5
-## Information criteria:
-##     AIC    AICc     BIC    BICc 
-## 34.4926 37.4926 39.4023 44.0388
-\end{verbatim}
-
-The output above can be interpreted based on what was discussed in Subsection \ref{complexVariable}: the coefficient \texttt{log(x)\_r} acts as the magnitude elasticity coefficient, showing that with the increase of the magnitude of the explanatory variable by 1\%, the resulting magnitude of the variable increases on average by 1.072\%. It also shows at the same time that the increase of the argument of the explanatory variable by 1 radiant leads to the increase of the response variable by 1.072 radians. In our case this means that with the increase of the proportion \(\frac{Labour}{Capital}\) the proportion \(\frac{DDP}{GDP}\) would tend to increase as well, i.e.~the decrease in the capital investments would imply the decrease in GDP and increase in DDP. This is enhanced by the parameter \texttt{log(x)\_i}, which increases the argument further, but at the same time decreasing the magnitude. Moreover, the parameter for the trend tells us that over time the magnitude tends to increase (both GDP and DDP increase), roughly by 8.8\% per year, while the argument of the response variable tends to decrease slowly, meaning that the GDP tends to increase faster than the DDP.
-
-Finally, we can visualise the original data and the fitted model to see how the dynamics was captured, using the code below (Figure \ref{fig:EnglandPFFitted}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Extract the fitted values and return them to the original scale}
-\KeywordTok{fitted}\NormalTok{(EnglandcLR) }\OperatorTok{|}\ErrorTok{\textgreater{}}\StringTok{ }\KeywordTok{exp}\NormalTok{() }\OperatorTok{|}\ErrorTok{\textgreater{}}
-\StringTok{    }\KeywordTok{cdescale}\NormalTok{(EnglandComplex}\OperatorTok{$}\NormalTok{y,}
-             \DataTypeTok{scaling=}\StringTok{"standardisation"}\NormalTok{) {-}\textgreater{}}
-\StringTok{    }\NormalTok{yFitted}
-
-\CommentTok{\# Produce the plots}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-
-\KeywordTok{plot}\NormalTok{(EnglandPF}\OperatorTok{$}\NormalTok{GDP,}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"GDP"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Time"}\NormalTok{)}
-\KeywordTok{lines}\NormalTok{(}\KeywordTok{Re}\NormalTok{(yFitted), }\DataTypeTok{col=}\StringTok{"purple"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
-
-\KeywordTok{plot}\NormalTok{(EnglandPF}\OperatorTok{$}\NormalTok{NDP,}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"NDP"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Time"}\NormalTok{)}
-\KeywordTok{lines}\NormalTok{(}\KeywordTok{Re}\NormalTok{(yFitted)}\OperatorTok{{-}}\KeywordTok{Im}\NormalTok{(yFitted), }\DataTypeTok{col=}\StringTok{"purple"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/EnglandPFFitted-1.pdf}
-\caption{\label{fig:EnglandPFFitted}GDP and NDP with the fitted values from the cLR.}
-\end{figure}
-
-As we see, although the model fit is not perfect, it reflects the dynamics of GDP and NDP well with the fitted values following the actual values.
-
-The estimated model can be used in the analysis of scenarios, e.g.~testing what will happen with GDP/NDP in case of the increase of the gross capital formation or the compensation of employees and for forecasting if the future values of the explanatory variables can be obtained or predicted.
-
 \hypertarget{assumptions}{%
 \chapter{Assumptions of Complex Linear Models}\label{assumptions}}
 
@@ -2949,8 +2800,8 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 \begin{figure}
 \centering
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-37-1.pdf}
-\caption{\label{fig:unnamed-chunk-37}Non-linear transformation of a complex variable that changes linearly.}
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-33-1.pdf}
+\caption{\label{fig:unnamed-chunk-33}Non-linear transformation of a complex variable that changes linearly.}
 \end{figure}
 
 Even if the imaginary part of \(\underline{x}\) is zero (and as a result we deal with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
@@ -4509,8 +4360,13 @@ When it comes to deciding whether to take the differences of the time series or 
 
 When it comes to the selection of orders of cARIMA(p,d,q), using cACF/cPACF for this purpose becomes extremely difficult, because of all the possibilities for the behaviour of these functions depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. The combination of cAR and cMA might produce really puzzling cACF/cPACF, which might become useless for diagnostics or order selection. Furthermore, as discuss in Section 8.3 of \citet{SvetunkovAdam}, the fact that some specific orders of cARMA(p,q) generate some specific shapes of cACF/cPACF does not mean that if we observe that shape then the data is generated from that specific model. After all, there can be many reasons why we observe the specific cACF/cPACF, and conclusions about the order of the appropriate cARMA model just based on them become unreliable. As a result, we recommend using other principles for the selection of the appropriate p and q. One of those is to do that based on the information criteria, such as AIC \citep{Akaike1974} or BIC \citep{Schwarz1978}. But in order to be able to do that, one needs to use likelihood for the model estimation.
 
-\hypertarget{example-of-application-of-carima}{%
-\section{Example of application of cARIMA}\label{example-of-application-of-carima}}
+\hypertarget{Examples}{%
+\chapter{Examples of application}\label{Examples}}
+
+In this chapter we consider examples of application for cLR and the complex ARIMA models.
+
+\hypertarget{carima-applied-to-box-jenkins-sales-data}{%
+\section{cARIMA applied to Box-Jenkins Sales data}\label{carima-applied-to-box-jenkins-sales-data}}
 
 In this example, we consider the Box-Jenkins Sales data with a leading indicator. While typically the indicator is treated as an explanatory variable, we will treat the two as one joint complex variable. Separately, they have the dynamics shown in Figure \ref{fig:BJSales}.
 
@@ -4728,6 +4584,125 @@ As we see, the model managed to capture the dynamics of the original data well, 
 ## [13] 260.7118+13.3771i 261.1492+13.3960i 261.5722+13.4142i 261.9793+13.4323i
 ## [17] 262.3764+13.4506i 262.7655+13.4691i 263.1503+13.4881i 263.5336+13.5074i
 \end{verbatim}
+
+\hypertarget{seatbels-law-in-the-uk}{%
+\section{Seatbels law in the UK}\label{seatbels-law-in-the-uk}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SeatbeltsData \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{killed=}\NormalTok{Seatbelts[,}\StringTok{"DriversKilled"}\NormalTok{],}
+                            \DataTypeTok{injured=}\NormalTok{Seatbelts[,}\StringTok{"drivers"}\NormalTok{]}\OperatorTok{{-}}\NormalTok{Seatbelts[,}\StringTok{"DriversKilled"}\NormalTok{],}
+                            \DataTypeTok{kms=}\NormalTok{Seatbelts[,}\StringTok{"kms"}\NormalTok{],}
+                            \DataTypeTok{PetrolPrice=}\NormalTok{Seatbelts[,}\StringTok{"PetrolPrice"}\NormalTok{],}
+                            \DataTypeTok{law=}\NormalTok{Seatbelts[,}\StringTok{"law"}\NormalTok{])}
+\KeywordTok{head}\NormalTok{(SeatbeltsData)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   killed injured   kms PetrolPrice law
+## 1    107    1580  9059   0.1029718   0
+## 2     97    1411  7685   0.1023630   0
+## 3    102    1405  9963   0.1020625   0
+## 4     87    1298 10955   0.1008733   0
+## 5    119    1513 11823   0.1010197   0
+## 6    106    1405 12391   0.1005812   0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SeatbeltsComplex \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{y=}\KeywordTok{complex}\NormalTok{(}\DataTypeTok{real=}\NormalTok{SeatbeltsData}\OperatorTok{$}\NormalTok{killed, }\DataTypeTok{imaginary=}\NormalTok{SeatbeltsData}\OperatorTok{$}\NormalTok{injured),}
+                               \DataTypeTok{kms=}\NormalTok{SeatbeltsData}\OperatorTok{$}\NormalTok{kms, }\DataTypeTok{PetrolPrice=}\NormalTok{SeatbeltsData}\OperatorTok{$}\NormalTok{PetrolPrice, }\DataTypeTok{law=}\NormalTok{SeatbeltsData}\OperatorTok{$}\NormalTok{law)}
+\NormalTok{SeatbeltsComplex}\OperatorTok{$}\NormalTok{yCLog \textless{}{-}}\StringTok{ }\KeywordTok{clog}\NormalTok{(SeatbeltsComplex}\OperatorTok{$}\NormalTok{y)}
+
+\NormalTok{SeatbeltsComplexScaled \textless{}{-}}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{sapply}\NormalTok{(SeatbeltsComplex,cscale,}\DataTypeTok{scaling=}\StringTok{"standardisation"}\NormalTok{))}
+\NormalTok{SeatbeltsComplexScaled}\OperatorTok{$}\NormalTok{seasonal \textless{}{-}}\StringTok{ }\KeywordTok{temporaldummy}\NormalTok{(SeatbeltsComplexScaled[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{type=}\StringTok{"month"}\NormalTok{, }\DataTypeTok{of=}\StringTok{"year"}\NormalTok{, }\DataTypeTok{factors=}\OtherTok{TRUE}\NormalTok{)}
+
+\NormalTok{test \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(yCLog}\OperatorTok{\textasciitilde{}}\KeywordTok{log}\NormalTok{(kms)}\OperatorTok{+}\KeywordTok{log}\NormalTok{(PetrolPrice)}\OperatorTok{+}\NormalTok{law}\OperatorTok{+}\NormalTok{seasonal, SeatbeltsComplexScaled)}
+
+\NormalTok{test \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(yCLog}\OperatorTok{\textasciitilde{}}\KeywordTok{log}\NormalTok{(kms)}\OperatorTok{+}\KeywordTok{log}\NormalTok{(PetrolPrice)}\OperatorTok{+}\NormalTok{law}\OperatorTok{+}\NormalTok{seasonal, SeatbeltsComplexScaled, }\DataTypeTok{orders=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+\NormalTok{test \textless{}{-}}\StringTok{ }\KeywordTok{clm}\NormalTok{(yCLog}\OperatorTok{\textasciitilde{}}\KeywordTok{log}\NormalTok{(kms)}\OperatorTok{+}\KeywordTok{log}\NormalTok{(PetrolPrice)}\OperatorTok{+}\NormalTok{law}\OperatorTok{+}\NormalTok{seasonal, SeatbeltsComplexScaled, }\DataTypeTok{orders=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{))}
+\KeywordTok{summary}\NormalTok{(test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## cARIMAX(1,0,0) estimated via clm()
+## Response variable: yCLog
+## Loss function used in estimation: likelihood
+## Coefficients:
+##                    Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r       -0.6165     0.1849    -0.9814     -0.2517 *
+## (Intercept)_i       -0.7418     0.1406    -1.0193     -0.4643 *
+## log(kms)_r           0.0107     0.0275    -0.0435      0.0650  
+## log(kms)_i          -0.0339     0.0209    -0.0752      0.0073  
+## log(PetrolPrice)_r   0.0849     0.0271     0.0315      0.1383 *
+## log(PetrolPrice)_i  -0.0252     0.0206    -0.0659      0.0154  
+## law_r               -0.2044     0.0560    -0.3150     -0.0938 *
+## law_i               -0.2149     0.0426    -0.2990     -0.1308 *
+## seasonal2_r         -0.1216     0.2314    -0.5783      0.3351  
+## seasonal2_i         -0.1103     0.1760    -0.4577      0.2371  
+## seasonal3_r          0.1408     0.2552    -0.3628      0.6445  
+## seasonal3_i          0.4610     0.1941     0.0779      0.8440 *
+## seasonal4_r          0.0971     0.2507    -0.3976      0.5917  
+## seasonal4_i         -0.1117     0.1906    -0.4879      0.2646  
+## seasonal5_r          0.3591     0.2628    -0.1595      0.8778  
+## seasonal5_i          0.6256     0.1999     0.2312      1.0201 *
+## seasonal6_r          0.5276     0.2482     0.0378      1.0175 *
+## seasonal6_i          0.1510     0.1888    -0.2216      0.5236  
+## seasonal7_r          0.4247     0.2494    -0.0675      0.9169  
+## seasonal7_i          0.5995     0.1897     0.2252      0.9739 *
+## seasonal8_r          0.4587     0.2447    -0.0243      0.9416  
+## seasonal8_i          0.5493     0.1861     0.1820      0.9167 *
+## seasonal9_r          0.8099     0.2405     0.3353      1.2844 *
+## seasonal9_i          0.6870     0.1829     0.3260      1.0479 *
+## seasonal10_r         1.2635     0.2315     0.8066      1.7204 *
+## seasonal10_i         1.0172     0.1761     0.6697      1.3647 *
+## seasonal11_r         1.3345     0.2210     0.8983      1.7708 *
+## seasonal11_i         1.4349     0.1681     1.1031      1.7667 *
+## seasonal12_r         1.3794     0.2159     0.9533      1.8056 *
+## seasonal12_i         1.4513     0.1642     1.1271      1.7754 *
+## yCLogLag1_r          0.4057     0.0531     0.3008      0.5105 *
+## yCLogLag1_i          0.0336     0.0404    -0.0461      0.1134  
+## 
+## Error covariance matrix:
+##        e_r    e_i
+## e_r 0.3700 0.1328
+## e_i 0.1328 0.2141
+## 
+## Sample size: 192
+## Number of estimated parameters: 17.5
+## Number of degrees of freedom: 174.5
+## Information criteria:
+##      AIC     AICc      BIC     BICc 
+## 553.1625 556.8945 610.1687 619.9792
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(test,}\DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-73-1.pdf} \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-73-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yFitted \textless{}{-}}\StringTok{ }\KeywordTok{fitted}\NormalTok{(test)}
+\NormalTok{yFitted \textless{}{-}}\StringTok{ }\KeywordTok{cexp}\NormalTok{(}\KeywordTok{cdescale}\NormalTok{(yFitted, SeatbeltsComplex}\OperatorTok{$}\NormalTok{yCLog, }\DataTypeTok{scaling=}\StringTok{"standardisation"}\NormalTok{))}
+
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{Re}\NormalTok{(SeatbeltsComplex}\OperatorTok{$}\NormalTok{y),}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"killed"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Time"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{Re}\NormalTok{(yFitted), }\DataTypeTok{col=}\StringTok{"purple"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{Im}\NormalTok{(SeatbeltsComplex}\OperatorTok{$}\NormalTok{y),}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"injured"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Time"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{Im}\NormalTok{(yFitted), }\DataTypeTok{col=}\StringTok{"purple"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{lty=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-73-3.pdf}
 
 \hypertarget{Conclusions}{%
 \chapter{Conclusions}\label{Conclusions}}
