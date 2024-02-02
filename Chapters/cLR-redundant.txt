@@ -1,0 +1,98 @@
+
+
+<!-- ## Example of Application of Complex Linear Regression -->
+<!-- As a case study for the application of the cLR, we consider the macroeconomic data based on the Office for National Statistics (ONS) of the UK that has published information about several variables of interest: -->
+
+<!-- 1. Capital - gross capital formation; -->
+<!-- 2. Labour - compensation of employees; -->
+<!-- 3. GDP - Gross Domestic Product; -->
+<!-- 4. NDP - Net Domestic Product; -->
+<!-- 5. DDP - Differences between GDP and NDP. -->
+
+<!-- We have collected the data for the period from 1990 to 2011 and our aim is to model is using cLR. To do that we use the principles discussed in Section \@ref(complexModelling) and the production function model proposed by @Svetunkov2014, which can be written mathematically as: -->
+<!-- \begin{equation} -->
+<!--     GDP + i DDP = (b_{0,r} + i b_{0,i}) \left(Capital + i Labour \right) ^{b_{1,r} + i b_{1,i}} \times (\epsilon_r + i \epsilon_i) . -->
+<!--     (\#eq:EnglandGDP) -->
+<!-- \end{equation} -->
+
+<!-- The data is available in the `complex` package in R under name `EnglandPF`. The data is shown in Figure \@ref(fig:EnglandPF). -->
+
+<!-- ```{r} -->
+<!-- library(readxl, lib.loc = "/usr/lib/R/library") -->
+<!-- # EnglandPF <- read_excel("./data/England.xlsx", -->
+<!-- #                       sheet="data", range = "A1:G23") -->
+<!-- EnglandPF <- read_excel("/home/config/R/Projects/Packages/complex/data/EnglandPF.xlsx", -->
+<!--                       sheet="data", range = "A1:F29") -->
+<!-- EnglandPF <- EnglandPF[,-2] -->
+<!-- colnames(EnglandPF) <- c("year","Capital","Labour","GDP","NDP") -->
+<!-- # DDP - Difference of Domestic products -->
+<!-- EnglandPF$DDP <- EnglandPF$GDP - EnglandPF$NDP -->
+<!-- # Make everything in millions pounds -->
+<!-- EnglandPF[,-1] <- EnglandPF[,-1]/1e+6 -->
+<!-- ``` -->
+
+<!-- ```{r EnglandPF, fig.cap="Dynamics of the macroeconomic variables from the ONS."} -->
+<!-- plot(EnglandPF) -->
+<!-- ``` -->
+
+<!-- As we see, all variables exhibit strong trends (the first column of the plot) and thus have a strong linear relation between each other. To capture the trend in the data, we will introduce it explicitly as a real-valued variable in the model (this is discussed in Section \@ref(DynamicTrend)), although taking differences is another possible solution (see Section \@ref(DynamicARIMA)). -->
+
+<!-- As discussed in Section \@ref(complexModelling), the variables need to be scaled in some way, we will use the standardisation: -->
+<!-- ```{r} -->
+<!-- # Create a data frame of complex variables -->
+<!-- EnglandComplex <- -->
+<!--     data.frame(y=complex(real=EnglandPF$GDP, -->
+<!--                          imaginary=EnglandPF$DDP), -->
+<!--                x=complex(real=EnglandPF$Capital, -->
+<!--                          imaginary=EnglandPF$Labour)) -->
+
+<!-- # Standardise the complex variables -->
+<!-- EnglandComplexScaled <- -->
+<!--     sapply(EnglandComplex, cscale, scaling="standardisation") -->
+<!-- ``` -->
+
+<!-- To remove the influence of the trend on the explanatory variable, we will use a cLR model and extract the residuals from it: -->
+
+<!-- ```{r} -->
+<!-- xDetrendedModel <- clm(x~trend, EnglandComplexScaled) -->
+<!-- EnglandComplexScaled <- cbind(EnglandComplexScaled,residuals(xDetrendedModel)) -->
+<!-- colnames(EnglandComplexScaled)[3] <- "xDetrended" -->
+<!-- ``` -->
+
+
+<!-- Furthermore, in order to estimate the model \@ref(eq:EnglandGDP), we will linearise it by taking logarithms of the both sides of the equation. All of this comes to the following R command: -->
+
+<!-- ```{r} -->
+<!-- EnglandcLR <- clm(log(y)~log(xDetrended)+trend, EnglandComplexScaled) -->
+<!-- ``` -->
+
+<!-- The summary of the resulting model can be produced using the `summary()` command in R: -->
+<!-- ```{r} -->
+<!-- summary(EnglandcLR) -->
+<!-- ``` -->
+
+<!-- The output above can be interpreted based on what was discussed in Subsection \@ref(complexVariable): the coefficient `log(x)_r` acts as the magnitude elasticity coefficient, showing that with the increase of the magnitude of the explanatory variable by 1%, the resulting magnitude of the variable increases on average by `r Re(round(coef(EnglandcLR),3)[2])`%. It also shows at the same time that the increase of the argument of the explanatory variable by 1 radiant leads to the increase of the response variable by `r Re(round(coef(EnglandcLR),3)[2])` radians. In our case this means that with the increase of the proportion $\frac{Labour}{Capital}$ the proportion $\frac{DDP}{GDP}$ would tend to increase as well, i.e. the decrease in the capital investments would imply the decrease in GDP and increase in DDP. This is enhanced by the parameter `log(x)_i`, which increases the argument further, but at the same time decreasing the magnitude. Moreover, the parameter for the trend tells us that over time the magnitude tends to increase (both GDP and DDP increase), roughly by `r Re(round(coef(EnglandcLR),3)[3])*100`% per year, while the argument of the response variable tends to decrease slowly, meaning that the GDP tends to increase faster than the DDP. -->
+
+<!-- Finally, we can visualise the original data and the fitted model to see how the dynamics was captured, using the code below (Figure \@ref(fig:EnglandPFFitted)): -->
+
+<!-- ```{r EnglandPFFitted, fig.cap="GDP and NDP with the fitted values from the cLR."} -->
+<!-- # Extract the fitted values and return them to the original scale -->
+<!-- fitted(EnglandcLR) |> exp() |> -->
+<!--     cdescale(EnglandComplex$y, -->
+<!--              scaling="standardisation") -> -->
+<!--     yFitted -->
+
+<!-- # Produce the plots -->
+<!-- par(mfcol=c(2,1),mar=c(4,4,1,1)) -->
+
+<!-- plot(EnglandPF$GDP,type="l", ylab="GDP", xlab="Time") -->
+<!-- lines(Re(yFitted), col="purple", lwd=2, lty=2) -->
+
+<!-- plot(EnglandPF$NDP,type="l", ylab="NDP", xlab="Time") -->
+<!-- lines(Re(yFitted)-Im(yFitted), col="purple", lwd=2, lty=2) -->
+
+<!-- ``` -->
+
+<!-- As we see, although the model fit is not perfect, it reflects the dynamics of GDP and NDP well with the fitted values following the actual values. -->
+
+<!-- The estimated model can be used in the analysis of scenarios, e.g. testing what will happen with GDP/NDP in case of the increase of the gross capital formation or the compensation of employees and for forecasting if the future values of the explanatory variables can be obtained or predicted. -->
