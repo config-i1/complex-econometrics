@@ -665,7 +665,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.6761+101.9787i
+## [1] 50.85555+99.81888i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -738,7 +738,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 115.1861+0i
+## 129.3223+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -751,7 +751,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -65.64796-4.54706i
+## -73.26322+6.04804i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -776,9 +776,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##          x_r      x_i
-## x_r 24.76909 -2.27353
-## x_i -2.27353 90.41706
+##           x_r        x_i
+## x_r 28.029548   3.024019
+## x_i  3.024019 101.292767
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -790,7 +790,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2234.38
+## [1] 2830.046
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -857,7 +857,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 81.8143-126.3355i
+## 62.29713-75.73411i
 \end{verbatim}
 
 \begin{Shaded}
@@ -870,7 +870,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ##   Direct covariance 
-## -38.82112+60.10011i
+## -21.73856+62.98552i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -884,8 +884,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -82.79296+ 3.15732i -38.82112+60.10011i
-## y -38.82112+60.10011i  -8.48807+60.63427i
+## x -60.82517+ 4.69324i -21.73856+62.98552i
+## y -21.73856+62.98552i  46.73200+65.16135i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1952,7 +1952,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9980121
+## [1] 0.9978267
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -2009,8 +2009,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##           [,1]
-## [1,] 0.9956884
+##            [,1]
+## [1,] -0.9956918
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -2035,11 +2035,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##       x_r    x_i    y_r   y_i
-## x_r 1.000  0.076  0.682 0.729
-## x_i 0.076  1.000 -0.675 0.735
-## y_r 0.682 -0.675  1.000 0.000
-## y_i 0.729  0.735  0.000 1.000
+##        x_r    x_i    y_r   y_i
+## x_r  1.000 -0.007  0.738 0.734
+## x_i -0.007  1.000 -0.677 0.671
+## y_r  0.738 -0.677  1.000 0.088
+## y_i  0.734  0.671  0.088 1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -4662,7 +4662,7 @@ In another example, we consider the time series data with several explanatory va
   law - binary variable, indicating when the law for mandatory seatbelts was in effect.
 \end{enumerate}
 
-The variables (2) and (3) will be our response variables, while (4), (5) and (6) will be used as explanatory ones. Note that in this setting we do not form complex variables from the explanatory ones and only form the complex variable from the response ones.
+The variables (2) and (3) will form our complex response variable, while (4), (5) and (6) will be used as explanatory ones. Note that in this setting we do not form complex variables from the explanatory ones and only have the complex response variable. The code below shows how this can be done:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4671,114 +4671,161 @@ The variables (2) and (3) will be our response variables, while (4), (5) and (6)
                             \AttributeTok{kms=}\NormalTok{Seatbelts[,}\StringTok{"kms"}\NormalTok{],}
                             \AttributeTok{PetrolPrice=}\NormalTok{Seatbelts[,}\StringTok{"PetrolPrice"}\NormalTok{],}
                             \AttributeTok{law=}\NormalTok{Seatbelts[,}\StringTok{"law"}\NormalTok{])}
-\FunctionTok{head}\NormalTok{(SeatbeltsData)}
+
+\NormalTok{SeatbeltsComplex }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{killed, }\AttributeTok{imaginary=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{injured),}
+                               \AttributeTok{kms=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{kms, }\AttributeTok{PetrolPrice=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{PetrolPrice, }\AttributeTok{law=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{law)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##   killed injured   kms PetrolPrice law
-## 1    107    1580  9059   0.1029718   0
-## 2     97    1411  7685   0.1023630   0
-## 3    102    1405  9963   0.1020625   0
-## 4     87    1298 10955   0.1008733   0
-## 5    119    1513 11823   0.1010197   0
-## 6    106    1405 12391   0.1005812   0
-\end{verbatim}
+Looking at the response variable, we would argue that a multiplicative model is needed, because the amplitude of seasonality in both variables changes when the seatbelts law is introduced (see Figure \ref{fig:seatbeltsData}).
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbeltsData-1.pdf}
+\caption{\label{fig:seatbeltsData}Dynamics of number of drivers killed and injured in the Great Britain.}
+\end{figure}
+
+Taking logarithm of the complex response variable would not be reasonable in this situation, because that would not fix the issue with the amplitude of seasonality. So, we can use the \texttt{clog()} function from the \texttt{complex} package to take logarithms of real and imaginary parts independently. Furthermore, given that both the real and the imaginary parts of the response variable are in the same units (number of drivers), we do not need to scale them. The only additional thing we need to do is to introduce a variable for seasonality, which can be done using \texttt{temporaldummy()} function from the \texttt{greybox} package:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{SeatbeltsComplex }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{killed, }\AttributeTok{imaginary=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{injured),}
-                               \AttributeTok{kms=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{kms, }\AttributeTok{PetrolPrice=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{PetrolPrice, }\AttributeTok{law=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{law)}
-\NormalTok{SeatbeltsComplex}\SpecialCharTok{$}\NormalTok{yCLog }\OtherTok{\textless{}{-}} \FunctionTok{clog}\NormalTok{(SeatbeltsComplex}\SpecialCharTok{$}\NormalTok{y)}
+\NormalTok{SeatbeltsComplex}\SpecialCharTok{$}\NormalTok{seasonal }\OtherTok{\textless{}{-}} \FunctionTok{temporaldummy}\NormalTok{(SeatbeltsComplex[,}\DecValTok{1}\NormalTok{],}
+                                           \AttributeTok{type=}\StringTok{"month"}\NormalTok{, }\AttributeTok{of=}\StringTok{"year"}\NormalTok{, }\AttributeTok{factors=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\NormalTok{SeatbeltsComplexScaled }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{sapply}\NormalTok{(SeatbeltsComplex,cscale,}\AttributeTok{scaling=}\StringTok{"standardisation"}\NormalTok{))}
-\NormalTok{SeatbeltsComplexScaled}\SpecialCharTok{$}\NormalTok{seasonal }\OtherTok{\textless{}{-}} \FunctionTok{temporaldummy}\NormalTok{(SeatbeltsComplexScaled[,}\DecValTok{1}\NormalTok{], }\AttributeTok{type=}\StringTok{"month"}\NormalTok{, }\AttributeTok{of=}\StringTok{"year"}\NormalTok{, }\AttributeTok{factors=}\ConstantTok{TRUE}\NormalTok{)}
+We can then estimate a complex-valued model with real-valued explanatory variables, which should be equivalent to a multivariate linear regression. Note that we take logarithms of the numerical explanatory variables to capture the non-linearity correctly:
 
-\NormalTok{test }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(yCLog}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(kms)}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(PetrolPrice)}\SpecialCharTok{+}\NormalTok{law}\SpecialCharTok{+}\NormalTok{seasonal, SeatbeltsComplexScaled)}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SeatbeltscLR01 }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(}\FunctionTok{I}\NormalTok{(}\FunctionTok{clog}\NormalTok{(y))}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(kms)}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(PetrolPrice)}\SpecialCharTok{+}\NormalTok{law}\SpecialCharTok{+}\NormalTok{seasonal,}
+\NormalTok{                      SeatbeltsComplex)}
+\end{Highlighting}
+\end{Shaded}
 
-\NormalTok{test }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(yCLog}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(kms)}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(PetrolPrice)}\SpecialCharTok{+}\NormalTok{law}\SpecialCharTok{+}\NormalTok{seasonal, SeatbeltsComplexScaled, }\AttributeTok{orders=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+The output above shows the estimates of the parameters of the model, demonstrating how the model captured the relations in the data. The model fit is shown in Figure \ref{fig:seatbeltsDataModel1}.
 
-\NormalTok{test }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(yCLog}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(kms)}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(PetrolPrice)}\SpecialCharTok{+}\NormalTok{law}\SpecialCharTok{+}\NormalTok{seasonal, SeatbeltsComplexScaled, }\AttributeTok{orders=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{))}
-\FunctionTok{summary}\NormalTok{(test)}
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbeltsDataModel1-1.pdf}
+\caption{\label{fig:seatbeltsDataModel1}Number of drivers killed and injured and the fitted values.}
+\end{figure}
+
+While the model has already captured the relations in the data well, there is still some structure left, which becomes apparent from the analysis of the ACF/PACF in the residuals (Figure \ref{fig:}).
+
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbeltsDataModel1ACF-1.pdf}
+\caption{\label{fig:seatbeltsDataModel1ACF}ACF/PACF of the residuals of the first model.}
+\end{figure}
+
+It is hard to understand what specifically is missing in the residuals, so we will fit several cARIMA models with maximum order of 1 for each p, d, and q:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cARIMAOrders }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{expand.grid}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
+\FunctionTok{colnames}\NormalTok{(cARIMAOrders) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"AR"}\NormalTok{,}\StringTok{"I"}\NormalTok{,}\StringTok{"MA"}\NormalTok{)}
+\NormalTok{SeatbeltscLRList }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"list"}\NormalTok{,}\FunctionTok{nrow}\NormalTok{(cARIMAOrders))}
+\FunctionTok{names}\NormalTok{(SeatbeltscLRList) }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"ARIMA("}\NormalTok{,}\FunctionTok{apply}\NormalTok{(cARIMAOrders, }\DecValTok{1}\NormalTok{, paste0, }\AttributeTok{collapse=}\StringTok{","}\NormalTok{),}\StringTok{")"}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(cARIMAOrders))\{}
+\NormalTok{    SeatbeltscLRList[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(}\FunctionTok{I}\NormalTok{(}\FunctionTok{clog}\NormalTok{(y))}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(kms)}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(PetrolPrice)}\SpecialCharTok{+}\NormalTok{law}\SpecialCharTok{+}\NormalTok{seasonal,}
+\NormalTok{                                 SeatbeltsComplex, }\AttributeTok{orders=}\NormalTok{cARIMAOrders[i,], }\AttributeTok{maxeval=}\DecValTok{1000}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+After that we can see which of the models is more appropriate for the data based on the AICc:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select the best model}
+\NormalTok{iBest }\OtherTok{\textless{}{-}} \FunctionTok{which.min}\NormalTok{(}\FunctionTok{sapply}\NormalTok{(SeatbeltscLRList, AICc))}
+\CommentTok{\# Produce summary.}
+\CommentTok{\# We specify stepSize for the Hessian calculation}
+\CommentTok{\# to make sure that we get reasonable standard errors}
+\FunctionTok{summary}\NormalTok{(SeatbeltscLRList[[iBest]], }\AttributeTok{stepSize=}\FloatTok{1e{-}6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## cARIMAX(1,0,0) estimated via clm()
-## Response variable: yCLog
+## cARIMAX(1,0,1) estimated via clm()
+## Response variable: Iclog(y)
 ## Loss function used in estimation: likelihood
 ## Coefficients:
 ##                    Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r       -0.6165     0.1849    -0.9814     -0.2517 *
-## (Intercept)_i       -0.7418     0.1406    -1.0193     -0.4643 *
-## log(kms)_r           0.0107     0.0275    -0.0435      0.0650  
-## log(kms)_i          -0.0339     0.0209    -0.0752      0.0073  
-## log(PetrolPrice)_r   0.0849     0.0271     0.0315      0.1383 *
-## log(PetrolPrice)_i  -0.0252     0.0206    -0.0659      0.0154  
-## law_r               -0.2044     0.0560    -0.3150     -0.0938 *
-## law_i               -0.2149     0.0426    -0.2990     -0.1308 *
-## seasonal2_r         -0.1216     0.2314    -0.5783      0.3351  
-## seasonal2_i         -0.1103     0.1760    -0.4577      0.2371  
-## seasonal3_r          0.1408     0.2552    -0.3628      0.6445  
-## seasonal3_i          0.4610     0.1941     0.0779      0.8440 *
-## seasonal4_r          0.0971     0.2507    -0.3976      0.5917  
-## seasonal4_i         -0.1117     0.1906    -0.4879      0.2646  
-## seasonal5_r          0.3591     0.2628    -0.1595      0.8778  
-## seasonal5_i          0.6256     0.1999     0.2312      1.0201 *
-## seasonal6_r          0.5276     0.2482     0.0378      1.0175 *
-## seasonal6_i          0.1510     0.1888    -0.2216      0.5236  
-## seasonal7_r          0.4247     0.2494    -0.0675      0.9169  
-## seasonal7_i          0.5995     0.1897     0.2252      0.9739 *
-## seasonal8_r          0.4587     0.2447    -0.0243      0.9416  
-## seasonal8_i          0.5493     0.1861     0.1820      0.9167 *
-## seasonal9_r          0.8099     0.2405     0.3353      1.2844 *
-## seasonal9_i          0.6870     0.1829     0.3260      1.0479 *
-## seasonal10_r         1.2635     0.2315     0.8066      1.7204 *
-## seasonal10_i         1.0172     0.1761     0.6697      1.3647 *
-## seasonal11_r         1.3345     0.2210     0.8983      1.7708 *
-## seasonal11_i         1.4349     0.1681     1.1031      1.7667 *
-## seasonal12_r         1.3794     0.2159     0.9533      1.8056 *
-## seasonal12_i         1.4513     0.1642     1.1271      1.7754 *
-## yCLogLag1_r          0.4057     0.0531     0.3008      0.5105 *
-## yCLogLag1_i          0.0336     0.0404    -0.0461      0.1134  
+## (Intercept)_r        3.0425     0.1210     2.8036      3.2814 *
+## (Intercept)_i        5.0013     0.1351     4.7347      5.2679 *
+## log(kms)_r          -0.0693     0.0282    -0.1250     -0.0136 *
+## log(kms)_i          -0.1142     0.0354    -0.1841     -0.0444 *
+## log(PetrolPrice)_r  -0.2915     0.0221    -0.3351     -0.2479 *
+## log(PetrolPrice)_i  -0.2393     0.1077    -0.4519     -0.0268 *
+## law_r               -0.0958     0.0744    -0.2425      0.0510  
+## law_i               -0.0982     0.0946    -0.2849      0.0884  
+## seasonal2_r         -0.0325     0.0885    -0.2072      0.1422  
+## seasonal2_i         -0.0389     0.0682    -0.1736      0.0958  
+## seasonal3_r          0.0275     0.0182    -0.0083      0.0634  
+## seasonal3_i          0.0704     0.0793    -0.0861      0.2268  
+## seasonal4_r          0.0164     0.0391    -0.0607      0.0936  
+## seasonal4_i         -0.0215     0.0362    -0.0930      0.0500  
+## seasonal5_r          0.0679     0.0507    -0.0322      0.1681  
+## seasonal5_i          0.1105     0.0020     0.1065      0.1145 *
+## seasonal6_r          0.1044     0.1126    -0.1179      0.3267  
+## seasonal6_i          0.0344     0.0982    -0.1595      0.2282  
+## seasonal7_r          0.0872     0.0512    -0.0140      0.1883  
+## seasonal7_i          0.1126     0.0816    -0.0485      0.2737  
+## seasonal8_r          0.0941     0.0580    -0.0204      0.2086  
+## seasonal8_i          0.1064     0.0749    -0.0415      0.2542  
+## seasonal9_r          0.1596     0.0469     0.0669      0.2522 *
+## seasonal9_i          0.1230     0.0059     0.1113      0.1346 *
+## seasonal10_r         0.2532     0.0385     0.1771      0.3292 *
+## seasonal10_i         0.1775     0.0578     0.0634      0.2917 *
+## seasonal11_r         0.2691     0.0590     0.1525      0.3856 *
+## seasonal11_i         0.2445     0.0594     0.1272      0.3618 *
+## seasonal12_r         0.2864     0.1137     0.0620      0.5107 *
+## seasonal12_i         0.2543     0.0788     0.0987      0.4099 *
+## yLag1_r              0.3702     0.1162     0.1409      0.5996 *
+## yLag1_i              0.0168     0.0263    -0.0352      0.0688  
+## eLag1_r             -0.1513     0.0435    -0.2372     -0.0655 *
+## eLag1_i              0.0658     0.0159     0.0344      0.0973 *
 ## 
 ## Error covariance matrix:
 ##        e_r    e_i
-## e_r 0.3700 0.1328
-## e_i 0.1328 0.2141
+## e_r 0.0157 0.0050
+## e_i 0.0050 0.0057
 ## 
 ## Sample size: 192
-## Number of estimated parameters: 17.5
-## Number of degrees of freedom: 174.5
+## Number of estimated parameters: 18.5
+## Number of degrees of freedom: 173.5
 ## Information criteria:
-##      AIC     AICc      BIC     BICc 
-## 553.1625 556.8945 610.1687 619.9792
+##       AIC      AICc       BIC      BICc 
+## -765.7492 -761.5665 -705.4855 -694.4905
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(test,}\DecValTok{7}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+The output above has a clear interpretation:
 
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-73-1.pdf} \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-73-2.pdf}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  With the increase of distance driven by 1\%, the number of killed and injured drivers tends to decrease on average by 0.069\% and 0.114\% respectively;
+\item
+  The 1\% increase in average petrol price leads to the decrease in the number of killed and injured drivers by 0.292\% and 0.239\% respectively;
+\item
+  The introduction of law on mandatory seatbelts has reduced the number of killed and injured drivers by approximately 10\% each;
+\end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{yFitted }\OtherTok{\textless{}{-}} \FunctionTok{fitted}\NormalTok{(test)}
-\NormalTok{yFitted }\OtherTok{\textless{}{-}} \FunctionTok{cexp}\NormalTok{(}\FunctionTok{cdescale}\NormalTok{(yFitted, SeatbeltsComplex}\SpecialCharTok{$}\NormalTok{yCLog, }\AttributeTok{scaling=}\StringTok{"standardisation"}\NormalTok{))}
+While we could fit two independent regression models instead of one complex-valued, it would not be able to capture the cARIMA elements the way they are captured in the model above. Arguably, number of killed and injured drivers have a complex dynamic relation, which is captured by the cARIMA(1,0,1) part of the model.
 
+Finally, we can see how the model fits the data and compare it with the previous one (Figure \ref{fig:seatbeltsDataModelFinal}).
 
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Re}\NormalTok{(SeatbeltsComplex}\SpecialCharTok{$}\NormalTok{y),}\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"killed"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Time"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\FunctionTok{Re}\NormalTok{(yFitted), }\AttributeTok{col=}\StringTok{"purple"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\begin{figure}
+\centering
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbeltsDataModelFinal-1.pdf}
+\caption{\label{fig:seatbeltsDataModelFinal}Number of drivers killed and injured and the fitted values from the \texttt{r\ SeatbeltscLRList{[}{[}iBest{]}{]}\$model} model.}
+\end{figure}
 
-\FunctionTok{plot}\NormalTok{(}\FunctionTok{Im}\NormalTok{(SeatbeltsComplex}\SpecialCharTok{$}\NormalTok{y),}\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"injured"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Time"}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\FunctionTok{Im}\NormalTok{(yFitted), }\AttributeTok{col=}\StringTok{"purple"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-73-3.pdf}
+Arguably, the model fit is better due to the capture of dynamic elements that were missing in the cLR before.
 
 \hypertarget{Conclusions}{%
 \chapter{Conclusions}\label{Conclusions}}
