@@ -124,7 +124,7 @@ cdescale(yForecast$mean,
 ```
 
 
-## Seatbels law in the UK
+## Seatbels law in Great Britain
 In another example, we consider the time series data with several explanatory variables. This is the Road Casualties in Great Britain from 1969 to 1984, available in the `datasets` package in R. We do not need all the variables in the data, but we will use the following ones:
 
 1. drivers - the number of car drivers killed or seriously injured;
@@ -228,11 +228,11 @@ iBest <- which.min(sapply(SeatbeltscLRList, AICc))
 summary(SeatbeltscLRList[[iBest]], stepSize=1e-6)
 ```
 
-The output above has a clear interpretation:
+The estimates of parameters in the output above have a clear interpretation:
 
 1. With the increase of distance driven by 1%, the number of killed and injured drivers tends to decrease on average by `r abs(round(Re(coef(SeatbeltscLRList[[iBest]]))[2],3))`% and `r abs(round(Im(coef(SeatbeltscLRList[[iBest]]))[2],3))`% respectively;
 2. The 1% increase in average petrol price leads to the decrease in the number of killed and injured drivers by `r abs(round(Re(coef(SeatbeltscLRList[[iBest]]))[3],3))`% and `r abs(round(Im(coef(SeatbeltscLRList[[iBest]]))[3],3))`% respectively;
-3. The introduction of law on mandatory seatbelts has reduced the number of killed and injured drivers by approximately 10% each;
+3. The introduction of law on mandatory seatbelts has reduced the number of killed and injured drivers by approximately 10% each.
 
 While we could fit two independent regression models instead of one complex-valued, it would not be able to capture the cARIMA elements the way they are captured in the model above. Arguably, number of killed and injured drivers have a complex dynamic relation, which is captured by the `r SeatbeltscLRList[[iBest]]$other$arima` part of the model.
 
