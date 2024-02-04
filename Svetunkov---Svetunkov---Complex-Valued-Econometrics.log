@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  4 FEB 2024 11:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  4 FEB 2024 14:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -816,14 +816,14 @@ Package natbib Warning: Citation `reference' on page 27 undefined on input line
 
 [27]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvGene
-ratedCircle-1.pdf, id=474, 255.95625pt x 215.80624pt>
+ratedCircle-1.pdf, id=474, 256.96pt x 215.80624pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vGeneratedCircle-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 GeneratedCircle-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvGeneratedCircle-1.pdf  used on input line 915.
-(pdftex.def)             Requested size: 255.95561pt x 215.80571pt.
+(pdftex.def)             Requested size: 256.9672pt x 215.81229pt.
 
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 28 \T1/lmr/m/sl/10 CHAPTER 1.  INTRODUCTION TO THEORY OF COMPLEX
@@ -1006,14 +1006,14 @@ Chapter 3.
 
 ]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
-terplots-1.pdf, id=872, 263.98625pt x 262.9825pt>
+terplots-1.pdf, id=872, 262.9825pt x 263.98625pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vScatterplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 Scatterplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvScatterplots-1.pdf  used on input line 1718.
-(pdftex.def)             Requested size: 263.99767pt x 262.99387pt.
+(pdftex.def)             Requested size: 262.99387pt x 263.99767pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 727.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
@@ -1079,14 +1079,14 @@ les/figure-latex/crvCorConjugate-1.pdf  used on input line 1943.
 [61 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 rvCorConjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugateMDS-1.pdf, id=958, 258.9675pt x 212.795pt>
+onjugateMDS-1.pdf, id=958, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1968.
-(pdftex.def)             Requested size: 258.98264pt x 212.80745pt.
+(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 62 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1708,7 +1708,7 @@ atbeltsData-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/sea
 tbeltsData-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/seatbeltsData-1.pdf  used on input line 4684.
+les/figure-latex/seatbeltsData-1.pdf  used on input line 4689.
 (pdftex.def)             Requested size: 344.9987pt x 235.0876pt.
 [145]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbel
@@ -1718,139 +1718,136 @@ atbeltsDataModel1-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/sea
 tbeltsDataModel1-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/seatbeltsDataModel1-1.pdf  used on input line 4710.
+les/figure-latex/seatbeltsDataModel1-1.pdf  used on input line 4717.
 (pdftex.def)             Requested size: 344.9987pt x 235.0876pt.
-
-LaTeX Warning: Reference `fig:' on page 146 undefined on input line 4714.
-
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbel
-tsDataModel1ACF-1.pdf, id=2020, 456.70625pt x 316.18124pt>
+tsDataModel1ACF-1.pdf, id=2021, 456.70625pt x 316.18124pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/se
 atbeltsDataModel1ACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/sea
 tbeltsDataModel1ACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/seatbeltsDataModel1ACF-1.pdf  used on input line 4718.
+les/figure-latex/seatbeltsDataModel1ACF-1.pdf  used on input line 4725.
 (pdftex.def)             Requested size: 345.00972pt x 238.85287pt.
 [146 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 seatbeltsData-1.pdf>] [147 <./Svetunkov---Svetunkov---Complex-Valued-Econometri
 cs_files/figure-latex/seatbeltsDataModel1-1.pdf> <./Svetunkov---Svetunkov---Com
 plex-Valued-Econometrics_files/figure-latex/seatbeltsDataModel1ACF-1.pdf>]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## (Intercept)_r        3.0425     0.1210     2.8036      3.2
 814 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## (Intercept)_i        5.0013     0.1351     4.7347      5.2
 679 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## log(kms)_r          -0.0693     0.0282    -0.1250     -0.0
 136 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## log(kms)_i          -0.1142     0.0354    -0.1841     -0.0
 444 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## log(PetrolPrice)_r  -0.2915     0.0221    -0.3351     -0.2
 479 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## log(PetrolPrice)_i  -0.2393     0.1077    -0.4519     -0.0
 268 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal5_i          0.1105     0.0020     0.1065      0.1
 145 *[] 
  []
 
-
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+[148]
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal9_r          0.1596     0.0469     0.0669      0.2
 522 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal9_i          0.1230     0.0059     0.1113      0.1
 346 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal10_r         0.2532     0.0385     0.1771      0.3
 292 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal10_i         0.1775     0.0578     0.0634      0.2
 917 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal11_r         0.2691     0.0590     0.1525      0.3
 856 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal11_i         0.2445     0.0594     0.1272      0.3
 618 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal12_r         0.2864     0.1137     0.0620      0.5
 107 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## seasonal12_i         0.2543     0.0788     0.0987      0.4
 099 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## yLag1_r              0.3702     0.1162     0.1409      0.5
 996 *[] 
  []
 
-[148]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## eLag1_r             -0.1513     0.0435    -0.2372     -0.0
 655 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4803--4803
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4814--4814
 []\T1/lmtt/m/n/10 ## eLag1_i              0.0658     0.0159     0.0344      0.0
 973 *[] 
  []
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbel
-tsDataModelFinal-1.pdf, id=2057, 453.695pt x 309.155pt>
+tsDataModelFinal-1.pdf, id=2058, 453.695pt x 309.155pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/se
 atbeltsDataModelFinal-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/sea
 tbeltsDataModelFinal-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/seatbeltsDataModelFinal-1.pdf  used on input line 4824.
+les/figure-latex/seatbeltsDataModelFinal-1.pdf  used on input line 4835.
 (pdftex.def)             Requested size: 344.9987pt x 235.0876pt.
 [149] [150 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
 latex/seatbeltsDataModelFinal-1.pdf>]
@@ -1872,13 +1869,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17326 strings out of 479648
- 304813 string characters out of 5886116
+ 17325 strings out of 479648
+ 304807 string characters out of 5886116
  605389 words of memory out of 5000000
- 34015 multiletter control sequences out of 15000+600000
+ 34014 multiletter control sequences out of 15000+600000
  572621 words of font info for 223 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
- 74i,16n,77p,1358b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,16n,77p,1358b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/l
@@ -1901,10 +1898,10 @@ mf/fonts/type1/public/lm/lmtko10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 tt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (153 
-pages, 4507430 bytes).
+pages, 4506763 bytes).
 PDF statistics:
- 2558 PDF objects out of 2984 (max. 8388607)
- 2144 compressed objects within 22 object streams
+ 2559 PDF objects out of 2984 (max. 8388607)
+ 2145 compressed objects within 22 object streams
  629 named destinations out of 1000 (max. 500000)
  58186 words of extra memory for PDF output out of 61914 (max. 10000000)
 
