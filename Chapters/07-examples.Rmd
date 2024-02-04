@@ -134,7 +134,7 @@ In another example, we consider the time series data with several explanatory va
 5. PetrolPrice - average price of petrol in each month;
 6. law - binary variable, indicating when the law for mandatory seatbelts was in effect.
 
-The variables (2) and (3) will be our response variables, while (4), (5) and (6) will be used as explanatory ones. Note that in this setting we do not form complex variables from the explanatory ones and only form the complex variable from the response ones.
+The variables (2) and (3) will form our complex response variable, while (4), (5) and (6) will be used as explanatory ones. Note that in this setting we do not form complex variables from the explanatory ones and only have the complex response variable. The code below shows how this can be done:
 
 ```{r}
 SeatbeltsData <- data.frame(killed=Seatbelts[,"DriversKilled"],
@@ -142,38 +142,103 @@ SeatbeltsData <- data.frame(killed=Seatbelts[,"DriversKilled"],
                             kms=Seatbelts[,"kms"],
                             PetrolPrice=Seatbelts[,"PetrolPrice"],
                             law=Seatbelts[,"law"])
-head(SeatbeltsData)
 
 SeatbeltsComplex <- data.frame(y=complex(real=SeatbeltsData$killed, imaginary=SeatbeltsData$injured),
                                kms=SeatbeltsData$kms, PetrolPrice=SeatbeltsData$PetrolPrice, law=SeatbeltsData$law)
-SeatbeltsComplex$yCLog <- clog(SeatbeltsComplex$y)
+```
 
-SeatbeltsComplexScaled <- as.data.frame(sapply(SeatbeltsComplex,cscale,scaling="standardisation"))
-SeatbeltsComplexScaled$seasonal <- temporaldummy(SeatbeltsComplexScaled[,1], type="month", of="year", factors=TRUE)
+Looking at the response variable, we would argue that a multiplicative model is needed, because the amplitude of seasonality in both variables changes when the seatbelts law is introduced (see Figure \@ref(fig:seatbeltsData)).
 
-test <- clm(yCLog~log(kms)+log(PetrolPrice)+law+seasonal, SeatbeltsComplexScaled)
+```{r seatbeltsData, fig.cap="Dynamics of number of drivers killed and injured in the Great Britain.", echo=FALSE}
+par(mfcol=c(2,1),mar=c(4,4,1,1))
+plot(Seatbelts[,"DriversKilled"],type="l", ylab="killed", xlab="Time")
+plot(Seatbelts[,"drivers"]-Seatbelts[,"DriversKilled"],type="l", ylab="injured", xlab="Time")
+```
 
-test <- clm(yCLog~log(kms)+log(PetrolPrice)+law+seasonal, SeatbeltsComplexScaled, orders=c(0,1,1))
+Taking logarithm of the complex response variable would not be reasonable in this situation, because that would not fix the issue with the amplitude of seasonality. So, we can use the `clog()` function from the `complex` package to take logarithms of real and imaginary parts independently. Furthermore, given that both the real and the imaginary parts of the response variable are in the same units (number of drivers), we do not need to scale them. The only additional thing we need to do is to introduce a variable for seasonality, which can be done using `temporaldummy()` function from the `greybox` package:
 
-test <- clm(yCLog~log(kms)+log(PetrolPrice)+law+seasonal, SeatbeltsComplexScaled, orders=c(1,0,0))
-summary(test)
+```{r}
+SeatbeltsComplex$seasonal <- temporaldummy(SeatbeltsComplex[,1],
+                                           type="month", of="year", factors=TRUE)
+```
 
-plot(test,7)
+We can then estimate a complex-valued model with real-valued explanatory variables, which should be equivalent to a multivariate linear regression. Note that we take logarithms of the numerical explanatory variables to capture the non-linearity correctly:
 
+```{r}
+SeatbeltscLR01 <- clm(I(clog(y))~log(kms)+log(PetrolPrice)+law+seasonal,
+                      SeatbeltsComplex)
+```
 
-yFitted <- fitted(test)
-yFitted <- cexp(cdescale(yFitted, SeatbeltsComplex$yCLog, scaling="standardisation"))
+The output above shows the estimates of the parameters of the model, demonstrating how the model captured the relations in the data. The model fit is shown in Figure \@ref(fig:seatbeltsDataModel1).
 
+```{r seatbeltsDataModel1, fig.cap="Number of drivers killed and injured and the fitted values.", echo=FALSE}
+yStart <- start(Seatbelts)
+yFreq <- frequency(Seatbelts)
+
+yFitted <- ts(cexp(fitted(SeatbeltscLR01)), start=yStart, frequency=yFreq)
 
 par(mfcol=c(2,1),mar=c(4,4,1,1))
-plot(Re(SeatbeltsComplex$y),type="l", ylab="killed", xlab="Time")
+plot(Seatbelts[,"DriversKilled"],type="l", ylab="killed", xlab="Time")
 lines(Re(yFitted), col="purple", lwd=2, lty=2)
 
-plot(Im(SeatbeltsComplex$y),type="l", ylab="injured", xlab="Time")
+plot(Seatbelts[,"drivers"]-Seatbelts[,"DriversKilled"],type="l", ylab="injured", xlab="Time")
 lines(Im(yFitted), col="purple", lwd=2, lty=2)
 ```
 
+While the model has already captured the relations in the data well, there is still some structure left, which becomes apparent from the analysis of the ACF/PACF in the residuals (Figure \@ref(fig:)).
 
+```{r seatbeltsDataModel1ACF, fig.cap="ACF/PACF of the residuals of the first model.", echo=FALSE}
+par(mfcol=c(2,2),mar=c(4,4,1,1))
+plot(SeatbeltscLR01,c(10,11), main="")
+```
+
+It is hard to understand what specifically is missing in the residuals, so we will fit several cARIMA models with maximum order of 1 for each p, d, and q:
+
+```{r}
+cARIMAOrders <- as.matrix(expand.grid(c(0,1),c(0,1),c(0,1)))
+colnames(cARIMAOrders) <- c("AR","I","MA")
+SeatbeltscLRList <- vector("list",nrow(cARIMAOrders))
+names(SeatbeltscLRList) <- paste0("ARIMA(",apply(cARIMAOrders, 1, paste0, collapse=","),")")
+
+for(i in 1:nrow(cARIMAOrders)){
+    SeatbeltscLRList[[i]] <- clm(I(clog(y))~log(kms)+log(PetrolPrice)+law+seasonal,
+                                 SeatbeltsComplex, orders=cARIMAOrders[i,], maxeval=1000)
+}
+```
+
+After that we can see which of the models is more appropriate for the data based on the AICc:
+
+```{r}
+# Select the best model
+iBest <- which.min(sapply(SeatbeltscLRList, AICc))
+# Produce summary.
+# We specify stepSize for the Hessian calculation
+# to make sure that we get reasonable standard errors
+summary(SeatbeltscLRList[[iBest]], stepSize=1e-6)
+```
+
+The output above has a clear interpretation:
+
+1. With the increase of distance driven by 1%, the number of killed and injured drivers tends to decrease on average by `r abs(round(Re(coef(SeatbeltscLRList[[iBest]]))[2],3))`% and `r abs(round(Im(coef(SeatbeltscLRList[[iBest]]))[2],3))`% respectively;
+2. The 1% increase in average petrol price leads to the decrease in the number of killed and injured drivers by `r abs(round(Re(coef(SeatbeltscLRList[[iBest]]))[3],3))`% and `r abs(round(Im(coef(SeatbeltscLRList[[iBest]]))[3],3))`% respectively;
+3. The introduction of law on mandatory seatbelts has reduced the number of killed and injured drivers by approximately 10% each;
+
+While we could fit two independent regression models instead of one complex-valued, it would not be able to capture the cARIMA elements the way they are captured in the model above. Arguably, number of killed and injured drivers have a complex dynamic relation, which is captured by the `r SeatbeltscLRList[[iBest]]$other$arima` part of the model.
+
+Finally, we can see how the model fits the data and compare it with the previous one (Figure \@ref(fig:seatbeltsDataModelFinal)).
+
+```{r seatbeltsDataModelFinal, fig.cap="Number of drivers killed and injured and the fitted values from the `r SeatbeltscLRList[[iBest]]$model` model.", echo=FALSE}
+yFitted <- ts(cexp(fitted(SeatbeltscLRList[[iBest]])), start=yStart, frequency=yFreq)
+
+par(mfcol=c(2,1),mar=c(4,4,1,1))
+plot(Seatbelts[,"DriversKilled"],type="l", ylab="killed", xlab="Time")
+lines(Re(yFitted), col="purple", lwd=2, lty=2)
+
+plot(Seatbelts[,"drivers"]-Seatbelts[,"DriversKilled"],type="l", ylab="injured", xlab="Time")
+lines(Im(yFitted), col="purple", lwd=2, lty=2)
+```
+
+Arguably, the model fit is better due to the capture of dynamic elements that were missing in the cLR before.
 
 
 <!-- ## Forecasting with complex regression models -->
