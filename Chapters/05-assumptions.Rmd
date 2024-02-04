@@ -239,6 +239,47 @@ par(mfcol=c(1,2), mar=c(2,2,3,1))
 plot(complexModelLogs, which=2, main="")
 ```
 
+Finally, the `complex` package in R has `clog()` and `cexp()` functions, that support logarithmic and exponential transforms respectively for the separate real and imaginary parts of the complex variable. In this case, the functions require for both parts of the complex variable to be strictly positive. Here is an example of how they work:
+
+```{r nonlinearData, fig.cap="Plot of the original non-linear data."}
+# Generate data using exponent
+y <- complex(real=exp(3 -0.02* c(1:100) + rnorm(100,0,0.1)),
+             imaginary=exp(4 + 0.02* c(1:100) + rnorm(100,0,0.2)))
+
+# Plot the data to see how it looks
+layout(matrix(c(1,2,1,3),2,2))
+par(mar=c(4,4,1,1))
+plot(y)
+plot(Re(y), type="l", xlab="Time")
+plot(Im(y), type="l", xlab="Time")
+```
+
+Figure \@ref(fig:nonlinearData) shows the generated data, which exhibits exponential trajectories (by design). After taking logarithms for individual real and imaginary parts we get (Figure \@ref(fig:nonlinearDataCLog)):
+
+```{r nonlinearDataCLog, fig.cap="Plot of the data in logarithms."}
+yLog <- clog(y)
+
+layout(matrix(c(1,2,1,3),2,2))
+par(mar=c(4,4,1,1))
+plot(yLog)
+plot(Re(yLog), type="l", xlab="Time")
+plot(Im(yLog), type="l", xlab="Time")
+
+```
+
+We see that the tendencies in the data became linear. Compare this with the conventional logarithm of a complex variable (Figure \@ref(fig:nonlinearDataLog)):
+
+```{r nonlinearDataLog, fig.cap="Plot of the data in logarithms.", echo=FALSE}
+layout(matrix(c(1,2,1,3),2,2))
+par(mar=c(4,4,1,1))
+plot(log(y))
+plot(Re(log(y)), type="l", xlab="Time")
+plot(Im(log(y)), type="l", xlab="Time")
+
+```
+
+
+
 
 ### No outliers {#assumptionsSpecificationOutlier}
 Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event). In that case the effect on estimates of parameters will be similar to the one discussed in Subsection \@ref(assumptionsSpecificationOmit): the estimates of parameters will be in general biased with some specific effects depending on the direct/conjugate correlation and the estimation method used.
