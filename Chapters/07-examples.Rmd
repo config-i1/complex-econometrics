@@ -125,6 +125,16 @@ cdescale(yForecast$mean,
 
 
 ## Seatbels law in the UK
+In another example, we consider the time series data with several explanatory variables. This is the Road Casualties in Great Britain from 1969 to 1984, available in the `datasets` package in R. We do not need all the variables in the data, but we will use the following ones:
+
+1. drivers - the number of car drivers killed or seriously injured;
+2. killed - car drivers killed (from the `DriversKilled` variable);
+3. injured - drivers injured (calculated as `drivers` - `DriversKilled`);
+4. kms - distance driven by drivers;
+5. PetrolPrice - average price of petrol in each month;
+6. law - binary variable, indicating when the law for mandatory seatbelts was in effect.
+
+The variables (2) and (3) will be our response variables, while (4), (5) and (6) will be used as explanatory ones. Note that in this setting we do not form complex variables from the explanatory ones and only form the complex variable from the response ones.
 
 ```{r}
 SeatbeltsData <- data.frame(killed=Seatbelts[,"DriversKilled"],
