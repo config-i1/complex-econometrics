@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  4 FEB 2024 11:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  4 FEB 2024 11:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1006,14 +1006,14 @@ Chapter 3.
 
 ]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
-terplots-1.pdf, id=872, 262.9825pt x 263.98625pt>
+terplots-1.pdf, id=872, 263.98625pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vScatterplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 Scatterplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvScatterplots-1.pdf  used on input line 1718.
-(pdftex.def)             Requested size: 262.99387pt x 263.99767pt.
+(pdftex.def)             Requested size: 263.99767pt x 262.99387pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 727.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
@@ -1079,14 +1079,14 @@ les/figure-latex/crvCorConjugate-1.pdf  used on input line 1943.
 [61 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 rvCorConjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugateMDS-1.pdf, id=958, 253.94875pt x 212.795pt>
+onjugateMDS-1.pdf, id=958, 258.9675pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
 les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1968.
-(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
+(pdftex.def)             Requested size: 258.98264pt x 212.80745pt.
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 62 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
@@ -1874,7 +1874,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  17326 strings out of 479648
  304813 string characters out of 5886116
- 605420 words of memory out of 5000000
+ 605389 words of memory out of 5000000
  34015 multiletter control sequences out of 15000+600000
  572621 words of font info for 223 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
@@ -1901,7 +1901,7 @@ mf/fonts/type1/public/lm/lmtko10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 tt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (153 
-pages, 4507219 bytes).
+pages, 4507430 bytes).
 PDF statistics:
  2558 PDF objects out of 2984 (max. 8388607)
  2144 compressed objects within 22 object streams

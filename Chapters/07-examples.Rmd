@@ -227,7 +227,7 @@ While we could fit two independent regression models instead of one complex-valu
 
 Finally, we can see how the model fits the data and compare it with the previous one (Figure \@ref(fig:seatbeltsDataModelFinal)).
 
-```{r seatbeltsDataModelFinal, fig.cap="Number of drivers killed and injured and the fitted values from the `r SeatbeltscLRList[[iBest]]$model` model.", echo=FALSE}
+```{r seatbeltsDataModelFinal, fig.cap="Number of drivers killed and injured and the fitted values from the cARIMA(1,0,1) model.", echo=FALSE}
 yFitted <- ts(cexp(fitted(SeatbeltscLRList[[iBest]])), start=yStart, frequency=yFreq)
 
 par(mfcol=c(2,1),mar=c(4,4,1,1))
