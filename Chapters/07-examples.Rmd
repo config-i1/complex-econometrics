@@ -201,7 +201,7 @@ plot(SeatbeltscLR01,c(10,11), main="")
 
 It is hard to understand what specifically is missing in the residuals, so we will fit several cARIMA models with maximum order of 1 for each p, d, and q:
 
-```{r}
+```{r eval=FALSE}
 cARIMAOrders <- as.matrix(expand.grid(c(0,1),c(0,1),c(0,1)))
 colnames(cARIMAOrders) <- c("AR","I","MA")
 SeatbeltscLRList <- vector("list",nrow(cARIMAOrders))
@@ -215,6 +215,10 @@ for(i in 1:nrow(cARIMAOrders)){
             SeatbeltsComplex, orders=cARIMAOrders[i,],
             maxeval=1000)
 }
+```
+
+```{r echo=FALSE}
+load("./data/SeatbeltscLRList.Rdata")
 ```
 
 After that we can see which of the models is more appropriate for the data based on the AICc:

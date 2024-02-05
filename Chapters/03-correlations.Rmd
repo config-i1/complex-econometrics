@@ -200,47 +200,51 @@ Given that it contains a complex number in the denominator, it is more complicat
 
 2. When the complex variables $\underline{x}$ and $\underline{y}$ have functional relation between them, so that $\underline{a}_1 = \frac{1}{\underline{b}_1}$, the coefficient will be equal to one.
 
-Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables $\underline{x}$ and/or $\underline{y}$.
+Note however that due to the division by a complex number, the value of 1 can in theory also be obtained due to the values of direct variance of variables $\underline{x}$ and/or $\underline{y}$.
 
 Coefficient equal to -1 and to i.
 
-<!-- To get other insights about the direct correlation coefficient, we express its denominator in the exponential form: -->
-<!-- \begin{equation} -->
-<!--     {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}}, -->
-<!--     (\#eq:correlationPseudoExpandedExp01) -->
-<!-- \end{equation} -->
-<!-- where -->
-<!-- \begin{equation} -->
-<!--     \resizebox{0.8\textwidth}{!}{$ -->
-<!--     \begin{aligned} -->
-<!--         R_1 = & \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2} \\ -->
-<!--         \phi_1 = &\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) , -->
-<!--     \end{aligned} $} -->
-<!--     (\#eq:correlationPseudoExpandedExpRPhi) -->
-<!-- \end{equation} -->
-<!-- which are obtained by opening the brackets inside the square root of \@ref(eq:correlationPseudoExpandedExp01). If we now insert \@ref(eq:correlationPseudoExpandedExp01) in \@ref(eq:correlationPseudoExpanded) and multiply both numerator and denominator by conjugate number to the \@ref(eq:correlationPseudoExpandedExp01) we will get: -->
-<!-- \begin{equation} -->
-<!--     {\varrho}_{x,y} = \frac{\left(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\right)e^{-i \frac{\phi_1}{2}}}{R_1^{\frac{1}{2}}}. -->
-<!--     (\#eq:correlationPseudoExpandedExp02) -->
-<!-- \end{equation} -->
-<!-- Representing the $\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})$ as $R_2 e^{i \phi_2}$, where $R_2= \sqrt{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}$ and $\phi_2= \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right)$, and inserting these values in \@ref(eq:correlationPseudoExpandedExp02) we get: -->
-<!-- \begin{equation} -->
-<!--     {\varrho}_{x,y} = \frac{R_2}{\sqrt{R_1}} e^{i \left(\phi_2 - \frac{\phi_1}{2} \right)}. -->
-<!--     (\#eq:correlationPseudoExpandedExp03) -->
-<!-- \end{equation} -->
-<!-- or in an even shorter exponential form ${\varrho}_{x,y} = |{\varrho}_{x,y}| e ^{i \arg({\varrho}_{x,y})}$, where: -->
-<!-- \begin{equation} -->
-<!--     \resizebox{0.85\textwidth}{!}{$ -->
-<!--     |{\varrho}_{x,y}|= \frac{R_2}{\sqrt{R_1}} = \sqrt{\frac{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}{\sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}}}$} -->
-<!--     (\#eq:correlationPseudoExpandedExpR) -->
-<!-- \end{equation} -->
-<!-- and  -->
-<!-- \begin{equation} -->
-<!--     \resizebox{0.85\textwidth}{!}{$ -->
-<!--     \arg({\varrho}_{x,y}) = \left(\phi_2 - \frac{\phi_1}{2} \right) = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) $}. -->
-<!--     (\#eq:correlationPseudoExpandedExpPhi) -->
-<!-- \end{equation} -->
-<!-- Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpandedExpPhi), we can identify several conditions that lead to specific values of the direct correlation coefficient: -->
+To get other insights about the direct correlation coefficient, we express its denominator in the exponential form:
+\begin{equation}
+    {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}},
+    (\#eq:correlationPseudoExpandedExp01)
+\end{equation}
+where
+\begin{equation}
+    \resizebox{0.8\textwidth}{!}{$
+    \begin{aligned}
+        R_1 = & \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2} \\
+        \phi_1 = &\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) ,
+    \end{aligned} $}
+    (\#eq:correlationPseudoExpandedExpRPhi)
+\end{equation}
+which are obtained by opening the brackets inside the square root of \@ref(eq:correlationPseudoExpandedExp01). If we now insert \@ref(eq:correlationPseudoExpandedExp01) in \@ref(eq:correlationPseudoExpanded) and multiply both numerator and denominator by conjugate number to the \@ref(eq:correlationPseudoExpandedExp01) we will get:
+\begin{equation}
+    {\varrho}_{x,y} = \frac{\left(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\right)e^{-i \frac{\phi_1}{2}}}{R_1^{\frac{1}{2}}}.
+    (\#eq:correlationPseudoExpandedExp02)
+\end{equation}
+Representing the $\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})$ as $R_2 e^{i \phi_2}$, where $R_2= \sqrt{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}$ and $\phi_2= \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right)$, and inserting these values in \@ref(eq:correlationPseudoExpandedExp02) we get:
+\begin{equation}
+    {\varrho}_{x,y} = \frac{R_2}{\sqrt{R_1}} e^{i \left(\phi_2 - \frac{\phi_1}{2} \right)}.
+    (\#eq:correlationPseudoExpandedExp03)
+\end{equation}
+or in an even shorter exponential form ${\varrho}_{x,y} = |{\varrho}_{x,y}| e ^{i \arg({\varrho}_{x,y})}$, where:
+\begin{equation}
+    \resizebox{0.85\textwidth}{!}{$
+    |{\varrho}_{x,y}|= \frac{R_2}{\sqrt{R_1}} = \sqrt{\frac{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}{\sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}}}$}
+    (\#eq:correlationPseudoExpandedExpR)
+\end{equation}
+and
+\begin{equation}
+    \resizebox{0.85\textwidth}{!}{$
+    \arg({\varrho}_{x,y}) = \left(\phi_2 - \frac{\phi_1}{2} \right) = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) $}.
+    (\#eq:correlationPseudoExpandedExpPhi)
+\end{equation}
+Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpandedExpPhi), we can identify several conditions that lead to specific values of the direct correlation coefficient:
+
+1. It is pure real valued, when all covariances are zero, i.e. there is no linear relation between parts of variables;
+2. Another situation with real valued direct correlation is when cross-covariances are zero and variances of respective real and imaginary parts are equal. This is more exotic case than (1);
+
 
 
 <!-- Trying to derive |rho|=1 -->

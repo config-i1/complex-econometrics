@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-02-04}
+\date{2024-02-05}
 
 \begin{document}
 \maketitle
@@ -665,7 +665,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 51.14711+98.04245i
+## [1] 48.9466+100.1068i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -738,7 +738,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 135.3322+0i
+## 115.6293+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -751,7 +751,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -86.97687-0.64537i
+## -69.66718+2.45558i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -776,9 +776,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##            x_r         x_i
-## x_r 24.1776738  -0.3226838
-## x_i -0.3226838 111.1545416
+##           x_r       x_i
+## x_r 22.981066  1.227792
+## x_i  1.227792 92.648249
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -790,7 +790,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2687.354
+## [1] 2127.648
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -857,7 +857,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 72.6658-102.9831i
+## 65.85825-91.84292i
 \end{verbatim}
 
 \begin{Shaded}
@@ -869,8 +869,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -54.12883+63.04879i
+## Direct covariance 
+## -46.449+38.11093i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -884,8 +884,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -87.43447+ 4.60450i -54.12883+63.04879i
-## y -54.12883+63.04879i   6.55450+62.44421i
+## x -57.84629- 2.52455i -46.44900+38.11093i
+## y -46.44900+38.11093i -19.98302+48.25736i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1952,7 +1952,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9973421
+## [1] 0.9977542
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -1989,9 +1989,47 @@ Given that it contains a complex number in the denominator, it is more complicat
   When the complex variables \(\underline{x}\) and \(\underline{y}\) have functional relation between them, so that \(\underline{a}_1 = \frac{1}{\underline{b}_1}\), the coefficient will be equal to one.
 \end{enumerate}
 
-Note however that due to the division by a complex number, the value of 1 can also be obtained due to the values of direct variance of variables \(\underline{x}\) and/or \(\underline{y}\).
+Note however that due to the division by a complex number, the value of 1 can in theory also be obtained due to the values of direct variance of variables \(\underline{x}\) and/or \(\underline{y}\).
 
 Coefficient equal to -1 and to i.
+
+To get other insights about the direct correlation coefficient, we express its denominator in the exponential form:
+\begin{equation}
+    {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}},
+    \label{eq:correlationPseudoExpandedExp01}
+\end{equation}
+where
+\begin{equation}
+    \resizebox{0.8\textwidth}{!}{$
+    \begin{aligned}
+        R_1 = & \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2} \\
+        \phi_1 = &\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) ,
+    \end{aligned} $}
+    \label{eq:correlationPseudoExpandedExpRPhi}
+\end{equation}
+which are obtained by opening the brackets inside the square root of \eqref{eq:correlationPseudoExpandedExp01}. If we now insert \eqref{eq:correlationPseudoExpandedExp01} in \eqref{eq:correlationPseudoExpanded} and multiply both numerator and denominator by conjugate number to the \eqref{eq:correlationPseudoExpandedExp01} we will get:
+\begin{equation}
+    {\varrho}_{x,y} = \frac{\left(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\right)e^{-i \frac{\phi_1}{2}}}{R_1^{\frac{1}{2}}}.
+    \label{eq:correlationPseudoExpandedExp02}
+\end{equation}
+Representing the \(\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})\) as \(R_2 e^{i \phi_2}\), where \(R_2= \sqrt{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}\) and \(\phi_2= \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right)\), and inserting these values in \eqref{eq:correlationPseudoExpandedExp02} we get:
+\begin{equation}
+    {\varrho}_{x,y} = \frac{R_2}{\sqrt{R_1}} e^{i \left(\phi_2 - \frac{\phi_1}{2} \right)}.
+    \label{eq:correlationPseudoExpandedExp03}
+\end{equation}
+or in an even shorter exponential form \({\varrho}_{x,y} = |{\varrho}_{x,y}| e ^{i \arg({\varrho}_{x,y})}\), where:
+\begin{equation}
+    \resizebox{0.85\textwidth}{!}{$
+    |{\varrho}_{x,y}|= \frac{R_2}{\sqrt{R_1}} = \sqrt{\frac{(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2}{\sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}}}$}
+    \label{eq:correlationPseudoExpandedExpR}
+\end{equation}
+and
+\begin{equation}
+    \resizebox{0.85\textwidth}{!}{$
+    \arg({\varrho}_{x,y}) = \left(\phi_2 - \frac{\phi_1}{2} \right) = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) $}.
+    \label{eq:correlationPseudoExpandedExpPhi}
+\end{equation}
+Analysing \eqref{eq:correlationPseudoExpandedExpR} \eqref{eq:correlationPseudoExpandedExpPhi}, we can identify several conditions that lead to specific values of the direct correlation coefficient:
 
 \hypertarget{correlationMDSPearson}{%
 \section{Pearson's correlation}\label{correlationMDSPearson}}
@@ -2009,8 +2047,8 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]
-## [1,] -0.9970755
+##           [,1]
+## [1,] 0.9982562
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -2035,11 +2073,11 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 \end{Shaded}
 
 \begin{verbatim}
-##        x_r    x_i    y_r    y_i
-## x_r  1.000 -0.117  0.708  0.621
-## x_i -0.117  1.000 -0.780  0.703
-## y_r  0.708 -0.780  1.000 -0.109
-## y_i  0.621  0.703 -0.109  1.000
+##       x_r    x_i    y_r    y_i
+## x_r 1.000  0.041  0.619  0.643
+## x_i 0.041  1.000 -0.756  0.788
+## y_r 0.619 -0.756  1.000 -0.197
+## y_i 0.643  0.788 -0.197  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
@@ -4640,8 +4678,8 @@ As we see, the model managed to capture the dynamics of the original data well, 
 ## [17] 262.3764+13.4506i 262.7655+13.4691i 263.1503+13.4881i 263.5336+13.5074i
 \end{verbatim}
 
-\hypertarget{seatbels-law-in-the-uk}{%
-\section{Seatbels law in the UK}\label{seatbels-law-in-the-uk}}
+\hypertarget{seatbels-law-in-great-britain}{%
+\section{Seatbels law in Great Britain}\label{seatbels-law-in-great-britain}}
 
 In another example, we consider the time series data with several explanatory variables. This is the Road Casualties in Great Britain from 1969 to 1984, available in the \texttt{datasets} package in R. We do not need all the variables in the data, but we will use the following ones:
 
@@ -4813,7 +4851,7 @@ After that we can see which of the models is more appropriate for the data based
 ## -765.7492 -761.5665 -705.4855 -694.4905
 \end{verbatim}
 
-The output above has a clear interpretation:
+The estimates of parameters in the output above have a clear interpretation:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4823,7 +4861,7 @@ The output above has a clear interpretation:
 \item
   The 1\% increase in average petrol price leads to the decrease in the number of killed and injured drivers by 0.292\% and 0.239\% respectively;
 \item
-  The introduction of law on mandatory seatbelts has reduced the number of killed and injured drivers by approximately 10\% each;
+  The introduction of law on mandatory seatbelts has reduced the number of killed and injured drivers by approximately 10\% each.
 \end{enumerate}
 
 While we could fit two independent regression models instead of one complex-valued, it would not be able to capture the cARIMA elements the way they are captured in the model above. Arguably, number of killed and injured drivers have a complex dynamic relation, which is captured by the cARIMA(1,0,1) part of the model.
