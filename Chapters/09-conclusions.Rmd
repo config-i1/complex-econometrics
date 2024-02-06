@@ -1,2 +1,7 @@
-# Conclusions {#Conclusions}
+# Conclusions {-}
 
+Now that we have reached the final chapter of this book, we want to discuss the main limitations and future work in the area of complex-valued economics.
+
+Vector cARIMA
+
+There were also several other models developed using complex variables. They lie outside of the scope of this book, but they are worth mentioning for completeness.

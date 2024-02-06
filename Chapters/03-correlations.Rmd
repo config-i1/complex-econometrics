@@ -15,6 +15,8 @@ For modelling purposes, it might be useful to have the information about all pos
 In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \@ref(fig:crvScatterplots) for two generated complex random variables $\underline{x}$ and $\underline{y}$, created using `cplot()` function from `complex` package in R.
 
 ```{r crvScatterplots, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
+# Random seed for reproducibility
+set.seed(41)
 # Create real part of a c.r.v. x
 xr <- rnorm(1000,0,10)
 # Create a c.r.v. x
@@ -84,6 +86,9 @@ The literature knows two correlation coefficients for complex variables [@ref]: 
 Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances [as done, for example, by @Panchev1971] then the value of correlation coefficient will be ambiguous, implying that the correlation between $\underline{x}$ and $\underline{y}$ differs from the correlation between $\underline{y}$ and $\underline{x}$. Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between $\underline{x}$ and $\underline{y}$, the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
 
 ```{r}
+# Random seed for reproducibility
+set.seed(41)
+# Generate the explanatory variable
 x <- complex(real=rnorm(100,0,10), imaginary=rnorm(100,0,10))
 y <- (10 + 15i) + (1 + 1i) * x
 # Variant 1

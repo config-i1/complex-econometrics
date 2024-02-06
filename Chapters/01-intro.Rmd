@@ -518,6 +518,8 @@ or
 In R, the first moment can be obtained via the `mean()` function from `stats` package:
 
 ```{r}
+# Random seed for reproducibility
+set.seed(41)
 # Create a random variable
 x <- complex(real=rnorm(100, mean=50, sd=10),
              imaginary=rnorm(100, mean=100, sd=10))
@@ -590,6 +592,8 @@ These individual real-valued moments might be useful in case of hypothesis testi
 In R, the conjugate and direct variances are available in `cvar()` function of `complex` package.
 
 ```{r}
+# Random seed for reproducibility
+set.seed(41)
 # Create a random variable
 x <- complex(real=rnorm(100, mean=50, sd=5),
              imaginary=rnorm(100, mean=100, sd=10))
@@ -673,6 +677,8 @@ Note that none of these moments on its own gives enough information about the re
 In R, the complex covariances are implemented in `ccov()` function from the `complex` package:
 
 ```{r}
+# Random seed for reproducibility
+set.seed(41)
 # Create a random variable x
 x <- complex(real=rnorm(100, mean=50, sd=5),
              imaginary=rnorm(100, mean=100, sd=10))
@@ -704,6 +710,8 @@ Similarly to the real valued random variables, complex random variables can foll
 In general, it is reasonable to assume that a c.r.v. has a distribution of a shape of a circle or ellipse on the complex plane. This becomes more apparent if we consider the exponential form of a c.r.v. \@ref(eq:complexNumberExponential) and consider both magnitude and the angle as random variables. In the simplest case, when they are not correlated and we consider a variable that is centred around the origin, the randomness coming from both of these components will result in a circle on the complex plane, see the following example in R (and Figure \@ref(fig:crvGeneratedCircle)):
 
 ```{r crvGeneratedCircle, fig.cap="C.r.v. generated from a uniform distribuiton.", fig.width=4, fig.height=4}
+# Random seed for reproducibility
+set.seed(41)
 # Generate magnitudes from the uniform distribution
 R <- runif(1000,0,10)
 # Generate angles from the uniform distribution
@@ -777,6 +785,7 @@ The overall conjugate standard deviation $\sigma_x$ represents the radius of the
 Figure \@ref(fig:plotlyCNormal) shows the PDF of $x \sim \mathcal{CN}(100+100i,100,-20+i30)$, while Figure \@ref(fig:plotlyCNormalHeatmap) shows the heatmap of the same PDF. The brighter areas in both Figures correspond to the higher values of PDF. For each specific value of density, there is a multitude of values of $x$, forming an ellipse of a specific length.
 
 ```{r echo=FALSE, eval=FALSE}
+set.seed(41)
 sigma <- 100
 varsigma <- -20 + 30i
 Sigma <- matrix(c((sigma+Re(varsigma)),Im(varsigma),Im(varsigma),(sigma-Re(varsigma)))/2,2,2)

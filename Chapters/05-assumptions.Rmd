@@ -187,7 +187,7 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 ```{r fig.width=4, fig.height=4, fig.cap="Non-linear transformation of a complex variable that changes linearly."}
 x <- 1:100 + 1:100*1i
-y <- x^(0.5+0.5i)
+y <- x**(0.5+0.5i)
 cplot(x, y)
 ```
 
@@ -326,7 +326,7 @@ In R, there are functions `cacf()` and `cpacf()` in the `complex` package that i
 
 ```{r}
 # Generate complex data with an autocorrelation of order 1
-# For reproducibility, fix random seed
+# Random seed for reproducibility
 set.seed(41)
 # Number of observations
 obs <- 100
@@ -541,14 +541,14 @@ First, we do diagnostics based on correlation matrices that we discussed earlier
 
 We start with the conjugate complex correlation matrix:
 ```{r}
-ccor(data1,method="conjugate") |> round(3)
+ccor(data1, method="conjugate") |> round(3)
 ```
 
 The output above shows that $\underline{x}_{1}$ is strongly correlated with $\underline{x}_{2}$ - the correlation coefficient between them is 0.999. This agrees with how we generated the data, and we can expect issues when estimating the model and/or generating the standard errors of parameters.
 
 The second output is for the direct complex correlation matrix:
 ```{r}
-ccor(data1,method="direct") |> round(3)
+ccor(data1, method="direct") |> round(3)
 ```
 
 While some correlation coefficients in the output above are hard to interpret (because some of them are above one), the real part of the one between the explanatory variables equals to one (after rounding), which also indicates a strong relation between them.
@@ -556,7 +556,7 @@ While some correlation coefficients in the output above are hard to interpret (b
 We also calculate Pearson's correlation matrix for the MDS-transformed complex variables to get another look at the problem:
 
 ```{r}
-ccor(data1,method="pearson") |> round(3)
+ccor(data1, method="pearson") |> round(3)
 ```
 
 And as we can see from the output above, the explanatory variables $\underline{x}_{1}$ and $\underline{x}_{2}$ are indeed strongly linearly related.
@@ -607,18 +607,18 @@ As a side note, in this scenario, we would not be able to get efficient and unbi
 In this scenario, we have strong correlation between real parts of explanatory variables, but not between the complex ones. We would expect the real-valued regression to fail in this case, but the cLR might still be estimable. We start the demonstration with the same set of outputs as before:
 
 ```{r}
-ccor(data2,method="conjugate") |> round(3)
+ccor(data2, method="conjugate") |> round(3)
 ```
 The conjugate correlation above shows that there is a linear relation between $\underline{x}_{1}$ and $\underline{x}_{2}$, but it is not sever, so we should be able to estimate the model and get reasonable estimates of parameters.
 
 
 ```{r}
-ccor(data2,method="direct") |> round(3)
+ccor(data2, method="direct") |> round(3)
 ```
 The direct correlation agrees with the conjugate one in general, but the fact that the correlation between $\underline{x}_{1}$ and $\underline{x}_{2}$ has the real part above one, implies that the relation between the variables is stronger than expected by the previous output.
 
 ```{r}
-ccor(data2,method="pearson") |> round(3)
+ccor(data2, method="pearson") |> round(3)
 ```
 Pearson's correlations on the MDS variables shows that there is a very strong relation between $\underline{x}_{1}$ and $\underline{x}_{2}$, although we cannot say for sure what causes it.
 

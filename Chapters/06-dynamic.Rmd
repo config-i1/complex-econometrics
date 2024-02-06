@@ -401,7 +401,7 @@ set.seed(41)
 # Number of observations
 obs <- 110
 # Parameters
-b0 <- 100+50i
+b0 <- 100 + 50i
 theta1 <- -0.8 + 0.2i
 # Complex white noise
 e <- rcnorm(obs, 0, sigma2=25, varsigma2=16+9i)
