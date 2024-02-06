@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-02-05}
+\date{2024-02-06}
 
 \begin{document}
 \maketitle
@@ -665,7 +665,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 48.9466+100.1068i
+## [1] 49.4561+101.4118i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -738,7 +738,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 115.6293+0i
+## 114.9432+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -750,8 +750,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -69.66718+2.45558i
+##     Direct variance 
+## -56.08775+12.45981i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -777,8 +777,8 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 
 \begin{verbatim}
 ##           x_r       x_i
-## x_r 22.981066  1.227792
-## x_i  1.227792 92.648249
+## x_r 29.427747  6.229906
+## x_i  6.229906 85.515500
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -790,7 +790,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2127.648
+## [1] 2477.717
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -857,7 +857,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 65.85825-91.84292i
+## 47.73962-80.73975i
 \end{verbatim}
 
 \begin{Shaded}
@@ -869,8 +869,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-## Direct covariance 
-## -46.449+38.11093i
+##   Direct covariance 
+## -29.21954+41.92414i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -884,8 +884,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -57.84629- 2.52455i -46.44900+38.11093i
-## y -46.44900+38.11093i -19.98302+48.25736i
+## x -73.88289- 4.17533i -29.21954+41.92414i
+## y -29.21954+41.92414i  19.04680+ 0.07540i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -1952,7 +1952,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9977542
+## [1] 0.9975301
 \end{verbatim}
 
 As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
@@ -2026,10 +2026,24 @@ or in an even shorter exponential form \({\varrho}_{x,y} = |{\varrho}_{x,y}| e ^
 and
 \begin{equation}
     \resizebox{0.85\textwidth}{!}{$
-    \arg({\varrho}_{x,y}) = \left(\phi_2 - \frac{\phi_1}{2} \right) = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right) $}.
+    \begin{aligned}
+    & \arg({\varrho}_{x,y}) = \phi_2 - \frac{\phi_1}{2} = \\
+    & \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)
+    \end{aligned}$}.
     \label{eq:correlationPseudoExpandedExpPhi}
 \end{equation}
 Analysing \eqref{eq:correlationPseudoExpandedExpR} \eqref{eq:correlationPseudoExpandedExpPhi}, we can identify several conditions that lead to specific values of the direct correlation coefficient:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  It is pure real valued, when all covariances are zero, i.e.~there is no linear relation between parts of variables;
+\item
+  Another situation with real valued direct correlation is when cross-covariances are zero and variances of respective real and imaginary parts are equal. This is more exotic case than (1);
+\item
+  In general, the number will be real when \(\phi_2 = \frac{\phi_1}{2}\), which assumes that there is a multitude of combinations of covariances and variances that will satisfy the condition. Analysing all of them becomes close to impossible due to the non-linearity in the condition \eqref{eq:correlationPseudoExpandedExpPhi}.
+\end{enumerate}
 
 \hypertarget{correlationMDSPearson}{%
 \section{Pearson's correlation}\label{correlationMDSPearson}}
@@ -2048,7 +2062,7 @@ We can also use MDS to analyse the projections of complex variables on x and y a
 
 \begin{verbatim}
 ##           [,1]
-## [1,] 0.9982562
+## [1,] 0.9855205
 \end{verbatim}
 
 Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does exactly the same thing in one line of code:
@@ -2074,10 +2088,10 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 
 \begin{verbatim}
 ##       x_r    x_i    y_r    y_i
-## x_r 1.000  0.041  0.619  0.643
-## x_i 0.041  1.000 -0.756  0.788
-## y_r 0.619 -0.756  1.000 -0.197
-## y_i 0.643  0.788 -0.197  1.000
+## x_r 1.000  0.022  0.690  0.706
+## x_i 0.022  1.000 -0.706  0.720
+## y_r 0.690 -0.706  1.000 -0.022
+## y_i 0.706  0.720 -0.022  1.000
 \end{verbatim}
 
 This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
