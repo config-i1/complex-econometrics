@@ -139,7 +139,9 @@ When it comes to the interpretation of the coefficients, the conjugate one is a 
     {\rho}_{x,y} = \frac{\sqrt{(\sigma_{x_r, y_r} + \sigma_{x_i, y_i})^2 + (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})^2}}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
     (\#eq:correlationConventionalExpanded)
 \end{equation}
-As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient is a real number, showing the average strength of linear relation between two complex variables $\underline{x}$ and $\underline{y}$. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables $\underline{x}$ and $\underline{y}$ and when the cross-covariances are equal (i.e. $\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$). A special case of this condition is when all the covariances are equal to zero. On the other hand, it will be close to one if the complex relation between variables $\underline{y}$ and $\underline{x}$ is close to the linear, i.e. $\underline{a}_1 = \frac{1}{\underline{b}_1}$. However, it does not show the direction of the relation, so it cannot be negative because of the geometric mean in the numerator.
+As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient is a real number, showing the average strength of linear relation between two complex variables $\underline{x}$ and $\underline{y}$. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables $\underline{x}$ and $\underline{y}$ and when the cross-covariances are equal (i.e. $\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$). A special case of this condition is when all the covariances are equal to zero. Another condition leading to zero conjugate correlation coefficient is $\sigma_{x_r, y_r} = - \sigma_{x_i, y_i}$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$, which means that if the coefficient equals to zero, this does not mean that the there is no linear relation between two complex variables.
+
+On the other hand, the coefficient will be close to one if the complex relation between variables $\underline{y}$ and $\underline{x}$ is close to the linear, i.e. $\underline{a}_1 = \frac{1}{\underline{b}_1}$. However, it does not show the direction of the relation, because it cannot be negative due to the calculation of the magnitude in the numerator of \@ref(eq:correlationConventionalExpanded).
 
 In order to better understand what the conjugate correlation means, we expand the formula \@ref(eq:correlationConventionalEstimate) by substituting $\underline{b}_1 = b_{1,r} + i b_{1,i}$ and $\underline{a}_1 = a_{1,r} + i a_{1,i}$:
 \begin{equation}
@@ -167,6 +169,8 @@ As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitu
 An R example of a conjugate correlation (via `ccor()` function from `complex` package) with the aforementioned values of parameters is shown below and in Figure \@ref(fig:crvCorConjugate).
 
 ```{r crvCorConjugate, fig.width=4, fig.height=4, fig.cap="Two complex variables with conjugate correlation being close to one."}
+# Set seed for reproducibility
+set.seed(41)
 # Create a c.r.v. x
 x <- complex(real=rnorm(100,0,10), imaginary=rnorm(100,0,10))
 # Create a c.r.v. y
@@ -202,8 +206,6 @@ Given that it contains a complex number in the denominator, it is more complicat
 
 Note however that due to the division by a complex number, the value of 1 can in theory also be obtained due to the values of direct variance of variables $\underline{x}$ and/or $\underline{y}$.
 
-Coefficient equal to -1 and to i.
-
 To get other insights about the direct correlation coefficient, we express its denominator in the exponential form:
 \begin{equation}
     {\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}} = R_1^{\frac{1}{2}} e^{i \frac{\phi_1}{2}},
@@ -238,38 +240,26 @@ and
 \begin{equation}
     \resizebox{0.85\textwidth}{!}{$
     \begin{aligned}
-    \arg({\varrho}_{x,y}) = & \phi_2 - \frac{\phi_1}{2} = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \\
+    \arg({\varrho}_{x,y}) = & \phi_2 - \frac{1}{2} \phi_1 = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \\
     & \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)
     \end{aligned}$}.
     (\#eq:correlationPseudoExpandedExpPhi)
 \end{equation}
 Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpandedExpPhi), we can identify several conditions that lead to specific values of the direct correlation coefficient:
 
-1. It is pure real valued, when all covariances are zero, i.e. there is no linear relation between parts of variables;
-2. Another situation with real valued direct correlation is when cross-covariances are zero and variances of respective real and imaginary parts are equal. This is more exotic case than (1);
+1. It is pure real valued, when all covariances are zero, i.e. there is no linear relation between parts of variables.
+2. Another situation with real valued direct correlation is when cross-covariances are zero and variances of respective real and imaginary parts are equal. This is a more exotic case than (1);
 3. In general, the number will be real when $\phi_2 = \frac{\phi_1}{2}$, which assumes that there is a multitude of combinations of covariances and variances that will satisfy the condition. Analysing all of them becomes close to impossible due to the non-linearity in the condition \@ref(eq:correlationPseudoExpandedExpPhi).
 
+In the case (1), the magnitude of the coefficient, $\frac{R_2}{\sqrt{R_1}}$ will be equal to zero as well, which agrees with what we discussed earlier. In addition, the analysis of the magnitude \@ref(eq:correlationPseudoExpandedExpR) shows that in an exotic case of $\sigma_{x_r, y_r} = \sigma_{x_i, y_i}$ and $\sigma_{x_i, y_r} = - \sigma_{x_r, y_i}$, the value of the coefficient of the direct correlation will also be equal to zero. All of this means that in general, making solid conclusions just based on the direct correlation coefficient is not possible - we need to calculate both the direct and the conjugate correlations to get a full picture about the relations between two complex variables.
 
+For the same example as above, the direct correlation coefficient is:
 
-<!-- Trying to derive |rho|=1 -->
-<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 = \sqrt{\left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2}$ -->
+```{r}
+ccor(x, y, method="direct")
+```
 
-<!-- $\left((\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 +  (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 \right)^2 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
-
-<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i} \right)^2+ 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
-
-<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 - 8 (\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \sigma_{y_r,y_i} + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 +    4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
-
-<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 - 8 (\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \sigma_{y_r,y_i} + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 + 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} \right)^2  + 8(\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} + 4\left((\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
-
-<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left((\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) \right)^2 + \left(4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}\right)^2 + 4 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} \right)^2 + 4\left((\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)^2$ -->
-
-
-<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = (\sigma_{x_r}^2 - \sigma_{x_i}^2)^2\left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) + 4 \sigma_{x_r,x_i}^2 \left((\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + \sigma_{y_r,y_i}^2 \right)$ -->
-
-<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = (\sigma_{x_r}^2 - \sigma_{x_i}^2)^2\left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) + 4 \sigma_{x_r,x_i}^2 \left((\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4 \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
-
-<!-- $(\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^4 + 2 (\sigma_{x_r, y_r} - \sigma_{x_i, y_i})^2 (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^2 + (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})^4 = \left(\left(\sigma_{x_r}^2 - \sigma_{x_i}^2\right)^2 + 4 \sigma_{x_r,x_i}^2 \right) \left( (\sigma_{y_r}^2 - \sigma_{y_i}^2)^2 + 4  \sigma_{y_r,y_i}^2 \right) - 12 \sigma_{x_r,x_i}^2 \sigma_{y_r,y_i}^2$ -->
+The fact that the coefficient is close to one, means that the relation between the two complex variables is close to linear. On the other hand, the imaginary part being close to zero implies that the real and imaginary parts of the variables $\underline{x}$ and $\underlin{y}$ are close to each other (this is how we generated the data). As we see, the direct correlation gives additional information that the conjugate one does not provide. This demonstrates that they should be used in the analysis of relations jointly.
 
 
 ## Pearson's correlation {#correlationMDSPearson}
