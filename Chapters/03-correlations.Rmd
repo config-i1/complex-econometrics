@@ -238,8 +238,8 @@ and
 \begin{equation}
     \resizebox{0.85\textwidth}{!}{$
     \begin{aligned}
-    & \arg({\varrho}_{x,y}) = \phi_2 - \frac{\phi_1}{2} = \\
-    & \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)
+    \arg({\varrho}_{x,y}) = & \phi_2 - \frac{\phi_1}{2} = \arctan \left( \frac{\sigma_{x_i, y_r} + \sigma_{x_r, y_i}}{\sigma_{x_r, y_r} - \sigma_{x_i, y_i}} \right) - \\
+    & \frac{1}{2}\arctan \left(\frac{2 \left( (\sigma_{x_r}^2 - \sigma_{x_i}^2) \sigma_{y_r,y_i} + (\sigma_{y_r}^2 - \sigma_{y_i}^2) \sigma_{x_r,x_i} \right)}{(\sigma_{x_r}^2 - \sigma_{x_i}^2)(\sigma_{y_r}^2 - \sigma_{y_i}^2) - 4 \sigma_{x_r,x_i} \sigma_{y_r,y_i}}\right)
     \end{aligned}$}.
     (\#eq:correlationPseudoExpandedExpPhi)
 \end{equation}
