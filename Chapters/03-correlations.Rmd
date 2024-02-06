@@ -259,7 +259,7 @@ For the same example as above, the direct correlation coefficient is:
 ccor(x, y, method="direct")
 ```
 
-The fact that the coefficient is close to one, means that the relation between the two complex variables is close to linear. On the other hand, the imaginary part being close to zero implies that the real and imaginary parts of the variables $\underline{x}$ and $\underlin{y}$ are close to each other (this is how we generated the data). As we see, the direct correlation gives additional information that the conjugate one does not provide. This demonstrates that they should be used in the analysis of relations jointly.
+The fact that the coefficient is close to one, means that the relation between the two complex variables is close to linear. On the other hand, the imaginary part being close to zero implies that the real and imaginary parts of the variables $\underline{x}$ and $\underline{y}$ are close to each other (this is how we generated the data). As we see, the direct correlation gives additional information that the conjugate one does not provide. This demonstrates that they should be used in the analysis of relations jointly.
 
 
 ## Pearson's correlation {#correlationMDSPearson}
