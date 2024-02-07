@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  6 FEB 2024 22:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  7 FEB 2024 22:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -759,7 +759,7 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 [22]
 
 Package natbib Warning: Citation `reference' on page 23 undefined on input line
- 674.
+ 676.
 
 [23]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvMome
@@ -769,23 +769,23 @@ vMomentSecondVariance-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 MomentSecondVariance-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvMomentSecondVariance-1.pdf  used on input line 692.
+les/figure-latex/crvMomentSecondVariance-1.pdf  used on input line 694.
 (pdftex.def)             Requested size: 256.95937pt x 217.8132pt.
 
 Package natbib Warning: Citation `Picinbono' on page 24 undefined on input line
- 698.
+ 700.
 
 
 Package natbib Warning: Citation `reference' on page 24 undefined on input line
- 698.
+ 700.
 
 
 Package natbib Warning: Citation `reference' on page 24 undefined on input line
- 711.
+ 713.
 
 
 Package natbib Warning: Citation `reference' on page 24 undefined on input line
- 711.
+ 713.
 
 
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
@@ -797,11 +797,11 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 rvMomentSecondVariance-1.pdf>] [25]
 
 Package natbib Warning: Citation `referenceSBA' on page 26 undefined on input l
-ine 796.
+ine 800.
 
 
 Package natbib Warning: Citation `Picinbono' on page 26 undefined on input line
- 807.
+ 811.
 
 
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
@@ -812,55 +812,42 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 [26]
 
 Package natbib Warning: Citation `reference' on page 27 undefined on input line
- 824.
+ 828.
 
 [27]
-<Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvGene
-ratedCircle-1.pdf, id=474, 255.95625pt x 214.8025pt>
-File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
-vGeneratedCircle-1.pdf Graphic file (type pdf)
-<use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
-GeneratedCircle-1.pdf>
-Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvGeneratedCircle-1.pdf  used on input line 915.
-(pdftex.def)             Requested size: 255.95561pt x 214.80197pt.
-
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 28 \T1/lmr/m/sl/10 CHAPTER 1.  INTRODUCTION TO THEORY OF COMPLEX
  VARIABLES
  []
 
 [28]
+<Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvGene
+ratedCircle-1.pdf, id=480, 255.95625pt x 215.80624pt>
+File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
+vGeneratedCircle-1.pdf Graphic file (type pdf)
+<use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
+GeneratedCircle-1.pdf>
+Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
+les/figure-latex/crvGeneratedCircle-1.pdf  used on input line 923.
+(pdftex.def)             Requested size: 255.95561pt x 215.80571pt.
 
 Package natbib Warning: Citation `refGoodman' on page 29 undefined on input lin
-e 926.
+e 934.
+
+
+Underfull \vbox (badness 3229) has occurred while \output is active []
 
 [29 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 rvGeneratedCircle-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvNorm
-alMoments-1.pdf, id=498, 256.96pt x 217.81375pt>
+alMoments-1.pdf, id=497, 256.96pt x 217.81375pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vNormalMoments-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 NormalMoments-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvNormalMoments-1.pdf  used on input line 939.
+les/figure-latex/crvNormalMoments-1.pdf  used on input line 947.
 (pdftex.def)             Requested size: 256.95937pt x 217.8132pt.
-<./images/plotlyCNormal.png, id=502, 1927.2pt x 1016.79875pt>
-File: ./images/plotlyCNormal.png Graphic file (type png)
-<use ./images/plotlyCNormal.png>
-Package pdftex.def Info: ./images/plotlyCNormal.png  used on input line 949.
-(pdftex.def)             Requested size: 344.99901pt x 182.0229pt.
-<./images/plotlyCNormalHeatmap.png, id=504, 1927.2pt x 1016.79875pt>
-File: ./images/plotlyCNormalHeatmap.png Graphic file (type png)
-<use ./images/plotlyCNormalHeatmap.png>
-Package pdftex.def Info: ./images/plotlyCNormalHeatmap.png  used on input line 
-955.
-(pdftex.def)             Requested size: 344.99901pt x 182.0229pt.
-
-Package natbib Warning: Citation `referenceHere' on page 30 undefined on input 
-line 959.
-
 
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 30 \T1/lmr/m/sl/10 CHAPTER 1.  INTRODUCTION TO THEORY OF COMPLEX
@@ -868,14 +855,29 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
  []
 
 [30 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
-rvNormalMoments-1.pdf>] [31 <./images/plotlyCNormal.png> <./images/plotlyCNorma
-lHeatmap.png>]
+rvNormalMoments-1.pdf>]
+<./images/plotlyCNormal.png, id=516, 1927.2pt x 1016.79875pt>
+File: ./images/plotlyCNormal.png Graphic file (type png)
+<use ./images/plotlyCNormal.png>
+Package pdftex.def Info: ./images/plotlyCNormal.png  used on input line 957.
+(pdftex.def)             Requested size: 344.99901pt x 182.0229pt.
+<./images/plotlyCNormalHeatmap.png, id=518, 1927.2pt x 1016.79875pt>
+File: ./images/plotlyCNormalHeatmap.png Graphic file (type png)
+<use ./images/plotlyCNormalHeatmap.png>
+Package pdftex.def Info: ./images/plotlyCNormalHeatmap.png  used on input line 
+963.
+(pdftex.def)             Requested size: 344.99901pt x 182.0229pt.
+
+Package natbib Warning: Citation `referenceHere' on page 31 undefined on input 
+line 967.
+
+[31 <./images/plotlyCNormal.png>]
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 32 \T1/lmr/m/sl/10 CHAPTER 1.  INTRODUCTION TO THEORY OF COMPLEX
  VARIABLES
  []
 
-[32] [33]
+[32 <./images/plotlyCNormalHeatmap.png>] [33]
 Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 34 \T1/lmr/m/sl/10 CHAPTER 1.  INTRODUCTION TO THEORY OF COMPLEX
  VARIABLES
@@ -892,13 +894,13 @@ Overfull \hbox (6.70589pt too wide) has occurred while \output is active
 ]
 Chapter 2.
 [37] [38]
-Overfull \hbox (7.03354pt too wide) detected at line 1186
+Overfull \hbox (7.03354pt too wide) detected at line 1194
 [][][] [] \OML/lmm/m/it/10 :
  []
 
 [39] [40] [41] [42] [43]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1393.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1403.
 [44]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/clsScat
 ter-1.pdf, id=694, 436.63126pt x 250.9375pt>
@@ -907,58 +909,65 @@ sScatter-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cls
 Scatter-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/clsScatter-1.pdf  used on input line 1437.
+les/figure-latex/clsScatter-1.pdf  used on input line 1447.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 
-Package natbib Warning: Citation `Gower' on page 45 undefined on input line 144
+Package natbib Warning: Citation `Gower' on page 45 undefined on input line 145
 3.
 
 [45]
-Underfull \vbox (badness 4072) detected at line 1484
+Underfull \vbox (badness 10000) detected at line 1494
  []
+
+
+Underfull \vbox (badness 1688) has occurred while \output is active []
 
 [46 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 lsScatter-1.pdf>]
 <images/CLSPlot.png, id=715, 1508.63625pt x 939.51pt>
 File: images/CLSPlot.png Graphic file (type png)
 <use images/CLSPlot.png>
-Package pdftex.def Info: images/CLSPlot.png  used on input line 1488.
+Package pdftex.def Info: images/CLSPlot.png  used on input line 1498.
 (pdftex.def)             Requested size: 344.99933pt x 214.84987pt.
 [47 <./images/CLSPlot.png>]
 
 Package natbib Warning: Citation `Snyder2017' on page 48 undefined on input lin
-e 1514.
+e 1524.
 
 [48]
 
 Package natbib Warning: Citation `referenceLikelihoodPaper' on page 49 undefine
-d on input line 1542.
+d on input line 1552.
 
 [49]
+Underfull \vbox (badness 10000) detected at line 1631
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[50]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
-ersUCDV-1.pdf, id=758, 568.1225pt x 186.6975pt>
+ersUCDV-1.pdf, id=762, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/pa
 rametersUCDV-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersUCDV-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersUCDV-1.pdf  used on input line 1619.
+les/figure-latex/parametersUCDV-1.pdf  used on input line 1637.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
-ersPC-1.pdf, id=760, 568.1225pt x 186.6975pt>
+ersPC-1.pdf, id=764, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/pa
 rametersPC-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersPC-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersPC-1.pdf  used on input line 1627.
+les/figure-latex/parametersPC-1.pdf  used on input line 1645.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
-
-Underfull \vbox (badness 7907) has occurred while \output is active []
-
-[50] [51 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-la
-tex/parametersUCDV-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometric
-s_files/figure-latex/parametersPC-1.pdf>]
+[51 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/p
+arametersUCDV-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fil
+es/figure-latex/parametersPC-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
 ersUCSV-1.pdf, id=793, 568.1225pt x 186.6975pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/pa
@@ -966,7 +975,7 @@ rametersUCSV-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersUCSV-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersUCSV-1.pdf  used on input line 1637.
+les/figure-latex/parametersUCSV-1.pdf  used on input line 1655.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
 ersFR-1.pdf, id=796, 568.1225pt x 186.6975pt>
@@ -975,7 +984,7 @@ rametersFR-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersFR-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersFR-1.pdf  used on input line 1647.
+les/figure-latex/parametersFR-1.pdf  used on input line 1665.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
 ersCorError-1.pdf, id=798, 568.1225pt x 186.6975pt>
@@ -984,7 +993,7 @@ rametersCorError-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersCorError-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersCorError-1.pdf  used on input line 1655.
+les/figure-latex/parametersCorError-1.pdf  used on input line 1673.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/paramet
 ersHVError-1.pdf, id=800, 568.1225pt x 186.6975pt>
@@ -993,7 +1002,7 @@ rametersHVError-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/par
 ametersHVError-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/parametersHVError-1.pdf  used on input line 1665.
+les/figure-latex/parametersHVError-1.pdf  used on input line 1683.
 (pdftex.def)             Requested size: 345.01115pt x 113.37822pt.
 [52 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/p
 arametersUCSV-1.pdf>] [53 <./Svetunkov---Svetunkov---Complex-Valued-Econometric
@@ -1012,10 +1021,10 @@ vScatterplots-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 Scatterplots-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvScatterplots-1.pdf  used on input line 1718.
+les/figure-latex/crvScatterplots-1.pdf  used on input line 1738.
 (pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-727.
+747.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1028,25 +1037,28 @@ ANDOM VARIABLES
 rvScatterplots-1.pdf>]
 
 Package natbib Warning: Citation `refMDS' on page 57 undefined on input line 17
-63.
+83.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvScat
-terplotMDS-1.pdf, id=889, 253.94875pt x 212.795pt>
+terplotMDS-1.pdf, id=888, 258.9675pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vScatterplotMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 ScatterplotMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvScatterplotMDS-1.pdf  used on input line 1783.
-(pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
+les/figure-latex/crvScatterplotMDS-1.pdf  used on input line 1803.
+(pdftex.def)             Requested size: 258.98264pt x 212.80745pt.
 
-Package natbib Warning: Citation `ref' on page 57 undefined on input line 1792.
+Package natbib Warning: Citation `ref' on page 57 undefined on input line 1812.
 
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [57]
 
 Package natbib Warning: Citation `Panchev1971' on page 58 undefined on input li
-ne 1810.
+ne 1830.
 
 
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
@@ -1058,7 +1070,7 @@ ANDOM VARIABLES
 rvScatterplotMDS-1.pdf>]
 
 Package natbib Warning: Citation `refPearson' on page 59 undefined on input lin
-e 1863.
+e 1886.
 
 [59]
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
@@ -1068,33 +1080,35 @@ ANDOM VARIABLES
 
 [60]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugate-1.pdf, id=944, 262.9825pt x 262.9825pt>
+onjugate-1.pdf, id=943, 262.9825pt x 262.9825pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugate-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugate-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvCorConjugate-1.pdf  used on input line 1947.
+les/figure-latex/crvCorConjugate-1.pdf  used on input line 1970.
 (pdftex.def)             Requested size: 262.99387pt x 262.99387pt.
-[61 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
-rvCorConjugate-1.pdf>]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crvCorC
-onjugateMDS-1.pdf, id=959, 253.94875pt x 212.795pt>
+onjugateMDS-1.pdf, id=945, 253.94875pt x 212.795pt>
 File: Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/cr
 vCorConjugateMDS-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/crv
 CorConjugateMDS-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1972.
+les/figure-latex/crvCorConjugateMDS-1.pdf  used on input line 1995.
 (pdftex.def)             Requested size: 253.95586pt x 212.80095pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[61]
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 62 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
 ANDOM VARIABLES
  []
 
 [62 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
-rvCorConjugateMDS-1.pdf>] [63]
+rvCorConjugate-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
+les/figure-latex/crvCorConjugateMDS-1.pdf>] [63]
 Overfull \hbox (39.34532pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 64 \T1/lmr/m/sl/10 CHAPTER 3.  CORRELATION ANALYSIS OF COMPLEX R
 ANDOM VARIABLES
@@ -1113,7 +1127,7 @@ Chapter 4.
 [67] [68] [69] [70]
 
 Package natbib Warning: Citation `Lutkepohl2005' on page 71 undefined on input 
-line 2274.
+line 2297.
 
 [71] [72] [73] [74] [75] [76] [77]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/CLRArti
@@ -1123,7 +1137,7 @@ RArtificialForecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/CLR
 ArtificialForecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/CLRArtificialForecast-1.pdf  used on input line 2587.
+les/figure-latex/CLRArtificialForecast-1.pdf  used on input line 2610.
 (pdftex.def)             Requested size: 344.9987pt x 233.56105pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1136,7 +1150,7 @@ Chapter 5.
 [83]
 
 Package natbib Warning: Citation `econometrics' on page 84 undefined on input l
-ine 2719.
+ine 2742.
 
 [84] [85] [86] [87]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed
@@ -1146,7 +1160,7 @@ named-chunk-34-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unn
 amed-chunk-34-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/unnamed-chunk-34-1.pdf  used on input line 2877.
+les/figure-latex/unnamed-chunk-34-1.pdf  used on input line 2900.
 (pdftex.def)             Requested size: 262.99387pt x 265.00146pt.
 [88 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/u
 nnamed-chunk-34-1.pdf>]
@@ -1157,7 +1171,7 @@ nlinearLinStdResid-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/non
 linearLinStdResid-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/nonlinearLinStdResid-1.pdf  used on input line 2925.
+les/figure-latex/nonlinearLinStdResid-1.pdf  used on input line 2948.
 (pdftex.def)             Requested size: 344.9987pt x 213.71599pt.
 [89 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/n
 onlinearLinStdResid-1.pdf>]
@@ -1168,7 +1182,7 @@ nlinearStdResid-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/non
 linearStdResid-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/nonlinearStdResid-1.pdf  used on input line 2949.
+les/figure-latex/nonlinearStdResid-1.pdf  used on input line 2972.
 (pdftex.def)             Requested size: 344.9987pt x 215.24254pt.
 [90 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/n
 onlinearStdResid-1.pdf>]
@@ -1179,7 +1193,7 @@ nlinearData-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/non
 linearData-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/nonlinearData-1.pdf  used on input line 2972.
+les/figure-latex/nonlinearData-1.pdf  used on input line 2995.
 (pdftex.def)             Requested size: 345.01372pt x 235.30539pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/nonline
 arDataCLog-1.pdf, id=1328, 457.71pt x 312.16624pt>
@@ -1188,7 +1202,7 @@ nlinearDataCLog-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/non
 linearDataCLog-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/nonlinearDataCLog-1.pdf  used on input line 2992.
+les/figure-latex/nonlinearDataCLog-1.pdf  used on input line 3015.
 (pdftex.def)             Requested size: 345.01372pt x 235.30539pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/nonline
 arDataLog-1.pdf, id=1330, 457.71pt x 312.16624pt>
@@ -1197,7 +1211,7 @@ nlinearDataLog-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/non
 linearDataLog-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/nonlinearDataLog-1.pdf  used on input line 3000.
+les/figure-latex/nonlinearDataLog-1.pdf  used on input line 3023.
 (pdftex.def)             Requested size: 345.01372pt x 235.30539pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1208,11 +1222,11 @@ _files/figure-latex/nonlinearDataCLog-1.pdf> <./Svetunkov---Svetunkov---Complex
 -Valued-Econometrics_files/figure-latex/nonlinearDataLog-1.pdf>]
 
 Package natbib Warning: Citation `Lutkepohl' on page 93 undefined on input line
- 3038.
+ 3061.
 
 
 Package natbib Warning: Citation `SvetunkovVETS' on page 93 undefined on input 
-line 3038.
+line 3061.
 
 [93]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/heteroD
@@ -1222,11 +1236,11 @@ teroDiagnostics-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/het
 eroDiagnostics-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/heteroDiagnostics-1.pdf  used on input line 3051.
+les/figure-latex/heteroDiagnostics-1.pdf  used on input line 3074.
 (pdftex.def)             Requested size: 344.9987pt x 213.71599pt.
 
 Package natbib Warning: Citation `ACFPACFReferences' on page 94 undefined on in
-put line 3062.
+put line 3085.
 
 [94 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/h
 eteroDiagnostics-1.pdf>] [95]
@@ -1237,7 +1251,7 @@ mplexAR1ACFConj-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1ACFConj-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1ACFConj-1.pdf  used on input line 3098.
+les/figure-latex/complexAR1ACFConj-1.pdf  used on input line 3121.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1PACFConj-1.pdf, id=1411, 444.66125pt x 282.05376pt>
@@ -1246,7 +1260,7 @@ mplexAR1PACFConj-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1PACFConj-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1PACFConj-1.pdf  used on input line 3114.
+les/figure-latex/complexAR1PACFConj-1.pdf  used on input line 3137.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 [96 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 omplexAR1ACFConj-1.pdf>]
@@ -1257,7 +1271,7 @@ mplexAR1ACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1ACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1ACFDir-1.pdf  used on input line 3130.
+les/figure-latex/complexAR1ACFDir-1.pdf  used on input line 3153.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1PACFDir-1.pdf, id=1430, 444.66125pt x 282.05376pt>
@@ -1266,7 +1280,7 @@ mplexAR1PACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1PACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1PACFDir-1.pdf  used on input line 3144.
+les/figure-latex/complexAR1PACFDir-1.pdf  used on input line 3167.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1Pearson-1.pdf, id=1432, 453.695pt x 314.17375pt>
@@ -1275,7 +1289,7 @@ mplexAR1Pearson-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1Pearson-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1Pearson-1.pdf  used on input line 3162.
+les/figure-latex/complexAR1Pearson-1.pdf  used on input line 3185.
 (pdftex.def)             Requested size: 344.9987pt x 238.90396pt.
 [97 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 omplexAR1PACFConj-1.pdf>] [98 <./Svetunkov---Svetunkov---Complex-Valued-Econome
@@ -1288,7 +1302,7 @@ mplexAR1Ploar-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1Ploar-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1Ploar-1.pdf  used on input line 3179.
+les/figure-latex/complexAR1Ploar-1.pdf  used on input line 3202.
 (pdftex.def)             Requested size: 345.00243pt x 237.52988pt.
 [99 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/c
 omplexAR1Pearson-1.pdf>]
@@ -1299,7 +1313,7 @@ mplexARDiagnosticsACFPACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexARDiagnosticsACFPACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexARDiagnosticsACFPACF-1.pdf  used on input line 3196.
+les/figure-latex/complexARDiagnosticsACFPACF-1.pdf  used on input line 3219.
 (pdftex.def)             Requested size: 344.997pt x 215.25452pt.
 [100 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 complexAR1Ploar-1.pdf>] [101 <./Svetunkov---Svetunkov---Complex-Valued-Economet
@@ -1311,7 +1325,7 @@ mplexNormDiagnostics-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexNormDiagnostics-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexNormDiagnostics-1.pdf  used on input line 3242.
+les/figure-latex/complexNormDiagnostics-1.pdf  used on input line 3265.
 (pdftex.def)             Requested size: 344.9965pt x 208.32765pt.
 [102]
 Overfull \hbox (200.23944pt too wide) has occurred while \output is active
@@ -1321,13 +1335,13 @@ T THE RESPONSE VARIABLE \T1/lmr/m/n/10 103
 
 [103 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 complexNormDiagnostics-1.pdf>] [104]
-Overfull \hbox (10.00224pt too wide) in paragraph at lines 3305--3307
+Overfull \hbox (10.00224pt too wide) in paragraph at lines 3328--3330
 []\T1/lmr/m/n/10 (-20) Conjugate co-vari-ance ma-trix: $\OT1/lmr/m/n/10 (-20) V
  [] = [][] [][][] [][] \OML/lmm/m/it/10 ^^[[]$ 
  []
 
 
-Overfull \hbox (17.46065pt too wide) in paragraph at lines 3315--3317
+Overfull \hbox (17.46065pt too wide) in paragraph at lines 3338--3340
 []\T1/lmr/m/n/10 (-20) Conjugate co-vari-ance ma-trix: $\OT1/lmr/m/n/10 (-20) V
  [] = [][] [][][] [][] \OML/lmm/m/it/10 ^^[[]$ 
  []
@@ -1341,7 +1355,7 @@ T THE RESPONSE VARIABLE \T1/lmr/m/n/10 105
 [105]
 
 LaTeX Font Warning: Font shape `T1/lmtt/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 3369.
+(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 3392.
 
 
 [106]
@@ -1380,7 +1394,7 @@ T THE RESPONSE VARIABLE \T1/lmr/m/n/10 115
 Chapter 6.
 
 Package natbib Warning: Citation `Lutkepohl' on page 117 undefined on input lin
-e 3813.
+e 3836.
 
 [117]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/trendTr
@@ -1390,7 +1404,7 @@ endTrajectories-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/tre
 ndTrajectories-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/trendTrajectories-1.pdf  used on input line 3845.
+les/figure-latex/trendTrajectories-1.pdf  used on input line 3868.
 (pdftex.def)             Requested size: 345.0036pt x 239.25247pt.
 [118 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 trendTrajectories-1.pdf>]
@@ -1401,7 +1415,7 @@ taWithTrend-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/dat
 aWithTrend-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/dataWithTrend-1.pdf  used on input line 3895.
+les/figure-latex/dataWithTrend-1.pdf  used on input line 3918.
 (pdftex.def)             Requested size: 344.9987pt x 240.4305pt.
 [119] [120 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
 latex/dataWithTrend-1.pdf>]
@@ -1412,21 +1426,21 @@ taWithTrendForecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/dat
 aWithTrendForecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/dataWithTrendForecast-1.pdf  used on input line 3963.
+les/figure-latex/dataWithTrendForecast-1.pdf  used on input line 3986.
 (pdftex.def)             Requested size: 344.9987pt x 240.4305pt.
 
 Package natbib Warning: Citation `Box1976' on page 121 undefined on input line 
-3972.
+3995.
 
 [121] [122 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
 latex/dataWithTrendForecast-1.pdf>] [123]
 
 Package natbib Warning: Citation `Box1976' on page 124 undefined on input line 
-4060.
+4083.
 
 
 Package natbib Warning: Citation `Box1976' on page 124 undefined on input line 
-4073.
+4096.
 
 [124]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1436,7 +1450,7 @@ mplexAR1cACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1cACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1cACF-1.pdf  used on input line 4118.
+les/figure-latex/complexAR1cACF-1.pdf  used on input line 4141.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1cPACF-1.pdf, id=1740, 444.66125pt x 282.05376pt>
@@ -1445,11 +1459,11 @@ mplexAR1cPACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1cPACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1cPACF-1.pdf  used on input line 4132.
+les/figure-latex/complexAR1cPACF-1.pdf  used on input line 4155.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 
 LaTeX Warning: Reference `fig:complexAR1cACFDir' on page 125 undefined on input
- line 4138.
+ line 4161.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1cACFDir-1.pdf, id=1743, 444.66125pt x 282.05376pt>
@@ -1458,10 +1472,10 @@ mplexAR1cACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1cACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1cACFDir-1.pdf  used on input line 4139.
+les/figure-latex/complexAR1cACFDir-1.pdf  used on input line 4162.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 
-Underfull \hbox (badness 2707) in paragraph at lines 4138--4140
+Underfull \hbox (badness 2707) in paragraph at lines 4161--4163
 \T1/lmr/m/n/10 (+20) note how-ever that the di-rect cACF has the more de-tailed
  in-for-ma-
  []
@@ -1476,11 +1490,11 @@ mplexAR1cpACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1cpACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1cpACFDir-1.pdf  used on input line 4145.
+les/figure-latex/complexAR1cpACFDir-1.pdf  used on input line 4168.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 
 LaTeX Warning: Reference `fig:complexAR1cACFDir' on page 127 undefined on input
- line 4149.
+ line 4172.
 
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 AR1Plot-1.pdf, id=1773, 457.71pt x 312.16624pt>
@@ -1489,7 +1503,7 @@ mplexAR1Plot-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1Plot-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1Plot-1.pdf  used on input line 4155.
+les/figure-latex/complexAR1Plot-1.pdf  used on input line 4178.
 (pdftex.def)             Requested size: 345.01372pt x 235.30539pt.
 [127 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 complexAR1cACFDir-1.pdf>] [128 <./Svetunkov---Svetunkov---Complex-Valued-Econom
@@ -1502,21 +1516,21 @@ mplexAR1Forecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexAR1Forecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexAR1Forecast-1.pdf  used on input line 4217.
+les/figure-latex/complexAR1Forecast-1.pdf  used on input line 4240.
 (pdftex.def)             Requested size: 345.01434pt x 238.16592pt.
 
 Package natbib Warning: Citation `Box1976' on page 129 undefined on input line 
-4226.
+4249.
 
 
 Package natbib Warning: Citation `Box1976' on page 129 undefined on input line 
-4236.
+4259.
 
 [129] [130 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
 latex/complexAR1Forecast-1.pdf>]
 
 Package natbib Warning: Citation `Box1976' on page 131 undefined on input line 
-4291.
+4314.
 
 [131]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1526,7 +1540,7 @@ mplexMA1Plot-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1Plot-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1Plot-1.pdf  used on input line 4342.
+les/figure-latex/complexMA1Plot-1.pdf  used on input line 4365.
 (pdftex.def)             Requested size: 345.01372pt x 235.30539pt.
 [132]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
@@ -1536,7 +1550,7 @@ mplexMA1cACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1cACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1cACF-1.pdf  used on input line 4356.
+les/figure-latex/complexMA1cACF-1.pdf  used on input line 4379.
 (pdftex.def)             Requested size: 345.00154pt x 198.27673pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 MA1cACFDir-1.pdf, id=1864, 444.66125pt x 282.05376pt>
@@ -1545,7 +1559,7 @@ mplexMA1cACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1cACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1cACFDir-1.pdf  used on input line 4364.
+les/figure-latex/complexMA1cACFDir-1.pdf  used on input line 4387.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 MA1cpACFDir-1.pdf, id=1867, 444.66125pt x 282.05376pt>
@@ -1554,7 +1568,7 @@ mplexMA1cpACFDir-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1cpACFDir-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1cpACFDir-1.pdf  used on input line 4372.
+les/figure-latex/complexMA1cpACFDir-1.pdf  used on input line 4395.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complex
 MA1cPACF-1.pdf, id=1868, 444.66125pt x 282.05376pt>
@@ -1563,7 +1577,7 @@ mplexMA1cPACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1cPACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1cPACF-1.pdf  used on input line 4384.
+les/figure-latex/complexMA1cPACF-1.pdf  used on input line 4407.
 (pdftex.def)             Requested size: 345.00243pt x 218.839pt.
 [133 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 complexMA1Plot-1.pdf>] [134 <./Svetunkov---Svetunkov---Complex-Valued-Econometr
@@ -1572,7 +1586,7 @@ ics_files/figure-latex/complexMA1cACF-1.pdf> <./Svetunkov---Svetunkov---Complex
 nkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexMA1cpA
 CFDir-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figur
 e-latex/complexMA1cPACF-1.pdf>]
-Overfull \vbox (1.59218pt too high) detected at line 4447
+Overfull \vbox (1.59218pt too high) detected at line 4470
  []
 
 [136]
@@ -1583,25 +1597,25 @@ mplexMA1Forecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/com
 plexMA1Forecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/complexMA1Forecast-1.pdf  used on input line 4451.
+les/figure-latex/complexMA1Forecast-1.pdf  used on input line 4474.
 (pdftex.def)             Requested size: 345.01434pt x 238.16592pt.
 [137 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 complexMA1Forecast-1.pdf>]
 
 Package natbib Warning: Citation `Dickey1979' on page 138 undefined on input li
-ne 4484.
+ne 4507.
 
 
 Package natbib Warning: Citation `Kwiatkowski1992' on page 138 undefined on inp
-ut line 4484.
+ut line 4507.
 
 
 Package natbib Warning: Citation `Akaike1974' on page 138 undefined on input li
-ne 4486.
+ne 4509.
 
 
 Package natbib Warning: Citation `Schwarz1978' on page 138 undefined on input l
-ine 4486.
+ine 4509.
 
 [138] [139] [140
 
@@ -1614,7 +1628,7 @@ Sales-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJS
 ales-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/BJSales-1.pdf  used on input line 4500.
+les/figure-latex/BJSales-1.pdf  used on input line 4523.
 (pdftex.def)             Requested size: 344.9987pt x 224.4018pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJSales
 Complex-1.pdf, id=1965, 436.63126pt x 254.9525pt>
@@ -1623,30 +1637,30 @@ SalesComplex-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJS
 alesComplex-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/BJSalesComplex-1.pdf  used on input line 4508.
+les/figure-latex/BJSalesComplex-1.pdf  used on input line 4531.
 (pdftex.def)             Requested size: 345.00154pt x 201.44916pt.
 [141] [142 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
 latex/BJSales-1.pdf> <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_fil
 es/figure-latex/BJSalesComplex-1.pdf>]
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4552--4552
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4575--4575
 []\T1/lmtt/m/n/10 ## Warning in tseries::kpss.test(yScaled): p-value smaller th
 an printed p-value[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 4560--4560
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 4583--4583
 []\T1/lmtt/m/n/10 ## KPSS Level = 2.6339, Truncation lag parameter = 4, p-value
  = 0.01[] 
  []
 
 
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 4592--4592
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 4615--4615
 []\T1/lmtt/m/n/10 ## Warning in tseries::kpss.test(diff(yScaled)): p-value grea
 ter than printed[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 4600--4600
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 4623--4623
 []\T1/lmtt/m/n/10 ## KPSS Level = 0.13191, Truncation lag parameter = 4, p-valu
 e = 0.1[] 
  []
@@ -1659,7 +1673,7 @@ SalesComplexDiffs-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJS
 alesComplexDiffs-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/BJSalesComplexDiffs-1.pdf  used on input line 4606.
+les/figure-latex/BJSalesComplexDiffs-1.pdf  used on input line 4629.
 (pdftex.def)             Requested size: 345.00154pt x 202.24226pt.
 [144 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 BJSalesComplexDiffs-1.pdf>] [145]
@@ -1670,34 +1684,34 @@ SalesComplexForecast-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/BJS
 alesComplexForecast-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/BJSalesComplexForecast-1.pdf  used on input line 4689.
+les/figure-latex/BJSalesComplexForecast-1.pdf  used on input line 4712.
 (pdftex.def)             Requested size: 345.01434pt x 255.2943pt.
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4711--4711
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4734--4734
 []\T1/lmtt/m/n/10 ##  [1] 257.6162+13.1087i 258.7371+13.1270i 257.4338+13.1111i
  257.5523+13.1418i[] 
  []
 
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4711--4711
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4734--4734
 []\T1/lmtt/m/n/10 ##  [5] 257.7756+13.1524i 257.8027+13.1935i 258.1313+13.2268i
  258.4488+13.2549i[] 
  []
 
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4711--4711
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4734--4734
 []\T1/lmtt/m/n/10 ##  [9] 258.8752+13.2862i 259.3374+13.3120i 259.7896+13.3359i
  260.2593+13.3575i[] 
  []
 
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4711--4711
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4734--4734
 []\T1/lmtt/m/n/10 ## [13] 260.7118+13.3771i 261.1492+13.3960i 261.5722+13.4142i
  261.9793+13.4323i[] 
  []
 
 
-Overfull \hbox (69.7488pt too wide) in paragraph at lines 4711--4711
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 4734--4734
 []\T1/lmtt/m/n/10 ## [17] 262.3764+13.4506i 262.7655+13.4691i 263.1503+13.4881i
  263.5336+13.5074i[] 
  []
@@ -1714,7 +1728,7 @@ atbeltsData-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/sea
 tbeltsData-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/seatbeltsData-1.pdf  used on input line 4759.
+les/figure-latex/seatbeltsData-1.pdf  used on input line 4782.
 (pdftex.def)             Requested size: 344.9987pt x 235.0876pt.
 [147]
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbel
@@ -1724,7 +1738,7 @@ atbeltsDataModel1-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/sea
 tbeltsDataModel1-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/seatbeltsDataModel1-1.pdf  used on input line 4787.
+les/figure-latex/seatbeltsDataModel1-1.pdf  used on input line 4810.
 (pdftex.def)             Requested size: 344.9987pt x 235.0876pt.
 <Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbel
 tsDataModel1ACF-1.pdf, id=2048, 456.70625pt x 316.18124pt>
@@ -1733,115 +1747,118 @@ atbeltsDataModel1ACF-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/sea
 tbeltsDataModel1ACF-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/seatbeltsDataModel1ACF-1.pdf  used on input line 4795.
+les/figure-latex/seatbeltsDataModel1ACF-1.pdf  used on input line 4818.
 (pdftex.def)             Requested size: 345.00972pt x 238.85287pt.
 [148 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/
 seatbeltsData-1.pdf>] [149 <./Svetunkov---Svetunkov---Complex-Valued-Econometri
 cs_files/figure-latex/seatbeltsDataModel1-1.pdf> <./Svetunkov---Svetunkov---Com
 plex-Valued-Econometrics_files/figure-latex/seatbeltsDataModel1ACF-1.pdf>]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## (Intercept)_r        3.0425     0.1210     2.8036      3.2
 814 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## (Intercept)_i        5.0013     0.1351     4.7347      5.2
 679 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## log(kms)_r          -0.0693     0.0282    -0.1250     -0.0
 136 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## log(kms)_i          -0.1142     0.0354    -0.1841     -0.0
 444 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## log(PetrolPrice)_r  -0.2915     0.0221    -0.3351     -0.2
 479 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## log(PetrolPrice)_i  -0.2393     0.1077    -0.4519     -0.0
 268 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal5_i          0.1105     0.0020     0.1065      0.1
 145 *[] 
  []
 
+
+Underfull \vbox (badness 1122) has occurred while \output is active []
+
 [150]
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal9_r          0.1596     0.0469     0.0669      0.2
 522 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal9_i          0.1230     0.0059     0.1113      0.1
 346 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal10_r         0.2532     0.0385     0.1771      0.3
 292 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal10_i         0.1775     0.0578     0.0634      0.2
 917 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal11_r         0.2691     0.0590     0.1525      0.3
 856 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal11_i         0.2445     0.0594     0.1272      0.3
 618 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal12_r         0.2864     0.1137     0.0620      0.5
 107 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## seasonal12_i         0.2543     0.0788     0.0987      0.4
 099 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## yLag1_r              0.3702     0.1162     0.1409      0.5
 996 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## eLag1_r             -0.1513     0.0435    -0.2372     -0.0
 655 *[] 
  []
 
 
-Overfull \hbox (1.499pt too wide) in paragraph at lines 4884--4884
+Overfull \hbox (1.499pt too wide) in paragraph at lines 4909--4909
 []\T1/lmtt/m/n/10 ## eLag1_i              0.0658     0.0159     0.0344      0.0
 973 *[] 
  []
@@ -1853,20 +1870,23 @@ atbeltsDataModelFinal-1.pdf Graphic file (type pdf)
 <use Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/sea
 tbeltsDataModelFinal-1.pdf>
 Package pdftex.def Info: Svetunkov---Svetunkov---Complex-Valued-Econometrics_fi
-les/figure-latex/seatbeltsDataModelFinal-1.pdf  used on input line 4905.
+les/figure-latex/seatbeltsDataModelFinal-1.pdf  used on input line 4930.
 (pdftex.def)             Requested size: 344.9987pt x 235.0876pt.
 [151] [152 <./Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-
 latex/seatbeltsDataModelFinal-1.pdf>]
-Chapter 8.
-(./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [153
 
-] [154
+Package natbib Warning: Citation `SvetunkovSergey' on page 153 undefined on inp
+ut line 4944.
 
-])
+[153
+
+] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [154])
 
 Package natbib Warning: There were undefined citations.
 
-[155] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.aux)
+[155
+
+] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1876,12 +1896,12 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  17342 strings out of 479648
- 305160 string characters out of 5886116
- 605706 words of memory out of 5000000
+ 305161 string characters out of 5886116
+ 605709 words of memory out of 5000000
  34020 multiletter control sequences out of 15000+600000
  572621 words of font info for 223 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
- 74i,16n,77p,1358b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,16n,77p,1358b,529s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/l
@@ -1904,10 +1924,10 @@ mf/fonts/type1/public/lm/lmtko10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 tt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (155 
-pages, 4515936 bytes).
+pages, 4520638 bytes).
 PDF statistics:
- 2588 PDF objects out of 2984 (max. 8388607)
- 2172 compressed objects within 22 object streams
+ 2590 PDF objects out of 2984 (max. 8388607)
+ 2174 compressed objects within 22 object streams
  640 named destinations out of 1000 (max. 500000)
  58186 words of extra memory for PDF output out of 61914 (max. 10000000)
 

@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-02-06}
+\date{2024-02-07}
 
 \begin{document}
 \maketitle
@@ -656,6 +656,8 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Random seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Create a random variable}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{),}
              \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
@@ -665,7 +667,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 50.24995+99.87951i
+## [1] 51.90313+99.91763i
 \end{verbatim}
 
 \hypertarget{crvSecondMoment}{%
@@ -727,6 +729,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Random seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Create a random variable}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{5}\NormalTok{),}
              \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
@@ -738,7 +742,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ## Conjugate variance 
-## 137.4825+0i
+## 113.0543+0i
 \end{verbatim}
 
 \begin{Shaded}
@@ -751,7 +755,7 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 
 \begin{verbatim}
 ##    Direct variance 
-## -99.01536+5.17729i
+## -60.19156-5.69425i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
@@ -776,9 +780,9 @@ In R, this is implemented in \texttt{covar()} function from the \texttt{complex}
 \end{Shaded}
 
 \begin{verbatim}
-##           x_r        x_i
-## x_r 19.233585   2.588647
-## x_i  2.588647 118.248940
+##           x_r       x_i
+## x_r 26.431373 -2.847127
+## x_i -2.847127 86.622930
 \end{verbatim}
 
 The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecondGV}, implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
@@ -790,7 +794,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2267.65
+## [1] 2281.457
 \end{verbatim}
 
 All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
@@ -842,6 +846,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Random seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Create a random variable x}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{50}\NormalTok{, }\AttributeTok{sd=}\DecValTok{5}\NormalTok{),}
              \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{10}\NormalTok{))}
@@ -857,7 +863,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 65.79072-87.98045i
+## 70.4003-101.2452i
 \end{verbatim}
 
 \begin{Shaded}
@@ -869,8 +875,8 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 \end{Shaded}
 
 \begin{verbatim}
-##   Direct covariance 
-## -47.88246+63.25699i
+##  Direct covariance 
+## -51.28506+50.8207i
 \end{verbatim}
 
 The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead of vector \texttt{x}, in which case they will produce a matrix of moments with complex variances on diagonal and complex covariances on the off-diagonals.
@@ -884,8 +890,8 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 
 \begin{verbatim}
 ##                     x                   y
-## x -86.24185- 8.57414i -47.88246+63.25699i
-## y -47.88246+63.25699i  16.42333+58.49234i
+## x -60.19156- 5.69425i -51.28506+50.82070i
+## y -51.28506+50.82070i  12.71148+48.05904i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables, we do not discuss them in this book.
@@ -899,6 +905,8 @@ In general, it is reasonable to assume that a c.r.v. has a distribution of a sha
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Random seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Generate magnitudes from the uniform distribution}
 \NormalTok{R }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
 \CommentTok{\# Generate angles from the uniform distribution}
@@ -1375,6 +1383,8 @@ In order to better understand what is specifically minimised, when the formulae 
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Random seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Create real part of a c.r.v. x}
 \NormalTok{xr }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
 \CommentTok{\# Create a c.r.v. x}
@@ -1391,7 +1401,7 @@ In order to better understand what is specifically minimised, when the formulae 
 
 \CommentTok{\# CLS loss function}
 \NormalTok{clsLoss }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(y, yHat)\{}
-    \FunctionTok{return}\NormalTok{(}\FunctionTok{sum}\NormalTok{((y }\SpecialCharTok{{-}}\NormalTok{ yHat)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{sum}\NormalTok{((y }\SpecialCharTok{{-}}\NormalTok{ yHat)}\SpecialCharTok{**}\DecValTok{2}\NormalTok{))}
 \NormalTok{\}}
 
 \CommentTok{\# Loop for values of b1r from 0.52 to 2.5 and}
@@ -1580,17 +1590,24 @@ These six scenarios in Table \ref{tab:scenariosEstimators} cover different theor
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Random seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\CommentTok{\# Number of observations}
 \NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{10000}
 \NormalTok{x0 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{10}\NormalTok{,}\DecValTok{10}\NormalTok{)}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{x0,}\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{20}\NormalTok{))}
 
+\CommentTok{\# Parameters of the model}
 \NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i}
 \NormalTok{b1 }\OtherTok{\textless{}{-}} \DecValTok{2}\FloatTok{{-}1.5}\NormalTok{i}
+\CommentTok{\# Response variable}
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ b0 }\SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+} \FloatTok{1.5}\SpecialCharTok{*}\FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
                                \AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(obs,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 
+\CommentTok{\# Form a matrix of variables}
 \NormalTok{complexData }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(y,x)}
 
+\CommentTok{\# Number of iterations and an array for parameters}
 \NormalTok{nsim }\OtherTok{\textless{}{-}} \DecValTok{9980}
 \NormalTok{parametersValues }\OtherTok{\textless{}{-}}
     \FunctionTok{array}\NormalTok{(}\ConstantTok{NA}\NormalTok{, }\FunctionTok{c}\NormalTok{(nsim,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{),}
@@ -1598,6 +1615,7 @@ These six scenarios in Table \ref{tab:scenariosEstimators} cover different theor
                         \FunctionTok{c}\NormalTok{(}\StringTok{"CLS"}\NormalTok{,}\StringTok{"OLS"}\NormalTok{,}\StringTok{"Likelihood"}\NormalTok{),}
                         \FunctionTok{c}\NormalTok{(}\StringTok{"b0"}\NormalTok{,}\StringTok{"b1"}\NormalTok{)))}
 
+\CommentTok{\# The loop with cLR estimated with CLS, OLS and Likelihood}
 \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nsim)\{}
 \NormalTok{    test }\OtherTok{\textless{}{-}} \FunctionTok{clm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x, complexData, }\AttributeTok{loss=}\StringTok{"CLS"}\NormalTok{,}
                 \AttributeTok{subset=}\FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{obs),}\DecValTok{20}\SpecialCharTok{+}\NormalTok{i))}
@@ -1701,6 +1719,8 @@ In order to better understand what correlations between c.r.v. imply, we need to
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Random seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Create real part of a c.r.v. x}
 \NormalTok{xr }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{)}
 \CommentTok{\# Create a c.r.v. x}
@@ -1811,6 +1831,9 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Random seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
+\CommentTok{\# Generate the explanatory variable}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\AttributeTok{imaginary=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{))}
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{10} \SpecialCharTok{+}\NormalTok{ 15i) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ 1i) }\SpecialCharTok{*}\NormalTok{ x}
 \CommentTok{\# Variant 1}
@@ -2867,7 +2890,7 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100} \SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\SpecialCharTok{*}\NormalTok{1i}
-\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{\^{}}\NormalTok{(}\FloatTok{0.5+0.5}\NormalTok{i)}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{**}\NormalTok{(}\FloatTok{0.5+0.5}\NormalTok{i)}
 \FunctionTok{cplot}\NormalTok{(x, y)}
 \end{Highlighting}
 \end{Shaded}
@@ -3070,7 +3093,7 @@ In R, there are functions \texttt{cacf()} and \texttt{cpacf()} in the \texttt{co
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Generate complex data with an autocorrelation of order 1}
-\CommentTok{\# For reproducibility, fix random seed}
+\CommentTok{\# Random seed for reproducibility}
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{41}\NormalTok{)}
 \CommentTok{\# Number of observations}
 \NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{100}
@@ -3401,7 +3424,7 @@ We start with the conjugate complex correlation matrix:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\FunctionTok{ccor}\NormalTok{(data1, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3418,7 +3441,7 @@ The second output is for the direct complex correlation matrix:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\FunctionTok{ccor}\NormalTok{(data1, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3435,7 +3458,7 @@ We also calculate Pearson's correlation matrix for the MDS-transformed complex v
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data1,}\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\FunctionTok{ccor}\NormalTok{(data1, }\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3587,7 +3610,7 @@ In this scenario, we have strong correlation between real parts of explanatory v
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\FunctionTok{ccor}\NormalTok{(data2, }\AttributeTok{method=}\StringTok{"conjugate"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3602,7 +3625,7 @@ The conjugate correlation above shows that there is a linear relation between \(
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\FunctionTok{ccor}\NormalTok{(data2, }\AttributeTok{method=}\StringTok{"direct"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3617,7 +3640,7 @@ The direct correlation agrees with the conjugate one in general, but the fact th
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(data2,}\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\FunctionTok{ccor}\NormalTok{(data2, }\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4319,7 +4342,7 @@ Similarly to the cAR(p), we consider an R example, analysing how the cACF and cP
 \CommentTok{\# Number of observations}
 \NormalTok{obs }\OtherTok{\textless{}{-}} \DecValTok{110}
 \CommentTok{\# Parameters}
-\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100}\SpecialCharTok{+}\NormalTok{50i}
+\NormalTok{b0 }\OtherTok{\textless{}{-}} \DecValTok{100} \SpecialCharTok{+}\NormalTok{ 50i}
 \NormalTok{theta1 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FloatTok{0.8} \SpecialCharTok{+} \FloatTok{0.2}\NormalTok{i}
 \CommentTok{\# Complex white noise}
 \NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rcnorm}\NormalTok{(obs, }\DecValTok{0}\NormalTok{, }\AttributeTok{sigma2=}\DecValTok{25}\NormalTok{, }\AttributeTok{varsigma2=}\DecValTok{16}\SpecialCharTok{+}\NormalTok{9i)}
@@ -4517,7 +4540,7 @@ While judgmentally we can conclude that both parts of this complex variable are 
 \FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{BJsales, }\AttributeTok{imaginary=}\NormalTok{BJsales.lead) }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{cscale}\NormalTok{(}\AttributeTok{scaling=}\StringTok{"norm"}\NormalTok{) }\OtherTok{{-}\textgreater{}}\NormalTok{ y}
 \CommentTok{\# Scale the complex variable into the real{-}valued one}
-\NormalTok{yScaled }\OtherTok{\textless{}{-}} \FunctionTok{cmdscale}\NormalTok{(}\FunctionTok{dist}\NormalTok{(}\FunctionTok{complex2vec}\NormalTok{(y)), }\AttributeTok{k=}\DecValTok{1}\NormalTok{)}
+\FunctionTok{complex2vec}\NormalTok{(y) }\SpecialCharTok{|\textgreater{}} \FunctionTok{dist}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{cmdscale}\NormalTok{(}\AttributeTok{k=}\DecValTok{1}\NormalTok{) }\OtherTok{{-}\textgreater{}}\NormalTok{ yScaled}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4800,18 +4823,20 @@ It is hard to understand what specifically is missing in the residuals, so we wi
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Create all possible orders}
 \NormalTok{cARIMAOrders }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{expand.grid}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
 \FunctionTok{colnames}\NormalTok{(cARIMAOrders) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"AR"}\NormalTok{,}\StringTok{"I"}\NormalTok{,}\StringTok{"MA"}\NormalTok{)}
+\CommentTok{\# Create a list for all models}
 \NormalTok{SeatbeltscLRList }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"list"}\NormalTok{,}\FunctionTok{nrow}\NormalTok{(cARIMAOrders))}
 \FunctionTok{names}\NormalTok{(SeatbeltscLRList) }\OtherTok{\textless{}{-}}
     \FunctionTok{paste0}\NormalTok{(}\StringTok{"ARIMA("}\NormalTok{,}\FunctionTok{apply}\NormalTok{(cARIMAOrders, }\DecValTok{1}\NormalTok{,}
 \NormalTok{                          paste0, }\AttributeTok{collapse=}\StringTok{","}\NormalTok{),}\StringTok{")"}\NormalTok{)}
 
+\CommentTok{\# Loop to estimate models.}
 \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(cARIMAOrders))\{}
 \NormalTok{    SeatbeltscLRList[[i]] }\OtherTok{\textless{}{-}}
         \FunctionTok{clm}\NormalTok{(}\FunctionTok{I}\NormalTok{(}\FunctionTok{clog}\NormalTok{(y))}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(kms)}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(PetrolPrice)}\SpecialCharTok{+}\NormalTok{law}\SpecialCharTok{+}\NormalTok{seasonal,}
-\NormalTok{            SeatbeltsComplex, }\AttributeTok{orders=}\NormalTok{cARIMAOrders[i,],}
-            \AttributeTok{maxeval=}\DecValTok{1000}\NormalTok{)}
+\NormalTok{            SeatbeltsComplex, }\AttributeTok{orders=}\NormalTok{cARIMAOrders[i,])}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -4908,8 +4933,25 @@ Finally, we can see how the model fits the data and compare it with the previous
 
 Arguably, the model fit is better due to the capture of dynamic elements that were missing in the cLR before.
 
-\hypertarget{Conclusions}{%
-\chapter{Conclusions}\label{Conclusions}}
+\hypertarget{conclusions}{%
+\chapter*{Conclusions}\label{conclusions}}
+\addcontentsline{toc}{chapter}{Conclusions}
+
+Now that we have reached the final chapter of this book, we want to discuss the main limitations and future work in the area of complex-valued economics. We focused this book on the technical side of modelling with complex-valued regressions, discussing the estimation methods, elements of correlation analysis and the main aspects of the regression analysis. We briefly discussed the complex ARIMA model, only touching on some of the important properties of it. But there is much more left outside.
+
+For example, we discussed that complex-valued models share some properties with the multivariate ones, such as Vector AR (VAR). This means that we can use the tools developed for those models for the complex-valued ones with minor modifications. For instance, we did not discuss how to calculate Impulse Response Function, which are widely used for analysis of effects based on VAR in Economics and Marketing Analytics. We expect that these tools can be transferred to the complex-valued models easily, but they lie outside of the scope of this monograph and can be considered as a future work.
+
+Furthermore, a curious reader might wonder what to do when we are interested in modelling more than two variables at the same time. The first instinct would be to switch to the multivariate models (VAR). But the main issue of those models is the high dimensionality. For example, VAR(p) on 10 time series requires the estimation of \(p \times 10^2\) parameters, which is not a simple task. However, \citet{SvetunkovSergey} has developed a solution in this situation which involves complex variables. The model based on this is called vector cARIMA, VcARIMA(p,d,q) and involves stacking several complex response variables in a vector. This model is currently researched, and Sergey Svetunkov is preparing a paper explaining its properties and showing how it can be used for time series analysis and in forecasting.
+
+Moreover, as discussed in this book several times, some of the largest benefits of complex variables arise when a non-linear model is considered, e.g.~a log-log model. We have discussed what happens with the cLR in this situation (Subsection \ref{assumptionsSpecificationTransformation} and Section \ref{DynamicTrend}), but we have not yet study how the cARIMA behaves in this situation. We expect that it should be able to capture non-linear dynamics, which would be beneficial when applied to large samples of data, such as, for example, in energy domain.
+
+In addition, the students and colleagues of Sergey Svetunkov have developed several other models relying on the theory of complex variables. These models all lie outside of the scope of this book, but they are worth mentioning for completeness.
+
+Complex AR with Errors.
+
+Complex AR with differences
+
+cAR with non-linear errors
 
   \bibliography{library.bib,packages.bib,websites.bib}
 
