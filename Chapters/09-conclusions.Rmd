@@ -8,10 +8,20 @@ Furthermore, a curious reader might wonder what to do when we are interested in 
 
 Moreover, as discussed in this book several times, some of the largest benefits of complex variables arise when a non-linear model is considered, e.g. a log-log model. We have discussed what happens with the cLR in this situation (Subsection \@ref(assumptionsSpecificationTransformation) and Section \@ref(DynamicTrend)), but we have not yet study how the cARIMA behaves in this situation. We expect that it should be able to capture non-linear dynamics, which would be beneficial when applied to large samples of data, such as, for example, in energy domain.
 
-In addition, the students and colleagues of Sergey Svetunkov have developed several other models relying on the theory of complex variables. These models all lie outside of the scope of this book, but they are worth mentioning for completeness.
+<!-- In addition, the students and colleagues of Sergey Svetunkov have developed several other models relying on the theory of complex variables. These models all lie outside of the scope of this book, but they are worth mentioning for completeness. -->
 
-Complex AR with Errors.
+<!-- The first one is the complex AR model with the error term in the imaginary part: -->
+<!-- \begin{equation} -->
+<!--     y_t + i \xi_t = \sum_{j=1}^p (b_{j,r} + i b_{j,i}) (y_{t-j} + i \epsilon_{t-j}) + \epsilon_{t} , -->
+<!--     (\#eq:ConclusionsCARE) -->
+<!-- \end{equation} -->
+<!-- where $\xi_t$ is a fuzzy component which does not have any specific meaning. This model is inspired by the Complex Exponential Smoothing by @Svetunkov2022, and it can be shown (after opening the brackets) that its real part is equivalent to the ARMA(p,p) model. On its own the model does not have any special properties, but it gives the rise to more complicated models, for example, where the imaginary part is transformed or substituted by some other variables. In case of the transformation, the model exhibits some non-linearity that is not considered by the conventional ARMA: -->
+<!-- \begin{equation} -->
+<!--     y_t + i \xi_t = \sum_{j=1}^p (b_{j,r} + i b_{j,i}) (y_{t-j} + i f(\epsilon_{t-j})) + \epsilon_{t} , -->
+<!--     (\#eq:ConclusionsCARNE) -->
+<!-- \end{equation} -->
+<!-- where $f(\cdot)$ is some non-linear function. In this case, the impact of the error term on the actual value becomes non-linear. -->
 
-Complex AR with differences
 
-cAR with non-linear errors
+<!-- Complex AR with differences -->
+
