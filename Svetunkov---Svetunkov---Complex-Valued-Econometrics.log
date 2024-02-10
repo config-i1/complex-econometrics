@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  7 FEB 2024 22:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.6)  10 FEB 2024 22:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1878,15 +1878,15 @@ latex/seatbeltsDataModelFinal-1.pdf>]
 Package natbib Warning: Citation `SvetunkovSergey' on page 153 undefined on inp
 ut line 4944.
 
-[153
+(./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [153
 
-] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.bbl [154])
+] [154
+
+])
 
 Package natbib Warning: There were undefined citations.
 
-[155
-
-] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.aux)
+[155] (./Svetunkov---Svetunkov---Complex-Valued-Econometrics.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1924,7 +1924,7 @@ mf/fonts/type1/public/lm/lmtko10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
 tt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on Svetunkov---Svetunkov---Complex-Valued-Econometrics.pdf (155 
-pages, 4520638 bytes).
+pages, 4520079 bytes).
 PDF statistics:
  2590 PDF objects out of 2984 (max. 8388607)
  2174 compressed objects within 22 object streams

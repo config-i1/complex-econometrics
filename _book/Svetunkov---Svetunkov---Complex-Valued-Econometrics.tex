@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-02-07}
+\date{2024-02-10}
 
 \begin{document}
 \maketitle
@@ -4944,14 +4944,6 @@ For example, we discussed that complex-valued models share some properties with 
 Furthermore, a curious reader might wonder what to do when we are interested in modelling more than two variables at the same time. The first instinct would be to switch to the multivariate models (VAR). But the main issue of those models is the high dimensionality. For example, VAR(p) on 10 time series requires the estimation of \(p \times 10^2\) parameters, which is not a simple task. However, \citet{SvetunkovSergey} has developed a solution in this situation which involves complex variables. The model based on this is called vector cARIMA, VcARIMA(p,d,q) and involves stacking several complex response variables in a vector. This model is currently researched, and Sergey Svetunkov is preparing a paper explaining its properties and showing how it can be used for time series analysis and in forecasting.
 
 Moreover, as discussed in this book several times, some of the largest benefits of complex variables arise when a non-linear model is considered, e.g.~a log-log model. We have discussed what happens with the cLR in this situation (Subsection \ref{assumptionsSpecificationTransformation} and Section \ref{DynamicTrend}), but we have not yet study how the cARIMA behaves in this situation. We expect that it should be able to capture non-linear dynamics, which would be beneficial when applied to large samples of data, such as, for example, in energy domain.
-
-In addition, the students and colleagues of Sergey Svetunkov have developed several other models relying on the theory of complex variables. These models all lie outside of the scope of this book, but they are worth mentioning for completeness.
-
-Complex AR with Errors.
-
-Complex AR with differences
-
-cAR with non-linear errors
 
   \bibliography{library.bib,packages.bib,websites.bib}
 
