@@ -629,7 +629,7 @@ The minimisation of GV, as can be seen from the formula \@ref(eq:crvMomentSecond
 covar(x) |> det()
 ```
 
-All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias [@referenceSBA]:
+All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias [@SvetunkovSBA]:
 \begin{equation}
     \begin{aligned}
         \hat{\sigma}_{x_r}^2 = & \frac{1}{n-k} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})^2 \\

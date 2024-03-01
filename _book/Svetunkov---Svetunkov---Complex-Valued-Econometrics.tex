@@ -799,7 +799,7 @@ The minimisation of GV, as can be seen from the formula \eqref{eq:crvMomentSecon
 ## [1] 2281.457
 \end{verbatim}
 
-All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{referenceSBA}:
+All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias \citep{SvetunkovSBA}:
 \begin{equation}
     \begin{aligned}
         \hat{\sigma}_{x_r}^2 = & \frac{1}{n-k} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})^2 \\
@@ -4074,13 +4074,13 @@ If we calculate the covariance for the cAR(1) between the values \(y_{t}\) and \
   Conjugate correlation:
   \begin{equation}
    \rho(2) = | \underline{\phi}_1^2 |;
-   \label{eq:ComplexAR1ConjCor}
+   \label{eq:ComplexAR1ConjCorShort}
   \end{equation}
 \item
   Direct correlation:
   \begin{equation}
    \varrho(2) =  \underline{\phi}_1^2.
-   \label{eq:ComplexAR1DirCor}
+   \label{eq:ComplexAR1DirCorShort}
   \end{equation}
 \end{enumerate}
 
@@ -4163,7 +4163,12 @@ As we see from Figure \ref{fig:complexAR1cACF}, the cACF declines after the lag 
 The cPACF in Figure \ref{fig:complexAR1cPACF} demonstrates that both the real and the imaginary values drop to zero after the first observation, as expected for the AR(1) process. Notably, the value of the first cPACF is 0.495+0.236i, which is close to the true value of the parameter.
 
 The direct cACF and cPACF are shown in Figures \ref{fig:complexAR1cACFDir} and \ref{fig:complexAR1cpACFDir}, roughly giving the same information as their conjugate counterparts. We should note however that the direct cACF has the more detailed information about the dynamic relations in the data than the conjugate one.
+
+\begin{figure}
+\centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/complexAR1cACFDir-1.pdf}
+\caption{\label{fig:complexAR1cACFDir}Direct cACF of the complex AR(1).}
+\end{figure}
 
 Although, both plots contain values outside of the 95\% non-rejection region, these could be considered as happening at random and can be neglected.
 
