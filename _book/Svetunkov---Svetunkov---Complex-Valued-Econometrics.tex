@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-02-10}
+\date{2024-03-01}
 
 \begin{document}
 \maketitle
@@ -158,9 +158,9 @@
 \chapter*{Introduction}\label{introduction}}
 \addcontentsline{toc}{chapter}{Introduction}
 
-The theory of complex variables functions is actively used in a variety of disciplines, including modern physics and engineering sciences. It is relatively easy to describe the complex phenomena that are studied in these areas of science using the models and methods of this branch of mathematics. Social sciences, being much more complicated due to the unpredictability of human behaviour, tend to use simpler instruments for modelling complex processes (references). For example, there are only few scientific publications in which methods and models of the theory of complex variables functions are used in economics, and they typically use that instrument for diagnostics or statistical tests (references) rather than proper modelling.
+The theory of complex variables functions is actively used in a variety of disciplines, including modern physics, engineering sciences \citep{Mandic2007, Jia2016}, information theory \citep{Eriksson2006}, signal processing \citep{Arens1957, Brown1969, Gardner1993, Charge2001, Gerstacker2003, Delmas2004, Chevalier2006, Buzzi2006, Percival2006, Taubock2007, Rubin-Delanchy2007, Adali2008} and others \citep[e.g.][]{Kociuba2016}. It is relatively easy to describe the complex phenomena that are studied in these areas of science using the models and methods of this branch of mathematics. Social sciences, being much more complicated due to the unpredictability of human behaviour, tend to use simpler instruments for modelling complex processes, such as linear regression, ARIMA, ETS etc. For example, there are only few papers in which methods and models of the theory of complex variables functions would be used in economics, and they are typically used that instrument for diagnostics or statistical tests \citep[for example, for the unit root test, such as ADF from][]{Dickey1979} rather than proper modelling.
 
-In 2012, Springer published the monograph ``Complex-valued Modeling in Economics and Finance'' \citep{Svetunkov2012}, which presented the theory and methodology of modelling using complex variables in economics. \citet{Svetunkov2012} have summarised the main principles of using complex variables in economics and discussed how to estimate some of those models. While, this was the first monograph that discussed the topic, the first paper in this direction was Ben Tamari (1997). The author first introduced Wealth as a complex variable consisting of Output (real part) and Money (imaginary part) and showed how, even with such an elementary representation, interesting new results can be obtained in the area of economics. Unfortunately, this work has gone unnoticed in scientific world. We became aware of this work only in 2016, when Ben Tamari had kindly sent Sergey Svetunkov his paper.
+In 2012, Springer published the monograph ``Complex-valued Modeling in Economics and Finance'' \citep{Svetunkov2012}, which presented the theory and methodology of modelling using complex variables in economics. \citet{Svetunkov2012} summarised the main principles of using complex variables in economics and business, and discussed how to estimate some of those models. Before him, the monograph more focused on economics was written by \citet{Tamari1997}. The author first introduced Wealth as a complex variable consisting of Output (real part) and Money (imaginary part) and showed how interesting new results can be obtained in the area of economics even with such a simple representation. Unfortunately, this work has gone unnoticed in scientific world. We became aware of this work only in 2016, when Ben Tamari himself kindly sent Sergey Svetunkov his monograph.
 
 Since 2012, there has been some development in the area of modelling using complex variables, notably a paper by Svetunkov \& Kourentzes (2022) on Complex Exponential Smoothing and Kourentez et al.~(2019) on an error measure based on the idea of complex numbers. Up until now, the modelling with complex variables has been mainly picked up by academics working in the areas of forecasting and engineering. The latter group has been using complex autoregressions for a couple of decades, modelling and predicting signals. The former group has only started using the principles described in \citet{Svetunkov2012}. In other disciplines, complex variables are not used directly for model building. The probable reason for this is the lack of the communication between the disciplines and the inherited inertia of academia.
 
@@ -195,6 +195,8 @@ We will also need several other packages for our analysis, including the followi
 \section*{Who is this monograph for?}\label{who-is-this-monograph-for}}
 \addcontentsline{toc}{section}{Who is this monograph for?}
 
+This monograph will be useful for PhD students and academics working with multivariate models, such as vector autoregressive models and/or multivariate regression. The models discussed here can in general be applied to many real life problems where a pair of response variables needs to be modelled and/or forecasted.
+
 \hypertarget{intro}{%
 \chapter{Introduction to theory of complex variables}\label{intro}}
 
@@ -203,7 +205,7 @@ We will also need several other packages for our analysis, including the followi
 
 This section sets out the basic concepts of the Theory of Complex Variables Functions (TCVF) with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
-The theory of complex numbers started in 1572 in the small Italian town of Kura. It was in this place and precisely in this year that the manuscript of an Italian mathematician Rafael Bombelli was published. The book was called Algebra. Rafael Bombelli showed in it how to solve the following cubic equation:
+The theory of complex numbers started in 1572 in the small Italian town of Kura. It was in this place and precisely in this year that the manuscript of an Italian mathematician Rafael Bombelli was published \citep{Bombelli1572}. The book was called Algebra. Rafael Bombelli showed in it how to solve the following cubic equation:
 \begin{equation}
     x^3 = 15x + 4 .
     \label{eq:BombelliEquation}
@@ -220,7 +222,7 @@ As can be seen from equation \eqref{eq:BombelliSolution}, there are several squa
 
 This does not mean that equation \eqref{eq:BombelliEquation} does not have a solution. If you represent the problem graphically on a plane then it is easy to see that there is one. But it is impossible to find it arithmetically using the Scipione del Ferro formula, because there is a negative number in the expression on the right-hand side of \eqref{eq:BombelliSolution}, and back then, mathematicians were sure that the square root of a negative number does not exist.
 
-The mathematicians of that time struggled to solve this problem, and Rafael Bombelli suggested to ignore the negative sign in the expression (Bombelli, 12). After all, the number -121 can be represented as a product of two numbers: -1 and 121. Then the square root of this number can be written as \(\sqrt{-1} \times 11\). So, formula \eqref{eq:BombelliSolution} becomes:
+The mathematicians of that time struggled to solve this problem, and Rafael Bombelli suggested to ignore the negative sign in the expression. After all, the number -121 can be represented as a product of two numbers: -1 and 121. Then the square root of this number can be written as \(\sqrt{-1} \times 11\). So, formula \eqref{eq:BombelliSolution} becomes:
 \begin{equation}
     x = \sqrt[3]{2+11\sqrt{-1}} + \sqrt[3]{2-11\sqrt{-1}} .
     \label{eq:BombelliSolutionSqrt}
@@ -398,12 +400,12 @@ Finally, given that any complex number can be represented visually in a form of 
     \boldsymbol{z} = \begin{pmatrix} x \\ y \end{pmatrix}
     \label{eq:complexNumberVectors}
 \end{equation}
-or like a matrix:
+or like a matrix \citep[ provides some examples based on these presentations]{Halliwell2015}:
 \begin{equation}
     \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
     \label{eq:complexNumberMatrix}
 \end{equation}
-where the symbold \(\sim\) below the letter denotes a matrix presentation of a complex number. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
+where the symbol \(\sim\) below the letter denotes a matrix presentation of a complex number. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
 \begin{equation*}
     \begin{aligned}
         & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
@@ -626,7 +628,7 @@ and
 
 In statistics, a random variable is a variable, the value of which depends on random events. For example, for the classical coin tossing experiment, \(x\) would be considered as a random variable if it is equal to 1 in case of heads and is equal to zero otherwise. In case of complex random variables (c.r.v.), the logic is similar, but we would typically deal with two-dimensional cases (e.g.~tossing two coins simultaneously). We accept that in some cases, some parts of the c.r.v. might become non-random (e.g.~the real part becomes equal to some fixed number). As such, we would be saying that \(x=x_r+ix_i\) is a complex random variable if at least one part of it follows some distribution. Furthermore, while random variables can be measured in a variety of scales (coin tossing represents the nominal scale), in this monograph we focus the discussion on continuous numerical variables.
 
-As any other random variable, c.r.v. can be characterised by its moments. However, some of its moments differ from the conventional ones for real variables and are based on the properties of complex numbers.
+As any other random variable, c.r.v. can be characterised by its moments \citep[see, for example,][]{Reed1962}. However, some of its moments differ from the conventional ones for real variables and are based on the properties of complex numbers.
 
 \hypertarget{first-moment}{%
 \subsection{First moment}\label{first-moment}}
@@ -673,7 +675,7 @@ In R, the first moment can be obtained via the \texttt{mean()} function from \te
 \hypertarget{crvSecondMoment}{%
 \subsection{Second moment}\label{crvSecondMoment}}
 
-While there are raw moments for c.r.v., here we will focus on the centred ones, i.e.~moments for \(\underline{x}-\bar{\underline{x}}\). There are several instruments related to the second moment that could characterise a complex random variable. The first one is called ``variance'' and is based on the multiplication by a conjugate number \citep{reference}. So for the c.r.v. \(x_r + i x_i\) the variance is:
+While there are raw moments for c.r.v., here we will focus on the centred ones, i.e.~moments for \(\underline{x}-\bar{\underline{x}}\). There are several instruments related to the second moment that could characterise a complex random variable. The first one is called ``variance'' and is based on the multiplication by a conjugate number \citep{Panchev1971}. So for the c.r.v. \(x_r + i x_i\) the variance is:
 \begin{equation}
     \begin{aligned}
     \mathrm{V}(\underline{x}) = \sigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu}) (\tilde{\underline{x}}-\tilde{\underline{\mu}})) = \\
@@ -697,7 +699,7 @@ Multiplication by conjugate in \eqref{eq:crvMomentSecondVariance} allows keeping
 
 Figure \ref{fig:crvMomentSecondVariance} demonstrates graphically the relation between standard deviations of real, imaginary and the overall variance of a complex variable according to the formula \eqref{eq:crvMomentSecondVarianceShort}.
 
-\citet{Picinbono} note that the moment \eqref{eq:crvMomentSecondVarianceShort} is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. Another measure of variability of a complex random variable is the so called ``pseudo-variance'' \citep{reference}, which can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate:
+\citet{Picinbono1997} note that the moment \eqref{eq:crvMomentSecondVarianceShort} is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. Another measure of variability of a complex random variable is the so called ``pseudo-variance'' \citep[in many papers in signal processing, for example, in][]{Javidi2011}, which can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate:
 \begin{equation}
     \begin{aligned}
     \mathcal{V}(\underline{x}) = \varsigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu})^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
@@ -710,7 +712,7 @@ or using the notation \(\sigma_{x_r,x_i}\) for covariance between the real and i
     \varsigma_x^2 = \sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i}.
     \label{eq:crvMomentSecondVariancePseudoShort}
 \end{equation}
-In the literature, the moment \eqref{eq:crvMomentSecondVariancePseudoShort} is called pseudo-variance \citep{reference}, because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. If both real and imaginary parts of \eqref{eq:crvMomentSecondVariancePseudoShort} are equal to zero then it is said that the distribution of the complex variable \(x\) is spherical \citep{reference}, i.e.~the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising \eqref{eq:crvMomentSecondVarianceShort} implies minimising both variances of the real and imaginary parts of \(x\) (ignoring the covariance between them), minimising \eqref{eq:crvMomentSecondVariancePseudoShort} is not as straightforward. At very least, we could tell that it implies making the distribution of \(x\) closer to the spherical one, but we cannot provide any thorough insight about this.
+In the literature, the moment \eqref{eq:crvMomentSecondVariancePseudoShort} is called pseudo-variance \citep[e.g.,][]{Trampitsch2013}, because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. If both real and imaginary parts of \eqref{eq:crvMomentSecondVariancePseudoShort} are equal to zero then it is said that the distribution of the complex variable \(x\) is spherical \citep{reference}, i.e.~the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising \eqref{eq:crvMomentSecondVarianceShort} implies minimising both variances of the real and imaginary parts of \(x\) (ignoring the covariance between them), minimising \eqref{eq:crvMomentSecondVariancePseudoShort} is not as straightforward. At very least, we could tell that it implies making the distribution of \(x\) closer to the spherical one, but we cannot provide any thorough insight about this.
 
 We should note that both measures can be considered as complex, and the main distinction between them is the multiplication by the same c.r.v or by its conjugate. As such we propose to call them respectively ``conjugate variance'' and ``direct variance''.
 
@@ -808,7 +810,7 @@ All the three moments discussed in this subsection rely on variances of real and
 \end{equation}
 where \(k\) is the number of estimated parameters in a model.
 
-Finally, similar to the variance it is possible to calculate second moments between two complex random variables \(x = x_r+i x_i\) and \(y = y_r + i y_i\) \citep{Picinbono}. The ``conjugate'' covariance is calculated similarly to \eqref{eq:crvMomentSecondVariance} via the multiplication by conjugate:
+Finally, similar to the variance it is possible to calculate second moments between two complex random variables \(x = x_r+i x_i\) and \(y = y_r + i y_i\) \citep{Picinbono1997}. The ``conjugate'' covariance is calculated similarly to \eqref{eq:crvMomentSecondVariance} via the multiplication by conjugate \citep{Neeser1993}:
 \begin{equation}
     \begin{aligned}
     \sigma_{x,y} = & \mathrm{E}((\tilde{x}-\tilde{\mu}_x) (y-\mu_y)) = \\
@@ -825,7 +827,7 @@ where \(\mu_{x}\) and \(\mu_y\) are the respective first moments of c.r.v. \(x\)
 \end{equation}
 which similarly to the variance \eqref{eq:crvMomentSecondVarianceShort} mixes the moments of the real and imaginary parts of the two random variables. Note though that if the conjugate of \(y\) is used instead of the conjugate of \(x\), the imaginary part of the covariance \eqref{eq:crvMomentSecondCovarianceShort} will change to \(\sigma_{x_i, y_r} - \sigma_{x_r, y_i}\), giving potentially different information about the relation between the variables.
 
-In order to have more information about a c.r.v., we also need to consider the ``direct'' covariance \citep[also known in the literature as pseudo-covariance,][]{reference}, which can be shown to be equal to:
+In order to have more information about a c.r.v., we also need to consider the ``direct'' covariance, which is also known in the signal processing literature as pseudo-covariance \citep[\citet{Gao2019}]{Neeser1993}, which can be shown to be equal to:
 \begin{equation}
     \varsigma_{x,y} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
     \label{eq:crvMomentSecondPseudoCovarianceShort}
@@ -894,7 +896,7 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 ## y -51.28506+50.82070i  12.71148+48.05904i
 \end{verbatim}
 
-While there exist higher order moments for complex random variables, we do not discuss them in this book.
+While there exist higher order moments for complex random variables \citep[see, for example,][]{Javidi2011}, we do not discuss them in this book.
 
 \hypertarget{parametric-distributions-of-c.r.v.}{%
 \section{Parametric Distributions of c.r.v.}\label{parametric-distributions-of-c.r.v.}}
@@ -931,7 +933,7 @@ When it comes to distribution functions, in case of c.r.v. in general we should 
 \hypertarget{distributionCNorm}{%
 \subsection{Complex Normal distribution}\label{distributionCNorm}}
 
-One of the most popular distributions in statistics is the Normal distribution. There exists a complex counterpart of that distribution, which has the following probability density function \citep{refGoodman}:
+One of the most popular distributions in statistics is the Normal distribution. There exists a complex counterpart of that distribution, which has the following probability density function \citep{Wooding1956a}:
 \begin{equation}
     f(\underline{x}) = \frac{1}{\pi^2 \sqrt{\sigma^4 - \varsigma^2 \tilde{\varsigma}^2}} \exp\left(- \frac{1}{2}
         \begin{pmatrix} \underline{\tilde{x}} - \underline{\tilde{\mu}} & \underline{x} - \underline{\mu} \end{pmatrix}
@@ -964,7 +966,7 @@ Figure \ref{fig:plotlyCNormal} shows the PDF of \(x \sim \mathcal{CN}(100+100i,1
 \caption{\label{fig:plotlyCNormalHeatmap}Heatmap of density of Complex Normal distribution.}
 \end{figure}
 
-One special case of a Complex Normal distribution is a so called ``Circular Symmetric'' Complex Normal distribution. It is a distribution for which the direct variance equals to zero, which implies that the variances of the real and the imaginary parts are equal and that the covariance between them is equal to zero. This specific distribution is used extensively in signal processing literature \citep{referenceHere}.
+One special case of a Complex Normal distribution is a so called ``Circular Symmetric'' Complex Normal distribution \citep{Neeser1993}. It is a distribution for which the direct variance equals to zero, which implies that the variances of the real and the imaginary parts are equal and that the covariance between them is equal to zero \citep[ studied its properties in more detail]{Amblard1996}. This specific distribution is used extensively in signal processing literature and also relates to the so-called ``propriety'' property, meaning that the direct covariance of the complex variables is zero \citep{Walden2009, Adali2011}.
 
 The functions of the Complex Normal distribution are implemented as \texttt{dcnorm()}, \texttt{pcnorm()}, \texttt{qmcnorm()} and \texttt{rmcnorm()} in the \texttt{complex} package.
 
@@ -1000,6 +1002,8 @@ Note however that working with confidence regions is challenging, because there 
     \label{eq:NormalInterval}
 \end{equation}
 where \(z\left({\frac{\alpha}{2}} \right)\) and \(z\left({\frac{1+\alpha}{2}} \right)\) are the respective lower and upper quantiles of the standard normal distribution.
+
+Another distribution related to the multivariate normal one is the multivariate complex normal. It was proposed and studied by \citet{Goodman1963} and then extended by \citet{vandenBos1995}. We do not use it in what comes in the monograph and mention it only for completeness.
 
 \hypertarget{Hotelling}{%
 \subsection{Hotelling's T-squared distribution}\label{Hotelling}}
@@ -1041,7 +1045,7 @@ Now that we have discussed basics of complex variables theory, we can discuss th
   You can model anything with complex variables as long as you follow some rules.
 \end{enumerate}
 
-If you follow the former view you need to find some variables that form two parts of the whole that work together. An example of this case is the wind power and direction forecasting. The two variables in this case will be naturally represented in the exponential form:
+If you follow the former view you need to find some variables that form two parts of the whole that work together. An example of this case is the wind power and direction forecasting \citep{Goh2004, Javidi2008, Knight2019}. The two variables in this case will be naturally represented in the exponential form:
 \begin{equation*}
     \underline{y} = r \mathrm{e}^{i \phi} ,
 \end{equation*}
@@ -1172,12 +1176,12 @@ or equivalently in matrix notations:
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{b} + \boldsymbol{e}_j ,
     \label{eq:SimpleCLRSystemVector03Estimated}
 \end{equation}
-where \(\underline{b_{l}}\), \(b_{l,r}+ib_{l,i}\) and \(\boldsymbol{b}\) are the estimates of respective \(\underline{\beta_l}\), \(\beta_{l,r} + i \beta_{l,i}\) and \(\boldsymbol{\beta}\) and \(\underline{e}_j\), \(e_{r,j} + i e_{i,j}\) and \(\boldsymbol{e}_j\) are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
+where \(\underline{b_{l}}\), \(b_{l,r}+ib_{l,i}\) and \(\boldsymbol{b}\) are the estimates of respective \(\underline{\beta_l}\), \(\beta_{l,r} + i \beta_{l,i}\) and \(\boldsymbol{\beta}\) and \(\underline{e}_j\), \(e_{r,j} + i e_{i,j}\) and \(\boldsymbol{e}_j\) are the residuals of the model. There are many approaches for estimation of parameters of a complex-valued regression. In this monograph, we focus only on the three of them: Ordinary Least Squares (OLS), Complex Least Squares (CLS), and Likelihood.
 
 \hypertarget{SCLREstimationOLS}{%
 \subsection{Ordinary Least Squares}\label{SCLREstimationOLS}}
 
-We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple cLR, it comes to minimising the following loss based on the residuals:
+We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. To our knowledge, \citet{VandenBos1994} was the first paper that discussed it in the complex-valued domain. For the simple cLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
     \sum_{j=1}^n (\underline{e}_j \underline{\tilde{e}}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     \label{eq:SimpleCLROLSLoss}
@@ -1506,7 +1510,7 @@ So, we can see that despite being counter-intuitive, the CLS produces the estima
 \hypertarget{SCLREstimationLikelihood}{%
 \subsection{Likelihood}\label{SCLREstimationLikelihood}}
 
-Finally, another way of estimating the simple cLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
+Finally, another way of estimating the simple cLR is by assuming a distribution of the residuals and maximising the respective likelihood \citep{VandenBos1994}. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
 \begin{equation}
     \boldsymbol{\Sigma}_\epsilon = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
     \label{eq:SimpleCLRLikelihoodSigma}
@@ -1809,7 +1813,7 @@ The plot in Figure \ref{fig:crvScatterplotMDS} is much easier to read than the c
 \hypertarget{correlationTypes}{%
 \section{Types of correlation coefficients}\label{correlationTypes}}
 
-The literature knows two correlation coefficients for complex variables \citep{ref}: the conjugate and the direct correlation (the latter is known in the literature as ``pseudo-correlation''). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \ref{crvSecondMoment}):
+The literature knows two main correlation coefficients for complex variables \citep{Schreier2010}: the conjugate and the direct correlation \citep[the latter is known in the literature as ``pseudo-correlation'', see, for example,][]{Chung2020}. Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \ref{crvSecondMoment}):
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1881,7 +1885,7 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 ## [1] 1
 \end{verbatim}
 
-This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction.
+This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction. We note that \citet{Schreier2010} acknowledged the issue, discussing the properties of the coefficient and its derivatives.
 
 The formulae \eqref{eq:correlationConjugate} and \eqref{eq:correlationDirect} are derived based on the original definition of Pearson's correlation coefficient \citep{refPearson}. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
@@ -1912,7 +1916,7 @@ which then leads to the formula \eqref{eq:correlationConjugate}. Similarly, for 
     \end{aligned}
     \label{eq:twoRegressionsCLS}
 \end{equation}
-which after taking the same geometric means leads to \eqref{eq:correlationDirect}. Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
+which after taking the same geometric means leads to \eqref{eq:correlationDirect}. Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well. There are other ways to estimate correlation coefficients \citep[e.g.,][]{Miyabe2015} and there are other formulae of coefficients \citep{Schreier2010}, but they lie outside of the scope of the monograph.
 
 \hypertarget{correlationConjugate}{%
 \section{Conjugate correlation}\label{correlationConjugate}}
@@ -2299,7 +2303,7 @@ However, \citet{Lutkepohl2005} shows for multivariate models that the maximum of
 \hypertarget{MCLRInference}{%
 \section{Inference}\label{MCLRInference}}
 
-It is possible to calculate the variance of estimates of parameters, using the same approach as used in the conventional OLS for the real-valued regression, substituting the formula for parameters with either \eqref{eq:MCLROLSEstimate} or \eqref{eq:MCLRCLSEstimate}. In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variance can then be used in hypothesis testing or confidence interval construction. In order to do that, we need to replace the actual value \(\underline{\mathbf{y}}\) with \(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}\) in the OLS formula \eqref{eq:MCLROLSEstimate}:
+It is possible to calculate the variance of estimates of parameters, using the same approach as used in the conventional OLS for the real-valued regression, substituting the formula for parameters with either \eqref{eq:MCLROLSEstimate} or \eqref{eq:MCLRCLSEstimate}. In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variances can then be used in hypothesis testing or confidence interval construction \citep[their distribution was studied by][]{Tavares2007}. In order to do that, we need to replace the actual value \(\underline{\mathbf{y}}\) with \(\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}\) in the OLS formula \eqref{eq:MCLROLSEstimate}:
 \begin{equation}
     \begin{aligned}
     \underline{\boldsymbol{b}}^{\text{OLS}} =
@@ -3082,7 +3086,7 @@ The plots in Figure \ref{fig:heteroDiagnostics} show that the variability of res
 
 This assumption only applies to time series data. In case of the real-valued models, it means that the residuals in the past should not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g.~the appropriate transformations are not done, or some autoregressive elements are missing). In case of the cLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g.~complex autoregression, discussed later in this book).
 
-To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate complex ACF/PACF (or cACF/cPACF, based on the correlations discussed in Chapter \ref{correlationAnalysis}), giving an analyst four instruments instead of two \citep{ACFPACFReferences}. Furthermore, using the idea with correlation on MDS (see Section \ref{correlationMDSPearson}), we can calculate ACF/PACF based on Pearson's correlation between the complex variables reduced to real ones.
+To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate complex ACF/PACF (or cACF/cPACF, based on the correlations discussed in Chapter \ref{correlationAnalysis}), giving an analyst four instruments instead of two \citep{Yao2010, Yao2011, Zhang2022}. Furthermore, using the idea with correlation on MDS (see Section \ref{correlationMDSPearson}), we can calculate ACF/PACF based on Pearson's correlation between the complex variables reduced to real ones.
 
 In general, the idea with direct and conjugate ACF/PACF for complex variables is similar to the one for the conventional ACF/PACF for the real ones. The complex ACF measures the correlations between the variable on observation \(t\) and the one with lag \(\tau=\{1, \dots, T\}\), where \(T\) is the maximum lag we calculate the correlation for. If we calculate the conjugate correlations, we obtain a vector of values \(\rho_{1}, \dots, \rho_{T}\) (specific formulae are discussed in Section \ref{correlationConjugate}). In case of the direct one (see Section \ref{correlationDirect}), we get a vector \(\varrho_{1}, \dots, \varrho_{T}\). In both cases the index \(j\) in subscription refers to the specific lag, so, for example, \(\rho_{1}\) will measure the conjugate autocorrelation for lag 1, i.e.~conjugate correlation between \(\underline{y}_{t}\) and \(\underline{y}_{t-1}\).
 
@@ -3994,7 +3998,7 @@ As we can see, this example shows how a non-linear trend can be estimated and th
 
 One of the possible ways of modelling dynamics is by saying that future values of the variable depend on its past ones. \citet{Box1976}, who have developed a theory and methodology of so called ``AutoRegressive Integrated Moving Average'' (or ARIMA), provide an example of a series of CO\(_2\) output by a furnace with variable gas rate. In that situation the future amount of carbon dioxide will depend on the amount the furnace produced on the previous observations. This is one of example of an AR process. An interested reader is directed to Chapter 8 of \citet{SvetunkovAdam}, where the ARIMA model is discussed in more detail.
 
-Mathematically the cAR model can be represented in a vector form, which will make it look more similar to vector AR rather than to the univariate one. However, the cAR model is restricted with just two time series and thus can be represented using complex variables:
+Mathematically the cAR model can be represented in a vector form, which will make it look more similar to vector AR rather than to the univariate one. However, the cAR model is restricted with just two time series and thus can be represented using complex variables \citep[this is also discussed in][]{Chandna2014}:
 \begin{equation}
     \underline{y}_t = \underline{\beta}_0 + \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_p \underline{y}_{t-p} + \underline{\epsilon}_t ,
     \label{eq:ComplexAR}
@@ -4060,9 +4064,9 @@ If we now insert \eqref{eq:ComplexAR1ConjCov} and \eqref{eq:ComplexAR1DirCov} in
   \end{equation}
 \end{enumerate}
 
-As we can see from the formula \eqref{eq:ComplexAR1ConjCor}, the specific value of the cAR(1) parameter is lost because of the geometric mean in the formula: we end up with a magnitude of the complex variable instead of it real and imaginary parts. On the other hand, the direct cACF \eqref{eq:ComplexAR1DirCor} keeps the information about the cAR(1) parameter. However, the two formulae above are calculated in terms of expectations and their sample estimates might be slightly different. Specifically, the direct correlation \eqref{eq:ComplexAR1DirCor} relies on the sample estimate of the direct variance of the response variable \(y_t\), which might become equal to zero if the variances of the real and the imaginary parts of the complex variable are similar (as discussed in Section \ref{correlationDirect}). This means that in some situations the values of the direct cACF might become greater than one, leading to potential losses in information. But this also means that both conjugate and direct cACFs should be used for the analysis of complex time series: each of them has issues, but both of them give much clearer information about the potential process.
+As we can see from the formula \eqref{eq:ComplexAR1ConjCor}, the specific value of the cAR(1) parameter is lost because of the geometric mean in the formula: we end up with a magnitude of the complex variable instead of it real and imaginary parts. On the other hand, the direct cACF \eqref{eq:ComplexAR1DirCor} keeps the information about the cAR(1) parameter. However, the two formulae above are calculated in terms of expectations and their sample estimates might be slightly different. Specifically, the direct correlation \eqref{eq:ComplexAR1DirCor} relies on the sample estimate of the direct variance of the response variable \(y_t\), which might become equal to zero if the variances of the real and the imaginary parts of the complex variable are similar (as discussed in Section \ref{correlationDirect}). This means that in some situations the values of the direct cACF might become greater than one, leading to potential losses in information. But this also means that both conjugate and direct cACFs should be used for the analysis of complex time series: each of them has issues, but both of them give much clearer information about the potential process \citep[ provide some arguments to support this claim]{Zhou2015}.
 
-If we calculate the covariance for the cAR(1) between the values \(y_{t}\) and \(y_{t-2}\), we will get the following (the reader is encouraged to do the calculations manually to check the correctness of the final result):
+If we calculate the covariance for the cAR(1) between the values \(y_{t}\) and \(y_{t-2}\), we will get the following \citep[the reader is encouraged to do the calculations manually to check the correctness of the final result, but also see][]{Knight2019}:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
