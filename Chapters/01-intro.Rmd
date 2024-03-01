@@ -2,7 +2,7 @@
 ## Theory of complex numbers {#theoryOfComplexNumbers}
 This section sets out the basic concepts of the Theory of Complex Variables Functions (TCVF) with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
-The theory of complex numbers started in 1572 in the small Italian town of Kura. It was in this place and precisely in this year that the manuscript of an Italian mathematician Rafael Bombelli was published. The book was called Algebra. Rafael Bombelli showed in it how to solve the following cubic equation:
+The theory of complex numbers started in 1572 in the small Italian town of Kura. It was in this place and precisely in this year that the manuscript of an Italian mathematician Rafael Bombelli was published [@Bombelli1572]. The book was called Algebra. Rafael Bombelli showed in it how to solve the following cubic equation:
 \begin{equation}
     x^3 = 15x + 4 .
     (\#eq:BombelliEquation)
@@ -19,7 +19,7 @@ As can be seen from equation \@ref(eq:BombelliSolution), there are several squar
 
 This does not mean that equation \@ref(eq:BombelliEquation) does not have a solution. If you represent the problem graphically on a plane then it is easy to see that there is one. But it is impossible to find it arithmetically using the Scipione del Ferro formula, because there is a negative number in the expression on the right-hand side of \@ref(eq:BombelliSolution), and back then, mathematicians were sure that the square root of a negative number does not exist.
 
-The mathematicians of that time struggled to solve this problem, and Rafael Bombelli suggested to ignore the negative sign in the expression (Bombelli, 12). After all, the number -121 can be represented as a product of two numbers: -1 and 121. Then the square root of this number can be written as $\sqrt{-1} \times 11$. So, formula \@ref(eq:BombelliSolution) becomes:
+The mathematicians of that time struggled to solve this problem, and Rafael Bombelli suggested to ignore the negative sign in the expression. After all, the number -121 can be represented as a product of two numbers: -1 and 121. Then the square root of this number can be written as $\sqrt{-1} \times 11$. So, formula \@ref(eq:BombelliSolution) becomes:
 \begin{equation}
     x = \sqrt[3]{2+11\sqrt{-1}} + \sqrt[3]{2-11\sqrt{-1}} .
     (\#eq:BombelliSolutionSqrt)
@@ -273,12 +273,12 @@ Finally, given that any complex number can be represented visually in a form of 
     \boldsymbol{z} = \begin{pmatrix} x \\ y \end{pmatrix}
     (\#eq:complexNumberVectors)
 \end{equation}
-or like a matrix:
+or like a matrix [@Halliwell2015 provides some examples based on these presentations]:
 \begin{equation}
     \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
     (\#eq:complexNumberMatrix)
 \end{equation}
-where the symbold $\sim$ below the letter denotes a matrix presentation of a complex number. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
+where the symbol $\sim$ below the letter denotes a matrix presentation of a complex number. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
 \begin{equation*}
     \begin{aligned}
         & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
@@ -490,7 +490,7 @@ and
 ## Complex random variable {#complexRandomVariable}
 In statistics, a random variable is a variable, the value of which depends on random events. For example, for the classical coin tossing experiment, $x$ would be considered as a random variable if it is equal to 1 in case of heads and is equal to zero otherwise. In case of complex random variables (c.r.v.), the logic is similar, but we would typically deal with two-dimensional cases (e.g. tossing two coins simultaneously). We accept that in some cases, some parts of the c.r.v. might become non-random (e.g. the real part becomes equal to some fixed number). As such, we would be saying that $x=x_r+ix_i$ is a complex random variable if at least one part of it follows some distribution. Furthermore, while random variables can be measured in a variety of scales (coin tossing represents the nominal scale), in this monograph we focus the discussion on continuous numerical variables.
 
-As any other random variable, c.r.v. can be characterised by its moments. However, some of its moments differ from the conventional ones for real variables and are based on the properties of complex numbers.
+As any other random variable, c.r.v. can be characterised by its moments [see, for example, @Reed1962]. However, some of its moments differ from the conventional ones for real variables and are based on the properties of complex numbers.
 
 
 ### First moment
@@ -529,7 +529,7 @@ mean(x)
 
 
 ### Second moment {#crvSecondMoment}
-While there are raw moments for c.r.v., here we will focus on the centred ones, i.e. moments for $\underline{x}-\bar{\underline{x}}$. There are several instruments related to the second moment that could characterise a complex random variable. The first one is called "variance" and is based on the multiplication by a conjugate number [@reference]. So for the c.r.v. $x_r + i x_i$ the variance is:
+While there are raw moments for c.r.v., here we will focus on the centred ones, i.e. moments for $\underline{x}-\bar{\underline{x}}$. There are several instruments related to the second moment that could characterise a complex random variable. The first one is called "variance" and is based on the multiplication by a conjugate number [@Panchev1971]. So for the c.r.v. $x_r + i x_i$ the variance is:
 \begin{equation}
     \begin{aligned}
     \mathrm{V}(\underline{x}) = \sigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu}) (\tilde{\underline{x}}-\tilde{\underline{\mu}})) = \\
@@ -561,7 +561,7 @@ text(108, 100, latex2exp::TeX("$\\sigma_{x}$", italic=T), pos=2)
 
 Figure \@ref(fig:crvMomentSecondVariance) demonstrates graphically the relation between standard deviations of real, imaginary and the overall variance of a complex variable according to the formula \@ref(eq:crvMomentSecondVarianceShort).
 
-@Picinbono note that the moment \@ref(eq:crvMomentSecondVarianceShort) is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. Another measure of variability of a complex random variable is the so called "pseudo-variance" [@reference], which can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate:
+@Picinbono1997 note that the moment \@ref(eq:crvMomentSecondVarianceShort) is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. Another measure of variability of a complex random variable is the so called "pseudo-variance" [in many papers in signal processing, for example, in @Javidi2011], which can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate:
 \begin{equation}
     \begin{aligned}
     \mathcal{V}(\underline{x}) = \varsigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu})^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
@@ -574,7 +574,7 @@ or using the notation $\sigma_{x_r,x_i}$ for covariance between the real and ima
     \varsigma_x^2 = \sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i}.
     (\#eq:crvMomentSecondVariancePseudoShort)
 \end{equation}
-In the literature, the moment \@ref(eq:crvMomentSecondVariancePseudoShort) is called pseudo-variance [@reference], because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. If both real and imaginary parts of \@ref(eq:crvMomentSecondVariancePseudoShort) are equal to zero then it is said that the distribution of the complex variable $x$ is spherical [@reference], i.e. the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising \@ref(eq:crvMomentSecondVarianceShort) implies minimising both variances of the real and imaginary parts of $x$ (ignoring the covariance between them), minimising \@ref(eq:crvMomentSecondVariancePseudoShort) is not as straightforward. At very least, we could tell that it implies making the distribution of $x$ closer to the spherical one, but we cannot provide any thorough insight about this.
+In the literature, the moment \@ref(eq:crvMomentSecondVariancePseudoShort) is called pseudo-variance [e.g., @Trampitsch2013], because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. If both real and imaginary parts of \@ref(eq:crvMomentSecondVariancePseudoShort) are equal to zero then it is said that the distribution of the complex variable $x$ is spherical [@reference], i.e. the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising \@ref(eq:crvMomentSecondVarianceShort) implies minimising both variances of the real and imaginary parts of $x$ (ignoring the covariance between them), minimising \@ref(eq:crvMomentSecondVariancePseudoShort) is not as straightforward. At very least, we could tell that it implies making the distribution of $x$ closer to the spherical one, but we cannot provide any thorough insight about this.
 
 We should note that both measures can be considered as complex, and the main distinction between them is the multiplication by the same c.r.v or by its conjugate. As such we propose to call them respectively "conjugate variance" and "direct variance".
 
@@ -640,7 +640,7 @@ All the three moments discussed in this subsection rely on variances of real and
 \end{equation}
 where $k$ is the number of estimated parameters in a model.
 
-Finally, similar to the variance it is possible to calculate second moments between two complex random variables $x = x_r+i x_i$ and $y = y_r + i y_i$ [@Picinbono]. The "conjugate" covariance is calculated similarly to \@ref(eq:crvMomentSecondVariance) via the multiplication by conjugate:
+Finally, similar to the variance it is possible to calculate second moments between two complex random variables $x = x_r+i x_i$ and $y = y_r + i y_i$ [@Picinbono1997]. The "conjugate" covariance is calculated similarly to \@ref(eq:crvMomentSecondVariance) via the multiplication by conjugate [@Neeser1993]:
 \begin{equation}
     \begin{aligned}
     \sigma_{x,y} = & \mathrm{E}((\tilde{x}-\tilde{\mu}_x) (y-\mu_y)) = \\
@@ -657,7 +657,7 @@ where $\mu_{x}$ and $\mu_y$ are the respective first moments of c.r.v. $x$ and $
 \end{equation}
 which similarly to the variance \@ref(eq:crvMomentSecondVarianceShort) mixes the moments of the real and imaginary parts of the two random variables. Note though that if the conjugate of $y$ is used instead of the conjugate of $x$, the imaginary part of the covariance \@ref(eq:crvMomentSecondCovarianceShort) will change to $\sigma_{x_i, y_r} - \sigma_{x_r, y_i}$, giving potentially different information about the relation between the variables.
 
-In order to have more information about a c.r.v., we also need to consider the "direct" covariance [also known in the literature as pseudo-covariance, @reference], which can be shown to be equal to:
+In order to have more information about a c.r.v., we also need to consider the "direct" covariance, which is also known in the signal processing literature as pseudo-covariance [@Neeser1993, @Gao2019], which can be shown to be equal to:
 \begin{equation}
     \varsigma_{x,y} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
     (\#eq:crvMomentSecondPseudoCovarianceShort)
@@ -701,7 +701,7 @@ ourData <- cbind(x,y)
 cvar(ourData, method="direct")
 ```
 
-While there exist higher order moments for complex random variables, we do not discuss them in this book.
+While there exist higher order moments for complex random variables [see, for example, @Javidi2011], we do not discuss them in this book.
 
 
 ## Parametric Distributions of c.r.v.
@@ -751,7 +751,7 @@ When it comes to distribution functions, in case of c.r.v. in general we should 
 
 
 ### Complex Normal distribution {#distributionCNorm}
-One of the most popular distributions in statistics is the Normal distribution. There exists a complex counterpart of that distribution, which has the following probability density function [@refGoodman]:
+One of the most popular distributions in statistics is the Normal distribution. There exists a complex counterpart of that distribution, which has the following probability density function [@Wooding1956a]:
 \begin{equation}
     f(\underline{x}) = \frac{1}{\pi^2 \sqrt{\sigma^4 - \varsigma^2 \tilde{\varsigma}^2}} \exp\left(- \frac{1}{2}
         \begin{pmatrix} \underline{\tilde{x}} - \underline{\tilde{\mu}} & \underline{x} - \underline{\mu} \end{pmatrix}
@@ -823,7 +823,7 @@ plot_ly(z=~pdfValues, type="heatmap") |>
 knitr::include_graphics("./images/plotlyCNormalHeatmap.png")
 ```
 
-One special case of a Complex Normal distribution is a so called "Circular Symmetric" Complex Normal distribution. It is a distribution for which the direct variance equals to zero, which implies that the variances of the real and the imaginary parts are equal and that the covariance between them is equal to zero. This specific distribution is used extensively in signal processing literature [@referenceHere].
+One special case of a Complex Normal distribution is a so called "Circular Symmetric" Complex Normal distribution [@Neeser1993]. It is a distribution for which the direct variance equals to zero, which implies that the variances of the real and the imaginary parts are equal and that the covariance between them is equal to zero [@Amblard1996 studied its properties in more detail]. This specific distribution is used extensively in signal processing literature and also relates to the so-called "propriety" property, meaning that the direct covariance of the complex variables is zero [@Walden2009; @Adali2011].
 
 The functions of the Complex Normal distribution are implemented as `dcnorm()`, `pcnorm()`, `qmcnorm()` and `rmcnorm()` in the `complex` package.
 
@@ -859,6 +859,7 @@ Note however that working with confidence regions is challenging, because there 
 \end{equation}
 where $z\left({\frac{\alpha}{2}} \right)$ and $z\left({\frac{1+\alpha}{2}} \right)$ are the respective lower and upper quantiles of the standard normal distribution.
 
+Another distribution related to the multivariate normal one is the multivariate complex normal. It was proposed and studied by @Goodman1963 and then extended by @vandenBos1995. We do not use it in what comes in the monograph and mention it only for completeness.
 
 ### Hotelling's T-squared distribution {#Hotelling}
 When it comes to distribution of complex variables statistics, one of the most important ones is a distribution of a mean of a complex variable. In the case of real variables, it is well known that if the Central Limit Theorem (CLT) holds then the sample mean will follow Normal distribution, and confidence interval for the mean can be constructed using Student's t distribution (when the population variance is unknown, i.e. in reality). For c.r.v., the situation is similar: when CLT holds, the c.r.v. follows Complex Normal distribution, but instead of Student's t distribution, we need to use its multivariate counterpart, which is called "Hotelling's T-squared" distribution. It is more convenient to consider the statistics for a c.r.v in a vector form (i.e. treat it as bivariate). If we estimate the sample mean $\hat{\boldsymbol{\mu}}_x$ and a sample covariance matrix of the mean $\hat{\boldsymbol{\Sigma}}_{\mu_{x}}$ then the following holds (if CLT holds):
@@ -891,7 +892,7 @@ Now that we have discussed basics of complex variables theory, we can discuss th
 1. You need to find processes, where complex variables arise naturally;
 2. You can model anything with complex variables as long as you follow some rules.
 
-If you follow the former view you need to find some variables that form two parts of the whole that work together. An example of this case is the wind power and direction forecasting. The two variables in this case will be naturally represented in the exponential form:
+If you follow the former view you need to find some variables that form two parts of the whole that work together. An example of this case is the wind power and direction forecasting [@Goh2004; @Javidi2008; @Knight2019]. The two variables in this case will be naturally represented in the exponential form:
 \begin{equation*}
     \underline{y} = r \mathrm{e}^{i \phi} ,
 \end{equation*}

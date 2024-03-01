@@ -69,7 +69,7 @@ The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the 
 
 
 ## Types of correlation coefficients {#correlationTypes}
-The literature knows two correlation coefficients for complex variables [@ref]: the conjugate and the direct correlation (the latter is known in the literature as "pseudo-correlation"). Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
+The literature knows two main correlation coefficients for complex variables [@Schreier2010]: the conjugate and the direct correlation [the latter is known in the literature as "pseudo-correlation", see, for example, @Chung2020]. Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
 
 1. Conjugate correlation
 \begin{equation}
@@ -104,7 +104,7 @@ sqrt(ccov(y,x,method="conj")*ccov(x,y,method="conj")) /
 ccor(x,y,method="conjugate")
 ```
 
-This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction.
+This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction. We note that @Schreier2010 acknowledged the issue, discussing the properties of the coefficient and its derivatives.
 
 The formulae \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect) are derived based on the original definition of Pearson's correlation coefficient [@refPearson]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
@@ -135,7 +135,7 @@ which then leads to the formula \@ref(eq:correlationConjugate). Similarly, for C
     \end{aligned}
     (\#eq:twoRegressionsCLS)
 \end{equation}
-which after taking the same geometric means leads to \@ref(eq:correlationDirect). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well.
+which after taking the same geometric means leads to \@ref(eq:correlationDirect). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well. There are other ways to estimate correlation coefficients [e.g., @Miyabe2015] and there are other formulae of coefficients [@Schreier2010], but they lie outside of the scope of the monograph.
 
 
 ## Conjugate correlation {#correlationConjugate}

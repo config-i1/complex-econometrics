@@ -82,11 +82,11 @@ or equivalently in matrix notations:
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{b} + \boldsymbol{e}_j ,
     (\#eq:SimpleCLRSystemVector03Estimated)
 \end{equation}
-where $\underline{b_{l}}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\underline{\beta_l}$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $\underline{e}_j$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. Now in order to get estimates of parameters, we can use one of several approaches.
+where $\underline{b_{l}}$, $b_{l,r}+ib_{l,i}$ and $\boldsymbol{b}$ are the estimates of respective $\underline{\beta_l}$, $\beta_{l,r} + i \beta_{l,i}$ and $\boldsymbol{\beta}$ and $\underline{e}_j$, $e_{r,j} + i e_{i,j}$ and $\boldsymbol{e}_j$ are the residuals of the model. There are many approaches for estimation of parameters of a complex-valued regression. In this monograph, we focus only on the three of them: Ordinary Least Squares (OLS), Complex Least Squares (CLS), and Likelihood.
 
 
 ### Ordinary Least Squares {#SCLREstimationOLS}
-We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. For the simple cLR, it comes to minimising the following loss based on the residuals:
+We start with the conventional Ordinary Least Squares (OLS), which relies on the multiplication by conjugate number. To our knowledge, @VandenBos1994 was the first paper that discussed it in the complex-valued domain. For the simple cLR, it comes to minimising the following loss based on the residuals:
 \begin{equation}
     \sum_{j=1}^n (\underline{e}_j \underline{\tilde{e}}_j) = \sum_{j=1}^n (e_{r,j}^2 + e_{i,j}^2).
     (\#eq:SimpleCLROLSLoss)
@@ -401,7 +401,7 @@ So, we can see that despite being counter-intuitive, the CLS produces the estima
 
 
 ### Likelihood {#SCLREstimationLikelihood}
-Finally, another way of estimating the simple cLR is by assuming a distribution of the residuals and maximising the respective likelihood. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
+Finally, another way of estimating the simple cLR is by assuming a distribution of the residuals and maximising the respective likelihood [@VandenBos1994]. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
 \begin{equation}
     \boldsymbol{\Sigma}_\epsilon = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
     (\#eq:SimpleCLRLikelihoodSigma)
