@@ -1,6 +1,6 @@
 # Introduction to theory of complex variables {#intro}
 ## Theory of complex numbers {#theoryOfComplexNumbers}
-This section sets out the basic concepts of the Theory of Complex Variables Functions (TCVF) with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
+This section sets out the basic concepts of the Theory of Complex Variables Functions with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
 The theory of complex numbers started in 1572 in the small Italian town of Kura. It was in this place and precisely in this year that the manuscript of an Italian mathematician Rafael Bombelli was published [@Bombelli1572]. The book was called Algebra. Rafael Bombelli showed in it how to solve the following cubic equation:
 \begin{equation}
