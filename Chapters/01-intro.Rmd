@@ -1,5 +1,6 @@
 # Introduction to theory of complex variables {#intro}
 ## Theory of complex numbers {#theoryOfComplexNumbers}
+### Historical context
 This section sets out the basic concepts of the Theory of Complex Variables Functions with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
 The theory of complex numbers originates in 1572 in Bologna. It was in that place and precisely that year that the manuscript of an Italian mathematician Rafael Bombelli was published [@Bombelli1572]. The book was called "Algebra". In it, Rafael Bombelli showed how to solve the following cubic equation:
@@ -46,6 +47,8 @@ We argue that the imaginary unit does not need to have any practical meaning: ne
 
 Imaginary and complex numbers are just instruments that can help in describing a real-life phenomenon. If a researcher decides to use complex variables for modelling of real processes, they will need to define some rules according to which one component of a complex process is attributed to the real part, and another one is attributed to the imaginary part of the complex variable. These rules might seem arbitrary, because there is no "true" recipe, according to which the assignment should be done. The main motivation for them is the efficiency of modelling (such as goodness of fit or forecasting accuracy) and nothing else. We discuss this aspect in more detail later in this chapter, in Section \@ref(complexModelling). To understand better how the modelling with complex variables can be done, we need first to understand how complex variables can be represented and interpreted.
 
+
+### Properties of complex numbers
 We start with the basics. A real number represents visually a certain segment on the numerical axis, which has a zero point and a multitude of potential values from minus infinity to infinity. Any real number is characterized by the distance from zero to the value of that number. Negative numbers are located to the left of zero, while the positive ones are located to the right of it.
 
 A complex number consists of two parts, and can be visualised on the plane with two perpendicular axes, where the real numbers are usually placed on the horizontal line (x-axis), while the imaginary ones are on the vertical one (y-axis). This is shown visually in Figure \@ref(fig:complexPlane) with a complex number $\underline{z}=x+iy$.
@@ -306,7 +309,7 @@ In this monograph, we will call the multiplications \@ref(eq:complexNumberMatrix
 
 
 ### Complex variables {#complexVariable}
-Similarly to any other variable, complex variable is a place holder for values, with the difference that it represents two parts of a number instead of one. Given the properties of complex numbers discussed in the previous section, any complex variable can be represented in linear, trigonometric and exponential forms. But in addition, it can also be represented in the form of a set of equations, i.e. if $y_r + i y_i = 3+2i$ then:
+Similarly to any other variable, complex variable is a placeholder for some values, with the difference that it represents two parts of a number instead of one. Given the properties of complex numbers discussed above, any complex variable can be represented in the linear, trigonometric and exponential forms. But in addition, it can also be represented in the form of a set of equations. For example, if $y_r + i y_i = 3+2i$ then:
 \begin{equation}
     \begin{aligned}
         y_r = & 3 \\
@@ -314,7 +317,7 @@ Similarly to any other variable, complex variable is a place holder for values, 
     \end{aligned} ,
     (\#eq:complexVariablesSystem)
 \end{equation}
-where the subscript $r$ or $i$ refers to respectively the real or imaginary parts of the complex number. In fact, any function of a complex variable can be represented as system of two equations, so that for a function
+where the subscripts $r$ or $i$ refer to the respective real and imaginary parts of the complex number. In fact, any function of a complex variable can be represented as system of two equations, so that for a function
 \begin{equation}
     y_{r} + i y_{i} = f(x_r+ix_i)
     (\#eq:complexFunction)
@@ -335,27 +338,27 @@ which can be written after opening the brackets and regrouping elements as:
 \begin{equation*}
     y_r + i y_i = a_{0,r} + a_{1,r} x_{1,r} - a_{1,i} x_{1,i} + i \left( a_{0,i} + a_{1,i} x_{1,r} + a_{1,r} x_{1,i} \right)
 \end{equation*}
-and is equivalent to the system of the following two equations:
+is equivalent to the system of the following two equations:
 \begin{equation*}
     \begin{aligned}
         y_r = & a_{0,r} + a_{1,r} x_{1,r} - a_{1,i} x_{1,i} \\
         y_i = & a_{0,i} + a_{1,i} x_{1,r} + a_{1,r} x_{1,i}
     \end{aligned} .
 \end{equation*}
-Given the vector and matrix representation of complex variables, the same linear function can be written as:
+Given the vector and matrix representations of complex variables, the same linear function can be written as:
 \begin{equation*}
     \begin{pmatrix} y_r \\ y_i \end{pmatrix} = \begin{pmatrix} a_{0,r} \\ a_{0,i} \end{pmatrix} + \begin{pmatrix} a_{1,r} & -a_{1,i} \\ a_{1,i} & a_{1,r} \end{pmatrix} \begin{pmatrix} x_{1,r} \\ x_{1,i} \end{pmatrix} ,
 \end{equation*}
-which is convenient in some situations. Presenting the system of equations \@ref(eq:complexFunctionSystem) in the linear form \@ref(eq:complexFunction) is often convenient. In fact, any function of complex variables can be represented as a system of two functions. Even if the real or the imaginary part of the output complex variable $y_r + i y_i$ is equal to zero, we can still use a system of two equations, where one of the equations becomes just a constraint for the function. For example, if we assume that $y_i=0$, then the system \@ref(eq:complexFunctionSystem) becomes:
+which is useful for some derivations that we will discuss in following chapters. Presenting the system of equations \@ref(eq:complexFunctionSystem) in the linear form \@ref(eq:complexFunction) is often convenient. In fact, any function of complex variables can be represented as a system of two functions. Even if the real or the imaginary part of the output complex variable $y_r + i y_i$ is equal to zero, we can still use a system of two equations, where one of the equations becomes a constraint for the function. For example, if we assume that $y_i=0$, then the system \@ref(eq:complexFunctionSystem) becomes:
 \begin{equation*}
     \begin{aligned}
         & y_r = \mathcal{R}(f(x_r+ix_i)) \\
         & \mathcal{I}(f(x_r+ix_i)) = 0
     \end{aligned} .
 \end{equation*}
-This property becomes especially useful if one needs to construct a model with linear relations between the input variables [this is discussed in Chapter ??? of @Svetunkov2014].
+This property becomes especially useful if one needs to construct a model with linear relations between the input variables [this is discussed in Chapter 5 of @Svetunkov2012].
 
-Given the discussion about the vector and matrix forms of complex numbers, the system of equations \@ref(eq:complexFunctionSystem) can be written as:
+Given the discussion of the vector and matrix forms of complex numbers, the system of equations \@ref(eq:complexFunctionSystem) can be written as:
 \begin{equation}
     \begin{pmatrix} y_r \\ y_i \end{pmatrix} =
     \begin{pmatrix} \mathcal{R}(f(x_r+ix_i)) \\ \mathcal{I}(f(x_r+ix_i)) \end{pmatrix} .
@@ -366,9 +369,9 @@ or:
     \begin{pmatrix} \mathcal{R}(f(x_r+ix_i)) & - \mathcal{I}(f(x_r+ix_i)) \\ \mathcal{I}(f(x_r+ix_i)) & \mathcal{R}(f(x_r+ix_i)) \end{pmatrix} .
     (\#eq:complexFunctionMatrix)
 \end{equation}
-The representations \@ref(eq:complexFunction), \@ref(eq:complexFunctionSystem), \@ref(eq:complexFunctionVectors) and \@ref(eq:complexFunctionMatrix) are equivalent and can be used interchangeably depending on the task at hand.
+The presentations \@ref(eq:complexFunction), \@ref(eq:complexFunctionSystem), \@ref(eq:complexFunctionVectors) and \@ref(eq:complexFunctionMatrix) are equivalent and can be used interchangeably depending on the task at hand.
 
-Finally, in terms of definitions, the function \@ref(eq:complexFunction) is often referred to as a "complex-valued" function. It maps a certain values of the input variable $x_r + i x_i$ with a specific value of the output variable $y_r +i y_i$. If there is only a one-to-one relation between the input and output variables then such function is called "univalent". When several different values of the input variable leads to one and the same value of the output variable then the function is called "multivalent". An example of the former is the linear function:
+Finally, in terms of definitions, the function \@ref(eq:complexFunction) is often referred to as a "complex-valued" function. It maps a certain values of the input variable $x_r + i x_i$ with a specific value of the output variable $y_r +i y_i$. If there is only one-to-one relation between the input and output variables then such function is called "univalent". When several different values of the input variable leads to one and the same value of the output variable then the function is called "multivalent". An example of the former is the linear function:
 \begin{equation*}
     y_r + i y_i = (a_{r} + i a_{i}) (x_{r} + i x_{i}),
 \end{equation*}
@@ -376,14 +379,14 @@ while for the latter, an example is
 \begin{equation*}
     y_r + i y_i = (a_{r} + i a_{i}) (x_{r} + i x_{i})^2, 
 \end{equation*}
-where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear even more often due to the rotation property discussed in the previous subsection.
+where two different input complex numbers (for example $0 + i$ and $0-i$) correspond to the same output number ($-1 + i0$). While there are examples of functions like that in the real domain, in the complex one, they appear more often due to the rotation property discussed in the previous subsection.
 
-Another important function of complex variables that will be useful in what follows is the power function of the form:
+Another important function of complex variables that will be useful in the following chapters is the power function of the form:
 \begin{equation}
     y_r + i y_i = (x_{r} + i x_{i}) ^{a_{r} + i a_{i}} .
     (\#eq:complexPower)
 \end{equation}
-In this function, the complex variable $x_{1,r} + i x_{1,i}$ is transformed non-linearly by taking the complex power of it. To better understand how the response variable is connected with the input one, the function \@ref(eq:complexPower) can be linearised:
+In this function, the complex variable $x_{1,r} + i x_{1,i}$ is transformed non-linearly by taking the complex power of it. To better understand how the response variable is connected with the input one in this case, the function \@ref(eq:complexPower) can be linearised using natural logarithm:
 \begin{equation*}
     \ln (y_r + i y_i) = (a_{r} + i a_{i}) \ln (x_{r} + i x_{i}) ,
 \end{equation*}
@@ -398,7 +401,7 @@ Opening the brackets on the right hand side, we finally get:
     & i \left(\frac{a_{i}}{2} \ln \left({x_r^2 + x_i^2}\right) + a_r \mathrm{Arg}(x_r + i x_i)  \right) 
     \end{aligned} .
 \end{equation*}
-This equation can be represented as a set of two equations, showing how the magnitude and how the argument of the response complex variable are formed:
+This equation can be represented as a set of two equations, showing how the magnitude and how the argument of the response complex variable are connected with the magnitude and the argument of the input variable:
 \begin{equation}
     \begin{aligned}
         & \left({y_r^2 + y_i^2}\right)^{\frac{1}{2}} = \left({x_r^2 + x_i^2}\right)^{\frac{a_{r}}{2}} e^{- a_{i} \mathrm{Arg}(x_r + i x_i)} \\
@@ -406,12 +409,12 @@ This equation can be represented as a set of two equations, showing how the magn
     \end{aligned} .
     (\#eq:complexPowerLogs)
 \end{equation}
-In the set of equations \@ref(eq:complexPowerLogs), we see that the parameter $a_r$ connects directly the magnitude and the argument of $\underline{x}$ with the magnitude and the argument of $\underline{y}$: the magnitude is increased in the power of $a_r$, while the argument is rotated by the same value. On the other hand, $a_i$ captures the cross-connections between the variables: the higher it is, the lower the impact of the argument of $\underline{x}$ on the magnitude of $\underline{y}$ and the higher is the impact of the magnitude of $\underline{x}$ on the argument of $\underline{y}$. The two parts of the complex parameter $a_r + i a_i$ have some similarities with the coefficient of elasticity and with marginal effect, where:
+In the set of equations \@ref(eq:complexPowerLogs), we see that the parameter $a_r$ connects directly the magnitude and the argument of $\underline{x}=x_{r} + i x_{i}$ with the magnitude and the argument of $\underline{y}=y_r + i y_i$: the magnitude is expanded by the power of $a_r$, while the argument is rotated by the same value. On the other hand, $a_i$ captures the cross-connections between the variables: the higher it is, the lower the impact of the argument of $\underline{x}$ on the magnitude of $\underline{y}$ and the higher is the impact of the magnitude of $\underline{x}$ on the argument of $\underline{y}$. The two parts of the complex parameter $a_r + i a_i$ have some similarities with the coefficient of elasticity/marginal effect in conventional econometrics, where:
 
 1. $a_r$ shows the percentage change of the magnitude of $\underline{y}$ with the increase of the magnitude of $\underline{x}$ by 1%;
 2. $a_r$ at the same time shows by how many radians the argument of $\underline{y}$ changes with the increase of the argument of $\underline{x}$ by one radiant, i.e. it reflects how fast the rotation of the vector happens (the angle increases);
-3. The magnitude of $\underline{y}$ changes roughly by $a_i \times 100$ percent with the increase of the argument of $\underline{x}$ by one radiant (this interpretation implies that $a_i$ is close to zero);
-4. The argument of $\underline{y}$ will change approximately by $\frac{a_i}{100}$ radians with the increase of the magnitude of $\underline{x}$ by 1% (this interpretation also relies on the assumption that $a_i$ is close to zero).
+3. The magnitude of $\underline{y}$ changes roughly by $-a_i \times 100$ percent with the increase of the argument of $\underline{x}$ by one radian (this interpretation implies that $a_i$ is close to zero);
+4. The argument of $\underline{y}$ will change approximately by $\frac{a_i}{200}$ radians with the increase of the magnitude of $\underline{x}$ by 1% (this interpretation also relies on the assumption that $a_i$ is close to zero).
 
 If the explanatory variable $\underline{x}$ was a real positive rather than complex, the set of equations \@ref(eq:complexPowerLogs) would simplify to:
 \begin{equation}
@@ -421,7 +424,7 @@ If the explanatory variable $\underline{x}$ was a real positive rather than comp
     \end{aligned} .
     (\#eq:complexPowerLogsReal)
 \end{equation}
-In this case, the $a_r$ has only the interpretation (1) (substituting the magnitude increase by the percentage increase of $x$), while the $a_i$ maintains the interpretation (4), which simplifies the whole interpretation substantially.
+In this case, the $a_r$ has only the interpretation (1) (substituting the magnitude percentage increase by the percentage increase of $x$), while the $a_i$ maintains the interpretation (4), which simplifies the whole interpretation substantially.
 
 While there are many other potential non-linear transformations of complex variables, we only discuss the ones above which are typically important in econometrics.
 
@@ -429,7 +432,7 @@ While there are many other potential non-linear transformations of complex varia
 ### Vectors of complex variables {#vectorComplexVariables}
 Last but not least, for what follows, we introduce vectors and matrices of complex variables. There are different ways how one can represent a vector of complex variables. The simplest and most direct one is:
 \begin{equation}
-    \underline{\mathbf{x}} = \begin{pmatrix} x_{r,1} + i x_{i,1} \\ x_{r,2} + i x_{i,2} \\ x_{r,3} + i x_{i,3} \end{pmatrix} ,
+    \underline{\mathbf{x}} = \begin{pmatrix} \underline{x}_1 \\ \underline{x}_2 \\ \underline{x}_3 \end{pmatrix} = \begin{pmatrix} x_{r,1} + i x_{i,1} \\ x_{r,2} + i x_{i,2} \\ x_{r,3} + i x_{i,3} \end{pmatrix} ,
     (\#eq:complexVector)
 \end{equation}
 where the index in subscript (1, 2, 3) represents the observed first, second and third values of the complex variable.  Alternatively, given that any complex variable can be represented as a vector \@ref(eq:complexNumberVectors), the same complex vector can be written as a matrix:
@@ -444,7 +447,7 @@ Finally, given the connection of complex numbers and matrices \@ref(eq:complexNu
                                  x_{r,3} & - x_{i,3} \\ x_{i,3} & x_{r,3} \end{pmatrix} .
     (\#eq:complexMatrix)
 \end{equation}
-We use the symbol $\sim$ below a character to denote the complex variable in the matrix form \@ref(eq:complexMatrix). Each of the forms \@ref(eq:complexVector), \@ref(eq:complexVectorMatrix) and \@ref(eq:complexMatrix) might be useful in different circumstances, their usage should be dictated by the modelling purpose.
+We use the symbol $\sim$ below a character to denote the complex variable in the matrix form. Each of the forms \@ref(eq:complexVector), \@ref(eq:complexVectorMatrix) and \@ref(eq:complexMatrix) might be useful in different circumstances, their usage should be dictated by the modelling purpose.
 
 Finally, note that the transposition of these three forms will imply different things. As discussed earlier, in vector and matrix forms transposition of a complex number implies the conjugation. However, transposing \@ref(eq:complexVector) will not have the same effect - it will only switch rows and columns of the complex vector:
 \begin{equation}
@@ -466,7 +469,7 @@ and
                         \end{pmatrix} .
     (\#eq:complexMatrixTransposed)
 \end{equation}
-We will denote the operation of transposition above with the symbol $\top$ and will call it just "transposition". The transposition that produces the conjugate complex numbers is called "conjugate transposition" and will be denoted as $\prime$ in this monograph. For the three examples above, the conjugate transposition will be:
+We will denote the operation of transposition above with the symbol $\top$ and will call it just "transposition". The transposition that produces the conjugate complex numbers is called "conjugate transposition" and will be denoted with the symbol $\prime$ in this monograph. For the three examples above, the conjugate transposition will be:
 \begin{equation}
     \underline{\mathbf{x}}^{\prime} = \begin{pmatrix} x_{r,1} - i x_{i,1} & x_{r,2} - i x_{i,2} & x_{r,3} - i x_{i,3}
                         \end{pmatrix} ,
@@ -487,10 +490,10 @@ and
 \end{equation}
 
 
-## Complex random variable {#complexRandomVariable}
-In statistics, a random variable is a variable, the value of which depends on random events. For example, for the classical coin tossing experiment, $x$ would be considered as a random variable if it is equal to 1 in case of heads and is equal to zero otherwise. In case of complex random variables (c.r.v.), the logic is similar, but we would typically deal with two-dimensional cases (e.g. tossing two coins simultaneously). We accept that in some cases, some parts of the c.r.v. might become non-random (e.g. the real part becomes equal to some fixed number). As such, we would be saying that $x=x_r+ix_i$ is a complex random variable if at least one part of it follows some distribution. Furthermore, while random variables can be measured in a variety of scales (coin tossing represents the nominal scale), in this monograph we focus the discussion on continuous numerical variables.
+## Complex random variables {#complexRandomVariable}
+In statistics, a random variable is a variable, the value of which depends on random events. For example, for the classical coin tossing experiment, $x$ would be considered as a random variable if it is equal to one in case of heads and zero otherwise. In case of complex random variables (c.r.v.), the logic is similar, but we would typically deal with two-dimensional cases (e.g. tossing two coins simultaneously). We should acknowledge that in some cases, some parts of the c.r.v. might become non-random (e.g. the real part becomes equal to some fixed number). As such, we would be saying that $x=x_r+ix_i$ is a complex random variable if at least one part of it is random. Furthermore, while random variables can be measured in a variety of scales (coin tossing represents the nominal scale), in this monograph we focus the discussion on continuous numerical variables.
 
-As any other random variable, c.r.v. can be characterised by its moments [see, for example, @Reed1962]. However, some of its moments differ from the conventional ones for real variables and are based on the properties of complex numbers.
+As any other random variable, c.r.v. can be characterised by its moments [see, for example, @Reed1962]. However, some of its moments differ from the conventional ones for real variables and are based on the properties of complex numbers discussed in the previous section.
 
 
 ### First moment
@@ -504,7 +507,7 @@ due to the law of total expectation and because $i$ is a constant. In \@ref(eq:c
     \underline{\hat{\mu}} = \hat{\mu}_{r} + i \hat{\mu}_{i} = \frac{1}{n}\sum_{j=1}^n x_{r,j} + i \frac{1}{n}\sum_{j=1}^n x_{i,j},
     (\#eq:crvMomentFirstSample)
 \end{equation}
-where $n$ is the sample size and $\hat{\mu}$ is the estimate of $\mu$. The properties of the first moment of c.r.v. are similar to the properties of any other random variable. The only thing to note is that the moment can also be represented in a vector or matrix form (see Subsection \@ref(complexVariable)):
+where $n$ is the sample size and $\hat{\mu}$ is the estimate of $\mu$. The properties of the first moment of c.r.v. are similar to the properties of any other random variable. The only thing to note is that the moment can also be represented in a vector or a matrix form (see Subsection \@ref(complexVariable)):
 \begin{equation}
     \boldsymbol{\mu} = \begin{pmatrix} \mu_{r} \\ \mu_{i} \end{pmatrix} 
     (\#eq:crvMomentsVector)
@@ -529,21 +532,21 @@ mean(x)
 
 
 ### Second moment {#crvSecondMoment}
-While there are raw moments for c.r.v., here we will focus on the centred ones, i.e. moments for $\underline{x}-\bar{\underline{x}}$. There are several instruments related to the second moment that could characterise a complex random variable. The first one is called "variance" and is based on the multiplication by a conjugate number [@Panchev1971]. So for the c.r.v. $x_r + i x_i$ the variance is:
+While there are raw moments for c.r.v., here we will focus on the centred ones, i.e. moments for $\underline{x}-\bar{\underline{x}}$. There are several instruments related to the second moment that could characterise a complex random variable. The first one is variance and is based on the multiplication of a complex variable by its conjugate [@Panchev1971]. So for the c.r.v. $x_r + i x_i$ the variance is:
 \begin{equation}
     \begin{aligned}
-    \mathrm{V}(\underline{x}) = \sigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu}) (\tilde{\underline{x}}-\tilde{\underline{\mu}})) = \\
+    \mathrm{V}(\underline{x}) = \sigma_{\underline{x}}^2 = & \mathrm{E}((\underline{x}-\underline{\mu}) (\tilde{\underline{x}}-\tilde{\underline{\mu}})) = \\
                  & \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))((x_r-\mu_{r}) - i (x_i-\mu_{i}))\right) = \\
                  & \mathrm{E}((x_r-\mu_{r})^2) +  \mathrm{E}((x_i-\mu_{i})^2)
     \end{aligned}
     (\#eq:crvMomentSecondVariance)
 \end{equation}
-or taking that the variances of the real and the imaginary parts are $\sigma_{x_r}^2$ and $\sigma_{x_i}^2$ respectively:
+or taking $\sigma_{x_r}^2$ and $\sigma_{x_i}^2$ to be variances of the real and the imaginary parts respectively:
 \begin{equation}
-    \sigma_x^2 = \sigma_{x_r}^2 + \sigma_{x_i}^2.
+    \sigma_{\underline{x}}^2 = \sigma_{x_r}^2 + \sigma_{x_i}^2.
     (\#eq:crvMomentSecondVarianceShort)
 \end{equation}
-Multiplication by conjugate in \@ref(eq:crvMomentSecondVariance) allows keeping the size of variability for both real and imaginary parts, but at the same time masks the individual contribution of each part in the overall variance and removes the covariance between the parts. The resulting values shows in a way the overall variability of a c.r.v. along a diagonal line as shown in Figure \@ref(fig:crvMomentSecondVariance).
+Multiplication by a conjugate in \@ref(eq:crvMomentSecondVariance) allows keeping the size of variability for both real and imaginary parts, but at the same time masks the individual contribution of each part in the overall variance and removes the covariance between them. The resulting value shows in a way the overall variability of a c.r.v. as a hypotenuse of a triangle shown in Figure \@ref(fig:crvMomentSecondVariance).
 
 ```{r crvMomentSecondVariance, fig.height=4, fig.width=4, fig.cap="Visual representation of variance of a complex random variable.", echo=FALSE}
 xr <- rnorm(1000,100,10)
@@ -556,40 +559,40 @@ lines(rep(100-10/2,2), 100+c(-10,10)*sqrt(2)/2, col="black", lwd=3)
 lines(100+c(-10,10)/2, 100+c(10,-10)*sqrt(2)/2, col="black", lwd=3)
 text(100, 88, latex2exp::TeX("$\\sigma_{x_r}$", italic=T))
 text(90, 100, latex2exp::TeX("$\\sigma_{x_i}$", italic=T))
-text(108, 100, latex2exp::TeX("$\\sigma_{x}$", italic=T), pos=2)
+text(108, 100, latex2exp::TeX("$\\sigma_{\\underline{x}}$", italic=T), pos=2)
 ```
 
-Figure \@ref(fig:crvMomentSecondVariance) demonstrates graphically the relation between standard deviations of real, imaginary and the overall variance of a complex variable according to the formula \@ref(eq:crvMomentSecondVarianceShort).
+Figure \@ref(fig:crvMomentSecondVariance) demonstrates graphically the relation between standard deviations of real, imaginary and the overall variances of a complex variable according to the formula \@ref(eq:crvMomentSecondVarianceShort).
 
-@Picinbono1997 note that the moment \@ref(eq:crvMomentSecondVarianceShort) is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. Another measure of variability of a complex random variable is the so called "pseudo-variance" [in many papers in signal processing, for example, in @Javidi2011], which can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate:
+@Picinbono1997 note that the moment \@ref(eq:crvMomentSecondVarianceShort) is not sufficient to entirely describe the second order statistics of a c.r.v. This is because it ignores the potential covariance between the parts of a variable and only describes their average variability. To address this issue, another measure of variability of a complex random variable is used. In the literature [especially in signal processing, for example, in @Javidi2011], it is called "pseudo-variance" and can be obtained by applying the conventional formula of variance directly to the c.r.v. without the multiplication by conjugate [e.g., @Trampitsch2013]:
 \begin{equation}
     \begin{aligned}
-    \mathcal{V}(\underline{x}) = \varsigma_x^2 = & \mathrm{E}((\underline{x}-\underline{\mu})^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
+    \mathcal{V}(\underline{x}) = \varsigma_{\underline{x}}^2 = & \mathrm{E}((\underline{x}-\underline{\mu})^2) = \mathrm{E}\left(((x_r-\mu_{r}) + i (x_i-\mu_{i}))^2\right) = \\
                     & \mathrm{E}((x_r-\mu_{r})^2) - \mathrm{E}((x_i-\mu_{i})^2) + i2 \mathrm{E}((x_r-\mu_{r})(x_i-\mu_{i}))
     \end{aligned}
     (\#eq:crvMomentSecondVariancePseudo)
 \end{equation}
 or using the notation $\sigma_{x_r,x_i}$ for covariance between the real and imaginary parts:
 \begin{equation}
-    \varsigma_x^2 = \sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i}.
+    \varsigma_{\underline{x}}^2 = \sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i}.
     (\#eq:crvMomentSecondVariancePseudoShort)
 \end{equation}
-In the literature, the moment \@ref(eq:crvMomentSecondVariancePseudoShort) is called pseudo-variance [e.g., @Trampitsch2013], because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. If both real and imaginary parts of \@ref(eq:crvMomentSecondVariancePseudoShort) are equal to zero then it is said that the distribution of the complex variable $x$ is spherical [@reference], i.e. the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising \@ref(eq:crvMomentSecondVarianceShort) implies minimising both variances of the real and imaginary parts of $x$ (ignoring the covariance between them), minimising \@ref(eq:crvMomentSecondVariancePseudoShort) is not as straightforward. At very least, we could tell that it implies making the distribution of $x$ closer to the spherical one, but we cannot provide any thorough insight about this.
+The name pseudo-variance is used, because it does not measure the variability of a variable, but rather gives a different information: it shows whether the real and imaginary variances are similar and what the covariance between them is. If both real and imaginary parts of \@ref(eq:crvMomentSecondVariancePseudoShort) are equal to zero then it is said that the distribution of the complex variable $x$ is spherical [@Neeser1993], i.e. the variances are similar and the real and imaginary parts are not linearly related. Furthermore, we should point out that while minimising \@ref(eq:crvMomentSecondVarianceShort) implies minimising both variances of the real and imaginary parts of $\underline{x}$ (ignoring the covariance between them), minimising \@ref(eq:crvMomentSecondVariancePseudoShort) is not as straightforward. At very least, we could tell that it implies making the distribution of $\underline{x}$ closer to the spherical one, but it is not possible to provide any thorough insight about this.
 
-We should note that both measures can be considered as complex, and the main distinction between them is the multiplication by the same c.r.v or by its conjugate. As such we propose to call them respectively "conjugate variance" and "direct variance".
+We should note that both measures can be considered as complex, and the main distinction between them is the multiplication by either the same c.r.v, or by its conjugate. As such, we propose to call them respectively "conjugate variance" and "direct variance" to reflect how they are obtained.
 
 Having calculated the two variances, we can then extract variances of real and imaginary parts and the covariance between them via formulae (which follows directly from \@ref(eq:crvMomentSecondVarianceShort) and \@ref(eq:crvMomentSecondVariancePseudoShort)):
 \begin{equation}
     \begin{aligned}
-        & \sigma_{x_r}^2 = \frac{\mathcal{R}(\sigma^2_x) + \mathcal{R}(\varsigma^2_x)}{2} \\
-        & \sigma_{x_i}^2 = \frac{\mathcal{R}(\sigma^2_x) - \mathcal{R}(\varsigma^2_x)}{2} \\
-        & \sigma_{x_r,x_i} = \frac{\mathcal{I}(\varsigma^2_x)}{2}
+        & \sigma_{x_r}^2 = \frac{\mathcal{R}(\sigma^2_{\underline{x}}) + \mathcal{R}(\varsigma^2_{\underline{x}})}{2} \\
+        & \sigma_{x_i}^2 = \frac{\mathcal{R}(\sigma^2_{\underline{x}}) - \mathcal{R}(\varsigma^2_{\underline{x}})}{2} \\
+        & \sigma_{x_r,x_i} = \frac{\mathcal{I}(\varsigma^2_{\underline{x}})}{2}
     \end{aligned} .
     (\#eq:IndividualVariances)
 \end{equation}
-These individual real-valued moments might be useful in case of hypothesis testing or constructing confidence intervals for each of the parts of c.r.v. independently.
+These individual real-valued moments might be useful in case of hypothesis testing or constructing confidence intervals for each of the parts of a c.r.v. independently.
 
-In R, the conjugate and direct variances are available in `cvar()` function of `complex` package.
+In R, the conjugate and direct variances are available in `cvar()` function of the `complex` package.
 
 ```{r}
 # Random seed for reproducibility
@@ -605,31 +608,31 @@ cvar(x, method="direct") |>
     setNames("Direct variance")
 ```
 
-As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be $5^2 + 10^2 = 125$, but due to small sample (100 observations in the generated random variable above), it will be equal to a number close to it.
+As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be $5^2 + 10^2 = 125$, but due to small sample (100 observations in the generated random variable above), it is not exactly that number, but instead is close to it.
 
-Given that any complex variable can be represented in a vector form, the c.r.v. $x$ can be treated as a bivariate random variable, for which a covariance matrix can be calculated via:
+Given that any complex variable can be represented in a vector form, the c.r.v. ${\underline{x}}$ can be treated as a bivariate random variable, for which a covariance matrix can be calculated via:
 \begin{equation}
     \boldsymbol{\Sigma}_x = \begin{pmatrix} \sigma_{x_r}^2 & \sigma_{x_r, x_i} \\ \sigma_{x_r, x_i} & \sigma_{x_i}^2 \end{pmatrix} .
     (\#eq:crvMomentSecondVarianceMatrix)
 \end{equation}
+
+In R, the calculation of the covariance matrix is implemented in `covar()` function from the `complex` package:
+```{r}
+covar(x)
+```
+
 The minimisation of the matrix \@ref(eq:crvMomentSecondVarianceMatrix) does not make sense, but instead it is possible to minimise the determinant of that matrix, which is called "Generalised Variance" (GV):
 \begin{equation}
     \mathrm{GV} = |\boldsymbol{\Sigma}_x| = \sigma_{x_r}^2 \sigma_{x_i}^2 - \sigma_{x_r, x_i}^2 .
     (\#eq:crvMomentSecondGV)
 \end{equation}
-
-In R, this is implemented in `covar()` function from the `complex` package:
-```{r}
-covar(x)
-```
-
-The minimisation of GV, as can be seen from the formula \@ref(eq:crvMomentSecondGV), implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
+This becomes relevant to estimation of complex-valued models using likelihood (see discussion in Section \@ref(SCLREstimationLikelihood)). The minimisation of GV, as can be seen from the formula \@ref(eq:crvMomentSecondGV), implies the simultaneous minimisation of variances of real and imaginary parts and maximisation of the square of covariance between them, making the resulting distribution compacter and emphasising the potential relations between the real and imaginary parts of a c.r.v. For our example in R, the GV equals to:
 
 ```{r}
 covar(x) |> det()
 ```
 
-All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between those parts. These moments in turn can be calculated using the conventional formulae, correcting for the potential small sample bias [@SvetunkovSBA]:
+All the three moments discussed in this subsection rely on variances of real and imaginary parts of a c.r.v. and on a covariance between them. These moments in turn can be calculated in sample using the conventional formulae, correcting for the potential small sample bias [@SvetunkovSBA]:
 \begin{equation}
     \begin{aligned}
         \hat{\sigma}_{x_r}^2 = & \frac{1}{n-k} \sum_{j=1}^n (x_{r,j}-\bar{x}_{r,j})^2 \\
@@ -640,31 +643,31 @@ All the three moments discussed in this subsection rely on variances of real and
 \end{equation}
 where $k$ is the number of estimated parameters in a model.
 
-Finally, similar to the variance it is possible to calculate second moments between two complex random variables $x = x_r+i x_i$ and $y = y_r + i y_i$ [@Picinbono1997]. The "conjugate" covariance is calculated similarly to \@ref(eq:crvMomentSecondVariance) via the multiplication by conjugate [@Neeser1993]:
+Finally, similar to the variance it is possible to calculate second moments between two complex random variables $\underline{x} = x_r+i x_i$ and $\underline{y} = y_r + i y_i$ [@Picinbono1997]. The "conjugate" covariance is calculated similarly to \@ref(eq:crvMomentSecondVariance) via the multiplication of a complex variabl by its conjugate [@Neeser1993]:
 \begin{equation}
     \begin{aligned}
-    \sigma_{x,y} = & \mathrm{E}((\tilde{x}-\tilde{\mu}_x) (y-\mu_y)) = \\
+    \sigma_{\underline{x},\underline{y}} = & \mathrm{E}((\tilde{\underline{x}}-\tilde{\mu}_\underline{x}) (\underline{y}-\mu_\underline{y})) = \\
                    & \mathrm{E}\left(((x_r-\mu_{x,r}) - i (x_i-\mu_{x,i}))((y_r-\mu_{y,r}) + i (y_i-\mu_{y,i}))\right) = \\
                    & \mathrm{E}((x_r-\mu_{x,r})(y_r-\mu_{y,r})) + \mathrm{E}((x_i-\mu_{x,i})(y_i-\mu_{y,i})) + \\
                    & i \left(\mathrm{E}((x_r-\mu_{x,r})(y_i-\mu_{y,i})) - \mathrm{E}((x_i-\mu_{x,i})(y_r-\mu_{y,r}))\right)
     \end{aligned}
     (\#eq:crvMomentSecondCovariance)
 \end{equation}
-where $\mu_{x}$ and $\mu_y$ are the respective first moments of c.r.v. $x$ and $y$. Using the notations above, the same covariance can be rewritten as:
+where $\mu_{\underline{x}}$ and $\mu_{\underline{y}}$ are the respective first moments of c.r.v. $\underline{x}$ and $\underline{y}$. Using the notations above, the same covariance can be rewritten as:
 \begin{equation}
-    \sigma_{x,y} = \sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_r, y_i} - \sigma_{x_i, y_r}),
+    \sigma_{\underline{x},\underline{y}} = \sigma_{x_r, y_r} + \sigma_{x_i, y_i} + i (\sigma_{x_r, y_i} - \sigma_{x_i, y_r}),
     (\#eq:crvMomentSecondCovarianceShort)
 \end{equation}
-which similarly to the variance \@ref(eq:crvMomentSecondVarianceShort) mixes the moments of the real and imaginary parts of the two random variables. Note though that if the conjugate of $y$ is used instead of the conjugate of $x$, the imaginary part of the covariance \@ref(eq:crvMomentSecondCovarianceShort) will change to $\sigma_{x_i, y_r} - \sigma_{x_r, y_i}$, giving potentially different information about the relation between the variables.
+which similarly to the variance \@ref(eq:crvMomentSecondVarianceShort) combines the moments of the real and imaginary parts of the two random variables. Note though that if the conjugate of $\underline{y}$ is used instead of the conjugate of $\underline{x}$, the imaginary part of the covariance \@ref(eq:crvMomentSecondCovarianceShort) will change to $\sigma_{x_i, y_r} - \sigma_{x_r, y_i}$, giving potentially different information about the relation between the variables. This means that the choice of the conjugate is important for the conjugate covariance.
 
-In order to have more information about a c.r.v., we also need to consider the "direct" covariance, which is also known in the signal processing literature as pseudo-covariance [@Neeser1993, @Gao2019], which can be shown to be equal to:
+To have more information about a c.r.v., we also need to consider the "direct" covariance, which is also known in the signal processing literature as pseudo-covariance [@Neeser1993, @Gao2019], which is equal to:
 \begin{equation}
-    \varsigma_{x,y} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
+    \varsigma_{\underline{x},\underline{y}} = \sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i}).
     (\#eq:crvMomentSecondPseudoCovarianceShort)
 \end{equation}
-Note that none of these moments on its own gives enough information about the relation between two complex variables, so they need to be used jointly. Alternatively, using vector representation, a covariance matrix between the two c.r.v. can be used to get a better understanding about the relations between them:
+Note that none of these moments gives enough information about the relation between two complex variables on its own, so they need to be used jointly. Alternatively, using vector representation, a covariance matrix between the two c.r.v. can be used to get a better understanding about the relations between them:
 \begin{equation}
-    \boldsymbol{\Sigma}_{x,y} =
+    \boldsymbol{\Sigma}_{\underline{x},\underline{y}} =
         \begin{pmatrix}
             \sigma_{x_r}^2 & \sigma_{x_r, x_i} & \sigma_{x_r, y_r} & \sigma_{x_r, y_i} \\
             \sigma_{x_r, x_i} & \sigma_{x_i}^2 & \sigma_{x_i, y_r} & \sigma_{x_i, y_i} \\
@@ -701,21 +704,21 @@ ourData <- cbind(x,y)
 cvar(ourData, method="direct")
 ```
 
-While there exist higher order moments for complex random variables [see, for example, @Javidi2011], we do not discuss them in this book.
+While there exist higher order moments for complex random variables [see, for example, @Javidi2011], we do not discuss them in this book, because they lie outside of its scope.
 
 
 ## Parametric Distributions of c.r.v.
 Similarly to the real valued random variables, complex random variables can follow some parametric distributions. In this section, we discuss several simple ones, some of which will be used later in this monograph.
 
-In general, it is reasonable to assume that a c.r.v. has a distribution of a shape of a circle or ellipse on the complex plane. This becomes more apparent if we consider the exponential form of a c.r.v. \@ref(eq:complexNumberExponential) and consider both magnitude and the angle as random variables. In the simplest case, when they are not correlated and we consider a variable that is centred around the origin, the randomness coming from both of these components will result in a circle on the complex plane, see the following example in R (and Figure \@ref(fig:crvGeneratedCircle)):
+In general, it is reasonable to assume that a c.r.v. has a distribution of a shape of a circle or ellipse on the complex plane. This becomes more apparent if we consider the exponential form of a c.r.v. \@ref(eq:complexNumberExponential) and consider both magnitude and the angle as random variables. In the simplest case, when they are not correlated, and we consider a variable that is centred around the origin, the randomness coming from both of these components will result in a circle on the complex plane, as shown in the following example in R (Figure \@ref(fig:crvGeneratedCircle)):
 
 ```{r crvGeneratedCircle, fig.cap="C.r.v. generated from a uniform distribuiton.", fig.width=4, fig.height=4}
 # Random seed for reproducibility
 set.seed(41)
 # Generate magnitudes from the uniform distribution
-R <- runif(1000,0,10)
+R <- runif(1000,min=0,max=10)
 # Generate angles from the uniform distribution
-phi <- runif(1000,-pi,pi)
+phi <- runif(1000,min=-pi,max=pi)
 # Create c.r.v in exponential form
 x <- R * exp(complex(imaginary=phi))
 # Plot the variable
@@ -724,7 +727,7 @@ plot(x)
 
 The example in Figure \@ref(fig:crvGeneratedCircle) demonstrates how a c.r.v. with uncorrelated real and imaginary parts looks on the complex plane. If there is a relation between the parts then the circle transforms into ellipse. So, it is only logical to consider the distributions that rely on a circle or an ellipse for the c.r.v. instead of any other geometric shapes.
 
-When it comes to distribution functions, in case of c.r.v. in general we should consider the joint bivariate distribution, thus all the probability density and cumulative distribution functions will be plotted in 3D with the density/probability in z-axis and the complex variable in x and y axes.
+When it comes to distribution functions of c.r.v., in general we should consider the joint bivariate distribution, thus all the probability density and cumulative distribution functions will be plotted in 3D with the density/probability on z-axis and the real and imaginary parts of the complex variable on x and y axes.
 
 
 <!-- ### Uniform distribution -->
@@ -751,22 +754,23 @@ When it comes to distribution functions, in case of c.r.v. in general we should 
 
 
 ### Complex Normal distribution {#distributionCNorm}
-One of the most popular distributions in statistics is the Normal distribution. There exists a complex counterpart of that distribution, which has the following probability density function [@Wooding1956a]:
+One of the most popular distributions in statistics is the Normal distribution. It is used extensively in modelling and is preferred for its simplicity and due to it being the limiting distribution according to Central Limit Theorem. There exists a complex counterpart of that distribution, which has the following probability density function [@Wooding1956a]:
 \begin{equation}
-    f(\underline{x}) = \frac{1}{\pi^2 \sqrt{\sigma^4 - \varsigma^2 \tilde{\varsigma}^2}} \exp\left(- \frac{1}{2}
+    f(\underline{x}) = \frac{1}{\pi^2 \sqrt{\sigma_\underline{x}^4 - \varsigma_\underline{x}^2 \tilde{\varsigma}_\underline{x}^2}} \exp\left(- \frac{1}{2}
         \begin{pmatrix} \underline{\tilde{x}} - \underline{\tilde{\mu}} & \underline{x} - \underline{\mu} \end{pmatrix}
-        \begin{pmatrix} \sigma^2 & \varsigma^2 \\ \tilde{\varsigma}^2 & \sigma^2 \end{pmatrix}^{-1}
+        \begin{pmatrix} \sigma_\underline{x}^2 & \varsigma_\underline{x}^2 \\ \tilde{\varsigma}_\underline{x}^2 & \sigma_\underline{x}^2 \end{pmatrix}^{-1}
         \begin{pmatrix} \underline{x} - \underline{\mu} \\ \underline{\tilde{x}} - \underline{\tilde{\mu}} \end{pmatrix}
     \right),
     (\#eq:ComplexNormalPDF)
 \end{equation}
-where $\underline{\mu}$ is the first moment of the c.r.v. $\underline{x}$ and $\sigma^2$ and $\varsigma^2$ are the conjugate and direct variances as defined in Section \@ref(complexRandomVariable). The variable that follows this distribution can be denoted as $\underline{x} \sim \mathcal{CN}(\underline{\mu}, \sigma^2, \varsigma^2)$ Note that both $\sigma^2$ and $\varsigma^2$ are important in the PDF \@ref(eq:ComplexNormalPDF) to define the shape of the distribution. For the real-valued variables, the conventional standard deviation $\sigma$ characterises the dispersion of the random variable, and in case of the normal distribution shows how many z-scores away the random variable can lie from its centre. For the c.r.v., $\sigma$ plays a similar role, but not in terms of units along the x axis, but rather in terms of radii from the centre. The direct variance $\varsigma^2$, on the other hand characterises the shape of the distribution itself: its real part shows whether the ellipse of the normal distribution should be wide (positive numbers) or narrow (negative numbers), while the imaginary part shows how close the points should be to the line drawn through them. These moments are shown visually in Figure \@ref(fig:crvNormalMoments).
+where $\underline{\mu}$ is the first moment of the c.r.v. $\underline{x}$ and $\sigma_\underline{x}^2$ and $\varsigma_\underline{x}^2$ are the conjugate and direct variances as defined in Section \@ref(complexRandomVariable). The variable that follows this distribution can be denoted as $\underline{x} \sim \mathcal{CN}(\underline{\mu}, \sigma_\underline{x}^2, \varsigma_\underline{x}^2)$ Note that both $\sigma_\underline{x}^2$ and $\varsigma_\underline{x}^2$ are important in the PDF \@ref(eq:ComplexNormalPDF) to define the shape of the distribution. For the real-valued variables, the conventional standard deviation $\sigma_\underline{x}$ characterises the dispersion of the random variable, and in case of the normal distribution shows how many z-scores away the random variable can lie from its centre. For the c.r.v., $\sigma_\underline{x}$ plays a similar role, but not in terms of units along the x axis, but rather in terms of radii from the centre. The direct variance $\varsigma_\underline{x}^2$, on the other hand characterises the shape of the distribution itself: its real part shows whether the ellipse of the normal distribution should be wide (positive numbers) or narrow (negative numbers), while the imaginary part shows how close the points should be to the line drawn through them. These moments are shown visually in Figure \@ref(fig:crvNormalMoments).
 
 
 ```{r crvNormalMoments, fig.height=4, fig.width=4, fig.cap="Visual representation of variances for a c.r.v. that follows Complex Normal distribution.", echo=FALSE}
 xr <- rnorm(1000, 100, 10)
 xi <- xr + rnorm(1000, 0, 10)
 x <- complex(real=xr, imaginary=xi)
+par(mar=rep(4,4))
 plot(x, col="lightblue", xlim=c(70, 130), ylim=c(70,130))
 abline(a=-40-sqrt(2), b=sqrt(2), col="darkblue", lwd=2, lty=2)
 lines(100+c(0,10), rep(100,2), col="black", lwd=1, lty=2)
@@ -774,15 +778,15 @@ lines(rep(110,2), 100+c(0,10)*sqrt(2), col="black", lwd=1, lty=2)
 lines(100+c(0,10), 100+c(0,10)*sqrt(2), col="darkred", lwd=3)
 text(107, 97, latex2exp::TeX("$\\sigma_{x_r}$", italic=T))
 text(113, 105, latex2exp::TeX("$\\sigma_{x_i}$", italic=T))
-text(107, 110, latex2exp::TeX("$\\sigma_{x}$", italic=T), pos=2)
+text(107, 110, latex2exp::TeX("$\\sigma_{\\underline{x}}$", italic=T), pos=2)
 draw.circle(100, 100, sqrt(250), border="darkred", lwd=2)
 lines(c(100,100-9.5),c(100,100+sqrt(150-9.5^2)), col="darkgreen", lwd=3)
-text(97, 98, latex2exp::TeX("Im$(\\varsigma_{x}^2)$", italic=F), pos=2)
+text(97, 98, latex2exp::TeX("Im$(\\varsigma_{\\underline{x}}^2)$", italic=F), pos=2)
 ```
 
-The overall conjugate standard deviation $\sigma_x$ represents the radius of the unit circle in Figure \@ref(fig:crvNormalMoments), while the imaginary part of $\varsigma_x^2$ (i.e. $2 \sigma_{x_r, x_i}$) is shown with a green line. The real part of $\varsigma_x^2$ is not visualised, but for this plot it will be negative, showing that the distribution is narrower along the x-axis than along the y-axis.
+The overall conjugate standard deviation $\sigma_\underline{x}$ represents the radius of the unit circle in Figure \@ref(fig:crvNormalMoments), while the imaginary part of $\varsigma_\underline{x}^2$ (i.e. $2 \sigma_{x_r, x_i}$) is shown with a green line. The real part of $\varsigma_\underline{x}^2$ is not visualised, but for this plot it will be negative, showing that the distribution is narrower along the x-axis than along the y-axis.
 
-Figure \@ref(fig:plotlyCNormal) shows the PDF of $x \sim \mathcal{CN}(100+100i,100,-20+i30)$, while Figure \@ref(fig:plotlyCNormalHeatmap) shows the heatmap of the same PDF. The brighter areas in both Figures correspond to the higher values of PDF. For each specific value of density, there is a multitude of values of $x$, forming an ellipse of a specific length.
+Figure \@ref(fig:plotlyCNormal) shows the PDF of $\underline{x} \sim \mathcal{CN}(100+100i,100,-20+i30)$, while Figure \@ref(fig:plotlyCNormalHeatmap) shows the heatmap of the same PDF. The brighter areas in both figures correspond to the higher values of PDF. For each specific value of density, there is a multitude of values of $\underline{x}$, forming an ellipse of a specific length.
 
 ```{r echo=FALSE, eval=FALSE}
 set.seed(41)
@@ -808,7 +812,7 @@ plot_ly(z=~pdfValues, type="surface") |>
                               zaxis=list(title="Density")))
 ```
 
-```{r plotlyCNormal, echo=FALSE, fig.cap="Plot of the probability density function of complex normal distribution."}
+```{r plotlyCNormal, echo=FALSE, fig.cap="Plot of the probability density function of a c.r.v following the normal distribution."}
 knitr::include_graphics("./images/plotlyCNormal.png")
 ```
 
@@ -819,19 +823,19 @@ plot_ly(z=~pdfValues, type="heatmap") |>
                               yaxis=list(title="Im(x)")))
 ```
 
-```{r plotlyCNormalHeatmap, echo=FALSE, fig.cap="Heatmap of density of Complex Normal distribution."}
+```{r plotlyCNormalHeatmap, echo=FALSE, fig.cap="Heatmap of density of the Complex Normal distribution."}
 knitr::include_graphics("./images/plotlyCNormalHeatmap.png")
 ```
 
-One special case of a Complex Normal distribution is a so called "Circular Symmetric" Complex Normal distribution [@Neeser1993]. It is a distribution for which the direct variance equals to zero, which implies that the variances of the real and the imaginary parts are equal and that the covariance between them is equal to zero [@Amblard1996 studied its properties in more detail]. This specific distribution is used extensively in signal processing literature and also relates to the so-called "propriety" property, meaning that the direct covariance of the complex variables is zero [@Walden2009; @Adali2011].
+One special case of a Complex Normal distribution is a so called "Circular Symmetric" Complex Normal distribution [@Neeser1993]. It is a distribution for which the direct variance equals to zero, which implies that the variances of the real and the imaginary parts are equal and that the covariance between them is zero [@Amblard1996 studied its properties in more detail]. This specific distribution is used extensively in signal processing literature and also relates to the so-called "propriety" property, meaning that the direct covariance of the complex variables is zero [@Walden2009; @Adali2011].
 
-The functions of the Complex Normal distribution are implemented as `dcnorm()`, `pcnorm()`, `qmcnorm()` and `rmcnorm()` in the `complex` package.
+The functions of the Complex Normal distribution are implemented as `dcnorm()`, `pcnorm()`, `qmcnorm()` and `rmcnorm()` in the `complex` package in R.
 
 The Complex Normal distribution can be used for the joint estimation of parameters of a complex-valued model and for generation of prediction intervals from it. However, in some cases it might be more convenient to consider a c.r.v. model as a bivariate vector model based on \@ref(eq:complexFunctionVectors) and thus to revert to the multivariate normal distribution.
 
 
 ### Multivariate Normal distribution {#MVNorm}
-The same normal distribution for a complex variable can be parametrised via a covariance matrix $\boldsymbol{\Sigma}$ from \@ref(eq:crvMomentSecondVarianceMatrix) instead of the conjugate and direct variances $\sigma^2$ and $\varsigma^2$. In general, the Probability Density Function for a vector of $n$ variables can be written as:
+The same normal distribution for a complex variable can be reparametrised via a covariance matrix $\boldsymbol{\Sigma}$ from \@ref(eq:crvMomentSecondVarianceMatrix) instead of the conjugate and direct variances $\sigma_\underline{x}^2$ and $\varsigma_\underline{x}^2$. In general, the Probability Density Function for a vector of $n$ variables can be written as:
 \begin{equation}
     f(\mathbf{x}) = \frac{1}{(2 \pi)^{\frac{n}{2}} \sqrt{|\boldsymbol{\Sigma}|}} \exp\left(- \frac{1}{2}
         \begin{pmatrix} \mathbf{x} - \boldsymbol{\mu} \end{pmatrix}^\top \boldsymbol{\Sigma}^{-1} \begin{pmatrix} \mathbf{x} - \boldsymbol{\mu} \end{pmatrix}
@@ -840,12 +844,12 @@ The same normal distribution for a complex variable can be parametrised via a co
 \end{equation}
 For the bivariate case of a c.r.v. represented in a form of a vector, $n=2$ and the covariance matrix $\boldsymbol{\Sigma}$ has dimensionality of $2 \times 2$. In that case the PDF will be the same as for the Complex Normal distribution. In fact, it is possible to recreate the covariance matrix based on the values of conjugate and direct variances:
 \begin{equation}
-    \boldsymbol{\Sigma} = \frac{1}{2} \begin{pmatrix} \mathcal{R}(\sigma^2) + \mathcal{R}(\varsigma^2) & \mathcal{I}(\varsigma^2) \\
-                                                      \mathcal{I}(\varsigma^2) & \mathcal{R}(\sigma^2) - \mathcal{R}(\varsigma^2) \end{pmatrix} .
+    \boldsymbol{\Sigma} = \frac{1}{2} \begin{pmatrix} \mathcal{R}(\sigma_\underline{x}^2) + \mathcal{R}(\varsigma_\underline{x}^2) & \mathcal{I}(\varsigma_\underline{x}^2) \\
+                                                      \mathcal{I}(\varsigma_\underline{x}^2) & \mathcal{R}(\sigma_\underline{x}^2) - \mathcal{R}(\varsigma_\underline{x}^2) \end{pmatrix} .
     (\#eq:MultivariateNormalPDFCovariance)
 \end{equation}
 
-When it comes to constructing confidence regions from the multivariate normal distribution then the following inequality is used to determine values of the vector of quantiles $\mathbf{q}$:
+When it comes to constructing confidence regions from the multivariate normal distribution then the following inequality can be used to determine values of the vector of quantiles $\mathbf{q}$:
 \begin{equation}
     (\mathbf{x} - \mathbf{q})^{\top} \mathbf{\Sigma}^{-1} (\mathbf{x} - \mathbf{q}) \leq \chi^2(n, p) ,
     (\#eq:MultivariateNormalRegion)
@@ -862,12 +866,12 @@ where $z\left({\frac{\alpha}{2}} \right)$ and $z\left({\frac{1+\alpha}{2}} \righ
 Another distribution related to the multivariate normal one is the multivariate complex normal. It was proposed and studied by @Goodman1963 and then extended by @vandenBos1995. We do not use it in what comes in the monograph and mention it only for completeness.
 
 ### Hotelling's T-squared distribution {#Hotelling}
-When it comes to distribution of complex variables statistics, one of the most important ones is a distribution of a mean of a complex variable. In the case of real variables, it is well known that if the Central Limit Theorem (CLT) holds then the sample mean will follow Normal distribution, and confidence interval for the mean can be constructed using Student's t distribution (when the population variance is unknown, i.e. in reality). For c.r.v., the situation is similar: when CLT holds, the c.r.v. follows Complex Normal distribution, but instead of Student's t distribution, we need to use its multivariate counterpart, which is called "Hotelling's T-squared" distribution. It is more convenient to consider the statistics for a c.r.v in a vector form (i.e. treat it as bivariate). If we estimate the sample mean $\hat{\boldsymbol{\mu}}_x$ and a sample covariance matrix of the mean $\hat{\boldsymbol{\Sigma}}_{\mu_{x}}$ then the following holds (if CLT holds):
+When it comes to distribution of complex variables statistics, one of the most important ones is the distribution of a mean of a complex variable. In the case of real variables, it is well known that if the Central Limit Theorem (CLT) holds then the sample mean will follow Normal distribution, and confidence interval for the mean can be constructed using Student's t distribution (when the population variance is unknown, i.e. in reality). For a c.r.v., the situation is similar: when CLT holds, the c.r.v. follows Complex Normal distribution, but instead of Student's t distribution, we need to use its multivariate counterpart, which is called "Hotelling's T-squared" distribution. It is more convenient to consider the statistics for a c.r.v in a vector form (i.e. treat it as bivariate). If we estimate the sample mean $\hat{\boldsymbol{\mu}}_x$ and a sample covariance matrix of the mean $\hat{\boldsymbol{\Sigma}}_{\mu_{x}}$ then the following holds (if CLT holds):
 \begin{equation}
     (\hat{\boldsymbol{\mu}}_x - \boldsymbol{\mu}_x)^\prime \hat{\boldsymbol{\Sigma}}_{\mu_{x}}^{-1} (\hat{\boldsymbol{\mu}}_x - \boldsymbol{\mu}_x) \sim T^2(2, n-1) = \frac{2(n-1)}{n-2} F(2, n-2),
     (\#eq:hotellingT)
 \end{equation}
-where $T^2(2, n-1)$ is a T-squared Hotelling's statistics with 2 and $n-1$ degrees of freedom, and $F(2, n-2)$ is the Fisher's distribution statistics with 2 and $n-2$ degrees of freedom. Equation \@ref(eq:hotellingT) can be used to construct confidence interval for a multivariate mean or for testing statistical hypotheses. One of the possible hypotheses that would make sense in case of c.r.v. and could be tested based on \@ref(eq:hotellingT) is the following:
+where $T^2(2, n-1)$ is a T-squared Hotelling's statistics with 2 and $n-1$ degrees of freedom, and $F(2, n-2)$ is the Fisher's distribution statistics with 2 and $n-2$ degrees of freedom. Equation \@ref(eq:hotellingT) can be used to construct confidence interval for a multivariate mean or for testing statistical hypotheses. One of the possible hypotheses that might make sense in the context of c.r.v. and can be tested based on \@ref(eq:hotellingT) is the following:
 \begin{equation}
     \begin{aligned}
         & \mathrm{H}_0: \boldsymbol{\mu}_x = 0 \\
@@ -883,16 +887,16 @@ or equivalently:
     \end{aligned}
     (\#eq:hypothesisSecond)
 \end{equation}
-However, from practical point of view, testing the joint hypothesis \@ref(eq:hypothesisSecond) might not be very useful. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution for each part of c.r.v. might provide more detailed information, i.e. whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \@ref(eq:hypothesisSecond), rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
+However, testing the joint hypothesis \@ref(eq:hypothesisSecond) might not be very practical. Instead, testing the classical hypotheses from the univariate context based on Student's t distribution for each part of c.r.v. might provide more detailed information, i.e. whether the specific real or imaginary part of the variable equals to zero or not. In contrast, in case of the hypothesis \@ref(eq:hypothesisSecond), rejecting the null hypothesis implies that something is not equal to zero, but it is not clear, what specifically.
 
 
 ## Complex-valued Modelling {#complexModelling}
-Now that we have discussed basics of complex variables theory, we can discuss the modelling aspects: it might not look straightforward, what should be included in the real and the imaginary part of a complex variable. There are two philosophical views on complex-valued modelling:
+Now that we have discussed basics of complex variables theory, we can discuss the modelling aspects. It might not be straightforward, what should be included in the real and the imaginary parts of a complex variable. And there are two philosophical views on complex-valued modelling:
 
 1. You need to find processes, where complex variables arise naturally;
 2. You can model anything with complex variables as long as you follow some rules.
 
-If you follow the former view you need to find some variables that form two parts of the whole that work together. An example of this case is the wind power and direction forecasting [@Goh2004; @Javidi2008; @Knight2019]. The two variables in this case will be naturally represented in the exponential form:
+If you follow the former school of thought, you need to find some variables that form two parts of the whole that work together. An example of this is the wind power and direction forecasting [@Goh2004; @Javidi2008; @Knight2019]. The two variables in this case will be naturally represented in the exponential form:
 \begin{equation*}
     \underline{y} = r \mathrm{e}^{i \phi} ,
 \end{equation*}
@@ -900,9 +904,9 @@ where $r$ is the power of wind and $\phi$ is its direction. In this formulation,
 \begin{equation*}
     \underline{y}_t = f(\underline{y}_{t-1}, \underline{y}_{t-2}, \dots, \underline{y}_{t-p}, \underline{\mathbf{x}}_t, \underline{\epsilon}_t),
 \end{equation*}
-where $t$ is the index of the observation, $p$ is the order of the model, $\underline{\mathbf{x}}_t$ is the vector of all explanatory complex variables under consideration and $\underline{\epsilon}_t$ is the error term. Some aspects of such a model are discussed in the Chapter \@ref(multipleCLR) of this book, while the others are covered in Chapter \@ref(Dynamic).
+where $t$ is the index of the observation, $p$ is the maximum lag to take, $\underline{\mathbf{x}}_t$ is the vector of all explanatory complex variables under consideration and $\underline{\epsilon}_t$ is the error term. Some aspects of such a model are discussed in Chapter \@ref(multipleCLR) of this book, while the others are covered in Chapter \@ref(Dynamic).
 
-However, it might be hard to find examples like the one with the wind above in economics and business domains. Trying to find something analogous (power + i direction) might lead us into a dead end. This is why the second philosophical view exists. @Svetunkov2012 argues that any two variables can be united in a complex variable (in the arithmetic form) as long as:
+However, it might be hard to find examples like the one with the wind above in economics and business domains. Trying to find something analogous (power and direction) might lead us to a dead end. This is why the second philosophical view exists. @Svetunkov2012 argues that any two variables can be united in a complex variable (in the arithmetic form) as long as:
 
 1. They reflect two sides of a process/phenomenon;
 2. They have the same scale.
@@ -912,17 +916,16 @@ The second condition implies that some sort of scaling is required if the variab
     \underline{z} = (q + ip) (a_r + i a_i) = q a_r - p a_i + i(q a_i + p a_r).
     (\#eq:noScalingExample)
 \end{equation}
-In the equation \@ref(eq:noScalingExample), the resulting real part includes the multiplication of the number of units sold times the parameter $a_r$, while the imaginary part has the price (e.g. in U.S. dollars) times the same parameter $a_r$. If the both parts of the variable were scaled the parameter $a_r$ would act as a transformer from one value to another. But if the both parts are not scaled then in one case it acts as a scaler of units, while the in the other one as a scaler of U.S. dollars, which does not make much sense. This example shows why the condition (2) above is important in complex-valued modelling.
+In the equation \@ref(eq:noScalingExample), the resulting real part includes the multiplication of the number of units sold by the parameter $a_r$, while the imaginary part has the price (e.g. in U.S. dollars) times the same parameter $a_r$. If the both parts of the variable were scaled the parameter $a_r$ would act as a transformer from one value to another. But if both parts are not scaled then in one case the parameter acts as a transformer from units sold, while in the other as a transformer from the U.S. dollars, which does not make much sense. This example shows why the condition (2) above is important in the complex-valued modelling.
 
 The scaling itself can be done using one of the conventional ways:
 
-a. Normalisation: subtract the minimum value from all the values and then divide by the range. This way the normalised variable will lie between 0 and 1;
-b. Standardisation: subtract the mean and divide the variable by its standard deviation. This way we centre the variable and get rid of scale;
+a. **Normalisation**: subtract the minimum value from all the values and then divide by the range. This way the normalised variable will lie between 0 and 1;
+b. **Standardisation**: subtract the mean and divide the variable by its standard deviation. This way we centre the variable and get rid of scale;
 c. Any other form of scaling, where the division is done by the value of the variable, thus making it unitless.
 
 If we deal with time series data, an additional operation might be important - taking differences to make the data stationary (this is discussed in Section \@ref(DynamicARIMA)). If we do not do that, the new values of the variable might lie outside of the range defined by the scaling.
 
 Incidentally, the example with the wind power above abides to these two conditions, because the variable itself is represented in the exponential form, thus the condition will be satisfied automatically when we use formula \@ref(eq:complexNumberTrigonometric) to move to the arithmetic one. This variable does not require any additional transformations and can be treated as is.
 
-Furthermore, based on the discussion in Subsection \@ref(vectorComplexVariables), we can note that the complex-valued models share some structural similarities with vector models, such as Vector Autoregression, when they are applied to two variables. From this angle, the complex-valued models can be considered as special cases of the vector ones, when some restrictions are imposed on the matrix of parameters. This important property gives the complex-valued models their power: they need fewer parameters to estimate in comparison with their vector counterparts.
-
+Finally, based on the discussion in Subsection \@ref(vectorComplexVariables), we can note that the complex-valued models share some structural similarities with vector models, such as Vector Autoregression, when they are applied to two variables. From this angle, the complex-valued models can be considered as special cases of the vector ones, when some restrictions are imposed on the matrix of parameters. This important property gives the complex-valued models their power: they need fewer parameters to estimate in comparison with their vector counterparts and (because of that) are arguably easier to work with. Moreover, this means that some tools developed for VAR can also be used for complex-valued models.
