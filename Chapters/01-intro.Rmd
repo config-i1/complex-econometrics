@@ -2,7 +2,7 @@
 ## Theory of complex numbers {#theoryOfComplexNumbers}
 This section sets out the basic concepts of the Theory of Complex Variables Functions with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.
 
-The theory of complex numbers originates in 1572 in a small Italian town of Kura. It was in that place and precisely that year that the manuscript of an Italian mathematician Rafael Bombelli was published [@Bombelli1572]. The book was called "Algebra". In it, Rafael Bombelli showed how to solve the following cubic equation:
+The theory of complex numbers originates in 1572 in Bologna. It was in that place and precisely that year that the manuscript of an Italian mathematician Rafael Bombelli was published [@Bombelli1572]. The book was called "Algebra". In it, Rafael Bombelli showed how to solve the following cubic equation:
 \begin{equation}
     x^3 = 15x + 4 .
     (\#eq:BombelliEquation)
@@ -42,15 +42,13 @@ With complex numbers, one can perform almost all operations as with the real one
 
 The main problem that analysts face when trying to understand a complex number is the challenge in the interpretation of the imaginary part. The typical question in this case can be formulated as: "Where do imaginary numbers appear in practice?" and "what is the practical meaning of the imaginary unit?" We have heard questions like that many times, and while they are valid, we think that they do not have appropriate answers and divert analysts from what the modelling with complex variables brings.
 
-We argue that the imaginary unit does not need to have any practical meaning: neither in economics, nor in sociology, nor in engineering, nor in physics. The imaginary unit is a mathematical rule, and that is all. It is a mathematical abstraction that has useful properties. A number $\sqrt{2}$ or $\ln 3$ do not have practical meaning either, but they are useful for modelling purposes and solving applied problems in a variety of disciplines. Similarly, the imaginary unit is convenient for solving a whole class of problems in different areas of application. With the help of the rules specified by conditions \@ref(eq:complexNumber) and \@ref(eq:imaginaryUnit), it is possible to use new mathematical operations, obtain new mathematical results, and create more adequate mathematical models.
+We argue that the imaginary unit does not need to have any practical meaning: neither in economics, nor in sociology, nor in engineering, nor in physics. The imaginary unit is a mathematical rule, and that is all. It is a mathematical abstraction that has useful properties. A number $\sqrt{2}$ or $\ln 3$ do not have practical meaning either, but they are useful for modelling purposes and solving applied problems in a variety of disciplines. Similarly, the imaginary unit is convenient for solving a whole class of problems in different areas of application. With the help of the rules specified by conditions \@ref(eq:complexNumber) and \@ref(eq:imaginaryUnit), it is possible to simplify some mathematical operations and create more appropriate mathematical models.
 
+Imaginary and complex numbers are just instruments that can help in describing a real-life phenomenon. If a researcher decides to use complex variables for modelling of real processes, they will need to define some rules according to which one component of a complex process is attributed to the real part, and another one is attributed to the imaginary part of the complex variable. These rules might seem arbitrary, because there is no "true" recipe, according to which the assignment should be done. The main motivation for them is the efficiency of modelling (such as goodness of fit or forecasting accuracy) and nothing else. We discuss this aspect in more detail later in this chapter, in Section \@ref(complexModelling). To understand better how the modelling with complex variables can be done, we need first to understand how complex variables can be represented and interpreted.
 
+We start with the basics. A real number represents visually a certain segment on the numerical axis, which has a zero point and a multitude of potential values from minus infinity to infinity. Any real number is characterized by the distance from zero to the value of that number. Negative numbers are located to the left of zero, while the positive ones are located to the right of it.
 
-Imaginary and complex numbers are mathematical instruments that can help in describing a real-life phenomenon. If a researcher decides to use complex variables for real processes modelling, they will need to predefine the rules according to which one component of a complex process is attributed to the real part, and another one is attributed to the imaginary part of the complex variable. These rules might seem arbitrary, because there is no "true" recipe, according to which the assignment to complex variable parts should be done. The main motivation for them is the efficiency of modelling (such as goodness of fit or forecasting accuracy) and nothing else.
-
-In order to better understand how the modelling with complex variables can be done, we need to better understand how complex variables can be represented and interpreted. A real number represents visually a certain segment on the numerical axis, which has a zero point and a multitude of values from minus infinity to infinity. Any real number is characterized by the distance from zero to the value of that number. Negative numbers are located to the left of zero, while the positive ones are located to the right of it.
-
-A complex number consists of two parts, which can be visualised on the plane with two perpendicular axes, where the real numbers are marked on the horizontal line, and the imaginary ones are on the vertical one. This is shown visually in Figure \@ref(fig:complexPlane) with a complex number $\underline{z}=x+iy$.
+A complex number consists of two parts, and can be visualised on the plane with two perpendicular axes, where the real numbers are usually placed on the horizontal line (x-axis), while the imaginary ones are on the vertical one (y-axis). This is shown visually in Figure \@ref(fig:complexPlane) with a complex number $\underline{z}=x+iy$.
 
 ```{r complexPlane, fig.width=3, fig.height=2, fig.cap="Visual presentation of a complex number on the complex plane.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
@@ -71,7 +69,7 @@ title(xlab="Real number", line=0)
 
 Any point lying on the complex plane in Figure \@ref(fig:complexPlane) characterises a complex number, even if that point lies on the axis of real numbers. In that specific case, we would be talking about a complex number with a zero imaginary part, i.e. $\underline{z}=x+i0$.
 
-Given that complex numbers can be represented on a plane (in so called Cartesian coordinates), the number \@ref(eq:complexNumber) can be represented in a form of a vector that starts in the origin of coordinates and ends at the point (x, y). Then any complex number can be represented in form of polar coordinates using the magnitude of the vector and its polar angle:
+Given that complex numbers can be represented on a plane (so called Cartesian coordinates), the number \@ref(eq:complexNumber) can be represented in a form of a vector that starts in the origin of coordinates and ends at the point (x, y). Based on that, any complex number can also be represented in a polar coordinates form using the magnitude of the vector and its polar angle:
 \begin{equation}
     \underline{z} = x+iy = r (\cos \phi + i \sin \phi),
     (\#eq:complexNumberTrigonometric)
@@ -81,19 +79,19 @@ where $r=|\underline{z}|$ is the magnitude, which is calculated as a Euclidean d
     r = \sqrt{x^2 + y^2},
     (\#eq:complexNumberMagnitude)
 \end{equation}
-and $\phi=\Arg(\underline{z})$ is the angle, which equals to:
+and $\phi=\Arg(\underline{z})$ is the angle (or the argument of a complex number), which equals to:
 \begin{equation}
     \phi = \arctan \frac{y}{x} + 2 \pi l,
     (\#eq:complexNumberAngle)
 \end{equation}
-where $l$ is an integer number. While depending on a task, $l$ can be set to a positive, a negative number, or a zero, for convenience, we will restrict it to $l=0$, because all the other values will not be useful for the inference in following chapters. The polar angle is sometimes referred to as the argument of a complex number.
+where $l$ is an integer number. While depending on a task, $l$ can be set to a positive, a negative number, or zero, for convenience, we will restrict it to $l=0$, because all the other values will not be useful for the inference in this monograph.
 
-Using the magnitude and the polar angle, we can also represent any complex number in the exponential form, which was first proposed in 1748 by Euler, in his book "Introduction to the Infinitesimal Analysis" **(Euler, 1961, pp. 118-119)**, which:
+Using the magnitude and the polar angle, we can also represent any complex number in the exponential form, which was first proposed in 1748 by Euler, in his book "Introduction to the Infinitesimal Analysis" [@Euler1748]:
 \begin{equation}
     \underline{z} = r e^{i \phi} ,
     (\#eq:complexNumberExponential)
 \end{equation}
-where $e$ is the Euler's constant. Equation \@ref(eq:complexNumberExponential) is nowadays also called "Euler's form". Comparing \@ref{eq:complexNumberTrigonometric} with \@ref{eq:complexNumberExponential}, we can conclude that:
+where $e$ is the Euler's constant. Equation \@ref(eq:complexNumberExponential) is nowadays also called "Euler's formula". Comparing \@ref{eq:complexNumberTrigonometric} with \@ref{eq:complexNumberExponential}, we can conclude that:
 \begin{equation}
     e^{i \phi} = \cos \phi + i \sin \phi ,
     (\#eq:EulerFormula)
@@ -138,11 +136,11 @@ text(15, -1, "x", cex=1.25)
 text(-1, 15, "y", cex=1.25)
 ```
 
-In a way, any mathematical operation with a complex number implies a change in magnitude and angle of the number, while the multiplication and division by a number with non-zero imaginary part will always lead to the rotation of the vector. Operations of addition and subtraction are simpler in the linear form:
+In a way, any mathematical operation with a complex number implies a change in magnitude and angle of the number, while the multiplication and division by a number with non-zero imaginary part will always lead to the rotation of the vector. Operations of addition and subtraction are simpler in the linear form than in the trigonometric or exponential one:
 \begin{equation*}
     \underline{z}_3 = \underline{z}_1 + \underline{z}_2 = x_1 + x_2 + i (y_1 + y_2) ,
 \end{equation*}
-while operations of multiplication and division are easier to do in either exponential or trigonometric forms of complex numbers:
+while operations of multiplication and division are easier to do in either the exponential or the trigonometric forms of complex numbers:
 \begin{equation*}
     \underline{z}_3 = \underline{z}_1 \times \underline{z}_2 = r_1 r_2 e^{i \phi_1 + \phi_2} 
 \end{equation*}
@@ -151,7 +149,7 @@ or:
     \underline{z}_3 = r_1 r_2 \left(\cos (\phi_1 + \phi_2) + i \sin (\phi_1 + \phi_2) \right) .
 \end{equation*}
 
-Furthermore, given that any complex number can be represented in the exponential form \@ref(eq:complexNumberExponential), it can also be visualised on a polar coordinates plane, where the magnitude is marked on the x-axis, and the polar angle is marked on the y-axis. This is shown visually in Figure \@ref(fig:complexPlanePolar).
+Furthermore, given that any complex number can be represented in the exponential form \@ref(eq:complexNumberExponential), it can also be visualised on a polar coordinates plane, where the magnitude is placed on the x-axis, and the polar angle is assigned to the y-axis. This is shown visually in Figure \@ref(fig:complexPlanePolar).
 
 ```{r complexPlanePolar, fig.width=3, fig.height=2, fig.cap="Visual presentation of a complex number in the polar coordinates.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
@@ -170,7 +168,7 @@ title(ylab="Polar angle", line=0)
 title(xlab="Magnitude", line=0)
 ```
 
-The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that are not obvious on the Cartesian plane. Figure \@ref(fig:complexCartesianvsPolar) shows an example of a set of complex random numbers, for which the real and imaginary parts do not seem to have any obvious linear relation, but the magnitude and the angle have a negative relation.
+The usefulness of the polar coordinates presentation becomes apparent when a set of complex numbers is considered, because then in some cases it becomes possible to see some relations that are not obvious on the Cartesian plane. Figure \@ref(fig:complexCartesianvsPolar) shows an example of a set of complex random numbers, for which the real and imaginary parts do not seem to have any obvious relation, but the magnitude and the angle have a negative one.
 
 ```{r complexCartesianvsPolar, fig.height=4, fig.cap="Visualisation of a set of complex numbers on Cartesian and on polar coordinates planes.", echo=FALSE}
 x <- rnorm(100,100,10)
@@ -213,7 +211,7 @@ which is equivalent to saying that their magnitudes and polar angles are equal:
     \right. .
 \end{equation*}
 
-Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one number is greater or less than the other. However, we could use magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the number with a larger magnitude could be considered as a greater than the one with the smaller magnitude. While we could compare the polar angles as well, they only give us information about rotation of a complex number and thus do not give any meaningful information about the comparison of numbers. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one number is greater than the other in this case. In order to conclude that, we would need to devise additional criteria for comparison of numbers (e.g. positive numbers are "better" than the negative ones, thus $\phi_1=\pi$ and $\phi_1=-\pi$ is "worse" than $\phi_2=0$).
+Unfortunately, given that complex numbers are two dimensional, it is not possible to say in general whether one number is greater or less than the other. However, we could use magnitude to compare complex numbers, to say which one lies further away from the origin than the other. In that case, the number with a larger magnitude could be considered as a greater than the one with the smaller magnitude. The main problem arises in situations, when magnitudes are equal, but the arguments are not. While we could compare them as well, the comparison would be arbitrary, because the angles are not uniquely defined (e.g. the angle $\frac{\pi}{2}$ is equivalent to $\frac{5\pi}{2}$), and the fact that one angle is higher than the other only means that one number is rotated further than the other one, thus not giving any meaningful information about the comparison of numbers. So, two complex numbers in Figure \@ref(fig:complexPlaneCircle) would have the same magnitude, but will have different angles, and it is not possible to say whether one number is greater than the other in this case. In order to make a solid conclusion, we would need to devise additional criteria for comparison of numbers (e.g. positive numbers are "better" than the negative ones, thus $\phi_1=\pi$ and $\phi_1=-\pi$ is "worse" than $\phi_2=0$), but inevitably they will be arbitrary.
 
 ```{r complexPlaneCircle, fig.width=4, fig.height=4, fig.cap="Comparison of two complex numbers $\\underline{z}_1$ and $\\underline{z}_2$ that have the same magnitude $r$, but different angles $\\phi_1$ and $\\phi_2$.", echo=FALSE}
 par(mar=c(1,1,1,1), cex=1.25, cex.lab=1/1.25)
@@ -253,12 +251,12 @@ And this form allows calculating logarithms of a complex number:
 \end{equation}
 This operation will become useful when we discuss transformations of complex-valued functions, but it also shows that a logarithm of a negative real number is a complex number, because in that case $\phi=\pi$. This demonstrates that the field of complex numbers is complete: any mathematical operation of a complex number will give another complex number.
 
-One of the important definitions in theory of complex numbers is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $\underline{z} = x+ iy$ is $\underline{\tilde{z}} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
+Given that we now deal with two-dimensional entities, complex numbers have additional instruments that do not have any role in the real-valued domain. One of these instruments is the conjugate complex number. It is the number, for which the imaginary part has the sign opposite to the one of the original variable. For example, the conjugate of the complex variable $\underline{z} = x+ iy$ is $\underline{\tilde{z}} = x- iy$. These numbers are useful because the multiplication of a complex number by its conjugate gives a real number:
 \begin{equation}
     \underline{z} \times \underline{\tilde{z}} = (x+ iy) (x- iy) = x^2 + y^2 ,
     (\#eq:complexNumberConjugateMulti)
 \end{equation}
-which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both complex variables $\underline{z}$ and $\underline{\tilde{z}}$. Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
+which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of either complex variable $\underline{z}$, or $\underline{\tilde{z}}$. Conjugation is distributive over addition, subtraction, multiplication and division, meaning that:
 \begin{equation}
     \begin{aligned}
         & \widetilde{x + y} = \tilde{x} + \tilde{y} \\
@@ -268,6 +266,8 @@ which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of both co
     \end{aligned}
     (\#eq:complexNumberConjugateDistributive)
 \end{equation}
+These properties become especially useful when we work with complex-valued functions, and we will use them extensively in the following chapters of this monograph.
+
 
 
 Finally, given that any complex number can be represented visually in a form of a vector, we can write it mathematically either like vector:
