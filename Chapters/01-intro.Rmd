@@ -268,9 +268,7 @@ which is the square of the magnitude \@ref(eq:complexNumberMagnitude) of either 
 \end{equation}
 These properties become especially useful when we work with complex-valued functions, and we will use them extensively in the following chapters of this monograph.
 
-
-
-Finally, given that any complex number can be represented visually in a form of a vector, we can write it mathematically either like vector:
+Finally, given that any complex number can be represented as a vector, we can write it mathematically either like a vector:
 \begin{equation}
     \boldsymbol{z} = \begin{pmatrix} x \\ y \end{pmatrix}
     (\#eq:complexNumberVectors)
@@ -280,27 +278,27 @@ or like a matrix [@Halliwell2015 provides some examples based on these presentat
     \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
     (\#eq:complexNumberMatrix)
 \end{equation}
-where the symbol $\sim$ below the letter denotes a matrix presentation of a complex number. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
+where the symbol $\sim$ below the letter denotes a matrix presentation of a complex number to distinguish matrix form from the vector one. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
 \begin{equation*}
     \begin{aligned}
         & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
         & \begin{pmatrix} 0 & -y \\ y & 0 \end{pmatrix}
     \end{aligned} .
 \end{equation*}
-All the mathematical operations done with the vector and matrix representations would correspond to the ones for the conventional complex numbers. Furthermore, the multiplication by the transpose of the original object in both of these cases is equivalent to the multiplication by the conjugate value \@ref(eq:complexNumberConjugateMulti). For the vector:
+The vector and matrix representations become especially useful when we work with complex variables to construct complex-valued models. All the mathematical operations done with the vector and matrix representations would correspond to the ones for the conventional complex numbers. Furthermore, the multiplication by the transpose of the original object in both of these cases is equivalent to the multiplication by the complex conjugate \@ref(eq:complexNumberConjugateMulti). For the vector:
 \begin{equation}
-    \boldsymbol{z} \boldsymbol{z}^\prime = \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
+    \boldsymbol{z}^\prime \boldsymbol{z} = \begin{pmatrix} x & y \end{pmatrix} \times \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x^2 + y^2 \end{pmatrix}
     (\#eq:complexNumberVectorsMulti)
 \end{equation}
 and for the matrix:
 \begin{equation}
-    \underset{\sim}{\boldsymbol{z}} \underset{\sim}{\boldsymbol{z}}^\prime = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & y \\ -y & x \end{pmatrix} = 
+    \underset{\sim}{\boldsymbol{z}}^\prime \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & y \\ -y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 + y^2 & 0 \\ 0 & x^2 + y^2 \end{pmatrix}.
     (\#eq:complexNumberMatrixMulti)
 \end{equation}
-These transpositions will be called in this monograph "conjugate transpositions". The vector and matrix representations become especially useful when we work with complex variables to construct complex models. Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
+These transpositions will be called in this monograph "conjugate transpositions". Finally, in case of matrix form, it is possible to multiply complex variable by itself without the conjugation, which results in:
 \begin{equation}
-    \underset{\sim}{\boldsymbol{z}} \underset{\sim}{\boldsymbol{z}}^{\top} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
+    \underset{\sim}{\boldsymbol{z}} \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \times \begin{pmatrix} x & -y \\ y & x \end{pmatrix} = 
     \begin{pmatrix} x^2 - y^2 & - 2 xy \\ 2 xy & x^2 - y^2 \end{pmatrix}.
     (\#eq:complexNumberMatrixMultiDirect)
 \end{equation}
