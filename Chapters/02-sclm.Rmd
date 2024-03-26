@@ -134,7 +134,7 @@ Solving the system of equations \@ref(eq:SimpleCLROLSLossSystem02) gives the fol
 which can also be written in terms of conjugate moments as:
 \begin{equation}
     \begin{aligned}
-        & \underline{b}_1 = \frac{\hat{\sigma}_{\underline{x},\underline{y}}}{\hat{\sigma}_\underline{x}^2} \\
+        & \underline{b}_1 = \frac{\hat{\sigma}_{\underline{x},\underline{y}}}{\hat{\sigma}_{\underline{x}}^2} \\
         & \underline{b}_0 = \underline{\hat{\mu}}_{\underline{y}} - \underline{b}_1 \underline{\hat{\mu}}_{\underline{x}} ,
     \end{aligned}
     (\#eq:SimpleCLROLSLossParametersMoments)
@@ -156,7 +156,7 @@ In terms of properties of the estimator, it can be shown that $\underline{b}_1$ 
 \end{equation}
 which then simplifies to:
 \begin{equation}
-        \underline{b}_1 = \underline{\beta}_1 + \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\epsilon})}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \underline{\beta}_1 + \frac{\hat{\sigma}_{\underline{x},\underline{\epsilon}}}{\hat{\sigma}_\underline{x}^2} ,
+        \underline{b}_1 = \underline{\beta}_1 + \frac{\mathrm{cov}(\underline{\tilde{x}}, \underline{\epsilon})}{\mathrm{cov}(\underline{\tilde{x}},\underline{x})} = \underline{\beta}_1 + \frac{\hat{\sigma}_{\underline{x},\underline{\epsilon}}}{\hat{\sigma}_{\underline{x}}^2} ,
     (\#eq:SimpleCLROLSb1Value02)
 \end{equation}
 or:
@@ -229,7 +229,7 @@ The solution for this system of equations, as it was shown by @Svetunkov2012, is
 or in terms of direct moments for complex random variables:
 \begin{equation}
     \begin{aligned}
-        & \underline{b}_1 = \frac{\hat{\varsigma}_{\underline{x},\underline{y}}}{\hat{\varsigma}_\underline{x}^2} \\
+        & \underline{b}_1 = \frac{\hat{\varsigma}_{\underline{x},\underline{y}}}{\hat{\varsigma}_{\underline{x}}^2} \\
         & \underline{b}_0 = \underline{\hat{\mu}}_{\underline{y}} - \underline{b}_1 \underline{\hat{\mu}}_{\underline{x}} ,
     \end{aligned}
     (\#eq:SimpleCLRCLSLossParametersMoments)
@@ -402,12 +402,10 @@ Figure \@ref(fig:plotlyCLS) demonstrates how the projection of the two-dimension
 Concluding this brief demonstration, we can see that despite being counter-intuitive, the CLS produces the estimates of parameters that lead to the residuals being close to spherical (normal if we assume normality), because the variances of real and imaginary parts of the residuals become closer to each other, while the covariance between them becomes close to zero.
 
 
-
-
 ### Likelihood {#SCLREstimationLikelihood}
-Finally, another way of estimating the simple cLR is by assuming a distribution of the residuals and maximising the respective likelihood [@VandenBos1994]. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a multivariate normal distribution with a covariance matrix:
+Finally, another way of estimating the simple cLR is by assuming a distribution of the residuals and maximising the respective likelihood [@VandenBos1994]. Given the connection between the linear and the vector forms of the complex regression, we can assume that the error term follows a bivariate normal distribution with a covariance matrix:
 \begin{equation}
-    \boldsymbol{\Sigma}_\epsilon = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
+    \boldsymbol{\Sigma}_{\epsilon} = \begin{pmatrix} \sigma_{\epsilon_r}^2 & \sigma_{\epsilon_r, \epsilon_i} \\ \sigma_{\epsilon_r, \epsilon_i} & \sigma_{\epsilon_i}^2 \end{pmatrix} .
     (\#eq:SimpleCLRLikelihoodSigma)
 \end{equation}
 The log-likelihood in this case can be written as:
@@ -420,7 +418,7 @@ where $\boldsymbol{\theta}$ is the vector of estimated parameters and $\boldsymb
 	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime .
     (\#eq:Sigmaest)
 \end{equation}
-It can be shown that if the \@ref(eq:Sigmaest) is inserted in \@ref(eq:additiveLogLik) then the following concentrated log-likelihood can be obtained [see, for example, @Snyder2017]:
+It can be shown that if the \@ref(eq:Sigmaest) is inserted in \@ref(eq:additiveLogLik) then the following concentrated log-likelihood can be obtained [see, for example, @Snyder2017; @Svetunkov2021a]:
 \begin{equation}
 	\ell^*(\boldsymbol{\theta}, \hat{\boldsymbol{\Sigma}}_\epsilon | \mathbf{Y}) = -\frac{n}{2} \left( 2 \log(2 \pi e) + \log | \hat{\boldsymbol{\Sigma}}_\epsilon | \right) .
 	(\#eq:additiveLogLikConcentrated)
@@ -430,9 +428,9 @@ It is obvious that the maximisation of the log-likelihood \@ref(eq:additiveLogLi
     \mathrm{GV} = |\hat{\boldsymbol{\Sigma}}_\epsilon| = \sigma_{\epsilon_r}^2 \sigma_{\epsilon_i}^2 - \sigma_{\epsilon_r, \epsilon_i}^2 .
     (\#eq:additiveLogLikConcentratedGV)
 \end{equation}
-The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary part of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related. This loss function might be especially useful if we indeed can assume that the real and imaginary part of the residuals are linearly related and we want to use this information in the estimation.
+The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary parts of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related. This loss function might be especially useful if we indeed can assume that the real and imaginary parts of the residuals are linearly related, and we want to use this information in the estimation.
 
-The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
+The main difference between the Likelihood and the other two estimators discussed in this section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
 
 
 ## Comparing different estimators for SCLR {#SCLREstimatorsComparison}
