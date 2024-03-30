@@ -434,32 +434,34 @@ The main difference between the Likelihood and the other two estimators discusse
 
 
 ## Comparing different estimators for CLR {#SCLREstimatorsComparison}
-Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
+Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we explore the behaviour of estimators with the increase of sample size.
 
 First, comparing variances of OLS and CLS estimates of $b_{1,r}$ \@ref(eq:SimpleCLRCLSb1Variance) with \@ref(eq:SimpleCLROLSb1Variance):
 \begin{equation*}
     \begin{aligned}
         \mathrm{V}(b_{1,r}^{\mathrm{OLS}}) = & \mathrm{V}\left(\frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}\right) \\
-        \mathrm{V}(b_{1,r}^{\mathrm{CLS}}) = & \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right)
+        \mathrm{V}(b_{1,r}^{\mathrm{CLS}}) = & \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right) ,
     \end{aligned}
 \end{equation*}
-we can conclude that there are some situations, when the estimates of parameters via CLS are less efficient than the estimates via OLS. There are some cases, when the variance \@ref(eq:SimpleCLRCLSb1Variance) is much higher than \@ref(eq:SimpleCLROLSb1Variance). For example, when the real and imaginary parts of $x$ are not correlated (i.e. $\hat{\sigma}_{x_r, x_i}=0$) and when the variances of the real and imaginary parts of $x$ are equal, the variance of $b_{1,r}$ explodes. However, there are also some cases, when CLS estimates are more efficient than the OLS ones. For example, when $\hat{\sigma}_{x_r, \epsilon_i}=\hat{\sigma}_{x_i, \epsilon_i}$ and $\hat{\sigma}_{x_r, x_i}=0$, the variance \@ref(eq:SimpleCLROLSb1Variance) will be equal to zero, while the variance \@ref(eq:SimpleCLRCLSb1Variance) will be greater than zero. So, in general, we cannot conclude which of the estimators will be more efficient, but we know that in different circumstances, they will have different properties.
+we can conclude that there are some situations, when the estimates of parameters via CLS are less **efficient** than the OLS estimates - the variance \@ref(eq:SimpleCLRCLSb1Variance) would be much higher than \@ref(eq:SimpleCLROLSb1Variance) under some circumstances. For example, when the real and imaginary parts of $\underline{x}$ are not correlated (i.e. $\hat{\sigma}_{x_r, x_i}=0$) and when the variances of the real and imaginary parts of $\underline{x}$ are equal, the variance of $b_{1,r}$ explodes. On the other hand, there are also some cases, when CLS estimates are more efficient than the OLS ones. For example, when $\hat{\sigma}_{x_r, \epsilon_i}=\hat{\sigma}_{x_i, \epsilon_i}$ and $\hat{\sigma}_{x_r, x_i}=0$, the variance \@ref(eq:SimpleCLROLSb1Variance) will be equal to zero, while the variance \@ref(eq:SimpleCLRCLSb1Variance) will be greater than zero. So, in general, we cannot conclude that one of the estimators will be consistently more efficient than the other.
 
-We cannot compare the efficiency of the likelihood estimator directly with the OLS and CLS, but we know from the statistics literature [@referenceLikelihoodPaper] that likelihood gives consistent and asymptotically efficient estimates of parameters.
+We cannot compare the efficiency of the likelihood estimator directly with the OLS and CLS, but we know from the statistics literature [@Wald1949] that likelihood gives consistent and asymptotically efficient estimates of parameters.
 
-In terms of consistency, in one specific situation, when $\hat{\sigma}_{x_r}^2 = \hat{\sigma}_{x_i}^2$ and $\hat{\sigma}_{x_r, x_i}=0$, CLS might produce non-consistent estimates of parameters. This means that if we deal with explanatory variables with these properties, we should use either OLS or Likelihood.
+**In terms of consistency**, in one specific situation, when $\hat{\sigma}_{x_r}^2 = \hat{\sigma}_{x_i}^2$ and $\hat{\sigma}_{x_r, x_i}=0$, CLS might produce non-consistent estimates of parameters. This means that if we deal with explanatory variables with these properties, we should use either OLS or Likelihood.
 
-Similar analysis can be done for the coefficient $b_{1,i}$, with the conclusions similar to the above, so we skip this discussion.
+Similar analysis can be done for the estimate of parameter $\beta_{1,i}$, with the conclusions similar to the above, so we skip this discussion.
 
 ```{r echo=FALSE}
 load("./data/clmExperimentsParameters.Rdata")
 ```
 
-In order to do a more thorough comparison of the three estimators, we set up an experiment based on the following simple cLR:
+
+### Simulation experiment {#EstimatesSimulation}
+In order to do a more thorough comparison of the three estimators, we set up a simulation experiment based on the following simple cLR:
 \begin{equation*}
     y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)
 \end{equation*}
-with several scenarios, parameters for which are shown in Table \@ref(tab:scenariosEstimators). They covered several important situations: when $x_r$ and $x_i$ are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different and then when the real and imaginary parts of the error term are not correlated, have medium correlation, are equal to zero and when their variances have high or low values.
+and several scenarios, parameters for which are shown in Table \@ref(tab:scenariosEstimators). They covered several important situations: when $x_r$ and $x_i$ are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different, and then when the real and imaginary parts of the error term are not correlated, have medium correlation, or are equal to zero, and when their variances have high or low values.
 
 <!-- 1. $x_r$ and $x_i$ are **uncorrelated** and have **different variances** ($\sigma_{x_r}=10$, while $\sigma_{x_i}=20$). $\epsilon_r$ and $\epsilon_i$ are **uncorrelated** and have **similar variances** ($\sigma_{\epsilon_r}=\sigma_{\epsilon_i}=1.5$). -->
 
@@ -486,7 +488,7 @@ kableTable <- kableExtra::kable(scenarios, escape=FALSE, caption="Several scenar
 kableExtra::kable_styling(kableTable, font_size=12, protect_latex=TRUE, latex_options="scale_down")
 ```
 
-These six scenarios in Table \@ref(tab:scenariosEstimators) cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave both on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex $\underline{b}_1$ is estimated. The experiments were done using `clm()` function from the `complex` package with `method` parameter equal to "OLS", "CLS" and "likelihood" for each of the respective estimators. A sample of the script used in the experiments is shown below (Scenario 1):
+These six scenarios in Table \@ref(tab:scenariosEstimators) cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex parameter $\underline{b}_1$ is estimated. The experiments were done using `clm()` function from the `complex` package with `method` parameter equal to "OLS", "CLS" and "likelihood" for each of the respective estimators. A sample of the script used in the experiments is shown below (Scenario 1):
 
 ```{r eval=FALSE}
 # Random seed for reproducibility
@@ -589,7 +591,7 @@ Apparently, all three estimators produce very similar estimates of parameters in
 parametersPlots(parametersPC)
 ```
 
-In both Scenarios 1 and 2 the error term has a small variance, in Scenario 2 $x_r$ and $x_i$ are perfectly correlated, transforming the original model into: $y_r + i y_i = 10+15i + (2-1.5i) (1 + 1.5 i) x_r + (\epsilon_r + i \epsilon_i)$.
+In both Scenarios 1 and 2 the error term has a small variance. In Scenario 2, $x_r$ and $x_i$ are perfectly correlated, transforming the original model into: $y_r + i y_i = 10+15i + (2-1.5i) (1 + 1.5 i) x_r + (\epsilon_r + i \epsilon_i)$.
 
 The Scenario 3 demonstrates an exotic case, when the variances of $x_r$ and $x_i$ are the same (as shown in Figure \@ref(fig:parametersUCSV)).
 
@@ -597,7 +599,7 @@ The Scenario 3 demonstrates an exotic case, when the variances of $x_r$ and $x_i
 parametersPlots(parametersUCSV)
 ```
 
-In this scenario, OLS and Likelihood produce efficient, unbiased and consistent estimates of parameters, which cannot be said about the CLS. The behaviour of CLS is explainable because for this specific scenario the direct variance of the complex variable $x_r + i x_i$ becomes close to zero. As a result, the direct covariance in \@ref(eq:SimpleCLRCLSLossParametersMomentsExpanded) is divided by zero, and the estimate of the parameter becomes unstable. Scenarios 1 and 3 could be considered as two special cases of the spectrum of values, showing that the closer the variances of the real and imaginary parts of $x$ are, the less consistent, efficient and unbiased estimates of parameters are produced by CLS. Scenario 2 is complimentary, because it shows that if the real and imaginary parts are correlated, the CLS estimates of parameters become as good (in statistical terms) as the estimates of OLS and/or Likelihood. So, the CLS becomes unreliable in a special case, when $\sigma_{x_r}^2 = \sigma_{x_i}^2$ and $\sigma_{x_r,x_i}=0$.
+In this scenario, OLS and Likelihood produce efficient, unbiased and consistent estimates of parameters, which cannot be said about the CLS. The behaviour of CLS is explainable because for this specific scenario, the direct variance of the complex variable $x_r + i x_i$ becomes close to zero. As a result, the direct covariance in \@ref(eq:SimpleCLRCLSLossParametersMomentsExpanded) is divided by zero, and the estimate of the parameter becomes unstable. Scenarios 1 and 3 could be considered as two special cases of the spectrum of values, showing that the closer the variances of the real and imaginary parts of $x$ are, the less consistent, efficient and unbiased estimates of parameters are produced by CLS. Scenario 2 is complimentary, because it shows that if the real and imaginary parts are correlated, the CLS estimates of parameters become as good (in statistical terms) as the estimates of OLS and/or Likelihood. So, the CLS becomes unreliable in a special case, when $\sigma_{x_r}^2 = \sigma_{x_i}^2$ and $\sigma_{x_r,x_i}=0$.
 
 Next, the three estimators give the same estimates of parameters in Scenario 4 of functional relation between $x$ and $y$, which is shown in Figure \@ref(fig:parametersFR).
 
@@ -605,7 +607,7 @@ Next, the three estimators give the same estimates of parameters in Scenario 4 o
 parametersPlots(parametersFR)
 ```
 
-The main difficulties for the estimators appear, when the variance of the error term increases. Figure \@ref(fig:parametersCorError) shows how the three perform in case of a higher variance of the error term in Scenario 5.
+The main difficulty for the estimators appears when the variance of the error term increases. Figure \@ref(fig:parametersCorError) shows how the three perform in case of a high variance of the error term in Scenario 5.
 
 ```{r parametersCorError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\\underline{\\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 5.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersCorError)
@@ -613,12 +615,12 @@ parametersPlots(parametersCorError)
 
 It becomes apparent that OLS and Likelihood produce more efficient estimates of parameters than CLS on small samples. This is because the variability of estimates of parameter is higher for CLS than for the other two on small samples.
 
-The situations worsens for the three estimators when we consider Scenario 6, when the variances of the error term become much higher than before, which is shown in Figure \@ref(fig:parametersHVError).
+The situation worsens for the three estimators when we consider Scenario 6, when the variance of the error term become much higher than before, which is shown in Figure \@ref(fig:parametersHVError).
 
 ```{r parametersHVError, fig.cap="Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of $\\underline{\\beta_1}=2-1.5i$ (orange horizontal lines on the plot). Scenario 6.", echo=FALSE, fig.height=3, fig.width=8}
 parametersPlots(parametersHVError)
 ```
 
-In addition to being less efficient, the real parts of estimates of parameters exhibit a bias, which is diminished with the increase of sample size. Comparing the three estimators, it appears that CLS produces less efficient and more biased estimates of parameters than OLS or Likelihood in this Scenario.
+In addition to being less efficient, the real parts of estimates of parameters exhibit a bias, which is diminished with the increase of sample size. Comparing the three estimators, it appears that CLS produces less efficient and more biased estimates of parameters than OLS or Likelihood in Scenario 6.
 
 These six scenarios show a variety of situations in which the three estimators produce different estimates of parameters. Arguably, OLS and Likelihood could be considered as robust alternatives, but all the three estimators seem to perform well in several sensible situations.
