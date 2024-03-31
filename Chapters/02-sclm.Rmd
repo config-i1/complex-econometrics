@@ -4,7 +4,7 @@
 options(scipen = 100)
 ```
 
-We start with the simplest complex-valued model, a special case of a Complex Linear Regression (cLR), which we call "simple", analogous to how it is done in the real-valued domain, because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real-valued domain.
+We start with the simplest complex-valued model, a special case of a Complex Linear Regression (cLR; we use the small letter "c" to denote complex-valued models to avoid conflicts in names with real-valued ones), which we call "simple", analogous to how it is done in the real-valued domain, because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real-valued domain.
 
 ## Model formulation {#simpleCLRModel}
 The simple Complex Linear Regression can be written as:

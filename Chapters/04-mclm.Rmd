@@ -1,42 +1,41 @@
 # Multiple Complex Linear Regression {#multipleCLR}
 We now move to the discussion of the multiple cLR, the model that captures relations between one complex random variable, $y_r + i y_i$ and a set of explanatory complex random variables.
 
-## Model formulation 
-Similarly to how the multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
+## Model formulation
+Similarly to how the conventional multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:
 \begin{equation}
     \underline{y}_j = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,j} + \underline{\beta}_2 \underline{x}_{2,j} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,j} + \underline{\epsilon}_j,
     (\#eq:MultipleCLRComplex)
 \end{equation}
-where $k-1$ is the number of complex random variables. Similarly to how it was done with SCLR in \@ref(eq:SimpleCLRSystem), we can expand the formula \@ref(eq:MultipleCLRComplex) as a system of two equations, taking that every parameter and every variable in \@ref(eq:MultipleCLRComplex) is complex:
+where $k-1$ is the number of explanatory complex variables. Similarly to how it was done with ScLR in \@ref(eq:SimpleCLRSystem), we can expand the formula \@ref(eq:MultipleCLRComplex) as a system of two equations, taking that every parameter and every variable in \@ref(eq:MultipleCLRComplex) is complex:
 \begin{equation}
+    \resizebox{0.8\textwidth}{!}{$
     \begin{aligned}
         y_{r,j} = & \beta_{0,r} + \beta_{1,r} x_{1,r,j} - \beta_{1,i} x_{1,i,j} + \dots + \beta_{k-1,r} x_{k-1,r,j} - \beta_{k-1,i} x_{k-1,i,j} + \epsilon_{r,j} \\
         y_{i,j} = & \beta_{0,i} + \beta_{1,r} x_{1,i,j} + \beta_{1,i} x_{1,r,j} + \dots + \beta_{k-1,r} x_{k-1,i,j} + \beta_{k-1,i} x_{k-1,r,j} + \epsilon_{i,j} .
-    \end{aligned}
+    \end{aligned}$}
     (\#eq:MultipleCLRSystem)
 \end{equation}
 As can be seen from \@ref(eq:MultipleCLRSystem), the multiple cLR captures more complex dynamics than the conventional multiple linear regression. Both parts of the system use the same set of parameters and explanatory variables, but in different combinations, resulting in a versatile modelling framework.
 
-This system can be represented in a more compact form, similarly to \@ref(eq:SimpleCLRVector):
+The model \@ref(eq:MultipleCLRComplex) can be represented in a more compact form, similar to \@ref(eq:SimpleCLRVector):
 \begin{equation}
     \underline{\mathbf{y}} = \underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}} ,
     (\#eq:CLRVector)
 \end{equation}
 where now $\underline{\mathbf{X}} = \begin{pmatrix} 1 & \underline{x}_{1,1} & \dots & \underline{x}_{k-1,1} \\ 1 & \underline{x}_{1,2} & \dots & \underline{x}_{k-1,2} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & \underline{x}_{1,n} & \dots & \underline{x}_{k-1,n} \end{pmatrix}$ and $\underline{\boldsymbol{\beta}} = \begin{pmatrix} \underline{\beta}_0 \\ \underline{\beta}_1 \\ \vdots \\ \underline{\beta}_{k-1} \end{pmatrix}$, where each of the elements in the matrices and vectors above is a complex number.
 
-Furthermore, the system \@ref(eq:MultipleCLRSystem) can also be used to represent the multiple cLR in a simple form using vector and matrix notations, avoiding complex numbers:
+Furthermore, the system \@ref(eq:MultipleCLRSystem) can also be used to represent the multiple cLR in a compact form using vector and matrix notations, avoiding complex numbers:
 \begin{equation}
     \mathbf{y}_j = \underset{\sim}{\mathbf{X}_j} \boldsymbol{\beta} + \boldsymbol{\epsilon}_j ,
     (\#eq:MultipleCLRSystemVector)
 \end{equation}
-where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\underset{\sim}{\mathbf{X}_j} = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k-1,r,j} & -x_{k-1,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k-1,i,j} & x_{k-1,r,j} \end{pmatrix}$, $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k-1} & \beta_{1,k-1} \end{pmatrix}$ and $\mathbf{\epsilon}_j = \begin{pmatrix} \epsilon_{r,j} \\ \epsilon_{i,j} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
+where $\mathbf{y}_j = \begin{pmatrix} y_{r,j} \\ y_{i,j} \end{pmatrix}$, $\underset{\sim}{\mathbf{X}_j} = \begin{pmatrix} 1 & 0 & x_{1,r,j} & -x_{1,i,j} & \dots & x_{k-1,r,j} & -x_{k-1,i,j} \\ 0 & 1 & x_{1,i,j} & x_{1,r,j} & \dots & x_{k-1,i,j} & x_{k-1,r,j} \end{pmatrix}$, $\boldsymbol{\beta}^\prime = \begin{pmatrix} \beta_{0,r} & \beta_{0,i} & \beta_{1,r} & \beta_{1,i} & \dots & \beta_{1,k-1} & \beta_{1,k-1} \end{pmatrix}$ and $\mathbf{\epsilon}_j^\prime = \begin{pmatrix} \epsilon_{r,j} & \epsilon_{i,j} \end{pmatrix}$. This can be then represented in the even more compact form, using the same principles as discussed in Section \@ref(simpleCLRModel) in formula \@ref(eq:SimpleCLRSystemVectorFinal):
 \begin{equation}
     \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{\beta} + \mathbf{E} 
     (\#eq:CLRSystemVectorFinal)
 \end{equation}
 where $\mathbf{Y}=\begin{pmatrix}\mathbf{y}_1 \\ \mathbf{y}_2\\ \vdots \\ \mathbf{y}_n \end{pmatrix}$, $\underset{\sim}{\mathbf{X}}=\begin{pmatrix} \underset{\sim}{\mathbf{X}_1} \\ \underset{\sim}{\mathbf{X}_2} \\ \vdots \\ \underset{\sim}{\mathbf{X}_n} \end{pmatrix}$ and $\mathbf{E}=\begin{pmatrix}\boldsymbol{\epsilon}_1 \\ \boldsymbol{\epsilon}_2\\ \vdots \\ \boldsymbol{\epsilon}_n \end{pmatrix}$. Formula \@ref(eq:CLRSystemVectorFinal) becomes especially useful for multiple cLR for the model estimation via OLS, CLS or Likelihood in the matrix form. The form \@ref(eq:CLRSystemVectorFinal) sidesteps complex numbers all together, representing the set of equations in matrices and vectors, containing real numbers only. This is convenient for many purposes and in inference.
-
-The main difference between the form \@ref(eq:CLRVector) and \@ref(eq:CLRSystemVectorFinal) is that the former contains complex numbers inside each of the matrices and vectors.
 
 
 ## Estimation {#mlcrEstimation}
@@ -47,12 +46,14 @@ In order to estimate the parameters of the model \@ref(eq:CLRVector), we can use
 \end{equation}
 where $\underline{\boldsymbol{b}}$ is the estimate of $\underline{\boldsymbol{\beta}}$ and $\underline{\mathbf{e}}$ is the estimate of $\underline{\mathbf{\epsilon}}$. And in case of matrix notations, instead of \@ref(eq:CLRSystemVectorFinal) we will have:
 \begin{equation}
-    \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{b} + \mathbf{\hat{E}} 
+    \mathbf{Y} = \underset{\sim}{\mathbf{X}} \boldsymbol{b} + \hat{\mathbf{E}} ,
     (\#eq:CLRSystemVectorFinalEstimated)
 \end{equation}
+where $\hat{\mathbf{E}}$ is the estimate of ${\mathbf{E}}$.
+
 
 ### Ordinary Least Squares
-The criterion of OLS for multiple cLR can be written as:
+The OLS criterion for multiple cLR can be written as:
 \begin{equation}
     \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right),
     (\#eq:CLROLSCriterion)
@@ -65,25 +66,23 @@ which can be expanded to:
     \end{aligned}. 
     (\#eq:CLROLSCriterionExpanded)
 \end{equation}
-Taking derivative of \@ref(eq:CLROLSCriterionExpanded) with respect to $\underline{\boldsymbol{b}}$ and equating it to zero, results in the following system of normal equations:
-\begin{equation}
+Taking derivative of \@ref(eq:CLROLSCriterionExpanded) with respect to $\underline{\boldsymbol{b}}$ and equating it to zero results in the following system of normal equations:
+\begin{equation*}
     \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \underline{\boldsymbol{b}} = \underline{\mathbf{X}}^\prime \underline{\mathbf{y}} ,
-    (\#eq:CLROLSSystemOfNormalEquations)
-\end{equation}
-which gives the classical formula for the estimation of parameters of the model \@ref(eq:CLRSystemVectorFinal):
+\end{equation*}
+which then gives the classical formula for the estimation of parameters of the model \@ref(eq:CLRSystemVectorFinal):
 \begin{equation}
     \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}}
     (\#eq:MCLROLSEstimate)
 \end{equation}
-Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed Subsection \@ref(complexVariable), the operator $\prime$ denotes conjugate transposition, which means that for the special case of simple cLR, the formula \@ref(eq:MCLROLSEstimate) will become \@ref(eq:SimpleCLROLSLossParametersMoments).
+Given that \@ref(eq:MCLROLSEstimate) corresponds to the classical OLS, it will maintain all of its conventional properties, i.e. its estimates being unbiased, efficient and consistent. Note that, as discussed in Subsection \@ref(complexVariable), the operator $\prime$ denotes conjugate transposition, which means that for the special case of a simple cLR, the formula \@ref(eq:MCLROLSEstimate) will become \@ref(eq:SimpleCLROLSLossParametersMoments).
 
-Finally, using the same principles, we can show that the estimates of parameters can be obtained if we use the form \@ref(eq:CLRSystemVectorFinalEstimated) instead of the vectors of complex variables:
+Finally, using the same logic, we can show that the estimates of parameters can also be obtained if we use the form \@ref(eq:CLRSystemVectorFinalEstimated) instead of the vectors of complex variables:
 \begin{equation}
     \boldsymbol{b} = \left( \underset{\sim}{\mathbf{\tilde{X}}}^\prime \underset{\sim}{\mathbf{X}}\right)^{-1} \underset{\sim}{\mathbf{\tilde{X}}}^\prime {\mathbf{Y}} .
     (\#eq:MCLROLSEstimateComplex)
 \end{equation}
-The form \@ref(eq:MCLROLSEstimateComplex) becomes especially useful for futher inference.
-
+The form \@ref(eq:MCLROLSEstimateComplex) becomes especially useful for inference if we want to avoid complex variables.
 
 
 ### Complex Least Squares
@@ -93,16 +92,17 @@ As discussed in Section \@ref(SCLREstimation), there is also an alternative appr
     (\#eq:CLRCLSCriterion)
 \end{equation}
 Using the same logic as with OLS, it can be shown that the minimisation of this criterion implies the solution of the following system of normal equations:
-\begin{equation}
+\begin{equation*}
     \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \underline{\boldsymbol{b}} = \underline{\mathbf{X}}^\top \underline{\mathbf{y}} ,
-    (\#eq:CLRCLSSystemOfNormalEquations)
-\end{equation}
+\end{equation*}
 which then results in the following formula for the CLS estimate of parameters:
 \begin{equation}
     \underline{\boldsymbol{b}} = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{y}} .
     (\#eq:MCLRCLSEstimate)
 \end{equation}
-For the simple cLR, the formula \@ref(eq:MCLRCLSEstimate) becomes equivalent to \@ref(eq:SimpleCLRCLSLossParameters). The main difference between \@ref(eq:MCLRCLSEstimate) and \@ref(eq:MCLROLSEstimateComplex), as we can see, is that in the CLS, the transposition is done without the conjugation.
+This formula visually looks similar to \@ref(eq:MCLROLSEstimate) obtained for OLS, but with the main difference being that we use the direct transposition in \@ref(eq:MCLRCLSEstimate) instead of the conjugate one.
+
+For the simple cLR, the formula \@ref(eq:MCLRCLSEstimate) becomes equivalent to \@ref(eq:SimpleCLRCLSLossParameters).
 
 Finally, based on the form \@ref(eq:CLRSystemVectorFinalEstimated), it can be shown that the same estimates (but in a form of real-valued vector) can be obtained via:
 \begin{equation}
@@ -118,16 +118,16 @@ Note that both OLS and CLS imply that the individual contributions of the real a
     \min S^{\mathrm{OLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\prime \underline{\mathbf{e}}\right) \iff \min \left(\hat{\sigma}_{e_r}^2 + \hat{\sigma}_{e_i}^2 \right),
     (\#eq:CLROLSCriterionVariance)
 \end{equation}
-where $\hat{\sigma}_{e_r}^2$ and $\hat{\sigma}_{e_i}^2$ are the variances of the real and imaginary parts of the error term respectively. The connection becomes apparent if we recall tha the main assumption of a regression model is that the expectation of the error term equals to zero. Because of that, the estimates of OLS lead to averaged out performance, ignoring the individual contribution of $e_r$ and $e_i$ and the covariance between the parts.
+where $\hat{\sigma}_{e_r}^2$ and $\hat{\sigma}_{e_i}^2$ are the variances of the real and imaginary parts of the error term respectively. The connection becomes apparent if we recall tha the main assumption of a regression model is that the expectation of the error term equals to zero. Because of that, the estimates of OLS lead to averaged out values, ignoring the individual contributions of real and imaginary parts of the c.r.v. and the covariance between them.
 
 When it comes to CLS, the criterion \@ref(eq:CLRCLSCriterion) implies that:
 \begin{equation}
     \min S^{\mathrm{CLS}}(\underline{\boldsymbol{b}}) = \min \left(\underline{\mathbf{e}}^\top \underline{\mathbf{e}}\right) \iff \min \left(\hat{\sigma}_{e_r}^2 - \hat{\sigma}_{e_i}^2 + 2i \hat{\sigma}_{e_r, e_i} \right),
     (\#eq:CLRCLSCriterionVariance)
 \end{equation}
-which now takes the covariance into account but ignores the sizes of the individual variances of the real and imaginary parts of the complex residuals.
+which now takes the covariance into account but ignores the sizes of the individual variances of the real and imaginary parts of the complex residuals and only focuses on their similarity.
 
-In order to take the individual variances and the covariance into account, we need to use a different criterion and, as a result, a different estimator. One of such estimators is the Maximum Likelihood Estimator (MLE).
+In order to take the individual variances and the covariance into account, we need to use a different criterion and, as a result, a different estimator, for example, Maximum Likelihood Estimator (MLE).
 
 
 ### Likelihood
@@ -146,11 +146,11 @@ where (as a reminder)
 \end{equation*}
 Maximising this likelihood, as discussed in Subsection \@ref(SCLREstimationLikelihood), implies minimising Generalised Variance and guarantees that the estimates of parameters are efficient and consistent.
 
-However, @Lutkepohl2005 shows for multivariate models that the maximum of the likelihood gives the same estimates of parameters as the OLS as long as the Multivariate Normal distribution with zero covariance is assumed for the error term. The results might differ for the other distributions or for the case, when the covariance in $\hat{\boldsymbol{\Sigma}}_\epsilon$ is not zero.
+As a side note, @Lutkepohl2005 shows that the maximum of the likelihood for multivariate models gives the same estimates of parameters as the OLS as long as the Multivariate Normal distribution with **zero covariance** is assumed for the error term. The results might differ for the other distributions or for the case, when the covariance in $\hat{\boldsymbol{\Sigma}}_\epsilon$ is not zero.
 
 
 ## Inference {#MCLRInference}
-It is possible to calculate the variance of estimates of parameters, using the same approach as used in the conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). In fact, in case of c.r.v., it is possible to calculate both direct and conjugate covariance matrices of parameters. These variances can then be used in hypothesis testing or confidence interval construction [their distribution was studied by @Tavares2007]. In order to do that, we need to replace the actual value $\underline{\mathbf{y}}$ with $\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}$ in the OLS formula \@ref(eq:MCLROLSEstimate):
+It is possible to calculate the variance of estimates of parameters, using the same approach as in the conventional OLS for the real-valued regression, substituting the formula for parameters with either \@ref(eq:MCLROLSEstimate) or \@ref(eq:MCLRCLSEstimate). In fact, in case of c.r.v., we need to calculate both direct and conjugate covariance matrices of parameters to get the full information about the parameter uncertainty. These variances can then be used in hypothesis testing or confidence interval construction [their distribution was studied by @Tavares2007]. To do that, we need to replace the actual value $\underline{\mathbf{y}}$ with $\underline{\mathbf{X}} \underline{\boldsymbol{\beta}} + \underline{\boldsymbol{\epsilon}}$ in the OLS formula \@ref(eq:MCLROLSEstimate):
 \begin{equation}
     \begin{aligned}
     \underline{\boldsymbol{b}}^{\text{OLS}} =
@@ -166,14 +166,14 @@ One thing that becomes apparent from this expansion is that the OLS estimates of
     \underline{\boldsymbol{b}}^{\text{CLS}} = \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \underline{\boldsymbol{\epsilon}} .
     (\#eq:MCLRCLSExpansion)
 \end{equation}
-This is a standard result from the real-valued regression analysis, but it is useful to know that it holds for the both estimation methods in complex-valued regression as well.
+This is a standard result from the real-valued regression analysis, but it is useful to know that it holds for both estimation methods in complex-valued regression as well.
 
 Based on \@ref(eq:MCLROLSExpansion), we can calculate the conjugate variance to get conjugate covariance matrix of parameters:
 \begin{equation}
     \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \mathrm{V}\left( \underline{\boldsymbol{\beta}} + \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\boldsymbol{\epsilon}} \right) .
     (\#eq:MCLROLSVariance01)
 \end{equation}
-In the formula \@ref(eq:MCLROLSVariance01), the true estimates of parameters $\underline{\boldsymbol{\beta}}$ will be independent of the explanatory variables and the error term, so the formula can be represented as a sum of variances. Furthermore, the true parameters do not have any uncertainty, i.e. $\mathrm{V}\left( \underline{\boldsymbol{\beta}} \right) = 0$, meaning that the formula \@ref(eq:MCLROLSVariance01) can be transformed into:
+In the formula \@ref(eq:MCLROLSVariance01), the true estimates of parameters $\underline{\boldsymbol{\beta}}$ will be independent of the explanatory variables and the error term, so the formula can be represented as a sum of variances. Furthermore, we assume that the true parameters do not have any uncertainty, i.e. $\mathrm{V}\left( \underline{\boldsymbol{\beta}} \right) = 0$, meaning that the formula \@ref(eq:MCLROLSVariance01) can be transformed into:
 \begin{equation}
     \begin{aligned}
         \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
@@ -182,7 +182,7 @@ In the formula \@ref(eq:MCLROLSVariance01), the true estimates of parameters $\u
     \end{aligned}
     (\#eq:MCLROLSVariance02)
 \end{equation}
-We switch from the variance to the expectation in \@ref(eq:MCLROLSVariance02), dropping the expectation of the term in the brackets from the formula because it will be equal to zero as long as the explanatory variables and the error term are uncorrelated (one of the classical assumptions of a regression model). The tilde over the second term in \@ref(eq:MCLROLSVariance02) shows that this is the conjugate of the original complex variable. Recalling distributive properties of the conjugation \@ref(eq:complexNumberConjugateDistributive), the same formula can be rewritten as:
+We switch from the variance to the expectation in \@ref(eq:MCLROLSVariance02), dropping the expectation of the term in the brackets from the formula because it will be equal to zero as long as the explanatory variables and the error term are uncorrelated (one of the classical assumptions of the regression model). The tilde over the second term in \@ref(eq:MCLROLSVariance02) shows that this is the conjugate of the original complex variable. Recalling distributive properties of the conjugation \@ref(eq:complexNumberConjugateDistributive), the same formula can be rewritten as:
 \begin{equation}
     \begin{aligned}
         \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
@@ -190,8 +190,7 @@ We switch from the variance to the expectation in \@ref(eq:MCLROLSVariance02), d
     \end{aligned}
     (\#eq:MCLROLSVariance03)
 \end{equation}
-which uses the property: $\tilde{\underline{\mathbf{X}}}^\prime = \underline{\mathbf{X}}^\top$
-The expectation of the product in \@ref(eq:MCLROLSVariance03) can be rewritten as a product of expectations plus a covariance between the terms:
+which uses the property: $\tilde{\underline{\mathbf{X}}}^\prime = \underline{\mathbf{X}}^\top$. The expectation of the product in \@ref(eq:MCLROLSVariance03) can be rewritten as a product of expectations plus a covariance between the terms:
 \begin{equation}
     \begin{aligned}
         \mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
@@ -202,7 +201,7 @@ The expectation of the product in \@ref(eq:MCLROLSVariance03) can be rewritten a
     \end{aligned}
     (\#eq:MCLROLSConjVar)
 \end{equation}
-where the expectations of each term are equal to zero as long as the classical regression assumptions hold and $\sigma_{\underline{\epsilon}}^2$ is the conjugate variance of the error term. Using the same logic, it can be shown that the direct variance of parameters can be calculated as:
+where $\sigma_{\underline{\epsilon}}^2$ is the conjugate variance of the error term. The expectations of each term in \@ref(eq:MCLROLSConjVar) are equal to zero as long as the classical regression assumptions hold. Using the same logic, it can be shown that the direct variance of OLS parameters can be calculated as:
 \begin{equation}
     \begin{aligned}
         \mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) =
@@ -226,7 +225,7 @@ and
     \end{aligned}
     (\#eq:MCLRCLSDirVar)
 \end{equation}
-for the CLS. Having both direct and conjugate variances for OLS and CLS, we can calculate individual variances for each of the parameters and covariances between them to form a classical covariance matrix. The general formula for this would be:
+Having both direct and conjugate variances for OLS and CLS, we can calculate individual variances for each of the parameters and covariances between them to form a classical covariance matrix. The general formula for this would be:
 \begin{equation*}
     \begin{aligned}
         & \mathrm{V}_{\boldsymbol{b}_r} = \frac{\mathcal{R}\left(\mathrm{V}\left( \underline{\boldsymbol{b}} \right) \right)+\mathcal{R}\left(\mathcal{V}\left( \underline{\boldsymbol{b}} \right) \right)}{2} \\
@@ -244,7 +243,7 @@ where $\mathrm{V}_{\boldsymbol{b}_r}$ is the part of the covariance matrix of re
     (\#eq:MCLRCLSVariance)
 \end{equation}
 
-Finally, in case of the likelihood estimation, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
+Finally, in case of the MLE, the covariance matrix of parameters cannot be calculated analytically, but can be obtained numerically via the Hessian calculation. Given the formulation in this case, there is no need to do any additional transformations, the matrix will contain the variances and covariances of each individual parameter of the model.
 
 
 ### Demonstration in R
@@ -270,7 +269,7 @@ y <- b0 + b1 * x1 + b2 * x2 + e
 dataArtificial <- data.frame(y=y, x1=x1, x2=x2)
 ```
 
-The data generated using the code above will have the same variances of the real and imaginary parts of `x1` and the different ones for the `x2`. Furthermore, it will have residuals with correlated real and imaginary parts. We expect that in this situation the likelihood would be more appropriate than either OLS, or CLS.
+The data generated using the code above will have the same variances of the real and imaginary parts of `x1` and the different ones for the `x2`. Furthermore, it will have error term with correlated real and imaginary parts. We expect that in this situation the likelihood would be more appropriate than either OLS, or CLS.
 
 We start by estimating the model using OLS:
 
@@ -279,9 +278,9 @@ clm(y~., dataArtificial, loss="OLS") |>
     summary()
 ```
 
-As we see from the output above, the estimates of parameters are reasonable and close to the ones used in the data generation, while the 95% confidence intervals include the true values of parameters. While it does not mean that this will always be the case universally, this demonstration shows how the OLS works and how the confidence intervals of parameters (based on the standard errors) can be obtained using the `clm()` function.
+As we see from the output above, the estimates of parameters are reasonable and close to the ones used in the data generation, while the 95% confidence intervals include the true values of parameters. While it does not mean that this will always be the case universally, this shows how the OLS works and how the confidence intervals of parameters (based on the standard errors) can be calculated by the `clm()` function.
 
-Keeping in mind that the MLE should give similar (if not the same) estimates of parameters, we should expect that the command below should produce a very similar output to the one above:
+Keeping in mind that the MLE should give similar (if not the same) estimates of parameters, we expect that the command below would produce a very similar output to the one above:
 ```{r}
 clm(y~., dataArtificial, loss="likelihood") |>
     summary()
@@ -296,22 +295,22 @@ clm(y~., dataArtificial, loss="CLS") |>
     summary()
 ```
 
-The estimates of parameters in the output above are less efficient than the ones from OLS/likelihood (as expected), but they are still not far from the true values of parameters. Notably, the CLS produced the lowest covariance between the real and imaginary parts of the complex residuals, which makes sense given how the CLS loss is formulated.
+The estimates of parameters in the output above are less efficient (have higher standard errors) than the ones from OLS/likelihood (as expected), but they are still not far from the true values of parameters. Notably, the CLS produced the lowest covariance between the real and imaginary parts of the complex residuals, which makes sense given how the CLS loss is formulated.
 
-This demonstration shows how simple it is to estimate a cLR on data and how its outputs can be read. As one can see, the outputs do not differ substantially from the ones of the real values models.
+This demonstration shows how simple it is to estimate a cLR on data and how its outputs can be analysed. As one can see, the outputs do not differ substantially from the ones of the real-valued models.
 
 
 ## Capturing uncertainty in the multiple cLR
-Having both direct and conjugate variances for OLS and CLS, it is possible to do several things:
+Having both direct and conjugate variances for OLS and CLS (or a covariance matrix of parameters in MLE), it is possible to do several things:
 
 1. Construct confidence intervals for parameters;
 2. Construct a confidence ellipse for each complex parameter;
 3. Test hypothesis about each of parameters (univariate distribution);
-4. Test hypothesis for each complex parameter (considering joint distribution);
-5. Produce confidence intervals for the conditional expectation from the model (fitted values and point forecasts);
+4. Test hypothesis for each complex parameter (joint distribution);
+5. Produce confidence intervals for the conditional expectation from the model (for fitted values and point forecasts);
 6. Produce prediction intervals for the actual values.
 
-The elements (1) and (3) can be done assuming that the Central Limit Theorem works and thus the estimates of parameters follow Normal distribution. This can be done using Student's t-statistics as discussed in Section 6.4 and 8.1 of @SvetunkovSBA. The elements (2) and (4) rely on a different distribution and can be done using Hotelling's T$^2$ statistics, discussed in Subsection \@ref(Hotelling). When it comes to elements (5) and (6), we need to impose some assumptions on the complex error term of the model $\underline{\epsilon}_j$. The most popular assumption in statistics is that $\underline{\epsilon}_j \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}_\epsilon)$, where $\boldsymbol{0}$ is the two-dimensional vector of zeroes and $\boldsymbol{\Sigma}_\epsilon$ is the square two-by-two covariance matrix. The estimate of this matrix is typically obtained via the formula:
+The elements (1) and (3) can be done assuming that the Central Limit Theorem works and thus the estimates of parameters follow Normal distribution. This can be done using Student's t-statistics [for example, as discussed in Section 6.4 and 8.1 of @SvetunkovSBA]. The elements (2) and (4) rely on a different distribution and can be done using Hotelling's T$^2$ statistics, discussed in Subsection \@ref(Hotelling). When it comes to elements (5) and (6), we need to impose some assumptions on the complex error term of the model $\underline{\epsilon}_j$. The most popular assumption in statistics is that $\underline{\epsilon}_j \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}_\epsilon)$, where $\boldsymbol{0}$ is the two-dimensional vector of zeroes and $\boldsymbol{\Sigma}_\epsilon$ is the square two-by-two covariance matrix. The estimate of this matrix is typically obtained via the formula:
 \begin{equation*}
 	\hat{\boldsymbol{\Sigma}}_\epsilon = \frac{1}{n-\frac{k}{2}} \sum_{j=1}^{n} \boldsymbol{e}_j \boldsymbol{e}_j^\prime ,
 \end{equation*}
@@ -326,30 +325,32 @@ where $k$ is the number of estimated parameters and $n-\frac{k}{2}$ is the numbe
 <!-- 	    y_{i,1} = a_{r,1} x_{i,1} + a_{i,1} x_{r,1} + i \epsilon_{i,1}  -->
 <!-- 	\end{aligned}, -->
 <!-- \end{equation*} -->
-It can be estimated on one observation and in that case will have zero degrees of freedom. Another way to look at this problem is to calculate the number of degrees of freedom per series, which in case of complex-valued model comes to two series  resulting in the same $n-\frac{k}{2}$.
+It can be estimated on one observation and in that case will have zero degrees of freedom (i.e. $1-\frac{2}{2}=0$). Another way to look at this is to calculate the number of degrees of freedom per series, which in case of complex-valued model comes to two series, resulting in the same $n-\frac{k}{2}$.
 
 To calculate prediction intervals, we need to calculate the variance of the conditional mean of a complex linear model. In case of complex variables, we need both direct and conjugate variances conditional on the values of the available explanatory variables to get the full information about the distribution:
 \begin{equation}
+    \resizebox{0.8\textwidth}{!}{$
     \begin{aligned}
     \mathrm{V}\left(\underline{y}_j | \underline{x}_{1,j}, \dots, \underline{x}_{k-1,j} \right) = & \mathrm{V}\left(\underline{b}_0 + \underline{b}_1 \underline{x}_{1,j} + \underline{b}_2 \underline{x}_{2,j} + \dots + \underline{b}_{k-1} \underline{x}_{k-1,j} + \underline{\epsilon}_j\right) \\
     & \sum_{i=0}^{k-1} \underline{x}_{i,j}\underline{\tilde{x}}_{i,j} \mathrm{V}\left(\underline{b}_i \right) + 2 \sum_{i\neq l} \underline{x}_{i,j}\underline{\tilde{x}}_{l,j} \mathrm{cov}\left(\underline{b}_i, \underline{b}_l \right) + \sigma_{\underline{\epsilon}}^2
-    \end{aligned},
+    \end{aligned}, $}
     (\#eq:MultipleCLRComplexVarianceDir)
 \end{equation}
 where $\mathrm{cov}(\cdot)$ is the conjugate covariance between the variables and $\underline{x}_{0,j}=1+i$. Similarly, we can calculate the direct conditional variance:
 \begin{equation}
+    \resizebox{0.8\textwidth}{!}{$
     \begin{aligned}
     \mathcal{V}\left(\underline{y}_j | \underline{x}_{1,j}, \dots, \underline{x}_{k-1,j} \right) = & \sum_{i=0}^{k-1} \underline{x}_{i,j}\underline{\tilde{x}}_{i,j} \mathcal{V}\left(\underline{b}_i \right) + 2 \sum_{i\neq l} \underline{x}_{i,j}\underline{\tilde{x}}_{l,j} {cov}\left(\underline{b}_i, \underline{b}_l \right) + \varsigma_{\underline{\epsilon}}^2
-    \end{aligned},
+    \end{aligned},$}
     (\#eq:MultipleCLRComplexVarianceConj)
 \end{equation}
-where ${cov}(\cdot)$ is the direct covariance. The formulae \@ref(eq:MultipleCLRComplexVarianceDir) and \@ref(eq:MultipleCLRComplexVarianceDir) can then be used to calculate the conditional variances of real and imaginary parts of the response variable together with a conditional covariance between them. We can then either form a covariance matrix and produce a predictive ellipse using formulae discussed in Subsection \@ref(MVNorm) or consider each of the parts independently and create prediction intervals (also discussed in Subsection \@ref(MVNorm)). Arguably, the latter is easier to work with than the former.
+where ${cov}(\cdot)$ is the direct covariance. The formulae \@ref(eq:MultipleCLRComplexVarianceDir) and \@ref(eq:MultipleCLRComplexVarianceConj) can then be used to calculate the conditional variances of real and imaginary parts of the response variable together with a conditional covariance between them. We can then either form a covariance matrix and produce a predictive ellipse using formulae discussed in Subsection \@ref(MVNorm) or consider each of the parts independently and create prediction intervals (also discussed in Subsection \@ref(MVNorm)). Arguably, the latter is easier to work with and easier to interpret than the former.
 
-Finally, to produce confidence intervals, we can use the formulae \@ref(eq:MultipleCLRComplexVarianceDir) and \@ref(eq:MultipleCLRComplexVarianceDir), dropping the $\mathrm{V}\left(\underline{\epsilon}_j\right)$ and $\mathcal{V}\left(\underline{\epsilon}_j\right)$, which will then give us direct and conjugate conditional variances of the predicted value.
+Finally, to produce confidence intervals, we can use the formulae \@ref(eq:MultipleCLRComplexVarianceDir) and \@ref(eq:MultipleCLRComplexVarianceConj), dropping the $\mathrm{V}\left(\underline{\epsilon}_j\right)$ and $\mathcal{V}\left(\underline{\epsilon}_j\right)$, which will then give us direct and conjugate conditional variances of the predicted value.
 
 
 ### Demonstration in R
-Building on the same example of artificial data from the previous section, we will see how predictions from the cLR can be made. To that extent, we will use the first 80 observations to estimate cLR using likelihood and then use the last 20 for prediction:
+Building on the same example of artificial data from the previous section, we will show how predictions from the cLR can be made. To that extent, we will use the first 80 observations to estimate cLR using likelihood and then use the last 20 for prediction (while we can use any loss function, here we demonstrate what happens in case of MLE):
 
 ```{r}
 CLRArtificial <- clm(y~., dataArtificial,
@@ -365,11 +366,11 @@ predict(CLRArtificial, tail(dataArtificial,20),
     plot()
 ```
 
-If the confidence interval for the conditional mean is needed, then this is regulated with `interval="confidence"` parameter.
+If the confidence interval for the conditional mean is needed, then this can be switched with `interval="confidence"` parameter in the `predict()` method above.
 
 
 ## Dummy variables {#multipleCLRDummy}
-In the real-valued regression analysis, dummy variables appear when a feature of an object can be measured only in a categorical scale. For example, we might be interested in sales of a red medium size t-shirt vs the sales of a blue small size one. In this case, the colour would be one of such characteristics (measured in the nominal scale), while the size would be the other one (in ordinal scale). In order to include such information in the regression model, a set of dummy variables is typically created. A dummy variable is the variable that equals to one, when the feature exists and zero otherwise. So, in our example, we would create dummy variables `colourRed`, `colourBlue`, and `colourGreen` to denote the first feature and `sizeSmall`, `sizeMedium`, and `sizeLarge` for the second one. These variables would be equal to one for the specific observations (t-shirts) in our data. And for obvious reasons, the t-shirt cannot be both red and blue or small and medium at the same time, so the respective variables will be self-exclusive. If you want to learn more, you can find some information on that in Chapter 13 of @SvetunkovSBA.
+In the real-valued regression analysis, dummy variables appear when a feature of an object can be measured only in a categorical scale. For example, we might be interested in sales of a red medium size t-shirt vs the sales of a blue small size one. In this case, the colour would be one of such characteristics (measured in the nominal scale), while the size would be the other one (in ordinal scale). To include such information in the regression model, a set of dummy variables is typically created. A dummy variable is the variable that equals to one, when the feature exists and zero otherwise. So, in our example, we would create dummy variables `colourRed`, `colourBlue`, and `colourGreen` to denote the first feature and `sizeSmall`, `sizeMedium`, and `sizeLarge` for the second one. These variables would be equal to one for the specific observations (t-shirts) in our data. And for obvious reasons, the t-shirt cannot be both red and blue or small and medium at the same time, so the respective variables will be self-exclusive [@SvetunkovSBA provides more information about this].
 
 In case of complex linear regression, it is possible to introduce dummy variables in the same way as in the conventional model, by adding real-valued variables. The model in this case becomes:
 
@@ -379,14 +380,14 @@ In case of complex linear regression, it is possible to introduce dummy variable
 \end{equation}
 where $\underline{\gamma}_i$ is the complex parameter, $d_{i,j}$ is th $i$-th real-valued dummy variable and $m$ is the number of dummy variables. In this case, each variable $d_{i,j}$ is multiplied by a complex coefficient, capturing the dummy effect of it on each part of the complex response variable. The effect of dummy variables on the response one is exactly the same as in the conventional real-valued regression - the intercept of the model, $\underline{\beta}_0$ will change by the value of $\underline{\gamma}_i$, when the variable $d_{i,j}$ equals to one.
 
-It is also theoretically possible to encode a complex dummy variable, which would have two features in it at the same time, e.g. $colourRed + i \times sizeSmall$, where both `colourRed` and `sizeSmall` are dummy variables. The issue with this is that this encoding assumes very specific dynamic between the features and the response variable. In the example above, the sales of the first product will have $\gamma_{1,j} \times coolourRed_j - \gamma_{2,j} \times sizeSmall_j$, while the sales of the second one will have: $\gamma_{1,j} \times sizeSmall_j + \gamma_{2,j} \times coolourRed_j$. This means that the red colour should have exactly the same impact on sales of product one, as the small size has on the product two, while the effect of small size on product one is opposite to the effect of the red colour on the second product. It is difficult to find situations, where such effects would be meaningful, so we do not recommend that. Still, it is possible to formulate such a model and capture the qualitative features in a parsimonious way (in comparison with a simple introduction of variables to each equation).
+It is also theoretically possible to encode a complex dummy variable, which would have two features in it at the same time, e.g. $colourRed + i \times sizeSmall$, where both `colourRed` and `sizeSmall` are dummy variables. The issue with this is that this encoding assumes very specific dynamic between the features and the response variable. In the example above, the sales of the first product will have $\gamma_{1,j} \times coolourRed_j - \gamma_{2,j} \times sizeSmall_j$, while the sales of the second one will have: $\gamma_{1,j} \times sizeSmall_j + \gamma_{2,j} \times coolourRed_j$. This means that the red colour should have exactly the same impact on sales of product one, as the small size has on the product two, while the effect of small size on product one is opposite to the effect of the red colour on the second product. It is difficult to find situations, where such effects would be meaningful, so we do not recommend that. Still, it is possible to formulate such a model and capture the qualitative features in a parsimonious way (in comparison with introduction of many variables to each equation).
 
 Finally, if an interaction effect is needed (e.g. how the change of price on red product impacts its sales), this can be done in a similar way to the conventional real-valued regression. For example, here how it can be done for a variable $\underline{x}_{1,j}$:
 \begin{equation}
     \underline{y}_j = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,j} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,j} + \underline{\gamma}_1 \underline{x}_{1,j} d_{1,j} + \underline{\epsilon}_j .
     (\#eq:MultipleCLRComplexDummyInteraction)
 \end{equation}
-In this case, the specific complex effect of $\underline{x}_{1,j}$ on $\underline{y}_j$ will change when the dummy variable equals to one. The interaction effect between a complex variable $\underline{x}_{1,j}$ and a complex dummy variable $\underline{d}_{1,j}$ is also possible, but it will have a similar dilemma to the simple introduction of a dummy variable in a model.
+In this case, the specific complex effect of $\underline{x}_{1,j}$ on $\underline{y}_j$ will change when the dummy variable equals to one. The interaction effect between a complex variable $\underline{x}_{1,j}$ and a complex dummy variable $\underline{d}_{1,j}$ is also possible, but it will have a similar dilemma to the direct introduction of a dummy variable in a model discussed above.
 
 
 ### Demonstration in R
@@ -401,7 +402,7 @@ colour[x3==0] <- "Red";
 colour[x3==1] <- "Green";
 colour[x3==2] <- "Blue";
 # Add it to the data frame
-# Note that it does not need to be factor()
+# Note that it does not need to be transformed via factor()
 dataArtificial <- data.frame(y=y, x1=x1, x2=x2, colour=colour)
 ```
 
@@ -411,4 +412,4 @@ clm(y~x1+x2+colour, dataArtificial, loss="likelihood") |>
     summary()
 ```
 
-The output above shows that R expanded the colour into a set of dummy variables and dropped one of them ("blue"). The complex coefficients for the dummy variables are all not significant on the 5% level, which in our case means that we cannot detect any strong relation between them and the response variable. This is because we did not use the variable in the data generation.
+The output above shows that R expanded the colour into a set of dummy variables and dropped one of them ("blue"). The complex coefficients for the dummy variables are all not significant on the 5% level, which in our case means that we cannot detect any strong relation between them and the response variable. This is expected because we did not use the variable in the data generation.
