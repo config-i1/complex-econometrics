@@ -5,19 +5,16 @@
 \documentclass[
 ]{book}
 \usepackage{amsmath,amssymb}
+\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
+  \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -47,13 +44,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -61,7 +58,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -70,7 +67,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -139,7 +136,7 @@
 \bibliographystyle{elsarticle-harv}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
+\urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Complex-valued Econometrics with Examples in R},
   pdfauthor={Sergey Svetunkov and Ivan Svetunkov},
@@ -148,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-03-26}
+\date{2024-03-31}
 
 \begin{document}
 \maketitle
@@ -1534,41 +1531,44 @@ It is obvious that the maximisation of the log-likelihood \eqref{eq:additiveLogL
     \mathrm{GV} = |\hat{\boldsymbol{\Sigma}}_\epsilon| = \sigma_{\epsilon_r}^2 \sigma_{\epsilon_i}^2 - \sigma_{\epsilon_r, \epsilon_i}^2 .
     \label{eq:additiveLogLikConcentratedGV}
 \end{equation}
-The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary part of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related. This loss function might be especially useful if we indeed can assume that the real and imaginary part of the residuals are linearly related and we want to use this information in the estimation.
+The minimisation of GV in its turn implies the joint minimisation of variances of the real and imaginary parts of the residuals and a maximisation of the square of the covariance between them, thus making the residuals more linearly related. This loss function might be especially useful if we indeed can assume that the real and imaginary parts of the residuals are linearly related, and we want to use this information in the estimation.
 
-The main difference between the Likelihood and the other two estimators discussed in this Section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
+The main difference between the Likelihood and the other two estimators discussed in this section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
 
 \hypertarget{SCLREstimatorsComparison}{%
-\section{Comparing different estimators for SCLR}\label{SCLREstimatorsComparison}}
+\section{Comparing different estimators for CLR}\label{SCLREstimatorsComparison}}
 
-Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we will explore the performance of estimators with the increase of sample size.
+Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we explore the behaviour of estimators with the increase of sample size.
 
 First, comparing variances of OLS and CLS estimates of \(b_{1,r}\) \eqref{eq:SimpleCLRCLSb1Variance} with \eqref{eq:SimpleCLROLSb1Variance}:
 \begin{equation*}
     \begin{aligned}
         \mathrm{V}(b_{1,r}^{\mathrm{OLS}}) = & \mathrm{V}\left(\frac{\hat{\sigma}_{x_r, \epsilon_r} + \hat{\sigma}_{x_i, \epsilon_i}}{\hat{\sigma}_{x_r}^2 + \hat{\sigma}_{x_i}^2}\right) \\
-        \mathrm{V}(b_{1,r}^{\mathrm{CLS}}) = & \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right)
+        \mathrm{V}(b_{1,r}^{\mathrm{CLS}}) = & \mathrm{V}\left(\frac{\left(\hat{\sigma}_{x_r, \epsilon_r} - \hat{\sigma}_{x_i, \epsilon_i}\right) \left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2 \right) - 2 \hat{\sigma}_{x_r, x_i} \left(\hat{\sigma}_{x_r, \epsilon_i} + \hat{\sigma}_{x_i, \epsilon_r}\right)}{\left(\hat{\sigma}_{x_r}^2 - \hat{\sigma}_{x_i}^2\right)^2 + 4 \hat{\sigma}_{x_r, x_i}^2}\right) ,
     \end{aligned}
 \end{equation*}
-we can conclude that there are some situations, when the estimates of parameters via CLS are less efficient than the estimates via OLS. There are some cases, when the variance \eqref{eq:SimpleCLRCLSb1Variance} is much higher than \eqref{eq:SimpleCLROLSb1Variance}. For example, when the real and imaginary parts of \(x\) are not correlated (i.e.~\(\hat{\sigma}_{x_r, x_i}=0\)) and when the variances of the real and imaginary parts of \(x\) are equal, the variance of \(b_{1,r}\) explodes. However, there are also some cases, when CLS estimates are more efficient than the OLS ones. For example, when \(\hat{\sigma}_{x_r, \epsilon_i}=\hat{\sigma}_{x_i, \epsilon_i}\) and \(\hat{\sigma}_{x_r, x_i}=0\), the variance \eqref{eq:SimpleCLROLSb1Variance} will be equal to zero, while the variance \eqref{eq:SimpleCLRCLSb1Variance} will be greater than zero. So, in general, we cannot conclude which of the estimators will be more efficient, but we know that in different circumstances, they will have different properties.
+we can conclude that there are some situations, when the estimates of parameters via CLS are less \textbf{efficient} than the OLS estimates - the variance \eqref{eq:SimpleCLRCLSb1Variance} would be much higher than \eqref{eq:SimpleCLROLSb1Variance} under some circumstances. For example, when the real and imaginary parts of \(\underline{x}\) are not correlated (i.e.~\(\hat{\sigma}_{x_r, x_i}=0\)) and when the variances of the real and imaginary parts of \(\underline{x}\) are equal, the variance of \(b_{1,r}\) explodes. On the other hand, there are also some cases, when CLS estimates are more efficient than the OLS ones. For example, when \(\hat{\sigma}_{x_r, \epsilon_i}=\hat{\sigma}_{x_i, \epsilon_i}\) and \(\hat{\sigma}_{x_r, x_i}=0\), the variance \eqref{eq:SimpleCLROLSb1Variance} will be equal to zero, while the variance \eqref{eq:SimpleCLRCLSb1Variance} will be greater than zero. So, in general, we cannot conclude that one of the estimators will be consistently more efficient than the other.
 
-We cannot compare the efficiency of the likelihood estimator directly with the OLS and CLS, but we know from the statistics literature \citep{referenceLikelihoodPaper} that likelihood gives consistent and asymptotically efficient estimates of parameters.
+We cannot compare the efficiency of the likelihood estimator directly with the OLS and CLS, but we know from the statistics literature \citep{Wald1949} that likelihood gives consistent and asymptotically efficient estimates of parameters.
 
-In terms of consistency, in one specific situation, when \(\hat{\sigma}_{x_r}^2 = \hat{\sigma}_{x_i}^2\) and \(\hat{\sigma}_{x_r, x_i}=0\), CLS might produce non-consistent estimates of parameters. This means that if we deal with explanatory variables with these properties, we should use either OLS or Likelihood.
+\textbf{In terms of consistency}, in one specific situation, when \(\hat{\sigma}_{x_r}^2 = \hat{\sigma}_{x_i}^2\) and \(\hat{\sigma}_{x_r, x_i}=0\), CLS might produce non-consistent estimates of parameters. This means that if we deal with explanatory variables with these properties, we should use either OLS or Likelihood.
 
-Similar analysis can be done for the coefficient \(b_{1,i}\), with the conclusions similar to the above, so we skip this discussion.
+Similar analysis can be done for the estimate of parameter \(\beta_{1,i}\), with the conclusions similar to the above, so we skip this discussion.
 
-In order to do a more thorough comparison of the three estimators, we set up an experiment based on the following simple cLR:
+\hypertarget{EstimatesSimulation}{%
+\subsection{Simulation experiment}\label{EstimatesSimulation}}
+
+In order to do a more thorough comparison of the three estimators, we set up a simulation experiment based on the following simple cLR:
 \begin{equation*}
     y_r + i y_i = 10+15i + (2-1.5i) (x_r + i x_i) + (\epsilon_r + i \epsilon_i)
 \end{equation*}
-with several scenarios, parameters for which are shown in Table \ref{tab:scenariosEstimators}. They covered several important situations: when \(x_r\) and \(x_i\) are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different and then when the real and imaginary parts of the error term are not correlated, have medium correlation, are equal to zero and when their variances have high or low values.
+and several scenarios, parameters for which are shown in Table \ref{tab:scenariosEstimators}. They covered several important situations: when \(x_r\) and \(x_i\) are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different, and then when the real and imaginary parts of the error term are not correlated, have medium correlation, or are equal to zero, and when their variances have high or low values.
 
 \begin{table}
-
+\centering
 \caption{\label{tab:scenariosEstimators}Several scenarios for the comparison of estimators.}
 \centering
-\resizebox{\linewidth}{!}{
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \fontsize{12}{14}\selectfont
 \begin{tabular}[t]{l|l|l|l|l}
 \hline
@@ -1589,7 +1589,7 @@ Scenario 6 & medium & $\sigma_{x_r}=10$, $\sigma_{x_i}=15$ & 0 & $\sigma_{\epsil
 \end{tabular}}
 \end{table}
 
-These six scenarios in Table \ref{tab:scenariosEstimators} cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave both on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex \(\underline{b}_1\) is estimated. The experiments were done using \texttt{clm()} function from the \texttt{complex} package with \texttt{method} parameter equal to ``OLS'', ``CLS'' and ``likelihood'' for each of the respective estimators. A sample of the script used in the experiments is shown below (Scenario 1):
+These six scenarios in Table \ref{tab:scenariosEstimators} cover different theoretically possible situations and show how the three estimators behave in these conditions. The sample size was first set to 20 observations and then was increased iteratively by one observation until reaching 10,000. This should give us an understanding of how the estimators behave on small samples and asymptotically. While we recorded both values of estimated intercept and slope, we are mainly interested in the latter, and the plots shown below focus on how the complex parameter \(\underline{b}_1\) is estimated. The experiments were done using \texttt{clm()} function from the \texttt{complex} package with \texttt{method} parameter equal to ``OLS'', ``CLS'' and ``likelihood'' for each of the respective estimators. A sample of the script used in the experiments is shown below (Scenario 1):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1649,7 +1649,7 @@ Apparently, all three estimators produce very similar estimates of parameters in
 \caption{\label{fig:parametersPC}Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of \(\underline{\beta_1}=2-1.5i\) (orange horizontal lines on the plot). Scenario 2.}
 \end{figure}
 
-In both Scenarios 1 and 2 the error term has a small variance, in Scenario 2 \(x_r\) and \(x_i\) are perfectly correlated, transforming the original model into: \(y_r + i y_i = 10+15i + (2-1.5i) (1 + 1.5 i) x_r + (\epsilon_r + i \epsilon_i)\).
+In both Scenarios 1 and 2 the error term has a small variance. In Scenario 2, \(x_r\) and \(x_i\) are perfectly correlated, transforming the original model into: \(y_r + i y_i = 10+15i + (2-1.5i) (1 + 1.5 i) x_r + (\epsilon_r + i \epsilon_i)\).
 
 The Scenario 3 demonstrates an exotic case, when the variances of \(x_r\) and \(x_i\) are the same (as shown in Figure \ref{fig:parametersUCSV}).
 
@@ -1659,7 +1659,7 @@ The Scenario 3 demonstrates an exotic case, when the variances of \(x_r\) and \(
 \caption{\label{fig:parametersUCSV}Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of \(\underline{\beta_1}=2-1.5i\) (orange horizontal lines on the plot). Scenario 3.}
 \end{figure}
 
-In this scenario, OLS and Likelihood produce efficient, unbiased and consistent estimates of parameters, which cannot be said about the CLS. The behaviour of CLS is explainable because for this specific scenario the direct variance of the complex variable \(x_r + i x_i\) becomes close to zero. As a result, the direct covariance in \eqref{eq:SimpleCLRCLSLossParametersMomentsExpanded} is divided by zero, and the estimate of the parameter becomes unstable. Scenarios 1 and 3 could be considered as two special cases of the spectrum of values, showing that the closer the variances of the real and imaginary parts of \(x\) are, the less consistent, efficient and unbiased estimates of parameters are produced by CLS. Scenario 2 is complimentary, because it shows that if the real and imaginary parts are correlated, the CLS estimates of parameters become as good (in statistical terms) as the estimates of OLS and/or Likelihood. So, the CLS becomes unreliable in a special case, when \(\sigma_{x_r}^2 = \sigma_{x_i}^2\) and \(\sigma_{x_r,x_i}=0\).
+In this scenario, OLS and Likelihood produce efficient, unbiased and consistent estimates of parameters, which cannot be said about the CLS. The behaviour of CLS is explainable because for this specific scenario, the direct variance of the complex variable \(x_r + i x_i\) becomes close to zero. As a result, the direct covariance in \eqref{eq:SimpleCLRCLSLossParametersMomentsExpanded} is divided by zero, and the estimate of the parameter becomes unstable. Scenarios 1 and 3 could be considered as two special cases of the spectrum of values, showing that the closer the variances of the real and imaginary parts of \(x\) are, the less consistent, efficient and unbiased estimates of parameters are produced by CLS. Scenario 2 is complimentary, because it shows that if the real and imaginary parts are correlated, the CLS estimates of parameters become as good (in statistical terms) as the estimates of OLS and/or Likelihood. So, the CLS becomes unreliable in a special case, when \(\sigma_{x_r}^2 = \sigma_{x_i}^2\) and \(\sigma_{x_r,x_i}=0\).
 
 Next, the three estimators give the same estimates of parameters in Scenario 4 of functional relation between \(x\) and \(y\), which is shown in Figure \ref{fig:parametersFR}.
 
@@ -1669,7 +1669,7 @@ Next, the three estimators give the same estimates of parameters in Scenario 4 o
 \caption{\label{fig:parametersFR}Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of \(\underline{\beta_1}=2-1.5i\) (orange horizontal lines on the plot). Scenario 4.}
 \end{figure}
 
-The main difficulties for the estimators appear, when the variance of the error term increases. Figure \ref{fig:parametersCorError} shows how the three perform in case of a higher variance of the error term in Scenario 5.
+The main difficulty for the estimators appears when the variance of the error term increases. Figure \ref{fig:parametersCorError} shows how the three perform in case of a high variance of the error term in Scenario 5.
 
 \begin{figure}
 \centering
@@ -1679,7 +1679,7 @@ The main difficulties for the estimators appear, when the variance of the error 
 
 It becomes apparent that OLS and Likelihood produce more efficient estimates of parameters than CLS on small samples. This is because the variability of estimates of parameter is higher for CLS than for the other two on small samples.
 
-The situations worsens for the three estimators when we consider Scenario 6, when the variances of the error term become much higher than before, which is shown in Figure \ref{fig:parametersHVError}.
+The situation worsens for the three estimators when we consider Scenario 6, when the variance of the error term become much higher than before, which is shown in Figure \ref{fig:parametersHVError}.
 
 \begin{figure}
 \centering
@@ -1687,7 +1687,7 @@ The situations worsens for the three estimators when we consider Scenario 6, whe
 \caption{\label{fig:parametersHVError}Estimation of parameters using OLS, CLS and likelihood and their convergence to the true value of \(\underline{\beta_1}=2-1.5i\) (orange horizontal lines on the plot). Scenario 6.}
 \end{figure}
 
-In addition to being less efficient, the real parts of estimates of parameters exhibit a bias, which is diminished with the increase of sample size. Comparing the three estimators, it appears that CLS produces less efficient and more biased estimates of parameters than OLS or Likelihood in this Scenario.
+In addition to being less efficient, the real parts of estimates of parameters exhibit a bias, which is diminished with the increase of sample size. Comparing the three estimators, it appears that CLS produces less efficient and more biased estimates of parameters than OLS or Likelihood in Scenario 6.
 
 These six scenarios show a variety of situations in which the three estimators produce different estimates of parameters. Arguably, OLS and Likelihood could be considered as robust alternatives, but all the three estimators seem to perform well in several sensible situations.
 
@@ -1696,7 +1696,7 @@ These six scenarios show a variety of situations in which the three estimators p
 
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
-For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances for variables \(\underline{x}\) and \(\underline{y}\):
+For modelling purposes, it might be useful to have the information about all possible correlations between the two c.r.v. This comes to analysing the following covariances for variables \(\underline{x}\) and \(\underline{y}\):
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1718,7 +1718,7 @@ For modelling purposes, it might be useful to have the information about all pos
 \hypertarget{correlationVisual}{%
 \section{Visualisation of relations}\label{correlationVisual}}
 
-In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \ref{fig:crvScatterplots} for two generated complex random variables \(\underline{x}\) and \(\underline{y}\), created using \texttt{cplot()} function from \texttt{complex} package in R.
+To better understand what correlations between c.r.v. imply, we need to understand how to visualise them first. The conventional way of doing that is using scatterplots. While in case of two real variables it is straightforward (a variable per axe), in complx-valude domain, this task has several potential solutions. The first one is to consider a set of scatterplots as shown in Figure \ref{fig:crvScatterplots} for two complex random variables \(\underline{x}\) and \(\underline{y}\), created using \texttt{cplot()} function from \texttt{complex} package in R.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1751,7 +1751,11 @@ This scatterplot has several important elements in it:
 \item
   It shows cross-relations between parts of one variable and parts of the other one (e.g.~the rest four plots),
 \item
-  The colour shows ordering of the original variable \(\underline{x}\) with dark values corresponding to point with higher magnitude and light ones being closer to zero. This way, we can see what the original points in \(\underline{x}\) correspond to in \(\underline{y}\).
+  The blue frame shows relation between real parts and between imaginary parts of two variables;
+\item
+  Green frame depicts cross-relations, i.e.~between a real part of one variable and the imaginary of the other one;
+\item
+  The intensity of the colour of dots in the plot shows ordering of the original variable \(\underline{x}\) with dark colours corresponding to points with higher magnitude and light ones being closer to zero. This way, we can see what the original points in \(\underline{x}\) correspond to in \(\underline{y}\).
 \end{itemize}
 
 The plots are positioned to satisfy two rules:
@@ -1760,30 +1764,30 @@ The plots are positioned to satisfy two rules:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  When a scatterplot for a c.r.v. is produced, the real part should be in x-axis, while the imaginary should be in the y-axis.
+  When a scatterplot for a c.r.v. is produced, the real part should be in x-axis, while the imaginary should be in the y-axis;
 \item
-  When parts of variables \(\underline{x}\) and \(\underline{y}\) are compared, the part for \(\underline{x}\) should be in x-axis, while the part for \(\underline{y}\) should be in y-axis, which should the reflect the idea that \(\underline{x}\) could be an explanatory variable for \(\underline{y}\).
+  When parts of variables \(\underline{x}\) and \(\underline{y}\) are compared, the part for \(\underline{x}\) should be in x-axis, while the part for \(\underline{y}\) should be in y-axis, which should reflect the idea that \(\underline{x}\) is an explanatory variable for \(\underline{y}\);
 \end{enumerate}
 
-While a simple scatterplot matrix could have been constructed instead of Figure \ref{fig:crvScatterplots}, we argue that the latter has a logical grouping and should be preferred for analysis of complex variables. For example, based on the plots in Figure \ref{fig:crvScatterplots} we can conclude that:
+Thus, plots in red frames are complimentary showing additional information about each separate variable. While a simple scatterplot matrix could have been constructed instead of Figure \ref{fig:crvScatterplots}, we argue that the latter has a logical grouping and should be preferred for analysis of complex variables. For example, based on the plots in Figure \ref{fig:crvScatterplots} we can conclude that:
 
 \begin{itemize}
 \tightlist
 \item
-  There is a positive relation between the real and imaginary parts of \(\underline{x}\),
+  There is a positive linear relation between the real and imaginary parts of \(\underline{x}\);
 \item
-  There is a negative relation between the real and imaginary parts of \(\underline{y}\),
+  There is a negative linear relation between the real and imaginary parts of \(\underline{y}\);
 \item
-  Real parts of \(\underline{x}\) and \(\underline{y}\) do not exhibit a strong linear relation,
+  Real parts of \(\underline{x}\) and \(\underline{y}\) do not exhibit a strong linear relation, although there seems to be a mild negative one;
 \item
-  But the respective imaginary parts of \(\underline{x}\) and \(\underline{y}\) have the positive relation between them,
+  The respective imaginary parts of \(\underline{x}\) and \(\underline{y}\) have a strong positive linear relation between them;
 \item
   Finally, we see that with the increase of real and imaginary parts of \(\underline{x}\), the real part of \(\underline{y}\) decreases, while the imaginary one increases. This sort of behaviour implies positive complex slope in the potential linear regression (discussed in Section \ref{simpleCLR}).
 \end{itemize}
 
 We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
 
-As an alternative to the plot above, it is also possible to use some dimensionality reduction techniques to plot complex variables on a two dimensional plot. For example, we can use Multidimensional Scaling for this \citep[MDS,][]{refMDS} to create a project of one complex variable on x-axis and another one on the y-axis. In R, we can use the \texttt{cmdscale()} function from \texttt{stats} package for this (in the example below, we use euclidean distance for the dissimilarities matrix via \texttt{dist()} function from \texttt{stats}, and we use the \texttt{complex2vec()} function from \texttt{complex} package to transform complex variable to a collection of vectors):
+So, as an alternative to the plot above, it is also possible to use some dimensionality reduction techniques to plot complex variables on a two dimensional plot. For example, we can use Multidimensional Scaling for this \citep[MDS,][]{Borg2005} to create a projections of one complex variable on x-axis and another one on the y-axis. In R, we can use the \texttt{cmdscale()} function from the \texttt{stats} package for this (in the example below, we use euclidean distance for the dissimilarities matrix via \texttt{dist()} function from \texttt{stats}, and we use the \texttt{complex2vec()} function from the \texttt{complex} package to transform complex variable to a collection of vectors):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1793,7 +1797,7 @@ As an alternative to the plot above, it is also possible to use some dimensional
 \end{Highlighting}
 \end{Shaded}
 
-The same code is implemented in \texttt{cplot()} function from \texttt{complex} package in R:
+The same code is implemented in \texttt{cplot()} function from the \texttt{complex} package in R (result is shown in Figure \ref{fig:crvScatterplotMDS}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1807,30 +1811,30 @@ The same code is implemented in \texttt{cplot()} function from \texttt{complex} 
 \caption{\label{fig:crvScatterplotMDS}Scatterplot of MDS of two complex variables.}
 \end{figure}
 
-The plot in Figure \ref{fig:crvScatterplotMDS} is much easier to read than the collection of scatterplots in Figure \ref{fig:crvScatterplots}, and in our example, we can conclude that the two complex variables exhibit strong linear relation.
+The plot in Figure \ref{fig:crvScatterplotMDS} is much easier to read than the collection of scatterplots in Figure \ref{fig:crvScatterplots}, and in our example, we can conclude that the two complex variables exhibit strong linear relation. The only thing to note is that due to the nature of MDS, projections to axes might differ depending on the settings of the optimiser and there is a danger that the direction of the relation might be lost during scaling.
 
 \hypertarget{correlationTypes}{%
 \section{Types of correlation coefficients}\label{correlationTypes}}
 
-The literature knows two main correlation coefficients for complex variables \citep{Schreier2010}: the conjugate and the direct correlation \citep[the latter is known in the literature as ``pseudo-correlation'', see, for example,][]{Chung2020}. Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \ref{crvSecondMoment}):
+The scientific literature knows two main correlation coefficients for complex variables \citep{Schreier2010}: the conjugate and the direct correlation \citep[the former is typically just called ``correlation'', while the latter is known in the literature as ``pseudo-correlation'', see, for example,][]{Chung2020}. Their formulae are based on the respective conjugate and direct covariances and variances (discussed in Subsection \ref{crvSecondMoment}).
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Conjugate correlation
+  Conjugate correlation:
   \begin{equation}
    \rho_{x,y} = \frac{\sqrt{\sigma_{x,y} \sigma_{y,x}}}{\sigma_x \sigma_y},
    \label{eq:correlationConjugate}
   \end{equation}
 \item
-  Direct correlation
+  Direct correlation:
   \begin{equation}
    \varrho_{x,y} = \frac{\varsigma_{x,y}}{\varsigma_x \varsigma_y}.
    \label{eq:correlationDirect}
   \end{equation}
 \end{enumerate}
 
-Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances \citep[as done, for example, by][]{Panchev1971} then the value of correlation coefficient will be ambiguous, implying that the correlation between \(\underline{x}\) and \(\underline{y}\) differs from the correlation between \(\underline{y}\) and \(\underline{x}\). Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between \(\underline{x}\) and \(\underline{y}\), the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
+Note that we define the conjugate correlation slightly differently than it is typically done in the literature - in our case it has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number as discussed in Subsection \ref{crvSecondMoment}). If we use only one of covariances \citep[as done, for example, by][]{Panchev1971} then the value of correlation coefficient will be ambiguous, implying that the correlation between \(\underline{x}\) and \(\underline{y}\) differs from the correlation between \(\underline{y}\) and \(\underline{x}\). Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between \(\underline{x}\) and \(\underline{y}\), the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1861,6 +1865,8 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 ## [1] 0.7071068+0.7071068i
 \end{verbatim}
 
+As we see, the two correlation coefficients above are symmetric, but have different signs for the imaginary part and are not equal to one. The situation changes if we take the geometric mean:
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Variant 3 (correct conjugate correlation)}
@@ -1873,6 +1879,8 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 ## [1] 1+0i
 \end{verbatim}
 
+The same result will be achieved if we use the \texttt{ccor()} function from the \texttt{complex} package in R:
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Same thing using the ccor() function}
@@ -1880,13 +1888,9 @@ Note that the conjugate correlation has the geometric mean of standard deviation
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [1] 1
-\end{verbatim}
+All above also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction. We note that the first who acknowledged this issue was \citet{Schreier2010}. He discussed the properties of the coefficient and its derivatives in more detail.
 
-This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction. We note that \citet{Schreier2010} acknowledged the issue, discussing the properties of the coefficient and its derivatives.
-
-The formulae \eqref{eq:correlationConjugate} and \eqref{eq:correlationDirect} are derived based on the original definition of Pearson's correlation coefficient \citep{refPearson}. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
+The formulae \eqref{eq:correlationConjugate} and \eqref{eq:correlationDirect} are derived based on the original definition of Pearson's correlation coefficient \citep{pearson1905general}. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
         &\underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x} + \underline{\epsilon} \\
@@ -1894,7 +1898,7 @@ The formulae \eqref{eq:correlationConjugate} and \eqref{eq:correlationDirect} ar
     \end{aligned}
     \label{eq:twoRegressions}
 \end{equation}
-where \(\underline{\alpha}_0\) and \(\underline{\beta}_0\) are the intercepts, \(\underline{\alpha}_1\) and \(\underline{\beta}_1\) are the slopes of the regression lines and \(\underline{\epsilon}\) and \(\underline{\upsilon}\) are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \ref{simpleCLR}, the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares (discussed in Subsection \ref{SCLREstimation}). For the OLS, the formulae for the slopes are:
+where \(\underline{\alpha}_0\) and \(\underline{\beta}_0\) are the intercepts, \(\underline{\alpha}_1\) and \(\underline{\beta}_1\) are the slopes of the regression lines and \(\underline{\epsilon}\) and \(\underline{\upsilon}\) are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \ref{simpleCLR}, the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares. For the OLS, the formulae for the slopes are:
 \begin{equation}
     \begin{aligned}
         &\underline{b}_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
@@ -1902,7 +1906,7 @@ where \(\underline{\alpha}_0\) and \(\underline{\beta}_0\) are the intercepts, \
     \end{aligned}
     \label{eq:twoRegressionsOLS}
 \end{equation}
-Taking their geometric means leads to:
+Taking their geometric means gives:
 \begin{equation}
     \hat{\rho}_{x,y} = \sqrt{\underline{a}_1 \underline{b}_1},
     \label{eq:correlationConventionalEstimate}
@@ -1915,21 +1919,21 @@ which then leads to the formula \eqref{eq:correlationConjugate}. Similarly, for 
     \end{aligned}
     \label{eq:twoRegressionsCLS}
 \end{equation}
-which after taking the same geometric means leads to \eqref{eq:correlationDirect}. Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well. There are other ways to estimate correlation coefficients \citep[e.g.,][]{Miyabe2015} and there are other formulae of coefficients \citep{Schreier2010}, but they lie outside of the scope of the monograph.
+which after taking the same geometric means leads to \eqref{eq:correlationDirect}. Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well. There are other ways to estimate correlation coefficients \citep[e.g.,][]{Miyabe2015} and there are other formulae of coefficients \citep{Schreier2010}, but they lie outside of the scope of this monograph.
 
 \hypertarget{correlationConjugate}{%
 \section{Conjugate correlation}\label{correlationConjugate}}
 
-When it comes to the interpretation of the coefficients, the conjugate one is a real number. It can be written as:
+When it comes to the interpretation of the coefficients, as discussed above, the conjugate one is a real number. It can be written as:
 \begin{equation}
     {\rho}_{x,y} = \frac{\sqrt{(\sigma_{x_r, y_r} + \sigma_{x_i, y_i})^2 + (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})^2}}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
     \label{eq:correlationConventionalExpanded}
 \end{equation}
-As can be seen from the formula \eqref{eq:correlationConventionalExpanded}, the coefficient is a real number, showing the average strength of linear relation between two complex variables \(\underline{x}\) and \(\underline{y}\). The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables \(\underline{x}\) and \(\underline{y}\) and when the cross-covariances are equal (i.e.~\(\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0\) and \(\sigma_{x_i, y_r} = \sigma_{x_r, y_i}\)). A special case of this condition is when all the covariances are equal to zero. Another condition leading to zero conjugate correlation coefficient is \(\sigma_{x_r, y_r} = - \sigma_{x_i, y_i}\) and \(\sigma_{x_i, y_r} = \sigma_{x_r, y_i}\), which means that if the coefficient equals to zero, this does not mean that the there is no linear relation between two complex variables.
+As can be seen from the formula \eqref{eq:correlationConventionalExpanded}, the coefficient shows the average strength of linear relation between two complex variables \(\underline{x}\) and \(\underline{y}\) based on their magnitudes, ignoring the arguments. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables \(\underline{x}\) and \(\underline{y}\) and when the cross-covariances are equal (i.e.~\(\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0\) and \(\sigma_{x_i, y_r} = \sigma_{x_r, y_i}\)). A special case of this condition is when all the covariances are equal to zero. Another condition leading to zero conjugate correlation coefficient is \(\sigma_{x_r, y_r} = - \sigma_{x_i, y_i}\) and \(\sigma_{x_i, y_r} = \sigma_{x_r, y_i}\). All of this implies that if the coefficient equals to zero, then this does not necessarily mean that the there is no linear relation between two complex variables.
 
 On the other hand, the coefficient will be close to one if the complex relation between variables \(\underline{y}\) and \(\underline{x}\) is close to the linear, i.e.~\(\underline{a}_1 = \frac{1}{\underline{b}_1}\). However, it does not show the direction of the relation, because it cannot be negative due to the calculation of the magnitude in the numerator of \eqref{eq:correlationConventionalExpanded}.
 
-In order to better understand what the conjugate correlation means, we expand the formula \eqref{eq:correlationConventionalEstimate} by substituting \(\underline{b}_1 = b_{1,r} + i b_{1,i}\) and \(\underline{a}_1 = a_{1,r} + i a_{1,i}\):
+To better understand what the conjugate correlation means, we expand the formula \eqref{eq:correlationConventionalEstimate} by substituting \(\underline{b}_1 = b_{1,r} + i b_{1,i}\) and \(\underline{a}_1 = a_{1,r} + i a_{1,i}\):
 \begin{equation}
     \begin{aligned}
         \hat{\rho}_{x,y} = & \sqrt{(a_{1,r} + i a_{1,i}) (b_{1,r}+ib_{1,i})} = \\
@@ -1945,12 +1949,12 @@ or in the exponential form:
 where
 \begin{equation}
     \begin{aligned}
-        & R = \sqrt{(a_{1,r} b_{1,r} - a_{1,i} b_{1,i})^2 + (a_{1,r} b_{1,i} + a_{1,i} b_{1,r})^2} \\
+        & R = \sqrt{\left(a_{1,r} b_{1,r} - a_{1,i} b_{1,i}\right)^2 + \left(a_{1,r} b_{1,i} + a_{1,i} b_{1,r}\right)^2} \\
         & \phi=\arctan\left(\frac{a_{1,r} b_{1,i} + a_{1,i} b_{1,r}}{a_{1,r} b_{1,r} - a_{1,i} b_{1,i}}\right),
     \end{aligned}
     \label{eq:correlationConjugateExpanded03}
 \end{equation}
-As can be seen from \eqref{eq:correlationConjugateExpanded03}, there is a multitude of combinations of parameters of the model that can give the unity magnitude \(R\). For example, if \(a_{1,r} = 0.5\), \(b_{1,r} = 1\), \(a_{1,i} = -0.5\) and \(b_{1,i} = 1\), \(R\) would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of \(0\) and \(\pi\), leading to positive or negative real numbers. In fact, for the example above, \(\phi=0\), implying that the correlation coefficient will be equal to one, implying that the variables \(\underline{x}\) and \(\underline{y}\) exhibit a strong linear relation.
+As can be seen from \eqref{eq:correlationConjugateExpanded03}, there is a multitude of combinations of parameters of the model that can give the unity magnitude \(R\). For example, if \(a_{1,r} = 0.5\), \(b_{1,r} = 1\), \(a_{1,i} = -0.5\) and \(b_{1,i} = 1\), \(R\) would be equal to one.
 
 An R example of a conjugate correlation (via \texttt{ccor()} function from \texttt{complex} package) with the aforementioned values of parameters is shown below and in Figure \ref{fig:crvCorConjugate}.
 
@@ -1974,6 +1978,8 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 \caption{\label{fig:crvCorConjugate}Two complex variables with conjugate correlation being close to one.}
 \end{figure}
 
+As can be seen from the Figure \ref{fig:crvCorConjugate}, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation coefficient in our example is:
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Conjugate correlation}
@@ -1985,7 +1991,7 @@ An R example of a conjugate correlation (via \texttt{ccor()} function from \text
 ## [1] 0.997059
 \end{verbatim}
 
-As can be seen from the Figure \ref{fig:crvCorConjugate} and the value of the conjugate correlation, there is a relation between the two complex variables \(\underline{x}\) and \(\underline{y}\). The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
+It shows that there is a strong linear relation between the variables. While it might be challenging to analyse the strength of the overal relation visually using the scatterplots in Figure \ref{fig:crvCorConjugate}, the MDS plot might be easier to analyse (Figure \ref{fig:crvCorConjugateMDS}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2004,22 +2010,24 @@ As can be seen from the plot in Figure \ref{fig:crvCorConjugateMDS}, it seems th
 \hypertarget{correlationDirect}{%
 \section{Direct correlation}\label{correlationDirect}}
 
-The direct correlation can be expanded to:
+The direct correlation coefficient can be expanded to:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}}.
     \label{eq:correlationPseudoExpanded}
 \end{equation}
-Given that it contains a complex number in the denominator, it is more complicated than the conjugate one. But it has several apparent properties:
+Note that the coefficient maintains the information not only about the magnitude, but also about the angle of the two complex variables. Given that it contains a complex number in the denominator, it is more challenging to interpret than the conjugate one. But it has several apparent properties:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when \(\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0\) and \(\sigma_{x_r,y_r}=\sigma_{x_i,y_i}\). One of the special cases of this is when all cross-covariances between the real and imaginary parts of \(\underline{x}\) and \(\underline{y}\) are equal to zero.
+  The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when \(\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0\) and \(\sigma_{x_r,y_r}=\sigma_{x_i,y_i}\). One of the special cases of this is when all cross-covariances between the real and imaginary parts of \(\underline{x}\) and \(\underline{y}\) are equal to zero;
 \item
-  When the complex variables \(\underline{x}\) and \(\underline{y}\) have functional relation between them, so that \(\underline{a}_1 = \frac{1}{\underline{b}_1}\), the coefficient will be equal to one.
+  When the complex variables \(\underline{x}\) and \(\underline{y}\) have functional relation between them, so that \(\underline{a}_1 = \frac{1}{\underline{b}_1}\), the coefficient will be equal to one;
+\item
+  Due to division by a complex number, the coefficient might become greater than one;
 \end{enumerate}
 
-Note however that due to the division by a complex number, the value of 1 can in theory also be obtained due to the values of direct variance of variables \(\underline{x}\) and/or \(\underline{y}\).
+Note also that due to the same division by a complex number, the value of 1 can in theory also be obtained due to the values of direct variance of variables \(\underline{x}\) and/or \(\underline{y}\).
 
 To get other insights about the direct correlation coefficient, we express its denominator in the exponential form:
 \begin{equation}
@@ -2066,14 +2074,14 @@ Analysing \eqref{eq:correlationPseudoExpandedExpR} \eqref{eq:correlationPseudoEx
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  It is pure real valued, when all covariances are zero, i.e.~there is no linear relation between parts of variables.
+  It becomes pure real valued, when all covariances are zero, i.e.~there is no linear relation between parts of variables;
 \item
   Another situation with real valued direct correlation is when cross-covariances are zero and variances of respective real and imaginary parts are equal. This is a more exotic case than (1);
 \item
   In general, the number will be real when \(\phi_2 = \frac{\phi_1}{2}\), which assumes that there is a multitude of combinations of covariances and variances that will satisfy the condition. Analysing all of them becomes close to impossible due to the non-linearity in the condition \eqref{eq:correlationPseudoExpandedExpPhi}.
 \end{enumerate}
 
-In the case (1), the magnitude of the coefficient, \(\frac{R_2}{\sqrt{R_1}}\) will be equal to zero as well, which agrees with what we discussed earlier. In addition, the analysis of the magnitude \eqref{eq:correlationPseudoExpandedExpR} shows that in an exotic case of \(\sigma_{x_r, y_r} = \sigma_{x_i, y_i}\) and \(\sigma_{x_i, y_r} = - \sigma_{x_r, y_i}\), the value of the coefficient of the direct correlation will also be equal to zero. All of this means that in general, making solid conclusions just based on the direct correlation coefficient is not possible - we need to calculate both the direct and the conjugate correlations to get a full picture about the relations between two complex variables.
+In the case (1), the magnitude of the coefficient, \(\frac{R_2}{\sqrt{R_1}}\) will be equal to zero as well, which agrees with what we discussed earlier. In addition, the analysis of the magnitude \eqref{eq:correlationPseudoExpandedExpR} shows that in an exotic case of \(\sigma_{x_r, y_r} = \sigma_{x_i, y_i}\) and \(\sigma_{x_i, y_r} = - \sigma_{x_r, y_i}\), the value of the coefficient of the direct correlation will also be equal to zero. All of this means that in general, making solid conclusions just based on the direct correlation coefficient might not be possible - we need to calculate both the direct and the conjugate correlations to get a full picture about the relations between two complex variables.
 
 For the same example as above, the direct correlation coefficient is:
 
@@ -2087,12 +2095,14 @@ For the same example as above, the direct correlation coefficient is:
 ## [1] 1.004573+0.000395i
 \end{verbatim}
 
-The fact that the coefficient is close to one, means that the relation between the two complex variables is close to linear. On the other hand, the imaginary part being close to zero implies that the real and imaginary parts of the variables \(\underline{x}\) and \(\underline{y}\) are close to each other (this is how we generated the data). As we see, the direct correlation gives additional information that the conjugate one does not provide. This demonstrates that they should be used in the analysis of relations jointly.
+The fact that the coefficient is close to one, means that the relation between the two complex variables is close to linear. On the other hand, the imaginary part being close to zero implies that the real and imaginary parts of the variables \(\underline{x}\) and \(\underline{y}\) are close to each other (this is how we generated the data). The fact that the real part is slightly above one only means that either \(\underline{x}\) or \(\underline{y}\) has real variance close to the imaginary one.
+
+As we see, the direct correlation gives additional information that the conjugate one does not provide. This demonstrates that they should be used in the analysis of relations jointly.
 
 \hypertarget{correlationMDSPearson}{%
 \section{Pearson's correlation}\label{correlationMDSPearson}}
 
-We can also use MDS to analyse the projections of complex variables on x and y axes, similar to how we have done that in Subsection \ref{correlationVisual}. In that case, we can calculate Pearson's correlation coefficient:
+Finally, we can also use MDS to analyse the projections of complex variables on x- and y- axes, similar to how we have done that in Subsection \ref{correlationVisual}. In that case, we can calculate Pearson's correlation coefficient:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2113,11 +2123,11 @@ Or using the \texttt{ccor()} function with \texttt{method="pearson"}, which does
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ccor}\NormalTok{(x, y, }\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{round}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\FunctionTok{ccor}\NormalTok{(x, y, }\AttributeTok{method=}\StringTok{"pearson"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it can reach the local optimum and not being able to get to the global one. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the long series. This means that in some cases it might take plenty of time before we get the Pearson's correlation value. Nonetheless, this is an additional way of analysing relations between complex variables.
+The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it might converge to a local optimum, not being able to produce adequate projections. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the large samples of data. This means that in some cases it might take plenty of computational time before we get the Pearson's correlation value. Nonetheless, this is yet another way of analysing relations between complex variables.
 
 \hypertarget{correlation-matrix}{%
 \section{Correlation matrix}\label{correlation-matrix}}
@@ -2138,7 +2148,7 @@ Finally, as discussed in Subsection \ref{crvSecondMoment}, it is possible to cal
 ## y_i  0.712  0.654  0.091 1.000
 \end{verbatim}
 
-This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements.
+This matrix will not tell us how the variables \(\underline{x}\) and \(\underline{y}\) are related overall, but it will contain information about each of their individual elements, which will correspond to the scatterplots we produced in Section \ref{correlationVisual}.
 
 \hypertarget{multipleCLR}{%
 \chapter{Multiple Complex Linear Regression}\label{multipleCLR}}
@@ -2900,8 +2910,8 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 \begin{figure}
 \centering
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-34-1.pdf}
-\caption{\label{fig:unnamed-chunk-34}Non-linear transformation of a complex variable that changes linearly.}
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-37-1.pdf}
+\caption{\label{fig:unnamed-chunk-37}Non-linear transformation of a complex variable that changes linearly.}
 \end{figure}
 
 Even if the imaginary part of \(\underline{x}\) is zero (and as a result we deal with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
@@ -4868,40 +4878,40 @@ After that we can see which of the models is more appropriate for the data based
 ## Loss function used in estimation: likelihood
 ## Coefficients:
 ##                    Estimate Std. Error Lower 2.5% Upper 97.5%  
-## (Intercept)_r        3.0425     0.2968     2.4567      3.6284 *
-## (Intercept)_i        5.0013     0.0765     4.8503      5.1523 *
-## log(kms)_r          -0.0693     0.0188    -0.1065     -0.0321 *
-## log(kms)_i          -0.1142     0.0433    -0.1998     -0.0287 *
-## log(PetrolPrice)_r  -0.2915     0.0994    -0.4878     -0.0953 *
-## log(PetrolPrice)_i  -0.2393     0.3296    -0.8899      0.4112  
-## law_r               -0.0958     0.1120    -0.3169      0.1254  
-## law_i               -0.0982     0.1475    -0.3893      0.1928  
-## seasonal2_r         -0.0325     0.2213    -0.4692      0.4043  
-## seasonal2_i         -0.0389     0.2563    -0.5447      0.4669  
-## seasonal3_r          0.0275     0.2354    -0.4371      0.4922  
-## seasonal3_i          0.0704     0.1677    -0.2606      0.4013  
-## seasonal4_r          0.0164     0.0654    -0.1126      0.1455  
-## seasonal4_i         -0.0215     0.0388    -0.0982      0.0551  
-## seasonal5_r          0.0679     0.0585    -0.0475      0.1834  
-## seasonal5_i          0.1105     0.0295     0.0522      0.1688 *
-## seasonal6_r          0.1044     0.0348     0.0357      0.1732 *
-## seasonal6_i          0.0344     0.0930    -0.1492      0.2179  
-## seasonal7_r          0.0872     0.1332    -0.1757      0.3500  
-## seasonal7_i          0.1126     0.2014    -0.2850      0.5102  
-## seasonal8_r          0.0941     0.0846    -0.0728      0.2611  
-## seasonal8_i          0.1064     0.0776    -0.0468      0.2595  
-## seasonal9_r          0.1596     0.0352     0.0900      0.2291 *
-## seasonal9_i          0.1230     0.0869    -0.0485      0.2944  
-## seasonal10_r         0.2532     0.1051     0.0457      0.4606 *
-## seasonal10_i         0.1775     0.1657    -0.1495      0.5046  
-## seasonal11_r         0.2691     0.1542    -0.0353      0.5735  
-## seasonal11_i         0.2445     0.2475    -0.2440      0.7330  
-## seasonal12_r         0.2864     0.0307     0.2259      0.3469 *
-## seasonal12_i         0.2543     0.1384    -0.0188      0.5274  
-## yLag1_r              0.3702     0.0834     0.2056      0.5349 *
-## yLag1_i              0.0168     0.0617    -0.1050      0.1386  
-## eLag1_r             -0.1513     0.0676    -0.2848     -0.0178 *
-## eLag1_i              0.0658     0.0728    -0.0779      0.2096  
+## (Intercept)_r        3.0425     0.1210     2.8036      3.2814 *
+## (Intercept)_i        5.0013     0.1351     4.7347      5.2679 *
+## log(kms)_r          -0.0693     0.0282    -0.1250     -0.0136 *
+## log(kms)_i          -0.1142     0.0354    -0.1841     -0.0444 *
+## log(PetrolPrice)_r  -0.2915     0.0221    -0.3351     -0.2479 *
+## log(PetrolPrice)_i  -0.2393     0.1077    -0.4519     -0.0268 *
+## law_r               -0.0958     0.0744    -0.2425      0.0510  
+## law_i               -0.0982     0.0946    -0.2849      0.0884  
+## seasonal2_r         -0.0325     0.0885    -0.2072      0.1422  
+## seasonal2_i         -0.0389     0.0682    -0.1736      0.0958  
+## seasonal3_r          0.0275     0.0182    -0.0083      0.0634  
+## seasonal3_i          0.0704     0.0793    -0.0861      0.2268  
+## seasonal4_r          0.0164     0.0391    -0.0607      0.0936  
+## seasonal4_i         -0.0215     0.0362    -0.0930      0.0500  
+## seasonal5_r          0.0679     0.0507    -0.0322      0.1681  
+## seasonal5_i          0.1105     0.0020     0.1065      0.1145 *
+## seasonal6_r          0.1044     0.1126    -0.1179      0.3267  
+## seasonal6_i          0.0344     0.0982    -0.1595      0.2282  
+## seasonal7_r          0.0872     0.0512    -0.0140      0.1883  
+## seasonal7_i          0.1126     0.0816    -0.0485      0.2737  
+## seasonal8_r          0.0941     0.0580    -0.0204      0.2086  
+## seasonal8_i          0.1064     0.0749    -0.0415      0.2542  
+## seasonal9_r          0.1596     0.0469     0.0669      0.2522 *
+## seasonal9_i          0.1230     0.0059     0.1113      0.1346 *
+## seasonal10_r         0.2532     0.0385     0.1771      0.3292 *
+## seasonal10_i         0.1775     0.0578     0.0634      0.2917 *
+## seasonal11_r         0.2691     0.0590     0.1525      0.3856 *
+## seasonal11_i         0.2445     0.0594     0.1272      0.3618 *
+## seasonal12_r         0.2864     0.1137     0.0620      0.5107 *
+## seasonal12_i         0.2543     0.0788     0.0987      0.4099 *
+## yLag1_r              0.3702     0.1162     0.1409      0.5996 *
+## yLag1_i              0.0168     0.0263    -0.0352      0.0688  
+## eLag1_r             -0.1513     0.0435    -0.2372     -0.0655 *
+## eLag1_i              0.0658     0.0159     0.0344      0.0973 *
 ## 
 ## Error covariance matrix:
 ##        e_r    e_i
