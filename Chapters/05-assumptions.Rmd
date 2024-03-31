@@ -1,13 +1,13 @@
 #  Assumptions of Complex Linear Models {#assumptions}
-Similar to how it is done for the conventional real valued regression, we should discuss what assumptions are imposed on complex linear regression estimated using one of the methods discussed in the Section \@ref(mlcrEstimation). We will group all regression assumptions to three parts [similar to how it was done by @SvetunkovAdam]:
+Similar to how it is done for the conventional real-valued regression, we should discuss what assumptions are imposed on complex linear regression estimated using one of the methods discussed in the Section \@ref(mlcrEstimation). We will group all regression assumptions to three parts [similar to how it was done by @SvetunkovAdam]:
 
 1. Model is correctly specified;
 2. Residuals are independent and identically distributed (i.i.d.);
 3. Explanatory variables are not correlated with anything but the response variable.
 
-While the first two groups directly relate to the so called "true model", the last one refers to the estimation approaches discussed in the previous Chapter: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this Chapter are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail, but rather to focus on their implications to complex-valued models. An reader interested in assumptions for the real-valued models is advised to read Chapter 15 of @SvetunkovSBA.
+While the first two groups directly relate to the so called "true model", the last one refers to the estimation approaches discussed in the previous chapter: if the latter are violated then the estimation procedure will lead to issues in estimates of parameters. We should also point out that many of the assumptions discussed in this Chapter are very similar to the assumptions in the conventional regression, which is why we do not plan to cover them in this monograph in detail, but rather to focus on their implications for complex-valued models. A reader interested in assumptions for the real-valued models is advised to read Chapter 15 of @SvetunkovSBA.
 
-**Disclaimer**: while in conventional econometrics, statistical tests are often used to check hypotheses of violation of specific assumptions, in this monograph we focus on the visual diagnostics. While tests might give ambiguous results and rely on a selected significance level, the visual inspection comes to expert judgment of an analyst. Yes, in some situations the subjectivity impacts the diagnostics, but at least it is not hidden behind p-values and a variety of outputs that might give contradictory results.
+**Disclaimer**: although in conventional econometrics, statistical tests are often used to check hypotheses about the violation of specific assumptions, in this monograph we focus on the visual diagnostics. While tests might give ambiguous results and rely on a selected significance level, the visual inspection comes to expert judgment of an analyst. Yes, in some situations the subjectivity impacts the diagnostics, but at least it is not hidden behind p-values and a variety of outputs that sometimes give contradictory results.
 
 
 ## Model is correctly specified {#assumptionsSpecification}
@@ -22,11 +22,11 @@ We briefly discuss all of them in this section.
 
 
 ### Model does not omit any important variables {#assumptionsSpecificationOmit}
-This assumption implies that we have all the variables that can substantially impact our response variable, and that we have included them in the model. If we do not do that then the estimates of parameters are known to be biased. In practice we always omit a lot of different variables that might potentially impact the response one, but do not have a large effect on it. Not including these variables is known not to cause serious issues in the estimation [@econometrics].
+This assumption implies that we have all the variables that can substantially impact our response variable, and that we have included them in the model. If we do not do that then the estimates of parameters are known to be biased. In practice we always omit a lot of different variables that might potentially impact the response one, but do not have a large effect on it. Not including these variables is known not to cause serious issues in the estimation [@Hanck2024].
 
 Formally speaking, the omitted variables should not be correlated with the ones that we include in the model, because otherwise the impact of the latter will not be captured correctly, causing bias in the estimates of parameters. It is not possible to test this assumption, so it can only be checked based on judgment of an analyst.
 
-When it comes to complex-valued models, the relations become much more complicated and potentially non-linear than in the conventional models. The problem becomes then manifolds: we need to include the correct variables in the model, but also they need to be included correctly, because now any variable can be included in the real or in the imaginary part. Furthermore, the correlation in complex-valued models can be measured differently and implies a variety of effects between two variables.
+When it comes to complex-valued models, the relations become much more complicated and potentially non-linear than in the conventional ones. The problem becomes then manifolds: we need to include the correct variables in the model, but also they need to be included correctly, because now any variable can be included in the real or in the imaginary part. Furthermore, the correlation in complex-valued models can be measured differently and implies a variety of effects between two variables.
 
 Practically speaking, we consider two situations with omitted variables:
 
@@ -74,7 +74,7 @@ which simplifies (using similar logic as above) to:
     \mathrm{E}\left(\underline{\boldsymbol{b}}^{\text{CLS}}\right) = \underline{\boldsymbol{\beta}} + \mathrm{E}\left( \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{Z}} \underline{\boldsymbol{\gamma}}\right) ,
     (\#eq:AssumptionsOmitCLS02)
 \end{equation}
-Which also shows that the bias will increase with the increase of the values of the matrix $\underline{\mathbf{X}}^\top \underline{\mathbf{Z}}$. The main difference between the real-valued and the complex-valued econometrics is that the aforementioned matrices are complex and the respective covariances in OLS and CLS are respectively conjugate and direct. This means that:
+and also shows that the bias will increase with the increase of the values of the matrix $\underline{\mathbf{X}}^\top \underline{\mathbf{Z}}$. The main difference between the real-valued and the complex-valued econometrics is that the aforementioned matrices are complex and the covariances in OLS and CLS are respectively conjugate and direct. This means that:
 
 1. if an omitted complex variable has high *direct correlation* with the included one but has the zero *conjugate correlation*, the OLS should give unbiased estimates of parameters, while the CLS would give the biased ones;
 2. if an omitted complex variable has zero *direct correlation* with the included one but has high *conjugate correlation*, the CLS should give unbiased estimates of parameters, while the OLS would give the biased ones.
@@ -102,13 +102,12 @@ The covariance matrix of the estimates of the parameter $\underline{\boldsymbol{
     \end{aligned}
     (\#eq:MCLROLSCLSVariancesOmitted)
 \end{equation}
-where $\sigma_{\underline{\upsilon}}^2$ is the conjugate and $\varsigma_{\underline{\upsilon}}^2$ is the direct variances of the residuals $\underline{\boldsymbol{\upsilon}}$. Now to better understand the effect of omitted variables on the covariance matrix of parameters, we should consider several situations:
+where $\sigma_{\underline{\upsilon}}^2$ is the conjugate and $\varsigma_{\underline{\upsilon}}^2$ is the direct variances of the residuals $\underline{\boldsymbol{\upsilon}}$. To better understand the effect of omitted variables on the covariance matrix of parameters, we should consider two situations:
 
 1. Some parts of $\underline{\mathbf{Z}}$ are correlated with $\underline{\mathbf{X}}$, in which case applying the model \@ref(eq:AssumptionsOmitAppliedModel) to the data will lead to the biased estimates of parameters, but would not have a large impact on the variance of the residuals of the model. The higher the correlation is, the lower the variances become in \@ref(eq:MCLROLSCLSVariancesOmitted);
 2. $\underline{\mathbf{Z}}$ is uncorrelated with $\underline{\mathbf{X}}$, which means that the effect of the omitted variable is not captured by the model and as a result the variance of the residual $\hat{\underline{\boldsymbol{\upsilon}}}$ will be inflated, increasing the standard errors of the estimates of parameters.
 
-The case (1) corresponds to the classical problem of the omitted variables in econometrics, while the case (2) shows how the uncertainty about the estimates of parameters increases with omitted variables and might lead to the wider confidence intervals for the parameters.
-
+The case (1) corresponds to the classical problem of the omitted variables in econometrics, while the case (2) shows how the uncertainty about the estimates of parameters increases with omitted variables and might lead to the wider than expected confidence intervals for the parameters.
 
 
 ### Model does not have redundant variables {#assumptionsSpecificationRedundant}
@@ -127,7 +126,7 @@ The second equation in \@ref(eq:AssumptionsRedundantSetting) can also be written
     \underline{\mathbf{y}} = \underline{\mathbf{Z}} \underline{\boldsymbol{c}}  + \underline{\boldsymbol{e}} ,
     (\#eq:AssumptionsRedundantAppliedModel)
 \end{equation}
-where $\underline{\mathbf{Z}} = \begin{pmatrix} \underline{\mathbf{X}} & \underline{\mathbf{X}}_{red} \end{pmatrix}$ is the matrix that contains all variables under consideration, and $\underline{\boldsymbol{c}} = \begin{pmatrix} \underline{\boldsymbol{b}} \\ \underline{\boldsymbol{b}}_{red} \end{pmatrix}$. While it is hard to show explicitly using formulae of OLS and CLS, it is well known in statistics that the estimates of parameters in such model are unbiased, because the true $\underline{\boldsymbol{b}}_{red}$ is zero. At the same time, the inclusion of redundant variables increases the standard errors of parameters, because the covariance matrices from Section \@ref(MCLRInference) would rely on different combinations of $\underline{\mathbf{Z}}$ and its transposition (direct and conjugate), which means that the final variances would be impacted by the variability of redundant variables $\underline{\mathbf{X}}_{red}$. The exact effect is difficult to capture and might depend on the direct/conjugate correlations between variables. We leave this task for future research.
+where $\underline{\mathbf{Z}} = \begin{pmatrix} \underline{\mathbf{X}} & \underline{\mathbf{X}}_{red} \end{pmatrix}$ is the matrix that contains all variables under consideration, and $\underline{\boldsymbol{c}} = \begin{pmatrix} \underline{\boldsymbol{b}} \\ \underline{\boldsymbol{b}}_{red} \end{pmatrix}$. While it is hard to show explicitly using formulae of OLS and CLS, it is well known in statistics that the estimates of parameters in such model are unbiased, because the true $\underline{\boldsymbol{b}}_{red}$ is zero. At the same time, the inclusion of redundant variables increases the standard errors of parameters because the covariance matrices from Section \@ref(MCLRInference) would rely on different combinations of $\underline{\mathbf{Z}}$ and its transposition (direct and conjugate), which means that the final variances would be impacted by the variability of redundant variables $\underline{\mathbf{X}}_{red}$. The exact effect is difficult to capture and might depend on the direct/conjugate correlations between variables. We leave this task for future research.
 
 
 <!-- \begin{equation} -->
@@ -164,7 +163,7 @@ where $\underline{\mathbf{Z}} = \begin{pmatrix} \underline{\mathbf{X}} & \underl
 <!-- \end{equation} -->
 
 
-### Variables transformations {#assumptionsSpecificationTransformation}
+### Variables transformation {#assumptionsSpecificationTransformation}
 While the first two assumptions are universal for any statistical model, the third one has some special implications in case of cLR. This is because of the effect they have on the variables: transformations of separate parts of a complex variable are not equivalent to the transformations of the whole variable. For example, the logarithm of a complex variable $\underline{z}$ as shown in \@ref(eq:complexNumberLogarithm) is:
 \begin{equation*}
     \ln \underline{z} = \ln r + i \phi ,
@@ -278,13 +277,13 @@ plot(Im(log(y)), type="l", xlab="Time")
 
 ```
 
-
+While there are many other possible transformations of complex variable, in this monograph we do not go beyond logarithms, because they do not have a straightforward application.
 
 
 ### No outliers {#assumptionsSpecificationOutlier}
-Finally, the presence of outliers in the residuals typically implies that either there is an error in recording the data, or the model omits an important variable (e.g. a dummy variable for an external event). In that case the effect on estimates of parameters will be similar to the one discussed in Subsection \@ref(assumptionsSpecificationOmit): the estimates of parameters will be in general biased with some specific effects depending on the direct/conjugate correlation and the estimation method used.
+Finally, the presence of outliers in the residuals typically implies that either there is an error in the data recording, or the model omits an important variable (e.g. a dummy variable for an external event). In that case the effect on estimates of parameters will be similar to the one discussed in Subsection \@ref(assumptionsSpecificationOmit): the estimates of parameters will be in general biased with some specific effects depending on the direct/conjugate correlation and the estimation method used.
 
-The simplest way to detect outliers is to produce a diagnostic plot of fitted vs standardised residuals (similar to the one in Figure \@ref(fig:nonlinearStdResid)) and analyse those values that lie outside of the constructed confidence interval. If the value of an outlier cannot be explained (e.g. this is not a calendar event, this is not a promotion etc) then it can be removed or interpolated. In the latter case, creating a dummy variable (see Section \@ref(multipleCLRDummy)) that equals to one on that specific observation and to zero on all the others is one of the simplest way of dealing with the outlier.
+The simplest way to detect outliers is to produce a diagnostic plot of fitted vs standardised residuals (similar to the one in Figure \@ref(fig:nonlinearStdResid)) and analyse those values that lie outside of the constructed confidence interval. If the value of an outlier cannot be explained (e.g. this is not a calendar event, this is not a promotion, etc) then it can simply be removed or interpolated. In that case, creating a dummy variable (see Section \@ref(multipleCLRDummy)) that equals to one on that specific observation and to zero on all the others is one of the simplest way of incorporating the outlier in the model.
 
 
 ## Residuals are i.i.d. {#assumptionsResiduals}
