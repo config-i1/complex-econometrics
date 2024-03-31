@@ -1,7 +1,7 @@
 # Correlation analysis of complex random variables {#correlationAnalysis}
 When it comes to measuring associations between variables, most frequently analysts use coefficient of correlation. While it is straightforward for real-valued variables, for complex variables this become challenging, because each c.r.v. has two parts, so the correlation needs to take them both into account.
 
-For modelling purposes, it might be useful to have the information about all possible correlations involved relation of two c.r.v. This comes to analysing the following covariances for variables $\underline{x}$ and $\underline{y}$:
+For modelling purposes, it might be useful to have the information about all possible correlations between the two c.r.v. This comes to analysing the following covariances for variables $\underline{x}$ and $\underline{y}$:
 
 1. $\sigma_{x_r,x_i}$,
 2. $\sigma_{y_r,y_i}$,
@@ -12,7 +12,7 @@ For modelling purposes, it might be useful to have the information about all pos
 
 
 ## Visualisation of relations {#correlationVisual}
-In order to better understand what correlations between c.r.v. imply, we need to understand how to produce scatterplots for them. While in case of two real variables it is straightforward (a variable per axes), in our situation, this becomes challenging. We propose considering a set of scatterplots shown in Figure \@ref(fig:crvScatterplots) for two generated complex random variables $\underline{x}$ and $\underline{y}$, created using `cplot()` function from `complex` package in R.
+To better understand what correlations between c.r.v. imply, we need to understand how to visualise them first. The conventional way of doing that is using scatterplots. While in case of two real variables it is straightforward (a variable per axe), in complx-valude domain, this task has several potential solutions. The first one is to consider a set of scatterplots as shown in Figure \@ref(fig:crvScatterplots) for two complex random variables $\underline{x}$ and $\underline{y}$, created using `cplot()` function from `complex` package in R.
 
 ```{r crvScatterplots, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
 # Random seed for reproducibility
@@ -32,24 +32,26 @@ This scatterplot has several important elements in it:
 
 - It shows relations between real and imaginary parts of each variable (e.g. the two scatterplots in the bold dark red frame),
 - It shows cross-relations between parts of one variable and parts of the other one (e.g. the rest four plots),
-- The colour shows ordering of the original variable $\underline{x}$ with dark values corresponding to point with higher magnitude and light ones being closer to zero. This way, we can see what the original points in $\underline{x}$ correspond to in $\underline{y}$.
+- The blue frame shows relation between real parts and between imaginary parts of two variables;
+- Green frame depicts cross-relations, i.e. between a real part of one variable and the imaginary of the other one;
+- The intensity of the colour of dots in the plot shows ordering of the original variable $\underline{x}$ with dark colours corresponding to points with higher magnitude and light ones being closer to zero. This way, we can see what the original points in $\underline{x}$ correspond to in $\underline{y}$.
 
 The plots are positioned to satisfy two rules:
 
-1. When a scatterplot for a c.r.v. is produced, the real part should be in x-axis, while the imaginary should be in the y-axis.
-2. When parts of variables $\underline{x}$ and $\underline{y}$ are compared, the part for $\underline{x}$ should be in x-axis, while the part for $\underline{y}$ should be in y-axis, which should the reflect the idea that $\underline{x}$ could be an explanatory variable for $\underline{y}$.
+1. When a scatterplot for a c.r.v. is produced, the real part should be in x-axis, while the imaginary should be in the y-axis;
+2. When parts of variables $\underline{x}$ and $\underline{y}$ are compared, the part for $\underline{x}$ should be in x-axis, while the part for $\underline{y}$ should be in y-axis, which should reflect the idea that $\underline{x}$ is an explanatory variable for $\underline{y}$;
 
-While a simple scatterplot matrix could have been constructed instead of Figure \@ref(fig:crvScatterplots), we argue that the latter has a logical grouping and should be preferred for analysis of complex variables. For example, based on the plots in Figure \@ref(fig:crvScatterplots) we can conclude that:
+Thus, plots in red frames are complimentary showing additional information about each separate variable. While a simple scatterplot matrix could have been constructed instead of Figure \@ref(fig:crvScatterplots), we argue that the latter has a logical grouping and should be preferred for analysis of complex variables. For example, based on the plots in Figure \@ref(fig:crvScatterplots) we can conclude that:
 
-- There is a positive relation between the real and imaginary parts of $\underline{x}$,
-- There is a negative relation between the real and imaginary parts of $\underline{y}$,
-- Real parts of $\underline{x}$ and $\underline{y}$ do not exhibit a strong linear relation,
-- But the respective imaginary parts of $\underline{x}$ and $\underline{y}$ have the positive relation between them,
+- There is a positive linear relation between the real and imaginary parts of $\underline{x}$;
+- There is a negative linear relation between the real and imaginary parts of $\underline{y}$;
+- Real parts of $\underline{x}$ and $\underline{y}$ do not exhibit a strong linear relation, although there seems to be a mild negative one;
+- The respective imaginary parts of $\underline{x}$ and $\underline{y}$ have a strong positive linear relation between them;
 - Finally, we see that with the increase of real and imaginary parts of $\underline{x}$, the real part of $\underline{y}$ decreases, while the imaginary one increases. This sort of behaviour implies positive complex slope in the potential linear regression (discussed in Section \@ref(simpleCLR)).
 
 We think that this visualisation is useful when analysing relations between two complex random variables. But it also shows how complicated it is to capture the relation between them and how many aspects need to be considered.
 
-As an alternative to the plot above, it is also possible to use some dimensionality reduction techniques to plot complex variables on a two dimensional plot. For example, we can use Multidimensional Scaling for this [MDS, @refMDS] to create a project of one complex variable on x-axis and another one on the y-axis. In R, we can use the `cmdscale()` function from `stats` package for this (in the example below, we use euclidean distance for the dissimilarities matrix via `dist()` function from `stats`, and we use the `complex2vec()` function from `complex` package to transform complex variable to a collection of vectors):
+So, as an alternative to the plot above, it is also possible to use some dimensionality reduction techniques to plot complex variables on a two dimensional plot. For example, we can use Multidimensional Scaling for this [MDS, @Borg2005] to create a projections of one complex variable on x-axis and another one on the y-axis. In R, we can use the `cmdscale()` function from the `stats` package for this (in the example below, we use euclidean distance for the dissimilarities matrix via `dist()` function from `stats`, and we use the `complex2vec()` function from the `complex` package to transform complex variable to a collection of vectors):
 
 ```{r, eval=FALSE}
 complex2vec(x) |> dist() |> cmdscale(k=1) -> xScaled
@@ -57,33 +59,31 @@ complex2vec(y) |> dist() |> cmdscale(k=1) -> yScaled
 plot(xScaled,yScaled)
 ```
 
-The same code is implemented in `cplot()` function from `complex` package in R:
+The same code is implemented in `cplot()` function from the `complex` package in R (result is shown in Figure \@ref(fig:crvScatterplotMDS):
 
 ```{r crvScatterplotMDS, fig.width=4, fig.height=4, fig.cap="Scatterplot of MDS of two complex variables."}
 cplot(x, y, which=2, main="")
 ```
 
-The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the collection of scatterplots in Figure \@ref(fig:crvScatterplots), and in our example, we can conclude that the two complex variables exhibit strong linear relation.
-
-<!-- The only thing to note is that due to the nature of MDS, the direction of the relation and the strength of the relationship might be lost during scaling. -->
+The plot in Figure \@ref(fig:crvScatterplotMDS) is much easier to read than the collection of scatterplots in Figure \@ref(fig:crvScatterplots), and in our example, we can conclude that the two complex variables exhibit strong linear relation. The only thing to note is that due to the nature of MDS, projections to axes might differ depending on the settings of the optimiser and there is a danger that the direction of the relation might be lost during scaling.
 
 
 ## Types of correlation coefficients {#correlationTypes}
-The literature knows two main correlation coefficients for complex variables [@Schreier2010]: the conjugate and the direct correlation [the latter is known in the literature as "pseudo-correlation", see, for example, @Chung2020]. Their formula are based on the respective covariances and variances (conjugate and direct discussed in Subsection \@ref(crvSecondMoment)):
+The scientific literature knows two main correlation coefficients for complex variables [@Schreier2010]: the conjugate and the direct correlation [the former is typically just called "correlation", while the latter is known in the literature as "pseudo-correlation", see, for example, @Chung2020]. Their formulae are based on the respective conjugate and direct covariances and variances (discussed in Subsection \@ref(crvSecondMoment)).
 
-1. Conjugate correlation
+1. Conjugate correlation:
 \begin{equation}
     \rho_{x,y} = \frac{\sqrt{\sigma_{x,y} \sigma_{y,x}}}{\sigma_x \sigma_y},
     (\#eq:correlationConjugate)
 \end{equation}
 
-2. Direct correlation
+2. Direct correlation:
 \begin{equation}
     \varrho_{x,y} = \frac{\varsigma_{x,y}}{\varsigma_x \varsigma_y}.
     (\#eq:correlationDirect)
 \end{equation}
 
-Note that the conjugate correlation has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number). If we use only one of covariances [as done, for example, by @Panchev1971] then the value of correlation coefficient will be ambiguous, implying that the correlation between $\underline{x}$ and $\underline{y}$ differs from the correlation between $\underline{y}$ and $\underline{x}$. Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between $\underline{x}$ and $\underline{y}$, the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
+Note that we define the conjugate correlation slightly differently than it is typically done in the literature - in our case it has the geometric mean of standard deviations in the numerator. This is needed because of the issue with the conjugate covariance (its value changes with the change of conjugate number as discussed in Subsection \@ref(crvSecondMoment)). If we use only one of covariances [as done, for example, by @Panchev1971] then the value of correlation coefficient will be ambiguous, implying that the correlation between $\underline{x}$ and $\underline{y}$ differs from the correlation between $\underline{y}$ and $\underline{x}$. Furthermore, such correlation coefficient would not work as intended. For example, if we have a positive functional linear relation between $\underline{x}$ and $\underline{y}$, the coefficient should be equal to one. But as an R example below demonstrates this value is obtained only if we have the geometric mean of covariances.
 
 ```{r}
 # Random seed for reproducibility
@@ -97,16 +97,26 @@ ccov(y,x,method="conj") /
 # Variant 2
 ccov(x,y,method="conj") /
     sqrt(cvar(x,method="conj")*cvar(y,method="conj"))
+```
+
+As we see, the two correlation coefficients above are symmetric, but have different signs for the imaginary part and are not equal to one. The situation changes if we take the geometric mean:
+
+```{r}
 # Variant 3 (correct conjugate correlation)
 sqrt(ccov(y,x,method="conj")*ccov(x,y,method="conj")) /
     sqrt((cvar(x,method="conj")*cvar(y,method="conj")))
+```
+
+The same result will be achieved if we use the `ccor()` function from the `complex` package in R:
+
+```{r eval=FALSE}
 # Same thing using the ccor() function
 ccor(x,y,method="conjugate")
 ```
 
-This also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction. We note that @Schreier2010 acknowledged the issue, discussing the properties of the coefficient and its derivatives.
+All above also means that the conjugate correlation coefficient is always positive, only showing the average strength of the relation between variables, but not its direction. We note that the first who acknowledged this issue was @Schreier2010. He discussed the properties of the coefficient and its derivatives in more detail.
 
-The formulae \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect) are derived based on the original definition of Pearson's correlation coefficient [@refPearson]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
+The formulae \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect) are derived based on the original definition of Pearson's correlation coefficient [@pearson1905general]. It follows from the idea that the correlation coefficient equals to the geometric mean of slopes of two regression lines:
 \begin{equation}
     \begin{aligned}
         &\underline{y} = \underline{\beta}_0 + \underline{\beta}_1 \underline{x} + \underline{\epsilon} \\
@@ -114,7 +124,7 @@ The formulae \@ref(eq:correlationConjugate) and \@ref(eq:correlationDirect) are 
     \end{aligned}
     (\#eq:twoRegressions)
 \end{equation}
-where $\underline{\alpha}_0$ and $\underline{\beta}_0$ are the intercepts, $\underline{\alpha}_1$ and $\underline{\beta}_1$ are the slopes of the regression lines and $\underline{\epsilon}$ and $\underline{\upsilon}$ are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \@ref(simpleCLR), the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares (discussed in Subsection \@ref(SCLREstimation)). For the OLS, the formulae for the slopes are:
+where $\underline{\alpha}_0$ and $\underline{\beta}_0$ are the intercepts, $\underline{\alpha}_1$ and $\underline{\beta}_1$ are the slopes of the regression lines and $\underline{\epsilon}$ and $\underline{\upsilon}$ are the residuals of the models. Note that all of these variables and parameters in our case are complex. As discussed in Section \@ref(simpleCLR), the parameters of slope can be estimated using either Ordinary Least Squares, or the Complex Least Squares. For the OLS, the formulae for the slopes are:
 \begin{equation}
     \begin{aligned}
         &\underline{b}_1 = \frac{\hat{\sigma}_{x,y}}{\hat{\sigma}_x} \\
@@ -122,7 +132,7 @@ where $\underline{\alpha}_0$ and $\underline{\beta}_0$ are the intercepts, $\und
     \end{aligned}
     (\#eq:twoRegressionsOLS)
 \end{equation}
-Taking their geometric means leads to:
+Taking their geometric means gives:
 \begin{equation}
     \hat{\rho}_{x,y} = \sqrt{\underline{a}_1 \underline{b}_1},
     (\#eq:correlationConventionalEstimate)
@@ -135,20 +145,20 @@ which then leads to the formula \@ref(eq:correlationConjugate). Similarly, for C
     \end{aligned}
     (\#eq:twoRegressionsCLS)
 \end{equation}
-which after taking the same geometric means leads to \@ref(eq:correlationDirect). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well. There are other ways to estimate correlation coefficients [e.g., @Miyabe2015] and there are other formulae of coefficients [@Schreier2010], but they lie outside of the scope of the monograph.
+which after taking the same geometric means leads to \@ref(eq:correlationDirect). Note that the estimates of the slope parameters will differ between the OLS and the CLS and thus the direct and conjugate correlations will differ as well. There are other ways to estimate correlation coefficients [e.g., @Miyabe2015] and there are other formulae of coefficients [@Schreier2010], but they lie outside of the scope of this monograph.
 
 
 ## Conjugate correlation {#correlationConjugate}
-When it comes to the interpretation of the coefficients, the conjugate one is a real number. It can be written as:
+When it comes to the interpretation of the coefficients, as discussed above, the conjugate one is a real number. It can be written as:
 \begin{equation}
     {\rho}_{x,y} = \frac{\sqrt{(\sigma_{x_r, y_r} + \sigma_{x_i, y_i})^2 + (\sigma_{x_i, y_r} - \sigma_{x_r, y_i})^2}}{\sqrt{(\sigma_{x_r}^2 + \sigma_{x_i}^2)(\sigma_{y_r}^2 + \sigma_{y_i}^2)}} .
     (\#eq:correlationConventionalExpanded)
 \end{equation}
-As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient is a real number, showing the average strength of linear relation between two complex variables $\underline{x}$ and $\underline{y}$. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables $\underline{x}$ and $\underline{y}$ and when the cross-covariances are equal (i.e. $\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$). A special case of this condition is when all the covariances are equal to zero. Another condition leading to zero conjugate correlation coefficient is $\sigma_{x_r, y_r} = - \sigma_{x_i, y_i}$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$, which means that if the coefficient equals to zero, this does not mean that the there is no linear relation between two complex variables.
+As can be seen from the formula \@ref(eq:correlationConventionalExpanded), the coefficient shows the average strength of linear relation between two complex variables $\underline{x}$ and $\underline{y}$ based on their magnitudes, ignoring the arguments. The coefficient will be equal to zero, when there are no linear relations between the respective real and imaginary parts of complex variables $\underline{x}$ and $\underline{y}$ and when the cross-covariances are equal (i.e. $\sigma_{x_r, y_r}=\sigma_{x_i, y_i}=0$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$). A special case of this condition is when all the covariances are equal to zero. Another condition leading to zero conjugate correlation coefficient is $\sigma_{x_r, y_r} = - \sigma_{x_i, y_i}$ and $\sigma_{x_i, y_r} = \sigma_{x_r, y_i}$. All of this implies that if the coefficient equals to zero, then this does not necessarily mean that the there is no linear relation between two complex variables.
 
 On the other hand, the coefficient will be close to one if the complex relation between variables $\underline{y}$ and $\underline{x}$ is close to the linear, i.e. $\underline{a}_1 = \frac{1}{\underline{b}_1}$. However, it does not show the direction of the relation, because it cannot be negative due to the calculation of the magnitude in the numerator of \@ref(eq:correlationConventionalExpanded).
 
-In order to better understand what the conjugate correlation means, we expand the formula \@ref(eq:correlationConventionalEstimate) by substituting $\underline{b}_1 = b_{1,r} + i b_{1,i}$ and $\underline{a}_1 = a_{1,r} + i a_{1,i}$:
+To better understand what the conjugate correlation means, we expand the formula \@ref(eq:correlationConventionalEstimate) by substituting $\underline{b}_1 = b_{1,r} + i b_{1,i}$ and $\underline{a}_1 = a_{1,r} + i a_{1,i}$:
 \begin{equation}
     \begin{aligned}
         \hat{\rho}_{x,y} = & \sqrt{(a_{1,r} + i a_{1,i}) (b_{1,r}+ib_{1,i})} = \\
@@ -164,12 +174,12 @@ or in the exponential form:
 where
 \begin{equation}
     \begin{aligned}
-        & R = \sqrt{(a_{1,r} b_{1,r} - a_{1,i} b_{1,i})^2 + (a_{1,r} b_{1,i} + a_{1,i} b_{1,r})^2} \\
+        & R = \sqrt{\left(a_{1,r} b_{1,r} - a_{1,i} b_{1,i}\right)^2 + \left(a_{1,r} b_{1,i} + a_{1,i} b_{1,r}\right)^2} \\
         & \phi=\arctan\left(\frac{a_{1,r} b_{1,i} + a_{1,i} b_{1,r}}{a_{1,r} b_{1,r} - a_{1,i} b_{1,i}}\right),
     \end{aligned}
     (\#eq:correlationConjugateExpanded03)
 \end{equation}
-As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitude of combinations of parameters of the model that can give the unity magnitude $R$. For example, if $a_{1,r} = 0.5$, $b_{1,r} = 1$, $a_{1,i} = -0.5$ and $b_{1,i} = 1$, $R$ would be equal to one. Similarly, there is a multitude of values of parameters that would give angles of $0$ and $\pi$, leading to positive or negative real numbers. In fact, for the example above, $\phi=0$, implying that the correlation coefficient will be equal to one, implying that the variables $\underline{x}$ and $\underline{y}$ exhibit a strong linear relation.
+As can be seen from \@ref(eq:correlationConjugateExpanded03), there is a multitude of combinations of parameters of the model that can give the unity magnitude $R$. For example, if $a_{1,r} = 0.5$, $b_{1,r} = 1$, $a_{1,i} = -0.5$ and $b_{1,i} = 1$, $R$ would be equal to one.
 
 An R example of a conjugate correlation (via `ccor()` function from `complex` package) with the aforementioned values of parameters is shown below and in Figure \@ref(fig:crvCorConjugate).
 
@@ -183,11 +193,16 @@ y <- (10 + 15i) + (1 + 1i) * x +
     complex(real=rnorm(100,0,1), imaginary=rnorm(100,0,1))
 # Produce the plot
 cplot(x, y, main="")
+```
+
+As can be seen from the Figure \@ref(fig:crvCorConjugate), there is a relation between the two complex variables $\underline{x}$ and $\underline{y}$. The conjugate correlation coefficient in our example is:
+
+```{r}
 # Conjugate correlation
 ccor(x, y, method="conjugate")
 ```
 
-As can be seen from the Figure \@ref(fig:crvCorConjugate) and the value of the conjugate correlation, there is a relation between the two complex variables $\underline{x}$ and $\underline{y}$. The conjugate correlation says that this is a strong linear relation, and one of ways how we can check this is by analysing the MDS of the two variables.
+It shows that there is a strong linear relation between the variables. While it might be challenging to analyse the strength of the overal relation visually using the scatterplots in Figure \@ref(fig:crvCorConjugate), the MDS plot might be easier to analyse (Figure \@ref(fig:crvCorConjugateMDS)):
 
 ```{r crvCorConjugateMDS, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
 cplot(x, y, which=2, main="")
@@ -196,20 +211,21 @@ cplot(x, y, which=2, main="")
 As can be seen from the plot in Figure \@ref(fig:crvCorConjugateMDS), it seems that the variables indeed exhibit a strong linear relation. So, the conjugate correlation has provided an adequate information about it.
 
 
-
 ## Direct correlation {#correlationDirect}
-The direct correlation can be expanded to:
+The direct correlation coefficient can be expanded to:
 \begin{equation}
     {\varrho}_{x,y} = \frac{\sigma_{x_r, y_r} - \sigma_{x_i, y_i} + i (\sigma_{x_i, y_r} + \sigma_{x_r, y_i})}{\sqrt{(\sigma_{x_r}^2 - \sigma_{x_i}^2 + i2 \sigma_{x_r,x_i})(\sigma_{y_r}^2 - \sigma_{y_i}^2 + i2 \sigma_{y_r,y_i})}}.
     (\#eq:correlationPseudoExpanded)
 \end{equation}
-Given that it contains a complex number in the denominator, it is more complicated than the conjugate one. But it has several apparent properties:
+Note that the coefficient maintains the information not only about the magnitude, but also about the angle of the two complex variables. Given that it contains a complex number in the denominator, it is more challenging to interpret than the conjugate one. But it has several apparent properties:
 
-1. The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all cross-covariances between the real and imaginary parts of $\underline{x}$ and $\underline{y}$ are equal to zero.
+1. The magnitude of the coefficient will be equal to zero (and thus the coefficient will be equal to zero) only when $\sigma_{x_i,y_r}=\sigma_{x_r,y_i}=0$ and $\sigma_{x_r,y_r}=\sigma_{x_i,y_i}$. One of the special cases of this is when all cross-covariances between the real and imaginary parts of $\underline{x}$ and $\underline{y}$ are equal to zero;
 
-2. When the complex variables $\underline{x}$ and $\underline{y}$ have functional relation between them, so that $\underline{a}_1 = \frac{1}{\underline{b}_1}$, the coefficient will be equal to one.
+2. When the complex variables $\underline{x}$ and $\underline{y}$ have functional relation between them, so that $\underline{a}_1 = \frac{1}{\underline{b}_1}$, the coefficient will be equal to one;
 
-Note however that due to the division by a complex number, the value of 1 can in theory also be obtained due to the values of direct variance of variables $\underline{x}$ and/or $\underline{y}$.
+3. Due to division by a complex number, the coefficient might become greater than one;
+
+Note also that due to the same division by a complex number, the value of 1 can in theory also be obtained due to the values of direct variance of variables $\underline{x}$ and/or $\underline{y}$.
 
 To get other insights about the direct correlation coefficient, we express its denominator in the exponential form:
 \begin{equation}
@@ -252,11 +268,11 @@ and
 \end{equation}
 Analysing \@ref(eq:correlationPseudoExpandedExpR) \@ref(eq:correlationPseudoExpandedExpPhi), we can identify several conditions that lead to specific values of the direct correlation coefficient:
 
-1. It is pure real valued, when all covariances are zero, i.e. there is no linear relation between parts of variables.
+1. It becomes pure real valued, when all covariances are zero, i.e. there is no linear relation between parts of variables;
 2. Another situation with real valued direct correlation is when cross-covariances are zero and variances of respective real and imaginary parts are equal. This is a more exotic case than (1);
 3. In general, the number will be real when $\phi_2 = \frac{\phi_1}{2}$, which assumes that there is a multitude of combinations of covariances and variances that will satisfy the condition. Analysing all of them becomes close to impossible due to the non-linearity in the condition \@ref(eq:correlationPseudoExpandedExpPhi).
 
-In the case (1), the magnitude of the coefficient, $\frac{R_2}{\sqrt{R_1}}$ will be equal to zero as well, which agrees with what we discussed earlier. In addition, the analysis of the magnitude \@ref(eq:correlationPseudoExpandedExpR) shows that in an exotic case of $\sigma_{x_r, y_r} = \sigma_{x_i, y_i}$ and $\sigma_{x_i, y_r} = - \sigma_{x_r, y_i}$, the value of the coefficient of the direct correlation will also be equal to zero. All of this means that in general, making solid conclusions just based on the direct correlation coefficient is not possible - we need to calculate both the direct and the conjugate correlations to get a full picture about the relations between two complex variables.
+In the case (1), the magnitude of the coefficient, $\frac{R_2}{\sqrt{R_1}}$ will be equal to zero as well, which agrees with what we discussed earlier. In addition, the analysis of the magnitude \@ref(eq:correlationPseudoExpandedExpR) shows that in an exotic case of $\sigma_{x_r, y_r} = \sigma_{x_i, y_i}$ and $\sigma_{x_i, y_r} = - \sigma_{x_r, y_i}$, the value of the coefficient of the direct correlation will also be equal to zero. All of this means that in general, making solid conclusions just based on the direct correlation coefficient might not be possible - we need to calculate both the direct and the conjugate correlations to get a full picture about the relations between two complex variables.
 
 For the same example as above, the direct correlation coefficient is:
 
@@ -264,11 +280,13 @@ For the same example as above, the direct correlation coefficient is:
 ccor(x, y, method="direct")
 ```
 
-The fact that the coefficient is close to one, means that the relation between the two complex variables is close to linear. On the other hand, the imaginary part being close to zero implies that the real and imaginary parts of the variables $\underline{x}$ and $\underline{y}$ are close to each other (this is how we generated the data). As we see, the direct correlation gives additional information that the conjugate one does not provide. This demonstrates that they should be used in the analysis of relations jointly.
+The fact that the coefficient is close to one, means that the relation between the two complex variables is close to linear. On the other hand, the imaginary part being close to zero implies that the real and imaginary parts of the variables $\underline{x}$ and $\underline{y}$ are close to each other (this is how we generated the data). The fact that the real part is slightly above one only means that either $\underline{x}$ or $\underline{y}$ has real variance close to the imaginary one.
+
+As we see, the direct correlation gives additional information that the conjugate one does not provide. This demonstrates that they should be used in the analysis of relations jointly.
 
 
 ## Pearson's correlation {#correlationMDSPearson}
-We can also use MDS to analyse the projections of complex variables on x and y axes, similar to how we have done that in Subsection \@ref(correlationVisual). In that case, we can calculate Pearson's correlation coefficient:
+Finally, we can also use MDS to analyse the projections of complex variables on x- and y- axes, similar to how we have done that in Subsection \@ref(correlationVisual). In that case, we can calculate Pearson's correlation coefficient:
 
 ```{r}
 # Create projections of two complex variables onto axes
@@ -281,10 +299,10 @@ cor(xScaled,yScaled)
 Or using the `ccor()` function with `method="pearson"`, which does exactly the same thing in one line of code:
 
 ```{r, eval=FALSE}
-ccor(x, y, method="pearson") |> round(3)
+ccor(x, y, method="pearson")
 ```
 
-The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it can reach the local optimum and not being able to get to the global one. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the long series. This means that in some cases it might take plenty of time before we get the Pearson's correlation value. Nonetheless, this is an additional way of analysing relations between complex variables.
+The interpretation of the coefficient is straightforward and follows the conventional interpretation taught in any Statistics module. Note however that in general in the optimisation phase of MDS, it might converge to a local optimum, not being able to produce adequate projections. As a result, the sign of the correlation might not represent the real relation between the two complex variables and in general should be ignored. Furthermore, inevitably when we move from four dimensions to two, we loose some information, so this approach is prone to possible mistakes and should be used with care. Finally, MDS is computationally expensive, especially on the large samples of data. This means that in some cases it might take plenty of computational time before we get the Pearson's correlation value. Nonetheless, this is yet another way of analysing relations between complex variables.
 
 
 ## Correlation matrix
@@ -293,4 +311,4 @@ Finally, as discussed in Subsection \@ref(crvSecondMoment), it is possible to ca
 ```{r}
 cbind(x,y) |> covar() |> cov2cor() |> round(3)
 ```
-This matrix will not tell us how the variables $\underline{x}$ and $\underline{y}$ are related overall, but it will contain information about each of their individual elements.
+This matrix will not tell us how the variables $\underline{x}$ and $\underline{y}$ are related overall, but it will contain information about each of their individual elements, which will correspond to the scatterplots we produced in Section \@ref(correlationVisual).
