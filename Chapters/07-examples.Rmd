@@ -1,5 +1,5 @@
 # Examples of application {#Examples}
-In this chapter we consider examples of application for cLR and the complex ARIMA models.
+In this chapter we consider examples of application of cLR and cARIMA models.
 
 
 ## cARIMA applied to Box-Jenkins Sales data
