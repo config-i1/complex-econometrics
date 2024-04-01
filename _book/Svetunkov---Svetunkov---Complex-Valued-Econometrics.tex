@@ -4580,7 +4580,7 @@ When it comes to the selection of orders of cARIMA(p,d,q), using cACF/cPACF for 
 \hypertarget{Examples}{%
 \chapter{Examples of application}\label{Examples}}
 
-In this chapter we consider examples of application for cLR and the complex ARIMA models.
+In this chapter we consider examples of application of cLR and cARIMA models.
 
 \hypertarget{carima-applied-to-box-jenkins-sales-data}{%
 \section{cARIMA applied to Box-Jenkins Sales data}\label{carima-applied-to-box-jenkins-sales-data}}
@@ -4593,7 +4593,7 @@ In this example, we consider the Box-Jenkins Sales data with a leading indicator
 \caption{\label{fig:BJSales}Box-Jenkins Sales data with a leading indicator.}
 \end{figure}
 
-As we can see they seem to change over time similarly, which is probably because the indicator drives the sales. But if we unite the two in one complex variable and plot their joint dynamics we will see that not only the values change over time, but also the relation between the variables (see Figure \ref{fig:BJSalesComplex}).
+As we can see they seem to change over time similarly, which is probably because the indicator drives the sales. But if we unite the two in one complex variable and plot their joint dynamics, we will see that not only the values change over time, but also the relation between the variables (see Figure \ref{fig:BJSalesComplex}).
 
 \begin{figure}
 \centering
@@ -4601,7 +4601,7 @@ As we can see they seem to change over time similarly, which is probably because
 \caption{\label{fig:BJSalesComplex}Box-Jenkins Sales data. Complex dynamics. The red circle depicts the first observation, while the blue trianle is the last one.}
 \end{figure}
 
-While judgmentally we can conclude that both parts of this complex variable are non-stationary, we will conduct ADF and KPSS tests using \texttt{adf.test()} and \texttt{kpss.test()} functions from the \texttt{tseries} package after applying MDS to it. We will use 1\% significance level in the hypotheses testing.
+While judgmentally we can conclude that both parts of this complex variable are non-stationary, we will conduct ADF and KPSS tests (which as a reminder have opposite null and alternative hypotheses) using \texttt{adf.test()} and \texttt{kpss.test()} functions from the \texttt{tseries} package after applying MDS to it. We will use 1\% significance level in the hypotheses testing.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4613,7 +4613,7 @@ While judgmentally we can conclude that both parts of this complex variable are 
 \end{Highlighting}
 \end{Shaded}
 
-In the code above we use the \texttt{cscale()} function from the \texttt{complex} package to scale both parts of the complex variable. We can then conduct the ADF test:
+In the code above we use the \texttt{cscale()} function from the \texttt{complex} package to scale both parts of the complex variable to abide with the complex-valued modelling principles discussed in Section \ref{complexModelling}. We can then conduct the ADF test:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4699,7 +4699,7 @@ Given this contradiction, we plot the differences of the scaled data to make the
 \caption{\label{fig:BJSalesComplexDiffs}First differences of the MDS of the complex variable of the Box-Jenkins Sales data.}
 \end{figure}
 
-Analysing the series in Figure \ref{fig:BJSalesComplexDiffs}, it might be the case that the data contains a strong AR component or that it is non-stationary. Using this information, we will construct two models: cARIMA(p,2,q) and cARIMA(p,1,q) - and see, which of them performs better. Note that while in general the models are not comparable if different orders d are applied due to the loss of the number of in-sample observations, the \texttt{clm()} function takes care of potential missing values and extrapolates them back, making the models comparable.
+Analysing the series in Figure \ref{fig:BJSalesComplexDiffs}, it might be the case that either the data contains a strong AR component or that it is non-stationary. Using this information, we will construct two models: cARIMA(p,2,q) and cARIMA(p,1,q) - and see, which of them performs better. Note that while in general the models are not comparable if different orders d are applied due to the loss of the in-sample observations, the \texttt{clm()} function takes care of potential missing values and extrapolates them back, making the models comparable.
 
 Now we apply the cARIMA model to the newly constructed complex variable. We will try several special cases of cARIMA and choose the one that has the lowest information criterion. The code below shows how the process can be automated:
 
@@ -4794,16 +4794,10 @@ As we see, the model managed to capture the dynamics of the original data well, 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##  [1] 257.6162+13.1087i 258.7371+13.1270i 257.4338+13.1111i 257.5523+13.1418i
-##  [5] 257.7756+13.1524i 257.8027+13.1935i 258.1313+13.2268i 258.4488+13.2549i
-##  [9] 258.8752+13.2862i 259.3374+13.3120i 259.7896+13.3359i 260.2593+13.3575i
-## [13] 260.7118+13.3771i 261.1492+13.3960i 261.5722+13.4142i 261.9793+13.4323i
-## [17] 262.3764+13.4506i 262.7655+13.4691i 263.1503+13.4881i 263.5336+13.5074i
-\end{verbatim}
+This example demonstrates how appropriate cARIMA can be selected, applied to the data and used in forecasting.
 
-\hypertarget{seatbels-law-in-great-britain}{%
-\section{Seatbels law in Great Britain}\label{seatbels-law-in-great-britain}}
+\hypertarget{seatbeltsExample}{%
+\section{Seatbels law in Great Britain}\label{seatbeltsExample}}
 
 In another example, we consider the time series data with several explanatory variables. This is the Road Casualties in Great Britain from 1969 to 1984, available in the \texttt{datasets} package in R. We do not need all the variables in the data, but we will use the following ones:
 
@@ -4828,13 +4822,14 @@ The variables (2) and (3) will form our complex response variable, while (4), (5
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Form the data frame from the used variables}
 \NormalTok{SeatbeltsData }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{killed=}\NormalTok{Seatbelts[,}\StringTok{"DriversKilled"}\NormalTok{],}
                             \AttributeTok{injured=}\NormalTok{Seatbelts[,}\StringTok{"drivers"}\NormalTok{]}\SpecialCharTok{{-}}
 \NormalTok{                                Seatbelts[,}\StringTok{"DriversKilled"}\NormalTok{],}
                             \AttributeTok{kms=}\NormalTok{Seatbelts[,}\StringTok{"kms"}\NormalTok{],}
                             \AttributeTok{PetrolPrice=}\NormalTok{Seatbelts[,}\StringTok{"PetrolPrice"}\NormalTok{],}
                             \AttributeTok{law=}\NormalTok{Seatbelts[,}\StringTok{"law"}\NormalTok{])}
-
+\CommentTok{\# Create a data frame with complex variables}
 \NormalTok{SeatbeltsComplex }\OtherTok{\textless{}{-}}
     \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\FunctionTok{complex}\NormalTok{(}\AttributeTok{real=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{killed,}
                          \AttributeTok{imaginary=}\NormalTok{SeatbeltsData}\SpecialCharTok{$}\NormalTok{injured),}
@@ -4869,10 +4864,62 @@ We can then estimate a complex-valued model with real-valued explanatory variabl
 \NormalTok{SeatbeltscLR01 }\OtherTok{\textless{}{-}}
     \FunctionTok{clm}\NormalTok{(}\FunctionTok{I}\NormalTok{(}\FunctionTok{clog}\NormalTok{(y))}\SpecialCharTok{\textasciitilde{}}\FunctionTok{log}\NormalTok{(kms)}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(PetrolPrice)}\SpecialCharTok{+}\NormalTok{law}\SpecialCharTok{+}\NormalTok{seasonal,}
 \NormalTok{        SeatbeltsComplex)}
+\FunctionTok{summary}\NormalTok{(SeatbeltscLR01)}
 \end{Highlighting}
 \end{Shaded}
 
-The output above shows the estimates of the parameters of the model, demonstrating how the model captured the relations in the data. The model fit is shown in Figure \ref{fig:seatbeltsDataModel1}.
+\begin{verbatim}
+## Complex Linear Regression estimated via clm()
+## Response variable: Iclog(y)
+## Loss function used in estimation: likelihood
+## Coefficients:
+##                    Estimate Std. Error Lower 2.5% Upper 97.5%  
+## (Intercept)_r        4.4941     0.7544     3.0052      5.9831 *
+## (Intercept)_i        7.9841     0.4819     7.0331      8.9351 *
+## log(kms)_r          -0.0802     0.0720    -0.2223      0.0618  
+## log(kms)_i          -0.1626     0.0460    -0.2533     -0.0719 *
+## log(PetrolPrice)_r  -0.4617     0.0891    -0.6374     -0.2859 *
+## log(PetrolPrice)_i  -0.3981     0.0569    -0.5104     -0.2859 *
+## law_r               -0.1466     0.0357    -0.2170     -0.0762 *
+## law_i               -0.1629     0.0228    -0.2079     -0.1180 *
+## seasonal2_r         -0.1145     0.0465    -0.2063     -0.0226 *
+## seasonal2_i         -0.1183     0.0297    -0.1770     -0.0596 *
+## seasonal3_r         -0.0966     0.0474    -0.1902     -0.0030 *
+## seasonal3_i         -0.0500     0.0303    -0.1098      0.0098  
+## seasonal4_r         -0.1059     0.0480    -0.2006     -0.0112 *
+## seasonal4_i         -0.1241     0.0307    -0.1846     -0.0636 *
+## seasonal5_r         -0.0583     0.0497    -0.1564      0.0398  
+## seasonal5_i         -0.0201     0.0318    -0.0828      0.0426  
+## seasonal6_r         -0.0053     0.0500    -0.1039      0.0933  
+## seasonal6_i         -0.0584     0.0319    -0.1214      0.0046  
+## seasonal7_r         -0.0026     0.0522    -0.1057      0.1005  
+## seasonal7_i          0.0087     0.0334    -0.0571      0.0746  
+## seasonal8_r          0.0007     0.0533    -0.1046      0.1060  
+## seasonal8_i          0.0223     0.0341    -0.0449      0.0896  
+## seasonal9_r          0.0653     0.0502    -0.0337      0.1643  
+## seasonal9_i          0.0372     0.0320    -0.0260      0.1005  
+## seasonal10_r         0.1836     0.0490     0.0868      0.2804 *
+## seasonal10_i         0.1016     0.0313     0.0398      0.1634 *
+## seasonal11_r         0.2453     0.0472     0.1521      0.3385 *
+## seasonal11_i         0.1950     0.0302     0.1355      0.2545 *
+## seasonal12_r         0.2856     0.0468     0.1933      0.3779 *
+## seasonal12_i         0.2446     0.0299     0.1857      0.3036 *
+## 
+## Error covariance matrix:
+##        e_r    e_i
+## e_r 0.0173 0.0068
+## e_i 0.0068 0.0070
+## 
+## Sample size: 192
+## Number of estimated parameters: 16.5
+## Number of degrees of freedom: 175.5
+## Information criteria:
+##       AIC      AICc       BIC      BICc 
+## -733.6622 -730.3528 -679.9136 -671.2138
+\end{verbatim}
+
+The output above shows the estimates of parameters of the model, demonstrating how the model captured the relations in the data. We do not interpret the parameters of this model yet, because we need to make sure first that it does not violate any regression assumptions.
+The model fit is shown in Figure \ref{fig:seatbeltsDataModel1}.
 
 \begin{figure}
 \centering
@@ -4997,10 +5044,12 @@ Finally, we can see how the model fits the data and compare it with the previous
 \begin{figure}
 \centering
 \includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/seatbeltsDataModelFinal-1.pdf}
-\caption{\label{fig:seatbeltsDataModelFinal}Number of drivers killed and injured and the fitted values from the cARIMA(1,0,1) model.}
+\caption{\label{fig:seatbeltsDataModelFinal}Number of drivers killed and injured and the fitted values from the cARIMAX(1,0,1) model.}
 \end{figure}
 
 Arguably, the model fit is better due to the capture of dynamic elements that were missing in the cLR before.
+
+The two examples in this chapter demonstrate what additional flexibility the complex-valued models bring to analysts even if they do not use complex explanatory variables (as in Section \ref{seatbeltsExample}).
 
 \hypertarget{conclusions}{%
 \chapter*{Conclusions}\label{conclusions}}
