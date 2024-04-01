@@ -385,10 +385,7 @@ When it comes to the cPACF of cMA(1), its behaviour becomes similar to the behav
 \end{equation}
 which is based on the fact that $\underline{\epsilon}_t = \underline{y}_t - \underline{\theta}_1 \underline{\epsilon}_{t-1}$. In this situation, both conjugate and direct cPACF will decline either exponentially or harmonically, depending on the specific value of the complex parameter. Ones again, this agrees with the behaviour of the conventional PACF in case of the real-valued MA(q) process.
 
-As we see, the behaviour of both cACF and cPACF in case of cMA(q) model agrees with their behaviour in the real-valued model. Still, similarly to the cAR(p) process, conjugate and direct cPACF should be used for time series analysis jointly, because each one of them does not provide the full information about the process.
-
-
-
+As we see, the behaviour of both cACF and cPACF in case of cMA(q) model agrees with the behaviour of ACF/PACF in the real-valued models. Still, similarly to the cAR(p) process, conjugate and direct cPACF should be used for time series analysis jointly, because each one of them does not provide the full information about the process.
 
 Continuing the similarities between the complex and the real-valued models, it can be shown that the property of the invertibility is easily transferable to the cMA(q) model from the conventional MA(q). The model will be invertible if all the roots of the following polynomial equation lie outside of the unit circle:
 \begin{equation}
@@ -444,7 +441,7 @@ As we see from Figure \@ref(fig:complexMA1cACF), the only statistically signific
 cacf(y, method="direct", main="")
 ```
 
-On the other hand, the conjugate and direct cPACF will decline exponentially, as discussed earlier. Figure \@ref(fig:complexMA1cpACFDir) shows how the Direct cPACF looks for the complex MA(1), while Figure \@ref(fig:complexMA1cPACF) shows the conjugate one. While the specific values are different for the two functions, they give roughly the same message: the cPACFs decline over time.
+On the other hand, the conjugate and direct cPACF should decline exponentially, as discussed earlier. Figure \@ref(fig:complexMA1cpACFDir) shows how the direct cPACF looks for the complex MA(1), while Figure \@ref(fig:complexMA1cPACF) shows the conjugate one. While the specific values are different for the two functions, they give roughly the same message: the cPACFs decline over time.
 
 ```{r complexMA1cpACFDir, fig.cap="Direct cPACF of the complex MA(1).", echo=FALSE}
 cpacf(y, method="direct", main="")
@@ -461,12 +458,12 @@ Finally, we can apply the model to the data:
 ```{r}
 # Fit the model with intercept and MA(1)
 cMA1Model <- clm(y~1, orders=c(0,0,1),
-                 subset=c(1:80), loss="likelihood")
+                 subset=c(1:80))
 # Generate the summary
 summary(cMA1Model)
 ```
 
-In the code above, we specify the `loss="likelihood"` because the parameters of cMA(q) cannot be estimated analytically, and likelihood, having good statistical properties (efficiency and consistency), is appropriate. Note that the estimates of parameters for the complex moving average are far from the true ones, which is due to the sample size and the specific random sample we selected. Asymptotically, the estimator should give parameters closer to the "true" ones.
+In the code above, the default loss is likelihood, which we use because the parameters of cMA(q) cannot be estimated analytically, and likelihood, having good statistical properties (efficiency and consistency), is appropriate. Note that the estimates of parameters for the complex moving average are far from the true ones, which is due to the sample size and the specific random sample we selected. Asymptotically, the estimator should give parameters closer to the "true" ones.
 
 Similarly to how we did it with cAR(1), we can produce forecasts from the model using the dummy data:
 
@@ -485,7 +482,7 @@ par(mfcol=c(2,1),mar=c(4,4,1,1))
 plot(yForecast)
 ```
 
-As expected, the forecasts from the cMA(1) converge to the intercept value abruptly right after the $h=1$.
+As expected, the forecasts from the cMA(1) converge to the intercept value abruptly right after the $h=1$. This behaviour is equivalent to the one of the real-valued MA(q) models.
 
 
 ## Complex ARMA and ARIMA {#DynamicARIMA}
@@ -503,7 +500,8 @@ Furthermore, in order for cARMA model to be identifiable, we need to apply it to
 \end{equation}
 There are several ways how to construct such a model. First one is to take the differences of the original data and then apply cARMA. But this implies that we estimate the following model:
 \begin{equation}
-    \Delta_{\underline{y}_t} = \left(1 - B \right)^d \underline{y}_t  = \underline{\beta}_0 + \left(\underline{\phi}_1 B + \dots + \underline{\phi}_p B^p \right) \Delta_{\underline{y}_t} + \left(\underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t + \underline{\epsilon}_t .
+    \resizebox{0.8\textwidth}{!}{$
+    \Delta_{\underline{y}_t} = \left(1 - B \right)^d \underline{y}_t  = \underline{\beta}_0 + \left(\underline{\phi}_1 B + \dots + \underline{\phi}_p B^p \right) \Delta_{\underline{y}_t} + \left(\underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t + \underline{\epsilon}_t .$}
     (\#eq:ComplexARIMADiffs)
 \end{equation}
 But working with this model might be challenging because in order to produce forecasts from it, one needs to take the inverse of differences to get back to the original units. Instead, we argue that the following form (in principle) is easier to implement and use:
@@ -511,11 +509,11 @@ But working with this model might be challenging because in order to produce for
     \underline{y}_t  = \underline{\beta}_0^\prime + \frac{\left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right)}{\left(1 - \underline{\phi}_1 B - \dots - \underline{\phi}_p B^p \right) \left(1 - B \right)^d} \underline{\epsilon}_t ,
     (\#eq:ComplexARIMADiffsCorrect)
 \end{equation}
-where we now can produce future $\hat{\underline{y}}_t$ directly instead of $\hat{\Delta}_{\underline{y}_t}$. This formulation is implemented and used in the `clm()` function from the `complex` package in R via the `orders` parameter.
+where we now can produce future $\hat{\underline{y}}_t$ directly instead of $\hat{\Delta}_{\underline{y}_t}$. This formulation is implemented and used in the `clm()` function from the `complex` package in R. The orders of cARIMA are regulated with the `orders` parameter.
 
-When it comes to deciding whether to take the differences of the time series or not, the standard ADF [@Dickey1979] and KPSS [@Kwiatkowski1992] tests can be applied independently to the real and imaginary parts to see whether they are stationary or not. This approach assumes that both parts contain variables that have similar dynamics in principle. But there might be some situations, when one part is stationary, while the other is not. In that case, the decision about the order of differencing d might not be straight forward. A solution in this case is to take differences, although this might lead to the overdifferencing one of the parts of the complex variable. The alternative approach is to apply the test to the two parts jointly and a relatively simple solution in this case is to use the MDS to scale the complex variable into the real-valued one. After that the conventional ADF/KPSS can be applied to determine whether the differences are needed to make the variable stationary "overall".
+When it comes to deciding whether to take the differences of the time series or not, the standard ADF [@Dickey1979] and KPSS [@Kwiatkowski1992] tests can be applied independently to the real and imaginary parts to see whether they are stationary or not. This approach assumes that both parts contain variables that have similar dynamics in principle. But there might be some situations, when one part is stationary, while the other is not. In that case, the decision about the order of differencing might not be straight forward. A solution in this case is to take differences anyway, although this might lead to the overdifferencing one of the parts of the complex variable. The alternative approach is to apply the test to the two parts jointly, and a relatively simple solution in this case is to use the MDS to project the complex variable to the real-valued one. After that the conventional ADF/KPSS can be applied to determine whether the differences are needed to make the variable stationary "overall".
 
-When it comes to the selection of orders of cARIMA(p,d,q), using cACF/cPACF for this purpose becomes extremely difficult, because of all the possibilities for the behaviour of these functions depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. The combination of cAR and cMA might produce really puzzling cACF/cPACF, which might become useless for diagnostics or order selection. Furthermore, as discuss in Section 8.3 of @SvetunkovAdam, the fact that some specific orders of cARMA(p,q) generate some specific shapes of cACF/cPACF does not mean that if we observe that shape then the data is generated from that specific model. After all, there can be many reasons why we observe the specific cACF/cPACF, and conclusions about the order of the appropriate cARMA model just based on them become unreliable. As a result, we recommend using other principles for the selection of the appropriate p and q. One of those is to do that based on the information criteria, such as AIC [@Akaike1974] or BIC [@Schwarz1978]. But in order to be able to do that, one needs to use likelihood for the model estimation.
+When it comes to the selection of orders of cARIMA(p,d,q), using cACF/cPACF for this purpose becomes extremely difficult, because of all the possibilities for the behaviour of these functions depending on the order of the model and/or specific values of parameters. For example, in some situations cACF will decline harmonically for an AR(p) process, while cPACF will do the same for an MA(q) one. The combination of cAR and cMA might produce really puzzling cACF/cPACF, which might become useless for diagnostics or order selection. Furthermore, as discuss in Section 8.3 of @SvetunkovAdam, the fact that some specific orders of cARMA(p,q) generate some specific shapes of cACF/cPACF does not mean that, if we observe that shape, then the data is generated from that specific model. After all, there can be many reasons why we observe the specific cACF/cPACF, and conclusions about the order of the appropriate cARMA model just based on them become unreliable. As a result, we recommend using other principles for the selection of the appropriate p and q. One of those is to do that based on the information criteria, such as AIC [@Akaike1974] or BIC [@Schwarz1978]. Note however that in order to be able to do that, one needs to use likelihood for the model estimation.
 
 
 <!-- ## Other possible models -->
