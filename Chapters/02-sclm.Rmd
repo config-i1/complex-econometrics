@@ -433,7 +433,7 @@ The minimisation of GV in its turn implies the joint minimisation of variances o
 The main difference between the Likelihood and the other two estimators discussed in this section is that the former can only be maximised via a numeric optimisation - there is no analytical solution for estimates of parameters via likelihood.
 
 
-## Comparing different estimators for CLR {#SCLREstimatorsComparison}
+## Comparing different estimators for cLR {#SCLREstimatorsComparison}
 Arguably, all three estimators discussed in this Section give adequate estimates of parameters, but inevitably they will have different efficiency and would be appropriate in different situations. In this subsection, we explore the behaviour of estimators with the increase of sample size.
 
 First, comparing variances of OLS and CLS estimates of $b_{1,r}$ \@ref(eq:SimpleCLRCLSb1Variance) with \@ref(eq:SimpleCLROLSb1Variance):

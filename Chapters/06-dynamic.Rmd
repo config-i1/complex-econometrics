@@ -12,12 +12,12 @@ One of the simplest ways to introduce dynamics in a complex model is to include 
     {y}_t = {\beta}_0 + {\beta}_1 {x}_{1,t} + {\beta}_2 {x}_{2,t} + \dots + {\beta}_{k-1} {x}_{k-1,t} + \gamma t + {\epsilon}_t,
     (\#eq:trendInRealModel)
 \end{equation}
-where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases (depending on the value of the parameter $\gamma$) indefinitely. Adding such trend to the model allows capturing the deterministic trend and neglecting its effect on the values of other parameters in the model. In cLR, the addition of the trend in the additive model is similar and has the same meaning - it will increase linearly indefinitely. Mathematically, cLR with trend can be written as:
+where $\gamma$ is the parameter for the trend and the rest of the equation is just a conventional real-valued regression. The trend in this situation is deterministic and linear, meaning that it starts from the beginning of the sample and increases or decreases (depending on the value of the parameter $\gamma$) indefinitely. Adding such trend to the model allows capturing the deterministic trend and neglecting its effect on the values of the other parameters in the model. In cLR, the addition of the trend in the additive model is similar and has the same meaning - it will increase linearly indefinitely. Mathematically, cLR with trend can be written as:
 \begin{equation}
-    \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t} + \underline{\gamma} t + \underline{\epsilon}_t .
+    \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,t} + \underline{\gamma} t + \underline{\epsilon}_t ,
     (\#eq:trendInCLR)
 \end{equation}
-The more interesting case arises when a multiplicative cLR is considered, i.e. the model with logarithmic transform (as discussed in Subsection \@ref(complexVariable) and Section \@ref(assumptionsSpecificationTransformation)):
+where $\underline{\gamma}$ is now a complex number. The more interesting case arises when a multiplicative cLR is considered, i.e. the model in logarithms (as discussed in Subsections \@ref(complexVariable) and \@ref(assumptionsSpecificationTransformation)):
 \begin{equation}
     \ln \underline{y}_t = \underline{\beta}_0 + \underline{\beta}_1 \ln \underline{x}_{1,t} + \dots + \underline{\beta}_{k-1} \ln \underline{x}_{k-1,t} + \underline{\gamma} \ln t + \underline{\epsilon}_t ,
     (\#eq:trendInCLRLogs)
@@ -63,7 +63,7 @@ Another way to look at the complex-valued trend is to use the trigonometric form
 This form tells us that fundamentally any trajectory from the complex-valued trend is trigonometric, but $\gamma_i$ regulates the strength of the cosine/sine waves for the respective real and imaginary parts of the complex response variable.
 
 ### Example in R
-In R, the trend is supported in the `clm()` function from the `complex` package via the formula. Here is an example:
+In R, the trend is supported in the `clm()` function from the `complex` package via the `formula`. Here is an example:
 ```{r}
 # Set random seed for reproducibility
 set.seed(41)
@@ -101,7 +101,7 @@ clrModel <- clm(log(y)~log(x)+log(trend), complexData, subset=1:80)
 summary(clrModel)
 ```
 
-The resulting model fit and the forecast for the next 20 observations are shown in Figure \@ref(fig:dataWithTrendForecast):
+The resulting model fit and the forecast for the next 20 observations are shown in Figure \@ref(fig:dataWithTrendForecast). They were produced using the following code:
 
 ```{r dataWithTrendForecast, fig.cap="cLR applied to the generated data with a trend."}
 # Extract fitted values and transform to the original scale
@@ -125,11 +125,11 @@ exp(yForecast$mean) |> Im() |>
     lines(x=c(81:100), col="blue", lwd=2, lty=2)
 ```
 
-As we can see, this example shows how a non-linear trend can be estimated and then used for forecasting using a complex linear regression model.
+This example demonstrates how a non-linear trend can be estimated in a complex linear regression model and then used for forecasting.
 
 
 ## Complex AR
-One of the possible ways of modelling dynamics is by saying that future values of the variable depend on its past ones. @Box1976, who have developed a theory and methodology of so called "AutoRegressive Integrated Moving Average" (or ARIMA), provide an example of a series of CO$_2$ output by a furnace with variable gas rate. In that situation the future amount of carbon dioxide will depend on the amount the furnace produced on the previous observations. This is one of example of an AR process. An interested reader is directed to Chapter 8 of @SvetunkovAdam, where the ARIMA model is discussed in more detail.
+One of the possible ways of modelling dynamics is by assuming that the future values of a variable depend on its past ones. @Box1976, who have developed a theory and methodology of so called "AutoRegressive Integrated Moving Average" (or ARIMA), provide an example of a series of CO$_2$ output by a furnace with variable gas rate. In that situation the future amount of carbon dioxide will depend on the amount the furnace produced on the previous observations. This is one of examples of an AR process. An interested reader is directed to Chapter 8 of @SvetunkovAdam, where the ARIMA model is discussed in more detail.
 
 Mathematically the cAR model can be represented in a vector form, which will make it look more similar to vector AR rather than to the univariate one. However, the cAR model is restricted with just two time series and thus can be represented using complex variables [this is also discussed in @Chandna2014]:
 \begin{equation}
@@ -150,7 +150,7 @@ The cAR(1) model is defined as:
     \underline{y}_t = \underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t .
     (\#eq:ComplexAR1Step1)
 \end{equation}
-The covariance between the most recent and the previous observations can then be calculated as (note here that we provide the formula for the conjugate covariance, but the calculations for the direct one will be similar):
+The covariance between the most recent and the previous observations can be calculated as:
 \begin{equation}
     \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \mathrm{cov} \left(\underline{\phi}_1 \underline{y}_{t-1} + \underline{\epsilon}_t, \underline{y}_{t-1} \right) ,
     (\#eq:ComplexAR1Step2)
@@ -187,7 +187,7 @@ If we now insert \@ref(eq:ComplexAR1ConjCov) and \@ref(eq:ComplexAR1DirCov) into
     (\#eq:ComplexAR1DirCor)
 \end{equation}
 
-As we can see from the formula \@ref(eq:ComplexAR1ConjCor), the specific value of the cAR(1) parameter is lost because of the geometric mean in the formula: we end up with a magnitude of the complex variable instead of it real and imaginary parts. On the other hand, the direct cACF \@ref(eq:ComplexAR1DirCor) keeps the information about the cAR(1) parameter. However, the two formulae above are calculated in terms of expectations and their sample estimates might be slightly different. Specifically, the direct correlation \@ref(eq:ComplexAR1DirCor) relies on the sample estimate of the direct variance of the response variable $y_t$, which might become equal to zero if the variances of the real and the imaginary parts of the complex variable are similar (as discussed in Section \@ref(correlationDirect)). This means that in some situations the values of the direct cACF might become greater than one, leading to potential losses in information. But this also means that both conjugate and direct cACFs should be used for the analysis of complex time series: each of them has issues, but both of them give much clearer information about the potential process [@Zhou2015 provide some arguments to support this claim].
+As we can see from the formula \@ref(eq:ComplexAR1ConjCor), the specific value of the cAR(1) parameter is lost because of the geometric mean in the formula: we end up with a magnitude of the complex variable instead of its real and imaginary parts. On the other hand, the direct cACF \@ref(eq:ComplexAR1DirCor) keeps the information about the cAR(1) parameter. However, the two formulae above are calculated in terms of expectations and their sample estimates might be slightly different. Specifically, the direct correlation \@ref(eq:ComplexAR1DirCor) relies on the sample estimate of the direct variance of the response variable $y_t$, which might become equal to zero if the variances of the real and the imaginary parts of the complex variable are similar (as discussed in Section \@ref(correlationDirect)). This means that in some situations the values of the direct cACF might become greater than one, leading to potential losses in information. But this also means that conjugate and direct cACFs should be used together for the analysis of complex time series: each of them has issues, but both of them give much clearer information about the potential process [@Zhou2015 provide some arguments to support this claim].
 
 If we calculate the covariance for the cAR(1) between the values $y_{t}$ and $y_{t-2}$, we will get the following [the reader is encouraged to do the calculations manually to check the correctness of the final result, but also see @Knight2019]:
 
@@ -203,9 +203,9 @@ If we calculate the covariance for the cAR(1) between the values $y_{t}$ and $y_
     (\#eq:ComplexAR1DirCorShort)
 \end{equation}
 
-In principles, it can be shown that the main properties of real-valued AR discussed by @Box1976 hold widely for the cAR processes: cACF will decline exponentially starting from the lag p. Note however that the direct cACF involves the power of a complex number, which means that in some situations, for some values of the complex parameter $\underline{\phi}_1$, the cACF will decline harmonically rather than exponentially.
+In principles, it can be shown that the main properties of real-valued AR discussed by @Box1976 hold widely for the cAR(p) processes: cACF will decline exponentially starting from the lag p. Note however that the direct cACF involves the power of a complex number, which means that in some situations, for some values of the complex parameter $\underline{\phi}_1$, the cACF will decline harmonically rather than exponentially.
 
-The more useful (at least potentially) property for cAR(p) is the behaviour of the cPACF. This function shows the relations between specific lags without the effect of all the interim lags, i.e. cleaned from the autocorrelations between the neighbouring lags. One of ways of calculating the cPACF for a lag $\tau$ is to estimate the following model:
+The more useful property of cAR(p) for analysis is the behaviour of the cPACF. This function shows the relations between specific lags without the effect of all the interim lags, i.e. cleaned from the autocorrelations between the neighbouring lags. One of ways of calculating the cPACF for a lag $\tau$ is to estimate the following model:
 \begin{equation}
     \underline{y}_t = \underline{\phi}_1 \underline{y}_{t-1} + \dots + \underline{\phi}_\tau \underline{y}_{t-\tau} + \underline{\epsilon}_t
     (\#eq:cPACFModel)
@@ -216,7 +216,7 @@ It can be shown that for the cAR(p) process, both conjugate and direct cPACF wil
 
 As we see, the complex AR(p) has similar properties to the real-valued one, but it should be analysed using both conjugate and direct cACF/cPACF.
 
-Finally, in Box-Jenkins methodology, it is important for the AR(p) processes to be stationary, otherwise they become explosive and cannot be efficiently identified at the model building stage. The stationarity condition for AR(p) in @Box1976 is that the roots of the polynomial formed from the parameters of the AR model should all lie outside the unit circle. For AR(1) this simplifies to $|\phi_1|<1$. The same conditions hold for the cAR(p) processes, meaning that the magnitudes of the complex parameters are considered. For the cAR(1), the stationarity condition is $|\underline{\phi}_1|<1$. But more widely, for cAR(p), it is that the roots of the following polynomial:
+Finally, in Box-Jenkins methodology, it is important for the AR(p) processes to be stationary, otherwise they become explosive and cannot be efficiently identified at the model building stage. The stationarity condition for AR(p) in @Box1976 is that the roots of the polynomial formed from the parameters of the AR model should all lie outside the unit circle. For AR(1) this simplifies to $|\phi_1|<1$. The same conditions hold for the cAR(p) processes, implying that only the magnitudes of the complex parameters should be considered. For the cAR(1), the stationarity condition is $|\underline{\phi}_1|<1$. But more widely, for cAR(p), it is that the roots of the following polynomial:
 \begin{equation}
     1 - \underline{\phi}_1 x - \underline{\phi}_2 x^2 - \dots - \underline{\phi}_p x^p = 0
     (\#eq:ComplexARPolyRoots)
@@ -253,7 +253,7 @@ The conjugate cACF/cPACF are shown in Figures \@ref(fig:complexAR1cACF) and \@re
 cacf(y, method="conjugate", main="")
 ```
 
-As we see from Figure \@ref(fig:complexAR1cACF), the cACF declines after the lag 1. Notably, the cACF for lag one equals to `r round(cacf(y, method="conjugate", plot=FALSE)$acf[1],3)`, which is close to the true value of the magnitude of the parameter $\phi_1=0.5+0.2i$ is `r abs(phi1)`.
+As we see from Figure \@ref(fig:complexAR1cACF), the cACF declines after the lag 1. Notably, the cACF for lag one equals to `r round(cacf(y, method="conjugate", plot=FALSE)$acf[1],3)`, being close to the true value of the magnitude of the parameter $\phi_1=0.5+0.2i$, which is `r abs(phi1)`.
 
 ```{r complexAR1cPACF, fig.cap="Conjugate cPACF of the complex AR(1)."}
 cpacf(y, method="conjugate", main="")
@@ -273,7 +273,7 @@ Although, both plots contain values outside of the 95% non-rejection region, the
 cpacf(y, method="direct", main="")
 ```
 
-It is worth noting that in both Figures \@ref(fig:complexAR1cACFDir) and \@ref(fig:complexAR1cpACFDir) the first values of the cACF/cPACF are close to the true value of $0.5+0.2i$.
+It is worth noting again that in both Figures \@ref(fig:complexAR1cACFDir) and \@ref(fig:complexAR1cpACFDir) the first values of the cACF/cPACF are close to the true value of $0.5+0.2i$.
 
 Finally, the plot in Figure \@ref(fig:complexAR1Plot) shows the generated data on the complex plane and the dynamics of both the real and the imaginary parts.
 
@@ -294,7 +294,7 @@ cAR1Model <- clm(y~1, orders=c(1,0,0), subset=c(1:80))
 summary(cAR1Model)
 ```
 
-The output above shows the estimates of parameters of the model, demonstrating that the OLS produced estimates close to the true values of parameters (as expected). After that we can generate forecast for the next 20 observations:
+The output above shows the estimates of parameters of the model, demonstrating that the likelihood produced estimates close to the true values of parameters (as expected). After that we can generate forecast for the next 20 observations:
 
 ```{r}
 # Dummy data. 20 rows tells the function what the horizon is
@@ -320,12 +320,12 @@ Another type of the dynamic model discussed by @Box1976, is called "Moving Avera
     \underline{y}_t = \underline{\beta}_0 + \underline{\theta}_1 \underline{\epsilon}_{t-1} + \dots + \underline{\theta}_q \underline{\epsilon}_{t-q} + \underline{\epsilon}_t ,
     (\#eq:ComplexMA)
 \end{equation}
-where $\theta_j$ is the $j$-th parameter, and $q$ is the order of the model complex MA(q) model. Similar to the cAR, it can be written via polynomials:
+where $\underline\theta_j$ is the $j$-th parameter, and $q$ is the order of the complex MA(q) model. Similar to the cAR, it can be written via polynomials:
 \begin{equation}
     \underline{y}_t  = \underline{\beta}_0 + \left(1 + \underline{\theta}_1 B + \dots + \underline{\theta}_q B^q \right) \underline{\epsilon}_t .
     (\#eq:ComplexMAPolynomial)
 \end{equation}
-The idea of this model is that the new actual observation is formed as a linear combination of the past white noise. @Box1976 continue the example with a CO$_2$ output, showing that some random disturbances in the system in the past can impact the volume of the carbon dioxide at the current moment. 
+The idea of this model is that the new actual observation is formed as a linear combination of the past white noise. @Box1976 continue the example with a CO$_2$ output, showing that some random disturbances in the system in the past can impact the volume of the carbon dioxide at the recent observation.
 
 Using similar logic as in case of cAR, we will show how cACF and cPACF behave for cMA(1) without intercept, and then we will generalise their behaviour for cMA(q).
 
@@ -339,7 +339,7 @@ For the cACF, we need to calculate the covariance between the values on observat
     \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \mathrm{cov}\left( \underline{\theta}_1 \underline{\epsilon}_{t-1} + \underline{\epsilon}_t, \underline{\theta}_1 \underline{\epsilon}_{t-2} + \underline{\epsilon}_{t-1} \right).
     (\#eq:ComplexMA1Step1)
 \end{equation}
-Given that the basic assumptions discussed in Chapter \@ref(assumptions) hold for the "true model", the covariance is simplified to:
+If the basic assumptions discussed in Chapter \@ref(assumptions) hold, the covariance is simplified to:
 \begin{equation}
     \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \mathrm{cov}\left( \underline{\epsilon}_{t-1}, \underline{\epsilon}_{t-1} \right).
     (\#eq:ComplexMA1Step2)
@@ -347,7 +347,7 @@ Given that the basic assumptions discussed in Chapter \@ref(assumptions) hold fo
 
 Based on this, the conjugate and the direct covariances will be equal to respectively:
 \begin{equation}
-    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \sigma^2_{y_t}.
+    \mathrm{cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \sigma^2_{y_t}
     (\#eq:ComplexMA1ConjCov)
 \end{equation}
 and
@@ -355,7 +355,7 @@ and
     {cov} \left(\underline{y}_t, \underline{y}_{t-1} \right) = \underline{\theta}_1 \varsigma^2_{y_t}.
     (\#eq:ComplexMA1DirCov)
 \end{equation}
-Note that in the formulae above, we use the fact that the variance of the error term will coincide with the variance of the response variable $\underline{y}_t$, which becomes apparent from the original model formulation \@ref(eq:ComplexMA1), assuming that the error term has a zero expectation. Inserting \@ref(eq:ComplexMA1ConjCov) and \@ref(eq:ComplexMA1DirCov) in the formulae for the conugate and direct correlations, we get that for the cMA(1), the first lag of the cACF equals to:
+Note that in the formulae above, we use the fact that the variance of the error term will coincide with the variance of the response variable $\underline{y}_t$, which becomes apparent from the original model formulation \@ref(eq:ComplexMA1), assuming that the error term has a zero expectation. Inserting \@ref(eq:ComplexMA1ConjCov) and \@ref(eq:ComplexMA1DirCov) in the formulae for the conjugate and direct correlations, the first lag of the cACF for the cMA(1) equals to:
 
 1. Conjugate correlation:
 \begin{equation}
@@ -383,9 +383,12 @@ When it comes to the cPACF of cMA(1), its behaviour becomes similar to the behav
     \underline{y}_t = \sum_{j=1}^\infty -1^{j-1} \underline{\theta}_1^j \underline{y}_{t-j} + \underline{\epsilon}_t ,
     (\#eq:ComplexMA1Infinite)
 \end{equation}
-which is based on the fact that $\underline{\epsilon}_t = \underline{y}_t - \underline{\theta}_1 \underline{\epsilon}_{t-1}$. In this situation, both conjugate and direct cPACF will decline either exponentially or harmonically, depending on the specific value of the complex parameter. In general, this ones again agrees with the behaviour of the conventional PACF in case of the real-valued MA(q) process.
+which is based on the fact that $\underline{\epsilon}_t = \underline{y}_t - \underline{\theta}_1 \underline{\epsilon}_{t-1}$. In this situation, both conjugate and direct cPACF will decline either exponentially or harmonically, depending on the specific value of the complex parameter. Ones again, this agrees with the behaviour of the conventional PACF in case of the real-valued MA(q) process.
 
-As we see, the behaviour of both cACF and cPACF in case of cMA(q) model agrees with their behaviour in the real-valued model. Still, similarly to the cAR(p) process, both conjugate and direct cPACF should be used for time series analysis.
+As we see, the behaviour of both cACF and cPACF in case of cMA(q) model agrees with their behaviour in the real-valued model. Still, similarly to the cAR(p) process, conjugate and direct cPACF should be used for time series analysis jointly, because each one of them does not provide the full information about the process.
+
+
+
 
 Continuing the similarities between the complex and the real-valued models, it can be shown that the property of the invertibility is easily transferable to the cMA(q) model from the conventional MA(q). The model will be invertible if all the roots of the following polynomial equation lie outside of the unit circle:
 \begin{equation}
