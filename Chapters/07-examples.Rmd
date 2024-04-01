@@ -11,7 +11,7 @@ plot(BJsales)
 plot(BJsales.lead)
 ```
 
-As we can see they seem to change over time similarly, which is probably because the indicator drives the sales. But if we unite the two in one complex variable and plot their joint dynamics we will see that not only the values change over time, but also the relation between the variables (see Figure \@ref(fig:BJSalesComplex)).
+As we can see they seem to change over time similarly, which is probably because the indicator drives the sales. But if we unite the two in one complex variable and plot their joint dynamics, we will see that not only the values change over time, but also the relation between the variables (see Figure \@ref(fig:BJSalesComplex)).
 
 ```{r BJSalesComplex, fig.cap="Box-Jenkins Sales data. Complex dynamics. The red circle depicts the first observation, while the blue trianle is the last one.", echo=FALSE}
 y <- complex(real=BJsales, imaginary=BJsales.lead)
@@ -20,7 +20,7 @@ points(head(y,1), pch=16, col="red")
 points(tail(y,1), pch=17, col="blue")
 ```
 
-While judgmentally we can conclude that both parts of this complex variable are non-stationary, we will conduct ADF and KPSS tests using `adf.test()` and `kpss.test()` functions from the `tseries` package after applying MDS to it. We will use 1% significance level in the hypotheses testing.
+While judgmentally we can conclude that both parts of this complex variable are non-stationary, we will conduct ADF and KPSS tests (which as a reminder have opposite null and alternative hypotheses) using `adf.test()` and `kpss.test()` functions from the `tseries` package after applying MDS to it. We will use 1% significance level in the hypotheses testing.
 
 ```{r}
 # Normalise the variables
@@ -30,7 +30,7 @@ complex(real=BJsales, imaginary=BJsales.lead) |>
 complex2vec(y) |> dist() |> cmdscale(k=1) -> yScaled
 ```
 
-In the code above we use the `cscale()` function from the `complex` package to scale both parts of the complex variable. We can then conduct the ADF test:
+In the code above we use the `cscale()` function from the `complex` package to scale both parts of the complex variable to abide with the complex-valued modelling principles discussed in Section \@ref(complexModelling). We can then conduct the ADF test:
 
 ```{r}
 # Apply ADF test
@@ -63,7 +63,7 @@ diff(yScaled) |>
     plot(type="l")
 ```
 
-Analysing the series in Figure \@ref(fig:BJSalesComplexDiffs), it might be the case that the data contains a strong AR component or that it is non-stationary. Using this information, we will construct two models: cARIMA(p,2,q) and cARIMA(p,1,q) - and see, which of them performs better. Note that while in general the models are not comparable if different orders d are applied due to the loss of the number of in-sample observations, the `clm()` function takes care of potential missing values and extrapolates them back, making the models comparable.
+Analysing the series in Figure \@ref(fig:BJSalesComplexDiffs), it might be the case that either the data contains a strong AR component or that it is non-stationary. Using this information, we will construct two models: cARIMA(p,2,q) and cARIMA(p,1,q) - and see, which of them performs better. Note that while in general the models are not comparable if different orders d are applied due to the loss of the in-sample observations, the `clm()` function takes care of potential missing values and extrapolates them back, making the models comparable.
 
 Now we apply the cARIMA model to the newly constructed complex variable. We will try several special cases of cARIMA and choose the one that has the lowest information criterion. The code below shows how the process can be automated:
 
@@ -115,7 +115,7 @@ predict(cARIMABJ[[i]], newdata=matrix(NA,20,1)) |>
 
 As we see, the model managed to capture the dynamics of the original data well, producing reasonable point forecasts for both parts. If we want to return to the original scale, we can use the `cdescale()` function from the `complex` package:
 
-```{r}
+```{r eval=FALSE}
 yForecast <- predict(cARIMABJ[[i]],
                      newdata=matrix(NA,20,1))
 cdescale(yForecast$mean,
@@ -123,8 +123,10 @@ cdescale(yForecast$mean,
          scaling="norm")
 ```
 
+This example demonstrates how appropriate cARIMA can be selected, applied to the data and used in forecasting.
 
-## Seatbels law in Great Britain
+
+## Seatbels law in Great Britain {#seatbeltsExample}
 In another example, we consider the time series data with several explanatory variables. This is the Road Casualties in Great Britain from 1969 to 1984, available in the `datasets` package in R. We do not need all the variables in the data, but we will use the following ones:
 
 1. drivers - the number of car drivers killed or seriously injured;
@@ -137,13 +139,14 @@ In another example, we consider the time series data with several explanatory va
 The variables (2) and (3) will form our complex response variable, while (4), (5) and (6) will be used as explanatory ones. Note that in this setting we do not form complex variables from the explanatory ones and only have the complex response variable. The code below shows how this can be done:
 
 ```{r}
+# Form the data frame from the used variables
 SeatbeltsData <- data.frame(killed=Seatbelts[,"DriversKilled"],
                             injured=Seatbelts[,"drivers"]-
                                 Seatbelts[,"DriversKilled"],
                             kms=Seatbelts[,"kms"],
                             PetrolPrice=Seatbelts[,"PetrolPrice"],
                             law=Seatbelts[,"law"])
-
+# Create a data frame with complex variables
 SeatbeltsComplex <-
     data.frame(y=complex(real=SeatbeltsData$killed,
                          imaginary=SeatbeltsData$injured),
@@ -174,9 +177,12 @@ We can then estimate a complex-valued model with real-valued explanatory variabl
 SeatbeltscLR01 <-
     clm(I(clog(y))~log(kms)+log(PetrolPrice)+law+seasonal,
         SeatbeltsComplex)
+summary(SeatbeltscLR01)
 ```
 
-The output above shows the estimates of the parameters of the model, demonstrating how the model captured the relations in the data. The model fit is shown in Figure \@ref(fig:seatbeltsDataModel1).
+The output above shows the estimates of parameters of the model, demonstrating how the model captured the relations in the data. We do not interpret the parameters of this model yet, because we need to make sure first that it does not violate any regression assumptions.
+<!-- We can conclude based on the, for example, that the introduction of the setabelts law seemed to have reduced the number of drivers killed and injured respectively by approximately 14.6% and 16.3% (on average, keeping all other variables fixed). -->
+The model fit is shown in Figure \@ref(fig:seatbeltsDataModel1).
 
 ```{r seatbeltsDataModel1, fig.cap="Number of drivers killed and injured and the fitted values.", echo=FALSE}
 yStart <- start(Seatbelts)
@@ -245,7 +251,7 @@ While we could fit two independent regression models instead of one complex-valu
 
 Finally, we can see how the model fits the data and compare it with the previous one (Figure \@ref(fig:seatbeltsDataModelFinal)).
 
-```{r seatbeltsDataModelFinal, fig.cap="Number of drivers killed and injured and the fitted values from the cARIMA(1,0,1) model.", echo=FALSE}
+```{r seatbeltsDataModelFinal, fig.cap="Number of drivers killed and injured and the fitted values from the cARIMAX(1,0,1) model.", echo=FALSE}
 fitted(SeatbeltscLRList[[iBest]]) |> cexp() |>
     ts(start=yStart, frequency=yFreq) -> yFitted
 
@@ -258,6 +264,8 @@ lines(Im(yFitted), col="purple", lwd=2, lty=2)
 ```
 
 Arguably, the model fit is better due to the capture of dynamic elements that were missing in the cLR before.
+
+The two examples in this chapter demonstrate what additional flexibility the complex-valued models bring to analysts even if they do not use complex explanatory variables (as in Section \@ref(seatbeltsExample)).
 
 
 <!-- ## Forecasting with complex regression models -->
