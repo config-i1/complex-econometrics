@@ -298,13 +298,13 @@ The next group of assumptions has five elements in it:
 Some of these assumptions are universal for statistical models, while the others (e.g. the last one) are specific to cLR.
 
 ### Homoscedastic residuals {#assumptionsResidualsHomoscedastic}
-The first assumption implies that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This follows directly from the formulae for the direct and conjugate covariances from Section \@ref(MCLRInference): if either of the covariances is not constant, and we use the formulae for calculating the standard errors of parameters, we will obtain averaged-out values, that would be lower than needed for some observations and higher than needed for the others.
+The first assumption implies that both direct and conjugate variances of the residuals are constant and do not change with any changes of variables. This follows directly from the formulae for the direct and conjugate covariance matrices from Section \@ref(MCLRInference): if either of the covariances is not constant, and we use the formulae for calculating the standard errors of parameters, we will obtain averaged-out values, that would be lower than needed for some observations and higher than needed for the others.
 
-In case of the formulation of cLR as a vector model and the likelihood estimation, the assumption implies that the covariance matrix of residuals $\Sigma_\epsilon$ stays the same no matter what. This assumption aligns well with a similar assumption of conventional multivariate models, such as VAR [@Lutkepohl] or VETS [@SvetunkovVETS].
+In case of the formulation of cLR as a vector model and the likelihood estimation, the assumption implies that the covariance matrix of residuals $\Sigma_\epsilon$ stays the same no matter what. This assumption aligns well with a similar assumption of conventional multivariate models, such as VAR [@Lutkepohl2005] or VETS [@Svetunkov2021a].
 
 The homoscedasticity assumption can be typically diagnosed visually by producing the plot of absolute residuals vs fitted. In case of the cLR, this can be modified to producing plots for each part of the complex residuals. Figure \@ref(fig:heteroDiagnostics) shows how the residuals of the linear model applied to the non-linear data (example from Subsection \@ref(assumptionsSpecificationTransformation)) look:
 
-```{r heteroDiagnostics, fig.cap="Absolute residuals vs fitted"}
+```{r heteroDiagnostics, fig.cap="Absolute residuals vs fitted."}
 par(mfcol=c(1,2), mar=c(2,2,3,1))
 plot(complexModel, which=4, main="")
 ```
@@ -313,15 +313,15 @@ The plots in Figure \@ref(fig:heteroDiagnostics) show that the variability of re
 
 
 ### No autocorrelation in residuals {#assumptionsResidualsAuto}
-This assumption only applies to time series data. In case of the real-valued models, it means that the residuals in the past should not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g. the appropriate transformations are not done, or some autoregressive elements are missing). In case of the cLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g. complex autoregression, discussed later in this book).
+This assumption only applies to time series data. In case of the real-valued models, it means that the residuals in the past should not impact the ones in the future. Typically, this effect appears because of the wrong specification of the model (e.g. the appropriate transformations are not done, or some autoregressive elements are missing). In case of the cLR, the idea is very similar, but now we are talking about complex relations between the residuals, which could arise, again, because of the wrong transformations or because of missing elements (e.g. complex autoregression, discussed in Chapter \@ref(Dynamic)).
 
-To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate complex ACF/PACF (or cACF/cPACF, based on the correlations discussed in Chapter \@ref(correlationAnalysis)), giving an analyst four instruments instead of two [@Yao2010; @Yao2011; @Zhang2022]. Furthermore, using the idea with correlation on MDS (see Section \@ref(correlationMDSPearson)), we can calculate ACF/PACF based on Pearson's correlation between the complex variables reduced to real ones.
+To diagnose this, we can analyse the autocorrelation functions. In the real-valued domain, Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF) are typically used. In the complex-valued domain, these transform to the direct and conjugate complex ACF/PACF (or cACF/cPACF, based on the correlations discussed in Chapter \@ref(correlationAnalysis)), giving an analyst four instruments instead of two [@Yao2010; @Yao2011; @Zhang2022]. Furthermore, using the idea with correlation on MDS (see Section \@ref(correlationMDSPearson)), we can calculate ACF/PACF based on Pearson's correlation between the projections of complex variables.
 
 In general, the idea with direct and conjugate ACF/PACF for complex variables is similar to the one for the conventional ACF/PACF for the real ones. The complex ACF measures the correlations between the variable on observation $t$ and the one with lag $\tau=\{1, \dots, T\}$, where $T$ is the maximum lag we calculate the correlation for. If we calculate the conjugate correlations, we obtain a vector of values $\rho_{1}, \dots, \rho_{T}$ (specific formulae are discussed in Section \@ref(correlationConjugate)). In case of the direct one (see Section \@ref(correlationDirect)), we get a vector $\varrho_{1}, \dots, \varrho_{T}$. In both cases the index $j$ in subscription refers to the specific lag, so, for example, $\rho_{1}$ will measure the conjugate autocorrelation for lag 1, i.e. conjugate correlation between $\underline{y}_{t}$ and $\underline{y}_{t-1}$.
 
-When it comes to PACF, the logic is to estimating recursively regression models of the $\underline{y}_{t}$ from all the previous $\underline{y}_{t-j}$ for $j=\{1, \dots, J\}$ for each $J$ from 1 to $T$ and collecting respective estimates of parameters in front of $\underline{y}_{t-J}$. This way, the coefficients are clear of the interim effects and we get a clear correlation between $\underline{y}_{t}$ and $\underline{y}_{t-J}$. In case of the direct complex PACF, we use the CLS, for the conjugate one we use OLS and for the Pearson's, we do MDS and then calculate the conventional PACF (see Chapter \@ref(correlationAnalysis) for discussion of different correlation coefficients).
+When it comes to PACF, the logic is in estimating recursively regression models of the $\underline{y}_{t}$ from all the previous $\underline{y}_{t-j}$ for $j=\{1, \dots, J\}$ for each $J$ from 1 to $T$ and collecting respective estimates of parameters for $\underline{y}_{t-J}$. This way, the coefficients are clear of the interim effects and we get a clear correlation between $\underline{y}_{t}$ and $\underline{y}_{t-J}$. In case of the direct complex PACF, we use the CLS, for the conjugate one we use OLS and for the Pearson's, we do MDS and then calculate the conventional PACF (see Chapter \@ref(correlationAnalysis) for discussion of different correlation coefficients).
 
-In R, there are functions `cacf()` and `cpacf()` in the `complex` package that implement respective complex ACF/PACF with a parameter `method` specifying, which of the correlations to calculate. To demonstrate how they work, we generate a data from a complex autoregressive model of order one and apply it to the data (note that for diagnostic purposes, the functions below should be applied to the residuals of the model):
+In R, these functions are implemented in `cacf()` and `cpacf()` in the `complex` package. The functions have a parameter `method` specifying, which of the correlations to calculate. To demonstrate how they work, we generate a data from a complex autoregressive model of order one and apply it to the data (note that for diagnostic purposes, the functions below should be applied to the residuals of the model):
 
 ```{r}
 # Generate complex data with an autocorrelation of order 1
@@ -345,7 +345,7 @@ The conjugate ACF (due to its nature) is represented by a set of real values (Fi
 cacf(y, method="conjugate", plot=TRUE, main="")
 ```
 
-The plot in Figure \@ref(fig:complexAR1ACFConj) shows that the autocorrelation for lag one is statistically different from zero on the 5% significance level (the latter is regulated by `level` parameter in the function). The non-rejection region on the plot is costructed based on the Folded t-distribution (which is an approximation of the square root of convolution of two Fisher distributions) and helps testing the null hypothesis that autocorrelation coefficient for each lag equals to zero (with the alternative being not equal). The value of the coefficient itself does not provide any specific information about the autoregressive relation in the data, but merely shows that the correlation between variables is mediocre.
+The plot in Figure \@ref(fig:complexAR1ACFConj) shows that the autocorrelation for lag one is statistically different from zero on the 5% significance level (the latter is regulated by `level` parameter in the function). The non-rejection region on the plot is costructed based on the Folded t-distribution (which is an approximation of the square root of convolution of two Fisher distributions) and helps testing the null hypothesis that autocorrelation coefficient for each lag equals to zero (with the alternative being not equal). The value of the coefficient itself does not provide any specific information about the autoregressive relation in the data, but merely shows that the correlation between variables is moderate.
 
 In contrast, the conjugate PACF provides more details and shows the specific values for the real and the imaginary parts of the coefficient in the process (see Figure \@ref(fig:complexAR1PACFConj)):
 
@@ -355,12 +355,12 @@ cpacf(y, method="conjugate", plot=TRUE, main="")
 
 Figure \@ref(fig:complexAR1PACFConj) shows three plots: real vs imaginary complex ACF plot at the top and two separate plots for the real and the imaginary parts of the complex PACF at the bottom. As shown in the plots both the real and the imaginary parts of the complex coefficient are statistically different from zero on the 5% significance level for the first lag and not significant for the rest of the lags. This agrees with the data generated process that we used. Furthermore, the real part of the cPACF is close to the true value of 0.5, while the imaginary one is close to the -0.25, which were used in the data generation.
 
-Similarly, we can analyse the direct complex ACF of a variable, which will generate a plot similar to the ones in Figure \@ref(fig:complexAR1PACFConj) (see Figure \@ref(fig:complexAR1PACFDir)):
+Similarly, we can analyse the direct complex ACF of a variable, which will generate a plot similar to the ones in Figure \@ref(fig:complexAR1PACFConj) (see Figure \@ref(fig:complexAR1ACFDir)):
 ```{r complexAR1ACFDir, fig.cap="Direct complex autocorrelation function"}
 cacf(y, method="direct", plot=TRUE, main="")
 ```
 
-While the dynamics of direct cACF is similar to the one of the conjugate cPACF, they show different things: the latter is clear of the interim relations between variables, while the former shows the specific correlations between the actual value and each of its lags. Similarly to how we did that before, we can also produce the direct cPACF (Figure \@ref(fig:complexAR1PACFDir)):
+While the dynamics of direct cACF is similar to the one of the conjugate cPACF, it shows different things: the latter is clear of the interim relations between variables, while the former shows the specific correlations between the actual value and each of its lags. Similarly to how we did that before, we can also produce the direct cPACF (Figure \@ref(fig:complexAR1PACFDir)):
 ```{r complexAR1PACFDir, fig.cap="Direct complex partial autocorrelation function"}
 cpacf(y, method="direct", plot=TRUE, main="")
 ```
@@ -376,7 +376,7 @@ cpacf(y, method="pearson", plot=TRUE)
 
 Similarly to the conjugate cACF, the plots in Figure \@ref(fig:complexAR1Pearson) show that there is a significant spike for the lag one, implying that the variable is autocorrelated. However, they do not give any specific information about the value of the parameter (like conjugate and direct pACF do).
 
-Furthermore, there is another presentation for complex ACF/PACF - in the polar coordinates one. In that case instead of plotting separate real and imaginary parts of the function, we produce the magnitude (absolute value) and the angle (argument) of the complex variables. In that presentation, the higher the magnitude is, the higher overall the value of a complex variable is. Figure \@ref(fig:complexAR1Ploar) demonstrates how this looks for the conjugate cPACF:
+Furthermore, there is another presentation for complex ACF/PACF - in the polar coordinates one. In that case instead of plotting separate real and imaginary parts of the function, we produce the magnitude (absolute value) and the angle (argument) of the complex correlation coefficients. In that presentation, the higher the magnitude is, the higher overall the value of a complex correlation is. Figure \@ref(fig:complexAR1Ploar) demonstrates how this looks for the conjugate cPACF:
 
 ```{r complexAR1Ploar, fig.cap="Complex ACF in polar coordinates."}
 cpacf(y, method="conjugate", plot=FALSE) |>
@@ -385,24 +385,23 @@ cpacf(y, method="conjugate", plot=FALSE) |>
 
 The distribution of the absolute value of a bivariate normal complex variable follows Hoyt's distribution, which can be used for the confidence interval construction for the plot above. However, the derivations become complicated and we do not provide them here (we might provide them in the future editions of this monograph).
 
-Finally, one can analyse the ACF/PACF of the separate real and imaginary parts of the residuals, thus ignoring the potential dynamics between them. The analysis in this case becomes trivial and has been discussed in many textbooks and monographs [for example, see @SvetunkovAdam]. In R, if a model is estimated using the `clm()` function from the `complex` package, the `plot()` method supports producing ACF/PACF for each separate variable. For example, for the same model from the Subsection \@ref(assumptionsSpecificationTransformation), we have (see Figure \@ref(fig:complexAR1Ploar)):
+Finally, one can analyse the ACF/PACF of the separate real and imaginary parts of the residuals, thus ignoring the potential dynamics between the parts of complex variables. The analysis in this case becomes trivial and has been discussed in many textbooks and monographs [for example, see Section 14.5 of @SvetunkovAdam]. In R, if a model is estimated using the `clm()` function from the `complex` package, the `plot()` method supports producing ACF/PACF for parts of the complex variable. For example, for the same model from the Subsection \@ref(assumptionsSpecificationTransformation), we have (see Figure \@ref(fig:complexAR1Ploar)):
 
 ```{r complexARDiagnosticsACFPACF, fig.cap="ACF/PACF for the real (Series 1) and imaginary (Series 2) parts of the complex residuals."}
 par(mfcol=c(2,2))
 plot(complexModel,which=c(10,11))
 ```
 
-The residuals of this model show that there are no important lags on the 5% significance level. The fact that there are some correlations with values lying outside of the non-rejection region can be explained by random chance. We should take such cases with a pinch of salt not to overcomplicate a model.
+The residuals of this model show that there are no important lags on the 5% significance level. The fact that there are some correlation coefficients with values lying outside of the non-rejection region can be explained by random chance. We should take such cases with a pinch of salt not to overcomplicate a model.
 
-In addition, we can do more thorough diagnostics based on the complex ACF/PACF (as discussed above) for any complex-valued model. In that case we need to extract residuals and then apply `cacf()` or `cpacf()` functions. For example, using this code:
+Moving back to the cLR, we can do a thorough diagnostics based on the complex ACF/PACF (as discussed above) for any complex-valued model. In that case we need to extract residuals and then apply `cacf()` or `cpacf()` functions. For example, using code like this:
 
 ```{r eval=FALSE}
 residuals(complexModel) |>
     cacf(method="direct")
 ```
 
-After doing the diagnostics of the residuals of a cLR, we can change its form by introducing complex AR (autoregression) or MA (moving average) elements, depending on what lags seem significant on the selected level. The complex AR/MA models are outside of the scope of this monograph and are not discussed in detail here. It suffices to say that in order to construct the complex AR, one needs to generate lagged response variable and add it to the matrix with the explanatory variables. The estimation of such model should be trivial.
-<!-- The complex AR/MA model is discussed in Chapter \@ref(ComplexAR). -->
+After doing the diagnostics of the residuals of a cLR, we can change its form by introducing complex AR (autoregression) or MA (moving average) elements, depending on what lags seem significant on the selected level. The complex AR/MA models are discussed in detail in Chapter \@ref(Dynamic).
 
 
 ### Expectation of residuals is zero
@@ -416,9 +415,9 @@ meaning that the expectation of complex residual conditional on the values of ex
 
 
 ### Residuals follow an assumed distribution
-In the classical real-valued regression, this assumption is not considered to be crucial, and if a model is estimated using OLS, it typically comes to the "residuals follow the Normal distribution". In context of complex variables, the equivalent assumption would be that the complex residuals follow the Complex Normal distribution discussed in Subsection \@ref(distributionCNorm). If the model is formulated using matrix notations \@ref(eq:CLRSystemVectorFinal), the assumption transforms to "Multivariate Normal" one, discussed in Section \@ref(MVNorm). In statistics, this assumption is typically considered as not critical in comparison with the others. This is because it can be shown that in case of OLS/CLS even when it does not hold, but all the others do, the estimates of parameters should be unbiased, efficient and consistent. However, this assumption becomes essential when prediction interval needs to be generated from the model. In that case we want to capture the uncertainty about the data correctly, and if the residuals do not follow the Normal distribution, the prediction interval will be miscalibrated.
+In the classical real-valued regression, this assumption is not considered to be crucial, and if a model is estimated using OLS, it typically comes to the "residuals follow the Normal distribution" mantra. In context of complex variables, the equivalent assumption would be that the complex residuals follow the Complex Normal distribution discussed in Subsection \@ref(distributionCNorm). If the model is formulated using matrix notations \@ref(eq:CLRSystemVectorFinal), the assumption transforms to "Multivariate Normal" one, discussed in Section \@ref(MVNorm). In statistics, this assumption is typically considered as not critical in comparison with the others. This is because it can be shown that in case of OLS/CLS even when the assumption does not hold, but all the others do, the estimates of parameters will still be unbiased, efficient and consistent. However, this assumption becomes essential when prediction interval needs to be generated from the model. In that case we want to capture the uncertainty about the data correctly, and if the residuals do not follow the Normal distribution, the prediction interval will be miscalibrated.
 
-One of the simplest ways of checking the assumption is by producing QQ-plots for each part of the complex residuals. This approach ignores the multivariate nature of the residuals (e.g. then can be correlated), but given that each part of the c.r.v. following Complex Normal distribution is Normal as well, this should suffice for diagnostic purposes.
+One of the simplest ways of checking the assumption is by producing QQ-plots for each part of the complex residuals. This approach ignores the multivariate nature of the residuals (e.g. ignores covariance), but given that each part of the c.r.v. following Complex Normal distribution is Normal as well, this should suffice for diagnostic purposes.
 
 In R, this can be done using the following command (for the model discussed in Subsection \@ref(assumptionsSpecificationTransformation), see Figure \@ref(fig:complexNormDiagnostics)):
 
@@ -427,43 +426,42 @@ par(mfcol=c(1,2))
 plot(complexModelLogs,which=6)
 ```
 
-Similarly to the conventional diagnostics related to distributional assumptions, the QQ-plots in Figure \@ref(fig:complexNormDiagnostics) can be interpreted as follows. If all the points (empirical quantiles) lie on or close to the lines (theoretical quantiles) then the empirical distribuion looks similar to the theoretical one. In the example in Figure \@ref(fig:complexNormDiagnostics), we see that the points are indeed close to the lines for both real (called "Series 1") and imaginary (called "Series 2" in the plot) parts of the residuals. There is a slight deviation in the right tail of the imaginary part, but it is not substantial. Based on this diagnostics we can conclude that the residuals look Normal or at least very close to it.
+Similarly to the conventional diagnostics related to distributional assumptions, the QQ-plots in Figure \@ref(fig:complexNormDiagnostics) can be interpreted as follows. If all the points (empirical quantiles) lie on or are close to the lines (theoretical quantiles) then the empirical distribution looks similar to the theoretical one. In the example in Figure \@ref(fig:complexNormDiagnostics), we see that the points are indeed close to the lines for both real (called "Series 1") and imaginary (called "Series 2") parts of the residuals. There is a slight deviation in the right tail of the imaginary part, but it is not substantial. Based on this diagnostics we can conclude that the residuals look Normal or at least very close to it.
 
 
 ### Residuals follow a circular distribution
-Finally, in signal processing literature, there is an assumption that residuals follow so called "circular distribution". This means that the covariance between the residuals equals to zero and that the variance of the real part is equal to the variance of the imaginary one. This also implies that the direct variance of residuals is equal to zero. While this might be a suitable assumption in signal processing, there is no good rationale for this to hold universally for all cLR models. In fact, the power of the cLR comes from different variances and potentially non-zero covariance between the residuals, because in that case the model can capture a complex dynamics between the parts of the complex variable. So, we suggest ignoring this assumption, especially given that it does not effect estimates of parameters of the forecasts from the model.
+Finally, in signal processing literature, there is an assumption that residuals follow so called "circular distribution". This means that the covariance between the residuals equals to zero and that the variance of the real part is equal to the variance of the imaginary one. This also implies that the direct variance of residuals is equal to zero. While this might be a suitable assumption in signal processing, there is no good rationale for this to hold universally for all cLR models. In fact, the main advantages of the cLR come from different variances and potentially non-zero covariance between the real and imaginary parts of the residuals, because in that case the model can capture a complex dynamics between the parts of the complex variable. So, we suggest ignoring this assumption, especially given that it does not effect estimates of parameters of the forecasts from the model.
 
-However, it is important to note that the used estimation methods might imply some parts of this assumption. For example, OLS minimises the sum of squared residuals of the real and imaginary parts, completely neglecting the covariance between them (see Subsection \@ref(SCLREstimationOLS)). At the same time, the CLS (Subsection \@ref(SCLREstimationCLS)) ignores the specific sizes of the squared residuals and focuses on making their squares equal, minimising at the same time the covariance between them. If we believe that the residuals might have a more complicated distribution (elliptic Normal) then MLE (Subsection \@ref(SCLREstimationLikelihood)) might be the best option for the model estimation.
-
+However, it is important to note that the used estimation methods might imply that some parts of this assumption hold. For example, OLS minimises the sum of squared residuals of the real and imaginary parts, completely neglecting the covariance between them (see Subsection \@ref(SCLREstimationOLS)). At the same time, the CLS (Subsection \@ref(SCLREstimationCLS)) ignores the specific sizes of the squared residuals and focuses on making their squares equal, minimising at the same time the covariance between them, which aligns better with this assumption. If we believe that the residuals might have a more complicated distribution (elliptic Normal) then MLE (Subsection \@ref(SCLREstimationLikelihood)) might be the best option for the model estimation.
 
 
 ## Explanatory variables are not correlated with anything but the response variable
 The two assumptions in this group relate to the estimation of model rather than anything else:
 
-1. No endogeneity
-2. No multicollinearity
+1. No endogeneity;
+2. No multicollinearity.
 
-The first assumption comes to the idea that a linear regression model can only capture a one-directional relation, where an explanatory variable impacts the response variable. If the relation in the real life is bi-directional then the estimates of parameters of a regression model will be biased. In that case, the relation needs to be somehow made one-directional, for example by substituting the explanatory variable that causes a problem with something similar that is not impacted by the response variable. In case of the complex linear regression, the situation would be similar to the conventional one. We do not plan to discuss how to solve the problem in case of cLR in this monograph. But we believe that the methods from econometrics of real-valued models should be widely applicable here as well (e.g. using proxies or instrumental variables).
+The first assumption comes to the idea that a linear regression model can only capture a one-directional relation, where an explanatory variable impacts the response variable. If the relation in the real life is bi-directional then the estimates of parameters of a regression model will be biased. In that case, the relation needs to be somehow made one-directional, for example by substituting the explanatory variable that causes a problem with something similar that is not impacted by the response variable. In case of the complex linear regression, the situation would be similar to the one in the real-valued models. We do not discuss how to solve such problem in case of cLR in this monograph, but we argue that the methods from econometrics of real-valued models should be widely applicable here as well (e.g. using proxies or instrumental variables).
 
-As for the multicollinearity issue, in the real-valued statistics, it arises when least squares or maximum likelihood is used for estimation. It is, in a way, a technical issue: if the explanatory variables are linearly related it becomes difficult to split the impact of each of the explanatory variables on the response variable and thus challenging to correctly capture the relations between the explanatory variables and the response one.
+As for the multicollinearity issue, in the real-valued statistics, it arises when least squares or maximum likelihood is used for estimation. It is, in a way, a technical issue: if the explanatory variables are linearly related it becomes difficult to split the impact of each of them on the response variable and thus challenging to correctly capture the relations between them and the response variable.
 
-In case of an OLS applied to a conventional real-valued regression model, the issue comes to inverting the matrix $\left( {\mathbf{X}}^\prime {\mathbf{X}} \right)^{-1}$. If some of variables in $\mathbf{X}$ are strongly linearly related, the determinant of the matrix becomes close to zero and thus the inversion becomes challenging. Even if it is still possible to invert the matrix, the estimates of parameters become inefficient because small changes in the related explanatory variables may lead to substantial changes in the inversion.
+In case of the OLS applied to a conventional real-valued regression model, the issue comes to inverting the matrix $\left( {\mathbf{X}}^\prime {\mathbf{X}} \right)^{-1}$. If some of variables in $\mathbf{X}$ are strongly linearly related, the determinant of the matrix becomes close to zero and thus the inversion becomes challenging. Even if it is still possible to invert the matrix, the estimates of parameters become inefficient because small changes in the correlated explanatory variables may lead to substantial changes in the inverted matrix.
 
-In case of cLR, the situation is similar, but with some specific features. First, it comes to the estimation methods, with the following options (as discussed in Section \@ref(mlcrEstimation)):
+In case of cLR, the situation is similar, but with some specific features. First, it comes to the estimation methods used, with the following options (as discussed in Section \@ref(mlcrEstimation)):
 
 - OLS: $\underline{\boldsymbol{b}}^{OLS} = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \underline{\mathbf{y}}$;
 - CLS: $\underline{\boldsymbol{b}}^{CLS} = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1} \underline{\mathbf{X}}^\top \underline{\mathbf{y}}$;
 - Likelihood: no analytical solution, comes to the minimisation of the Generalised Variance $|\hat{\boldsymbol{\Sigma}}_\epsilon|$.
 
-If the OLS is used for parameters estimation then a potential issue might arise from the inversion of $\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1}$. In one of the special cases, this comes to the conjugate covariance between variables. If it is too high in comparison to the conjugate variances, then we would face the multicollinearity issue, which would make the estimates of parameters inefficient. More generally speaking, if a complex linear regression between an explanatory variable and other explanatory variables estimated using OLS captures the relations between variables well (i.e. having a high coefficient of determination), then we might be facing a multicollinearity problem.
+If the OLS is used for parameter estimation then a potential issue might arise from the inversion of $\left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}}\right)^{-1}$. In one of the special cases, this comes to the conjugate covariance between variables. If it is too high in comparison to the conjugate variances, then we would face the multicollinearity issue, which would make the estimates of parameters inefficient. More generally speaking, if a complex linear regression between an explanatory variable and other explanatory variables estimated using OLS captures the relations between variables well (i.e. having a high coefficient of determination), then we might be facing a multicollinearity problem.
 
 Similar problems might appear in case of CLS, but they come to a slightly different inversion, $\left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}}\right)^{-1}$ and thus relates to direct covariances rather than the conjugate ones.
 
 And when it comes to the likelihood, due to the model formulation, the conventional real-valued relations between explanatory variables should be considered when multicollinearity is suspected.
 
-All of this means that a choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using OLS/CLS).
+All of this means that the choice of an estimator can be dictated by the strength of the conventional Pearson's, direct and/or conjugate correlations (and more widely conventional linear model and/or complex linear model for explanatory variables estimated using likelihood/OLS/CLS).
 
-In addition to the estimation issues, there might be some related to the calculation of the covariance matrix of parameters (discussed in Section \@ref(MCLRInference)), where we need both direct and conjugate covariance matrices:
+In addition to the estimation issues, there might be some related to the calculation of the covariance matrix of parameters (discussed in Section \@ref(MCLRInference)), where we need both direct and conjugate covariance matrices (formulae provided as a reminder):
 
 - OLS:
     - Conjugate covariance matrix: $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{OLS}} \right) = \left( \underline{\mathbf{X}}^\prime \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\prime \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\top \tilde{\underline{\mathbf{X}}} \right)^{-1 \prime}  \sigma_{\underline{\epsilon}}^2$
@@ -471,11 +469,11 @@ In addition to the estimation issues, there might be some related to the calcula
 - CLS:
     - Conjugate covariance matrix: $\mathrm{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \underline{\mathbf{X}}^\top \tilde{\underline{\mathbf{X}}} \left( {\underline{\mathbf{X}}}^\prime \tilde{\underline{\mathbf{X}}} \right)^{-1 \top}  \sigma_{\underline{\epsilon}}^2$
     - Direct covariance matrix:  $\mathcal{V}\left( \underline{\boldsymbol{b}}^{\text{CLS}} \right) = \left( \underline{\mathbf{X}}^\top \underline{\mathbf{X}} \right)^{-1} \varsigma_{\underline{\epsilon}}^2$;
-- Likelihood: no closed form, comes to calculating Hessian, which involves the inversion of a matrix based on the matrix of explanatory variables.
+- Likelihood: no closed form, comes to calculating Hessian, which involves the inversion of a matrix of second derivatives, relying on the matrix of explanatory variables.
 
 In this case, the linear relation between explanatory variables (in one form or the other) will impact the elements of the final covariance matrix inflating them and thus leading to the higher uncertainty of the estimates of parameters. Given that we need both direct and conjugate covariance matrices for the calculation of the standard errors of the individual parameters, the choice of estimation method would not resolve the multicollinearity issue. We can expect that the standard errors of parameters will be higher than in the situation without the multicollinearity, no matter what estimation method we use.
 
-Note that the standard issues that arise in conventional regression analysis due to linear relation between variables, might not apply to the cLR. For example, if a real part of one variable is strongly correlated with either a real or an imaginary part of the other one, the model might still be estimable and would not suffer from multicollinearity. The effect of multicollinearity in cLR is much more pronounced, when the complex variables are linearly related, rather than their separate parts.
+Note that the standard issues that arise in conventional regression analysis due to linear relation between variables, might not apply to the cLR. For example, if a real part of one variable is strongly correlated with either a real or an imaginary part of the other one, the model might still be estimable and would not suffer from multicollinearity. The effect of multicollinearity in cLR is much more pronounced, when the complex variables, rather than their separate parts, are linearly related.
 
 The diagnostics of the multicollinearity in cLR can be done by calculating the correlation matrix between the explanatory variables to see whether there is a strongly related couple of them. Given the nature of the model, this means that we might need to estimate and analyse the direct and conjugate correlation matrices together with the conventional one after transforming the complex variables to the vector of real ones.
 
@@ -491,7 +489,7 @@ for several scenarios:
 2. $\mathcal{R}\left(\underline{x}_{1}\right)$ is strongly correlated with $\mathcal{R}\left(\underline{x}_{2}\right)$;
 3. $\mathcal{R}\left(\underline{x}_{1}\right)$ is strongly correlated with $\mathcal{I}\left(\underline{x}_{2}\right)$.
 
-These three cases should cover the main possible issues in the model, and we will see what different estimators give in terms of parameters and their standard errors. We do not conduct a proper simulation experiment, but instead focus on a demonstration for one data series.
+These three cases should cover the main possible multicollinearity issues in the model, and we will see what different estimators give in terms of parameter estimates and their standard errors. We do not conduct a proper simulation experiment, but instead focus on a demonstration for one data series.
 
 The R code below creates three datasets for the three respective scenarios (the coefficients have been selected arbitrarily):
 
@@ -566,7 +564,12 @@ Finally, we calculate the covariance matrix of parameters between individual var
 covar(data1) |> cov2cor() |> round(3)
 ```
 
-If shows that there is a strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{R}\left(\underline{x}_{2}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$, while the correlation between the imaginary part of $\underline{x}_{1}$ with the other variables is not as strong.
+If shows that there is a strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{R}\left(\underline{x}_{2}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$, while the correlation between the imaginary part of $\underline{x}_{1}$ with the other variables is not as strong. As we see, on the individual level, the strength of correlation is diminished in comparison with the complex representation. However, there is an almost functional linear relation of $\mathcal{R}\left(\underline{x}_{1}\right)$ from the combination of $\mathcal{R}\left(\underline{x}_{2}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$, which still causes the issue. This can be seen if we analyse determination coefficients of linear regression of explanatory variables (`determination()` function from the `greybox` package in R):
+
+```{r}
+complex2vec(data1[,-1,drop=FALSE]) |>
+    determination() |> round(3)
+```
 
 All of the outputs above tell us that if we want to fit the cLR, we will face difficulties due to the strong multicollinearity caused by the strong correlation between the explanatory variables. We estimate the model using the three different methods and produce their summary outputs. We start with OLS:
 
@@ -575,7 +578,7 @@ clm(y~., data1, loss="OLS") |>
     summary()
 ```
 
-The output above shows that the estimates of parameters are wrong: the complex parameter for the first variable should be $2.5 + 1.5i$, while for the second one should be $1.5 - 0.75i$. Furthermore, the standard errors of parameters are high, leading to the high uncertainty about the parameters, so that we cannot be sure whether the true effect is positive or negative for the estimated model.
+The output above shows that the estimates of parameters are wrong: the complex parameter for the first variable should be $2.5 + 1.5i$, while for the second one should be $1.5 - 0.75i$. Furthermore, the standard errors of parameters are high, leading to the high uncertainty about the parameters, so that we cannot be sure whether the true effect in the estimated model is positive or negative.
 
 The CLS gives a very similar picture:
 
@@ -584,7 +587,7 @@ clm(y~., data1, loss="CLS") |>
     summary()
 ```
 
-However, we should note that the standard errors of parameters are in some cases higher than in the OLS, but not everywhere. For example, the parameter for $\mathcal{I}\left(\underline{x}_{1}\right)$ estimated using CLS has a lower standard error than in the case of OLS. Nonetheless, the estimates of parameters are clearly biased and not efficient.
+We should note that in case of CLS, the standard errors of parameters are in some cases higher than in the OLS, but not everywhere. For example, the parameter for $\mathcal{I}\left(\underline{x}_{1}\right)$ estimated using CLS has a lower standard error than in the case of OLS. Nonetheless, the estimates of parameters are clearly biased and not efficient.
 
 Finally, we estimate the model using likelihood:
 
@@ -597,9 +600,9 @@ Because we generated the data with the uncorrelated errors, the output of the li
 
 All of the above happened because of the strong multicollinearity in the data: the complex variables $\underline{x}_{1}$ and $\underline{x}_{2}$ were strongly correlated by design, which caused the aforementioned issues.
 
-The Scenario 1 demonstrates the behaviour of estimators as expected: we would not expect to estimate the models successfully, when the complex variables are so strongly correlated.
+The Scenario 1 demonstrates the behaviour of estimators as expected: we would not expect to estimate the model successfully, when the complex variables are so strongly correlated.
 
-As a side note, in this scenario, we would not be able to get efficient and unbiased estimates of parameters for the individual real-valued models for $\mathcal{R}\left(\underline{y}\right)$ and $\mathcal{I}\left(\underline{y}\right)$ with this data, because the covariance matrix with individual variables demonstrated a high correlation between $\mathcal{R}\left(\underline{x}_1\right)$ and $\mathcal{I}\left(\underline{x}_2\right)$.
+As a side note, in this scenario, we would not be able to get efficient and unbiased estimates of parameters for the individual real-valued models for $\mathcal{R}\left(\underline{y}\right)$ and $\mathcal{I}\left(\underline{y}\right)$ with this data either, because, as we have seen above, the parts of complex variables have linear relation with each other.
 
 
 #### Scenario 2 {-}
@@ -646,15 +649,26 @@ The estimates of parameters in CLS are similar to the OLS, but there are several
 2. The standard errors for the imaginary parts of parameters in CLS are lower than the respective ones in OLS;
 3. The imaginary parts of the parameters are closer to the true ones for the CLS, while the real ones are closer to the true ones in OLS.
 
-But overall, both methods produce biased, potentially not too efficient, but reasonable estimates of parameters. This was not the case for the Scenario 1.
+But overall, both methods produce slightly biased, potentially not too efficient, but reasonable estimates of parameters. This was not the case for the Scenario 1.
 
 We skip the likelihood estimation, because for our DGP, it would produce estimates similar to the ones from OLS due to the zero correlation between the real and imaginary parts of the error term.
 
-Finally, we should note that the conventional real-valued regression would not be estimable in this situation due to the high correlation between some parts of the variables. This demonstrates the difference between the cLR and the LR.
+Finally, we should note that the conventional real-valued regression would produce biased estimates of parameters in this situation due to the high correlation between some parts of the variables. Here how it would look for the real part of the complex response variable:
+
+```{r}
+# Transform the data into real-valued one
+data2Real <- complex2vec(data2)
+# Use alm() from the greybox for the estimation
+alm(y_r~.-y_i, data2Real) |>
+    summary()
+
+```
+
+As we see from the output above, the estimates of parameters are far from the true ones and have very high standard errors. All of this is expected because, by design, the real part of $\underline{x}_1$ is strongly correlated with the real part of $\underline{x}_2$. This simple example demonstrates the difference between the cLR and the real-valued linear regression.
 
 
 #### Scenario 3 {-}
-As a reminder, in the Scenario 3 the real part of $\underline{x}_{1}$ is strongly correlated with the imaginary one of $\underline{x}_{2}$. We skip the correlation coefficients because arguably they will provide the information similar to the one from Scenario 2, showing the strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$ as intended.
+As a reminder, in the Scenario 3 the real part of $\underline{x}_{1}$ is strongly correlated with the imaginary one of $\underline{x}_{2}$. We skip the correlation coefficients because they provide the information similar to the one from Scenario 2, showing the strong correlation between $\mathcal{R}\left(\underline{x}_{1}\right)$ and $\mathcal{I}\left(\underline{x}_{2}\right)$ as intended.
 
 The OLS estimate of the model gives:
 
@@ -670,11 +684,11 @@ clm(y~., data3, loss="CLS") |>
     summary()
 ```
 
-And again, we see similar picture to the Scenario 2: the real parts of parameters have lower standard errors in the model estimate using OLS than in the model estimated with CLS, while the imaginary parts have them the other way around. And similarly to the Scenario 2, we would expect the conventional real-valued regression to fail due to high correlation between some parts of variables.
+And again, we see similar picture to the Scenario 2: the real parts of parameters have lower standard errors in the model estimated using OLS than in the model estimated with CLS, while the imaginary parts have them the other way around. And similarly to the Scenario 2, we would expect the conventional real-valued regression to fail due to multicollinearity.
 
-While these three scenarios were supposed to show how different types of correlations impact the estimates of parameters, they are here for demonstration purposes only. They show that multicollinearity in the cLR is a different beast than the one in the conventional real-valued model. In real life, we would not have variables that have close to functional relation (with correlation close to one), instead they might have strong relation and depending on the specific situation, different estimators will give different result.
+While these three scenarios showed how different types of correlations impact the estimates of parameters, they are here for demonstration purposes only. They show that multicollinearity in the cLR has its specificity in comparison with the conventional one in the real-valued models. In real life, we do not always have variables that have close to functional relation (with correlation close to one), instead they might have strong relation and, as shown above, depending on the specific situation, different estimators will give different result.
 
-In general, getting rid of the multicollinearity is not a trivial task on its own. It can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard, they lie outside of the scope of this monograph, and we do not discuss them here.
+In general, solving the multicollinearity issue is not a trivial task on its own. It can be done either by dropping some of the most correlated variables, or by applying some techniques for dimensionality reduction (such as Principle Components Analysis). These methods are standard, they lie outside of the scope of this monograph, and we do not discuss them here.
 
 
 <!-- ## Goodness of fit -->
