@@ -94,7 +94,7 @@ Using the magnitude and the polar angle, we can also represent any complex numbe
     \underline{z} = r e^{i \phi} ,
     (\#eq:complexNumberExponential)
 \end{equation}
-where $e$ is the Euler's constant. Equation \@ref(eq:complexNumberExponential) is nowadays also called "Euler's formula". Comparing \@ref{eq:complexNumberTrigonometric} with \@ref{eq:complexNumberExponential}, we can conclude that:
+where $e$ is the Euler's constant. Equation \@ref(eq:complexNumberExponential) is nowadays also called "Euler's formula". Comparing \@ref(eq:complexNumberTrigonometric) with \@ref(eq:complexNumberExponential), we can conclude that:
 \begin{equation}
     e^{i \phi} = \cos \phi + i \sin \phi ,
     (\#eq:EulerFormula)
@@ -281,7 +281,19 @@ or like a matrix [@Halliwell2015 provides some examples based on these presentat
     \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
     (\#eq:complexNumberMatrix)
 \end{equation}
-where the symbol $\sim$ below the letter denotes a matrix presentation of a complex number to distinguish matrix form from the vector one. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
+where the symbol $\sim$ below the letter denotes a matrix presentation of a complex number to distinguish matrix form from the vector one. The matrix notation might be not as straightforward as the vector one, so to better understand it, consider multiplication of two complex numbers: $\underline{a}=2+3i$ and $\underline{b}=1+4i$. In the arithmetic form, we will have:
+\begin{equation*}
+    \underline{a} \times \underline{b} = (2+3i) \times (1+4i) = 2-12 + (8+3)i = -10 + 11i .
+\end{equation*}
+In the matrix notations, we get:
+\begin{equation*}
+    \underline{a} \times \underline{b} = \begin{pmatrix} 2 & -3 \\ 3 & 2 \end{pmatrix} \times \begin{pmatrix} 1 & -4 \\ 4 & 1 \end{pmatrix} = \begin{pmatrix} 2 - 12 & -8 -3 \\ 3 + 8 & -12 + 2 \end{pmatrix} = \begin{pmatrix} -10 & -11 \\ 11 & -10 \end{pmatrix} .
+\end{equation*}
+As we see, the operation in the matrix notation gives the same result as in the arithmetic one. Furthermore, we will get the same result if we multiply a complex number in the matrix form by another one in the vector form:
+\begin{equation*}
+    \underline{a} \times \underline{b} = \begin{pmatrix} 2 & -3 \\ 3 & 2 \end{pmatrix} \times \begin{pmatrix} 1 \\ 4 \end{pmatrix} = \begin{pmatrix} 2 - 12 \\ 3 + 8 \end{pmatrix} = \begin{pmatrix} -10 \\ 11 \end{pmatrix} .
+\end{equation*}
+In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
 \begin{equation*}
     \begin{aligned}
         & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
@@ -911,7 +923,7 @@ However, it might be hard to find examples like the one with the wind above in e
 1. They reflect two sides of a process/phenomenon;
 2. They have the same scale.
 
-The second condition implies that some sort of scaling is required if the variables have different scales. If this condition is not satisfied then the operations with complex variables might lead to meaningless results. For example, if we consider a variable of sales quantity and product price, $q + ip$ and multiply it by a complex parameter $a_r + i a_i$, we get a complex variable that has a strange combination in it:
+The second condition implies that some sort of scaling is required if the variables have different scales. If this condition is not satisfied then the operations with complex variables might lead to meaningless results. For example, if we consider a variable of sales quantity and product price, $q + ip$, then its magnitude $R=\sqrt{p^2 + q^2}$ does not have any meaning, because it is based on the addition of currency squared to the squared number of units. Furthermore, if we multiply this complex variable by a complex parameter $a_r + i a_i$, we get a complex variable that has a strange combination in it:
 \begin{equation}
     \underline{z} = (q + ip) (a_r + i a_i) = q a_r - p a_i + i(q a_i + p a_r).
     (\#eq:noScalingExample)
@@ -927,5 +939,31 @@ c. Any other form of scaling, where the division is done by the value of the var
 If we deal with time series data, an additional operation might be important - taking differences to make the data stationary (this is discussed in Section \@ref(DynamicARIMA)). If we do not do that, the new values of the variable might lie outside of the range defined by the scaling.
 
 Incidentally, the example with the wind power above abides to these two conditions, because the variable itself is represented in the exponential form, thus the condition will be satisfied automatically when we use formula \@ref(eq:complexNumberTrigonometric) to move to the arithmetic one. This variable does not require any additional transformations and can be treated as is.
+
+One of examples of application of complex variables in economics is the production functions of complex variables [Chapter 6 of @Svetunkov2012]. In economics, a variety of indicators is used for analysis. Many of them are related to estimating efficiency. Profitability is one of such indicators, and one of ways of defining it is as the ratio of gross profit to gross expenses:
+\begin{equation*}
+    \phi_1 = \frac{G}{C} .
+\end{equation*}
+This relation can be also considered as a cotangent of a polar angle of the following complex variable:
+\begin{equation}
+    G + iC .
+    (\#eq:CVPFresponse)
+\end{equation}
+This complex variable characterises the output of a system, because the sum of its real and imaginary parts is the quantity of the product produced measured in price units (i.e. Income):
+\begin{equation*}
+    Q = G + C .
+\end{equation*}
+
+Another well known economic indicator is the capital-labour ratio, which represents the ratio of capital employed $K$ to the overall labour $L$ involved in production:
+\begin{equation*}
+    \phi_2 = \frac{K}{L} .
+\end{equation*}
+This is related to another complex variable (in a similar way as the profitability index):
+\begin{equation}
+    K + iL .
+    (\#eq:CVPFexplanatory)
+\end{equation}
+
+If we now estimate a function of the complex variable \@ref(eq:CVPFresponse) from \@ref(eq:CVPFexplanatory), we will model complex interactions between labour, capital, expenses and profit, including the interactions between the capital-labour ration and the profitability. This setting provides an example of motivation of modelling economic process using complex variables.
 
 Finally, based on the discussion in Subsection \@ref(vectorComplexVariables), we can note that the complex-valued models share some structural similarities with vector models, such as Vector Autoregression, when they are applied to two variables. From this angle, the complex-valued models can be considered as special cases of the vector ones, when some restrictions are imposed on the matrix of parameters. This important property gives the complex-valued models their power: they need fewer parameters to estimate in comparison with their vector counterparts and (because of that) are arguably easier to work with. Moreover, this means that some tools developed for VAR can also be used for complex-valued models.
