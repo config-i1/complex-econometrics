@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-04-01}
+\date{2024-04-21}
 
 \begin{document}
 \maketitle
@@ -167,8 +167,6 @@ Since 2012, there has been some developments in the area of modelling using comp
 In a try to speed up the adoption of the new instrument, we have written this monograph, summarising the main principles in statistics and econometrics of complex variables. We hope that the theory explained in this monograph will help statisticians, econometricians and forecasters in using complex-valued models for a wider variety of problems.
 
 Chapter 1 discusses the theory of complex numbers, random complex variables, conventional and complex-valued statistics. Chapter 2 moves to the discussion of the simple complex-valued linear regression and how it can be estimated in sample. We then move to Chapter 3 to discuss correlation analysis of complex variables and then extend the material from Chapter 2 to multiple complex linear regression in Chapter 4. After that, we discuss assumptions of complex-valued models and what issues can their violation cause. We finally move to the dynamic complex-valued models in Chapter 6, showing how complex ARIMA can be estimated and what properties it has. Last but not least, we provide two examples of application of complex-valued models, on two datasets, focusing on dynamic and on the regression complex-valued models in Chapter 7. All of this material is supported by examples in R, which will rely heavily on the package \texttt{complex}, developed specifically to support this monograph. This means that anyone can then use the proposed models for purposes of time series analysis and forecasting.
-
-The authors are grateful to those young scientists of St.~Petersburg Polytechnic University of Peter the Great, who participated in this study, patiently testing the author's hypotheses. They helped forming the theory behind some of the models discussed in this monograph. We are pleased to mention their names: Evgeny Goltsev, Nikolai Pitukhin, Victoria Matskevich, Yulia Selivanova, Galina Siruk and Nazira Shaikhleeva.
 
 This monograph uses the \texttt{complex} package for R. Many of the examples in R will use functions from this package, so make sure to install it from CRAN before running any R code \citep{R-complex}:
 
@@ -286,7 +284,7 @@ Using the magnitude and the polar angle, we can also represent any complex numbe
     \underline{z} = r e^{i \phi} ,
     \label{eq:complexNumberExponential}
 \end{equation}
-where \(e\) is the Euler's constant. Equation \eqref{eq:complexNumberExponential} is nowadays also called ``Euler's formula''. Comparing @ref\{eq:complexNumberTrigonometric\} with @ref\{eq:complexNumberExponential\}, we can conclude that:
+where \(e\) is the Euler's constant. Equation \eqref{eq:complexNumberExponential} is nowadays also called ``Euler's formula''. Comparing \eqref{eq:complexNumberTrigonometric} with \eqref{eq:complexNumberExponential}, we can conclude that:
 \begin{equation}
     e^{i \phi} = \cos \phi + i \sin \phi ,
     \label{eq:EulerFormula}
@@ -409,7 +407,19 @@ or like a matrix \citep[ provides some examples based on these presentations]{Ha
     \underset{\sim}{\boldsymbol{z}} = \begin{pmatrix} x & -y \\ y & x \end{pmatrix} ,
     \label{eq:complexNumberMatrix}
 \end{equation}
-where the symbol \(\sim\) below the letter denotes a matrix presentation of a complex number to distinguish matrix form from the vector one. In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
+where the symbol \(\sim\) below the letter denotes a matrix presentation of a complex number to distinguish matrix form from the vector one. The matrix notation might be not as straightforward as the vector one, so to better understand it, consider multiplication of two complex numbers: \(\underline{a}=2+3i\) and \(\underline{b}=1+4i\). In the arithmetic form, we will have:
+\begin{equation*}
+    \underline{a} \times \underline{b} = (2+3i) \times (1+4i) = 2-12 + (8+3)i = -10 + 11i .
+\end{equation*}
+In the matrix notations, we get:
+\begin{equation*}
+    \underline{a} \times \underline{b} = \begin{pmatrix} 2 & -3 \\ 3 & 2 \end{pmatrix} \times \begin{pmatrix} 1 & -4 \\ 4 & 1 \end{pmatrix} = \begin{pmatrix} 2 - 12 & -8 -3 \\ 3 + 8 & -12 + 2 \end{pmatrix} = \begin{pmatrix} -10 & -11 \\ 11 & -10 \end{pmatrix} .
+\end{equation*}
+As we see, the operation in the matrix notation gives the same result as in the arithmetic one. Furthermore, we will get the same result if we multiply a complex number in the matrix form by another one in the vector form:
+\begin{equation*}
+    \underline{a} \times \underline{b} = \begin{pmatrix} 2 & -3 \\ 3 & 2 \end{pmatrix} \times \begin{pmatrix} 1 \\ 4 \end{pmatrix} = \begin{pmatrix} 2 - 12 \\ 3 + 8 \end{pmatrix} = \begin{pmatrix} -10 \\ 11 \end{pmatrix} .
+\end{equation*}
+In the matrix notation, any real number can be represented as a diagonal matrix, while any imaginary one is a matrix with zero diagonal:
 \begin{equation*}
     \begin{aligned}
         & \begin{pmatrix} x & 0 \\ 0 & x \end{pmatrix} \\
@@ -1070,7 +1080,7 @@ However, it might be hard to find examples like the one with the wind above in e
   They have the same scale.
 \end{enumerate}
 
-The second condition implies that some sort of scaling is required if the variables have different scales. If this condition is not satisfied then the operations with complex variables might lead to meaningless results. For example, if we consider a variable of sales quantity and product price, \(q + ip\) and multiply it by a complex parameter \(a_r + i a_i\), we get a complex variable that has a strange combination in it:
+The second condition implies that some sort of scaling is required if the variables have different scales. If this condition is not satisfied then the operations with complex variables might lead to meaningless results. For example, if we consider a variable of sales quantity and product price, \(q + ip\), then its magnitude \(R=\sqrt{p^2 + q^2}\) does not have any meaning, because it is based on the addition of currency squared to the squared number of units. Furthermore, if we multiply this complex variable by a complex parameter \(a_r + i a_i\), we get a complex variable that has a strange combination in it:
 \begin{equation}
     \underline{z} = (q + ip) (a_r + i a_i) = q a_r - p a_i + i(q a_i + p a_r).
     \label{eq:noScalingExample}
@@ -1093,6 +1103,32 @@ The scaling itself can be done using one of the conventional ways:
 If we deal with time series data, an additional operation might be important - taking differences to make the data stationary (this is discussed in Section \ref{DynamicARIMA}). If we do not do that, the new values of the variable might lie outside of the range defined by the scaling.
 
 Incidentally, the example with the wind power above abides to these two conditions, because the variable itself is represented in the exponential form, thus the condition will be satisfied automatically when we use formula \eqref{eq:complexNumberTrigonometric} to move to the arithmetic one. This variable does not require any additional transformations and can be treated as is.
+
+One of examples of application of complex variables in economics is the production functions of complex variables \citep[Chapter 6 of][]{Svetunkov2012}. In economics, a variety of indicators is used for analysis. Many of them are related to estimating efficiency. Profitability is one of such indicators, and one of ways of defining it is as the ratio of gross profit to gross expenses:
+\begin{equation*}
+    \phi_1 = \frac{G}{C} .
+\end{equation*}
+This relation can be also considered as a cotangent of a polar angle of the following complex variable:
+\begin{equation}
+    G + iC .
+    \label{eq:CVPFresponse}
+\end{equation}
+This complex variable characterises the output of a system, because the sum of its real and imaginary parts is the quantity of the product produced measured in price units (i.e.~Income):
+\begin{equation*}
+    Q = G + C .
+\end{equation*}
+
+Another well known economic indicator is the capital-labour ratio, which represents the ratio of capital employed \(K\) to the overall labour \(L\) involved in production:
+\begin{equation*}
+    \phi_2 = \frac{K}{L} .
+\end{equation*}
+This is related to another complex variable (in a similar way as the profitability index):
+\begin{equation}
+    K + iL .
+    \label{eq:CVPFexplanatory}
+\end{equation}
+
+If we now estimate a function of the complex variable \eqref{eq:CVPFresponse} from \eqref{eq:CVPFexplanatory}, we will model complex interactions between labour, capital, expenses and profit, including the interactions between the capital-labour ration and the profitability. This setting provides an example of motivation of modelling economic process using complex variables.
 
 Finally, based on the discussion in Subsection \ref{vectorComplexVariables}, we can note that the complex-valued models share some structural similarities with vector models, such as Vector Autoregression, when they are applied to two variables. From this angle, the complex-valued models can be considered as special cases of the vector ones, when some restrictions are imposed on the matrix of parameters. This important property gives the complex-valued models their power: they need fewer parameters to estimate in comparison with their vector counterparts and (because of that) are arguably easier to work with. Moreover, this means that some tools developed for VAR can also be used for complex-valued models.
 
@@ -1718,7 +1754,7 @@ For modelling purposes, it might be useful to have the information about all pos
 \hypertarget{correlationVisual}{%
 \section{Visualisation of relations}\label{correlationVisual}}
 
-To better understand what correlations between c.r.v. imply, we need to understand how to visualise them first. The conventional way of doing that is using scatterplots. While in case of two real variables it is straightforward (a variable per axe), in complx-valude domain, this task has several potential solutions. The first one is to consider a set of scatterplots as shown in Figure \ref{fig:crvScatterplots} for two complex random variables \(\underline{x}\) and \(\underline{y}\), created using \texttt{cplot()} function from \texttt{complex} package in R.
+To better understand what correlations between c.r.v. imply, we need to understand how to visualise them first. The conventional way of doing that is using scatterplots. While in case of two real variables it is straightforward (a variable per axe), in complex-valued domain, this task has several potential solutions. The first one is to consider a set of scatterplots as shown in Figure \ref{fig:crvScatterplots} for two complex random variables \(\underline{x}\) and \(\underline{y}\), created using \texttt{cplot()} function from \texttt{complex} package in R.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2633,7 +2669,6 @@ If the confidence interval for the conditional mean is needed, then this can be 
 In the real-valued regression analysis, dummy variables appear when a feature of an object can be measured only in a categorical scale. For example, we might be interested in sales of a red medium size t-shirt vs the sales of a blue small size one. In this case, the colour would be one of such characteristics (measured in the nominal scale), while the size would be the other one (in ordinal scale). To include such information in the regression model, a set of dummy variables is typically created. A dummy variable is the variable that equals to one, when the feature exists and zero otherwise. So, in our example, we would create dummy variables \texttt{colourRed}, \texttt{colourBlue}, and \texttt{colourGreen} to denote the first feature and \texttt{sizeSmall}, \texttt{sizeMedium}, and \texttt{sizeLarge} for the second one. These variables would be equal to one for the specific observations (t-shirts) in our data. And for obvious reasons, the t-shirt cannot be both red and blue or small and medium at the same time, so the respective variables will be self-exclusive \citep[ provides more information about this]{SvetunkovSBA}.
 
 In case of complex linear regression, it is possible to introduce dummy variables in the same way as in the conventional model, by adding real-valued variables. The model in this case becomes:
-
 \begin{equation}
     \underline{y}_j = \underline{\beta}_0 + \underline{\beta}_1 \underline{x}_{1,j} + \dots + \underline{\beta}_{k-1} \underline{x}_{k-1,j} + \underline{\gamma}_1 d_{1,j} + \dots + \underline{\gamma}_m d_{m,j} + \underline{\epsilon}_j,
     \label{eq:MultipleCLRComplexDummy}
@@ -2817,9 +2852,9 @@ and also shows that the bias will increase with the increase of the values of th
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  if an omitted complex variable has high \emph{direct correlation} with the included one but has the zero \emph{conjugate correlation}, the OLS should give unbiased estimates of parameters, while the CLS would give the biased ones;
+  If an omitted complex variable has high \emph{direct correlation} with the included one but has the zero \emph{conjugate correlation}, the OLS should give unbiased estimates of parameters, while the CLS would give the biased ones;
 \item
-  if an omitted complex variable has zero \emph{direct correlation} with the included one but has high \emph{conjugate correlation}, the CLS should give unbiased estimates of parameters, while the OLS would give the biased ones.
+  If an omitted complex variable has zero \emph{direct correlation} with the included one but has high \emph{conjugate correlation}, the CLS should give unbiased estimates of parameters, while the OLS would give the biased ones.
 \end{enumerate}
 
 This property can be used in deciding which of the estimation methods to use if the researcher has some insights about the relation between the included and the omitted complex variables.
@@ -3894,7 +3929,7 @@ In general, solving the multicollinearity issue is not a trivial task on its own
 \hypertarget{Dynamic}{%
 \chapter{Complex Dynamic Models}\label{Dynamic}}
 
-In this chapter we consider the application of complex linear models to time series data. There are different ways of doing that, and we only discuss a few of the straight forward options of how to construct dynamic models. We start with a model with a trend, which differs fromthe conventional real-valued trend models, then discuss complex Autoregression (cAR), move to the complex Moving Average (cMA) and complex Autoregression with Moving Average (cARMA). Finally, we finish the discussion with the model applied to differences of the data, cARIMA.
+In this chapter we consider the application of complex linear models to time series data. There are different ways of doing that, and we only discuss a few of the straight forward options of how to construct dynamic models. We start with a model with a trend, which differs from the conventional real-valued trend models, then discuss complex Autoregression (cAR), move to the complex Moving Average (cMA) and complex Autoregression with Moving Average (cARMA). Finally, we finish the discussion with the model applied to differences of the data, cARIMA.
 
 We acknowledge that cARIMA and its sub-models have a lot in common with the vector ARIMA models applied to two time series. The main difference between them is in the matrix of the parameters: in case of the vector models, it is estimated in full (four parameters per order for two time series), while the complex ARIMA contains two times fewer parameters to estimate. Many of the properties of the vector models can be transferred to cARIMA, and many of them have already been explained in detail by \citet{Lutkepohl2005}. Still, there are some of them that are specific to the complex models.
 
@@ -5059,11 +5094,11 @@ Now that we have reached the final chapter of this book, we want to discuss the 
 
 For example, we mentioned that complex-valued models share some properties with the multivariate ones, such as Vector AR (VAR). This means that we can use the tools developed for those models for the complex-valued ones with minor modifications. For instance, we did not discuss how to calculate Impulse Response Function, which is widely used for analysis of effects based on VAR in Economics and Marketing Analytics. We expect that these tools can be transferred to the complex-valued models easily, but they lie outside of the scope of this monograph and can be considered as a future work.
 
-Furthermore, a curious reader might wonder what to do when we are interested in modelling more than two variables at the same time. The first instinct would be to switch to the multivariate models, such as VAR(p). But the main issue of those models is the high dimensionality. For example, VAR(p) on 10 time series requires the estimation of \(p \times 10^2\) parameters, which is not a simple task. However, \citet{SvetunkovSergey} \textbf{(need reference here!!!)} has developed a solution in this situation which involves complex variables. The model based on this is called vector cARIMA, VcARIMA(p,d,q) and involves stacking several complex response variables in a vector. This model is currently studied, and Sergey Svetunkov is preparing a paper explaining its properties, and showing how it can be used for time series analysis and in forecasting.
+Furthermore, a curious reader might wonder what to do when we are interested in modelling more than two variables at the same time. The first instinct would be to switch to the multivariate models, such as VAR(p). But the main issue of those models is the high dimensionality. For example, VAR(p) on 10 time series requires the estimation of \(p \times 10^2\) parameters, which is not a simple task. However, \citet{Svetunkov2022cVAR} developed a solution in this situation which involves complex variables. The model based on this is called vector cARIMA, VcARIMA(p,d,q) and involves stacking several complex response variables in a vector. This model is currently studied, and Sergey Svetunkov is preparing a paper explaining its properties, and showing how it can be used for time series analysis and in forecasting.
 
 Moreover, as discussed in this book several times, some of the largest benefits of complex variables arise when a non-linear model is considered, e.g.~a log-log model. We have discussed what happens with the cLR in this situation (Subsection \ref{assumptionsSpecificationTransformation} and Section \ref{DynamicTrend}), but we have not yet study how the cARIMA behaves in this situation. We expect that it should be able to capture non-linear dynamics, which would be beneficial when applied to large samples of data, such as, for example, in energy domain.
 
-Finally, we focused this monograph on complex-valued models that have two real valued variables in the complex response one. But this is not the only way of modelling using complex variables. \citet{Svetunkov2012} \textbf{(+ reference for papers from SPb team)} discussed some other ways of modelling which lie outside of this monograph.
+Finally, we focused this monograph on complex-valued models that have two real valued variables in the complex response one. But this is not the only way of modelling using complex variables. \citet{Svetunkov2012} discussed some other ways of modelling which lie outside of this monograph.
 
 Overall, we think that complex-valued modelling enriches the instrumental base of analysts and forecasters and allows modelling complicated processes in a more compact way. The authors plan to continue working in this direction and if you find the models and the R code developed for this monograph useful, we would be glad to hear from you. You can visit our website \href{https://svetunkov.com}{www.svetunkov.com} and get in touch with us using one of the ways you find convenient.
 
