@@ -1,4 +1,6 @@
 # Introduction to theory of complex variables {#intro}
+Before we move to the complex-valued models, we need to recap the basics. In this chapter, we discuss the basics of complex numbers theory and move from it to more complicated topics of complex variables, their functions and basics of statistics with complex variables. We finish the chapter with an important section of Complex-valued Modelling, where we discuss how the models of complex variables can be constructed in principle. All of these are the building blocks for the models and instruments that we will discuss in the next chapters.
+
 ## Theory of complex numbers {#theoryOfComplexNumbers}
 ### Historical context
 This section sets out the basic concepts of the Theory of Complex Variables Functions with some historical overlook of the idea of complex numbers. Hopefully, this will help in understanding the main idea that we will use extensively in the following chapters.

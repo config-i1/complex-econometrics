@@ -1,5 +1,5 @@
 # Multiple Complex Linear Regression {#multipleCLR}
-We now move to the discussion of the multiple cLR, the model that captures relations between one complex random variable, $y_r + i y_i$ and a set of explanatory complex random variables.
+We now move to the discussion of the multiple cLR, the model that captures relations between one complex random variable, $y_r + i y_i$ and a set of explanatory complex random variables. In this chapter, after discussing the model formulation we will move to the question of estimation, then to inference based on cLR, discuss how to correctly capture uncertainty in the model and finally how to include dummy variables in it.
 
 ## Model formulation
 Similarly to how the conventional multiple linear regression is formulated for real valued variables, the multiple complex linear regression can be written as:

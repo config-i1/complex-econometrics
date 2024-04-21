@@ -1,5 +1,5 @@
 # Examples of application {#Examples}
-In this chapter we consider examples of application of cLR and cARIMA models.
+In this chapter we consider examples of application of cLR and cARIMA models to two separate problems. The first one is related to sales forecasting, while the second one focuses on the analysis of efficiency of policies.
 
 
 ## cARIMA applied to Box-Jenkins Sales data

@@ -10,6 +10,7 @@ For modelling purposes, it might be useful to have the information about all pos
 5. $\sigma_{x_r,y_i}$,
 6. $\sigma_{y_r,x_i}$.
 
+We start with the visual analysis of relations, then move to the discussion of different types of correlation coefficients, sequentially discussing the conjugate, direct, Pearson's coefficients and finish the chapter with the discussion of correlation matrix of complex variables.
 
 ## Visualisation of relations {#correlationVisual}
 To better understand what correlations between c.r.v. imply, we need to understand how to visualise them first. The conventional way of doing that is using scatterplots. While in case of two real variables it is straightforward (a variable per axe), in complex-valued domain, this task has several potential solutions. The first one is to consider a set of scatterplots as shown in Figure \@ref(fig:crvScatterplots) for two complex random variables $\underline{x}$ and $\underline{y}$, created using `cplot()` function from `complex` package in R.
