@@ -12,7 +12,7 @@ For modelling purposes, it might be useful to have the information about all pos
 
 
 ## Visualisation of relations {#correlationVisual}
-To better understand what correlations between c.r.v. imply, we need to understand how to visualise them first. The conventional way of doing that is using scatterplots. While in case of two real variables it is straightforward (a variable per axe), in complx-valude domain, this task has several potential solutions. The first one is to consider a set of scatterplots as shown in Figure \@ref(fig:crvScatterplots) for two complex random variables $\underline{x}$ and $\underline{y}$, created using `cplot()` function from `complex` package in R.
+To better understand what correlations between c.r.v. imply, we need to understand how to visualise them first. The conventional way of doing that is using scatterplots. While in case of two real variables it is straightforward (a variable per axe), in complex-valued domain, this task has several potential solutions. The first one is to consider a set of scatterplots as shown in Figure \@ref(fig:crvScatterplots) for two complex random variables $\underline{x}$ and $\underline{y}$, created using `cplot()` function from `complex` package in R.
 
 ```{r crvScatterplots, fig.width=4, fig.height=4, fig.cap="Visualisation of relations between two complex variables"}
 # Random seed for reproducibility

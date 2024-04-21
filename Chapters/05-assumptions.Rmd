@@ -76,8 +76,8 @@ which simplifies (using similar logic as above) to:
 \end{equation}
 and also shows that the bias will increase with the increase of the values of the matrix $\underline{\mathbf{X}}^\top \underline{\mathbf{Z}}$. The main difference between the real-valued and the complex-valued econometrics is that the aforementioned matrices are complex and the covariances in OLS and CLS are respectively conjugate and direct. This means that:
 
-1. if an omitted complex variable has high *direct correlation* with the included one but has the zero *conjugate correlation*, the OLS should give unbiased estimates of parameters, while the CLS would give the biased ones;
-2. if an omitted complex variable has zero *direct correlation* with the included one but has high *conjugate correlation*, the CLS should give unbiased estimates of parameters, while the OLS would give the biased ones.
+1. If an omitted complex variable has high *direct correlation* with the included one but has the zero *conjugate correlation*, the OLS should give unbiased estimates of parameters, while the CLS would give the biased ones;
+2. If an omitted complex variable has zero *direct correlation* with the included one but has high *conjugate correlation*, the CLS should give unbiased estimates of parameters, while the OLS would give the biased ones.
 
 This property can be used in deciding which of the estimation methods to use if the researcher has some insights about the relation between the included and the omitted complex variables.
 
