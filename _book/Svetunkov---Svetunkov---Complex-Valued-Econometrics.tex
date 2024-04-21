@@ -195,6 +195,8 @@ This monograph will be useful for PhD students and academics working with multiv
 \hypertarget{intro}{%
 \chapter{Introduction to theory of complex variables}\label{intro}}
 
+Before we move to the complex-valued models, we need to recap the basics. In this chapter, we discuss the basics of complex numbers theory and move from it to more complicated topics of complex variables, their functions and basics of statistics with complex variables. We finish the chapter with an important section of Complex-valued Modelling, where we discuss how the models of complex variables can be constructed in principle. All of these are the building blocks for the models and instruments that we will discuss in the next chapters.
+
 \hypertarget{theoryOfComplexNumbers}{%
 \section{Theory of complex numbers}\label{theoryOfComplexNumbers}}
 
@@ -1135,7 +1137,9 @@ Finally, based on the discussion in Subsection \ref{vectorComplexVariables}, we 
 \hypertarget{simpleCLR}{%
 \chapter{Simple Complex Linear Regression}\label{simpleCLR}}
 
-We start with the simplest complex-valued model, a special case of a Complex Linear Regression (cLR; we use the small letter ``c'' to denote complex-valued models to avoid conflicts in names with real-valued ones), which we call ``simple'', analogous to how it is done in the real-valued domain, because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real-valued domain.
+We start with the simplest complex-valued model, a special case of a Complex Linear Regression (cLR; we use the small letter ``c'' to denote complex-valued models to avoid conflicts in names with real-valued ones), which we call ``simple'', analogous to how it is done in the real-valued domain, because it captures the relation between two variables. The main difference from the conventional Simple Linear Regression is that each of the variables is complex. This makes the model more complicated than the one in real-valued domain. Yes, we are aware of the oxymoron in the ``Simple Complex Linear Regression'', and we have done in on purpose.
+
+We start the discussion with the definition of the ScLR, then move to the question of its estimation and finish with the comparison of properties of the estimators.
 
 \hypertarget{simpleCLRModel}{%
 \section{Model formulation}\label{simpleCLRModel}}
@@ -1751,6 +1755,8 @@ For modelling purposes, it might be useful to have the information about all pos
   \(\sigma_{y_r,x_i}\).
 \end{enumerate}
 
+We start with the visual analysis of relations, then move to the discussion of different types of correlation coefficients, sequentially discussing the conjugate, direct, Pearson's coefficients and finish the chapter with the discussion of correlation matrix of complex variables.
+
 \hypertarget{correlationVisual}{%
 \section{Visualisation of relations}\label{correlationVisual}}
 
@@ -2189,7 +2195,7 @@ This matrix will not tell us how the variables \(\underline{x}\) and \(\underlin
 \hypertarget{multipleCLR}{%
 \chapter{Multiple Complex Linear Regression}\label{multipleCLR}}
 
-We now move to the discussion of the multiple cLR, the model that captures relations between one complex random variable, \(y_r + i y_i\) and a set of explanatory complex random variables.
+We now move to the discussion of the multiple cLR, the model that captures relations between one complex random variable, \(y_r + i y_i\) and a set of explanatory complex random variables. In this chapter, after discussing the model formulation we will move to the question of estimation, then to inference based on cLR, discuss how to correctly capture uncertainty in the model and finally how to include dummy variables in it.
 
 \hypertarget{model-formulation}{%
 \section{Model formulation}\label{model-formulation}}
@@ -4615,7 +4621,7 @@ When it comes to the selection of orders of cARIMA(p,d,q), using cACF/cPACF for 
 \hypertarget{Examples}{%
 \chapter{Examples of application}\label{Examples}}
 
-In this chapter we consider examples of application of cLR and cARIMA models.
+In this chapter we consider examples of application of cLR and cARIMA models to two separate problems. The first one is related to sales forecasting, while the second one focuses on the analysis of efficiency of policies.
 
 \hypertarget{carima-applied-to-box-jenkins-sales-data}{%
 \section{cARIMA applied to Box-Jenkins Sales data}\label{carima-applied-to-box-jenkins-sales-data}}
