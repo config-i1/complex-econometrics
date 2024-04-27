@@ -40,6 +40,10 @@ library(tseries)
 library(greybox)
 ```
 
+```{r complexPackage, echo=FALSE, fig.cap="Hex-sticker of the complex package in R."}
+knitr::include_graphics("./images/complex.pdf")
+```
+
 ```{r include=FALSE}
 palette("Tableau 10")
 # automatically create a bib database for R packages

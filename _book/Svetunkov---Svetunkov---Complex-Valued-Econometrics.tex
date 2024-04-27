@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-04-21}
+\date{2024-04-27}
 
 \begin{document}
 \maketitle
@@ -185,6 +185,12 @@ We will also need several other packages for our analysis, including the followi
 \FunctionTok{library}\NormalTok{(greybox)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{./images/complex.pdf}
+\caption{\label{fig:complexPackage}Hex-sticker of the complex package in R.}
+\end{figure}
 
 \hypertarget{who-is-this-monograph-for}{%
 \section*{Who is this monograph for?}\label{who-is-this-monograph-for}}
@@ -1605,10 +1611,10 @@ In order to do a more thorough comparison of the three estimators, we set up a s
 and several scenarios, parameters for which are shown in Table \ref{tab:scenariosEstimators}. They covered several important situations: when \(x_r\) and \(x_i\) are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different, and then when the real and imaginary parts of the error term are not correlated, have medium correlation, or are equal to zero, and when their variances have high or low values.
 
 \begin{table}
-\centering
+
 \caption{\label{tab:scenariosEstimators}Several scenarios for the comparison of estimators.}
 \centering
-\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\resizebox{\linewidth}{!}{
 \fontsize{12}{14}\selectfont
 \begin{tabular}[t]{l|l|l|l|l}
 \hline
