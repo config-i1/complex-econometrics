@@ -40,7 +40,7 @@ library(tseries)
 library(greybox)
 ```
 
-```{r complexPackage, echo=FALSE, out.width="50%", fig.cap="Hex-sticker of the complex package in R."}
+```{r complexPackage, echo=FALSE, out.width="50%", fig.align = 'center', fig.cap="Hex-sticker of the complex package in R."}
 knitr::include_graphics("./images/complex.pdf")
 ```
 
