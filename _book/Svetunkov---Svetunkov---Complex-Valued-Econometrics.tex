@@ -145,7 +145,7 @@
 
 \title{Complex-valued Econometrics with Examples in R}
 \author{Sergey Svetunkov and Ivan Svetunkov}
-\date{2024-04-27}
+\date{2024-07-11}
 
 \begin{document}
 \maketitle
@@ -781,8 +781,8 @@ In R, the conjugate and direct variances are available in \texttt{cvar()} functi
 \end{Shaded}
 
 \begin{verbatim}
-##    Direct variance 
-## -60.19156-5.69425i
+##     Direct variance 
+## -60.19156-5.694255i
 \end{verbatim}
 
 As we see from the output above, the direct variance has the negative real part, which indicates that the imaginary part has higher variance than the real one. The imaginary part of the direct variance shows the double covariance between the real and imaginary parts. Finally, the conjugate variance should be \(5^2 + 10^2 = 125\), but due to small sample (100 observations in the generated random variable above), it is not exactly that number, but instead is close to it.
@@ -890,7 +890,7 @@ In R, the complex covariances are implemented in \texttt{ccov()} function from t
 
 \begin{verbatim}
 ## Conjugate covariance 
-## 70.4003-101.2452i
+## 70.40027-101.2452i
 \end{verbatim}
 
 \begin{Shaded}
@@ -916,9 +916,9 @@ The functions \texttt{cvar()} and \texttt{ccov()} also accept a matrix instead o
 \end{Shaded}
 
 \begin{verbatim}
-##                     x                   y
-## x -60.19156- 5.69425i -51.28506+50.82070i
-## y -51.28506+50.82070i  12.71148+48.05904i
+##                      x                   y
+## x -60.19156- 5.694255i -51.28506+50.82070i
+## y -51.28506+50.820699i  12.71148+48.05904i
 \end{verbatim}
 
 While there exist higher order moments for complex random variables \citep[see, for example,][]{Javidi2011}, we do not discuss them in this book, because they lie outside of its scope.
@@ -1614,10 +1614,10 @@ In order to do a more thorough comparison of the three estimators, we set up a s
 and several scenarios, parameters for which are shown in Table \ref{tab:scenariosEstimators}. They covered several important situations: when \(x_r\) and \(x_i\) are not correlated, have medium correlation and perfectly correlated, when their variances are similar or different, and then when the real and imaginary parts of the error term are not correlated, have medium correlation, or are equal to zero, and when their variances have high or low values.
 
 \begin{table}
-
+\centering
 \caption{\label{tab:scenariosEstimators}Several scenarios for the comparison of estimators.}
 \centering
-\resizebox{\linewidth}{!}{
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \fontsize{12}{14}\selectfont
 \begin{tabular}[t]{l|l|l|l|l}
 \hline
@@ -2143,7 +2143,7 @@ For the same example as above, the direct correlation coefficient is:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.004573+0.000395i
+## [1] 1.004573+0.0003950739i
 \end{verbatim}
 
 The fact that the coefficient is close to one, means that the relation between the two complex variables is close to linear. On the other hand, the imaginary part being close to zero implies that the real and imaginary parts of the variables \(\underline{x}\) and \(\underline{y}\) are close to each other (this is how we generated the data). The fact that the real part is slightly above one only means that either \(\underline{x}\) or \(\underline{y}\) has real variance close to the imaginary one.
@@ -2949,7 +2949,7 @@ can be linearised using natural logarithm to:
                             & (\beta_{k-1,r} + i \beta_{k-1,i}) \ln (x_{k-1,r} + i x_{k-1,i}) + \ln (\epsilon_{r} + i \epsilon_{i}),
     \end{aligned}
 \end{equation*}
-which can then be estimated using OLS, CLS or likelihood maximisation as discussed in Section \ref{mlcrEstimation}. On its own, the multiplicative models of complex variables have useful features, because they allow modelling highly non-linear processes due to the rotation as discussed in Section \ref{theoryOfComplexNumbers}. For example, here how the linear increase of real and imaginary parts of a complex variable \(\underline{x}\) leads to a non-linear transform of a variable \(\underline{y}=\underline{x}^{0.5+0.5i}\):
+which can then be estimated using OLS, CLS or likelihood maximisation as discussed in Section \ref{mlcrEstimation}. On its own, the multiplicative models of complex variables have useful features, because they allow modelling highly non-linear processes due to the rotation as discussed in Section \ref{theoryOfComplexNumbers}. For example, here how the linear increase of real and imaginary parts of a complex variable \(\underline{x}\) leads to a non-linear transform of a variable \(\underline{y}=\underline{x}^{0.5+0.5i}\) (Figure \ref{fig:nonLinearExample}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2961,8 +2961,8 @@ which can then be estimated using OLS, CLS or likelihood maximisation as discuss
 
 \begin{figure}
 \centering
-\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/unnamed-chunk-37-1.pdf}
-\caption{\label{fig:unnamed-chunk-37}Non-linear transformation of a complex variable that changes linearly.}
+\includegraphics{Svetunkov---Svetunkov---Complex-Valued-Econometrics_files/figure-latex/nonLinearExample-1.pdf}
+\caption{\label{fig:nonLinearExample}Non-linear transformation of a complex variable that changes linearly.}
 \end{figure}
 
 Even if the imaginary part of \(\underline{x}\) is zero (and as a result we deal with a real number, not a complex one), the complex power leads to highly non-linear transformation of the variable. This is a useful feature if the non-linearity is suspected in the data.
@@ -3271,7 +3271,7 @@ Furthermore, there is another presentation for complex ACF/PACF - in the polar c
 
 The distribution of the absolute value of a bivariate normal complex variable follows Hoyt's distribution, which can be used for the confidence interval construction for the plot above. However, the derivations become complicated and we do not provide them here (we might provide them in the future editions of this monograph).
 
-Finally, one can analyse the ACF/PACF of the separate real and imaginary parts of the residuals, thus ignoring the potential dynamics between the parts of complex variables. The analysis in this case becomes trivial and has been discussed in many textbooks and monographs \citep[for example, see Section 14.5 of][]{SvetunkovAdam}. In R, if a model is estimated using the \texttt{clm()} function from the \texttt{complex} package, the \texttt{plot()} method supports producing ACF/PACF for parts of the complex variable. For example, for the same model from the Subsection \ref{assumptionsSpecificationTransformation}, we have (see Figure \ref{fig:complexAR1Ploar}):
+Finally, one can analyse the ACF/PACF of the separate real and imaginary parts of the residuals, thus ignoring the potential dynamics between the parts of complex variables. The analysis in this case becomes trivial and has been discussed in many textbooks and monographs \citep[for example, see Section 14.5 of][]{SvetunkovAdam}. In R, if a model is estimated using the \texttt{clm()} function from the \texttt{complex} package, the \texttt{plot()} method supports producing ACF/PACF for parts of the complex variable. For example, for the same model from the Subsection \ref{assumptionsSpecificationTransformation}, we have (see Figure \ref{fig:complexARDiagnosticsACFPACF}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
