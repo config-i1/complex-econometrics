@@ -182,9 +182,9 @@ can be linearised using natural logarithm to:
                             & (\beta_{k-1,r} + i \beta_{k-1,i}) \ln (x_{k-1,r} + i x_{k-1,i}) + \ln (\epsilon_{r} + i \epsilon_{i}),
     \end{aligned}
 \end{equation*}
-which can then be estimated using OLS, CLS or likelihood maximisation as discussed in Section \@ref(mlcrEstimation). On its own, the multiplicative models of complex variables have useful features, because they allow modelling highly non-linear processes due to the rotation as discussed in Section \@ref(theoryOfComplexNumbers). For example, here how the linear increase of real and imaginary parts of a complex variable $\underline{x}$ leads to a non-linear transform of a variable $\underline{y}=\underline{x}^{0.5+0.5i}$:
+which can then be estimated using OLS, CLS or likelihood maximisation as discussed in Section \@ref(mlcrEstimation). On its own, the multiplicative models of complex variables have useful features, because they allow modelling highly non-linear processes due to the rotation as discussed in Section \@ref(theoryOfComplexNumbers). For example, here how the linear increase of real and imaginary parts of a complex variable $\underline{x}$ leads to a non-linear transform of a variable $\underline{y}=\underline{x}^{0.5+0.5i}$ (Figure \@ref(fig:nonLinearExample)):
 
-```{r fig.width=4, fig.height=4, fig.cap="Non-linear transformation of a complex variable that changes linearly."}
+```{r nonLinearExample, fig.width=4, fig.height=4, fig.cap="Non-linear transformation of a complex variable that changes linearly."}
 x <- 1:100 + 1:100*1i
 y <- x**(0.5+0.5i)
 cplot(x, y)
@@ -385,7 +385,7 @@ cpacf(y, method="conjugate", plot=FALSE) |>
 
 The distribution of the absolute value of a bivariate normal complex variable follows Hoyt's distribution, which can be used for the confidence interval construction for the plot above. However, the derivations become complicated and we do not provide them here (we might provide them in the future editions of this monograph).
 
-Finally, one can analyse the ACF/PACF of the separate real and imaginary parts of the residuals, thus ignoring the potential dynamics between the parts of complex variables. The analysis in this case becomes trivial and has been discussed in many textbooks and monographs [for example, see Section 14.5 of @SvetunkovAdam]. In R, if a model is estimated using the `clm()` function from the `complex` package, the `plot()` method supports producing ACF/PACF for parts of the complex variable. For example, for the same model from the Subsection \@ref(assumptionsSpecificationTransformation), we have (see Figure \@ref(fig:complexAR1Ploar)):
+Finally, one can analyse the ACF/PACF of the separate real and imaginary parts of the residuals, thus ignoring the potential dynamics between the parts of complex variables. The analysis in this case becomes trivial and has been discussed in many textbooks and monographs [for example, see Section 14.5 of @SvetunkovAdam]. In R, if a model is estimated using the `clm()` function from the `complex` package, the `plot()` method supports producing ACF/PACF for parts of the complex variable. For example, for the same model from the Subsection \@ref(assumptionsSpecificationTransformation), we have (see Figure \@ref(fig:complexARDiagnosticsACFPACF)):
 
 ```{r complexARDiagnosticsACFPACF, fig.cap="ACF/PACF for the real (Series 1) and imaginary (Series 2) parts of the complex residuals."}
 par(mfcol=c(2,2))
